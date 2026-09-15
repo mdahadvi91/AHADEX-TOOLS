@@ -1,0 +1,5 @@
+# ads.txt configuration for AHADEX TOOLS
+# Architecture: Authorized Digital Sellers specification (IAB Tech Lab)
+# Note: Verified publisher identifier records will be configured upon production ad network activation.
+# Example format when active:
+# google.com, pub-XXXXXXXXXXXXXXXX, DIRECT, f08c47fec0942fa0

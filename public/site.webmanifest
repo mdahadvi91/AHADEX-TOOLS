@@ -1,0 +1,16 @@
+{
+  "name": "AHADEX TOOLS",
+  "short_name": "AhadexTools",
+  "description": "A scalable, privacy-focused online tools platform for image processing, PDF utilities, QR generation, and developer tools.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#0f172a",
+  "theme_color": "#0f172a",
+  "icons": [
+    {
+      "src": "/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml"
+    }
+  ]
+}

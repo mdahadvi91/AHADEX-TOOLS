@@ -1,0 +1,108 @@
+/* ==========================================================================
+   AHADEX TOOLS DESIGN SYSTEM — GLASSMORPHISM FOUNDATION
+   Reusable liquid-glass styles adhering to strict optical contrast,
+   restrained blur radii, and surface hierarchy.
+   ========================================================================== */
+
+/* 1. Page Background Baseline */
+.surface-page {
+  background-color: var(--color-bg-page);
+  background-image: var(--color-bg-page-gradient);
+  color: var(--color-text-primary);
+}
+
+/* 2. Primary Liquid Glass Surface (Cards, Containers, Workspace Shells) */
+.glass-panel {
+  background: var(--glass-bg-primary);
+  border: 1px solid var(--glass-border);
+  box-shadow: var(--shadow-glass), var(--glass-highlight);
+  border-radius: var(--radius-xl);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+/* Fallback for browsers without backdrop-filter support */
+@supports not (backdrop-filter: blur(1px)) {
+  .glass-panel {
+    background: var(--color-bg-surface);
+    border-color: var(--glass-border-subtle);
+  }
+}
+
+/* 3. Elevated Glass Surface (Popovers, Control Docks, Floating Palettes) */
+.glass-panel-elevated {
+  background: var(--glass-bg-elevated);
+  border: 1px solid var(--glass-border);
+  box-shadow: var(--shadow-elevated), var(--glass-highlight);
+  border-radius: var(--radius-xl);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+}
+
+@supports not (backdrop-filter: blur(1px)) {
+  .glass-panel-elevated {
+    background: var(--color-bg-surface-elevated);
+  }
+}
+
+/* 4. Interactive Glass Surface (Clickable cards, hoverable action tiles) */
+.glass-panel-interactive {
+  background: var(--glass-bg-interactive);
+  border: 1px solid var(--glass-border-subtle);
+  box-shadow: var(--shadow-sm), var(--glass-highlight);
+  border-radius: var(--radius-lg);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  transition: transform 0.18s cubic-bezier(0.16, 1, 0.3, 1),
+              border-color 0.18s ease,
+              background 0.18s ease,
+              box-shadow 0.18s ease;
+  cursor: pointer;
+}
+
+.glass-panel-interactive:hover {
+  background: var(--glass-bg-hover);
+  border-color: var(--glass-border-interactive);
+  box-shadow: var(--shadow-md), 0 0 16px -2px var(--color-accent-subtle);
+  transform: translateY(-1px);
+}
+
+.glass-panel-interactive:active {
+  transform: translateY(0);
+  box-shadow: var(--shadow-sm);
+}
+
+/* 5. Modal & Overlay Glass Surface (Dialogs, full-screen sheets) */
+.glass-panel-modal {
+  background: var(--glass-bg-elevated);
+  border: 1px solid var(--glass-border);
+  box-shadow: var(--shadow-elevated);
+  border-radius: var(--radius-2xl);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+}
+
+.glass-backdrop {
+  background: rgba(9, 13, 22, 0.45);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+
+/* 6. Subtle Glass Token (Tags, Pill Badges, Inner Info Chips) */
+.glass-subtle {
+  background: var(--glass-bg-subtle);
+  border: 1px solid var(--glass-border-subtle);
+  border-radius: var(--radius-full);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+
+/* 7. Glass Border Utility */
+.glass-border {
+  border: 1px solid var(--glass-border);
+}
+
+.glass-border-subtle {
+  border: 1px solid var(--glass-border-subtle);
+}

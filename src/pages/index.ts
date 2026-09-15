@@ -1,0 +1,11 @@
+export { default as HomePage } from './HomePage';
+export { default as CategoryPage } from './CategoryPage';
+export { default as ToolPage } from './ToolPage';
+export { default as NotFoundPage } from './NotFoundPage';
+export { default as AboutPage } from './AboutPage';
+export { default as ContactPage } from './ContactPage';
+export { default as PrivacyPage } from './PrivacyPage';
+export { default as TermsPage } from './TermsPage';
+export { default as DisclaimerPage } from './DisclaimerPage';
+export { default as CookiePolicyPage } from './CookiePolicyPage';
+export { default as AccessibilityPage } from './AccessibilityPage';

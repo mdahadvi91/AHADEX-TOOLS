@@ -1,0 +1,6 @@
+{
+  "name": "AHADEX TOOLS",
+  "description": "A scalable, privacy-focused online tools platform for image processing, PDF utilities, QR generation, and developer tools.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
