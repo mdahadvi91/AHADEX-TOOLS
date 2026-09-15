@@ -1,0 +1,108 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" width="1200" height="630">
+  <defs>
+    <!-- Background Gradients -->
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0b1120" />
+      <stop offset="50%" stop-color="#0f172a" />
+      <stop offset="100%" stop-color="#020617" />
+    </linearGradient>
+
+    <!-- Ambient Glows -->
+    <radialGradient id="glow-sky" cx="15%" cy="20%" r="55%">
+      <stop offset="0%" stop-color="#0284c7" stop-opacity="0.35" />
+      <stop offset="100%" stop-color="#0284c7" stop-opacity="0" />
+    </radialGradient>
+    <radialGradient id="glow-indigo" cx="85%" cy="80%" r="50%">
+      <stop offset="0%" stop-color="#6366f1" stop-opacity="0.25" />
+      <stop offset="100%" stop-color="#6366f1" stop-opacity="0" />
+    </radialGradient>
+
+    <!-- Brand Icon Gradient -->
+    <linearGradient id="brand-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#38bdf8" />
+      <stop offset="50%" stop-color="#0284c7" />
+      <stop offset="100%" stop-color="#4f46e5" />
+    </linearGradient>
+
+    <!-- Badge Gradient -->
+    <linearGradient id="badge-grad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#0284c7" stop-opacity="0.2" />
+      <stop offset="100%" stop-color="#38bdf8" stop-opacity="0.08" />
+    </linearGradient>
+  </defs>
+
+  <!-- Background Base -->
+  <rect width="1200" height="630" fill="url(#bg)" />
+  <rect width="1200" height="630" fill="url(#glow-sky)" />
+  <rect width="1200" height="630" fill="url(#glow-indigo)" />
+
+  <!-- Subtle Grid Pattern -->
+  <g stroke="#334155" stroke-opacity="0.12" stroke-width="1">
+    <line x1="100" y1="0" x2="100" y2="630" />
+    <line x1="250" y1="0" x2="250" y2="630" />
+    <line x1="400" y1="0" x2="400" y2="630" />
+    <line x1="550" y1="0" x2="550" y2="630" />
+    <line x1="700" y1="0" x2="700" y2="630" />
+    <line x1="850" y1="0" x2="850" y2="630" />
+    <line x1="1000" y1="0" x2="1000" y2="630" />
+    <line x1="1150" y1="0" x2="1150" y2="630" />
+
+    <line x1="0" y1="100" x2="1200" y2="100" />
+    <line x1="0" y1="230" x2="1200" y2="230" />
+    <line x1="0" y1="360" x2="1200" y2="360" />
+    <line x1="0" y1="490" x2="1200" y2="490" />
+  </g>
+
+  <!-- Main Card Container / Border -->
+  <rect x="70" y="60" width="1060" height="510" rx="28" fill="#1e293b" fill-opacity="0.3" stroke="#38bdf8" stroke-opacity="0.25" stroke-width="1.5" />
+
+  <!-- Content Group -->
+  <g transform="translate(130, 125)">
+    <!-- Top Pill: Brand Category -->
+    <rect x="0" y="0" width="270" height="38" rx="19" fill="url(#badge-grad)" stroke="#38bdf8" stroke-opacity="0.4" stroke-width="1" />
+    <circle cx="20" cy="19" r="5" fill="#38bdf8" />
+    <text x="35" y="24" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="14" font-weight="700" fill="#38bdf8" letter-spacing="1">CLIENT-SIDE PRIVACY</text>
+
+    <!-- Brand Identity Row -->
+    <g transform="translate(0, 70)">
+      <!-- Logo Icon Box -->
+      <rect x="0" y="0" width="88" height="88" rx="22" fill="url(#brand-grad)" />
+      <!-- Layers Icon inside Box -->
+      <path d="M44 26 L66 38 L44 50 L22 38 Z" fill="#ffffff" fill-opacity="0.95" />
+      <path d="M22 47 L44 59 L66 47" fill="none" stroke="#ffffff" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round" />
+      <path d="M22 56 L44 68 L66 56" fill="none" stroke="#ffffff" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round" />
+
+      <!-- Brand Heading -->
+      <text x="110" y="62" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="64" font-weight="900" fill="#ffffff" letter-spacing="-1.5">AHADEX<tspan fill="#38bdf8">TOOLS</tspan></text>
+    </g>
+
+    <!-- Tagline & Description -->
+    <text x="0" y="215" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="30" font-weight="700" fill="#f1f5f9">Privacy-First Free Online Utilities</text>
+    <text x="0" y="258" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="20" font-weight="400" fill="#94a3b8">Fast, browser-native tools for PDF, image conversion, compression, and QR codes.</text>
+    <text x="0" y="288" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="20" font-weight="400" fill="#94a3b8">Zero server uploads. 100% private, client-side processing.</text>
+
+    <!-- Feature Pills Row -->
+    <g transform="translate(0, 335)">
+      <!-- Pill 1 -->
+      <rect x="0" y="0" width="170" height="42" rx="12" fill="#0f172a" fill-opacity="0.8" stroke="#334155" stroke-width="1.2" />
+      <text x="22" y="26" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="15" font-weight="600" fill="#e2e8f0">⚡ JPG to PDF</text>
+
+      <!-- Pill 2 -->
+      <rect x="185" y="0" width="180" height="42" rx="12" fill="#0f172a" fill-opacity="0.8" stroke="#334155" stroke-width="1.2" />
+      <text x="207" y="26" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="15" font-weight="600" fill="#e2e8f0">📄 PDF to JPG</text>
+
+      <!-- Pill 3 -->
+      <rect x="380" y="0" width="205" height="42" rx="12" fill="#0f172a" fill-opacity="0.8" stroke="#334155" stroke-width="1.2" />
+      <text x="402" y="26" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="15" font-weight="600" fill="#e2e8f0">🗜️ Image Compressor</text>
+
+      <!-- Pill 4 -->
+      <rect x="600" y="0" width="175" height="42" rx="12" fill="#0f172a" fill-opacity="0.8" stroke="#334155" stroke-width="1.2" />
+      <text x="622" y="26" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="15" font-weight="600" fill="#e2e8f0">📱 QR Generator</text>
+    </g>
+
+    <!-- Canonical Domain Stamp -->
+    <g transform="translate(730, 335)">
+      <text x="210" y="28" text-anchor="end" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="20" font-weight="800" fill="#38bdf8" letter-spacing="0.5">https://ahadex.fun</text>
+    </g>
+  </g>
+</svg>

@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://nova-tools-hr.vercel.app/sitemap.xml
+Sitemap: https://ahadex.fun/sitemap.xml

@@ -21,7 +21,7 @@ export interface SiteConfig {
  * Canonical base production URL for AHADEX TOOLS.
  * All canonical URLs, sitemaps, and Open Graph references derive from this constant.
  */
-export const CANONICAL_BASE_URL = 'https://nova-tools-hr.vercel.app';
+export const CANONICAL_BASE_URL = 'https://ahadex.fun';
 
 /**
  * Global site configuration data.
