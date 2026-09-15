@@ -1,59 +1,62 @@
 import React from 'react';
 import { Search, UploadCloud, Sliders, Download, HelpCircle } from 'lucide-react';
+import { useLanguage } from '@/src/hooks';
 
 export interface HowItWorksSectionProps {
   className?: string;
 }
-
-const STEPS = [
-  {
-    number: '01',
-    title: 'Select a Tool',
-    description: 'Browse categories or use quick search to find the exact utility needed for your task.',
-    icon: Search,
-  },
-  {
-    number: '02',
-    title: 'Provide Content',
-    description: 'Upload your documents or images, enter text, or input parameters directly in the browser.',
-    icon: UploadCloud,
-  },
-  {
-    number: '03',
-    title: 'Configure Options',
-    description: 'Adjust quality sliders, choose output formats, page order, or styling preferences.',
-    icon: Sliders,
-  },
-  {
-    number: '04',
-    title: 'Process & Save',
-    description: 'Generate your output and download or copy the finished results immediately.',
-    icon: Download,
-  },
-];
 
 /**
  * How AHADEX TOOLS Works section.
  * Explains general platform interaction flow honestly without overgeneralizing.
  */
 export default function HowItWorksSection({ className = '' }: HowItWorksSectionProps) {
+  const { t } = useLanguage();
+
+  const steps = [
+    {
+      number: '01',
+      title: t('step1Title'),
+      description: t('step1Desc'),
+      icon: Search,
+    },
+    {
+      number: '02',
+      title: t('step2Title'),
+      description: t('step2Desc'),
+      icon: UploadCloud,
+    },
+    {
+      number: '03',
+      title: t('step3Title'),
+      description: t('step3Desc'),
+      icon: Sliders,
+    },
+    {
+      number: '04',
+      title: t('step4Title'),
+      description: t('step4Desc'),
+      icon: Download,
+    },
+  ];
+
   return (
     <section aria-labelledby="how-it-works-heading" className={`w-full ${className}`}>
       <div className="text-center max-w-2xl mx-auto mb-10">
         <div className="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider text-sky-600 dark:text-sky-400 mb-2">
           <HelpCircle className="w-3.5 h-3.5" aria-hidden="true" />
-          <span>Simple Workflow</span>
+          <span>{t('simpleWorkflow')}</span>
         </div>
         <h2 id="how-it-works-heading" className="text-2xl sm:text-3xl font-extrabold text-slate-900 dark:text-white tracking-tight mb-3">
-          How AHADEX TOOLS Works
+          {t('howItWorksTitle')}
         </h2>
         <p className="text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
-          Most utilities follow a straightforward, four-step workflow designed to deliver quick results without unnecessary friction.
+          {t('howItWorksDesc')}
         </p>
       </div>
 
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
-        {STEPS.map((step) => {
+        {steps.map((step) => {
           const Icon = step.icon;
           return (
             <div
@@ -83,7 +86,7 @@ export default function HowItWorksSection({ className = '' }: HowItWorksSectionP
       </div>
 
       <p className="text-center text-xs text-slate-400 dark:text-slate-500 mt-6">
-        Note: Exact steps and capabilities may vary based on specific utility requirements.
+        {t('workflowNote')}
       </p>
     </section>
   );

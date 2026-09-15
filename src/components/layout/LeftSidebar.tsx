@@ -1,6 +1,7 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 import { Home, Compass, Sparkles } from 'lucide-react';
+import { useLanguage } from '@/src/hooks';
 import CategoryNavigation from './CategoryNavigation';
 
 export interface LeftSidebarProps {
@@ -13,6 +14,8 @@ export interface LeftSidebarProps {
  * Stable, desktop-accessible navigation docking category trees and primary anchors.
  */
 export default function LeftSidebar({ className = '', onItemClick }: LeftSidebarProps) {
+  const { t } = useLanguage();
+
   return (
     <aside
       id="ahadex-left-sidebar"
@@ -22,7 +25,7 @@ export default function LeftSidebar({ className = '', onItemClick }: LeftSidebar
       {/* Primary Links */}
       <div className="flex flex-col gap-1">
         <div className="text-[11px] font-bold uppercase tracking-wider text-slate-400 dark:text-slate-500 px-3 py-1">
-          Explore
+          {t('explore')}
         </div>
         <NavLink
           to="/"
@@ -36,7 +39,7 @@ export default function LeftSidebar({ className = '', onItemClick }: LeftSidebar
           }
         >
           <Home className="w-4 h-4 text-sky-600 dark:text-sky-400" aria-hidden="true" />
-          <span>Home</span>
+          <span>{t('home')}</span>
         </NavLink>
       </div>
 
@@ -44,7 +47,7 @@ export default function LeftSidebar({ className = '', onItemClick }: LeftSidebar
       <div className="flex flex-col gap-1 flex-1">
         <div className="flex items-center justify-between px-3 py-1">
           <span className="text-[11px] font-bold uppercase tracking-wider text-slate-400 dark:text-slate-500">
-            Tool Categories
+            {t('toolCategories')}
           </span>
           <Compass className="w-3.5 h-3.5 text-slate-400" aria-hidden="true" />
         </div>
@@ -56,8 +59,8 @@ export default function LeftSidebar({ className = '', onItemClick }: LeftSidebar
         <div className="p-3 rounded-xl bg-sky-50/70 dark:bg-sky-950/40 border border-sky-200/50 dark:border-sky-800/50 flex items-start gap-2.5">
           <Sparkles className="w-4 h-4 text-sky-600 dark:text-sky-400 shrink-0 mt-0.5" aria-hidden="true" />
           <p className="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
-            <strong className="text-slate-800 dark:text-slate-100 font-semibold">100% Client-Side:</strong> Files
-            never leave your browser unless explicitly synced.
+            <strong className="text-slate-800 dark:text-slate-100 font-semibold">{t('brandSubtext')}:</strong>{' '}
+            {t('clientSideNotice')}
           </p>
         </div>
       </div>

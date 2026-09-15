@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { CATEGORIES } from '@/src/data/categories';
 import { getToolsByCategory } from '@/src/data/tools';
+import { useLanguage, type TranslationKey } from '@/src/hooks';
 import {
   Image as ImageIcon,
   FileText,
@@ -34,16 +35,18 @@ export interface CategoryGridProps {
  * Purely data-driven from central categories registry (src/data/categories.ts).
  */
 export default function CategoryGrid({ className = '' }: CategoryGridProps) {
+  const { t } = useLanguage();
+
   return (
     <section aria-labelledby="categories-heading" className={`w-full ${className}`}>
       <div className="flex items-center justify-between gap-4 mb-6">
         <div>
           <div className="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider text-sky-600 dark:text-sky-400 mb-1">
             <Layers className="w-3.5 h-3.5" aria-hidden="true" />
-            <span>Explore By Domain</span>
+            <span>{t('exploreByDomain')}</span>
           </div>
           <h2 id="categories-heading" className="text-xl sm:text-2xl font-extrabold text-slate-900 dark:text-white tracking-tight">
-            Tool Categories
+            {t('toolCategories')}
           </h2>
         </div>
       </div>
@@ -54,6 +57,8 @@ export default function CategoryGrid({ className = '' }: CategoryGridProps) {
           const tools = getToolsByCategory(category.id);
           const toolCount = tools.length;
           const isComingSoon = category.status === 'coming-soon';
+          const catName = t(`cat_${category.id}` as TranslationKey, category.name);
+          const catDesc = t(`cat_${category.id}_desc` as TranslationKey, category.description);
 
           return (
             <Link
@@ -70,7 +75,7 @@ export default function CategoryGrid({ className = '' }: CategoryGridProps) {
 
                   {isComingSoon ? (
                     <span className="text-[10px] uppercase font-bold tracking-wider px-2 py-0.5 rounded-full bg-slate-100 dark:bg-slate-800 text-slate-500 dark:text-slate-400 border border-slate-200 dark:border-slate-700">
-                      Coming Soon
+                      {t('comingSoon')}
                     </span>
                   ) : (
                     <span className="text-[11px] font-semibold text-slate-500 dark:text-slate-400">
@@ -80,16 +85,16 @@ export default function CategoryGrid({ className = '' }: CategoryGridProps) {
                 </div>
 
                 <h3 className="text-base font-bold text-slate-900 dark:text-white group-hover:text-sky-600 dark:group-hover:text-sky-400 transition-colors mb-1">
-                  {category.name}
+                  {catName}
                 </h3>
 
                 <p className="text-xs text-slate-600 dark:text-slate-400 line-clamp-2 leading-relaxed mb-4">
-                  {category.description}
+                  {catDesc}
                 </p>
               </div>
 
               <div className="pt-3 border-t border-slate-100 dark:border-slate-800/80 flex items-center justify-between text-xs font-semibold text-sky-600 dark:text-sky-400">
-                <span>Browse category</span>
+                <span>{t('browseCategory')}</span>
                 <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform" />
               </div>
             </Link>

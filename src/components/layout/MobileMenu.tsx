@@ -19,7 +19,7 @@ export interface MobileMenuProps {
 export default function MobileMenu({ isOpen, onClose }: MobileMenuProps) {
   const navigate = useNavigate();
   const { theme, setTheme } = useTheme();
-  const { language, setLanguage, supportedLanguages } = useLanguage();
+  const { language, setLanguage, supportedLanguages, t } = useLanguage();
   const closeButtonRef = useRef<HTMLButtonElement | null>(null);
 
   // Keyboard accessibility: Escape to dismiss
@@ -97,7 +97,7 @@ export default function MobileMenu({ isOpen, onClose }: MobileMenuProps) {
           <div>
             <ToolSearch
               isCompact={true}
-              placeholder="Search all online tools..."
+              placeholder={t('searchPlaceholder')}
               onSelectTool={(tool) => {
                 onClose();
                 navigate(tool.route);
@@ -108,7 +108,7 @@ export default function MobileMenu({ isOpen, onClose }: MobileMenuProps) {
           {/* Tool Categories Navigation */}
           <div className="flex flex-col gap-2">
             <h2 className="text-xs font-bold uppercase tracking-wider text-slate-400 dark:text-slate-500">
-              Categories
+              {t('toolCategories')}
             </h2>
             <CategoryNavigation onItemClick={onClose} />
           </div>
@@ -116,13 +116,13 @@ export default function MobileMenu({ isOpen, onClose }: MobileMenuProps) {
           {/* Appearance Preference */}
           <div className="flex flex-col gap-2 pt-4 border-t border-slate-200 dark:border-slate-800">
             <h2 className="text-xs font-bold uppercase tracking-wider text-slate-400 dark:text-slate-500">
-              Appearance
+              {t('interfaceAppearance')}
             </h2>
             <div className="grid grid-cols-3 gap-2">
               {[
-                { mode: 'light', label: 'Light', icon: <Sun className="w-4 h-4" /> },
-                { mode: 'dark', label: 'Dark', icon: <Moon className="w-4 h-4" /> },
-                { mode: 'system', label: 'Auto', icon: <Laptop className="w-4 h-4" /> },
+                { mode: 'light', label: t('light'), icon: <Sun className="w-4 h-4" /> },
+                { mode: 'dark', label: t('dark'), icon: <Moon className="w-4 h-4" /> },
+                { mode: 'system', label: t('auto'), icon: <Laptop className="w-4 h-4" /> },
               ].map((opt) => (
                 <button
                   key={opt.mode}
@@ -145,7 +145,7 @@ export default function MobileMenu({ isOpen, onClose }: MobileMenuProps) {
           <div className="flex flex-col gap-2">
             <h2 className="text-xs font-bold uppercase tracking-wider text-slate-400 dark:text-slate-500 flex items-center gap-1.5">
               <Globe className="w-3.5 h-3.5" aria-hidden="true" />
-              <span>Language</span>
+              <span>{t('language')}</span>
             </h2>
             <div className="grid grid-cols-3 gap-2">
               {supportedLanguages.map((lang) => (

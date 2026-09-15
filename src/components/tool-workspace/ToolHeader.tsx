@@ -16,6 +16,7 @@ import {
 } from 'lucide-react';
 import type { Tool } from '@/src/types/tool';
 import { CATEGORIES } from '@/src/data/categories';
+import { useLanguage, type TranslationKey } from '@/src/hooks';
 
 const ICON_MAP: Record<string, LucideIcon> = {
   FileImage,
@@ -42,6 +43,7 @@ export default function ToolHeader({
   className = '',
   id = 'tool-header',
 }: ToolHeaderProps) {
+  const { t } = useLanguage();
   const IconComponent = ICON_MAP[tool.icon] || Wrench;
   const category = CATEGORIES.find(
     (cat) => cat.id === tool.categoryId || cat.id === tool.category
@@ -55,7 +57,7 @@ export default function ToolHeader({
           to="/"
           className="hover:text-sky-600 dark:hover:text-sky-400 transition-colors"
         >
-          Home
+          {t('home')}
         </Link>
         <ChevronRight className="w-3.5 h-3.5 text-slate-400 dark:text-slate-600" aria-hidden="true" />
         {category ? (
@@ -63,10 +65,10 @@ export default function ToolHeader({
             to={`/category/${category.id}`}
             className="hover:text-sky-600 dark:hover:text-sky-400 transition-colors"
           >
-            {category.name}
+            {t(`cat_${category.id}` as TranslationKey, category.name)}
           </Link>
         ) : (
-          <span>Tools</span>
+          <span>{t('tools')}</span>
         )}
         <ChevronRight className="w-3.5 h-3.5 text-slate-400 dark:text-slate-600" aria-hidden="true" />
         <span className="font-semibold text-slate-800 dark:text-slate-200 truncate max-w-[200px]" aria-current="page">
@@ -97,19 +99,19 @@ export default function ToolHeader({
           {/* Client-Side Execution Guarantee */}
           <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-[11px] font-semibold bg-emerald-500/10 border border-emerald-500/20 text-emerald-700 dark:text-emerald-400">
             <ShieldCheck className="w-3.5 h-3.5" aria-hidden="true" />
-            <span>100% Client-Side</span>
+            <span>{t('clientSide')}</span>
           </span>
 
           {/* Tool Status */}
           {tool.status === 'coming-soon' ? (
             <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-[11px] font-semibold bg-amber-500/10 border border-amber-500/20 text-amber-700 dark:text-amber-400">
               <Clock className="w-3.5 h-3.5" aria-hidden="true" />
-              <span>Preview Mode</span>
+              <span>{t('comingSoon')}</span>
             </span>
           ) : (
             <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-[11px] font-semibold bg-sky-500/10 border border-sky-500/20 text-sky-700 dark:text-sky-400">
               <Zap className="w-3.5 h-3.5" aria-hidden="true" />
-              <span>Instant</span>
+              <span>{t('ready')}</span>
             </span>
           )}
         </div>

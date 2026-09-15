@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { Shield, Eye, Lock, FileCheck, ArrowRight } from 'lucide-react';
+import { useLanguage } from '@/src/hooks';
 
 export interface TrustSectionProps {
   className?: string;
@@ -12,6 +13,8 @@ export interface TrustSectionProps {
  * Directs users to legal and contact information.
  */
 export default function TrustSection({ className = '' }: TrustSectionProps) {
+  const { t } = useLanguage();
+
   return (
     <section
       aria-labelledby="trust-section-heading"
@@ -22,18 +25,18 @@ export default function TrustSection({ className = '' }: TrustSectionProps) {
         <div className="lg:col-span-6 flex flex-col">
           <div className="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider text-sky-600 dark:text-sky-400 mb-3">
             <Shield className="w-4 h-4" aria-hidden="true" />
-            <span>Transparency &amp; Trust</span>
+            <span>{t('trustBadge')}</span>
           </div>
 
           <h2
             id="trust-section-heading"
             className="text-2xl sm:text-3xl font-extrabold text-slate-900 dark:text-white tracking-tight leading-snug mb-4"
           >
-            Built around user control and clear data handling.
+            {t('trustTitle')}
           </h2>
 
           <p className="text-sm text-slate-600 dark:text-slate-400 leading-relaxed mb-6">
-            We prioritize client-side processing wherever practical, keeping your work inside your browser. No mandatory user registration, no hidden barriers, and clear guidelines regarding how each utility functions.
+            {t('trustDesc')}
           </p>
 
           <div className="flex flex-wrap items-center gap-3 text-xs font-semibold">
@@ -41,7 +44,7 @@ export default function TrustSection({ className = '' }: TrustSectionProps) {
               to="/privacy"
               className="inline-flex items-center gap-1 text-sky-600 dark:text-sky-400 hover:underline"
             >
-              <span>Privacy Policy</span>
+              <span>{t('privacyPolicy')}</span>
               <ArrowRight className="w-3 h-3" />
             </Link>
             <span className="text-slate-300 dark:text-slate-700">&bull;</span>
@@ -49,7 +52,7 @@ export default function TrustSection({ className = '' }: TrustSectionProps) {
               to="/terms"
               className="inline-flex items-center gap-1 text-sky-600 dark:text-sky-400 hover:underline"
             >
-              <span>Terms of Service</span>
+              <span>{t('termsOfService')}</span>
               <ArrowRight className="w-3 h-3" />
             </Link>
             <span className="text-slate-300 dark:text-slate-700">&bull;</span>
@@ -57,7 +60,7 @@ export default function TrustSection({ className = '' }: TrustSectionProps) {
               to="/disclaimer"
               className="inline-flex items-center gap-1 text-sky-600 dark:text-sky-400 hover:underline"
             >
-              <span>Disclaimer</span>
+              <span>{t('disclaimer')}</span>
               <ArrowRight className="w-3 h-3" />
             </Link>
             <span className="text-slate-300 dark:text-slate-700">&bull;</span>
@@ -65,7 +68,7 @@ export default function TrustSection({ className = '' }: TrustSectionProps) {
               to="/contact"
               className="inline-flex items-center gap-1 text-sky-600 dark:text-sky-400 hover:underline"
             >
-              <span>Contact Us</span>
+              <span>{t('contactUs')}</span>
               <ArrowRight className="w-3 h-3" />
             </Link>
           </div>
@@ -78,10 +81,10 @@ export default function TrustSection({ className = '' }: TrustSectionProps) {
               <Lock className="w-4 h-4" />
             </div>
             <h3 className="text-sm font-bold text-slate-900 dark:text-white mb-1">
-              Client-First Processing
+              {t('trustP2Title')}
             </h3>
             <p className="text-xs text-slate-600 dark:text-slate-400 leading-relaxed">
-              Whenever supported, computations happen within your local browser sandbox rather than third-party servers.
+              {t('trustP2Desc')}
             </p>
           </div>
 
@@ -90,10 +93,10 @@ export default function TrustSection({ className = '' }: TrustSectionProps) {
               <Eye className="w-4 h-4" />
             </div>
             <h3 className="text-sm font-bold text-slate-900 dark:text-white mb-1">
-              No Sign-Up Barrier
+              {t('trustP3Title')}
             </h3>
             <p className="text-xs text-slate-600 dark:text-slate-400 leading-relaxed">
-              Core utilities are available immediately without requiring an account or sharing contact details.
+              {t('trustP3Desc')}
             </p>
           </div>
 
@@ -102,10 +105,10 @@ export default function TrustSection({ className = '' }: TrustSectionProps) {
               <FileCheck className="w-4 h-4" />
             </div>
             <h3 className="text-sm font-bold text-slate-900 dark:text-white mb-1">
-              Transparent Limitations
+              {t('trustP1Title')}
             </h3>
             <p className="text-xs text-slate-600 dark:text-slate-400 leading-relaxed">
-              We clearly document tool file limits, format support, and current release statuses for every utility.
+              {t('trustP1Desc')}
             </p>
           </div>
 
@@ -114,10 +117,10 @@ export default function TrustSection({ className = '' }: TrustSectionProps) {
               <Shield className="w-4 h-4" />
             </div>
             <h3 className="text-sm font-bold text-slate-900 dark:text-white mb-1">
-              Responsible Platform
+              {t('trustP4Title')}
             </h3>
             <p className="text-xs text-slate-600 dark:text-slate-400 leading-relaxed">
-              Continuous improvements to accessibility, performance, and cross-browser reliability.
+              {t('trustP4Desc')}
             </p>
           </div>
         </div>

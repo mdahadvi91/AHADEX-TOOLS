@@ -3,6 +3,7 @@ import { getAllTools } from '@/src/data/tools';
 import { CATEGORIES } from '@/src/data/categories';
 import ToolGrid from './ToolGrid';
 import { Grid, Sparkles } from 'lucide-react';
+import { useLanguage, type TranslationKey } from '@/src/hooks';
 
 export interface AllToolsSectionProps {
   className?: string;
@@ -14,6 +15,7 @@ export interface AllToolsSectionProps {
  * Supports category filtering without hardcoding tools.
  */
 export default function AllToolsSection({ className = '' }: AllToolsSectionProps) {
+  const { t } = useLanguage();
   const [selectedCategory, setSelectedCategory] = useState<string>('all');
 
   const allTools = getAllTools();
@@ -25,14 +27,14 @@ export default function AllToolsSection({ className = '' }: AllToolsSectionProps
     );
 
     return [
-      { id: 'all', label: 'All Tools', count: allTools.length },
+      { id: 'all', label: t('allTools'), count: allTools.length },
       ...activeCategories.map((cat) => ({
         id: cat.id,
-        label: cat.name,
+        label: t(`cat_${cat.id}` as TranslationKey, cat.name),
         count: allTools.filter((t) => t.categoryId === cat.id || t.category === cat.id).length,
       })),
     ];
-  }, [allTools]);
+  }, [allTools, t]);
 
   const filteredTools = useMemo(() => {
     if (selectedCategory === 'all') return allTools;
@@ -48,13 +50,13 @@ export default function AllToolsSection({ className = '' }: AllToolsSectionProps
         <div>
           <div className="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider text-sky-600 dark:text-sky-400 mb-1">
             <Grid className="w-3.5 h-3.5" aria-hidden="true" />
-            <span>Complete Directory</span>
+            <span>{t('completeDirectory')}</span>
           </div>
           <h2
             id="all-tools-heading"
             className="text-xl sm:text-2xl font-extrabold text-slate-900 dark:text-white tracking-tight"
           >
-            All Online Utilities
+            {t('allOnlineUtilities')}
           </h2>
         </div>
 
@@ -92,7 +94,7 @@ export default function AllToolsSection({ className = '' }: AllToolsSectionProps
       {/* Responsive Grid */}
       <ToolGrid
         tools={filteredTools}
-        emptyMessage="No tools registered under this category yet."
+        emptyMessage={t('noToolsFound')}
       />
     </section>
   );

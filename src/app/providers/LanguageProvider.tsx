@@ -1,5 +1,8 @@
-import React, { createContext, useContext, useEffect, useState } from 'react';
+import React, { createContext, useContext, useEffect, useState, useCallback } from 'react';
 import type { SupportedLanguage } from '@/src/types/common';
+import { TRANSLATIONS, translate, type TranslationKey } from '@/src/data/translations';
+
+export type { TranslationKey };
 
 export interface LanguageInfo {
   code: SupportedLanguage;
@@ -20,6 +23,7 @@ export interface LanguageContextValue {
   direction: 'ltr' | 'rtl';
   isRTL: boolean;
   supportedLanguages: LanguageInfo[];
+  t: (key: TranslationKey, fallback?: string) => string;
 }
 
 const LanguageContext = createContext<LanguageContextValue | undefined>(undefined);
@@ -57,6 +61,14 @@ export function LanguageProvider({ children }: { children: React.ReactNode }) {
     }
   };
 
+  const t = useCallback(
+    (key: TranslationKey, fallback?: string): string => {
+      const val = translate(key, language);
+      return val || fallback || key;
+    },
+    [language]
+  );
+
   return (
     <LanguageContext.Provider
       value={{
@@ -65,6 +77,7 @@ export function LanguageProvider({ children }: { children: React.ReactNode }) {
         direction,
         isRTL,
         supportedLanguages: SUPPORTED_LANGUAGES,
+        t,
       }}
     >
       {children}

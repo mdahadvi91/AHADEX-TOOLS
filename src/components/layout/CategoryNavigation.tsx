@@ -2,6 +2,7 @@ import React from 'react';
 import { NavLink } from 'react-router-dom';
 import { CATEGORIES } from '@/src/data/categories';
 import type { CategoryDefinition } from '@/src/types/common';
+import { useLanguage, type TranslationKey } from '@/src/hooks';
 import {
   Image,
   FileText,
@@ -38,10 +39,13 @@ export default function CategoryNavigation({
   className = '',
   onItemClick,
 }: CategoryNavigationProps) {
+  const { t } = useLanguage();
+
   return (
     <nav aria-label="Tool Categories Navigation" className={`flex flex-col gap-1 ${className}`}>
       {categories.map((category) => {
         const IconComponent = CATEGORY_ICON_MAP[category.id] || Wrench;
+        const categoryLabel = t(`cat_${category.id}` as TranslationKey, category.name);
         return (
           <NavLink
             key={category.id}
@@ -58,7 +62,7 @@ export default function CategoryNavigation({
             <span className="p-1.5 rounded-md bg-slate-100 dark:bg-slate-800/80 text-slate-500 dark:text-slate-400 group-hover:text-sky-600 dark:group-hover:text-sky-400 transition-colors">
               <IconComponent className="w-4 h-4" aria-hidden="true" />
             </span>
-            <span className="truncate flex-1">{category.name}</span>
+            <span className="truncate flex-1">{categoryLabel}</span>
           </NavLink>
         );
       })}

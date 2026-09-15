@@ -3,12 +3,14 @@ import { Link } from 'react-router-dom';
 import { Layers, ShieldCheck, Heart } from 'lucide-react';
 import { CATEGORIES } from '@/src/data/categories';
 import { COMPANY_NAV_ITEMS, LEGAL_NAV_ITEMS, ACCESSIBILITY_NAV_ITEMS } from '@/src/data/navigation';
+import { useLanguage, type TranslationKey } from '@/src/hooks';
 
 /**
  * Global Footer Component for AHADEX TOOLS.
  * Establishes category index, company references, legal compliance links, and copyright statement.
  */
 export default function Footer() {
+  const { t } = useLanguage();
   const currentYear = new Date().getFullYear();
 
   return (
@@ -34,20 +36,19 @@ export default function Footer() {
             </Link>
 
             <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-400 max-w-sm leading-relaxed">
-              Fast, privacy-centric browser-native tools for images, PDFs, QR codes, and developer tasks.
-              Zero file uploads required for client-side processing.
+              {t('footerDesc')}
             </p>
 
             <div className="inline-flex items-center gap-2 text-xs text-slate-500 dark:text-slate-400">
               <ShieldCheck className="w-4 h-4 text-emerald-500" aria-hidden="true" />
-              <span>Client-side security and data privacy guaranteed</span>
+              <span>{t('footerSecurity')}</span>
             </div>
           </div>
 
           {/* Column 2: Tools / Categories */}
           <div className="flex flex-col gap-3">
             <h3 className="text-xs font-bold uppercase tracking-wider text-slate-900 dark:text-white">
-              Tools
+              {t('tools')}
             </h3>
             <ul className="flex flex-col gap-2 list-none p-0 m-0">
               {CATEGORIES.slice(0, 6).map((cat) => (
@@ -56,7 +57,7 @@ export default function Footer() {
                     to={`/category/${cat.slug}`}
                     className="text-xs text-slate-600 dark:text-slate-400 hover:text-sky-600 dark:hover:text-sky-400 transition-colors"
                   >
-                    {cat.name}
+                    {t(`cat_${cat.id}` as TranslationKey, cat.name)}
                   </Link>
                 </li>
               ))}
@@ -66,7 +67,7 @@ export default function Footer() {
           {/* Column 3: Company */}
           <div className="flex flex-col gap-3">
             <h3 className="text-xs font-bold uppercase tracking-wider text-slate-900 dark:text-white">
-              Company
+              {t('company')}
             </h3>
             <ul className="flex flex-col gap-2 list-none p-0 m-0">
               {COMPANY_NAV_ITEMS.map((item) => (
@@ -85,7 +86,7 @@ export default function Footer() {
           {/* Column 4: Legal & Accessibility */}
           <div className="flex flex-col gap-3">
             <h3 className="text-xs font-bold uppercase tracking-wider text-slate-900 dark:text-white">
-              Legal & Standards
+              {t('legalAndStandards')}
             </h3>
             <ul className="flex flex-col gap-2 list-none p-0 m-0">
               {LEGAL_NAV_ITEMS.map((item) => (
@@ -114,9 +115,9 @@ export default function Footer() {
 
         {/* Bottom Bar: Copyright */}
         <div className="pt-8 border-t border-slate-200/80 dark:border-slate-800/80 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-500 dark:text-slate-400">
-          <p>© {currentYear} AHADEX TOOLS. All rights reserved.</p>
+          <p>© {currentYear} AHADEX TOOLS. {t('allRightsReserved')}</p>
           <p className="flex items-center gap-1">
-            <span>Built with precision for the modern web</span>
+            <span>{t('builtWith')}</span>
           </p>
         </div>
       </div>

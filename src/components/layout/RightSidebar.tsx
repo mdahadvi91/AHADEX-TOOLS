@@ -16,12 +16,12 @@ export interface RightSidebarProps {
  */
 export default function RightSidebar({ className = '', onItemClick }: RightSidebarProps) {
   const { theme, setTheme } = useTheme();
-  const { language, setLanguage, supportedLanguages } = useLanguage();
+  const { language, setLanguage, supportedLanguages, t } = useLanguage();
 
   const themeOptions: { mode: ThemeMode; label: string; icon: React.ReactNode }[] = [
-    { mode: 'light', label: 'Light', icon: <Sun className="w-3.5 h-3.5" /> },
-    { mode: 'dark', label: 'Dark', icon: <Moon className="w-3.5 h-3.5" /> },
-    { mode: 'system', label: 'Auto', icon: <Laptop className="w-3.5 h-3.5" /> },
+    { mode: 'light', label: t('light'), icon: <Sun className="w-3.5 h-3.5" /> },
+    { mode: 'dark', label: t('dark'), icon: <Moon className="w-3.5 h-3.5" /> },
+    { mode: 'system', label: t('auto'), icon: <Laptop className="w-3.5 h-3.5" /> },
   ];
 
   return (
@@ -33,7 +33,7 @@ export default function RightSidebar({ className = '', onItemClick }: RightSideb
       {/* Theme Preference */}
       <section aria-labelledby="theme-heading" className="flex flex-col gap-2">
         <h2 id="theme-heading" className="text-[11px] font-bold uppercase tracking-wider text-slate-400 dark:text-slate-500 px-1">
-          Interface Appearance
+          {t('interfaceAppearance')}
         </h2>
         <div className="grid grid-cols-3 gap-1 p-1 rounded-xl bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700/60" role="radiogroup" aria-label="Theme selector">
           {themeOptions.map((opt) => {
@@ -63,7 +63,7 @@ export default function RightSidebar({ className = '', onItemClick }: RightSideb
       <section aria-labelledby="language-heading" className="flex flex-col gap-2">
         <div className="flex items-center justify-between px-1">
           <h2 id="language-heading" className="text-[11px] font-bold uppercase tracking-wider text-slate-400 dark:text-slate-500">
-            Language
+            {t('language')}
           </h2>
           <Globe className="w-3.5 h-3.5 text-slate-400" aria-hidden="true" />
         </div>
@@ -92,7 +92,7 @@ export default function RightSidebar({ className = '', onItemClick }: RightSideb
       {/* Quick Institutional Anchors */}
       <section aria-labelledby="institutional-heading" className="flex flex-col gap-2 pt-2 border-t border-slate-200/60 dark:border-slate-800/60">
         <h2 id="institutional-heading" className="text-[11px] font-bold uppercase tracking-wider text-slate-400 dark:text-slate-500 px-1">
-          Platform Info
+          {t('platformInfo')}
         </h2>
         <nav aria-label="Platform information links" className="flex flex-col gap-1">
           {[...COMPANY_NAV_ITEMS, ...LEGAL_NAV_ITEMS, ...ACCESSIBILITY_NAV_ITEMS].map((item) => (

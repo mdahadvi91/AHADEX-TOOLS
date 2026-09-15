@@ -33,8 +33,8 @@ export default function MainLayout({
   // Track page navigation changes
   usePageTracking();
 
-  // On landing/discovery home page, give priority to full width multi-column discovery grids
-  const shouldHideRight = hideRightSidebar || location.pathname === '/';
+  // MainLayout sidebars configuration
+  const shouldHideRight = hideRightSidebar;
 
   return (
     <div className="min-h-screen flex flex-col surface-page text-slate-900 dark:text-slate-100 overflow-x-hidden">
@@ -49,7 +49,7 @@ export default function MainLayout({
         {/* Desktop Left Sidebar (Navigation & Categories) */}
         {!hideLeftSidebar && (
           <div className="hidden lg:block sticky top-20 shrink-0">
-            <LeftSidebar />
+            <LeftSidebar className="w-56 xl:w-64" />
           </div>
         )}
 
@@ -64,8 +64,8 @@ export default function MainLayout({
 
         {/* Desktop Right Sidebar (Utilities & Settings) */}
         {!shouldHideRight && (
-          <div className="hidden xl:block sticky top-20 shrink-0">
-            <RightSidebar />
+          <div className="hidden lg:block sticky top-20 shrink-0">
+            <RightSidebar className="w-56 xl:w-64" />
           </div>
         )}
       </div>

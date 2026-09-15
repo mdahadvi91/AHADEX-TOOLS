@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import ToolSearch from '../tools/ToolSearch';
 import HeroVisual from './HeroVisual';
 import { Sparkles, Shield, Zap, ArrowDown } from 'lucide-react';
+import { useLanguage } from '@/src/hooks';
 
 export interface HeroSectionProps {
   className?: string;
@@ -14,6 +15,8 @@ export interface HeroSectionProps {
  * Strictly adheres to truthful, non-exaggerated communication.
  */
 export default function HeroSection({ className = '' }: HeroSectionProps) {
+  const { t } = useLanguage();
+
   return (
     <section
       aria-labelledby="hero-title"
@@ -26,7 +29,7 @@ export default function HeroSection({ className = '' }: HeroSectionProps) {
             {/* Platform Tag */}
             <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full text-xs font-semibold bg-sky-500/10 text-sky-700 dark:text-sky-300 border border-sky-500/20 mb-5">
               <Sparkles className="w-3.5 h-3.5 text-sky-600 dark:text-sky-400" aria-hidden="true" />
-              <span>Modern Browser Utilities</span>
+              <span>{t('heroBadge')}</span>
             </div>
 
             {/* Main Single H1 */}
@@ -36,40 +39,40 @@ export default function HeroSection({ className = '' }: HeroSectionProps) {
             >
               AHADEX TOOLS
               <span className="block text-xl sm:text-2xl lg:text-3xl font-bold text-slate-600 dark:text-slate-300 mt-1 font-normal">
-                A practical online tools platform for everyday digital tasks.
+                {t('heroTitle2')}
               </span>
             </h1>
 
             {/* Value description */}
             <p className="text-sm sm:text-base text-slate-600 dark:text-slate-400 max-w-xl leading-relaxed mb-8">
-              Convert, compress, and generate digital files directly in your web browser. Free to use, with no software installation or account registration required.
+              {t('heroDescription')}
             </p>
 
             {/* Central Tool Discovery Search */}
             <div className="w-full max-w-xl mb-4">
-              <ToolSearch />
+              <ToolSearch placeholder={t('searchPlaceholder')} />
             </div>
 
             {/* Quick action chips */}
             <div className="flex items-center gap-2 flex-wrap text-xs text-slate-500 dark:text-slate-400 mt-1">
-              <span className="font-semibold text-slate-700 dark:text-slate-300">Quick start:</span>
+              <span className="font-semibold text-slate-700 dark:text-slate-300">{t('quickAccess')}</span>
               <Link
                 to="/tools/jpg-to-pdf"
                 className="px-2.5 py-1 rounded-lg bg-white/70 dark:bg-slate-800/70 hover:bg-sky-500/10 hover:text-sky-600 dark:hover:text-sky-400 border border-slate-200/80 dark:border-slate-700/80 transition-colors"
               >
-                JPG to PDF
+                {t('tool_jpgToPdf_name')}
               </Link>
               <Link
                 to="/tools/image-compressor"
                 className="px-2.5 py-1 rounded-lg bg-white/70 dark:bg-slate-800/70 hover:bg-sky-500/10 hover:text-sky-600 dark:hover:text-sky-400 border border-slate-200/80 dark:border-slate-700/80 transition-colors"
               >
-                Image Compressor
+                {t('tool_imageCompressor_name')}
               </Link>
               <Link
                 to="/tools/qr-code-generator"
                 className="px-2.5 py-1 rounded-lg bg-white/70 dark:bg-slate-800/70 hover:bg-sky-500/10 hover:text-sky-600 dark:hover:text-sky-400 border border-slate-200/80 dark:border-slate-700/80 transition-colors"
               >
-                QR Generator
+                {t('tool_qrGenerator_name')}
               </Link>
             </div>
 
@@ -80,7 +83,7 @@ export default function HeroSection({ className = '' }: HeroSectionProps) {
                   <Zap className="w-4 h-4" />
                 </div>
                 <span className="text-xs font-medium text-slate-600 dark:text-slate-400">
-                  Runs directly in your browser
+                  {t('trustP2Title')}
                 </span>
               </div>
               <div className="flex items-center gap-2.5">
@@ -88,7 +91,7 @@ export default function HeroSection({ className = '' }: HeroSectionProps) {
                   <Shield className="w-4 h-4" />
                 </div>
                 <span className="text-xs font-medium text-slate-600 dark:text-slate-400">
-                  No account or login required
+                  {t('trustP3Title')}
                 </span>
               </div>
             </div>
