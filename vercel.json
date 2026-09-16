@@ -1,27 +1,23 @@
 {
-  "$schema": "https://openapi.vercel.sh/vercel.json",
-  "cleanUrls": true,
-  "redirects": [
-    {
-      "source": "/:path*",
-      "has": [
-        {
-          "type": "host",
-          "value": "www.ahadex.fun"
-        }
-      ],
-      "destination": "https://ahadex.fun/:path*",
-      "permanent": true
-    }
-  ],
-  "rewrites": [
-    {
-      "source": "/api/(.*)",
-      "destination": "/api/$1"
-    },
-    {
-      "source": "/(.*)",
-      "destination": "/index.html"
-    }
-  ]
+"$schema": "https://openapi.vercel.sh/vercel.json",
+"cleanUrls": true,
+"redirects": [
+{
+"source": "/:path*",
+"has": [
+{
+"type": "host",
+"value": "www.ahadex.fun"
+}
+],
+"destination": "https://ahadex.fun/:path*",
+"permanent": true
+}
+],
+"rewrites": [
+{
+"source": "/((?!api(?:/|$)).*)",
+"destination": "/index.html"
+}
+]
 }
