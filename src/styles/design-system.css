@@ -1,0 +1,31 @@
+:root {
+  --silk-cream: #FDF8F3;
+  --silk-rose: #D88B9A;
+  --silk-wine: #8B3A4F;
+  --silk-gold: #C99667;
+}
+
+input[type="range"] {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 100%;
+  height: 6px;
+  border-radius: 3px;
+  background: rgba(216, 139, 154, 0.2);
+  outline: none;
+}
+
+input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #D88B9A, #8B3A4F);
+  cursor: pointer;
+  border: 2px solid #FDF8F3;
+}
+
+input[type="checkbox"], input[type="radio"] {
+  accent-color: #D88B9A;
+}
