@@ -3,6 +3,7 @@ import { ArrowRight } from "lucide-react";
 import { motion } from "framer-motion";
 import { ToolIcon } from "@components/common/ToolIcon";
 import { SmallToolCard } from "./SmallToolCard";
+import { useFavorites } from "@hooks/useFavorites";
 import type { Category } from "@types/category";
 import type { Tool } from "@types/tool";
 
@@ -13,9 +14,19 @@ interface CategorySectionProps {
 }
 
 export function CategorySection({ category, tools, index }: CategorySectionProps) {
+  const { isFavorite, toggle } = useFavorites();
+
   if (tools.length === 0) return null;
 
+  // Favorites first, then rest
+  const sorted = [...tools].sort((a, b) => {
+    const af = isFavorite(a.id) ? 1 : 0;
+    const bf = isFavorite(b.id) ? 1 : 0;
+    return bf - af;
+  });
+
   const numeral = String(index + 1).padStart(2, "0");
+  const favoriteCount = tools.filter((t) => isFavorite(t.id)).length;
 
   return (
     <section className="py-8 lg:py-12">
@@ -43,6 +54,11 @@ export function CategorySection({ category, tools, index }: CategorySectionProps
           <span className="text-[10px] font-mono font-bold px-1.5 py-0.5 rounded-full bg-silk-rose/15 text-silk-wine dark:text-silk-rose-soft shrink-0">
             {tools.length}
           </span>
+          {favoriteCount > 0 && (
+            <span className="text-[10px] font-mono font-bold px-1.5 py-0.5 rounded-full bg-silk-gold/25 text-silk-wine dark:text-silk-gold shrink-0">
+              ⭐ {favoriteCount}
+            </span>
+          )}
         </div>
 
         <Link
@@ -54,10 +70,16 @@ export function CategorySection({ category, tools, index }: CategorySectionProps
         </Link>
       </motion.div>
 
-      {/* Uniform grid — small cards only */}
+      {/* Grid */}
       <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-3 lg:gap-4">
-        {tools.map((tool, i) => (
-          <SmallToolCard key={tool.id} tool={tool} index={i} />
+        {sorted.map((tool, i) => (
+          <SmallToolCard
+            key={tool.id}
+            tool={tool}
+            index={i}
+            isFavorite={isFavorite(tool.id)}
+            onToggleFavorite={toggle}
+          />
         ))}
       </div>
     </section>
