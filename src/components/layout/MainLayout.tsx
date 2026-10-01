@@ -19,14 +19,11 @@ export function MainLayout() {
       <LeftSidebar mobileOpen={leftOpen} onMobileClose={() => setLeftOpen(false)} />
       <RightSidebar mobileOpen={rightOpen} onMobileClose={() => setRightOpen(false)} />
 
-      {/* Spacer for fixed header */}
-      <div className="h-16 lg:h-20" aria-hidden="true" />
+      {/* Spacer for floating header */}
+      <div className="h-24 lg:h-28" aria-hidden="true" />
 
-      {/* Main content — centered between sidebars on desktop */}
-      <main
-        id="main-content"
-        className="lg:ml-64 lg:mr-72 min-h-[60vh]"
-      >
+      {/* Main content */}
+      <main id="main-content" className="lg:ml-64 lg:mr-72 min-h-[60vh]">
         <Outlet />
       </main>
 

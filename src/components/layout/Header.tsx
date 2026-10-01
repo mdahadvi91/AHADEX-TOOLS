@@ -1,93 +1,200 @@
 import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
-import { Menu, Search, Settings } from "lucide-react";
+import { Link, NavLink, useLocation } from "react-router-dom";
+import { Menu, Search, Sliders, X } from "lucide-react";
+import { motion, AnimatePresence } from "framer-motion";
 import { cn } from "@lib/cn";
+import { Logo } from "@components/common/Logo";
 
 interface HeaderProps {
   onLeftMenuClick: () => void;
   onRightMenuClick: () => void;
 }
 
+const NAV_LINKS = [
+  { to: "/tools", label: "Tools" },
+  { to: "/about", label: "About" },
+  { to: "/contact", label: "Contact" },
+];
+
 export function Header({ onLeftMenuClick, onRightMenuClick }: HeaderProps) {
   const [scrolled, setScrolled] = useState(false);
+  const [searchOpen, setSearchOpen] = useState(false);
+  const location = useLocation();
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 10);
+    const onScroll = () => setScrolled(window.scrollY > 20);
     onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
+  // Close search on route change
+  useEffect(() => {
+    setSearchOpen(false);
+  }, [location.pathname]);
+
   return (
     <header
       className={cn(
-        "fixed top-0 left-0 right-0 z-40 transition-all duration-500",
-        scrolled
-          ? "bg-silk-cream/85 dark:bg-dark-bg/85 backdrop-blur-xl border-b border-silk-rose/15"
-          : "bg-transparent"
+        "fixed top-0 left-0 right-0 z-50 transition-all duration-500 ease-silk",
+        scrolled ? "pt-2 lg:pt-3" : "pt-3 lg:pt-5"
       )}
     >
-      <div className="mx-auto max-w-[1600px] px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-16 lg:h-20 gap-4">
-          {/* LEFT: Menu button (mobile) / Nav link (desktop) */}
-          <div className="flex items-center gap-3">
+      <div className="mx-auto max-w-[1600px] px-3 sm:px-5 lg:px-6">
+        <div
+          className={cn(
+            "relative flex items-center justify-between gap-3 transition-all duration-500 ease-silk",
+            "rounded-2xl lg:rounded-[28px]",
+            scrolled
+              ? "h-14 lg:h-16 px-3 lg:px-5 bg-silk-cream/85 dark:bg-dark-bg/85 backdrop-blur-2xl border border-silk-rose/25 shadow-[0_8px_30px_-8px_rgba(139,58,79,0.2)]"
+              : "h-16 lg:h-20 px-4 lg:px-6 bg-silk-cream/60 dark:bg-dark-bg/60 backdrop-blur-xl border border-silk-rose/15 shadow-silk-soft"
+          )}
+        >
+          {/* Rose gold accent line (top) */}
+          <span
+            aria-hidden="true"
+            className="absolute top-0 left-1/2 -translate-x-1/2 h-[2px] w-24 bg-gradient-to-r from-transparent via-silk-rose to-transparent rounded-full opacity-70"
+          />
+
+          {/* LEFT SIDE — menu button (mobile) + nav (desktop) */}
+          <div className="flex items-center gap-2">
             <button
               type="button"
               onClick={onLeftMenuClick}
               aria-label="Open menu"
-              className="lg:hidden inline-flex items-center justify-center w-10 h-10 rounded-xl bg-silk-rose/10 border border-silk-rose/20 text-silk-wine dark:text-silk-rose hover:bg-silk-rose/20 transition-colors"
+              className={cn(
+                "lg:hidden inline-flex items-center justify-center w-10 h-10 rounded-xl transition-all duration-300",
+                "bg-silk-rose/10 border border-silk-rose/25 text-silk-wine dark:text-silk-rose-soft",
+                "hover:bg-silk-rose/20 hover:scale-105 active:scale-95"
+              )}
             >
               <Menu className="w-5 h-5" />
             </button>
 
-            <Link
-              to="/tools"
-              className="hidden lg:inline-flex text-sm font-medium text-light-textSecondary dark:text-dark-textSecondary hover:text-silk-rose transition-colors tracking-wide"
-            >
-              TOOLS
-            </Link>
+            {/* Desktop nav links */}
+            <nav className="hidden lg:flex items-center gap-1">
+              {NAV_LINKS.map((link) => (
+                <NavLink
+                  key={link.to}
+                  to={link.to}
+                  className={({ isActive }) =>
+                    cn(
+                      "relative px-4 py-2 rounded-xl text-sm font-medium transition-all duration-300",
+                      "hover:text-silk-wine dark:hover:text-silk-rose-soft",
+                      isActive
+                        ? "text-silk-wine dark:text-silk-rose-soft bg-silk-rose/10"
+                        : "text-light-textSecondary dark:text-dark-textSecondary"
+                    )
+                  }
+                >
+                  {({ isActive }) => (
+                    <>
+                      {link.label}
+                      {isActive && (
+                        <motion.span
+                          layoutId="header-nav-active"
+                          className="absolute -bottom-0.5 left-3 right-3 h-[2px] bg-gradient-to-r from-silk-rose to-silk-gold rounded-full"
+                          transition={{ type: "spring", stiffness: 500, damping: 32 }}
+                        />
+                      )}
+                    </>
+                  )}
+                </NavLink>
+              ))}
+            </nav>
           </div>
 
-          {/* CENTER: Brand text (styled) */}
-          <Link
-            to="/"
-            aria-label="AHADEX Tools — Home"
-            className="group flex flex-col items-center focus-visible:outline-none"
-          >
-            <span className="relative flex items-baseline gap-2">
-              <span className="font-display font-black text-2xl lg:text-3xl tracking-tight text-silk-gradient dark:text-silk-gradient-dark transition-all duration-500 group-hover:tracking-normal">
-                AHADEX
-              </span>
-              <span className="font-script text-silk-rose text-lg lg:text-xl opacity-80 group-hover:opacity-100 transition-opacity">
-                Tools
-              </span>
-            </span>
-            <span
-              aria-hidden="true"
-              className="h-[1.5px] w-0 group-hover:w-full bg-gradient-to-r from-silk-rose to-silk-gold transition-all duration-500 ease-out mt-0.5"
-            />
-          </Link>
+          {/* CENTER — Logo (always centered) */}
+          <div className="absolute left-1/2 -translate-x-1/2 pointer-events-auto">
+            <Logo size={scrolled ? "sm" : "md"} showText />
+          </div>
 
-          {/* RIGHT: Search + Settings */}
+          {/* RIGHT SIDE — search + settings */}
           <div className="flex items-center gap-2">
             <button
               type="button"
-              aria-label="Search"
-              className="inline-flex items-center justify-center w-10 h-10 rounded-xl bg-silk-rose/10 border border-silk-rose/20 text-silk-wine dark:text-silk-rose hover:bg-silk-rose/20 transition-colors"
+              onClick={() => setSearchOpen((v) => !v)}
+              aria-label={searchOpen ? "Close search" : "Open search"}
+              className={cn(
+                "inline-flex items-center justify-center w-10 h-10 rounded-xl transition-all duration-300",
+                "bg-silk-rose/10 border border-silk-rose/25 text-silk-wine dark:text-silk-rose-soft",
+                "hover:bg-silk-rose/20 hover:scale-105 active:scale-95",
+                searchOpen && "bg-silk-rose/25 ring-2 ring-silk-rose/40"
+              )}
             >
-              <Search className="w-5 h-5" />
+              <AnimatePresence mode="wait" initial={false}>
+                {searchOpen ? (
+                  <motion.span
+                    key="close"
+                    initial={{ rotate: -90, opacity: 0 }}
+                    animate={{ rotate: 0, opacity: 1 }}
+                    exit={{ rotate: 90, opacity: 0 }}
+                    transition={{ duration: 0.2 }}
+                  >
+                    <X className="w-5 h-5" />
+                  </motion.span>
+                ) : (
+                  <motion.span
+                    key="search"
+                    initial={{ rotate: 90, opacity: 0 }}
+                    animate={{ rotate: 0, opacity: 1 }}
+                    exit={{ rotate: -90, opacity: 0 }}
+                    transition={{ duration: 0.2 }}
+                  >
+                    <Search className="w-5 h-5" />
+                  </motion.span>
+                )}
+              </AnimatePresence>
             </button>
 
             <button
               type="button"
               onClick={onRightMenuClick}
-              aria-label="Settings"
-              className="inline-flex items-center justify-center w-10 h-10 rounded-xl bg-silk-rose/10 border border-silk-rose/20 text-silk-wine dark:text-silk-rose hover:bg-silk-rose/20 transition-colors"
+              aria-label="Open settings"
+              className={cn(
+                "inline-flex items-center justify-center w-10 h-10 rounded-xl transition-all duration-300",
+                "bg-silk-rose/10 border border-silk-rose/25 text-silk-wine dark:text-silk-rose-soft",
+                "hover:bg-silk-rose/20 hover:scale-105 active:scale-95"
+              )}
             >
-              <Settings className="w-5 h-5" />
+              <Sliders className="w-5 h-5" />
             </button>
           </div>
         </div>
+
+        {/* Search panel — slides down */}
+        <AnimatePresence>
+          {searchOpen && (
+            <motion.div
+              initial={{ opacity: 0, y: -8, height: 0 }}
+              animate={{ opacity: 1, y: 0, height: "auto" }}
+              exit={{ opacity: 0, y: -8, height: 0 }}
+              transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
+              className="overflow-hidden mt-2"
+            >
+              <div
+                className={cn(
+                  "relative rounded-2xl overflow-hidden",
+                  "bg-silk-cream/95 dark:bg-dark-bg/95 backdrop-blur-2xl",
+                  "border border-silk-rose/25 shadow-[0_8px_30px_-8px_rgba(139,58,79,0.25)]"
+                )}
+              >
+                <div className="flex items-center gap-3 px-5 py-4">
+                  <Search className="w-5 h-5 text-silk-rose shrink-0" />
+                  <input
+                    type="text"
+                    placeholder="Search tools..."
+                    autoFocus
+                    className="flex-1 bg-transparent outline-none text-light-text dark:text-dark-text placeholder:text-light-textSecondary/60 dark:placeholder:text-dark-textSecondary/60"
+                  />
+                  <kbd className="hidden sm:inline-flex items-center gap-1 px-2 py-1 rounded-md text-[10px] font-mono bg-silk-rose/10 text-silk-rose border border-silk-rose/20">
+                    ESC
+                  </kbd>
+                </div>
+              </div>
+            </motion.div>
+          )}
+        </AnimatePresence>
       </div>
     </header>
   );
