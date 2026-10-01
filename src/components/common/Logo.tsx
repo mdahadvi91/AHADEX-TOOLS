@@ -9,9 +9,9 @@ interface LogoProps {
 }
 
 const SIZES = {
-  sm: { mark: 28, text: "text-sm", sub: "text-[10px]" },
-  md: { mark: 36, text: "text-lg", sub: "text-xs" },
-  lg: { mark: 52, text: "text-2xl", sub: "text-sm" },
+  sm: { mark: 32, text: "text-base", sub: "text-[10px]" },
+  md: { mark: 40, text: "text-lg", sub: "text-[11px]" },
+  lg: { mark: 56, text: "text-2xl", sub: "text-sm" },
 };
 
 export function Logo({
@@ -24,7 +24,7 @@ export function Logo({
 
   const inner = (
     <span className={cn("inline-flex items-center gap-3 group", className)}>
-      {/* SVG Mark */}
+      {/* Custom mark */}
       <span
         className="relative shrink-0 transition-transform duration-500 group-hover:scale-105"
         style={{ width: s.mark, height: s.mark }}
@@ -35,62 +35,66 @@ export function Logo({
           height={s.mark}
           fill="none"
           aria-hidden="true"
-          className="drop-shadow-[0_4px_16px_rgba(216,139,154,0.4)]"
+          className="drop-shadow-[0_4px_20px_rgba(216,139,154,0.35)]"
         >
           <defs>
-            <linearGradient id="logoGrad" x1="0" y1="0" x2="64" y2="64" gradientUnits="userSpaceOnUse">
+            <linearGradient id="logoMarkBg" x1="0" y1="0" x2="64" y2="64" gradientUnits="userSpaceOnUse">
               <stop offset="0%" stopColor="#E8B4B8" />
-              <stop offset="50%" stopColor="#D88B9A" />
+              <stop offset="45%" stopColor="#D88B9A" />
               <stop offset="100%" stopColor="#8B3A4F" />
             </linearGradient>
-            <linearGradient id="logoInner" x1="0" y1="0" x2="64" y2="64" gradientUnits="userSpaceOnUse">
-              <stop offset="0%" stopColor="#FFFB F7" stopOpacity="0.95" />
-              <stop offset="100%" stopColor="#FDF8F3" stopOpacity="0.85" />
+            <linearGradient id="logoMarkAccent" x1="0" y1="0" x2="64" y2="64" gradientUnits="userSpaceOnUse">
+              <stop offset="0%" stopColor="#FFFBF7" />
+              <stop offset="100%" stopColor="#F7EDE4" />
             </linearGradient>
-            <filter id="logoGlow">
-              <feGaussianBlur stdDeviation="2" result="blur" />
-              <feMerge>
-                <feMergeNode in="blur" />
-                <feMergeNode in="SourceGraphic" />
-              </feMerge>
-            </filter>
+            <linearGradient id="logoMarkGold" x1="0" y1="0" x2="64" y2="64" gradientUnits="userSpaceOnUse">
+              <stop offset="0%" stopColor="#E5C9A4" />
+              <stop offset="100%" stopColor="#C99667" />
+            </linearGradient>
           </defs>
 
-          {/* Outer rounded square */}
-          <rect x="2" y="2" width="60" height="60" rx="18" fill="url(#logoGrad)" />
-
-          {/* Subtle highlight ring */}
-          <rect
-            x="2" y="2" width="60" height="60" rx="18"
-            fill="none" stroke="rgba(255,255,255,0.25)" strokeWidth="1"
-          />
-
-          {/* Stylized "A" letterform */}
+          {/* Diamond/shield base */}
           <path
-            d="M32 14 L19 48 L25 48 L28.5 38 L35.5 38 L39 48 L45 48 L32 14 Z M30.5 33 L33.5 33 L32 24 L30.5 33 Z"
-            fill="url(#logoInner)"
-            filter="url(#logoGlow)"
+            d="M32 2 L58 16 L58 48 L32 62 L6 48 L6 16 Z"
+            fill="url(#logoMarkBg)"
           />
 
-          {/* Small accent dot */}
-          <circle cx="32" cy="52" r="1.5" fill="#FFFB F7" opacity="0.8" />
+          {/* Inner accent ring */}
+          <path
+            d="M32 8 L52 19 L52 45 L32 56 L12 45 L12 19 Z"
+            fill="none"
+            stroke="rgba(255,255,255,0.2)"
+            strokeWidth="1"
+          />
+
+          {/* Stylized "A" — sharp, geometric */}
+          <path
+            d="M32 14 L18 50 L25 50 L28 40 L36 40 L39 50 L46 50 L32 14 Z M30.5 33 L33.5 33 L32 24 L30.5 33 Z"
+            fill="url(#logoMarkAccent)"
+          />
+
+          {/* Gold accent dot */}
+          <circle cx="32" cy="55" r="1.8" fill="url(#logoMarkGold)" />
         </svg>
 
-        {/* Pulse ring */}
+        {/* Breathing ring */}
         <span
           aria-hidden="true"
-          className="absolute inset-0 rounded-[18px] border border-silk-rose/40 animate-soft-pulse pointer-events-none"
+          className="absolute -inset-1 rounded-[20px] border border-silk-rose/30 opacity-0 group-hover:opacity-100 group-hover:scale-110 transition-all duration-700"
         />
       </span>
 
-      {/* Text — only if showText */}
+      {/* Text */}
       {showText && (
         <span className="flex flex-col leading-none">
-          <span className={cn("font-display font-black tracking-tight text-silk-gradient dark:text-silk-gradient-dark", s.text)}>
+          <span className={cn("font-display font-black tracking-[-0.03em] text-silk-gradient dark:text-silk-gradient-dark", s.text)}>
             AHADEX
           </span>
-          <span className={cn("font-script text-silk-rose/80 dark:text-silk-rose-soft tracking-wide", s.sub)}>
-            Tools
+          <span className="flex items-center gap-1.5 mt-1">
+            <span className="w-4 h-px bg-silk-rose/60" />
+            <span className={cn("font-script text-silk-rose/80 tracking-wider", s.sub)}>
+              Tools
+            </span>
           </span>
         </span>
       )}
