@@ -6,6 +6,8 @@ import { LanguageProvider } from "@contexts/LanguageContext";
 import { SoundProvider } from "@contexts/SoundContext";
 
 const ToolsIndexPage = lazy(() => import("@pages/ToolsIndexPage"));
+const AboutPage = lazy(() => import("@pages/AboutPage"));
+const ContactPage = lazy(() => import("@pages/ContactPage"));
 const NotFoundPage = lazy(() => import("@pages/NotFoundPage"));
 
 function ScrollToTop() {
@@ -36,6 +38,8 @@ export default function App() {
                 <Route element={<MainLayout />}>
                   <Route index element={<ToolsIndexPage />} />
                   <Route path="tools" element={<ToolsIndexPage />} />
+                  <Route path="about" element={<AboutPage />} />
+                  <Route path="contact" element={<ContactPage />} />
                   <Route path="404" element={<NotFoundPage />} />
                   <Route path="*" element={<Navigate to="/404" replace />} />
                 </Route>
