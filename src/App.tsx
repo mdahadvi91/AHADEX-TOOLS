@@ -6,6 +6,7 @@ import { LanguageProvider } from "@contexts/LanguageContext";
 import { SoundProvider } from "@contexts/SoundContext";
 
 const ToolsIndexPage = lazy(() => import("@pages/ToolsIndexPage"));
+const CategoryPage = lazy(() => import("@pages/CategoryPage"));
 const AboutPage = lazy(() => import("@pages/AboutPage"));
 const ContactPage = lazy(() => import("@pages/ContactPage"));
 const PrivacyPage = lazy(() => import("@pages/PrivacyPage"));
@@ -43,6 +44,7 @@ export default function App() {
                 <Route element={<MainLayout />}>
                   <Route index element={<ToolsIndexPage />} />
                   <Route path="tools" element={<ToolsIndexPage />} />
+                  <Route path="categories/:slug" element={<CategoryPage />} />
                   <Route path="about" element={<AboutPage />} />
                   <Route path="contact" element={<ContactPage />} />
                   <Route path="privacy" element={<PrivacyPage />} />
