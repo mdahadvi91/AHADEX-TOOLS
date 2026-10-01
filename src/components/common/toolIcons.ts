@@ -1,0 +1,102 @@
+import {
+  Images,
+  RefreshCw,
+  Zap,
+  Package,
+  Repeat,
+  Repeat2,
+  Minimize2,
+  Maximize2,
+  Crop,
+  FileOutput,
+  FileSearch,
+  Eraser,
+  FilePlus,
+  FilePlus2,
+  Layers,
+  Scissors,
+  FileImage,
+  FileSpreadsheet,
+  QrCode,
+  Wifi,
+  Mail,
+  Phone,
+  Contact,
+  ScanLine,
+  Barcode,
+  ImagePlus,
+  Type,
+  CaseSensitive,
+  Text,
+  Braces,
+  Table,
+  Binary,
+  Link2,
+  Hash,
+  Regex,
+  Percent,
+  Calendar,
+  CalendarRange,
+  Ruler,
+  Activity,
+} from "lucide-react";
+
+export const TOOL_ICONS: Record<string, typeof Images> = {
+  // Image tools
+  "jpg-to-png": Images,
+  "png-to-jpg": RefreshCw,
+  "jpg-to-webp": Zap,
+  "png-to-webp": Package,
+  "webp-to-jpg": Repeat,
+  "webp-to-png": Repeat2,
+  "image-compressor": Minimize2,
+  "image-resizer": Maximize2,
+  "image-cropper": Crop,
+  "image-to-pdf": FileOutput,
+  "image-metadata-viewer": FileSearch,
+  "background-remover": Eraser,
+
+  // PDF tools
+  "jpg-to-pdf": FilePlus,
+  "png-to-pdf": FilePlus2,
+  "merge-pdf": Layers,
+  "split-pdf": Scissors,
+  "compress-pdf": Minimize2,
+  "pdf-to-jpg": FileImage,
+  "pdf-to-png": FileSpreadsheet,
+  "pdf-page-extractor": FileOutput,
+
+  // QR tools
+  "qr-code-generator": QrCode,
+  "wifi-qr-generator": Wifi,
+  "email-qr-generator": Mail,
+  "phone-qr-generator": Phone,
+  "vcard-qr-generator": Contact,
+  "qr-code-scanner": ScanLine,
+  "barcode-generator": Barcode,
+  "qr-code-with-logo": ImagePlus,
+
+  // Text tools
+  "word-counter": Type,
+  "case-converter": CaseSensitive,
+  "text-cleaner": Text,
+  "json-formatter": Braces,
+  "json-to-csv": Table,
+  "base64-tool": Binary,
+
+  // Developer tools
+  "url-encoder": Link2,
+  "uuid-generator": Hash,
+  "regex-tester": Regex,
+
+  // Calculator tools
+  "percentage-calculator": Percent,
+  "age-calculator": Calendar,
+  "date-difference": CalendarRange,
+  "unit-converter": Ruler,
+  "bmi-calculator": Activity,
+};
+
+export function getToolIcon(toolId: string): typeof Images {
+  return TOOL_ICONS[toolId] ?? Images;
+}
