@@ -29,3 +29,55 @@
     animation: none !important;
   }
 }
+
+/* ============================================================
+ * AURORA BLOB DRIFT
+ * ============================================================ */
+
+@keyframes blob-drift-1 {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  33% { transform: translate(8vw, 5vh) scale(1.1); }
+  66% { transform: translate(-5vw, 8vh) scale(0.95); }
+}
+
+@keyframes blob-drift-2 {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  33% { transform: translate(-10vw, 6vh) scale(1.05); }
+  66% { transform: translate(6vw, -4vh) scale(0.9); }
+}
+
+@keyframes blob-drift-3 {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  50% { transform: translate(-8vw, -8vh) scale(1.15); }
+}
+
+@keyframes blob-drift-4 {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  33% { transform: translate(-6vw, 4vh) scale(0.95); }
+  66% { transform: translate(4vw, -6vh) scale(1.08); }
+}
+
+/* ============================================================
+ * FALLING PETAL — slow, gentle
+ * ============================================================ */
+
+@keyframes petal-fall-slow {
+  0% {
+    transform: translateY(0) translateX(0) rotate(0deg);
+    opacity: 0;
+  }
+  10% { opacity: 1; }
+  50% { transform: translateY(55vh) translateX(30px) rotate(180deg); }
+  90% { opacity: 1; }
+  100% {
+    transform: translateY(115vh) translateX(-20px) rotate(360deg);
+    opacity: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  [style*="blob-drift"],
+  [style*="petal-fall-slow"] {
+    animation: none !important;
+  }
+}
