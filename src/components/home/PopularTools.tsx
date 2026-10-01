@@ -3,7 +3,9 @@ import { motion } from "framer-motion";
 import { ArrowUpRight } from "lucide-react";
 import { tools } from "@data/tools";
 import { useReducedMotion } from "@hooks/useReducedMotion";
+import { ToolIcon } from "@components/common/ToolIcon";
 import { cn } from "@lib/cn";
+import type { Tool } from "@types/tool";
 
 export function PopularTools() {
   const prefersReduced = useReducedMotion();
@@ -11,7 +13,6 @@ export function PopularTools() {
 
   if (popular.length === 0) return null;
 
-  // First tool featured (2x size)
   const [featured, ...rest] = popular;
 
   return (
@@ -25,10 +26,7 @@ export function PopularTools() {
             </p>
             <h2 className="font-display font-black text-4xl sm:text-5xl text-light-text dark:text-dark-text leading-tight">
               Most{" "}
-              <span className="font-script text-silk-rose">
-                loved
-              </span>{" "}
-              tools
+              <span className="font-script text-silk-rose">loved</span> tools
             </h2>
           </div>
           <Link
@@ -42,7 +40,6 @@ export function PopularTools() {
 
         {/* Grid */}
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
-          {/* Featured — 2 rows tall */}
           <motion.div
             initial={{ opacity: 0, y: prefersReduced ? 0 : 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -53,7 +50,6 @@ export function PopularTools() {
             <FeaturedCard tool={featured} />
           </motion.div>
 
-          {/* Rest */}
           {rest.map((tool, i) => (
             <motion.div
               key={tool.id}
@@ -71,7 +67,7 @@ export function PopularTools() {
   );
 }
 
-function FeaturedCard({ tool }: { tool: (typeof import("@data/tools"))["tools"][number] }) {
+function FeaturedCard({ tool }: { tool: Tool }) {
   return (
     <Link
       to={tool.path}
@@ -92,24 +88,32 @@ function FeaturedCard({ tool }: { tool: (typeof import("@data/tools"))["tools"][
         }}
       />
 
-      {/* Floating petals in bg */}
+      {/* Floating petals */}
       <span aria-hidden="true" className="absolute top-8 right-8 text-2xl opacity-30 animate-gentle-float">
         🌸
       </span>
-      <span aria-hidden="true" className="absolute bottom-12 left-10 text-3xl opacity-20 animate-gentle-float" style={{ animationDelay: "1s" }}>
+      <span
+        aria-hidden="true"
+        className="absolute bottom-12 left-10 text-3xl opacity-20 animate-gentle-float"
+        style={{ animationDelay: "1s" }}
+      >
         💗
       </span>
 
       <div className="relative flex flex-col h-full text-white">
-        <span className="inline-flex items-center px-3 py-1 rounded-full bg-white/20 backdrop-blur-sm text-[10px] font-medium tracking-widest uppercase border border-white/30 w-fit">
-          Featured
-        </span>
+        {/* Icon + badge */}
+        <div className="flex items-start justify-between gap-3">
+          <span className="w-16 h-16 rounded-2xl bg-white/15 backdrop-blur-md border border-white/30 flex items-center justify-center">
+            <ToolIcon category={tool.category} size={32} className="brightness-0 invert opacity-95" />
+          </span>
+          <span className="inline-flex items-center px-3 py-1 rounded-full bg-white/20 backdrop-blur-sm text-[10px] font-medium tracking-widest uppercase border border-white/30">
+            Featured
+          </span>
+        </div>
 
         <div className="flex-1" />
 
-        <span className="font-script text-3xl opacity-80 mb-2">
-          No. 1
-        </span>
+        <span className="font-script text-3xl opacity-80 mb-2">No. 1</span>
         <h3 className="font-display font-black text-3xl sm:text-4xl leading-tight mb-3">
           {tool.name}
         </h3>
@@ -128,7 +132,7 @@ function FeaturedCard({ tool }: { tool: (typeof import("@data/tools"))["tools"][
   );
 }
 
-function SmallCard({ tool }: { tool: (typeof import("@data/tools"))["tools"][number] }) {
+function SmallCard({ tool }: { tool: Tool }) {
   return (
     <Link
       to={tool.path}
@@ -142,11 +146,17 @@ function SmallCard({ tool }: { tool: (typeof import("@data/tools"))["tools"][num
         "transition-all duration-500"
       )}
     >
-      <div className="flex items-start justify-between gap-3 mb-4">
-        <span className="w-11 h-11 rounded-2xl bg-silk-rose/15 flex items-center justify-center group-hover:bg-silk-rose/25 transition-colors">
-          <span className="text-silk-wine dark:text-silk-rose font-display font-bold text-lg">
-            {tool.name.charAt(0)}
-          </span>
+      <div className="flex items-start justify-between gap-3 mb-5">
+        <span
+          className={cn(
+            "w-12 h-12 rounded-2xl flex items-center justify-center shrink-0",
+            "bg-gradient-to-br from-silk-rose/15 to-silk-gold/10",
+            "border border-silk-rose/20",
+            "group-hover:scale-110 group-hover:rotate-3",
+            "transition-all duration-500"
+          )}
+        >
+          <ToolIcon category={tool.category} size={24} />
         </span>
         <ArrowUpRight className="w-5 h-5 text-silk-rose opacity-0 group-hover:opacity-100 transition-opacity" />
       </div>
