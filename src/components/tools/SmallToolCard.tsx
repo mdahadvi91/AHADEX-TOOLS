@@ -4,6 +4,8 @@ import { motion } from "framer-motion";
 import { LiveText } from "@components/common/LiveText";
 import { getToolIcon } from "@components/common/toolIcons";
 import { FavoriteButton } from "./FavoriteButton";
+import { useLanguage } from "@contexts/LanguageContext";
+import { getToolTranslation } from "@i18n/toolTranslations";
 import { cn } from "@lib/cn";
 import type { Tool } from "@types/tool";
 
@@ -31,6 +33,14 @@ export function SmallToolCard({
 }: SmallToolCardProps) {
   const Icon = getToolIcon(tool.id);
   const iconColor = ICON_COLORS[tool.category] ?? "text-silk-rose";
+  const { language, t } = useLanguage();
+
+  const translated = getToolTranslation(tool.id, language, {
+    name: tool.name,
+    description: tool.description,
+  });
+
+  const categoryLabel = t.categories[tool.category as keyof typeof t.categories] ?? tool.category;
 
   return (
     <motion.div
@@ -59,7 +69,6 @@ export function SmallToolCard({
           "transition-all duration-300"
         )}
       >
-        {/* Rose glow on hover */}
         <span
           aria-hidden="true"
           className="absolute -top-10 -right-10 w-28 h-28 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"
@@ -69,7 +78,6 @@ export function SmallToolCard({
           }}
         />
 
-        {/* Top row — icon + favorite */}
         <div className="relative flex items-start justify-between gap-2 mb-4">
           <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-silk-rose/15 via-silk-wine/8 to-silk-gold/10 border border-silk-rose/25 flex items-center justify-center group-hover:bg-silk-rose/25 group-hover:border-silk-rose/45 transition-all duration-400 overflow-hidden">
             <span
@@ -82,10 +90,7 @@ export function SmallToolCard({
               }}
             />
             <motion.span
-              animate={{
-                y: [0, -2, 0, -1, 0],
-                rotate: [0, 2, 0, -2, 0],
-              }}
+              animate={{ y: [0, -2, 0, -1, 0], rotate: [0, 2, 0, -2, 0] }}
               transition={{
                 duration: 4 + (index % 5) * 0.3,
                 repeat: Infinity,
@@ -111,7 +116,6 @@ export function SmallToolCard({
           )}
         </div>
 
-        {/* Badges */}
         {(tool.popular || tool.newTool) && (
           <div className="absolute top-20 right-5 flex gap-1">
             {tool.popular && (
@@ -127,17 +131,15 @@ export function SmallToolCard({
           </div>
         )}
 
-        {/* Title — smooth wave */}
         <h3 className="relative font-display font-bold text-[15px] text-light-text dark:text-dark-text mb-2 group-hover:text-silk-wine dark:group-hover:text-silk-rose-soft transition-colors leading-tight">
           <LiveText
-            text={tool.name}
+            text={translated.name}
             waveAmplitude={5}
             waveDuration={3.4}
             letterStagger={0.045}
           />
         </h3>
 
-        {/* Description — subtle drift */}
         <motion.p
           animate={{ y: [0, -1, 0, 1, 0], opacity: [0.85, 1, 0.85] }}
           transition={{
@@ -148,13 +150,12 @@ export function SmallToolCard({
           }}
           className="relative text-[11.5px] text-light-textSecondary dark:text-dark-textSecondary leading-relaxed line-clamp-2 flex-1"
         >
-          {tool.description}
+          {translated.description}
         </motion.p>
 
-        {/* Bottom */}
         <div className="relative flex items-center justify-between pt-3 mt-3 border-t border-silk-rose/10">
           <span className="text-[9px] uppercase tracking-[0.15em] text-silk-wine/50 dark:text-silk-rose/40 font-semibold">
-            {tool.category}
+            {categoryLabel}
           </span>
           <ArrowUpRight className="w-3.5 h-3.5 text-silk-rose opacity-0 -translate-x-1 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300" />
         </div>

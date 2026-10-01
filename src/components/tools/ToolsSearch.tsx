@@ -1,4 +1,5 @@
 import { Search, X } from "lucide-react";
+import { useLanguage } from "@contexts/LanguageContext";
 import { cn } from "@lib/cn";
 
 interface ToolsSearchProps {
@@ -7,6 +8,8 @@ interface ToolsSearchProps {
 }
 
 export function ToolsSearch({ value, onChange }: ToolsSearchProps) {
+  const { t } = useLanguage();
+
   return (
     <div className="relative max-w-md w-full">
       <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-silk-rose pointer-events-none" />
@@ -14,7 +17,7 @@ export function ToolsSearch({ value, onChange }: ToolsSearchProps) {
         type="search"
         value={value}
         onChange={(e) => onChange(e.target.value)}
-        placeholder="Search tools..."
+        placeholder={t.tools.searchPlaceholder}
         className={cn(
           "w-full h-12 pl-11 pr-11 rounded-full",
           "bg-white/70 dark:bg-dark-surface/70 backdrop-blur-xl",
@@ -28,7 +31,7 @@ export function ToolsSearch({ value, onChange }: ToolsSearchProps) {
         <button
           type="button"
           onClick={() => onChange("")}
-          aria-label="Clear search"
+          aria-label={t.common.clear}
           className="absolute right-4 top-1/2 -translate-y-1/2 w-5 h-5 rounded-full bg-silk-rose/20 flex items-center justify-center text-silk-wine dark:text-silk-rose-soft hover:bg-silk-rose/30 transition-colors"
         >
           <X className="w-3 h-3" />

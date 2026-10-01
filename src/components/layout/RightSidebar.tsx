@@ -12,51 +12,34 @@ interface RightSidebarProps {
 }
 
 const THEMES = [
-  {
-    value: "light" as const,
-    label: "Light",
-    Icon: Sun,
-    description: "Bright",
-    preview: "bg-gradient-to-br from-silk-cream to-silk-sand",
-  },
-  {
-    value: "dark" as const,
-    label: "Dark",
-    Icon: Moon,
-    description: "Dim",
-    preview: "bg-gradient-to-br from-dark-bg to-dark-elevated",
-  },
-  {
-    value: "system" as const,
-    label: "Auto",
-    Icon: Monitor,
-    description: "System",
-    preview: "bg-gradient-to-br from-silk-sand to-dark-bg",
-  },
+  { value: "light" as const, labelKey: "light" as const, iconKey: "Sun" as const, descKey: "bright" as const, preview: "bg-gradient-to-br from-silk-cream to-silk-sand" },
+  { value: "dark" as const, labelKey: "dark" as const, iconKey: "Moon" as const, descKey: "dim" as const, preview: "bg-gradient-to-br from-dark-bg to-dark-elevated" },
+  { value: "system" as const, labelKey: "auto" as const, iconKey: "Monitor" as const, descKey: "system" as const, preview: "bg-gradient-to-br from-silk-sand to-dark-bg" },
 ];
+
+const ICONS = { Sun, Moon, Monitor };
 
 const LANGS = [
   { code: "en" as const, native: "English", flag: "🇬🇧" },
   { code: "bn" as const, native: "বাংলা", flag: "🇧🇩" },
-  { code: "ar" as const, native: "العربية", flag: "🇸🇦" },
 ];
 
 function PanelBody({ onClose }: { onClose?: () => void }) {
   const { soundEnabled, toggleSound } = useSound();
   const { theme, resolvedTheme, setTheme } = useTheme();
-  const { language, setLanguage } = useLanguage();
+  const { language, setLanguage, t } = useLanguage();
 
   return (
     <div className="flex flex-col h-full bg-silk-cream dark:bg-dark-bg transition-colors duration-500">
       {onClose && (
         <div className="flex items-center justify-between px-5 h-16 border-b border-silk-rose/20 shrink-0">
           <span className="font-display font-bold text-lg text-silk-wine dark:text-silk-rose-soft">
-            Settings
+            {t.settings.title}
           </span>
           <button
             type="button"
             onClick={onClose}
-            aria-label="Close settings"
+            aria-label={t.common.close}
             className="w-10 h-10 rounded-xl flex items-center justify-center bg-silk-rose/10 text-silk-wine dark:text-silk-rose hover:bg-silk-rose/20 transition-colors"
           >
             <X className="w-5 h-5" />
@@ -69,21 +52,22 @@ function PanelBody({ onClose }: { onClose?: () => void }) {
         <section>
           <div className="flex items-center justify-between mb-3">
             <p className="text-[11px] uppercase tracking-[0.2em] text-silk-wine/60 dark:text-silk-rose/50 font-semibold">
-              Theme
+              {t.settings.theme}
             </p>
             <span className="text-[10px] font-mono px-2 py-0.5 rounded-full bg-silk-rose/15 text-silk-wine dark:text-silk-rose-soft">
-              {resolvedTheme === "dark" ? "🌙 Dark" : "☀️ Light"}
+              {resolvedTheme === "dark" ? "🌙" : "☀️"}
             </span>
           </div>
 
           <div className="grid grid-cols-3 gap-2">
-            {THEMES.map(({ value, label, Icon, description, preview }) => {
-              const active = theme === value;
+            {THEMES.map((item) => {
+              const Icon = ICONS[item.iconKey];
+              const active = theme === item.value;
               return (
                 <button
-                  key={value}
+                  key={item.value}
                   type="button"
-                  onClick={() => setTheme(value)}
+                  onClick={() => setTheme(item.value)}
                   className={cn(
                     "group relative flex flex-col items-center gap-2 p-3 rounded-2xl border transition-all duration-300",
                     active
@@ -91,19 +75,18 @@ function PanelBody({ onClose }: { onClose?: () => void }) {
                       : "bg-silk-rose/5 border-silk-rose/15 hover:border-silk-rose/35 hover:-translate-y-0.5"
                   )}
                 >
-                  {/* Preview swatch */}
                   <div
                     className={cn(
                       "relative w-9 h-9 rounded-xl border border-silk-rose/20 overflow-hidden",
-                      preview
+                      item.preview
                     )}
                   >
                     <Icon
                       className={cn(
                         "absolute inset-0 m-auto w-4 h-4",
-                        value === "dark"
+                        item.value === "dark"
                           ? "text-silk-rose-soft"
-                          : value === "light"
+                          : item.value === "light"
                             ? "text-silk-wine"
                             : "text-silk-rose"
                       )}
@@ -113,20 +96,19 @@ function PanelBody({ onClose }: { onClose?: () => void }) {
                   <div className="flex flex-col items-center leading-tight">
                     <span
                       className={cn(
-                        "text-[10px] font-bold uppercase tracking-wider transition-colors",
+                        "text-[10px] font-bold uppercase tracking-wider",
                         active
                           ? "text-silk-wine dark:text-silk-rose-soft"
                           : "text-light-textSecondary dark:text-dark-textSecondary"
                       )}
                     >
-                      {label}
+                      {t.settings[item.labelKey]}
                     </span>
                     <span className="text-[9px] text-light-textSecondary/70 dark:text-dark-textSecondary/70">
-                      {description}
+                      {t.settings[item.descKey]}
                     </span>
                   </div>
 
-                  {/* Active check */}
                   {active && (
                     <span className="absolute top-1.5 right-1.5 w-4 h-4 rounded-full bg-silk-rose flex items-center justify-center">
                       <Check className="w-2.5 h-2.5 text-white" strokeWidth={3} />
@@ -141,7 +123,7 @@ function PanelBody({ onClose }: { onClose?: () => void }) {
         {/* Language */}
         <section>
           <p className="text-[11px] uppercase tracking-[0.2em] text-silk-wine/60 dark:text-silk-rose/50 font-semibold mb-3">
-            Language
+            {t.settings.language}
           </p>
           <div className="space-y-2">
             {LANGS.map(({ code, native, flag }) => {
@@ -162,9 +144,7 @@ function PanelBody({ onClose }: { onClose?: () => void }) {
                   <span className="flex-1 text-sm font-medium text-light-text dark:text-dark-text">
                     {native}
                   </span>
-                  {active && (
-                    <span className="w-2 h-2 rounded-full bg-silk-rose" />
-                  )}
+                  {active && <span className="w-2 h-2 rounded-full bg-silk-rose" />}
                 </button>
               );
             })}
@@ -174,15 +154,12 @@ function PanelBody({ onClose }: { onClose?: () => void }) {
         {/* Sound */}
         <section>
           <p className="text-[11px] uppercase tracking-[0.2em] text-silk-wine/60 dark:text-silk-rose/50 font-semibold mb-3">
-            Sound
+            {t.settings.sound}
           </p>
           <button
             type="button"
             onClick={toggleSound}
-            className={cn(
-              "w-full flex items-center gap-3 px-4 py-3 rounded-xl border transition-all",
-              "bg-silk-rose/5 border-silk-rose/15 hover:border-silk-rose/35"
-            )}
+            className="w-full flex items-center gap-3 px-4 py-3 rounded-xl border transition-all bg-silk-rose/5 border-silk-rose/15 hover:border-silk-rose/35"
           >
             {soundEnabled ? (
               <Volume2 className="w-4 h-4 text-silk-rose" />
@@ -190,7 +167,7 @@ function PanelBody({ onClose }: { onClose?: () => void }) {
               <VolumeX className="w-4 h-4 text-light-textSecondary dark:text-dark-textSecondary" />
             )}
             <span className="flex-1 text-sm font-medium text-light-text dark:text-dark-text text-left">
-              Sound Effects
+              {t.settings.soundEffects}
             </span>
             <span
               className={cn(
@@ -208,10 +185,10 @@ function PanelBody({ onClose }: { onClose?: () => void }) {
           </button>
         </section>
 
-        {/* Links */}
+        {/* More */}
         <section>
           <p className="text-[11px] uppercase tracking-[0.2em] text-silk-wine/60 dark:text-silk-rose/50 font-semibold mb-3">
-            More
+            {t.settings.more}
           </p>
           <div className="space-y-2">
             <a
@@ -221,14 +198,14 @@ function PanelBody({ onClose }: { onClose?: () => void }) {
               className="flex items-center gap-3 px-4 py-3 rounded-xl bg-silk-rose/5 border border-silk-rose/15 hover:border-silk-rose/35 hover:-translate-y-0.5 transition-all text-light-textSecondary dark:text-dark-textSecondary hover:text-silk-rose"
             >
               <Github className="w-4 h-4" />
-              <span className="text-sm">GitHub</span>
+              <span className="text-sm">{t.settings.github}</span>
             </a>
             <a
               href={`mailto:${APP_CONFIG.email}`}
               className="flex items-center gap-3 px-4 py-3 rounded-xl bg-silk-rose/5 border border-silk-rose/15 hover:border-silk-rose/35 hover:-translate-y-0.5 transition-all text-light-textSecondary dark:text-dark-textSecondary hover:text-silk-rose"
             >
               <Mail className="w-4 h-4" />
-              <span className="text-sm">Contact</span>
+              <span className="text-sm">{t.settings.contact}</span>
             </a>
           </div>
         </section>
@@ -236,7 +213,7 @@ function PanelBody({ onClose }: { onClose?: () => void }) {
 
       <div className="p-4 border-t border-silk-rose/20 shrink-0">
         <p className="text-xs text-center text-light-textSecondary/60 dark:text-dark-textSecondary/60">
-          AHADEX Tools v1.0
+          {t.settings.version}
         </p>
       </div>
     </div>
@@ -245,11 +222,8 @@ function PanelBody({ onClose }: { onClose?: () => void }) {
 
 export function RightSidebar({ mobileOpen, onMobileClose }: RightSidebarProps) {
   useEffect(() => {
-    if (mobileOpen) {
-      document.body.style.overflow = "hidden";
-    } else {
-      document.body.style.overflow = "";
-    }
+    if (mobileOpen) document.body.style.overflow = "hidden";
+    else document.body.style.overflow = "";
     return () => {
       document.body.style.overflow = "";
     };
@@ -274,16 +248,11 @@ export function RightSidebar({ mobileOpen, onMobileClose }: RightSidebarProps) {
         <div className="lg:hidden">
           <button
             type="button"
-            aria-label="Close settings"
+            aria-label="Close"
             onClick={onMobileClose}
             className="fixed inset-0 z-[80] bg-silk-plum/60 backdrop-blur-sm cursor-default"
           />
-          <div
-            className="fixed top-0 right-0 bottom-0 z-[81] w-[85vw] max-w-sm shadow-2xl bg-silk-cream dark:bg-dark-bg transition-colors duration-500"
-            role="dialog"
-            aria-modal="true"
-            aria-label="Settings"
-          >
+          <div className="fixed top-0 right-0 bottom-0 z-[81] w-[85vw] max-w-sm shadow-2xl bg-silk-cream dark:bg-dark-bg transition-colors duration-500">
             <PanelBody onClose={onMobileClose} />
           </div>
         </div>

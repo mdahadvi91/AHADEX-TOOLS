@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import { cn } from "@lib/cn";
 
 interface LiveTextProps {
@@ -8,8 +8,6 @@ interface LiveTextProps {
   waveDuration?: number;
   letterStagger?: number;
   gradient?: "rose" | "warm" | "cool" | "none";
-  /** Letters push away from cursor */
-  magnetic?: boolean;
   as?: "span" | "h1" | "h2" | "h3";
 }
 
@@ -32,101 +30,73 @@ export function LiveText({
   waveDuration = 2.5,
   letterStagger = 0.1,
   gradient = "none",
-  magnetic = false,
   as: Tag = "span",
 }: LiveTextProps) {
   const [ready, setReady] = useState(false);
   const [isDark, setIsDark] = useState(false);
-  const containerRef = useRef<HTMLElement | null>(null);
-  const letterRefs = useRef<(HTMLSpanElement | null)[]>([]);
-  const mouseRef = useRef({ x: 0, y: 0, active: false });
+  const [lang, setLang] = useState<"en" | "bn">("en");
 
   useEffect(() => {
     setReady(true);
-    const check = () => setIsDark(document.documentElement.classList.contains("dark"));
-    check();
-    const observer = new MutationObserver(check);
+    const checkDark = () =>
+      setIsDark(document.documentElement.classList.contains("dark"));
+    checkDark();
+
+    const checkLang = () => {
+      const l = document.documentElement.getAttribute("lang");
+      setLang(l === "bn" ? "bn" : "en");
+    };
+    checkLang();
+
+    const observer = new MutationObserver(() => {
+      checkDark();
+      checkLang();
+    });
     observer.observe(document.documentElement, {
       attributes: true,
-      attributeFilter: ["class"],
+      attributeFilter: ["class", "lang"],
     });
+
     return () => observer.disconnect();
   }, []);
 
-  useEffect(() => {
-    if (!magnetic) return;
-    const onMove = (e: MouseEvent) => {
-      mouseRef.current.x = e.clientX;
-      mouseRef.current.y = e.clientY;
-      mouseRef.current.active = true;
-    };
-    const onLeave = () => {
-      mouseRef.current.active = false;
-    };
-    window.addEventListener("mousemove", onMove);
-    window.addEventListener("mouseleave", onLeave);
-    return () => {
-      window.removeEventListener("mousemove", onMove);
-      window.removeEventListener("mouseleave", onLeave);
-    };
-  }, [magnetic]);
+  // ============ BENGALI — Simple, no split, no clip ============
+  if (lang === "bn") {
+    return (
+      <Tag
+        className={cn(
+          "inline-block bengali-text",
+          gradient !== "none" && "bengali-gradient",
+          className
+        )}
+        aria-label={text}
+      >
+        {text}
+      </Tag>
+    );
+  }
 
-  // Apply magnetic displacement each frame
-  useEffect(() => {
-    if (!magnetic || !ready) return;
-    let raf = 0;
-    const radius = 180;
-
-    const tick = () => {
-      const { x: mx, y: my, active } = mouseRef.current;
-      letterRefs.current.forEach((el) => {
-        if (!el) return;
-        if (!active) {
-          el.style.setProperty("--mx", "0px");
-          el.style.setProperty("--my", "0px");
-          return;
-        }
-        const rect = el.getBoundingClientRect();
-        const cx = rect.left + rect.width / 2;
-        const cy = rect.top + rect.height / 2;
-        const dx = cx - mx;
-        const dy = cy - my;
-        const dist = Math.sqrt(dx * dx + dy * dy);
-        if (dist < radius && dist > 1) {
-          const force = (1 - dist / radius) * 24;
-          el.style.setProperty("--mx", `${(dx / dist) * force}px`);
-          el.style.setProperty("--my", `${(dy / dist) * force}px`);
-        } else {
-          el.style.setProperty("--mx", "0px");
-          el.style.setProperty("--my", "0px");
-        }
-      });
-      raf = requestAnimationFrame(tick);
-    };
-    raf = requestAnimationFrame(tick);
-    return () => cancelAnimationFrame(raf);
-  }, [magnetic, ready]);
+  // ============ ENGLISH — Per-letter wave + gradient ============
+  const gradientCSS =
+    gradient !== "none"
+      ? isDark
+        ? DARK_GRADIENTS[gradient]
+        : GRADIENTS[gradient]
+      : null;
 
   const chars = text.split("");
   const totalChars = Math.max(chars.length - 1, 1);
-  const gradientCSS = gradient !== "none"
-    ? (isDark ? DARK_GRADIENTS[gradient] : GRADIENTS[gradient])
-    : null;
 
   return (
     <>
       <style>{`
         @keyframes ahadex-live-wave {
-          0%, 100% { transform: translate(0px, 0px); }
-          50% { transform: translate(0px, -${waveAmplitude}px); }
+          0%, 100% { transform: translateY(0px); }
+          50% { transform: translateY(-${waveAmplitude}px); }
         }
       `}</style>
 
-      <Tag
-        ref={containerRef as React.RefObject<HTMLSpanElement>}
-        className={cn("inline-block", className)}
-        aria-label={text}
-      >
+      <Tag className={cn("inline-block", className)} aria-label={text}>
         {chars.map((char, i) => {
           const style: React.CSSProperties = {
             display: "inline-block",
@@ -134,8 +104,6 @@ export function LiveText({
               ? `ahadex-live-wave ${waveDuration}s ease-in-out ${i * letterStagger}s infinite`
               : "none",
             willChange: "transform",
-            transform: "translate(var(--mx, 0px), var(--my, 0px))",
-            transition: "transform 0.25s cubic-bezier(0.22, 1, 0.36, 1)",
           };
 
           if (gradientCSS) {
@@ -151,12 +119,7 @@ export function LiveText({
           }
 
           return (
-            <span
-              key={i}
-              ref={(el) => { letterRefs.current[i] = el; }}
-              aria-hidden="true"
-              style={style}
-            >
+            <span key={i} aria-hidden="true" style={style}>
               {char === " " ? "\u00A0" : char}
             </span>
           );

@@ -4,6 +4,7 @@ import { SearchX } from "lucide-react";
 import { tools } from "@data/tools";
 import { categories } from "@data/categories";
 import { useFavorites } from "@hooks/useFavorites";
+import { useLanguage } from "@contexts/LanguageContext";
 import { ToolsHero } from "./ToolsHero";
 import { ToolsSearch } from "./ToolsSearch";
 import { CategorySection } from "./CategorySection";
@@ -14,17 +15,17 @@ export function ToolsShowcase() {
   const [query, setQuery] = useState("");
   const isSearching = query.trim().length > 0;
   const { isFavorite, toggle } = useFavorites();
+  const { t } = useLanguage();
 
   const filtered = useMemo(() => {
     const q = query.trim().toLowerCase();
     if (!q) return [];
-    const matches = tools.filter((t) =>
-      [t.name, t.description, t.category, ...t.keywords]
+    const matches = tools.filter((tool) =>
+      [tool.name, tool.description, tool.category, ...tool.keywords]
         .join(" ")
         .toLowerCase()
         .includes(q)
     );
-    // Favorites first
     return matches.sort((a, b) => {
       const af = isFavorite(a.id) ? 1 : 0;
       const bf = isFavorite(b.id) ? 1 : 0;
@@ -54,8 +55,12 @@ export function ToolsShowcase() {
       {isSearching ? (
         <div className="pb-20">
           <p className="text-sm text-light-textSecondary dark:text-dark-textSecondary mb-5">
-            {filtered.length} result{filtered.length === 1 ? "" : "s"} for "
-            <span className="font-medium text-light-text dark:text-dark-text">{query}</span>"
+            {filtered.length}{" "}
+            {filtered.length === 1 ? t.tools.resultFor : t.tools.resultsFor} "
+            <span className="font-medium text-light-text dark:text-dark-text">
+              {query}
+            </span>
+            "
           </p>
 
           {filtered.length === 0 ? (
@@ -64,17 +69,17 @@ export function ToolsShowcase() {
                 <SearchX className="w-8 h-8 text-silk-rose/60" />
               </div>
               <h3 className="font-display font-bold text-xl text-light-text dark:text-dark-text mb-2">
-                No tools found
+                {t.tools.noResults}
               </h3>
               <p className="text-sm text-light-textSecondary dark:text-dark-textSecondary max-w-sm mb-6">
-                Try a different keyword.
+                {t.tools.noResultsDesc}
               </p>
               <button
                 type="button"
                 onClick={() => setQuery("")}
                 className="px-6 py-3 rounded-full bg-gradient-to-r from-silk-rose to-silk-wine-deep text-white text-sm font-medium shadow-silk-medium hover:shadow-silk-deep transition-all"
               >
-                Clear search
+                {t.tools.clearSearch}
               </button>
             </div>
           ) : (
@@ -112,7 +117,7 @@ export function ToolsShowcase() {
 
           {sections.length === 0 && (
             <div className="text-center py-20 text-sm text-light-textSecondary dark:text-dark-textSecondary">
-              Tools coming soon...
+              {t.tools.noResults}
             </div>
           )}
         </div>
