@@ -696,3 +696,9 @@ export const tools: Tool[] = [
       ogImage: "/images/og/tools/split-pdf-og.jpg",
     },
   },
+
+  // Additional 26 tools coming soon...
+];
+
+  // Additional 26 tools coming soon...
+];
