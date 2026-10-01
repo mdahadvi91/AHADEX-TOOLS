@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import { ToolIcon } from "@components/common/ToolIcon";
 import { SmallToolCard } from "./SmallToolCard";
 import { useFavorites } from "@hooks/useFavorites";
+import { useLanguage } from "@contexts/LanguageContext";
 import type { Category } from "@types/category";
 import type { Tool } from "@types/tool";
 
@@ -15,10 +16,10 @@ interface CategorySectionProps {
 
 export function CategorySection({ category, tools, index }: CategorySectionProps) {
   const { isFavorite, toggle } = useFavorites();
+  const { t } = useLanguage();
 
   if (tools.length === 0) return null;
 
-  // Favorites first, then rest
   const sorted = [...tools].sort((a, b) => {
     const af = isFavorite(a.id) ? 1 : 0;
     const bf = isFavorite(b.id) ? 1 : 0;
@@ -27,10 +28,10 @@ export function CategorySection({ category, tools, index }: CategorySectionProps
 
   const numeral = String(index + 1).padStart(2, "0");
   const favoriteCount = tools.filter((t) => isFavorite(t.id)).length;
+  const localizedName = t.categories[category.id as keyof typeof t.categories] ?? category.name;
 
   return (
     <section className="py-8 lg:py-12">
-      {/* Header */}
       <motion.div
         initial={{ opacity: 0, y: 12 }}
         whileInView={{ opacity: 1, y: 0 }}
@@ -49,7 +50,7 @@ export function CategorySection({ category, tools, index }: CategorySectionProps
             <ToolIcon category={category.id} size={16} />
           </span>
           <h2 className="font-display font-bold text-lg sm:text-xl lg:text-2xl tracking-tight text-light-text dark:text-dark-text truncate">
-            {category.name}
+            {localizedName}
           </h2>
           <span className="text-[10px] font-mono font-bold px-1.5 py-0.5 rounded-full bg-silk-rose/15 text-silk-wine dark:text-silk-rose-soft shrink-0">
             {tools.length}
@@ -65,12 +66,11 @@ export function CategorySection({ category, tools, index }: CategorySectionProps
           to={`/categories/${category.slug}`}
           className="group inline-flex items-center gap-1 text-xs sm:text-sm font-medium text-silk-wine dark:text-silk-rose-soft hover:gap-2 transition-all duration-300 shrink-0"
         >
-          View all
+          {t.common.viewAll}
           <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform" />
         </Link>
       </motion.div>
 
-      {/* Grid */}
       <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-3 lg:gap-4">
         {sorted.map((tool, i) => (
           <SmallToolCard

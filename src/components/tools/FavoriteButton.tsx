@@ -1,5 +1,6 @@
 import { Star } from "lucide-react";
 import { motion } from "framer-motion";
+import { useLanguage } from "@contexts/LanguageContext";
 import { cn } from "@lib/cn";
 
 interface FavoriteButtonProps {
@@ -15,6 +16,8 @@ export function FavoriteButton({
   size = 16,
   className,
 }: FavoriteButtonProps) {
+  const { t } = useLanguage();
+
   return (
     <motion.button
       type="button"
@@ -25,7 +28,7 @@ export function FavoriteButton({
       }}
       whileTap={{ scale: 0.85 }}
       whileHover={{ scale: 1.1 }}
-      aria-label={active ? "Remove from favorites" : "Add to favorites"}
+      aria-label={active ? t.tools.unfavourite : t.tools.favourite}
       aria-pressed={active}
       className={cn(
         "relative inline-flex items-center justify-center rounded-full transition-all duration-300",
@@ -39,13 +42,9 @@ export function FavoriteButton({
       <Star
         size={size}
         strokeWidth={2}
-        className={cn(
-          "transition-all duration-300",
-          active && "fill-current"
-        )}
+        className={cn("transition-all duration-300", active && "fill-current")}
       />
 
-      {/* Sparkle burst when activated */}
       {active && (
         <motion.span
           aria-hidden="true"

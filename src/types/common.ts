@@ -1,5 +1,5 @@
 export type Theme = "light" | "dark" | "system";
-export type Language = "en" | "bn" | "ar";
+export type Language = "en" | "bn";
 export type ToastType = "success" | "error" | "info" | "warning";
 
 export interface NavItem {

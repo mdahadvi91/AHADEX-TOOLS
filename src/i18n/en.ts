@@ -15,6 +15,10 @@ export const en = {
     save: "Save",
     settings: "Settings",
     more: "More",
+    back: "Back",
+    next: "Next",
+    error: "Something went wrong",
+    retry: "Try again",
   },
   nav: {
     home: "Home",
@@ -27,6 +31,7 @@ export const en = {
     main: "Menu",
     private: "100% Private.",
     privateDesc: "Runs in your browser.",
+    favourites: "Favourites",
   },
   settings: {
     title: "Settings",
@@ -68,8 +73,8 @@ export const en = {
     clearSearch: "Clear search",
     resultsFor: "results for",
     resultFor: "result for",
-    favorite: "Add to favorites",
-    unfavorite: "Remove from favorites",
+    favourite: "Add to favourites",
+    unfavourite: "Remove from favourites",
   },
   home: {
     popularEyebrow: "Featured",
@@ -83,6 +88,14 @@ export const en = {
     whyEyebrow: "Why AHADEX",
     whyTitle1: "Built the way tools",
     whyTitle2: "should be",
+    whyPrivateTitle: "100% private",
+    whyPrivateDesc: "Files never leave your device. No uploads, no tracking, ever.",
+    whyFastTitle: "Lightning fast",
+    whyFastDesc: "Everything runs in your browser. No server round trips.",
+    whySimpleTitle: "Beautifully simple",
+    whySimpleDesc: "Clean design, keyboard-friendly, works on every device.",
+    whyFreeTitle: "Free forever",
+    whyFreeDesc: "No accounts. No subscriptions. No watermarks. Just tools.",
     faqEyebrow: "FAQ",
     faqTitle1: "Things you",
     faqTitle2: "may ask",
@@ -98,6 +111,8 @@ export const en = {
     qrTools: "QR & Barcode",
     privacy: "Privacy",
     terms: "Terms",
+    disclaimer: "Disclaimer",
+    accessibility: "Accessibility",
     copyright: "All rights reserved.",
     madeWith: "Made with",
     forWeb: "for the web",
@@ -114,6 +129,9 @@ export const en = {
     lightMode: "Light mode",
     darkMode: "Dark mode",
     systemMode: "System mode",
+  },
+  favourites: {
+    sortFirst: "Favourites appear first in each section",
   },
 };
 

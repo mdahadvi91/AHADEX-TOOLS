@@ -15,12 +15,27 @@
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="preconnect" href="https://api.fontshare.com" />
+
+    <!-- English fonts -->
     <link
       href="https://api.fontshare.com/v2/css?f[]=clash-display@400,500,600,700&f[]=general-sans@400,500,600&display=swap"
       rel="stylesheet"
     />
     <link
-      href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;600;700&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Hind+Siliguri:wght@400;500;600;700&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;600;700&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Bengali fonts -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@300;400;500;600;700&family=Baloo+Da+2:wght@400;500;600;700;800&family=Noto+Serif+Bengali:wght@400;500;600;700;800;900&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Arabic fonts -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Noto+Sans+Arabic:wght@300;400;500;600;700&family=Noto+Kufi+Arabic:wght@400;500;600;700&display=swap"
       rel="stylesheet"
     />
 
@@ -37,6 +52,19 @@
           document.documentElement.classList.toggle("light", !isDark);
         } catch (e) {
           document.documentElement.classList.add("dark");
+        }
+      })();
+
+      (function () {
+        try {
+          var stored = localStorage.getItem("ahadex-language");
+          var browserLang = (navigator.language || "en").slice(0, 2);
+          var lang = stored || (["en", "bn", "ar"].includes(browserLang) ? browserLang : "en");
+          document.documentElement.setAttribute("lang", lang);
+          document.documentElement.setAttribute("dir", lang === "ar" ? "rtl" : "ltr");
+        } catch (e) {
+          document.documentElement.setAttribute("lang", "en");
+          document.documentElement.setAttribute("dir", "ltr");
         }
       })();
     </script>

@@ -4,24 +4,25 @@ import { Menu, Search, Sliders, X, Command } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { cn } from "@lib/cn";
 import { Logo } from "@components/common/Logo";
-import { LiveText } from "@components/common/LiveText";
+import { useLanguage } from "@contexts/LanguageContext";
 
 interface HeaderProps {
   onLeftMenuClick: () => void;
   onRightMenuClick: () => void;
 }
 
-const NAV_LINKS = [
-  { to: "/", label: "Home" },
-  { to: "/tools", label: "Tools" },
-  { to: "/about", label: "About" },
-  { to: "/contact", label: "Contact" },
-];
-
 export function Header({ onLeftMenuClick, onRightMenuClick }: HeaderProps) {
   const [scrolled, setScrolled] = useState(false);
   const [searchOpen, setSearchOpen] = useState(false);
   const location = useLocation();
+  const { t } = useLanguage();
+
+  const NAV_LINKS = [
+    { to: "/", label: t.nav.home },
+    { to: "/tools", label: t.nav.tools },
+    { to: "/about", label: t.nav.about },
+    { to: "/contact", label: t.nav.contact },
+  ];
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 24);
@@ -34,7 +35,6 @@ export function Header({ onLeftMenuClick, onRightMenuClick }: HeaderProps) {
     setSearchOpen(false);
   }, [location.pathname]);
 
-  // Cmd+K shortcut
   useEffect(() => {
     const handler = (e: KeyboardEvent) => {
       if ((e.metaKey || e.ctrlKey) && e.key === "k") {
@@ -50,22 +50,20 @@ export function Header({ onLeftMenuClick, onRightMenuClick }: HeaderProps) {
   return (
     <header
       className={cn(
-        "fixed top-0 left-0 right-0 z-50 transition-all duration-500 ease-silk",
+        "fixed top-0 left-0 right-0 z-50 transition-all duration-500",
         scrolled ? "pt-2 lg:pt-3" : "pt-3 lg:pt-5"
       )}
     >
       <div className="mx-auto max-w-[1600px] px-3 sm:px-5 lg:px-6">
-        {/* Floating glass bar */}
         <div
           className={cn(
-            "relative flex items-center justify-between gap-3 transition-all duration-500 ease-silk",
+            "relative flex items-center justify-between gap-3 transition-all duration-500",
             "rounded-2xl lg:rounded-[24px]",
             scrolled
               ? "h-14 lg:h-16 px-3 lg:px-5 bg-silk-cream/85 dark:bg-dark-bg/85 backdrop-blur-2xl border border-silk-rose/25 shadow-[0_8px_30px_-8px_rgba(139,58,79,0.2)]"
               : "h-16 lg:h-[72px] px-4 lg:px-6 bg-silk-cream/60 dark:bg-dark-bg/60 backdrop-blur-xl border border-silk-rose/15 shadow-silk-soft"
           )}
         >
-          {/* Top rose accent line */}
           <span
             aria-hidden="true"
             className={cn(
@@ -74,12 +72,12 @@ export function Header({ onLeftMenuClick, onRightMenuClick }: HeaderProps) {
             )}
           />
 
-          {/* ── LEFT: menu (mobile) + logo ── */}
+          {/* LEFT */}
           <div className="flex items-center gap-2 sm:gap-3 min-w-0">
             <button
               type="button"
               onClick={onLeftMenuClick}
-              aria-label="Open menu"
+              aria-label="Menu"
               className={cn(
                 "lg:hidden inline-flex items-center justify-center w-10 h-10 rounded-xl shrink-0",
                 "bg-silk-rose/10 border border-silk-rose/25 text-silk-wine dark:text-silk-rose-soft",
@@ -92,7 +90,7 @@ export function Header({ onLeftMenuClick, onRightMenuClick }: HeaderProps) {
             <Logo size={scrolled ? "sm" : "md"} showText />
           </div>
 
-          {/* ── CENTER (desktop): nav ── */}
+          {/* CENTER NAV */}
           <nav className="hidden lg:flex items-center gap-1 absolute left-1/2 -translate-x-1/2">
             {NAV_LINKS.map((link) => (
               <NavLink
@@ -110,12 +108,7 @@ export function Header({ onLeftMenuClick, onRightMenuClick }: HeaderProps) {
               >
                 {({ isActive }) => (
                   <>
-                    <LiveText
-                      text={link.label}
-                      waveAmplitude={3}
-                      waveDuration={3}
-                      letterStagger={0.06}
-                    />
+                    {link.label}
                     {isActive && (
                       <motion.span
                         layoutId="header-nav-active"
@@ -129,13 +122,12 @@ export function Header({ onLeftMenuClick, onRightMenuClick }: HeaderProps) {
             ))}
           </nav>
 
-          {/* ── RIGHT: search + settings + version ── */}
+          {/* RIGHT */}
           <div className="flex items-center gap-2">
-            {/* Search trigger with ⌘K badge */}
             <button
               type="button"
               onClick={() => setSearchOpen((v) => !v)}
-              aria-label={searchOpen ? "Close search" : "Open search"}
+              aria-label={t.common.search}
               className={cn(
                 "group hidden sm:inline-flex items-center gap-2 pl-3 pr-2 py-2 rounded-xl",
                 "bg-silk-rose/8 border border-silk-rose/20 hover:border-silk-rose/45",
@@ -145,22 +137,20 @@ export function Header({ onLeftMenuClick, onRightMenuClick }: HeaderProps) {
               )}
             >
               <Search className="w-3.5 h-3.5" />
-              <span className="text-xs font-medium">Search</span>
+              <span className="text-xs font-medium">{t.common.search}</span>
               <kbd className="flex items-center gap-0.5 px-1.5 py-0.5 rounded-md bg-silk-rose/15 text-silk-wine dark:text-silk-rose-soft text-[10px] font-mono border border-silk-rose/20">
                 <Command className="w-2.5 h-2.5" />K
               </kbd>
             </button>
 
-            {/* Mobile search icon */}
             <button
               type="button"
               onClick={() => setSearchOpen((v) => !v)}
-              aria-label={searchOpen ? "Close search" : "Open search"}
+              aria-label={t.common.search}
               className={cn(
                 "sm:hidden inline-flex items-center justify-center w-10 h-10 rounded-xl",
                 "bg-silk-rose/10 border border-silk-rose/25 text-silk-wine dark:text-silk-rose-soft",
-                "hover:bg-silk-rose/20 hover:scale-105 active:scale-95 transition-all duration-300",
-                searchOpen && "bg-silk-rose/25 border-silk-rose/45"
+                "hover:bg-silk-rose/20 hover:scale-105 active:scale-95 transition-all duration-300"
               )}
             >
               <AnimatePresence mode="wait" initial={false}>
@@ -188,7 +178,6 @@ export function Header({ onLeftMenuClick, onRightMenuClick }: HeaderProps) {
               </AnimatePresence>
             </button>
 
-            {/* Version pill (desktop only) */}
             <Link
               to="/about"
               className="hidden xl:inline-flex items-center gap-1.5 px-2.5 py-1.5 rounded-full bg-silk-rose/8 border border-silk-rose/20 hover:border-silk-rose/40 transition-colors"
@@ -199,11 +188,10 @@ export function Header({ onLeftMenuClick, onRightMenuClick }: HeaderProps) {
               </span>
             </Link>
 
-            {/* Settings */}
             <button
               type="button"
               onClick={onRightMenuClick}
-              aria-label="Open settings"
+              aria-label={t.common.settings}
               className={cn(
                 "inline-flex items-center justify-center w-10 h-10 rounded-xl",
                 "bg-silk-rose/10 border border-silk-rose/25 text-silk-wine dark:text-silk-rose-soft",
@@ -215,7 +203,6 @@ export function Header({ onLeftMenuClick, onRightMenuClick }: HeaderProps) {
           </div>
         </div>
 
-        {/* Search panel — slides down */}
         <AnimatePresence>
           {searchOpen && (
             <motion.div
@@ -225,13 +212,7 @@ export function Header({ onLeftMenuClick, onRightMenuClick }: HeaderProps) {
               transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
               className="overflow-hidden mt-2"
             >
-              <div
-                className={cn(
-                  "relative rounded-2xl overflow-hidden",
-                  "bg-silk-cream/95 dark:bg-dark-bg/95 backdrop-blur-2xl",
-                  "border border-silk-rose/25 shadow-[0_8px_30px_-8px_rgba(139,58,79,0.25)]"
-                )}
-              >
+              <div className="relative rounded-2xl overflow-hidden bg-silk-cream/95 dark:bg-dark-bg/95 backdrop-blur-2xl border border-silk-rose/25 shadow-[0_8px_30px_-8px_rgba(139,58,79,0.25)]">
                 <span
                   aria-hidden="true"
                   className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-silk-rose to-transparent"
@@ -240,7 +221,7 @@ export function Header({ onLeftMenuClick, onRightMenuClick }: HeaderProps) {
                   <Search className="w-5 h-5 text-silk-rose shrink-0" />
                   <input
                     type="text"
-                    placeholder="Search tools — try 'JPG', 'PDF merge', 'QR'..."
+                    placeholder={t.common.searchPlaceholder}
                     autoFocus
                     className="flex-1 bg-transparent outline-none text-light-text dark:text-dark-text placeholder:text-light-textSecondary/60 dark:placeholder:text-dark-textSecondary/60"
                   />

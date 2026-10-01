@@ -8,16 +8,16 @@ import {
   type ReactNode,
 } from "react";
 import { STORAGE_KEYS, DEFAULT_LANGUAGE } from "@constants/config";
+import { getTranslations, type TranslationKeys } from "@i18n/index";
 import type { Language } from "@types/common";
 
-const SUPPORTED: Language[] = ["en", "bn", "ar"];
-const RTL: Language[] = ["ar"];
+const SUPPORTED: Language[] = ["en", "bn"];
 
 interface LanguageContextValue {
   language: Language;
-  isRTL: boolean;
   setLanguage: (lang: Language) => void;
   supportedLanguages: Language[];
+  t: TranslationKeys;
 }
 
 const LanguageContext = createContext<LanguageContextValue | null>(null);
@@ -26,6 +26,11 @@ export function useLanguage(): LanguageContextValue {
   const ctx = useContext(LanguageContext);
   if (!ctx) throw new Error("useLanguage must be used within LanguageProvider");
   return ctx;
+}
+
+export function useTranslation() {
+  const { t, language } = useLanguage();
+  return { t, language };
 }
 
 function getStored(): Language {
@@ -42,34 +47,47 @@ function getStored(): Language {
 function apply(lang: Language) {
   if (typeof document === "undefined") return;
   document.documentElement.setAttribute("lang", lang);
-  document.documentElement.setAttribute("dir", RTL.includes(lang) ? "rtl" : "ltr");
+  document.documentElement.setAttribute("dir", "ltr");
 }
 
 export function LanguageProvider({ children }: { children: ReactNode }) {
   const [language, setLanguageState] = useState<Language>(DEFAULT_LANGUAGE);
+  const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
     const stored = getStored();
     setLanguageState(stored);
     apply(stored);
+    setMounted(true);
   }, []);
 
-  const setLanguage = useCallback((lang: Language) => {
-    if (!SUPPORTED.includes(lang)) return;
-    setLanguageState(lang);
-    apply(lang);
-    try { localStorage.setItem(STORAGE_KEYS.language, lang); } catch {}
-  }, []);
+  const setLanguage = useCallback(
+    (lang: Language) => {
+      if (!SUPPORTED.includes(lang)) return;
+      try {
+        localStorage.setItem(STORAGE_KEYS.language, lang);
+      } catch {}
+      if (mounted) {
+        window.location.reload();
+      } else {
+        setLanguageState(lang);
+        apply(lang);
+      }
+    },
+    [mounted]
+  );
 
   const value = useMemo(
     () => ({
       language,
-      isRTL: RTL.includes(language),
       setLanguage,
       supportedLanguages: SUPPORTED,
+      t: getTranslations(language),
     }),
     [language, setLanguage]
   );
 
-  return <LanguageContext.Provider value={value}>{children}</LanguageContext.Provider>;
+  return (
+    <LanguageContext.Provider value={value}>{children}</LanguageContext.Provider>
+  );
 }
