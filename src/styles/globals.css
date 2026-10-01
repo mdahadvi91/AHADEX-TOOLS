@@ -66,3 +66,34 @@
     -webkit-text-fill-color: transparent;
   }
 }
+
+/* ============================================================
+ * THEME TRANSITION — smooth color change
+ * ============================================================ */
+
+html,
+body {
+  transition: background-color 0.4s ease, color 0.4s ease;
+}
+
+/* During theme switch — disable transition to avoid flash */
+html.theme-switching,
+html.theme-switching *,
+html.theme-switching *::before,
+html.theme-switching *::after {
+  transition: none !important;
+}
+
+/* Text color theme transition */
+h1, h2, h3, h4, h5, h6, p, span, a, button, div {
+  transition: color 0.3s ease, border-color 0.3s ease, background-color 0.3s ease;
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  html,
+  body,
+  h1, h2, h3, h4, h5, h6, p, span, a, button, div {
+    transition: none !important;
+  }
+}
