@@ -1,0 +1,67 @@
+{
+  "name": "ahadex-tools",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "description": "AHADEX Tools — 42 free, fast, private online tools.",
+  "author": "AHADEX <mdahadvi91@gmail.com>",
+  "license": "MIT",
+  "homepage": "https://ahadex.fun",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mdahadvi91/gost-tools.git"
+  },
+  "engines": {
+    "node": ">=18.0.0",
+    "npm": ">=9.0.0"
+  },
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc -b && vite build",
+    "preview": "vite preview --port 4173",
+    "lint": "tsc --noEmit",
+    "type-check": "tsc --noEmit",
+    "clean": "rm -rf dist node_modules/.vite"
+  },
+  "dependencies": {
+    "@imgly/background-removal": "^1.5.5",
+    "browser-image-compression": "^2.0.2",
+    "clsx": "^2.1.1",
+    "exifr": "^7.1.3",
+    "file-saver": "^2.0.5",
+    "framer-motion": "^11.3.24",
+    "gsap": "^3.12.5",
+    "html2canvas": "^1.4.1",
+    "i18next": "^23.12.3",
+    "jsbarcode": "^3.11.6",
+    "jspdf": "^2.5.2",
+    "jsqr": "^1.4.0",
+    "lenis": "^1.1.14",
+    "lucide-react": "^0.436.0",
+    "pdf-lib": "^1.17.1",
+    "pdfjs-dist": "^4.7.76",
+    "qrcode": "^1.5.4",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "react-dropzone": "^14.2.9",
+    "react-i18next": "^15.0.1",
+    "react-image-crop": "^11.0.7",
+    "react-router-dom": "^6.26.1",
+    "tailwind-merge": "^2.5.2"
+  },
+  "devDependencies": {
+    "@types/file-saver": "^2.0.7",
+    "@types/jsbarcode": "^3.11.4",
+    "@types/node": "^22.5.0",
+    "@types/qrcode": "^1.5.5",
+    "@types/react": "^18.3.4",
+    "@types/react-dom": "^18.3.0",
+    "@vitejs/plugin-react": "^4.3.1",
+    "autoprefixer": "^10.4.20",
+    "postcss": "^8.4.41",
+    "tailwindcss": "^3.4.10",
+    "tsx": "^4.19.0",
+    "typescript": "^5.5.4",
+    "vite": "^5.4.2"
+  }
+}
