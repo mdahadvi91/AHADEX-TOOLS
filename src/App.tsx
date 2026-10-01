@@ -8,6 +8,11 @@ import { SoundProvider } from "@contexts/SoundContext";
 const ToolsIndexPage = lazy(() => import("@pages/ToolsIndexPage"));
 const AboutPage = lazy(() => import("@pages/AboutPage"));
 const ContactPage = lazy(() => import("@pages/ContactPage"));
+const PrivacyPage = lazy(() => import("@pages/PrivacyPage"));
+const TermsPage = lazy(() => import("@pages/TermsPage"));
+const DisclaimerPage = lazy(() => import("@pages/DisclaimerPage"));
+const AccessibilityPage = lazy(() => import("@pages/AccessibilityPage"));
+const CookiePolicyPage = lazy(() => import("@pages/CookiePolicyPage"));
 const NotFoundPage = lazy(() => import("@pages/NotFoundPage"));
 
 function ScrollToTop() {
@@ -40,6 +45,11 @@ export default function App() {
                   <Route path="tools" element={<ToolsIndexPage />} />
                   <Route path="about" element={<AboutPage />} />
                   <Route path="contact" element={<ContactPage />} />
+                  <Route path="privacy" element={<PrivacyPage />} />
+                  <Route path="terms" element={<TermsPage />} />
+                  <Route path="disclaimer" element={<DisclaimerPage />} />
+                  <Route path="accessibility" element={<AccessibilityPage />} />
+                  <Route path="cookie-policy" element={<CookiePolicyPage />} />
                   <Route path="404" element={<NotFoundPage />} />
                   <Route path="*" element={<Navigate to="/404" replace />} />
                 </Route>
