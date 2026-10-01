@@ -5,6 +5,7 @@ import { Footer } from "./Footer";
 import { LeftSidebar } from "./LeftSidebar";
 import { RightSidebar } from "./RightSidebar";
 import { CinematicBackground } from "@components/background";
+import { CursorOrb } from "@components/hero/CursorOrb";
 
 export function MainLayout() {
   const [leftOpen, setLeftOpen] = useState(false);
@@ -12,8 +13,8 @@ export function MainLayout() {
 
   return (
     <>
-      {/* 🌸 Cinematic background (3 layers) */}
       <CinematicBackground />
+      <CursorOrb />
 
       <Header
         onLeftMenuClick={() => setLeftOpen(true)}
@@ -23,10 +24,8 @@ export function MainLayout() {
       <LeftSidebar mobileOpen={leftOpen} onMobileClose={() => setLeftOpen(false)} />
       <RightSidebar mobileOpen={rightOpen} onMobileClose={() => setRightOpen(false)} />
 
-      {/* Spacer for floating header */}
       <div className="h-24 lg:h-28" aria-hidden="true" />
 
-      {/* Main content */}
       <main id="main-content" className="relative lg:ml-64 lg:mr-72 min-h-[60vh]">
         <Outlet />
       </main>
