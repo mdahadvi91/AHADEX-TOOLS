@@ -3,6 +3,7 @@ import { motion } from "framer-motion";
 import { SearchX } from "lucide-react";
 import { tools } from "@data/tools";
 import { categories } from "@data/categories";
+import { useFavorites } from "@hooks/useFavorites";
 import { ToolsHero } from "./ToolsHero";
 import { ToolsSearch } from "./ToolsSearch";
 import { CategorySection } from "./CategorySection";
@@ -12,17 +13,24 @@ import { GridBackground } from "./GridBackground";
 export function ToolsShowcase() {
   const [query, setQuery] = useState("");
   const isSearching = query.trim().length > 0;
+  const { isFavorite, toggle } = useFavorites();
 
   const filtered = useMemo(() => {
     const q = query.trim().toLowerCase();
     if (!q) return [];
-    return tools.filter((t) =>
+    const matches = tools.filter((t) =>
       [t.name, t.description, t.category, ...t.keywords]
         .join(" ")
         .toLowerCase()
         .includes(q)
     );
-  }, [query]);
+    // Favorites first
+    return matches.sort((a, b) => {
+      const af = isFavorite(a.id) ? 1 : 0;
+      const bf = isFavorite(b.id) ? 1 : 0;
+      return bf - af;
+    });
+  }, [query, isFavorite]);
 
   const sections = useMemo(
     () =>
@@ -76,14 +84,19 @@ export function ToolsShowcase() {
               className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-3 lg:gap-4"
             >
               {filtered.map((tool, i) => (
-                <SmallToolCard key={tool.id} tool={tool} index={i} />
+                <SmallToolCard
+                  key={tool.id}
+                  tool={tool}
+                  index={i}
+                  isFavorite={isFavorite(tool.id)}
+                  onToggleFavorite={toggle}
+                />
               ))}
             </motion.div>
           )}
         </div>
       ) : (
         <div className="relative pb-20">
-          {/* ✨ Three.js particle background behind sections */}
           <GridBackground />
 
           <div className="relative">

@@ -3,12 +3,15 @@ import { ArrowUpRight } from "lucide-react";
 import { motion } from "framer-motion";
 import { LiveText } from "@components/common/LiveText";
 import { getToolIcon } from "@components/common/toolIcons";
+import { FavoriteButton } from "./FavoriteButton";
 import { cn } from "@lib/cn";
 import type { Tool } from "@types/tool";
 
 interface SmallToolCardProps {
   tool: Tool;
   index?: number;
+  isFavorite?: boolean;
+  onToggleFavorite?: (id: string) => void;
 }
 
 const ICON_COLORS: Record<string, string> = {
@@ -20,7 +23,12 @@ const ICON_COLORS: Record<string, string> = {
   calculators: "text-silk-wine dark:text-silk-rose-soft",
 };
 
-export function SmallToolCard({ tool, index = 0 }: SmallToolCardProps) {
+export function SmallToolCard({
+  tool,
+  index = 0,
+  isFavorite = false,
+  onToggleFavorite,
+}: SmallToolCardProps) {
   const Icon = getToolIcon(tool.id);
   const iconColor = ICON_COLORS[tool.category] ?? "text-silk-rose";
 
@@ -41,7 +49,10 @@ export function SmallToolCard({ tool, index = 0 }: SmallToolCardProps) {
         className={cn(
           "group relative flex flex-col h-full p-5 rounded-2xl overflow-hidden",
           "bg-white/75 dark:bg-dark-surface/75 backdrop-blur-xl",
-          "border border-silk-rose/15 hover:border-silk-rose/50",
+          "border",
+          isFavorite
+            ? "border-silk-gold/50 shadow-[0_6px_20px_-8px_rgba(201,150,103,0.35)]"
+            : "border-silk-rose/15 hover:border-silk-rose/50",
           "shadow-[0_2px_10px_-6px_rgba(139,58,79,0.10)]",
           "hover:shadow-[0_14px_32px_-14px_rgba(139,58,79,0.35)]",
           "hover:-translate-y-1",
@@ -58,45 +69,51 @@ export function SmallToolCard({ tool, index = 0 }: SmallToolCardProps) {
           }}
         />
 
-        {/* 🎨 Icon — বড় + continuous motion */}
-        <div className="relative w-14 h-14 rounded-2xl bg-gradient-to-br from-silk-rose/15 via-silk-wine/8 to-silk-gold/10 border border-silk-rose/25 flex items-center justify-center mb-4 group-hover:bg-silk-rose/25 group-hover:border-silk-rose/45 transition-all duration-400 overflow-hidden">
-          {/* Rotating glow behind icon */}
-          <span
-            aria-hidden="true"
-            className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500"
-            style={{
-              background:
-                "conic-gradient(from 0deg, transparent, rgba(216,139,154,0.4), transparent 30%)",
-              animation: "icon-glow-spin 3s linear infinite",
-            }}
-          />
-
-          {/* Icon — continuously floating */}
-          <motion.span
-            animate={{
-              y: [0, -2, 0, -1, 0],
-              rotate: [0, 2, 0, -2, 0],
-            }}
-            transition={{
-              duration: 4 + (index % 5) * 0.3,
-              repeat: Infinity,
-              ease: "easeInOut",
-              delay: index * 0.15,
-            }}
-            className="relative flex items-center justify-center"
-          >
-            <Icon
-              size={26}
-              strokeWidth={1.7}
-              className={cn(iconColor, "group-hover:scale-110 transition-transform duration-400")}
+        {/* Top row — icon + favorite */}
+        <div className="relative flex items-start justify-between gap-2 mb-4">
+          <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-silk-rose/15 via-silk-wine/8 to-silk-gold/10 border border-silk-rose/25 flex items-center justify-center group-hover:bg-silk-rose/25 group-hover:border-silk-rose/45 transition-all duration-400 overflow-hidden">
+            <span
               aria-hidden="true"
+              className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500"
+              style={{
+                background:
+                  "conic-gradient(from 0deg, transparent, rgba(216,139,154,0.4), transparent 30%)",
+                animation: "icon-glow-spin 3s linear infinite",
+              }}
             />
-          </motion.span>
+            <motion.span
+              animate={{
+                y: [0, -2, 0, -1, 0],
+                rotate: [0, 2, 0, -2, 0],
+              }}
+              transition={{
+                duration: 4 + (index % 5) * 0.3,
+                repeat: Infinity,
+                ease: "easeInOut",
+                delay: index * 0.15,
+              }}
+              className="relative flex items-center justify-center"
+            >
+              <Icon
+                size={26}
+                strokeWidth={1.7}
+                className={cn(iconColor, "group-hover:scale-110 transition-transform duration-400")}
+                aria-hidden="true"
+              />
+            </motion.span>
+          </div>
+
+          {onToggleFavorite && (
+            <FavoriteButton
+              active={isFavorite}
+              onToggle={() => onToggleFavorite(tool.id)}
+            />
+          )}
         </div>
 
         {/* Badges */}
         {(tool.popular || tool.newTool) && (
-          <div className="absolute top-4 right-4 flex gap-1">
+          <div className="absolute top-20 right-5 flex gap-1">
             {tool.popular && (
               <span className="px-1.5 py-0.5 rounded-full bg-gradient-to-r from-silk-rose to-silk-gold text-white text-[8px] font-bold tracking-wider uppercase leading-none">
                 Top
@@ -120,12 +137,9 @@ export function SmallToolCard({ tool, index = 0 }: SmallToolCardProps) {
           />
         </h3>
 
-        {/* Description — subtle drift effect */}
+        {/* Description — subtle drift */}
         <motion.p
-          animate={{
-            y: [0, -1, 0, 1, 0],
-            opacity: [0.85, 1, 0.85],
-          }}
+          animate={{ y: [0, -1, 0, 1, 0], opacity: [0.85, 1, 0.85] }}
           transition={{
             duration: 6 + (index % 4) * 0.5,
             repeat: Infinity,
