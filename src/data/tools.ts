@@ -344,4 +344,27 @@ export const tools: Tool[] = [
       ogImage: "/images/og/default-og.jpg",
     },
   },
+  {
+    id: "photo-qr",
+    slug: "photo-qr",
+    name: "Photo QR Code",
+    category: "qr",
+    path: "/tools/photo-qr",
+    description: "Add a real, scannable QR badge to any photo — WhatsApp, Facebook, WiFi, and more.",
+    longDescription:
+      "Photo QR Code lets you add a real, scannable QR code to any photo in seconds. Upload a picture, choose a platform (WhatsApp, Facebook, Instagram, Telegram, phone, email, WiFi, website, SMS, or contact card), enter your details, and we'll place a scannable QR badge on a corner of your photo. The photo stays exactly as it was — only the badge is added. Every QR is generated with error-correction level H so it scans perfectly even when printed, and includes the platform's official logo in the center.",
+    keywords: ["photo", "qr", "image", "badge", "whatsapp", "facebook"],
+    popular: true,
+    newTool: true,
+    features: [],
+    howTo: [],
+    faq: [],
+    relatedTools: ["qr-code-generator", "qr-code-with-logo", "wifi-qr-generator"],
+    seo: {
+      title: "Photo QR Code — Add QR to Photos Free | AHADEX Tools",
+      description:
+        "Add a real, scannable QR code to any photo. Choose from WhatsApp, Facebook, Instagram, WiFi, and more. Free, private, no uploads.",
+      ogImage: "/images/og/tools/photo-qr-og.jpg",
+    },
+  },
 ];

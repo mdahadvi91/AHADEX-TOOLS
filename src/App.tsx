@@ -16,6 +16,8 @@ const AccessibilityPage = lazy(() => import("@pages/AccessibilityPage"));
 const CookiePolicyPage = lazy(() => import("@pages/CookiePolicyPage"));
 const NotFoundPage = lazy(() => import("@pages/NotFoundPage"));
 
+const PhotoQrTool = lazy(() => import("@tools/qr/photo-qr"));
+
 function ScrollToTop() {
   const { pathname } = useLocation();
   useEffect(() => {
@@ -44,6 +46,7 @@ export default function App() {
                 <Route element={<MainLayout />}>
                   <Route index element={<ToolsIndexPage />} />
                   <Route path="tools" element={<ToolsIndexPage />} />
+                  <Route path="tools/photo-qr" element={<PhotoQrTool />} />
                   <Route path="categories/:slug" element={<CategoryPage />} />
                   <Route path="about" element={<AboutPage />} />
                   <Route path="contact" element={<ContactPage />} />
