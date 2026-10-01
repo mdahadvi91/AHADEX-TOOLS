@@ -1,7 +1,6 @@
 import { Link } from "react-router-dom";
 import { ArrowUpRight } from "lucide-react";
 import { motion } from "framer-motion";
-import { LiveText } from "@components/common/LiveText";
 import { getToolIcon } from "@components/common/toolIcons";
 import { FavoriteButton } from "./FavoriteButton";
 import { useLanguage } from "@contexts/LanguageContext";
@@ -40,7 +39,8 @@ export function SmallToolCard({
     description: tool.description,
   });
 
-  const categoryLabel = t.categories[tool.category as keyof typeof t.categories] ?? tool.category;
+  const categoryLabel =
+    t.categories[tool.category as keyof typeof t.categories] ?? tool.category;
 
   return (
     <motion.div
@@ -57,7 +57,7 @@ export function SmallToolCard({
       <Link
         to={tool.path}
         className={cn(
-          "group relative flex flex-col h-full p-5 rounded-2xl overflow-hidden",
+          "group relative flex flex-col h-full p-4 sm:p-5 rounded-2xl overflow-hidden",
           "bg-white/75 dark:bg-dark-surface/75 backdrop-blur-xl",
           "border",
           isFavorite
@@ -69,17 +69,20 @@ export function SmallToolCard({
           "transition-all duration-300"
         )}
       >
+        {/* Rose glow */}
         <span
           aria-hidden="true"
           className="absolute -top-10 -right-10 w-28 h-28 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"
           style={{
-            background: "radial-gradient(circle, rgba(216,139,154,0.6) 0%, transparent 70%)",
+            background:
+              "radial-gradient(circle, rgba(216,139,154,0.6) 0%, transparent 70%)",
             filter: "blur(20px)",
           }}
         />
 
-        <div className="relative flex items-start justify-between gap-2 mb-4">
-          <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-silk-rose/15 via-silk-wine/8 to-silk-gold/10 border border-silk-rose/25 flex items-center justify-center group-hover:bg-silk-rose/25 group-hover:border-silk-rose/45 transition-all duration-400 overflow-hidden">
+        {/* Top row — icon + favorite */}
+        <div className="relative flex items-start justify-between gap-2 mb-3 sm:mb-4">
+          <div className="w-12 h-12 sm:w-14 sm:h-14 rounded-2xl bg-gradient-to-br from-silk-rose/15 via-silk-wine/8 to-silk-gold/10 border border-silk-rose/25 flex items-center justify-center group-hover:bg-silk-rose/25 group-hover:border-silk-rose/45 transition-all duration-400 overflow-hidden relative">
             <span
               aria-hidden="true"
               className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500"
@@ -90,7 +93,10 @@ export function SmallToolCard({
               }}
             />
             <motion.span
-              animate={{ y: [0, -2, 0, -1, 0], rotate: [0, 2, 0, -2, 0] }}
+              animate={{
+                y: [0, -2, 0, -1, 0],
+                rotate: [0, 2, 0, -2, 0],
+              }}
               transition={{
                 duration: 4 + (index % 5) * 0.3,
                 repeat: Infinity,
@@ -100,9 +106,21 @@ export function SmallToolCard({
               className="relative flex items-center justify-center"
             >
               <Icon
+                size={22}
+                strokeWidth={1.8}
+                className={cn(
+                  iconColor,
+                  "sm:hidden group-hover:scale-110 transition-transform duration-400"
+                )}
+                aria-hidden="true"
+              />
+              <Icon
                 size={26}
                 strokeWidth={1.7}
-                className={cn(iconColor, "group-hover:scale-110 transition-transform duration-400")}
+                className={cn(
+                  iconColor,
+                  "hidden sm:block group-hover:scale-110 transition-transform duration-400"
+                )}
                 aria-hidden="true"
               />
             </motion.span>
@@ -116,8 +134,9 @@ export function SmallToolCard({
           )}
         </div>
 
+        {/* Badges */}
         {(tool.popular || tool.newTool) && (
-          <div className="absolute top-20 right-5 flex gap-1">
+          <div className="absolute top-[68px] sm:top-[80px] right-4 flex gap-1">
             {tool.popular && (
               <span className="px-1.5 py-0.5 rounded-full bg-gradient-to-r from-silk-rose to-silk-gold text-white text-[8px] font-bold tracking-wider uppercase leading-none">
                 Top
@@ -131,33 +150,42 @@ export function SmallToolCard({
           </div>
         )}
 
-        <h3 className="relative font-display font-bold text-[15px] text-light-text dark:text-dark-text mb-2 group-hover:text-silk-wine dark:group-hover:text-silk-rose-soft transition-colors leading-tight">
-          <LiveText
-            text={translated.name}
-            waveAmplitude={5}
-            waveDuration={3.4}
-            letterStagger={0.045}
-          />
+        {/* Title — BIGGER on mobile */}
+        <h3
+          className={cn(
+            "relative font-display font-bold leading-tight mb-1.5 sm:mb-2",
+            "text-[15px] sm:text-[15px]",
+            "text-light-text dark:text-dark-text",
+            "group-hover:text-silk-wine dark:group-hover:text-silk-rose-soft",
+            "transition-colors"
+          )}
+        >
+          {translated.name}
         </h3>
 
-        <motion.p
-          animate={{ y: [0, -1, 0, 1, 0], opacity: [0.85, 1, 0.85] }}
-          transition={{
-            duration: 6 + (index % 4) * 0.5,
-            repeat: Infinity,
-            ease: "easeInOut",
-            delay: index * 0.2,
-          }}
-          className="relative text-[11.5px] text-light-textSecondary dark:text-dark-textSecondary leading-relaxed line-clamp-2 flex-1"
+        {/* Description — BIGGER on mobile */}
+        <p
+          className={cn(
+            "relative leading-relaxed line-clamp-2 flex-1",
+            "text-[12px] sm:text-[11.5px]",
+            "text-light-textSecondary dark:text-dark-textSecondary"
+          )}
         >
           {translated.description}
-        </motion.p>
+        </p>
 
+        {/* Bottom row — bigger text on mobile */}
         <div className="relative flex items-center justify-between pt-3 mt-3 border-t border-silk-rose/10">
-          <span className="text-[9px] uppercase tracking-[0.15em] text-silk-wine/50 dark:text-silk-rose/40 font-semibold">
+          <span
+            className={cn(
+              "uppercase tracking-[0.12em] sm:tracking-[0.15em] font-semibold",
+              "text-[10px] sm:text-[9px]",
+              "text-silk-wine/55 dark:text-silk-rose/45"
+            )}
+          >
             {categoryLabel}
           </span>
-          <ArrowUpRight className="w-3.5 h-3.5 text-silk-rose opacity-0 -translate-x-1 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300" />
+          <ArrowUpRight className="w-3.5 h-3.5 sm:w-3.5 sm:h-3.5 text-silk-rose opacity-0 -translate-x-1 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300" />
         </div>
       </Link>
     </motion.div>
