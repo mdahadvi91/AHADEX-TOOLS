@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import { ArrowUpRight } from "lucide-react";
 import { categories } from "@data/categories";
+import { ToolIcon } from "@components/common/ToolIcon";
 import { useReducedMotion } from "@hooks/useReducedMotion";
 
 export function CategoryGrid() {
@@ -10,23 +11,19 @@ export function CategoryGrid() {
   return (
     <section className="relative py-16 sm:py-24">
       <div className="mx-auto max-w-[1400px] px-4 sm:px-6 lg:px-8">
-        {/* Heading */}
         <div className="text-center mb-12">
           <p className="text-xs uppercase tracking-[0.2em] text-silk-wine/60 dark:text-silk-rose/50 font-semibold mb-3">
             Browse by category
           </p>
           <h2 className="font-display font-black text-4xl sm:text-5xl text-light-text dark:text-dark-text leading-tight">
             Everything,{" "}
-            <span className="font-script text-silk-rose">
-              organised
-            </span>
+            <span className="font-script text-silk-rose">organised</span>
           </h2>
           <p className="mt-4 text-sm text-light-textSecondary dark:text-dark-textSecondary max-w-xl mx-auto">
             Six categories. 42 tools. All running in your browser.
           </p>
         </div>
 
-        {/* Grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
           {categories.map((cat, i) => (
             <motion.div
@@ -40,7 +37,6 @@ export function CategoryGrid() {
                 to={`/categories/${cat.slug}`}
                 className="group relative flex flex-col p-7 rounded-3xl h-full overflow-hidden bg-white/70 dark:bg-dark-surface/70 backdrop-blur-xl border border-silk-rose/15 hover:border-silk-rose/50 shadow-[0_4px_20px_-8px_rgba(139,58,79,0.12)] hover:shadow-[0_20px_50px_-15px_rgba(139,58,79,0.3)] hover:-translate-y-1 transition-all duration-500"
               >
-                {/* Colored glow top-right */}
                 <span
                   aria-hidden="true"
                   className="absolute -top-12 -right-12 w-40 h-40 rounded-full opacity-40 group-hover:opacity-70 transition-opacity duration-700"
@@ -50,20 +46,13 @@ export function CategoryGrid() {
                   }}
                 />
 
-                {/* Icon */}
                 <span
-                  className="relative w-14 h-14 rounded-2xl flex items-center justify-center mb-5 shadow-sm"
+                  className="relative w-14 h-14 rounded-2xl flex items-center justify-center mb-5 group-hover:scale-110 group-hover:rotate-3 transition-all duration-500"
                   style={{ backgroundColor: `${cat.color}20` }}
                 >
-                  <span
-                    className="font-display font-black text-2xl"
-                    style={{ color: cat.color }}
-                  >
-                    {cat.name.charAt(0)}
-                  </span>
+                  <ToolIcon category={cat.id} size={28} />
                 </span>
 
-                {/* Name + count */}
                 <div className="flex-1">
                   <div className="flex items-center gap-3 mb-2">
                     <h3 className="font-display font-bold text-lg text-light-text dark:text-dark-text">
@@ -84,7 +73,6 @@ export function CategoryGrid() {
                   </p>
                 </div>
 
-                {/* Arrow */}
                 <div className="mt-5 flex items-center gap-2 text-xs font-medium" style={{ color: cat.color }}>
                   Explore
                   <ArrowUpRight className="w-4 h-4 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />

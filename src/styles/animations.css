@@ -81,3 +81,303 @@
     animation: none !important;
   }
 }
+
+/* ============================================================
+ * WAVE / WEAVE TEXT EFFECTS
+ * ============================================================ */
+
+/* Letter wave animation — each letter bobs up and down */
+@keyframes letter-wave {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-6px); }
+}
+
+/* Underline wave — SVG path animation */
+@keyframes wave-underline {
+  0% { background-position: 0% 50%; }
+  100% { background-position: 200% 50%; }
+}
+
+/* Gradient sweep across text */
+@keyframes text-gradient-sweep {
+  0% { background-position: 0% 50%; }
+  100% { background-position: 200% 50%; }
+}
+
+/* Weave effect — subtle horizontal stitch shimmer */
+@keyframes weave-shimmer {
+  0% {
+    background-position: -100% 0, 0 0;
+  }
+  100% {
+    background-position: 200% 0, 0 0;
+  }
+}
+
+/* Letter stagger reveal */
+@keyframes letter-reveal {
+  0% {
+    opacity: 0;
+    transform: translateY(100%) rotate(-8deg);
+    filter: blur(4px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) rotate(0);
+    filter: blur(0);
+  }
+}
+
+/* ============================================================
+ * UTILITY CLASSES
+ * ============================================================ */
+
+/* Wave text — hover করলে letter গুলো wave করে */
+.wave-text {
+  display: inline-block;
+}
+
+.wave-text > span {
+  display: inline-block;
+  transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.wave-text:hover > span {
+  animation: letter-wave 0.7s ease-in-out;
+}
+
+.wave-text:hover > span:nth-child(1) { animation-delay: 0s; }
+.wave-text:hover > span:nth-child(2) { animation-delay: 0.06s; }
+.wave-text:hover > span:nth-child(3) { animation-delay: 0.12s; }
+.wave-text:hover > span:nth-child(4) { animation-delay: 0.18s; }
+.wave-text:hover > span:nth-child(5) { animation-delay: 0.24s; }
+.wave-text:hover > span:nth-child(6) { animation-delay: 0.30s; }
+.wave-text:hover > span:nth-child(7) { animation-delay: 0.36s; }
+.wave-text:hover > span:nth-child(8) { animation-delay: 0.42s; }
+.wave-text:hover > span:nth-child(9) { animation-delay: 0.48s; }
+.wave-text:hover > span:nth-child(10) { animation-delay: 0.54s; }
+.wave-text:hover > span:nth-child(11) { animation-delay: 0.60s; }
+.wave-text:hover > span:nth-child(12) { animation-delay: 0.66s; }
+
+/* Weave underline — হোভার করলে textile-এর মতো shimmer হয় */
+.weave-underline {
+  position: relative;
+  display: inline-block;
+}
+
+.weave-underline::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -3px;
+  height: 6px;
+  background-image:
+    linear-gradient(
+      90deg,
+      transparent 0%,
+      rgba(216, 139, 154, 0) 20%,
+      rgba(216, 139, 154, 0.9) 50%,
+      rgba(216, 139, 154, 0) 80%,
+      transparent 100%
+    ),
+    repeating-linear-gradient(
+      90deg,
+      rgba(216, 139, 154, 0.4) 0px,
+      rgba(216, 139, 154, 0.4) 2px,
+      transparent 2px,
+      transparent 4px
+    );
+  background-size: 200% 100%, 4px 100%;
+  background-repeat: no-repeat, repeat-x;
+  background-position: -100% 0, 0 0;
+  opacity: 0;
+  transform: scaleX(0);
+  transform-origin: left;
+  transition:
+    transform 0.5s cubic-bezier(0.22, 1, 0.36, 1),
+    opacity 0.3s ease;
+}
+
+.weave-underline:hover::after {
+  opacity: 1;
+  transform: scaleX(1);
+  animation: weave-shimmer 1.4s linear infinite;
+}
+
+/* Gradient sweep text — হোভার করলে রঙ বয়ে যায় */
+.gradient-sweep-text {
+  background: linear-gradient(
+    90deg,
+    currentColor 0%,
+    currentColor 40%,
+    #C99667 50%,
+    currentColor 60%,
+    currentColor 100%
+  );
+  background-size: 200% 100%;
+  background-position: 0% 50%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+  transition: background-position 0.8s ease;
+}
+
+.group:hover .gradient-sweep-text {
+  background-position: 200% 50%;
+}
+
+/* Letter reveal on scroll */
+.letter-reveal-text > span {
+  display: inline-block;
+  animation: letter-reveal 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .wave-text:hover > span,
+  .weave-underline:hover::after,
+  .gradient-sweep-text,
+  .letter-reveal-text > span {
+    animation: none !important;
+    transition: none !important;
+  }
+}
+
+/* ============================================================
+ * LIVING TEXT — always animated
+ * ============================================================ */
+
+/* Continuous wave — letters bob up and down forever */
+@keyframes live-char-wave {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(calc(var(--wave-amp, 4px) * -1)); }
+}
+
+.live-char {
+  animation: live-char-wave 3s ease-in-out infinite;
+  will-change: transform;
+}
+
+/* Continuous gradient flow through text */
+@keyframes live-gradient-flow {
+  0% { background-position: 0% 50%; }
+  100% { background-position: 200% 50%; }
+}
+
+.live-gradient {
+  background: linear-gradient(
+    90deg,
+    #B36878 0%,
+    #D88B9A 20%,
+    #C99667 40%,
+    #8B3A4F 60%,
+    #D88B9A 80%,
+    #B36878 100%
+  );
+  background-size: 200% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+  animation: live-gradient-flow 5s linear infinite;
+}
+
+html.dark .live-gradient {
+  background: linear-gradient(
+    90deg,
+    #E8B4B8 0%,
+    #D88B9A 20%,
+    #E5C9A4 40%,
+    #F0DCC4 60%,
+    #D88B9A 80%,
+    #E8B4B8 100%
+  );
+  background-size: 200% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Breathing text — subtle scale pulse */
+@keyframes live-breathe {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.015); }
+}
+
+.live-breathe {
+  animation: live-breathe 4s ease-in-out infinite;
+  display: inline-block;
+}
+
+/* Shimmer through static text */
+@keyframes live-shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+.live-shimmer {
+  background: linear-gradient(
+    90deg,
+    currentColor 0%,
+    currentColor 40%,
+    rgba(216, 139, 154, 0.9) 50%,
+    currentColor 60%,
+    currentColor 100%
+  );
+  background-size: 200% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: live-shimmer 3s linear infinite;
+}
+
+/* Letter reveal on scroll — one by one */
+@keyframes live-letter-enter {
+  0% {
+    opacity: 0;
+    transform: translateY(30px) rotate(-6deg);
+    filter: blur(6px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) rotate(0);
+    filter: blur(0);
+  }
+}
+
+.live-enter > .live-char {
+  animation: live-letter-enter 0.9s cubic-bezier(0.34, 1.56, 0.64, 1) both,
+    live-char-wave 3s ease-in-out 1s infinite;
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .live-char,
+  .live-gradient,
+  .live-breathe,
+  .live-shimmer,
+  .live-enter > .live-char {
+    animation: none !important;
+  }
+}
+
+/* ============================================================
+ * MARQUEE — infinite horizontal scroll
+ * ============================================================ */
+
+@keyframes marquee-scroll {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+.animate-marquee {
+  animation: marquee-scroll 40s linear infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-marquee {
+    animation: none !important;
+  }
+}

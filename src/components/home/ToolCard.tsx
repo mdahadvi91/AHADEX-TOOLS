@@ -3,7 +3,7 @@ import { ArrowUpRight } from "lucide-react";
 import { motion } from "framer-motion";
 import { cn } from "@lib/cn";
 import { useReducedMotion } from "@hooks/useReducedMotion";
-import { Badge } from "@components/common/Badge";
+import { ToolIcon } from "@components/common/ToolIcon";
 import type { Tool } from "@types/tool";
 
 interface ToolCardProps {
@@ -44,23 +44,46 @@ export function ToolCard({ tool, index = 0 }: ToolCardProps) {
           }}
         />
 
-        {/* Header row — badge + arrow */}
-        <div className="relative flex items-start justify-between gap-3 mb-5">
-          <span className="w-12 h-12 rounded-2xl bg-gradient-to-br from-silk-rose/25 to-silk-wine/15 flex items-center justify-center shadow-sm group-hover:scale-110 group-hover:rotate-3 transition-all duration-500">
-            <span className="font-display font-black text-xl text-silk-wine dark:text-silk-rose">
-              {tool.name.charAt(0)}
-            </span>
+        {/* Header row — icon + badges */}
+        <div className="relative flex items-start justify-between gap-3 mb-6">
+          {/* Icon container */}
+          <span
+            className={cn(
+              "relative w-14 h-14 rounded-2xl flex items-center justify-center shrink-0",
+              "bg-gradient-to-br from-silk-rose/15 via-silk-wine/10 to-silk-gold/10",
+              "border border-silk-rose/20",
+              "group-hover:scale-110 group-hover:rotate-3",
+              "transition-all duration-500"
+            )}
+          >
+            <ToolIcon category={tool.category} size={26} />
           </span>
 
+          {/* Badges */}
           <div className="flex flex-wrap gap-1.5 justify-end">
-            {tool.popular && <Badge variant="popular">Popular</Badge>}
-            {tool.newTool && <Badge variant="new">New</Badge>}
+            {tool.popular && (
+              <span className="px-2.5 py-1 rounded-full bg-gradient-to-r from-silk-rose to-silk-gold text-white text-[9px] font-bold tracking-widest uppercase shadow-sm">
+                Popular
+              </span>
+            )}
+            {tool.newTool && (
+              <span className="px-2.5 py-1 rounded-full bg-silk-wine/15 text-silk-wine dark:text-silk-rose text-[9px] font-bold tracking-widest uppercase border border-silk-wine/25">
+                New
+              </span>
+            )}
           </div>
         </div>
 
         {/* Content */}
         <div className="relative flex-1">
-          <h3 className="font-display font-bold text-base text-light-text dark:text-dark-text mb-2 group-hover:text-silk-wine dark:group-hover:text-silk-rose transition-colors line-clamp-1">
+          <h3
+            className={cn(
+              "font-display font-bold text-lg leading-tight mb-2",
+              "text-light-text dark:text-dark-text",
+              "group-hover:text-silk-wine dark:group-hover:text-silk-rose",
+              "transition-colors line-clamp-1"
+            )}
+          >
             {tool.name}
           </h3>
           <p className="text-xs text-light-textSecondary dark:text-dark-textSecondary leading-relaxed line-clamp-2">
@@ -70,10 +93,18 @@ export function ToolCard({ tool, index = 0 }: ToolCardProps) {
 
         {/* Footer */}
         <div className="relative flex items-center justify-between pt-5 mt-5 border-t border-silk-rose/10">
-          <span className="text-[10px] uppercase tracking-[0.15em] text-silk-wine/50 dark:text-silk-rose/40 font-semibold">
+          <span className="text-[10px] uppercase tracking-[0.2em] text-silk-wine/50 dark:text-silk-rose/40 font-semibold">
             {tool.category}
           </span>
-          <span className="inline-flex items-center gap-1 text-xs font-medium text-silk-wine dark:text-silk-rose opacity-0 -translate-x-1 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300">
+          <span
+            className={cn(
+              "inline-flex items-center gap-1 text-xs font-medium",
+              "text-silk-wine dark:text-silk-rose",
+              "opacity-0 -translate-x-1",
+              "group-hover:opacity-100 group-hover:translate-x-0",
+              "transition-all duration-300"
+            )}
+          >
             Open
             <ArrowUpRight className="w-3.5 h-3.5" />
           </span>
