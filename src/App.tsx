@@ -1,13 +1,20 @@
-import { lazy, Suspense } from "react";
-import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
+import { lazy, Suspense, useEffect } from "react";
+import { BrowserRouter, Routes, Route, Navigate, useLocation } from "react-router-dom";
 import { MainLayout } from "@components/layout/MainLayout";
 import { ThemeProvider } from "@contexts/ThemeContext";
 import { LanguageProvider } from "@contexts/LanguageContext";
 import { SoundProvider } from "@contexts/SoundContext";
 
-const HomePage = lazy(() => import("@pages/HomePage"));
 const ToolsIndexPage = lazy(() => import("@pages/ToolsIndexPage"));
 const NotFoundPage = lazy(() => import("@pages/NotFoundPage"));
+
+function ScrollToTop() {
+  const { pathname } = useLocation();
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: "instant" });
+  }, [pathname]);
+  return null;
+}
 
 function Loader() {
   return (
@@ -23,10 +30,11 @@ export default function App() {
       <LanguageProvider>
         <SoundProvider>
           <BrowserRouter>
+            <ScrollToTop />
             <Suspense fallback={<Loader />}>
               <Routes>
                 <Route element={<MainLayout />}>
-                  <Route index element={<HomePage />} />
+                  <Route index element={<ToolsIndexPage />} />
                   <Route path="tools" element={<ToolsIndexPage />} />
                   <Route path="404" element={<NotFoundPage />} />
                   <Route path="*" element={<Navigate to="/404" replace />} />

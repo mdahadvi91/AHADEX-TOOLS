@@ -1,5 +1,5 @@
-import { ToolGrid } from "@components/home/ToolGrid";
+import { ToolsShowcase } from "@components/tools/ToolsShowcase";
 
 export default function ToolsIndexPage() {
-  return <ToolGrid />;
+  return <ToolsShowcase />;
 }

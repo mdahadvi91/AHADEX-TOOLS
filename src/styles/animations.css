@@ -408,3 +408,70 @@ html.dark .live-gradient {
     animation: none !important;
   }
 }
+
+/* ============================================================
+ * HERO LIQUID BLOBS
+ * ============================================================ */
+
+@keyframes hero-blob-1 {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  33% { transform: translate(10vw, 8vh) scale(1.15); }
+  66% { transform: translate(-6vw, 12vh) scale(0.92); }
+}
+
+@keyframes hero-blob-2 {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  33% { transform: translate(-12vw, 6vh) scale(1.08); }
+  66% { transform: translate(8vw, -8vh) scale(0.95); }
+}
+
+@keyframes hero-blob-3 {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  50% { transform: translate(-10vw, -12vh) scale(1.12); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  [style*="hero-blob"] {
+    animation: none !important;
+  }
+}
+
+/* ============================================================
+ * PAGE TRANSITION — simple fade + slight rise
+ * ============================================================ */
+
+@keyframes page-in {
+  0% {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-page-in {
+  animation: page-in 0.5s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-page-in {
+    animation: none !important;
+  }
+}
+
+/* ============================================================
+ * ICON ANIMATIONS
+ * ============================================================ */
+
+@keyframes icon-glow-spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  [style*="icon-glow-spin"] {
+    animation: none !important;
+  }
+}

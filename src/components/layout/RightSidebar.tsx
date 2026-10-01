@@ -1,6 +1,5 @@
 import { useEffect } from "react";
-import { motion, AnimatePresence } from "framer-motion";
-import { X, Sun, Moon, Monitor, Volume2, VolumeX, Globe, Github, Mail } from "lucide-react";
+import { X, Sun, Moon, Monitor, Volume2, VolumeX, Github, Mail } from "lucide-react";
 import { cn } from "@lib/cn";
 import { useSound } from "@contexts/SoundContext";
 import { useTheme } from "@contexts/ThemeContext";
@@ -13,44 +12,43 @@ interface RightSidebarProps {
 }
 
 const THEMES = [
-  { value: "light", label: "Light", Icon: Sun },
-  { value: "dark", label: "Dark", Icon: Moon },
-  { value: "system", label: "System", Icon: Monitor },
-] as const;
+  { value: "light" as const, label: "Light", Icon: Sun },
+  { value: "dark" as const, label: "Dark", Icon: Moon },
+  { value: "system" as const, label: "System", Icon: Monitor },
+];
 
 const LANGS = [
-  { code: "en", native: "English", flag: "🇬🇧" },
-  { code: "bn", native: "বাংলা", flag: "🇧🇩" },
-  { code: "ar", native: "العربية", flag: "🇸🇦" },
-] as const;
+  { code: "en" as const, native: "English", flag: "🇬🇧" },
+  { code: "bn" as const, native: "বাংলা", flag: "🇧🇩" },
+  { code: "ar" as const, native: "العربية", flag: "🇸🇦" },
+];
 
-function PanelContent({ onClose }: { onClose?: () => void }) {
+function PanelBody({ onClose }: { onClose?: () => void }) {
   const { soundEnabled, toggleSound } = useSound();
   const { theme, setTheme } = useTheme();
   const { language, setLanguage } = useLanguage();
 
   return (
-    <div className="flex flex-col h-full">
-      <div className="flex items-center justify-between px-5 h-16 border-b border-silk-rose/15 shrink-0">
-        <span className="font-display font-bold text-lg text-silk-wine dark:text-silk-rose">
-          Settings
-        </span>
-        {onClose && (
+    <div className="flex flex-col h-full bg-silk-cream dark:bg-dark-bg">
+      {onClose && (
+        <div className="flex items-center justify-between px-5 h-16 border-b border-silk-rose/20 shrink-0">
+          <span className="font-display font-bold text-lg text-silk-wine dark:text-silk-rose-soft">
+            Settings
+          </span>
           <button
             type="button"
             onClick={onClose}
             aria-label="Close settings"
-            className="lg:hidden w-9 h-9 rounded-lg flex items-center justify-center text-silk-wine dark:text-silk-rose hover:bg-silk-rose/10"
+            className="w-10 h-10 rounded-xl flex items-center justify-center bg-silk-rose/10 text-silk-wine dark:text-silk-rose hover:bg-silk-rose/20 transition-colors"
           >
             <X className="w-5 h-5" />
           </button>
-        )}
-      </div>
+        </div>
+      )}
 
       <div className="p-5 space-y-7 overflow-y-auto flex-1">
-        {/* Theme */}
         <section>
-          <p className="text-[11px] uppercase tracking-[0.15em] text-silk-wine/60 dark:text-silk-rose/50 font-semibold mb-3">
+          <p className="text-[11px] uppercase tracking-[0.2em] text-silk-wine/60 dark:text-silk-rose/50 font-semibold mb-3">
             Theme
           </p>
           <div className="grid grid-cols-3 gap-2">
@@ -62,7 +60,7 @@ function PanelContent({ onClose }: { onClose?: () => void }) {
                 className={cn(
                   "flex flex-col items-center gap-1.5 py-3 rounded-xl border transition-all",
                   theme === value
-                    ? "bg-silk-rose/15 border-silk-rose/50 text-silk-wine dark:text-silk-rose shadow-silk-soft"
+                    ? "bg-silk-rose/15 border-silk-rose/50 text-silk-wine dark:text-silk-rose-soft"
                     : "bg-silk-rose/5 border-silk-rose/15 text-light-textSecondary dark:text-dark-textSecondary hover:border-silk-rose/30"
                 )}
               >
@@ -73,9 +71,8 @@ function PanelContent({ onClose }: { onClose?: () => void }) {
           </div>
         </section>
 
-        {/* Language */}
         <section>
-          <p className="text-[11px] uppercase tracking-[0.15em] text-silk-wine/60 dark:text-silk-rose/50 font-semibold mb-3">
+          <p className="text-[11px] uppercase tracking-[0.2em] text-silk-wine/60 dark:text-silk-rose/50 font-semibold mb-3">
             Language
           </p>
           <div className="space-y-2">
@@ -103,9 +100,8 @@ function PanelContent({ onClose }: { onClose?: () => void }) {
           </div>
         </section>
 
-        {/* Sound */}
         <section>
-          <p className="text-[11px] uppercase tracking-[0.15em] text-silk-wine/60 dark:text-silk-rose/50 font-semibold mb-3">
+          <p className="text-[11px] uppercase tracking-[0.2em] text-silk-wine/60 dark:text-silk-rose/50 font-semibold mb-3">
             Sound
           </p>
           <button
@@ -126,7 +122,7 @@ function PanelContent({ onClose }: { onClose?: () => void }) {
             </span>
             <span
               className={cn(
-                "relative w-10 h-6 rounded-full transition-colors",
+                "relative w-10 h-6 rounded-full transition-colors shrink-0",
                 soundEnabled ? "bg-silk-rose" : "bg-silk-rose/20"
               )}
             >
@@ -140,9 +136,8 @@ function PanelContent({ onClose }: { onClose?: () => void }) {
           </button>
         </section>
 
-        {/* Links */}
         <section>
-          <p className="text-[11px] uppercase tracking-[0.15em] text-silk-wine/60 dark:text-silk-rose/50 font-semibold mb-3">
+          <p className="text-[11px] uppercase tracking-[0.2em] text-silk-wine/60 dark:text-silk-rose/50 font-semibold mb-3">
             More
           </p>
           <div className="space-y-2">
@@ -166,7 +161,7 @@ function PanelContent({ onClose }: { onClose?: () => void }) {
         </section>
       </div>
 
-      <div className="p-4 border-t border-silk-rose/15 shrink-0">
+      <div className="p-4 border-t border-silk-rose/20 shrink-0">
         <p className="text-xs text-center text-light-textSecondary/60 dark:text-dark-textSecondary/60">
           AHADEX Tools v1.0
         </p>
@@ -177,49 +172,52 @@ function PanelContent({ onClose }: { onClose?: () => void }) {
 
 export function RightSidebar({ mobileOpen, onMobileClose }: RightSidebarProps) {
   useEffect(() => {
-    if (!mobileOpen) return;
-    const onKey = (e: KeyboardEvent) => e.key === "Escape" && onMobileClose();
-    document.addEventListener("keydown", onKey);
-    document.body.style.overflow = "hidden";
+    if (mobileOpen) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "";
+    }
     return () => {
-      document.removeEventListener("keydown", onKey);
       document.body.style.overflow = "";
     };
+  }, [mobileOpen]);
+
+  useEffect(() => {
+    if (!mobileOpen) return;
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") onMobileClose();
+    };
+    document.addEventListener("keydown", onKey);
+    return () => document.removeEventListener("keydown", onKey);
   }, [mobileOpen, onMobileClose]);
 
   return (
     <>
-      {/* DESKTOP — fixed right sidebar */}
-      <aside
-        className="hidden lg:block fixed top-20 right-0 bottom-0 w-72 border-l border-silk-rose/15 bg-silk-cream/50 dark:bg-dark-bg/50 backdrop-blur-xl overflow-y-auto z-30"
-        aria-label="Settings"
-      >
-        <PanelContent />
+      {/* DESKTOP — always visible sidebar (lg+) */}
+      <aside className="hidden lg:flex fixed top-0 right-0 bottom-0 w-72 border-l border-silk-rose/15 bg-silk-cream/70 dark:bg-dark-bg/70 backdrop-blur-xl overflow-y-auto z-30 pt-24 flex-col">
+        <PanelBody />
       </aside>
 
-      {/* MOBILE — slide-in drawer */}
-      <AnimatePresence>
-        {mobileOpen && (
-          <>
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              onClick={onMobileClose}
-              className="fixed inset-0 z-[60] bg-silk-plum/60 backdrop-blur-sm lg:hidden"
-            />
-            <motion.aside
-              initial={{ x: "100%" }}
-              animate={{ x: 0 }}
-              exit={{ x: "100%" }}
-              transition={{ type: "spring", stiffness: 380, damping: 34 }}
-              className="fixed top-0 right-0 bottom-0 z-[61] w-[85vw] max-w-sm bg-silk-cream dark:bg-dark-bg shadow-2xl lg:hidden"
-            >
-              <PanelContent onClose={onMobileClose} />
-            </motion.aside>
-          </>
-        )}
-      </AnimatePresence>
+      {/* MOBILE — conditional render */}
+      {mobileOpen && (
+        <div className="lg:hidden">
+          <button
+            type="button"
+            aria-label="Close settings"
+            onClick={onMobileClose}
+            className="fixed inset-0 z-[80] bg-silk-plum/60 backdrop-blur-sm cursor-default"
+          />
+
+          <div
+            className="fixed top-0 right-0 bottom-0 z-[81] w-[85vw] max-w-sm shadow-2xl bg-silk-cream dark:bg-dark-bg"
+            role="dialog"
+            aria-modal="true"
+            aria-label="Settings"
+          >
+            <PanelBody onClose={onMobileClose} />
+          </div>
+        </div>
+      )}
     </>
   );
 }
