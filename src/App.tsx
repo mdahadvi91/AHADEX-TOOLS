@@ -18,6 +18,8 @@ const NotFoundPage = lazy(() => import("@pages/NotFoundPage"));
 
 const PhotoQrTool = lazy(() => import("@tools/qr/photo-qr"));
 const VisitingCardTool = lazy(() => import("@tools/design/visiting-card"));
+const CVBuilderTool = lazy(() => import("@tools/documents/cv-builder"));
+const CVBuilderEditor = lazy(() => import("@tools/documents/cv-builder/editor").then((m) => ({ default: m.CVEditor })));
 const VisitingCardEditor = lazy(() =>
   import("@tools/design/visiting-card/editor").then((m) => ({
     default: m.Editor,
@@ -54,6 +56,8 @@ export default function App() {
                   <Route path="tools" element={<ToolsIndexPage />} />
                   <Route path="tools/photo-qr" element={<PhotoQrTool />} />
                   <Route path="tools/visiting-card" element={<VisitingCardTool />} />
+                  <Route path="tools/cv-builder" element={<CVBuilderTool />} />
+                  <Route path="tools/cv-builder/edit/:templateId" element={<CVBuilderEditor />} />
                   <Route
                     path="tools/visiting-card/edit/:templateId"
                     element={<VisitingCardEditor />}

@@ -230,6 +230,7 @@ export const bn: TranslationKeys = {
     text: "টেক্সট টুল",
     developer: "ডেভেলপার",
     calculators: "ক্যালকুলেটর",
+    documents: "ডকুমেন্টস",
   },
   theme: {
     lightMode: "লাইট মোড",

@@ -31,6 +31,9 @@ export const plannedToolTranslationsBn: Record<string, ToolTranslation> = {
   "png-to-pdf": { name: "PNG থেকে PDF", description: "PNG ছবি PDF ফাইলে রূপান্তর।" },
   "merge-pdf": { name: "PDF মার্জ", description: "একাধিক PDF এক ফাইলে যুক্ত করুন।" },
   "split-pdf": { name: "PDF স্প্লিট", description: "পেজ রেঞ্জ অনুযায়ী PDF আলাদা করুন।" },
+
+  // Documents
+  "cv-builder": { name: "সিভি বিল্ডার", description: "২০টি প্রিমিয়াম টেমপ্লেটে পেশাদার সিভি তৈরি করুন।" },
 };
 
 export function getPlannedToolTranslation(

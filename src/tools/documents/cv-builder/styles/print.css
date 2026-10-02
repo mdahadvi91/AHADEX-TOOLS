@@ -1,0 +1,80 @@
+/* ============================================================
+ * CV Builder — Print styles
+ * ------------------------------------------------------------
+ * When `body.cv-printing` is set, only the CV pages are visible.
+ * Everything else (header, sidebar, editor, footer) is hidden.
+ * ============================================================ */
+
+@media print {
+  /* Hide global UI */
+  body.cv-printing header,
+  body.cv-printing footer,
+  body.cv-printing aside,
+  body.cv-printing nav,
+  body.cv-printing [data-print-hide] {
+    display: none !important;
+  }
+
+  /* Reset page background */
+  html,
+  body {
+    background: #FFFFFF !important;
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+
+  /* Neutralise global backdrop layers */
+  body.cv-printing .fixed,
+  body.cv-printing [aria-hidden="true"] {
+    display: none !important;
+  }
+
+  /* Only the print container is visible */
+  body.cv-printing .cv-print-root {
+    display: block !important;
+    position: static !important;
+    background: #FFFFFF !important;
+    color: #000 !important;
+  }
+
+  body.cv-printing .cv-print-root * {
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+
+  /* Each CV page is one printed sheet */
+  body.cv-printing .cv-print-page {
+    page-break-after: always;
+    break-after: page;
+    box-sizing: border-box;
+    background: #FFFFFF !important;
+  }
+
+  body.cv-printing .cv-print-page:last-child {
+    page-break-after: auto;
+    break-after: auto;
+  }
+
+  /* Avoid awkward breaks */
+  body.cv-printing .cv-ats section {
+    page-break-inside: avoid;
+    break-inside: avoid;
+  }
+
+  body.cv-printing .cv-ats__block {
+    page-break-inside: avoid;
+    break-inside: avoid;
+  }
+
+  body.cv-printing h1,
+  body.cv-printing h2,
+  body.cv-printing h3 {
+    page-break-after: avoid;
+    break-after: avoid;
+  }
+
+  /* Hide the print toolbar itself */
+  body.cv-printing .cv-print-toolbar {
+    display: none !important;
+  }
+}

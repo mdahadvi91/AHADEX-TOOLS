@@ -39,10 +39,22 @@ import {
   CalendarRange,
   Ruler,
   Activity,
+  CreditCard,
+  FileText,
+  UserRound,
 } from "lucide-react";
 
+/* ============================================================
+ * Tool Icons — every tool ID → real lucide icon
+ * ============================================================ */
+
 export const TOOL_ICONS: Record<string, typeof Images> = {
-  // Image tools
+  // Working
+  "photo-qr": QrCode,
+  "visiting-card": CreditCard,
+  "cv-builder": UserRound,
+
+  // Image
   "jpg-to-png": Images,
   "png-to-jpg": RefreshCw,
   "jpg-to-webp": Zap,
@@ -56,7 +68,7 @@ export const TOOL_ICONS: Record<string, typeof Images> = {
   "image-metadata-viewer": FileSearch,
   "background-remover": Eraser,
 
-  // PDF tools
+  // PDF
   "jpg-to-pdf": FilePlus,
   "png-to-pdf": FilePlus2,
   "merge-pdf": Layers,
@@ -66,7 +78,7 @@ export const TOOL_ICONS: Record<string, typeof Images> = {
   "pdf-to-png": FileSpreadsheet,
   "pdf-page-extractor": FileOutput,
 
-  // QR tools
+  // QR
   "qr-code-generator": QrCode,
   "wifi-qr-generator": Wifi,
   "email-qr-generator": Mail,
@@ -76,7 +88,7 @@ export const TOOL_ICONS: Record<string, typeof Images> = {
   "barcode-generator": Barcode,
   "qr-code-with-logo": ImagePlus,
 
-  // Text tools
+  // Text
   "word-counter": Type,
   "case-converter": CaseSensitive,
   "text-cleaner": Text,
@@ -84,12 +96,12 @@ export const TOOL_ICONS: Record<string, typeof Images> = {
   "json-to-csv": Table,
   "base64-tool": Binary,
 
-  // Developer tools
+  // Developer
   "url-encoder": Link2,
   "uuid-generator": Hash,
   "regex-tester": Regex,
 
-  // Calculator tools
+  // Calculators
   "percentage-calculator": Percent,
   "age-calculator": Calendar,
   "date-difference": CalendarRange,
@@ -98,5 +110,5 @@ export const TOOL_ICONS: Record<string, typeof Images> = {
 };
 
 export function getToolIcon(toolId: string): typeof Images {
-  return TOOL_ICONS[toolId] ?? Images;
+  return TOOL_ICONS[toolId] ?? FileText;
 }

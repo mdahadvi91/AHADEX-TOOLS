@@ -228,6 +228,7 @@ export const en = {
     text: "Text Tools",
     developer: "Developer",
     calculators: "Calculators",
+    documents: "Documents",
   },
   theme: {
     lightMode: "Light mode",

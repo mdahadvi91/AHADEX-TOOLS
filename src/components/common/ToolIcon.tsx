@@ -19,20 +19,20 @@ const ICON_MAP: Record<CategoryId, typeof Image> = {
   image: Image,
   pdf: FileText,
   qr: QrCode,
+  documents: Palette,
   text: Type,
   developer: Code2,
   calculators: Calculator,
-  design: Palette,
 };
 
 const COLOR_MAP: Record<CategoryId, string> = {
   image: "text-silk-rose",
   pdf: "text-silk-wine dark:text-silk-rose-soft",
   qr: "text-silk-gold",
+  documents: "text-silk-rose",
   text: "text-silk-rose-deep",
   developer: "text-silk-rose-soft",
   calculators: "text-silk-wine",
-  design: "text-silk-rose",
 };
 
 export function ToolIcon({ category, size = 24, className }: ToolIconProps) {
