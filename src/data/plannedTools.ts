@@ -34,16 +34,7 @@ export const plannedTools: PlannedTool[] = [
 
 
 
-  {
-    id: "webp-to-png",
-    slug: "webp-to-png",
-    name: "WebP to PNG",
-    nameBn: "WebP থেকে PNG",
-    path: "/tools/webp-to-png",
-    description: "Convert WebP to PNG, preserving transparency.",
-    descriptionBn: "স্বচ্ছতা সংরক্ষণ করে WebP থেকে PNG।",
-    eta: "Coming soon",
-  },
+
 
 
 
@@ -64,6 +55,7 @@ export const plannedTools: PlannedTool[] = [
 
 
 
+
   {
     id: "image-resizer",
     slug: "image-resizer",
@@ -74,6 +66,7 @@ export const plannedTools: PlannedTool[] = [
     descriptionBn: "যেকোনো মাপে ছবি রিসাইজ করুন, অনুপাত নিয়ন্ত্রণ সহ।",
     eta: "Coming soon",
   },
+
 
 
 
@@ -94,6 +87,7 @@ export const plannedTools: PlannedTool[] = [
 
 
 
+
   {
     id: "image-to-pdf",
     slug: "image-to-pdf",
@@ -104,6 +98,7 @@ export const plannedTools: PlannedTool[] = [
     descriptionBn: "অনেক ছবি মিলিয়ে একটা PDF তৈরি করুন।",
     eta: "Coming soon",
   },
+
 
 
 
@@ -124,6 +119,7 @@ export const plannedTools: PlannedTool[] = [
 
 
 
+
   {
     id: "background-remover",
     slug: "background-remover",
@@ -134,6 +130,7 @@ export const plannedTools: PlannedTool[] = [
     descriptionBn: "AI দিয়ে স্বয়ংক্রিয়ভাবে ছবির ব্যাকগ্রাউন্ড সরান।",
     eta: "Coming soon",
   },
+
 
 
 
@@ -154,6 +151,7 @@ export const plannedTools: PlannedTool[] = [
 
 
 
+
   {
     id: "png-to-pdf",
     slug: "png-to-pdf",
@@ -169,6 +167,7 @@ export const plannedTools: PlannedTool[] = [
 
 
 
+
   {
     id: "merge-pdf",
     slug: "merge-pdf",
@@ -179,6 +178,7 @@ export const plannedTools: PlannedTool[] = [
     descriptionBn: "একাধিক PDF এক ফাইলে যুক্ত করুন।",
     eta: "Coming soon",
   },
+
 
 
 

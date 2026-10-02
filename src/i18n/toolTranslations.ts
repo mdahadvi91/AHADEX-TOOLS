@@ -44,6 +44,10 @@ export const toolTranslationsBn: Record<string, ToolTranslation> = {
     description:
       "WebP ছবি JPG ফরম্যাটে রূপান্তর করুন — সার্বজনীন সাপোর্ট, সম্পূর্ণ ব্রাউজারেই।",
   },
+  "webp-to-png": {
+    name: "WebP থেকে PNG",
+    description: "WebP ছবি PNG ফরম্যাটে রূপান্তর করুন — lossless, স্বচ্ছতা সংরক্ষিত, সম্পূর্ণ ব্রাউজারেই।",
+  },
 };
 
 export function getToolTranslation(
