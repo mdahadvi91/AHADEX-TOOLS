@@ -1,0 +1,55 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1050 600" preserveAspectRatio="xMidYMid slice">
+  <defs>
+    <linearGradient id="navyGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#1A2040"/>
+      <stop offset="100%" stop-color="#0F1730"/>
+    </linearGradient>
+    <linearGradient id="orangeGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#F5A623"/>
+      <stop offset="100%" stop-color="#E88A00"/>
+    </linearGradient>
+    <clipPath id="photoClip">
+      <circle cx="790" cy="300" r="140"/>
+    </clipPath>
+    <filter id="photoShadow" x="-30%" y="-30%" width="160%" height="160%">
+      <feDropShadow dx="0" dy="6" stdDeviation="10" flood-color="#000" flood-opacity="0.35"/>
+    </filter>
+  </defs>
+
+  <!-- White base -->
+  <rect width="1050" height="600" fill="#FFFFFF"/>
+
+  <!-- Navy chevron top-right -->
+  <path d="M 560 0 L 1050 0 L 1050 350 L 850 600 L 680 600 Z" fill="url(#navyGrad)"/>
+
+  <!-- Orange accent chevron inside navy -->
+  <path d="M 720 0 L 850 0 L 720 150 Z" fill="url(#orangeGrad)"/>
+
+  <!-- Bottom-left navy diagonal -->
+  <path d="M 0 600 L 200 600 L 0 420 Z" fill="url(#navyGrad)"/>
+
+  <!-- Bottom-left orange thin stripe -->
+  <path d="M 0 600 L 90 600 L 0 520 Z" fill="url(#orangeGrad)"/>
+
+  <!-- Thin orange accent bar above name -->
+  <rect x="80" y="165" width="40" height="4" fill="url(#orangeGrad)"/>
+
+  <!-- Photo circle background (with subtle gradient) -->
+  <circle cx="790" cy="300" r="150" fill="#FFFFFF" opacity="0.15"/>
+  <circle cx="790" cy="300" r="145" fill="#FFFFFF" opacity="0.1"/>
+
+  <!-- Photo slot area (transparent - will be clipped by renderer) -->
+  <g filter="url(#photoShadow)">
+    <circle cx="790" cy="300" r="140" fill="#E8E8EC"/>
+  </g>
+
+  <!-- Photo border ring -->
+  <circle cx="790" cy="300" r="140" fill="none" stroke="#FFFFFF" stroke-width="6"/>
+  <circle cx="790" cy="300" r="143" fill="none" stroke="#F5A623" stroke-width="1.5" opacity="0.5"/>
+
+  <!-- Photo placeholder icon (only shown when no photo) -->
+  <g id="photo-placeholder" opacity="0.35">
+    <circle cx="790" cy="270" r="32" fill="#6B6B80"/>
+    <path d="M 720 380 Q 790 320 860 380 L 860 430 L 720 430 Z" fill="#6B6B80"/>
+  </g>
+</svg>

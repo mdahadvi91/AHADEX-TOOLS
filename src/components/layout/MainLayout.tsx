@@ -6,6 +6,7 @@ import { LeftSidebar } from "./LeftSidebar";
 import { RightSidebar } from "./RightSidebar";
 import { PageTransition } from "./PageTransition";
 import { CinematicBackground } from "@components/background";
+import { BackButton } from "@components/common/BackButton";
 
 export function MainLayout() {
   const [leftOpen, setLeftOpen] = useState(false);
@@ -22,6 +23,9 @@ export function MainLayout() {
 
       <LeftSidebar mobileOpen={leftOpen} onMobileClose={() => setLeftOpen(false)} />
       <RightSidebar mobileOpen={rightOpen} onMobileClose={() => setRightOpen(false)} />
+
+      {/* Global fixed back button — auto-hides on home */}
+      <BackButton />
 
       <div className="h-24 lg:h-28" aria-hidden="true" />
 
