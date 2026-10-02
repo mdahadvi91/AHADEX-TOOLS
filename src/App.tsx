@@ -31,6 +31,7 @@ const PhotoQrTool = lazy(() => import("@tools/qr/photo-qr"));
 const VisitingCardTool = lazy(() => import("@tools/design/visiting-card"));
 const CVBuilderTool = lazy(() => import("@tools/documents/cv-builder"));
 const JpgToPngTool = lazy(() => import("@tools/image/jpg-to-png"));
+const PngToJpgTool = lazy(() => import("@tools/image/png-to-jpg"));
 
 const CVBuilderEditor = lazy(() =>
   import("@tools/documents/cv-builder/editor").then((m) => ({
@@ -65,6 +66,13 @@ function Loader() {
 
 /* ------------------------------------------------------------------
  * App
+ *
+ * NOTE FOR FUTURE TOOLS:
+ * Add each tool as a SINGLE-LINE <Route /> below. Keeping them on
+ * one line makes them safe to add/remove with `sed` and `awk`.
+ *
+ * Format:
+ *   <Route path="tools/<slug>" element={<Component />} />
  * ------------------------------------------------------------------ */
 export default function App() {
   return (
@@ -80,32 +88,18 @@ export default function App() {
                   <Route index element={<ToolsIndexPage />} />
                   <Route path="tools" element={<ToolsIndexPage />} />
 
-                  {/* Tools */}
+                  {/* Tools — one line each */}
                   <Route path="tools/photo-qr" element={<PhotoQrTool />} />
+                  <Route path="tools/visiting-card" element={<VisitingCardTool />} />
+                  <Route path="tools/cv-builder" element={<CVBuilderTool />} />
+                  <Route path="tools/jpg-to-png" element={<JpgToPngTool />} />
+                  <Route path="tools/png-to-jpg" element={<PngToJpgTool />} />
 
-                  <Route
-                    path="tools/visiting-card"
-                    element={<VisitingCardTool />}
-                  />
-                  <Route
-                    path="tools/visiting-card/edit/:templateId"
-                    element={<VisitingCardEditor />}
-                  />
+                  {/* Tool editors */}
+                  <Route path="tools/cv-builder/edit/:templateId" element={<CVBuilderEditor />} />
+                  <Route path="tools/visiting-card/edit/:templateId" element={<VisitingCardEditor />} />
 
-                  <Route
-                    path="tools/cv-builder"
-                    element={<CVBuilderTool />}
-                  />
-                  <Route
-                    path="tools/jpg-to-png"
-                    element={<JpgToPngTool />}
-                  />
-                  <Route
-                    path="tools/cv-builder/edit/:templateId"
-                    element={<CVBuilderEditor />}
-                  />
-
-                  {/* Static pages */}
+                  {/* Static */}
                   <Route path="about" element={<AboutPage />} />
                   <Route path="contact" element={<ContactPage />} />
                   <Route path="privacy" element={<PrivacyPage />} />

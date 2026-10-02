@@ -24,6 +24,11 @@ export const toolTranslationsBn: Record<string, ToolTranslation> = {
     description:
       "JPG ছবি PNG ফরম্যাটে সাথে সাথে রূপান্তর করুন — সম্পূর্ণ আপনার ব্রাউজারেই, কোনো আপলোড নেই।",
   },
+  "png-to-jpg": {
+    name: "PNG থেকে JPG",
+    description:
+      "PNG ছবি JPG ফরম্যাটে সাথে সাথে রূপান্তর করুন — সম্পূর্ণ আপনার ব্রাউজারেই, ছোট ফাইল, শূন্য আপলোড।",
+  },
 };
 
 export function getToolTranslation(
