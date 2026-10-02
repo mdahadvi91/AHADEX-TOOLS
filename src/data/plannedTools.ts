@@ -29,16 +29,7 @@ export const plannedTools: PlannedTool[] = [
 
 
 
-  {
-    id: "webp-to-jpg",
-    slug: "webp-to-jpg",
-    name: "WebP to JPG",
-    nameBn: "WebP থেকে JPG",
-    path: "/tools/webp-to-jpg",
-    description: "Convert WebP to JPG for universal compatibility.",
-    descriptionBn: "সার্বজনীন ব্যবহারের জন্য WebP থেকে JPG।",
-    eta: "Coming soon",
-  },
+
 
 
 
@@ -57,6 +48,7 @@ export const plannedTools: PlannedTool[] = [
 
 
 
+
   {
     id: "image-compressor",
     slug: "image-compressor",
@@ -67,6 +59,7 @@ export const plannedTools: PlannedTool[] = [
     descriptionBn: "গুণমান না হারিয়ে JPG, PNG, WebP কমপ্রেস করুন।",
     eta: "Coming soon",
   },
+
 
 
 
@@ -85,6 +78,7 @@ export const plannedTools: PlannedTool[] = [
 
 
 
+
   {
     id: "image-cropper",
     slug: "image-cropper",
@@ -95,6 +89,7 @@ export const plannedTools: PlannedTool[] = [
     descriptionBn: "সঠিক অনুপাতে ছবি ক্রপ করুন।",
     eta: "Coming soon",
   },
+
 
 
 
@@ -113,6 +108,7 @@ export const plannedTools: PlannedTool[] = [
 
 
 
+
   {
     id: "image-metadata-viewer",
     slug: "image-metadata-viewer",
@@ -123,6 +119,7 @@ export const plannedTools: PlannedTool[] = [
     descriptionBn: "ছবির EXIF, GPS ও ক্যামেরার তথ্য দেখুন।",
     eta: "Coming soon",
   },
+
 
 
 
@@ -141,6 +138,7 @@ export const plannedTools: PlannedTool[] = [
 
 
 
+
   {
     id: "jpg-to-pdf",
     slug: "jpg-to-pdf",
@@ -151,6 +149,7 @@ export const plannedTools: PlannedTool[] = [
     descriptionBn: "JPG ছবি পরিষ্কার PDF ডকুমেন্টে রূপান্তর করুন।",
     eta: "Coming soon",
   },
+
 
 
 
@@ -169,6 +168,7 @@ export const plannedTools: PlannedTool[] = [
 
 
 
+
   {
     id: "merge-pdf",
     slug: "merge-pdf",
@@ -179,6 +179,7 @@ export const plannedTools: PlannedTool[] = [
     descriptionBn: "একাধিক PDF এক ফাইলে যুক্ত করুন।",
     eta: "Coming soon",
   },
+
 
 
 
