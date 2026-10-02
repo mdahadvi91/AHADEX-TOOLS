@@ -1,0 +1,130 @@
+import type { ConvertedFile } from "./types";
+
+/* ============================================================
+ * JPG → PNG conversion — canvas based, 100% in-browser
+ * ============================================================ */
+
+export const MAX_FILE_SIZE = 50 * 1024 * 1024; // 50 MB
+export const ACCEPTED_TYPES = ["image/jpeg", "image/jpg"];
+
+export function makeId(): string {
+  return `${Date.now()}-${Math.random().toString(36).slice(2, 8)}`;
+}
+
+export function formatBytes(bytes: number): string {
+  if (bytes === 0) return "0 B";
+  const k = 1024;
+  const sizes = ["B", "KB", "MB", "GB"];
+  const i = Math.floor(Math.log(bytes) / Math.log(k));
+  return `${(bytes / Math.pow(k, i)).toFixed(i === 0 ? 0 : 1)} ${sizes[i]}`;
+}
+
+export function loadImage(file: File): Promise<HTMLImageElement> {
+  return new Promise((resolve, reject) => {
+    const url = URL.createObjectURL(file);
+    const img = new Image();
+    img.onload = () => {
+      URL.revokeObjectURL(url);
+      resolve(img);
+    };
+    img.onerror = () => {
+      URL.revokeObjectURL(url);
+      reject(new Error("Could not load image"));
+    };
+    img.src = url;
+  });
+}
+
+export function validateFile(file: File): string | null {
+  if (!ACCEPTED_TYPES.includes(file.type)) {
+    return "Please select a JPG or JPEG file.";
+  }
+  if (file.size > MAX_FILE_SIZE) {
+    return "File is too large (max 50 MB).";
+  }
+  return null;
+}
+
+/* ============================================================
+ * Main conversion — JPG → PNG (lossless re-encode)
+ * ============================================================ */
+
+export async function convertJpgToPng(
+  file: File,
+  onError?: (msg: string) => void
+): Promise<ConvertedFile | null> {
+  const err = validateFile(file);
+  if (err) {
+    onError?.(err);
+    return null;
+  }
+
+  try {
+    const img = await loadImage(file);
+    const canvas = document.createElement("canvas");
+    canvas.width = img.naturalWidth;
+    canvas.height = img.naturalHeight;
+    const ctx = canvas.getContext("2d");
+    if (!ctx) throw new Error("Canvas unavailable");
+
+    // High-quality rendering
+    ctx.imageSmoothingEnabled = true;
+    ctx.imageSmoothingQuality = "high";
+    ctx.drawImage(img, 0, 0);
+
+    const blob = await new Promise<Blob | null>((resolve) =>
+      canvas.toBlob(resolve, "image/png", 1.0)
+    );
+    if (!blob) throw new Error("PNG encoding failed");
+
+    const convertedUrl = URL.createObjectURL(blob);
+
+    // Original preview URL
+    const originalUrl = URL.createObjectURL(file);
+
+    return {
+      id: makeId(),
+      originalName: file.name,
+      originalSize: file.size,
+      originalUrl,
+      convertedBlob: blob,
+      convertedUrl,
+      convertedSize: blob.size,
+      width: img.naturalWidth,
+      height: img.naturalHeight,
+    };
+  } catch (e) {
+    onError?.(e instanceof Error ? e.message : "Conversion failed");
+    return null;
+  }
+}
+
+/* ============================================================
+ * Download helper
+ * ============================================================ */
+
+export function downloadFile(item: ConvertedFile): void {
+  const baseName = item.originalName.replace(/\.(jpe?g)$/i, "");
+  const filename = `${baseName}.png`;
+  const a = document.createElement("a");
+  a.href = item.convertedUrl;
+  a.download = filename;
+  document.body.appendChild(a);
+  a.click();
+  document.body.removeChild(a);
+}
+
+export function downloadAll(items: ConvertedFile[]): void {
+  items.forEach((item, i) => {
+    setTimeout(() => downloadFile(item), i * 300);
+  });
+}
+
+/* ============================================================
+ * Cleanup object URLs
+ * ============================================================ */
+
+export function revokeUrls(item: ConvertedFile): void {
+  URL.revokeObjectURL(item.originalUrl);
+  URL.revokeObjectURL(item.convertedUrl);
+}

@@ -19,16 +19,7 @@ export interface PlannedTool {
 }
 
 export const plannedTools: PlannedTool[] = [
-  {
-    id: "jpg-to-png",
-    slug: "jpg-to-png",
-    name: "JPG to PNG",
-    nameBn: "JPG থেকে PNG",
-    path: "/tools/jpg-to-png",
-    description: "Convert JPG images to PNG format instantly in your browser.",
-    descriptionBn: "JPG ছবি PNG ফরম্যাটে ব্রাউজারেই রূপান্তর করুন।",
-    eta: "Coming soon",
-  },
+
   {
     id: "png-to-jpg",
     slug: "png-to-jpg",
@@ -39,6 +30,7 @@ export const plannedTools: PlannedTool[] = [
     descriptionBn: "PNG ছবি ছোট সাইজের JPG-তে রূপান্তর করুন।",
     eta: "Coming soon",
   },
+
   {
     id: "jpg-to-webp",
     slug: "jpg-to-webp",
@@ -49,6 +41,7 @@ export const plannedTools: PlannedTool[] = [
     descriptionBn: "আধুনিক WebP ফরম্যাটে ছোট ফাইলের জন্য রূপান্তর।",
     eta: "Coming soon",
   },
+
   {
     id: "png-to-webp",
     slug: "png-to-webp",
@@ -59,6 +52,7 @@ export const plannedTools: PlannedTool[] = [
     descriptionBn: "স্বচ্ছতা সহ ছোট WebP ফাইলে রূপান্তর।",
     eta: "Coming soon",
   },
+
   {
     id: "webp-to-jpg",
     slug: "webp-to-jpg",
@@ -69,6 +63,7 @@ export const plannedTools: PlannedTool[] = [
     descriptionBn: "সার্বজনীন ব্যবহারের জন্য WebP থেকে JPG।",
     eta: "Coming soon",
   },
+
   {
     id: "webp-to-png",
     slug: "webp-to-png",
@@ -79,6 +74,7 @@ export const plannedTools: PlannedTool[] = [
     descriptionBn: "স্বচ্ছতা সংরক্ষণ করে WebP থেকে PNG।",
     eta: "Coming soon",
   },
+
   {
     id: "image-compressor",
     slug: "image-compressor",
@@ -89,6 +85,7 @@ export const plannedTools: PlannedTool[] = [
     descriptionBn: "গুণমান না হারিয়ে JPG, PNG, WebP কমপ্রেস করুন।",
     eta: "Coming soon",
   },
+
   {
     id: "image-resizer",
     slug: "image-resizer",
@@ -99,6 +96,7 @@ export const plannedTools: PlannedTool[] = [
     descriptionBn: "যেকোনো মাপে ছবি রিসাইজ করুন, অনুপাত নিয়ন্ত্রণ সহ।",
     eta: "Coming soon",
   },
+
   {
     id: "image-cropper",
     slug: "image-cropper",
@@ -109,6 +107,7 @@ export const plannedTools: PlannedTool[] = [
     descriptionBn: "সঠিক অনুপাতে ছবি ক্রপ করুন।",
     eta: "Coming soon",
   },
+
   {
     id: "image-to-pdf",
     slug: "image-to-pdf",
@@ -119,6 +118,7 @@ export const plannedTools: PlannedTool[] = [
     descriptionBn: "অনেক ছবি মিলিয়ে একটা PDF তৈরি করুন।",
     eta: "Coming soon",
   },
+
   {
     id: "image-metadata-viewer",
     slug: "image-metadata-viewer",
@@ -129,6 +129,7 @@ export const plannedTools: PlannedTool[] = [
     descriptionBn: "ছবির EXIF, GPS ও ক্যামেরার তথ্য দেখুন।",
     eta: "Coming soon",
   },
+
   {
     id: "background-remover",
     slug: "background-remover",
@@ -139,6 +140,7 @@ export const plannedTools: PlannedTool[] = [
     descriptionBn: "AI দিয়ে স্বয়ংক্রিয়ভাবে ছবির ব্যাকগ্রাউন্ড সরান।",
     eta: "Coming soon",
   },
+
   {
     id: "jpg-to-pdf",
     slug: "jpg-to-pdf",
@@ -149,6 +151,7 @@ export const plannedTools: PlannedTool[] = [
     descriptionBn: "JPG ছবি পরিষ্কার PDF ডকুমেন্টে রূপান্তর করুন।",
     eta: "Coming soon",
   },
+
   {
     id: "png-to-pdf",
     slug: "png-to-pdf",
@@ -159,6 +162,7 @@ export const plannedTools: PlannedTool[] = [
     descriptionBn: "PNG ছবি PDF ফাইলে রূপান্তর করুন।",
     eta: "Coming soon",
   },
+
   {
     id: "merge-pdf",
     slug: "merge-pdf",
@@ -169,6 +173,7 @@ export const plannedTools: PlannedTool[] = [
     descriptionBn: "একাধিক PDF এক ফাইলে যুক্ত করুন।",
     eta: "Coming soon",
   },
+
   {
     id: "split-pdf",
     slug: "split-pdf",

@@ -19,6 +19,11 @@ export const toolTranslationsBn: Record<string, ToolTranslation> = {
     description:
       "মিনিটেই পেশাদার CV তৈরি করুন। আসল A4 টেমপ্লেট, লাইভ প্রিভিউ, selectable-text PDF এক্সপোর্ট, অটো-সেভ ও সম্পূর্ণ ব্রাউজার-প্রাইভেসি।",
   },
+  "jpg-to-png": {
+    name: "JPG থেকে PNG",
+    description:
+      "JPG ছবি PNG ফরম্যাটে সাথে সাথে রূপান্তর করুন — সম্পূর্ণ আপনার ব্রাউজারেই, কোনো আপলোড নেই।",
+  },
 };
 
 export function getToolTranslation(
