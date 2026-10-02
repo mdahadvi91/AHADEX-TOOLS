@@ -40,32 +40,15 @@ export const plannedTools: PlannedTool[] = [
 
 
 
-  {
-    id: "image-compressor",
-    slug: "image-compressor",
-    name: "Image Compressor",
-    nameBn: "ইমেজ কমপ্রেসর",
-    path: "/tools/image-compressor",
-    description: "Compress JPG, PNG, and WebP without visible quality loss.",
-    descriptionBn: "গুণমান না হারিয়ে JPG, PNG, WebP কমপ্রেস করুন।",
-    eta: "Coming soon",
-  },
 
 
 
 
 
 
-  {
-    id: "image-resizer",
-    slug: "image-resizer",
-    name: "Image Resizer",
-    nameBn: "ইমেজ রিসাইজার",
-    path: "/tools/image-resizer",
-    description: "Resize images to any dimension with aspect ratio control.",
-    descriptionBn: "যেকোনো মাপে ছবি রিসাইজ করুন, অনুপাত নিয়ন্ত্রণ সহ।",
-    eta: "Coming soon",
-  },
+
+
+
 
 
 
@@ -88,6 +71,8 @@ export const plannedTools: PlannedTool[] = [
 
 
 
+
+
   {
     id: "image-to-pdf",
     slug: "image-to-pdf",
@@ -98,6 +83,8 @@ export const plannedTools: PlannedTool[] = [
     descriptionBn: "অনেক ছবি মিলিয়ে একটা PDF তৈরি করুন।",
     eta: "Coming soon",
   },
+
+
 
 
 
@@ -120,6 +107,8 @@ export const plannedTools: PlannedTool[] = [
 
 
 
+
+
   {
     id: "background-remover",
     slug: "background-remover",
@@ -130,6 +119,8 @@ export const plannedTools: PlannedTool[] = [
     descriptionBn: "AI দিয়ে স্বয়ংক্রিয়ভাবে ছবির ব্যাকগ্রাউন্ড সরান।",
     eta: "Coming soon",
   },
+
+
 
 
 
@@ -152,6 +143,8 @@ export const plannedTools: PlannedTool[] = [
 
 
 
+
+
   {
     id: "png-to-pdf",
     slug: "png-to-pdf",
@@ -168,6 +161,8 @@ export const plannedTools: PlannedTool[] = [
 
 
 
+
+
   {
     id: "merge-pdf",
     slug: "merge-pdf",
@@ -178,6 +173,8 @@ export const plannedTools: PlannedTool[] = [
     descriptionBn: "একাধিক PDF এক ফাইলে যুক্ত করুন।",
     eta: "Coming soon",
   },
+
+
 
 
 
