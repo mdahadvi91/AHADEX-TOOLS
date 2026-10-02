@@ -57,16 +57,7 @@ export const plannedTools: PlannedTool[] = [
 
 
 
-  {
-    id: "image-cropper",
-    slug: "image-cropper",
-    name: "Image Cropper",
-    nameBn: "ইমেজ ক্রপার",
-    path: "/tools/image-cropper",
-    description: "Crop images precisely with custom ratio.",
-    descriptionBn: "সঠিক অনুপাতে ছবি ক্রপ করুন।",
-    eta: "Coming soon",
-  },
+
 
 
 
@@ -97,6 +88,7 @@ export const plannedTools: PlannedTool[] = [
 
 
 
+
   {
     id: "image-metadata-viewer",
     slug: "image-metadata-viewer",
@@ -107,6 +99,7 @@ export const plannedTools: PlannedTool[] = [
     descriptionBn: "ছবির EXIF, GPS ও ক্যামেরার তথ্য দেখুন।",
     eta: "Coming soon",
   },
+
 
 
 
@@ -154,6 +147,7 @@ export const plannedTools: PlannedTool[] = [
 
 
 
+
   {
     id: "merge-pdf",
     slug: "merge-pdf",
@@ -164,6 +158,7 @@ export const plannedTools: PlannedTool[] = [
     descriptionBn: "একাধিক PDF এক ফাইলে যুক্ত করুন।",
     eta: "Coming soon",
   },
+
 
 
 
