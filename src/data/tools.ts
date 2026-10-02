@@ -141,6 +141,30 @@ export const tools: Tool[] = [
       ogImage: "/images/og/default-og.svg",
     },
   },
+  {
+    id: "jpg-to-webp",
+    slug: "jpg-to-webp",
+    name: "JPG to WebP",
+    path: "/tools/jpg-to-webp",
+    description:
+      "Convert JPG images to modern WebP format. 25-35% smaller files at the same quality. Batch-capable, no uploads.",
+    longDescription:
+      "JPG to WebP Converter re-encodes your JPEG photos as modern WebP images. Everything runs in your browser — no uploads, no servers, no accounts. WebP files are typically 25-35% smaller than JPG at the same visual quality.",
+    keywords: ["jpg", "webp", "convert", "image", "converter"],
+    popular: true,
+    newTool: true,
+    features: [],
+    howTo: [],
+    faq: [],
+    relatedTools: ["jpg-to-png", "png-to-jpg"],
+    seo: {
+      title:
+        "JPG to WebP Converter — Free, Fast & Private | AHADEX Tools",
+      description:
+        "Convert JPG to WebP instantly. 25-35% smaller files, batch, no uploads.",
+      ogImage: "/images/og/default-og.svg",
+    },
+  },
 ];
 
 export const TOOL_COUNT = tools.length;
