@@ -35,7 +35,7 @@ export const tools: Tool[] = [
       title: "Photo QR Code — Add QR to Photos Free | AHADEX Tools",
       description:
         "Add a real, scannable QR code to any photo. WhatsApp, Facebook, Instagram, WiFi, and more. Free, private, no uploads.",
-      ogImage: "/images/og/tools/photo-qr-og.jpg",
+      ogImage: "/images/og/tools/photo-qr-og.svg",
     },
   },
   {
@@ -68,7 +68,7 @@ export const tools: Tool[] = [
         "Visiting Card Maker — Free Business Card Designer | AHADEX Tools",
       description:
         "Design print-ready visiting cards with live preview. 20 premium templates. Free, private, PNG/JPG export.",
-      ogImage: "/images/og/tools/visiting-card-og.jpg",
+      ogImage: "/images/og/tools/visiting-card-og.svg",
     },
   },
 ];

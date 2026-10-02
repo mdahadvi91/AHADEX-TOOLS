@@ -12,6 +12,7 @@ import { ToolsSearch } from "./ToolsSearch";
 import { SmallToolCard } from "./SmallToolCard";
 import { GridBackground } from "./GridBackground";
 import { ToolIcon } from "@components/common/ToolIcon";
+import { getPlannedToolTranslation } from "@i18n/plannedToolTranslations";
 
 export function ToolsShowcase() {
   const [query, setQuery] = useState("");
@@ -182,10 +183,10 @@ function ComingSoonCard({ tool, index }: { tool: PlannedTool; index: number }) {
       </div>
 
       <h3 className="font-display font-semibold text-sm text-light-text/80 dark:text-dark-text/80 mb-1">
-        {language === "bn" ? tool.nameBn : tool.name}
+        {getPlannedToolTranslation(tool.id, language, { name: tool.name, description: tool.description }).name}
       </h3>
       <p className="text-[11px] text-light-textSecondary/70 dark:text-dark-textSecondary/70 leading-relaxed line-clamp-2">
-        {language === "bn" ? tool.descriptionBn : tool.description}
+        {getPlannedToolTranslation(tool.id, language, { name: tool.name, description: tool.description }).description}
       </p>
     </motion.div>
   );
