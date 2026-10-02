@@ -165,6 +165,30 @@ export const tools: Tool[] = [
       ogImage: "/images/og/default-og.svg",
     },
   },
+  {
+    id: "png-to-webp",
+    slug: "png-to-webp",
+    name: "PNG to WebP",
+    path: "/tools/png-to-webp",
+    description:
+      "Convert PNG images to modern WebP format. 30-50% smaller files, transparency preserved, batch-capable, no uploads.",
+    longDescription:
+      "PNG to WebP Converter re-encodes your PNG images as modern WebP files. Unlike JPG, WebP keeps transparency, making it perfect for logos and graphics. Everything runs in your browser — no uploads, no servers, no accounts.",
+    keywords: ["png", "webp", "convert", "image", "converter", "transparent"],
+    popular: true,
+    newTool: true,
+    features: [],
+    howTo: [],
+    faq: [],
+    relatedTools: ["jpg-to-webp", "png-to-jpg"],
+    seo: {
+      title:
+        "PNG to WebP Converter — Free, Fast & Private | AHADEX Tools",
+      description:
+        "Convert PNG to WebP instantly. 30-50% smaller files, transparency preserved, batch, no uploads.",
+      ogImage: "/images/og/default-og.svg",
+    },
+  },
 ];
 
 export const TOOL_COUNT = tools.length;

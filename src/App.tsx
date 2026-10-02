@@ -33,6 +33,7 @@ const CVBuilderTool = lazy(() => import("@tools/documents/cv-builder"));
 const JpgToPngTool = lazy(() => import("@tools/image/jpg-to-png"));
 const PngToJpgTool = lazy(() => import("@tools/image/png-to-jpg"));
 const JpgToWebpTool = lazy(() => import("@tools/image/jpg-to-webp"));
+const PngToWebpTool = lazy(() => import("@tools/image/png-to-webp"));
 
 const CVBuilderEditor = lazy(() =>
   import("@tools/documents/cv-builder/editor").then((m) => ({
@@ -96,6 +97,7 @@ export default function App() {
                   <Route path="tools/jpg-to-png" element={<JpgToPngTool />} />
                   <Route path="tools/png-to-jpg" element={<PngToJpgTool />} />
                   <Route path="tools/jpg-to-webp" element={<JpgToWebpTool />} />
+                  <Route path="tools/png-to-webp" element={<PngToWebpTool />} />
 
                   {/* Tool editors */}
                   <Route path="tools/cv-builder/edit/:templateId" element={<CVBuilderEditor />} />
