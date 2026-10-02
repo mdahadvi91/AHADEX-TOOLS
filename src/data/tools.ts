@@ -189,6 +189,22 @@ export const tools: Tool[] = [
       ogImage: "/images/og/default-og.svg",
     },
   },
+  {
+    id: "webp-to-jpg",
+    slug: "webp-to-jpg",
+    name: "WebP to JPG",
+    path: "/tools/webp-to-jpg",
+    description: "Convert WebP images to JPG format. Universal compatibility, no uploads.",
+    longDescription: "WebP to JPG Converter re-encodes WebP images as standard JPG at 92% quality. Everything runs in your browser.",
+    keywords: ["webp", "jpg", "convert"],
+    popular: true,
+    newTool: true,
+    features: [],
+    howTo: [],
+    faq: [],
+    relatedTools: [],
+    seo: { title: "WebP to JPG Converter", description: "Convert WebP to JPG.", ogImage: "/images/og/default-og.svg" },
+  },
 ];
 
 export const TOOL_COUNT = tools.length;
