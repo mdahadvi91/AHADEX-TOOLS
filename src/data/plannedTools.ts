@@ -70,6 +70,7 @@ export const plannedTools: PlannedTool[] = [
 
 
 
+
   {
     id: "image-to-pdf",
     slug: "image-to-pdf",
@@ -93,6 +94,7 @@ export const plannedTools: PlannedTool[] = [
 
 
 
+
   {
     id: "image-metadata-viewer",
     slug: "image-metadata-viewer",
@@ -103,6 +105,7 @@ export const plannedTools: PlannedTool[] = [
     descriptionBn: "ছবির EXIF, GPS ও ক্যামেরার তথ্য দেখুন।",
     eta: "Coming soon",
   },
+
 
 
 
