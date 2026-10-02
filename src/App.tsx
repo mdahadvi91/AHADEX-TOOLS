@@ -17,6 +17,12 @@ const CookiePolicyPage = lazy(() => import("@pages/CookiePolicyPage"));
 const NotFoundPage = lazy(() => import("@pages/NotFoundPage"));
 
 const PhotoQrTool = lazy(() => import("@tools/qr/photo-qr"));
+const VisitingCardTool = lazy(() => import("@tools/design/visiting-card"));
+const VisitingCardEditor = lazy(() =>
+  import("@tools/design/visiting-card/editor").then((m) => ({
+    default: m.Editor,
+  }))
+);
 
 function ScrollToTop() {
   const { pathname } = useLocation();
@@ -47,6 +53,11 @@ export default function App() {
                   <Route index element={<ToolsIndexPage />} />
                   <Route path="tools" element={<ToolsIndexPage />} />
                   <Route path="tools/photo-qr" element={<PhotoQrTool />} />
+                  <Route path="tools/visiting-card" element={<VisitingCardTool />} />
+                  <Route
+                    path="tools/visiting-card/edit/:templateId"
+                    element={<VisitingCardEditor />}
+                  />
                   <Route path="categories/:slug" element={<CategoryPage />} />
                   <Route path="about" element={<AboutPage />} />
                   <Route path="contact" element={<ContactPage />} />

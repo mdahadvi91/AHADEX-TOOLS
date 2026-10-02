@@ -384,4 +384,29 @@ export const tools: Tool[] = [
       ogImage: "/images/og/tools/photo-qr-og.jpg",
     },
   },
+  {
+    id: "visiting-card",
+    slug: "visiting-card",
+    name: "Visiting Card Maker",
+    category: "image",
+    path: "/tools/visiting-card",
+    description:
+      "Design print-ready visiting cards in seconds. 60 hand-crafted templates — 30 single side, 30 double side. Photo-focused, print-ready export.",
+    longDescription:
+      "Design print-ready visiting cards in seconds. 60 hand-crafted templates — 30 single side, 30 double side. Photo-focused designs with PNG/JPG/PDF export up to 600 DPI.",
+    keywords: ["visiting card", "business card", "card maker", "design"],
+    popular: true,
+    newTool: true,
+    features: [],
+    howTo: [],
+    faq: [],
+    relatedTools: ["photo-qr", "jpg-to-png"],
+    seo: {
+      title:
+        "Visiting Card Maker — Free Business Card Designer | AHADEX Tools",
+      description:
+        "Design print-ready visiting cards with live preview. 60 templates. Free & private.",
+      ogImage: "/images/og/tools/visiting-card-og.jpg",
+    },
+  },
 ];
