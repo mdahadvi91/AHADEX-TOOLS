@@ -72,6 +72,10 @@ export const toolTranslationsBn: Record<string, ToolTranslation> = {
     name: "PDF মার্জ",
     description: "একাধিক PDF এক ডকুমেন্টে যুক্ত করুন — reorder, সম্পূর্ণ ব্রাউজারেই।",
   },
+  "split-pdf": {
+    name: "PDF স্প্লিট",
+    description: "PDF থেকে পেজ এক্সট্রাক্ট করুন বা পেজ-by-পেজ ভাগ করুন — কাস্টম রেঞ্জ, সম্পূর্ণ ব্রাউজারেই।",
+  },
 };
 
 export function getToolTranslation(

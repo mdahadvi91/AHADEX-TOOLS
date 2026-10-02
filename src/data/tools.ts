@@ -317,6 +317,22 @@ export const tools: Tool[] = [
     relatedTools: [],
     seo: { title: "Merge PDF — Combine PDFs Free, Fast & Private | AHADEX Tools", description: "Merge multiple PDFs in your browser. Reorder, no uploads.", ogImage: "/images/og/default-og.svg" },
   },
+  {
+    id: "split-pdf",
+    slug: "split-pdf",
+    name: "Split PDF",
+    path: "/tools/split-pdf",
+    description: "Extract pages from any PDF or split every page — in your browser. Custom ranges, no uploads.",
+    longDescription: "Split PDF extracts selected page ranges (e.g. 1-3, 5, 7-9) or breaks every page into its own PDF. Everything runs in your browser using pdf-lib — no uploads, no servers.",
+    keywords: ["split pdf", "extract pdf", "pdf splitter"],
+    popular: true,
+    newTool: true,
+    features: [],
+    howTo: [],
+    faq: [],
+    relatedTools: [],
+    seo: { title: "Split PDF — Extract Pages Free & Private | AHADEX Tools", description: "Split PDFs in your browser. Custom page ranges, no uploads.", ogImage: "/images/og/default-og.svg" },
+  },
 ];
 
 export const TOOL_COUNT = tools.length;

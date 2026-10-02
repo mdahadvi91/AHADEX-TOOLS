@@ -69,6 +69,7 @@ export const plannedTools: PlannedTool[] = [
 
 
 
+
   {
     id: "image-to-pdf",
     slug: "image-to-pdf",
@@ -91,6 +92,7 @@ export const plannedTools: PlannedTool[] = [
 
 
 
+
   {
     id: "image-metadata-viewer",
     slug: "image-metadata-viewer",
@@ -101,6 +103,7 @@ export const plannedTools: PlannedTool[] = [
     descriptionBn: "ছবির EXIF, GPS ও ক্যামেরার তথ্য দেখুন।",
     eta: "Coming soon",
   },
+
 
 
 
@@ -163,16 +166,6 @@ export const plannedTools: PlannedTool[] = [
 
 
 
-  {
-    id: "split-pdf",
-    slug: "split-pdf",
-    name: "Split PDF",
-    nameBn: "PDF স্প্লিট",
-    path: "/tools/split-pdf",
-    description: "Split a PDF into separate files by page range.",
-    descriptionBn: "পেজ রেঞ্জ অনুযায়ী PDF আলাদা করুন।",
-    eta: "Coming soon",
-  },
 ];
 
 export const PLANNED_COUNT = plannedTools.length;
