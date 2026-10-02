@@ -137,7 +137,7 @@ export function Workspace() {
                 </div>
                 <div className="flex-1 min-w-0">
                   <p className="text-[12px] font-semibold text-light-text dark:text-dark-text truncate">{p.originalName}</p>
-                  <p className="text-[10px] text-light-textSecondary dark:text-darkTextSecondary mt-0.5">{p.width} × {p.height} px · {formatBytes(p.originalSize)}</p>
+                  <p className="text-[10px] text-light-textSecondary dark:text-dark-textSecondary mt-0.5">{p.width} × {p.height} px · {formatBytes(p.originalSize)}</p>
                 </div>
                 <button type="button" onClick={() => move(p.id, "up")} disabled={idx === 0} className="w-7 h-7 rounded-md flex items-center justify-center text-silk-rose disabled:opacity-20 hover:bg-silk-rose/10 transition-colors shrink-0" aria-label="Move up"><ChevronUp className="w-3.5 h-3.5" /></button>
                 <button type="button" onClick={() => move(p.id, "down")} disabled={idx === pages.length - 1} className="w-7 h-7 rounded-md flex items-center justify-center text-silk-rose disabled:opacity-20 hover:bg-silk-rose/10 transition-colors shrink-0" aria-label="Move down"><ChevronDown className="w-3.5 h-3.5" /></button>

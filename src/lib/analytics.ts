@@ -9,7 +9,6 @@ type EventName =
   | "conversion_success"
   | "conversion_error"
   | "search"
-  | "category_open";
 
 interface EventParams {
   [key: string]: string | number | boolean | undefined;
@@ -58,7 +57,5 @@ export const analytics = {
   conversionError: (toolId: string, reason?: string) =>
     trackEvent("conversion_error", { tool_id: toolId, reason }),
   search: (query: string) => trackEvent("search", { search_term: query }),
-  categoryOpen: (slug: string) =>
-    trackEvent("category_open", { category: slug }),
   trackPageView,
 };

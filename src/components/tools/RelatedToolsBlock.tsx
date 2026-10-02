@@ -103,7 +103,7 @@ export function RelatedToolsBlock({
                   <p className="font-display font-semibold text-[12px] text-light-text dark:text-dark-text leading-tight truncate">
                     {translated.name}
                   </p>
-                  <p className="text-[10px] text-lightTextSecondary dark:text-darkTextSecondary mt-0.5 line-clamp-1">
+                  <p className="text-[10px] text-light-textSecondary dark:text-dark-textSecondary mt-0.5 line-clamp-1">
                     {translated.description}
                   </p>
                 </div>

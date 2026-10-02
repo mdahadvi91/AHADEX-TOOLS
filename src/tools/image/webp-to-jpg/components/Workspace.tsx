@@ -93,7 +93,7 @@ export function Workspace() {
                 </div>
                 <div className="flex-1 min-w-0">
                   <p className="text-[12px] sm:text-sm font-semibold text-light-text dark:text-dark-text truncate">{item.originalName.replace(/\.webp$/i, "")}.jpg</p>
-                  <p className="text-[10px] sm:text-[11px] text-lightTextSecondary dark:text-dark-textSecondary mt-0.5">{item.width} × {item.height} px</p>
+                  <p className="text-[10px] sm:text-[11px] text-light-textSecondary dark:text-dark-textSecondary mt-0.5">{item.width} × {item.height} px</p>
                   <div className="flex items-center gap-2 mt-1 text-[10px] sm:text-[11px]">
                     <span className="text-light-textSecondary dark:text-dark-textSecondary">{formatBytes(item.originalSize)}</span>
                     <span className="text-silk-rose">→</span>

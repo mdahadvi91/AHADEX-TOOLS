@@ -98,7 +98,7 @@ export function Workspace() {
                   <div className="w-14 h-14 sm:w-16 sm:h-16 rounded-xl overflow-hidden bg-silk-rose/5 border border-silk-rose/15 flex items-center justify-center shrink-0"><img src={item.compressedUrl} alt={item.originalName} className="w-full h-full object-cover" /></div>
                   <div className="flex-1 min-w-0">
                     <p className="text-[12px] sm:text-sm font-semibold text-light-text dark:text-dark-text truncate">{item.originalName}</p>
-                    <p className="text-[10px] sm:text-[11px] text-light-textSecondary dark:text-darkTextSecondary mt-0.5">{item.width} × {item.height} px</p>
+                    <p className="text-[10px] sm:text-[11px] text-light-textSecondary dark:text-dark-textSecondary mt-0.5">{item.width} × {item.height} px</p>
                     <div className="flex items-center gap-2 mt-1 text-[10px] sm:text-[11px]">
                       <span className="text-light-textSecondary dark:text-dark-textSecondary">{formatBytes(item.originalSize)}</span>
                       <span className="text-silk-rose">→</span>
@@ -116,7 +116,7 @@ export function Workspace() {
       )}
 
       {items.length === 0 && (
-        <div className="flex items-center justify-center gap-2 text-[11px] sm:text-xs text-lightTextSecondary dark:text-darkTextSecondary">
+        <div className="flex items-center justify-center gap-2 text-[11px] sm:text-xs text-light-textSecondary dark:text-dark-textSecondary">
           <FileImage className="w-3.5 h-3.5 text-silk-rose" />
           {bn ? "সব ফাইল আপনার ব্রাউজারেই প্রসেস হয়" : "All files are processed in your browser"}
         </div>

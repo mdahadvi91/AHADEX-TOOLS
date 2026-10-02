@@ -240,7 +240,7 @@ export function Workspace() {
       )}
 
       {!file && (
-        <div className="flex items-center justify-center gap-2 text-[11px] sm:text-xs text-lightTextSecondary dark:text-dark-textSecondary">
+        <div className="flex items-center justify-center gap-2 text-[11px] sm:text-xs text-light-textSecondary dark:text-dark-textSecondary">
           <CropIcon className="w-3.5 h-3.5 text-silk-rose" />
           {bn ? "সব ফাইল আপনার ব্রাউজারে প্রসেস হয়" : "All files are processed in your browser"}
         </div>

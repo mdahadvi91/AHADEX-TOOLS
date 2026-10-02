@@ -99,7 +99,7 @@ export function Workspace() {
             <span className="w-10 h-10 rounded-xl bg-silk-rose/10 border border-silk-rose/25 flex items-center justify-center shrink-0"><FileText className="w-5 h-5 text-silk-rose" /></span>
             <div className="flex-1 min-w-0">
               <p className="text-[12px] sm:text-sm font-semibold text-light-text dark:text-dark-text truncate">{pdf.name}</p>
-              <p className="text-[10px] sm:text-[11px] text-lightTextSecondary dark:text-darkTextSecondary mt-0.5">{pdf.pageCount} {bn ? "পেজ" : "pages"} · {formatBytes(pdf.size)}</p>
+              <p className="text-[10px] sm:text-[11px] text-light-textSecondary dark:text-dark-textSecondary mt-0.5">{pdf.pageCount} {bn ? "পেজ" : "pages"} · {formatBytes(pdf.size)}</p>
             </div>
             <button type="button" onClick={clearAll} className="w-7 h-7 rounded-lg flex items-center justify-center text-red-500 hover:bg-red-500/10 transition-colors shrink-0" aria-label="Clear"><X className="w-3.5 h-3.5" /></button>
           </div>
@@ -124,7 +124,7 @@ export function Workspace() {
             <div className="rounded-2xl bg-white/70 dark:bg-dark-surface/70 backdrop-blur-xl border border-silk-rose/20 p-3 space-y-2">
               <label className="block text-[11px] font-medium text-light-text dark:text-dark-text">{bn ? "পেজ রেঞ্জ" : "Page ranges"}</label>
               <input type="text" value={ranges} onChange={(e) => setRanges(e.target.value)} placeholder={bn ? "উদা: 1-3, 5, 7-9" : "e.g. 1-3, 5, 7-9"} className="w-full h-10 px-3 rounded-lg text-[13px] bg-white/80 dark:bg-dark-surface/80 border border-silk-rose/20 focus:border-silk-rose/50 text-light-text dark:text-dark-text outline-none transition-all" />
-              <div className="flex items-center justify-between text-[10px] text-lightTextSecondary dark:text-darkTextSecondary">
+              <div className="flex items-center justify-between text-[10px] text-light-textSecondary dark:text-dark-textSecondary">
                 <span>{bn ? `মোট পেজ: ${pdf.pageCount}` : `Total pages: ${pdf.pageCount}`}</span>
                 {parsedCount > 0 && <span className="text-silk-rose font-semibold">{parsedCount} {bn ? "পেজ নির্বাচিত" : "page(s) selected"}</span>}
               </div>
@@ -140,7 +140,7 @@ export function Workspace() {
 
           {/* Action */}
           <div className="flex items-center justify-between gap-3 flex-wrap p-3 rounded-2xl bg-white/70 dark:bg-dark-surface/70 backdrop-blur-xl border border-silk-rose/20">
-            <p className="text-[11px] text-lightTextSecondary dark:text-darkTextSecondary">
+            <p className="text-[11px] text-light-textSecondary dark:text-dark-textSecondary">
               {mode === "extract"
                 ? (bn ? "নির্বাচিত পেজ এক নতুন PDF-এ।" : "Selected pages go into one new PDF.")
                 : (bn ? "প্রতিটি পেজ আলাদা ফাইল হবে।" : "Each page becomes its own file.")}
@@ -174,7 +174,7 @@ export function Workspace() {
                   <div key={r.filename} className="flex items-center gap-2 p-2 rounded-lg bg-white/60 dark:bg-dark-surface/60">
                     <FileText className="w-3.5 h-3.5 text-silk-rose shrink-0" />
                     <span className="flex-1 text-[11px] text-light-text dark:text-dark-text truncate">{r.filename}</span>
-                    <span className="text-[10px] text-lightTextSecondary dark:text-darkTextSecondary shrink-0">{formatBytes(r.size)}</span>
+                    <span className="text-[10px] text-light-textSecondary dark:text-dark-textSecondary shrink-0">{formatBytes(r.size)}</span>
                     <button type="button" onClick={() => downloadResult(r)} className="w-7 h-7 rounded-md flex items-center justify-center text-silk-rose hover:bg-silk-rose/10 shrink-0" aria-label="Download"><Download className="w-3.5 h-3.5" /></button>
                   </div>
                 ))}
@@ -185,7 +185,7 @@ export function Workspace() {
       )}
 
       {!pdf && (
-        <div className="flex items-center justify-center gap-2 text-[11px] sm:text-xs text-lightTextSecondary dark:text-dark-textSecondary">
+        <div className="flex items-center justify-center gap-2 text-[11px] sm:text-xs text-light-textSecondary dark:text-dark-textSecondary">
           <FileText className="w-3.5 h-3.5 text-silk-rose" />
           {bn ? "আপনার PDF ব্রাউজারেই প্রসেস হয়" : "Your PDF is processed in your browser"}
         </div>

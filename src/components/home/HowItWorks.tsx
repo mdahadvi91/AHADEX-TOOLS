@@ -11,7 +11,7 @@ export function HowItWorks() {
     {
       number: "01",
       title: "Find your tool",
-      description: "Search or browse by category to find exactly what you need.",
+      description: "Search or filter the full tool list to find exactly what you need.",
     },
     {
       number: "02",

@@ -13,7 +13,7 @@ export function Intro() {
             <motion.div key={i} initial={{ opacity: 0, y: 12 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, amount: 0.2 }} transition={{ duration: 0.4, delay: i * 0.05 }} className="p-3.5 rounded-2xl bg-white/70 dark:bg-dark-surface/70 backdrop-blur-xl border border-silk-rose/15">
               <span className="text-2xl block mb-2">{h.emoji}</span>
               <h3 className="font-display font-bold text-[12px] sm:text-sm text-light-text dark:text-dark-text mb-1 leading-tight">{h.title}</h3>
-              <p className="text-[10px] sm:text-[11px] text-lightTextSecondary dark:text-dark-textSecondary leading-relaxed">{h.text}</p>
+              <p className="text-[10px] sm:text-[11px] text-light-textSecondary dark:text-dark-textSecondary leading-relaxed">{h.text}</p>
             </motion.div>
           ))}
         </div>

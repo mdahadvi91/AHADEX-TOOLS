@@ -23,7 +23,7 @@ const FAQS_EN = [
   {
     question: "How many tools are available?",
     answer:
-      "We're building a growing collection across six categories: Image, PDF, QR & Barcode, Text, Developer, and Calculators. More tools are added regularly.",
+      "We currently offer 17 free tools for images, PDFs, documents, and text. More tools are added regularly.",
   },
   {
     question: "Does it work on mobile?",
@@ -56,7 +56,7 @@ const FAQS_BN = [
   {
     question: "কতগুলো টুল আছে?",
     answer:
-      "আমরা ছয়টি ক্যাটাগরিতে বাড়তে থাকা সংগ্রহ বানাচ্ছি: ইমেজ, PDF, QR ও বারকোড, টেক্সট, ডেভেলপার, ও ক্যালকুলেটর।",
+      "আমরা ইমেজ, PDF, ডকুমেন্ট ও টেক্সটের জন্য ১৭টি ফ্রি টুল অফার করছি। নিয়মিত নতুন টুল যোগ হচ্ছে।",
   },
   {
     question: "মোবাইলে কাজ করে?",

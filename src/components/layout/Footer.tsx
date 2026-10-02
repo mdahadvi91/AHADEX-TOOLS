@@ -13,9 +13,6 @@ export function Footer() {
       title: t.footer.tools,
       links: [
         { to: "/tools", label: t.footer.allTools },
-        { to: "/categories/image", label: t.footer.imageTools },
-        { to: "/categories/pdf", label: t.footer.pdfTools },
-        { to: "/categories/qr", label: t.footer.qrTools },
       ],
     },
     {

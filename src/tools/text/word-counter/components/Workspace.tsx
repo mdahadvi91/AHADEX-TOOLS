@@ -37,7 +37,7 @@ export function Workspace() {
             "w-full min-h-[380px] sm:min-h-[480px] p-4 resize-y",
             "bg-transparent text-[14px] sm:text-[15px] leading-relaxed",
             "text-light-text dark:text-dark-text",
-            "placeholder:text-lightTextSecondary/50 dark:placeholder:text-darkTextSecondary/40",
+            "placeholder:text-light-textSecondary/50 dark:placeholder:text-dark-textSecondary/40",
             "outline-none"
           )}
         />
@@ -79,12 +79,12 @@ export function Workspace() {
         {/* Extra info */}
         <div className="rounded-2xl bg-white/70 dark:bg-dark-surface/70 backdrop-blur-xl border border-silk-rose/20 p-3 space-y-2">
           <div className="flex items-center justify-between text-[12px]">
-            <span className="text-lightTextSecondary dark:text-dark-textSecondary">{bn ? "গড় শব্দ-দৈর্ঘ্য" : "Avg word length"}</span>
+            <span className="text-light-textSecondary dark:text-dark-textSecondary">{bn ? "গড় শব্দ-দৈর্ঘ্য" : "Avg word length"}</span>
             <span className="font-mono font-semibold text-light-text dark:text-dark-text">{stats.avgWordLength.toFixed(1)}</span>
           </div>
           {stats.longestWord && (
             <div className="flex items-center justify-between gap-2 text-[12px]">
-              <span className="text-lightTextSecondary dark:text-dark-textSecondary">{bn ? "দীর্ঘতম শব্দ" : "Longest word"}</span>
+              <span className="text-light-textSecondary dark:text-dark-textSecondary">{bn ? "দীর্ঘতম শব্দ" : "Longest word"}</span>
               <span className="font-mono font-semibold text-light-text dark:text-dark-text truncate max-w-[160px]">{stats.longestWord}</span>
             </div>
           )}
@@ -101,7 +101,7 @@ export function Workspace() {
               {stats.keywordDensity.map((k) => (
                 <div key={k.word} className="flex items-center gap-2 text-[11px]">
                   <span className="flex-1 truncate text-light-text dark:text-dark-text">{k.word}</span>
-                  <span className="font-mono text-lightTextSecondary dark:text-dark-textSecondary">{k.count}</span>
+                  <span className="font-mono text-light-textSecondary dark:text-dark-textSecondary">{k.count}</span>
                   <span className="w-12 text-right font-mono text-silk-rose">{k.percent.toFixed(1)}%</span>
                 </div>
               ))}
@@ -117,7 +117,7 @@ function Stat({ label, value, highlight = false }: { label: string; value: strin
   return (
     <div className={cn("rounded-xl border p-2.5 sm:p-3", highlight ? "bg-gradient-to-br from-silk-rose/15 to-silk-gold/10 border-silk-rose/30" : "bg-white/70 dark:bg-dark-surface/70 backdrop-blur-xl border-silk-rose/20")}>
       <p className={cn("font-display font-black text-lg sm:text-xl leading-none", highlight ? "text-silk-rose" : "text-light-text dark:text-dark-text")}>{value}</p>
-      <p className="text-[9px] sm:text-[10px] uppercase tracking-wider text-lightTextSecondary dark:text-dark-textSecondary mt-1">{label}</p>
+      <p className="text-[9px] sm:text-[10px] uppercase tracking-wider text-light-textSecondary dark:text-dark-textSecondary mt-1">{label}</p>
     </div>
   );
 }
