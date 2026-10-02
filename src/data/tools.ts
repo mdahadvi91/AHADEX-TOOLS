@@ -93,6 +93,30 @@ export const tools: Tool[] = [
       ogImage: "/images/og/tools/cv-builder-og.svg",
     },
   },
+  {
+    id: "jpg-to-png",
+    slug: "jpg-to-png",
+    name: "JPG to PNG",
+    path: "/tools/jpg-to-png",
+    description:
+      "Convert JPG images to PNG format instantly in your browser. Lossless, batch-capable, no uploads.",
+    longDescription:
+      "JPG to PNG Converter re-encodes your JPEG photos as lossless PNG images. Everything runs in your browser — no uploads, no servers, no accounts. Batch-convert multiple files and download them individually or all at once.",
+    keywords: ["jpg", "png", "convert", "image", "converter"],
+    popular: true,
+    newTool: true,
+    features: [],
+    howTo: [],
+    faq: [],
+    relatedTools: ["photo-qr", "image-compressor"],
+    seo: {
+      title:
+        "JPG to PNG Converter — Free, Fast & Private | AHADEX Tools",
+      description:
+        "Convert JPG to PNG instantly in your browser. Lossless, batch, no uploads.",
+      ogImage: "/images/og/default-og.svg",
+    },
+  },
 ];
 
 export const TOOL_COUNT = tools.length;

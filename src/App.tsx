@@ -30,6 +30,7 @@ const NotFoundPage = lazy(() => import("@pages/NotFoundPage"));
 const PhotoQrTool = lazy(() => import("@tools/qr/photo-qr"));
 const VisitingCardTool = lazy(() => import("@tools/design/visiting-card"));
 const CVBuilderTool = lazy(() => import("@tools/documents/cv-builder"));
+const JpgToPngTool = lazy(() => import("@tools/image/jpg-to-png"));
 
 const CVBuilderEditor = lazy(() =>
   import("@tools/documents/cv-builder/editor").then((m) => ({
@@ -94,6 +95,10 @@ export default function App() {
                   <Route
                     path="tools/cv-builder"
                     element={<CVBuilderTool />}
+                  />
+                  <Route
+                    path="tools/jpg-to-png"
+                    element={<JpgToPngTool />}
                   />
                   <Route
                     path="tools/cv-builder/edit/:templateId"
