@@ -1,19 +1,18 @@
 import { useEffect, useMemo, useRef, useState } from "react";
 import { useLanguage } from "@contexts/LanguageContext";
 import { getPlatform } from "./options";
-import {
-  composePhoto,
-  generatePreview,
-} from "./logic";
+import { composePhoto, generatePreview } from "./logic";
 import { Hero } from "./Hero";
 import { Workspace } from "./Workspace";
 import { SettingsPanel } from "./SettingsPanel";
 import { PreviewPanel } from "./PreviewPanel";
 import { PrivacyNote } from "./PrivacyNote";
+import { Intro } from "./Intro";
 import { HowTo } from "./HowTo";
 import { Features } from "./Features";
 import { FAQ } from "./FAQ";
 import { RelatedTools } from "./RelatedTools";
+import { SEO } from "./SEO";
 import { photoQrData } from "./data";
 import { photoQrContent } from "./content";
 import type { Position, QrBackground } from "./types";
@@ -167,21 +166,21 @@ export default function PhotoQrTool() {
             generating={generating}
             hasPayload={Boolean(payload)}
             platform={platform}
+            onError={(msg) => setError(msg)}
           />
         }
       />
 
       <PrivacyNote text={content.privacyNote} />
 
-      <div className="max-w-3xl pb-20">
-        <p className="text-[15px] sm:text-base text-light-textSecondary dark:text-dark-textSecondary leading-relaxed mb-14">
-          {content.intro}
-        </p>
+      <Intro />
+
+      <div className="max-w-3xl">
+        <HowTo steps={content.howTo} />
+        <Features features={content.features} />
+        <FAQ faqs={content.faq} />
       </div>
 
-      <HowTo steps={content.howTo} />
-      <Features features={content.features} />
-      <FAQ faqs={content.faq} />
       <RelatedTools toolIds={photoQrData.relatedTools} />
     </div>
   );
