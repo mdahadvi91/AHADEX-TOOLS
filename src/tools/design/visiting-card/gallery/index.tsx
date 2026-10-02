@@ -1,12 +1,14 @@
 import { useEffect, useRef, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import { motion } from "framer-motion";
+import { ArrowRight } from "lucide-react";
 import { useLanguage } from "@contexts/LanguageContext";
 import { cn } from "@lib/cn";
 import { TEMPLATES } from "../templates";
 import { renderSide } from "../shared/renderer";
 import { DEFAULT_USER_DATA } from "../types";
 import { getCardSizeFromId } from "../shared/sizes";
+import { getToolEmoji } from "@components/common/toolEmojis";
 import { Hero } from "../Hero";
 import { HowTo } from "../HowTo";
 import { Features } from "../Features";
@@ -14,16 +16,35 @@ import { FAQ } from "../FAQ";
 import { PrivacyNote } from "../PrivacyNote";
 import type { Template } from "../types";
 
+const RELATED_TOOLS = [
+  {
+    to: "/tools/cv-builder",
+    toolId: "cv-builder",
+    titleEn: "CV / Resume Builder",
+    titleBn: "সিভি / রেজুমে বিল্ডার",
+    descEn: "Build a professional CV with 20 templates",
+    descBn: "২০টি টেমপ্লেটে পেশাদার সিভি",
+    accent: "#8B9DC7",
+  },
+  {
+    to: "/tools/photo-qr",
+    toolId: "photo-qr",
+    titleEn: "Photo QR Code",
+    titleBn: "ফটো QR কোড",
+    descEn: "Add a scannable QR to any photo",
+    descBn: "যেকোনো ছবিতে QR যোগ করুন",
+    accent: "#C99667",
+  },
+];
+
 export function Gallery() {
   const { language } = useLanguage();
   const navigate = useNavigate();
 
   return (
     <div className="mx-auto max-w-[1400px] px-4 sm:px-6 lg:px-8">
-      {/* HERO */}
       <Hero />
 
-      {/* GALLERY */}
       <section id="templates" className="pb-12 sm:pb-16">
         <div className="mb-6 sm:mb-10 text-center max-w-2xl mx-auto">
           <h2 className="font-display font-black text-2xl sm:text-3xl lg:text-4xl text-light-text dark:text-dark-text">
@@ -50,11 +71,54 @@ export function Gallery() {
         </motion.div>
       </section>
 
-      {/* INFO SECTIONS */}
       <HowTo />
       <Features />
       <PrivacyNote />
       <FAQ />
+
+      {/* RELATED TOOLS */}
+      <section className="py-10 sm:py-14 pb-20">
+        <div className="max-w-3xl mx-auto">
+          <h2 className="font-display font-black text-xl sm:text-2xl text-light-text dark:text-dark-text mb-6 text-center">
+            {language === "bn"
+              ? "অন্য যেসব টুল ভালো লাগতে পারে"
+              : "Other tools you may like"}
+          </h2>
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+            {RELATED_TOOLS.map((t) => (
+              <Link
+                key={t.to}
+                to={t.to}
+                className={cn(
+                  "group flex items-center gap-3 p-4 rounded-2xl",
+                  "bg-white/70 dark:bg-dark-surface/70 backdrop-blur-xl",
+                  "border border-silk-rose/15 hover:border-silk-rose/50",
+                  "hover:-translate-y-0.5 transition-all"
+                )}
+              >
+                <span
+                  className="w-11 h-11 rounded-xl flex items-center justify-center shrink-0 border text-xl sm:text-2xl"
+                  style={{
+                    backgroundColor: `${t.accent}15`,
+                    borderColor: `${t.accent}40`,
+                  }}
+                >
+                  {getToolEmoji(t.toolId)}
+                </span>
+                <div className="flex-1 min-w-0">
+                  <p className="font-display font-semibold text-sm text-light-text dark:text-dark-text leading-tight">
+                    {language === "bn" ? t.titleBn : t.titleEn}
+                  </p>
+                  <p className="text-[11px] text-lightTextSecondary dark:text-darkTextSecondary mt-0.5">
+                    {language === "bn" ? t.descBn : t.descEn}
+                  </p>
+                </div>
+                <ArrowRight className="w-4 h-4 text-silk-rose shrink-0 group-hover:translate-x-0.5 transition-transform" />
+              </Link>
+            ))}
+          </div>
+        </div>
+      </section>
     </div>
   );
 }
@@ -83,12 +147,7 @@ function TemplateCard({
           const ctx = frontRef.current.getContext("2d");
           if (ctx) {
             await renderSide({
-              ctx,
-              template,
-              side: "front",
-              userData: DEFAULT_USER_DATA,
-              W,
-              H,
+              ctx, template, side: "front", userData: DEFAULT_USER_DATA, W, H,
             });
           }
         }
@@ -96,24 +155,15 @@ function TemplateCard({
           const ctx = backRef.current.getContext("2d");
           if (ctx) {
             await renderSide({
-              ctx,
-              template,
-              side: "back",
-              userData: DEFAULT_USER_DATA,
-              W,
-              H,
+              ctx, template, side: "back", userData: DEFAULT_USER_DATA, W, H,
             });
           }
         }
         if (!cancelled) setReady(true);
-      } catch {
-        /* ignore */
-      }
+      } catch { /* ignore */ }
     }
     void go();
-    return () => {
-      cancelled = true;
-    };
+    return () => { cancelled = true; };
   }, [template, W, H]);
 
   return (
@@ -136,41 +186,32 @@ function TemplateCard({
               {language === "bn" ? "সামনে" : "Front"}
             </span>
           </div>
-          <div
-            className="relative w-full overflow-hidden rounded-md bg-white shadow-sm"
-            style={{ aspectRatio: `${W} / ${H}` }}
-          >
+          <div className="relative w-full overflow-hidden rounded-md bg-white shadow-sm" style={{ aspectRatio: `${W} / ${H}` }}>
             <canvas ref={frontRef} width={W} height={H} className="w-full h-full block" />
           </div>
         </div>
-
         <div className="space-y-1">
           <div className="flex items-center gap-1">
             <span className="px-1.5 py-0.5 rounded-full bg-silk-wine-deep text-white text-[7px] font-bold uppercase tracking-wider">
               {language === "bn" ? "পিছনে" : "Back"}
             </span>
           </div>
-          <div
-            className="relative w-full overflow-hidden rounded-md bg-white shadow-sm"
-            style={{ aspectRatio: `${W} / ${H}` }}
-          >
+          <div className="relative w-full overflow-hidden rounded-md bg-white shadow-sm" style={{ aspectRatio: `${W} / ${H}` }}>
             <canvas ref={backRef} width={W} height={H} className="w-full h-full block" />
           </div>
         </div>
       </div>
-
       {!ready && (
         <div className="absolute inset-0 flex items-center justify-center bg-white/40 backdrop-blur-sm rounded-2xl pointer-events-none">
           <span className="w-5 h-5 rounded-full border-2 border-silk-rose/40 border-t-silk-rose animate-spin" />
         </div>
       )}
-
       <div className="flex items-center justify-between gap-2 pt-1">
         <div className="min-w-0">
           <h3 className="font-display font-bold text-sm text-light-text dark:text-dark-text leading-tight truncate">
             {language === "bn" ? template.nameBn : template.name}
           </h3>
-          <p className="text-[10px] text-light-textSecondary dark:text-dark-textSecondary capitalize mt-0.5">
+          <p className="text-[10px] text-lightTextSecondary dark:text-darkTextSecondary capitalize mt-0.5">
             {template.category}
           </p>
         </div>

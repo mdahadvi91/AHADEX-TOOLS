@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import { ArrowUpRight } from "lucide-react";
 import { motion } from "framer-motion";
-import { getToolIcon } from "@components/common/toolIcons";
+import { getToolEmoji } from "@components/common/toolEmojis";
 import { FavoriteButton } from "./FavoriteButton";
 import { useLanguage } from "@contexts/LanguageContext";
 import { getToolTranslation } from "@i18n/toolTranslations";
@@ -15,23 +15,13 @@ interface SmallToolCardProps {
   onToggleFavorite?: (id: string) => void;
 }
 
-const ICON_COLORS: Record<string, string> = {
-  image: "text-silk-rose",
-  pdf: "text-silk-wine dark:text-silk-rose-soft",
-  qr: "text-silk-gold",
-  text: "text-silk-rose-deep",
-  developer: "text-silk-rose-soft",
-  calculators: "text-silk-wine dark:text-silk-rose-soft",
-};
-
 export function SmallToolCard({
   tool,
   index = 0,
   isFavorite = false,
   onToggleFavorite,
 }: SmallToolCardProps) {
-  const Icon = getToolIcon(tool.id);
-  const iconColor = ICON_COLORS[tool.category] ?? "text-silk-rose";
+  const emoji = getToolEmoji(tool.id);
   const { language, t } = useLanguage();
 
   const translated = getToolTranslation(tool.id, language, {
@@ -40,7 +30,8 @@ export function SmallToolCard({
   });
 
   const categoryLabel =
-    t.categories[tool.category as keyof typeof t.categories] ?? tool.category;
+    t.categories[tool.category as keyof typeof t.categories] ??
+    tool.category;
 
   return (
     <motion.div
@@ -80,7 +71,7 @@ export function SmallToolCard({
           }}
         />
 
-        {/* Top row — icon + favorite */}
+        {/* Top row — emoji + favorite */}
         <div className="relative flex items-start justify-between gap-2 mb-3 sm:mb-4">
           <div className="w-12 h-12 sm:w-14 sm:h-14 rounded-2xl bg-gradient-to-br from-silk-rose/15 via-silk-wine/8 to-silk-gold/10 border border-silk-rose/25 flex items-center justify-center group-hover:bg-silk-rose/25 group-hover:border-silk-rose/45 transition-all duration-400 overflow-hidden relative">
             <span
@@ -103,26 +94,10 @@ export function SmallToolCard({
                 ease: "easeInOut",
                 delay: index * 0.15,
               }}
-              className="relative flex items-center justify-center"
+              className="relative flex items-center justify-center text-2xl sm:text-3xl leading-none"
+              aria-hidden="true"
             >
-              <Icon
-                size={22}
-                strokeWidth={1.8}
-                className={cn(
-                  iconColor,
-                  "sm:hidden group-hover:scale-110 transition-transform duration-400"
-                )}
-                aria-hidden="true"
-              />
-              <Icon
-                size={26}
-                strokeWidth={1.7}
-                className={cn(
-                  iconColor,
-                  "hidden sm:block group-hover:scale-110 transition-transform duration-400"
-                )}
-                aria-hidden="true"
-              />
+              {emoji}
             </motion.span>
           </div>
 
@@ -150,7 +125,7 @@ export function SmallToolCard({
           </div>
         )}
 
-        {/* Title — BIGGER on mobile */}
+        {/* Title */}
         <h3
           className={cn(
             "relative font-display font-bold leading-tight mb-1.5 sm:mb-2",
@@ -163,7 +138,7 @@ export function SmallToolCard({
           {translated.name}
         </h3>
 
-        {/* Description — BIGGER on mobile */}
+        {/* Description */}
         <p
           className={cn(
             "relative leading-relaxed line-clamp-2 flex-1",
@@ -174,7 +149,7 @@ export function SmallToolCard({
           {translated.description}
         </p>
 
-        {/* Bottom row — bigger text on mobile */}
+        {/* Bottom row */}
         <div className="relative flex items-center justify-between pt-3 mt-3 border-t border-silk-rose/10">
           <span
             className={cn(
@@ -185,7 +160,7 @@ export function SmallToolCard({
           >
             {categoryLabel}
           </span>
-          <ArrowUpRight className="w-3.5 h-3.5 sm:w-3.5 sm:h-3.5 text-silk-rose opacity-0 -translate-x-1 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300" />
+          <ArrowUpRight className="w-3.5 h-3.5 text-silk-rose opacity-0 -translate-x-1 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300" />
         </div>
       </Link>
     </motion.div>
