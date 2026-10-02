@@ -20,7 +20,7 @@ export function CategoryGrid() {
             <span className="font-script text-silk-rose">organised</span>
           </h2>
           <p className="mt-4 text-sm text-light-textSecondary dark:text-dark-textSecondary max-w-xl mx-auto">
-            Six categories. 42 tools. All running in your browser.
+            Six categories. . All running in your browser.
           </p>
         </div>
 

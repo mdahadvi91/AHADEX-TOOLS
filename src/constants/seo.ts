@@ -4,14 +4,14 @@ export const SEO_DEFAULTS = {
   titleSuffix: ` | ${APP_CONFIG.name}`,
   description:
     "Free, fast and private online tools. Convert images, merge PDFs, generate QR codes, and more — all in your browser.",
-  ogImage: "/images/og/default-og.jpg",
+  ogImage: "/images/og/default-og.svg",
   ogType: "website" as const,
   twitterCard: "summary_large_image" as const,
 } as const;
 
 export const TITLE_TEMPLATES = {
-  home: `${APP_CONFIG.name} — 42 Free & Private Online Tools`,
-  tools: `All Tools — 42 Free Online Utilities${SEO_DEFAULTS.titleSuffix}`,
+  home: `${APP_CONFIG.name} — Free, Fast, Private Online Tools`,
+  tools: `All Tools — Free Online Utilities${SEO_DEFAULTS.titleSuffix}`,
   category: (name: string) => `${name} — Free Online${SEO_DEFAULTS.titleSuffix}`,
   tool: (name: string) => `${name} — Free Online${SEO_DEFAULTS.titleSuffix}`,
   about: `About${SEO_DEFAULTS.titleSuffix}`,
