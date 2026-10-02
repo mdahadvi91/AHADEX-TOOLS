@@ -11,7 +11,7 @@ import { ToolsHero } from "./ToolsHero";
 import { ToolsSearch } from "./ToolsSearch";
 import { SmallToolCard } from "./SmallToolCard";
 import { GridBackground } from "./GridBackground";
-import { ToolIcon } from "@components/common/ToolIcon";
+import { getToolEmoji } from "@components/common/toolEmojis";
 import { getPlannedToolTranslation } from "@i18n/plannedToolTranslations";
 
 export function ToolsShowcase() {
@@ -40,7 +40,7 @@ export function ToolsShowcase() {
     const q = query.trim().toLowerCase();
     if (!q) return [];
     const matches = tools.filter((tool) =>
-      [tool.name, tool.description, tool.category, ...tool.keywords]
+      [tool.name, tool.description, ...tool.keywords]
         .join(" ")
         .toLowerCase()
         .includes(q)
@@ -175,7 +175,7 @@ function ComingSoonCard({ tool, index }: { tool: PlannedTool; index: number }) {
             "bg-silk-rose/8 border border-silk-rose/20"
           )}
         >
-          <ToolIcon category={tool.category} size={20} />
+          {getToolEmoji(tool.id)}
         </span>
         <span className="text-[9px] font-bold uppercase tracking-wider text-silk-rose/70 border border-silk-rose/25 px-2 py-0.5 rounded-full">
           {language === "bn" ? "শীঘ্রই" : "Soon"}

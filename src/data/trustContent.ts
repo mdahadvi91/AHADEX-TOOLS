@@ -1,5 +1,5 @@
 import type { TrustPageContent } from "@components/trust/TrustPageLayout";
-import type { Language } from "@types/common";
+import type { Language } from "@/types/common";
 
 const CONTACT = "mdahadvi91@gmail.com";
 const UPDATED_EN = "Last updated: October 2025";

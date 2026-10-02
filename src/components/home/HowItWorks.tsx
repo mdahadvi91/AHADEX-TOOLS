@@ -1,7 +1,6 @@
 import { Search, MousePointerClick, Download } from "lucide-react";
 import { motion } from "framer-motion";
 import { useReducedMotion } from "@hooks/useReducedMotion";
-import { cn } from "@lib/cn";
 
 const ICONS = [Search, MousePointerClick, Download];
 

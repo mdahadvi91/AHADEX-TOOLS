@@ -1,6 +1,5 @@
 import { X, Loader2 } from "lucide-react";
 import { useLanguage } from "@contexts/LanguageContext";
-import { cn } from "@lib/cn";
 import { UploadZone } from "./UploadZone";
 import type { PlatformConfig } from "./types";
 

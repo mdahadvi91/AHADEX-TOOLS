@@ -1,5 +1,3 @@
-import type { CategoryId } from "./category";
-
 export interface ToolFAQ {
   question: string;
   answer: string;
@@ -28,7 +26,6 @@ export interface Tool {
   name: string;
   description: string;
   longDescription: string;
-  category: CategoryId;
   keywords: string[];
   path: string;
   icon?: string;

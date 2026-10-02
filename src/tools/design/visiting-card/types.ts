@@ -1,5 +1,5 @@
 /* ============================================================
- * AHADEX Visiting Card — Data-Driven Type System
+ * AHADEX Visiting Card — Type System
  * ============================================================ */
 
 export type CardSideId = "front" | "back";
@@ -16,7 +16,8 @@ export type TemplateCategory =
   | "elegant"
   | "dark"
   | "light"
-  | "nature";
+  | "nature"
+  | "bold";
 
 /* ============================================================
  * BACKGROUND
@@ -39,9 +40,7 @@ export interface Background {
 interface BaseElement {
   id: string;
   visible: boolean;
-  /** 0-1 relative to card width */
   x: number;
-  /** 0-1 relative to card height */
   y: number;
   rotation?: number;
   opacity?: number;
@@ -148,7 +147,7 @@ export interface IconElement extends BaseElement {
 }
 
 /* ============================================================
- * ORNAMENT ELEMENT — decorative vector art
+ * ORNAMENT ELEMENT
  * ============================================================ */
 
 export type OrnamentKind =
@@ -237,7 +236,7 @@ export const DEFAULT_USER_DATA: UserData = {
   title: "Founder & Developer",
   phone: "+880 123 456 789",
   email: "ahadvi@gmail.com",
-  website: "www.ahadex.online",
+  website: "www.ahadex.fun",
   location: "Dhaka, Bangladesh",
   qrLabel: "Scan to visit",
   qrPayload: "https://ahadex.fun",
@@ -271,13 +270,28 @@ export interface CardSize {
 }
 
 /* ============================================================
+ * EXPORT
+ * ============================================================ */
+
+export type ExportFormat = "png" | "jpg" | "pdf";
+export type ExportDPI = 150 | 300 | 600;
+
+export interface ExportOptions {
+  format: ExportFormat;
+  dpi: ExportDPI;
+  widthMm: number;
+  heightMm: number;
+  filename: string;
+}
+
+/* ============================================================
  * PRINT
  * ============================================================ */
 
 export interface PrintSettings {
   widthMm: number;
   heightMm: number;
-  dpi: 150 | 300 | 600;
+  dpi: ExportDPI;
   bleedMm: number;
   safeMarginMm: number;
 }

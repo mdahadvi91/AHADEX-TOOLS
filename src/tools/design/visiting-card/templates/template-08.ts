@@ -40,7 +40,7 @@ export const template08: Template = {
       /* Contacts */
       { id: "phone", type: "text", contentKey: "phone", defaultValue: "+880 123 456 789", visible: true, x: 0.1, y: 0.56, fontFamily: "sans", fontSize: 13, fontWeight: 400, color: "#E5C9A4", align: "left" },
       { id: "email", type: "text", contentKey: "email", defaultValue: "ahadvi@gmail.com", visible: true, x: 0.1, y: 0.65, fontFamily: "sans", fontSize: 13, fontWeight: 400, color: "#E5C9A4", align: "left" },
-      { id: "website", type: "text", contentKey: "website", defaultValue: "www.ahadex.online", visible: true, x: 0.1, y: 0.74, fontFamily: "sans", fontSize: 13, fontWeight: 400, color: "#8B6A45", align: "left" },
+      { id: "website", type: "text", contentKey: "website", defaultValue: "www.ahadex.fun", visible: true, x: 0.1, y: 0.74, fontFamily: "sans", fontSize: 13, fontWeight: 400, color: "#8B6A45", align: "left" },
       { id: "location", type: "text", contentKey: "location", defaultValue: "Dhaka, Bangladesh", visible: true, x: 0.1, y: 0.83, fontFamily: "sans", fontSize: 12, fontWeight: 400, color: "#8B6A45", align: "left" },
       /* QR with gold frame */
       { id: "qr-frame", type: "shape", shape: "rect", visible: true, x: 0.79, y: 0.55, width: 0.32, height: 0.32, stroke: "#C99667", strokeWidth: 0.6, fill: "transparent" },

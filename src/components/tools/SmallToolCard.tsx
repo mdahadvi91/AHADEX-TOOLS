@@ -6,7 +6,7 @@ import { FavoriteButton } from "./FavoriteButton";
 import { useLanguage } from "@contexts/LanguageContext";
 import { getToolTranslation } from "@i18n/toolTranslations";
 import { cn } from "@lib/cn";
-import type { Tool } from "@types/tool";
+import type { Tool } from "@/types/tool";
 
 interface SmallToolCardProps {
   tool: Tool;
@@ -22,16 +22,12 @@ export function SmallToolCard({
   onToggleFavorite,
 }: SmallToolCardProps) {
   const emoji = getToolEmoji(tool.id);
-  const { language, t } = useLanguage();
+  const { language } = useLanguage();
 
   const translated = getToolTranslation(tool.id, language, {
     name: tool.name,
     description: tool.description,
   });
-
-  const categoryLabel =
-    t.categories[tool.category as keyof typeof t.categories] ??
-    tool.category;
 
   return (
     <motion.div
@@ -149,18 +145,9 @@ export function SmallToolCard({
           {translated.description}
         </p>
 
-        {/* Bottom row */}
-        <div className="relative flex items-center justify-between pt-3 mt-3 border-t border-silk-rose/10">
-          <span
-            className={cn(
-              "uppercase tracking-[0.12em] sm:tracking-[0.15em] font-semibold",
-              "text-[10px] sm:text-[9px]",
-              "text-silk-wine/55 dark:text-silk-rose/45"
-            )}
-          >
-            {categoryLabel}
-          </span>
-          <ArrowUpRight className="w-3.5 h-3.5 text-silk-rose opacity-0 -translate-x-1 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300" />
+        {/* Bottom row — just arrow, no category label */}
+        <div className="relative flex items-center justify-end pt-3 mt-3 border-t border-silk-rose/10">
+          <ArrowUpRight className="w-3.5 h-3.5 text-silk-rose opacity-60 group-hover:opacity-100 -translate-x-1 group-hover:translate-x-0 transition-all duration-300" />
         </div>
       </Link>
     </motion.div>

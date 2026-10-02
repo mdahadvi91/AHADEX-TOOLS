@@ -1,0 +1,40 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" width="1200" height="630">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0A0A0A"/>
+      <stop offset="100%" stop-color="#1A0F1A"/>
+    </linearGradient>
+    <linearGradient id="rose" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#D88B9A"/>
+      <stop offset="50%" stop-color="#C99667"/>
+      <stop offset="100%" stop-color="#8B3A4F"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="1200" height="630" fill="url(#bg)"/>
+  <circle cx="150" cy="100" r="300" fill="#D88B9A" opacity="0.15" filter="blur(80px)"/>
+  <circle cx="1050" cy="530" r="300" fill="#C99667" opacity="0.15" filter="blur(80px)"/>
+
+  <!-- Icon row -->
+  <g transform="translate(140, 200)">
+    <rect width="80" height="80" rx="16" fill="#D88B9A" opacity="0.15"/>
+    <text x="40" y="52" font-family="system-ui, sans-serif" font-size="40" text-anchor="middle" fill="#D88B9A">📸</text>
+
+    <rect x="110" width="80" height="80" rx="16" fill="#C99667" opacity="0.15"/>
+    <text x="150" y="52" font-family="system-ui, sans-serif" font-size="40" text-anchor="middle" fill="#C99667">🎴</text>
+
+    <rect x="220" width="80" height="80" rx="16" fill="#8B9DC7" opacity="0.15"/>
+    <text x="260" y="52" font-family="system-ui, sans-serif" font-size="40" text-anchor="middle" fill="#8B9DC7">📄</text>
+  </g>
+
+  <!-- Right text -->
+  <g transform="translate(140, 340)">
+    <text x="0" y="0" font-family="system-ui, sans-serif" font-size="14" font-weight="700" fill="#D88B9A" letter-spacing="6">AHADEX TOOLS</text>
+    <text x="0" y="70" font-family="Georgia, serif" font-size="58" font-weight="900" fill="#FFF6F1">Free, fast &amp; private</text>
+    <text x="0" y="132" font-family="Georgia, serif" font-size="58" font-weight="900" fill="url(#rose)">browser-based tools</text>
+    <text x="0" y="180" font-family="system-ui, sans-serif" font-size="18" fill="#B8B8C8">No uploads · No tracking · Runs entirely in your browser</text>
+  </g>
+
+  <text x="140" y="580" font-family="system-ui, sans-serif" font-size="13" fill="#8B6A45" letter-spacing="2">ahadex.fun</text>
+  <rect x="0" y="0" width="1200" height="3" fill="url(#rose)"/>
+</svg>

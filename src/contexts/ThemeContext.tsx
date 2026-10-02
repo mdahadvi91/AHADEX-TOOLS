@@ -8,7 +8,7 @@ import {
   type ReactNode,
 } from "react";
 import { STORAGE_KEYS, DEFAULT_THEME } from "@constants/config";
-import type { Theme } from "@types/common";
+import type { Theme } from "@/types/common";
 
 interface ThemeContextValue {
   theme: Theme;

@@ -3,9 +3,9 @@ import { motion } from "framer-motion";
 import { ArrowUpRight } from "lucide-react";
 import { tools } from "@data/tools";
 import { useReducedMotion } from "@hooks/useReducedMotion";
-import { ToolIcon } from "@components/common/ToolIcon";
+import { getToolEmoji } from "@components/common/toolEmojis";
 import { cn } from "@lib/cn";
-import type { Tool } from "@types/tool";
+import type { Tool } from "@/types/tool";
 
 export function PopularTools() {
   const prefersReduced = useReducedMotion();
@@ -104,7 +104,7 @@ function FeaturedCard({ tool }: { tool: Tool }) {
         {/* Icon + badge */}
         <div className="flex items-start justify-between gap-3">
           <span className="w-16 h-16 rounded-2xl bg-white/15 backdrop-blur-md border border-white/30 flex items-center justify-center">
-            <ToolIcon category={tool.category} size={32} className="brightness-0 invert opacity-95" />
+            {getToolEmoji(tool.id)}
           </span>
           <span className="inline-flex items-center px-3 py-1 rounded-full bg-white/20 backdrop-blur-sm text-[10px] font-medium tracking-widest uppercase border border-white/30">
             Featured
@@ -156,7 +156,7 @@ function SmallCard({ tool }: { tool: Tool }) {
             "transition-all duration-500"
           )}
         >
-          <ToolIcon category={tool.category} size={24} />
+          {getToolEmoji(tool.id)}
         </span>
         <ArrowUpRight className="w-5 h-5 text-silk-rose opacity-0 group-hover:opacity-100 transition-opacity" />
       </div>

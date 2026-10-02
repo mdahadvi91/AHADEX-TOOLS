@@ -17,7 +17,7 @@ export function HeroSearch() {
     if (!q) return [];
     return tools
       .filter((t) =>
-        [t.name, t.description, t.category, ...t.keywords]
+        [t.name, t.description, ...t.keywords]
           .join(" ")
           .toLowerCase()
           .includes(q)

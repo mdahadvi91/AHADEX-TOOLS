@@ -1,12 +1,20 @@
 import { lazy, Suspense, useEffect } from "react";
-import { BrowserRouter, Routes, Route, Navigate, useLocation } from "react-router-dom";
+import {
+  BrowserRouter,
+  Routes,
+  Route,
+  Navigate,
+  useLocation,
+} from "react-router-dom";
 import { MainLayout } from "@components/layout/MainLayout";
 import { ThemeProvider } from "@contexts/ThemeContext";
 import { LanguageProvider } from "@contexts/LanguageContext";
 import { SoundProvider } from "@contexts/SoundContext";
 
+/* ------------------------------------------------------------------
+ * Pages
+ * ------------------------------------------------------------------ */
 const ToolsIndexPage = lazy(() => import("@pages/ToolsIndexPage"));
-const CategoryPage = lazy(() => import("@pages/CategoryPage"));
 const AboutPage = lazy(() => import("@pages/AboutPage"));
 const ContactPage = lazy(() => import("@pages/ContactPage"));
 const PrivacyPage = lazy(() => import("@pages/PrivacyPage"));
@@ -16,16 +24,28 @@ const AccessibilityPage = lazy(() => import("@pages/AccessibilityPage"));
 const CookiePolicyPage = lazy(() => import("@pages/CookiePolicyPage"));
 const NotFoundPage = lazy(() => import("@pages/NotFoundPage"));
 
+/* ------------------------------------------------------------------
+ * Tools
+ * ------------------------------------------------------------------ */
 const PhotoQrTool = lazy(() => import("@tools/qr/photo-qr"));
 const VisitingCardTool = lazy(() => import("@tools/design/visiting-card"));
 const CVBuilderTool = lazy(() => import("@tools/documents/cv-builder"));
-const CVBuilderEditor = lazy(() => import("@tools/documents/cv-builder/editor").then((m) => ({ default: m.CVEditor })));
+
+const CVBuilderEditor = lazy(() =>
+  import("@tools/documents/cv-builder/editor").then((m) => ({
+    default: m.CVEditor,
+  }))
+);
+
 const VisitingCardEditor = lazy(() =>
   import("@tools/design/visiting-card/editor").then((m) => ({
     default: m.Editor,
   }))
 );
 
+/* ------------------------------------------------------------------
+ * Helpers
+ * ------------------------------------------------------------------ */
 function ScrollToTop() {
   const { pathname } = useLocation();
   useEffect(() => {
@@ -42,6 +62,9 @@ function Loader() {
   );
 }
 
+/* ------------------------------------------------------------------
+ * App
+ * ------------------------------------------------------------------ */
 export default function App() {
   return (
     <ThemeProvider>
@@ -52,17 +75,32 @@ export default function App() {
             <Suspense fallback={<Loader />}>
               <Routes>
                 <Route element={<MainLayout />}>
+                  {/* Home */}
                   <Route index element={<ToolsIndexPage />} />
                   <Route path="tools" element={<ToolsIndexPage />} />
+
+                  {/* Tools */}
                   <Route path="tools/photo-qr" element={<PhotoQrTool />} />
-                  <Route path="tools/visiting-card" element={<VisitingCardTool />} />
-                  <Route path="tools/cv-builder" element={<CVBuilderTool />} />
-                  <Route path="tools/cv-builder/edit/:templateId" element={<CVBuilderEditor />} />
+
+                  <Route
+                    path="tools/visiting-card"
+                    element={<VisitingCardTool />}
+                  />
                   <Route
                     path="tools/visiting-card/edit/:templateId"
                     element={<VisitingCardEditor />}
                   />
-                  <Route path="categories/:slug" element={<CategoryPage />} />
+
+                  <Route
+                    path="tools/cv-builder"
+                    element={<CVBuilderTool />}
+                  />
+                  <Route
+                    path="tools/cv-builder/edit/:templateId"
+                    element={<CVBuilderEditor />}
+                  />
+
+                  {/* Static pages */}
                   <Route path="about" element={<AboutPage />} />
                   <Route path="contact" element={<ContactPage />} />
                   <Route path="privacy" element={<PrivacyPage />} />
@@ -70,6 +108,8 @@ export default function App() {
                   <Route path="disclaimer" element={<DisclaimerPage />} />
                   <Route path="accessibility" element={<AccessibilityPage />} />
                   <Route path="cookie-policy" element={<CookiePolicyPage />} />
+
+                  {/* Fallback */}
                   <Route path="404" element={<NotFoundPage />} />
                   <Route path="*" element={<Navigate to="/404" replace />} />
                 </Route>

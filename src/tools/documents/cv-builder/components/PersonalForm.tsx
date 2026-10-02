@@ -1,6 +1,6 @@
 import { useLanguage } from "@contexts/LanguageContext";
 import { cn } from "@lib/cn";
-import type { CVData, CVPersonal } from "../types";
+import type { CVPersonal } from "../types";
 import { isValidEmail } from "../logic/stateHelpers";
 
 interface PersonalFormProps {

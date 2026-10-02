@@ -12,7 +12,6 @@ export const SEO_DEFAULTS = {
 export const TITLE_TEMPLATES = {
   home: `${APP_CONFIG.name} — Free, Fast, Private Online Tools`,
   tools: `All Tools — Free Online Utilities${SEO_DEFAULTS.titleSuffix}`,
-  category: (name: string) => `${name} — Free Online${SEO_DEFAULTS.titleSuffix}`,
   tool: (name: string) => `${name} — Free Online${SEO_DEFAULTS.titleSuffix}`,
   about: `About${SEO_DEFAULTS.titleSuffix}`,
   contact: `Contact Us${SEO_DEFAULTS.titleSuffix}`,

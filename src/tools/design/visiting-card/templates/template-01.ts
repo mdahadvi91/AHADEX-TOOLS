@@ -258,7 +258,7 @@ export const template01: Template = {
         id: "website",
         type: "text",
         contentKey: "website",
-        defaultValue: "www.ahadex.online",
+        defaultValue: "www.ahadex.fun",
         visible: true,
         x: 0.1,
         y: 0.83,
