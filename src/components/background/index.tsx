@@ -1,20 +1,20 @@
+import { useLocation } from "react-router-dom";
 import { AuroraBlobs } from "./AuroraBlobs";
 import { ParticleField } from "./ParticleField";
 import { FallingPetals } from "./FallingPetals";
+import { ImageBackground } from "./ImageBackground";
 
 export function CinematicBackground() {
+  const { pathname } = useLocation();
+  const isToolPage = pathname.startsWith("/tools/");
+
   return (
     <>
-      {/* Layer 1: Aurora gradient blobs (deepest) */}
-      <AuroraBlobs />
-
-      {/* Layer 2: Falling petals */}
+      {isToolPage ? <ImageBackground /> : <AuroraBlobs />}
       <FallingPetals />
-
-      {/* Layer 3: Interactive particles (topmost) */}
       <ParticleField />
     </>
   );
 }
 
-export { AuroraBlobs, ParticleField, FallingPetals };
+export { AuroraBlobs, ParticleField, FallingPetals, ImageBackground };

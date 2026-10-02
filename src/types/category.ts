@@ -4,7 +4,8 @@ export type CategoryId =
   | "qr"
   | "text"
   | "developer"
-  | "calculators";
+  | "calculators"
+;
 
 export interface Category {
   id: CategoryId;

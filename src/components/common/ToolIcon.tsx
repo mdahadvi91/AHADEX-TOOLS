@@ -1,5 +1,13 @@
-import { Image, FileText, QrCode, Type, Code2, Calculator } from "lucide-react";
-import type { CategoryId } from "@types/category";
+import {
+  Image,
+  FileText,
+  QrCode,
+  Type,
+  Code2,
+  Calculator,
+  Palette,
+} from "lucide-react";
+import type { CategoryId } from "../../types/category";
 
 interface ToolIconProps {
   category: CategoryId;
@@ -14,6 +22,7 @@ const ICON_MAP: Record<CategoryId, typeof Image> = {
   text: Type,
   developer: Code2,
   calculators: Calculator,
+  design: Palette,
 };
 
 const COLOR_MAP: Record<CategoryId, string> = {
@@ -23,6 +32,7 @@ const COLOR_MAP: Record<CategoryId, string> = {
   text: "text-silk-rose-deep",
   developer: "text-silk-rose-soft",
   calculators: "text-silk-wine",
+  design: "text-silk-rose",
 };
 
 export function ToolIcon({ category, size = 24, className }: ToolIconProps) {
