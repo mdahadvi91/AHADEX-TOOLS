@@ -39,6 +39,7 @@ const WebpToPngTool = lazy(() => import("@tools/image/webp-to-png"));
 const ImageCompressorTool = lazy(() => import("@tools/image/image-compressor"));
 const ImageResizerTool = lazy(() => import("@tools/image/image-resizer"));
 const JpgToPdfTool = lazy(() => import("@tools/image/jpg-to-pdf"));
+const PngToPdfTool = lazy(() => import("@tools/image/png-to-pdf"));
 
 const CVBuilderEditor = lazy(() =>
   import("@tools/documents/cv-builder/editor").then((m) => ({
@@ -108,6 +109,7 @@ export default function App() {
                   <Route path="tools/image-compressor" element={<ImageCompressorTool />} />
                   <Route path="tools/image-resizer" element={<ImageResizerTool />} />
                   <Route path="tools/jpg-to-pdf" element={<JpgToPdfTool />} />
+                  <Route path="tools/png-to-pdf" element={<PngToPdfTool />} />
 
                   {/* Tool editors */}
                   <Route path="tools/cv-builder/edit/:templateId" element={<CVBuilderEditor />} />
