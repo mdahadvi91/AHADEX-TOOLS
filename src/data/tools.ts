@@ -117,6 +117,30 @@ export const tools: Tool[] = [
       ogImage: "/images/og/default-og.svg",
     },
   },
+  {
+    id: "png-to-jpg",
+    slug: "png-to-jpg",
+    name: "PNG to JPG",
+    path: "/tools/png-to-jpg",
+    description:
+      "Convert PNG images to JPG format instantly in your browser. Smaller files, universal compatibility, no uploads.",
+    longDescription:
+      "PNG to JPG Converter re-encodes your PNG images as compressed JPG files. Everything runs in your browser — no uploads, no servers, no accounts. Batch-convert multiple files and download them individually or all at once. JPG files are typically 5-10x smaller than the original PNGs.",
+    keywords: ["png", "jpg", "convert", "image", "converter"],
+    popular: true,
+    newTool: true,
+    features: [],
+    howTo: [],
+    faq: [],
+    relatedTools: ["jpg-to-png", "photo-qr"],
+    seo: {
+      title:
+        "PNG to JPG Converter — Free, Fast & Private | AHADEX Tools",
+      description:
+        "Convert PNG to JPG instantly in your browser. Smaller files, batch, no uploads.",
+      ogImage: "/images/og/default-og.svg",
+    },
+  },
 ];
 
 export const TOOL_COUNT = tools.length;
