@@ -1,4 +1,3 @@
-import type { ComponentType } from "react";
 import {
   SiWhatsapp,
   SiFacebook,
@@ -14,27 +13,14 @@ import {
   FiUser,
   FiType,
 } from "react-icons/fi";
+import { Square, Squircle, Frame } from "lucide-react";
+import type { PlatformConfig, Position, QrBackground } from "./types";
 
-export interface PlatformField {
-  key: string;
-  label: string;
-  labelBn: string;
-  placeholder: string;
-  placeholderBn: string;
-  type: "text" | "url" | "tel" | "email" | "password";
-}
+/* ============================================================
+ * PLATFORMS
+ * ============================================================ */
 
-export interface Platform {
-  id: string;
-  name: string;
-  nameBn: string;
-  color: string;
-  Icon: ComponentType<{ size?: number; color?: string; className?: string }>;
-  fields: PlatformField[];
-  buildPayload: (values: Record<string, string>) => string;
-}
-
-export const PLATFORMS: Platform[] = [
+export const PLATFORMS: PlatformConfig[] = [
   {
     id: "whatsapp",
     name: "WhatsApp",
@@ -288,6 +274,51 @@ export const PLATFORMS: Platform[] = [
   },
 ];
 
-export function getPlatform(id: string): Platform | undefined {
+export function getPlatform(id: string): PlatformConfig | undefined {
   return PLATFORMS.find((p) => p.id === id);
 }
+
+/* ============================================================
+ * POSITIONS
+ * ============================================================ */
+
+export const POSITIONS: {
+  id: Position;
+  label: string;
+  labelBn: string;
+}[] = [
+  { id: "top-left", label: "Top left", labelBn: "উপরে বাম" },
+  { id: "top-right", label: "Top right", labelBn: "উপরে ডান" },
+  { id: "bottom-left", label: "Bottom left", labelBn: "নিচে বাম" },
+  { id: "bottom-right", label: "Bottom right", labelBn: "নিচে ডান" },
+];
+
+/* ============================================================
+ * QR BACKGROUNDS
+ * ============================================================ */
+
+export const QR_BACKGROUNDS: {
+  id: QrBackground;
+  label: string;
+  labelBn: string;
+  Icon: typeof Square;
+}[] = [
+  { id: "white", label: "White", labelBn: "সাদা", Icon: Square },
+  { id: "rounded", label: "Rounded", labelBn: "গোল", Icon: Squircle },
+  { id: "none", label: "None", labelBn: "নেই", Icon: Frame },
+];
+
+/* ============================================================
+ * SLIDER RANGES
+ * ============================================================ */
+
+export const SIZE_RANGE = { min: 10, max: 35, step: 1, default: 20 };
+export const PADDING_RANGE = { min: 0, max: 40, step: 1, default: 10 };
+
+/* ============================================================
+ * FILE UPLOAD
+ * ============================================================ */
+
+export const MAX_FILE_SIZE = 50 * 1024 * 1024; // 50 MB
+export const ACCEPTED_TYPES = ["image/jpeg", "image/png", "image/webp"];
+export const ACCEPT_ATTR = "image/jpeg,image/png,image/webp,image/*";
