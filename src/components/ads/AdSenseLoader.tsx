@@ -4,7 +4,7 @@ import { useEffect } from "react";
  * AdSense Loader
  * ------------------------------------------------------------
  * Loads the Google AdSense script only when:
- *   1. VITE_ADSENSE_CLIENT env var is set
+ *   1. VITE_ADSENSE_CLIENT_ID env var is set
  *   2. VITE_ENABLE_ADSENSE is "true"
  *
  * Add to a top-level component (MainLayout).
@@ -19,7 +19,7 @@ declare global {
 export function AdSenseLoader() {
   useEffect(() => {
     const enabled = import.meta.env.VITE_ENABLE_ADSENSE === "true";
-    const client = import.meta.env.VITE_ADSENSE_CLIENT as string | undefined;
+    const client = import.meta.env.VITE_ADSENSE_CLIENT_ID as string | undefined;
 
     if (!enabled || !client) return;
 
