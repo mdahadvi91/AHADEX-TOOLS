@@ -285,6 +285,22 @@ export const tools: Tool[] = [
     relatedTools: [],
     seo: { title: "PNG to PDF Converter — Free, Fast & Private | AHADEX Tools", description: "Convert PNG to PDF in your browser. Multi-page, reorderable.", ogImage: "/images/og/default-og.svg" },
   },
+  {
+    id: "image-cropper",
+    slug: "image-cropper",
+    name: "Image Cropper",
+    path: "/tools/image-cropper",
+    description: "Crop JPG, PNG, and WebP images in your browser. 8 aspect presets, live preview, pixel-precise fields, no uploads.",
+    longDescription: "Image Cropper trims any JPG, PNG, or WebP image to the exact area you want. Drag the crop box, pick from aspect presets, or type exact coordinates. Everything runs in your browser with the Canvas API.",
+    keywords: ["image cropper", "crop", "jpg", "png", "webp", "aspect ratio"],
+    popular: true,
+    newTool: true,
+    features: [],
+    howTo: [],
+    faq: [],
+    relatedTools: [],
+    seo: { title: "Image Cropper — Free, Fast & Private | AHADEX Tools", description: "Crop images in your browser with aspect presets.", ogImage: "/images/og/default-og.svg" },
+  },
 ];
 
 export const TOOL_COUNT = tools.length;

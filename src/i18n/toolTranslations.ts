@@ -64,6 +64,10 @@ export const toolTranslationsBn: Record<string, ToolTranslation> = {
     name: "PNG থেকে PDF",
     description: "PNG ছবি এক multi-page PDF-এ যুক্ত করুন — reorder, A4/Letter, সাদা ব্যাকগ্রাউন্ড, সম্পূর্ণ ব্রাউজারেই।",
   },
+  "image-cropper": {
+    name: "ইমেজ ক্রপার",
+    description: "JPG, PNG, WebP ছবি ক্রপ করুন — ৮টি aspect প্রিসেট, লাইভ প্রিভিউ, সম্পূর্ণ ব্রাউজারেই।",
+  },
 };
 
 export function getToolTranslation(
