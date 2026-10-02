@@ -1,9 +1,8 @@
-import { motion } from "framer-motion";
 import {
-  ChevronDown,
+
   Download,
   Loader2,
-  Shield,
+
 } from "lucide-react";
 import { useLanguage } from "@contexts/LanguageContext";
 import { cn } from "@lib/cn";

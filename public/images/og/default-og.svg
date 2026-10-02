@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" width="1200" height="630">
+  <defs>
+    <linearGradient id="bg2" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0A0A0A"/>
+      <stop offset="100%" stop-color="#1A0F1A"/>
+    </linearGradient>
+    <linearGradient id="rose2" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#D88B9A"/>
+      <stop offset="50%" stop-color="#C99667"/>
+      <stop offset="100%" stop-color="#8B3A4F"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="1200" height="630" fill="url(#bg2)"/>
+  <circle cx="200" cy="150" r="350" fill="#D88B9A" opacity="0.15" filter="blur(80px)"/>
+  <circle cx="1000" cy="500" r="350" fill="#C99667" opacity="0.15" filter="blur(80px)"/>
+
+  <!-- Logo mark -->
+  <g transform="translate(560, 200)">
+    <path d="M32 2 L58 16 L58 48 L32 62 L6 48 L6 16 Z" fill="url(#rose2)" opacity="0.9"/>
+    <path d="M32 14 L18 50 L25 50 L28 40 L36 40 L39 50 L46 50 L32 14 Z M30.5 33 L33.5 33 L32 24 L30.5 33 Z" fill="#FFFBF7"/>
+    <circle cx="32" cy="55" r="1.8" fill="#E5C9A4"/>
+  </g>
+
+  <text x="600" y="340" font-family="Georgia, serif" font-size="72" font-weight="900" fill="#FFF6F1" text-anchor="middle">AHADEX</text>
+  <text x="600" y="390" font-family="Georgia, serif" font-size="32" font-weight="400" font-style="italic" fill="#D88B9A" text-anchor="middle">Tools</text>
+
+  <text x="600" y="450" font-family="system-ui, sans-serif" font-size="20" fill="#B8B8C8" text-anchor="middle">Free · Fast · Private online tools for everyday tasks</text>
+
+  <text x="600" y="580" font-family="system-ui, sans-serif" font-size="14" fill="#8B6A45" letter-spacing="3" text-anchor="middle">ahadex.fun</text>
+  <rect x="0" y="0" width="1200" height="3" fill="url(#rose2)"/>
+</svg>

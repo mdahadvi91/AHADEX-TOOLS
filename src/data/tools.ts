@@ -1,4 +1,4 @@
-import type { Tool } from "@types/tool";
+import type { Tool } from "@/types/tool";
 
 /* ============================================================
  * AHADEX Tools — Working Tools Registry
@@ -18,7 +18,6 @@ export const tools: Tool[] = [
     id: "photo-qr",
     slug: "photo-qr",
     name: "Photo QR Code",
-    category: "qr",
     path: "/tools/photo-qr",
     description:
       "Add a real, scannable QR badge to any photo — WhatsApp, Facebook, WiFi, and more.",
@@ -42,7 +41,6 @@ export const tools: Tool[] = [
     id: "visiting-card",
     slug: "visiting-card",
     name: "Visiting Card Maker",
-    category: "image",
     path: "/tools/visiting-card",
     description:
       "Design print-ready visiting cards in seconds. 20 premium templates — front & back. Free, private, exports PNG/JPG.",
@@ -75,7 +73,6 @@ export const tools: Tool[] = [
     id: "cv-builder",
     slug: "cv-builder",
     name: "CV Builder",
-    category: "documents",
     path: "/tools/cv-builder",
     description:
       "Build a professional CV in minutes. Real A4 templates, live preview, selectable-text PDF export, auto-save and full browser-side privacy.",

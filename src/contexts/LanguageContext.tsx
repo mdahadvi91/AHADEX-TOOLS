@@ -9,7 +9,7 @@ import {
 } from "react";
 import { STORAGE_KEYS, DEFAULT_LANGUAGE } from "@constants/config";
 import { getTranslations, type TranslationKeys } from "@i18n/index";
-import type { Language } from "@types/common";
+import type { Language } from "@/types/common";
 
 const SUPPORTED: Language[] = ["en", "bn"];
 

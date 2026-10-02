@@ -116,6 +116,7 @@ export interface CVSettings {
   pageMargin: number;      // mm
   pageSize: CVPageSize;
   photoEnabled: boolean;
+  photoShape: "circle" | "square" | "rounded";
   showIcons: boolean;
 }
 

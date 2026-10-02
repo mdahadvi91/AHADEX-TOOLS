@@ -39,7 +39,7 @@ export const template07: Template = {
       /* Contacts */
       { id: "phone", type: "text", contentKey: "phone", defaultValue: "+880 123 456 789", visible: true, x: 0.08, y: 0.56, fontFamily: "sans", fontSize: 13, fontWeight: 400, color: "#0A0A0A", align: "left" },
       { id: "email", type: "text", contentKey: "email", defaultValue: "ahadvi@gmail.com", visible: true, x: 0.08, y: 0.65, fontFamily: "sans", fontSize: 13, fontWeight: 400, color: "#0A0A0A", align: "left" },
-      { id: "website", type: "text", contentKey: "website", defaultValue: "www.ahadex.online", visible: true, x: 0.08, y: 0.74, fontFamily: "sans", fontSize: 13, fontWeight: 400, color: "#6B6B6B", align: "left" },
+      { id: "website", type: "text", contentKey: "website", defaultValue: "www.ahadex.fun", visible: true, x: 0.08, y: 0.74, fontFamily: "sans", fontSize: 13, fontWeight: 400, color: "#6B6B6B", align: "left" },
       { id: "location", type: "text", contentKey: "location", defaultValue: "Dhaka, Bangladesh", visible: true, x: 0.08, y: 0.83, fontFamily: "sans", fontSize: 12, fontWeight: 400, color: "#6B6B6B", align: "left" },
       /* QR */
       { id: "qr", type: "qr", visible: true, x: 0.8, y: 0.52, size: 0.26, fgColor: "#0A0A0A", bgColor: "#FFFFFF", padding: 0.12 },

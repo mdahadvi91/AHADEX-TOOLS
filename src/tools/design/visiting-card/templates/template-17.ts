@@ -37,7 +37,7 @@ export const template17: Template = {
       { id: "rule", type: "shape", shape: "line", visible: true, x: 0.1, y: 0.5, width: 0.3, height: 0, stroke: "#B8935A", strokeWidth: 0.6, direction: "l-r" },
       { id: "phone", type: "text", contentKey: "phone", defaultValue: "+880 123 456 789", visible: true, x: 0.1, y: 0.58, fontFamily: "sans", fontSize: 12, fontWeight: 400, color: "#1A1418", align: "left" },
       { id: "email", type: "text", contentKey: "email", defaultValue: "ahadvi@gmail.com", visible: true, x: 0.1, y: 0.67, fontFamily: "sans", fontSize: 12, fontWeight: 400, color: "#1A1418", align: "left" },
-      { id: "website", type: "text", contentKey: "website", defaultValue: "www.ahadex.online", visible: true, x: 0.1, y: 0.76, fontFamily: "sans", fontSize: 12, fontWeight: 400, color: "#8B7355", align: "left" },
+      { id: "website", type: "text", contentKey: "website", defaultValue: "www.ahadex.fun", visible: true, x: 0.1, y: 0.76, fontFamily: "sans", fontSize: 12, fontWeight: 400, color: "#8B7355", align: "left" },
       { id: "location", type: "text", contentKey: "location", defaultValue: "Dhaka, Bangladesh", visible: true, x: 0.1, y: 0.85, fontFamily: "sans", fontSize: 11, fontWeight: 400, color: "#8B7355", align: "left" },
       { id: "qr", type: "qr", visible: true, x: 0.79, y: 0.55, size: 0.25, fgColor: "#1A1418", bgColor: "#FFFFFF", padding: 0.12 },
       { id: "qr-label", type: "text", contentKey: "qrLabel", defaultValue: "SCAN TO VISIT", defaultValueBn: "স্ক্যান করুন", visible: true, x: 0.79, y: 0.84, fontFamily: "serif", fontSize: 8, fontWeight: 400, color: "#8B7355", align: "center", letterSpacing: 3, uppercase: true },

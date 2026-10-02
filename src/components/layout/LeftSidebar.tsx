@@ -1,9 +1,7 @@
 import { useEffect } from "react";
 import { NavLink, useLocation } from "react-router-dom";
-import { X, Home, Info, Mail } from "lucide-react";
+import { X, Home, Info, Mail, Layers } from "lucide-react";
 import { cn } from "@lib/cn";
-import { ToolIcon } from "@components/common/ToolIcon";
-import { categories } from "@data/categories";
 import { useLanguage } from "@contexts/LanguageContext";
 
 interface LeftSidebarProps {
@@ -18,9 +16,10 @@ function SidebarBody({ onClose }: { onClose?: () => void }) {
   const { t } = useLanguage();
 
   const mainLinks = [
-    { to: "/", label: t.nav.home, Icon: MAIN_ICONS.home, key: "home" },
-    { to: "/about", label: t.nav.about, Icon: MAIN_ICONS.about, key: "about" },
-    { to: "/contact", label: t.nav.contact, Icon: MAIN_ICONS.contact, key: "contact" },
+    { to: "/", label: t.nav.home, Icon: MAIN_ICONS.home },
+    { to: "/tools", label: t.nav.tools, Icon: Layers },
+    { to: "/about", label: t.nav.about, Icon: MAIN_ICONS.about },
+    { to: "/contact", label: t.nav.contact, Icon: MAIN_ICONS.contact },
   ];
 
   return (
@@ -41,7 +40,7 @@ function SidebarBody({ onClose }: { onClose?: () => void }) {
         </div>
       )}
 
-      <div className="p-4 space-y-1 shrink-0">
+      <div className="p-4 space-y-1">
         {mainLinks.map(({ to, label, Icon }) => {
           const active =
             to === "/"
@@ -66,41 +65,7 @@ function SidebarBody({ onClose }: { onClose?: () => void }) {
         })}
       </div>
 
-      <div className="mx-4 h-px bg-silk-rose/20 shrink-0" />
-
-      <div className="p-4 flex-1 overflow-y-auto">
-        <p className="px-3 mb-3 text-[11px] uppercase tracking-[0.2em] text-silk-wine/60 dark:text-silk-rose/50 font-semibold">
-          {t.sidebar.categories}
-        </p>
-        <div className="space-y-1">
-          {categories.map((cat) => {
-            const to = `/categories/${cat.slug}`;
-            const active = location.pathname === to;
-            const localizedName = t.categories[cat.id as keyof typeof t.categories] ?? cat.name;
-            return (
-              <NavLink
-                key={cat.id}
-                to={to}
-                onClick={onClose}
-                className={cn(
-                  "flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm transition-all",
-                  active
-                    ? "bg-silk-rose/15 text-silk-wine dark:text-silk-rose-soft"
-                    : "text-light-textSecondary dark:text-dark-textSecondary hover:text-silk-wine dark:hover:text-silk-rose-soft hover:bg-silk-rose/8"
-                )}
-              >
-                <span className="w-5 h-5 flex items-center justify-center shrink-0">
-                  <ToolIcon category={cat.id} size={16} />
-                </span>
-                <span className="flex-1 truncate">{localizedName}</span>
-                <span className="text-[10px] font-mono px-1.5 py-0.5 rounded bg-silk-rose/12 text-silk-wine dark:text-silk-rose-soft">
-                  {cat.count}
-                </span>
-              </NavLink>
-            );
-          })}
-        </div>
-      </div>
+      <div className="flex-1" />
 
       <div className="p-4 shrink-0">
         <div className="p-3 rounded-xl bg-silk-rose/8 border border-silk-rose/20">

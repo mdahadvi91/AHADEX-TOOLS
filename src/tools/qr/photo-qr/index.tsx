@@ -12,7 +12,6 @@ import { HowTo } from "./HowTo";
 import { Features } from "./Features";
 import { FAQ } from "./FAQ";
 import { RelatedTools } from "./RelatedTools";
-import { SEO } from "./SEO";
 import { photoQrData } from "./data";
 import { photoQrContent } from "./content";
 import type { Position, QrBackground } from "./types";

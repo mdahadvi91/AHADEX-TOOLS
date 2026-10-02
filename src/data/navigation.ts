@@ -1,4 +1,4 @@
-import type { NavItem, NavSection } from "@types/common";
+import type { NavItem, NavSection } from "@/types/common";
 
 export const primaryNav: NavItem[] = [
   { label: "Home", to: "/" },

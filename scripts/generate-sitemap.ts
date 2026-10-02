@@ -6,6 +6,9 @@
  *
  * Run:    npm run sitemap
  * Auto:   runs before `npm run build`
+ *
+ * NOTE: AHADEX has no categories. Only real pages and working
+ * tools are included.
  * ============================================================ */
 
 import { writeFileSync } from "node:fs";
@@ -35,16 +38,6 @@ const staticRoutes: SitemapEntry[] = [
   { loc: "/cookie-policy", changefreq: "yearly", priority: 0.3 },
 ];
 
-/* ── Category routes ── */
-const categoryRoutes: SitemapEntry[] = [
-  { loc: "/categories/image", changefreq: "weekly", priority: 0.7 },
-  { loc: "/categories/pdf", changefreq: "weekly", priority: 0.7 },
-  { loc: "/categories/qr", changefreq: "weekly", priority: 0.7 },
-  { loc: "/categories/text", changefreq: "weekly", priority: 0.7 },
-  { loc: "/categories/developer", changefreq: "weekly", priority: 0.7 },
-  { loc: "/categories/calculators", changefreq: "weekly", priority: 0.7 },
-];
-
 /* ── Tool routes (auto from registry) ── */
 const toolRoutes: SitemapEntry[] = tools.map((t) => ({
   loc: t.path,
@@ -52,7 +45,7 @@ const toolRoutes: SitemapEntry[] = tools.map((t) => ({
   priority: t.popular ? 0.9 : 0.8,
 }));
 
-const allRoutes = [...staticRoutes, ...categoryRoutes, ...toolRoutes];
+const allRoutes = [...staticRoutes, ...toolRoutes];
 
 /* ── Build XML ── */
 function buildXml(): string {
@@ -80,4 +73,4 @@ const outPath = resolve(process.cwd(), "public/sitemap.xml");
 writeFileSync(outPath, xml, "utf-8");
 
 console.log(`✅ Sitemap generated: ${outPath}`);
-console.log(`   ${allRoutes.length} URLs (${tools.length} tools + ${staticRoutes.length + categoryRoutes.length} static)`);
+console.log(`   ${allRoutes.length} URLs (${tools.length} tools + ${staticRoutes.length} static)`);

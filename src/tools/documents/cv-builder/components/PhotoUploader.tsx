@@ -1,9 +1,9 @@
 import { useRef, useState } from "react";
-import { Upload, X, Loader2, Circle, Square, Square as RoundedSquare } from "lucide-react";
+import { Upload, X, Loader2, Circle, Square } from "lucide-react";
 import { useLanguage } from "@contexts/LanguageContext";
 import { cn } from "@lib/cn";
 import type { CVSettings } from "../types";
-import { fileToDataUrl, cropSquare, clipPhoto, type PhotoShape } from "../logic/photoHelpers";
+import { fileToDataUrl, cropSquare } from "../logic/photoHelpers";
 
 interface PhotoUploaderProps {
   photoDataUrl: string | null;
@@ -14,10 +14,13 @@ interface PhotoUploaderProps {
 }
 
 const MAX_SIZE = 5 * 1024 * 1024;
-const SHAPES: { id: PhotoShape; icon: typeof Circle; labelEn: string; labelBn: string }[] = [
+
+type ShapeId = "circle" | "square" | "rounded";
+
+const SHAPES: { id: ShapeId; icon: typeof Circle; labelEn: string; labelBn: string }[] = [
   { id: "circle", icon: Circle, labelEn: "Circle", labelBn: "গোল" },
   { id: "square", icon: Square, labelEn: "Square", labelBn: "বর্গ" },
-  { id: "rounded", icon: RoundedSquare, labelEn: "Rounded", labelBn: "গোলকধাঁধা" },
+  { id: "rounded", icon: Square, labelEn: "Rounded", labelBn: "গোলকোণা" },
 ];
 
 export function PhotoUploader({
@@ -31,6 +34,8 @@ export function PhotoUploader({
   const bn = language === "bn";
   const inputRef = useRef<HTMLInputElement>(null);
   const [busy, setBusy] = useState(false);
+
+  const currentShape: ShapeId = settings.photoShape ?? "circle";
 
   const handleFile = async (file: File) => {
     if (!file.type.startsWith("image/")) {
@@ -62,10 +67,8 @@ export function PhotoUploader({
     if (inputRef.current) inputRef.current.value = "";
   };
 
-  const getShapePreview = async (shape: PhotoShape) => {
-    if (!photoDataUrl) return;
-    const clipped = await clipPhoto(photoDataUrl, shape, 200, 0.18);
-    void clipped;
+  const setShape = (shape: ShapeId) => {
+    onSettingsChange({ photoShape: shape });
   };
 
   return (
@@ -91,6 +94,7 @@ export function PhotoUploader({
                 "w-full h-full object-cover",
                 settings.photoEnabled ? "opacity-100" : "opacity-40"
               )}
+              style={{ borderRadius: currentShape === "circle" ? "50%" : currentShape === "rounded" ? "20%" : "0" }}
             />
           </div>
           <div className="flex-1 min-w-0 space-y-1.5">
@@ -112,9 +116,7 @@ export function PhotoUploader({
               <input
                 type="checkbox"
                 checked={settings.photoEnabled}
-                onChange={(e) =>
-                  onSettingsChange({ photoEnabled: e.target.checked })
-                }
+                onChange={(e) => onSettingsChange({ photoEnabled: e.target.checked })}
                 className="accent-silk-rose"
               />
               {bn ? "CV-তে ছবি দেখান" : "Show photo on CV"}
@@ -143,7 +145,7 @@ export function PhotoUploader({
         </button>
       )}
 
-      {/* Shape preview row */}
+      {/* Shape selector */}
       {photoDataUrl && (
         <div className="pt-1">
           <p className="text-[10px] uppercase tracking-wider font-semibold text-silk-wine/70 dark:text-silk-rose/60 mb-1.5">
@@ -152,19 +154,22 @@ export function PhotoUploader({
           <div className="grid grid-cols-3 gap-1.5">
             {SHAPES.map((s) => {
               const Icon = s.icon;
+              const active = currentShape === s.id;
               return (
                 <button
                   key={s.id}
                   type="button"
-                  onClick={() => void getShapePreview(s.id)}
+                  onClick={() => setShape(s.id)}
                   className={cn(
                     "flex flex-col items-center gap-1 p-2 rounded-lg border transition-all",
-                    "bg-silk-rose/5 border-silk-rose/15 hover:border-silk-rose/40"
+                    active
+                      ? "bg-silk-rose/15 border-silk-rose/50 shadow-silk-soft"
+                      : "bg-silk-rose/5 border-silk-rose/15 hover:border-silk-rose/40"
                   )}
                   title={bn ? s.labelBn : s.labelEn}
                 >
                   <Icon className="w-4 h-4 text-silk-rose" />
-                  <span className="text-[9px] font-medium text-light-textSecondary dark:text-dark-textSecondary">
+                  <span className={cn("text-[9px] font-medium", active ? "text-silk-rose" : "text-light-textSecondary dark:text-dark-textSecondary")}>
                     {bn ? s.labelBn : s.labelEn}
                   </span>
                 </button>
@@ -180,7 +185,6 @@ export function PhotoUploader({
           : "Photos are processed entirely in your browser — nothing is uploaded."}
       </p>
 
-      {/* hidden X import keeper */}
       <X className="hidden" aria-hidden="true" />
     </div>
   );

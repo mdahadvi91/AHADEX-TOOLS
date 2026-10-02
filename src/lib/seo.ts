@@ -16,7 +16,18 @@ export function buildHomeSEO(): PageSEO {
     title: TITLE_TEMPLATES.home,
     description: APP_CONFIG.description,
     canonical: `${APP_CONFIG.url}/`,
-    ogImage: "/images/og/home-og.jpg",
+    ogImage: "/images/og/home-og.svg",
+    ogType: "website",
+    noIndex: false,
+  };
+}
+
+export function buildToolsSEO(): PageSEO {
+  return {
+    title: TITLE_TEMPLATES.tools,
+    description: APP_CONFIG.description,
+    canonical: `${APP_CONFIG.url}/tools`,
+    ogImage: "/images/og/default-og.svg",
     ogType: "website",
     noIndex: false,
   };
@@ -40,27 +51,12 @@ export function buildToolSEO(tool: {
   };
 }
 
-export function buildCategorySEO(category: {
-  name: string;
-  description: string;
-  slug: string;
-}): PageSEO {
-  return {
-    title: TITLE_TEMPLATES.category(category.name),
-    description: category.description,
-    canonical: `${APP_CONFIG.url}/categories/${category.slug}`,
-    ogImage: "/images/og/default-og.jpg",
-    ogType: "website",
-    noIndex: false,
-  };
-}
-
 export function buildNotFoundSEO(): PageSEO {
   return {
     title: TITLE_TEMPLATES.notFound,
     description: "The page you were looking for could not be found.",
     canonical: `${APP_CONFIG.url}/404`,
-    ogImage: "/images/og/default-og.jpg",
+    ogImage: "/images/og/default-og.svg",
     ogType: "website",
     noIndex: true,
   };

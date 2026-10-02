@@ -54,7 +54,7 @@ export const template03: Template = {
       /* Email */
       { id: "email", type: "text", contentKey: "email", defaultValue: "ahadvi@gmail.com", visible: true, x: 0.1, y: 0.65, fontFamily: "sans", fontSize: 13, fontWeight: 400, color: "#1A1418", align: "left" },
       /* Website */
-      { id: "website", type: "text", contentKey: "website", defaultValue: "www.ahadex.online", visible: true, x: 0.1, y: 0.75, fontFamily: "sans", fontSize: 13, fontWeight: 400, color: "#8B6A55", align: "left" },
+      { id: "website", type: "text", contentKey: "website", defaultValue: "www.ahadex.fun", visible: true, x: 0.1, y: 0.75, fontFamily: "sans", fontSize: 13, fontWeight: 400, color: "#8B6A55", align: "left" },
       /* Location */
       { id: "location", type: "text", contentKey: "location", defaultValue: "Dhaka, Bangladesh", visible: true, x: 0.1, y: 0.85, fontFamily: "sans", fontSize: 12, fontWeight: 400, color: "#8B6A55", align: "left" },
       /* QR */

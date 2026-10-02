@@ -75,7 +75,7 @@ export function CVBuilderSEO() {
           "@id": `${canonical}#breadcrumb`,
           itemListElement: [
             { "@type": "ListItem", position: 1, name: "Home", item: `${SITE_URL}/` },
-            { "@type": "ListItem", position: 2, name: "Documents", item: `${SITE_URL}/categories/documents` },
+            { "@type": "ListItem", position: 2, name: "Tools", item: `${SITE_URL}/tools` },
             { "@type": "ListItem", position: 3, name: "CV Builder", item: canonical },
           ],
         },

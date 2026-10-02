@@ -10,14 +10,12 @@ import {
   Mail,
 } from "lucide-react";
 import { useLanguage } from "@contexts/LanguageContext";
-import { useReducedMotion } from "@hooks/useReducedMotion";
 import { cn } from "@lib/cn";
 
 const VALUE_ICONS = [Shield, Zap, Heart, Wand2];
 
 export default function AboutPage() {
   const { t } = useLanguage();
-  const prefersReduced = useReducedMotion();
 
   return (
     <div className="mx-auto max-w-[1400px] px-4 sm:px-6 lg:px-8">

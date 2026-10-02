@@ -1,4 +1,5 @@
 import QRCode from "qrcode";
+import { createElement } from "react";
 import { renderToStaticMarkup } from "react-dom/server";
 import type { PlatformConfig, RenderOptions } from "./types";
 
@@ -29,7 +30,7 @@ export function loadImageFromFile(file: File): Promise<HTMLImageElement> {
 function buildLogoDataUrl(platform: PlatformConfig, size: number): string {
   const IconComponent = platform.Icon;
   const iconMarkup = renderToStaticMarkup(
-    IconComponent({ size: 100, color: "#FFFFFF" })
+    createElement(IconComponent, { size: 100, color: "#FFFFFF" })
   );
 
   const svg = `

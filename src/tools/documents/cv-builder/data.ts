@@ -69,11 +69,11 @@ export const SAMPLE_CV_DATA: CVData = {
   certifications: [],
   languages: [{ id: "lang-1", name: "English", level: "Fluent" }, { id: "lang-2", name: "Bangla", level: "Native" }],
   awards: [], volunteer: [], references: [],
-  settings: { templateId: "cv-ats-cleanline", accentColor: "#334155", fontFamily: "Inter", fontSize: DEFAULT_FONT_SIZE, sectionSpacing: DEFAULT_SECTION_SPACING, pageMargin: DEFAULT_PAGE_MARGIN, pageSize: "A4", photoEnabled: false, showIcons: false },
+  settings: { templateId: "cv-ats-cleanline", accentColor: "#334155", fontFamily: "Inter", fontSize: DEFAULT_FONT_SIZE, sectionSpacing: DEFAULT_SECTION_SPACING, pageMargin: DEFAULT_PAGE_MARGIN, pageSize: "A4", photoEnabled: false, photoShape: "circle", showIcons: false },
 };
 
 export const EMPTY_CV_DATA: CVData = {
   personal: { fullName: "", jobTitle: "", email: "", phone: "", location: "", website: "", linkedin: "", github: "", photoDataUrl: null },
   summary: "", experience: [], education: [], skills: [], projects: [], certifications: [], languages: [], awards: [], volunteer: [], references: [],
-  settings: { templateId: "cv-ats-cleanline", accentColor: "#334155", fontFamily: "Inter", fontSize: DEFAULT_FONT_SIZE, sectionSpacing: DEFAULT_SECTION_SPACING, pageMargin: DEFAULT_PAGE_MARGIN, pageSize: "A4", photoEnabled: false, showIcons: false },
+  settings: { templateId: "cv-ats-cleanline", accentColor: "#334155", fontFamily: "Inter", fontSize: DEFAULT_FONT_SIZE, sectionSpacing: DEFAULT_SECTION_SPACING, pageMargin: DEFAULT_PAGE_MARGIN, pageSize: "A4", photoEnabled: false, photoShape: "circle", showIcons: false },
 };
