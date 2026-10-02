@@ -8,6 +8,7 @@ import type { Tool } from "@types/tool";
  */
 
 export const tools: Tool[] = [
+
   {
     id: "jpg-to-png",
     slug: "jpg-to-png",
@@ -29,6 +30,7 @@ export const tools: Tool[] = [
       ogImage: "/images/og/default-og.jpg",
     },
   },
+
   {
     id: "png-to-jpg",
     slug: "png-to-jpg",
@@ -50,6 +52,7 @@ export const tools: Tool[] = [
       ogImage: "/images/og/default-og.jpg",
     },
   },
+
   {
     id: "jpg-to-webp",
     slug: "jpg-to-webp",
@@ -71,6 +74,7 @@ export const tools: Tool[] = [
       ogImage: "/images/og/default-og.jpg",
     },
   },
+
   {
     id: "png-to-webp",
     slug: "png-to-webp",
@@ -92,6 +96,7 @@ export const tools: Tool[] = [
       ogImage: "/images/og/default-og.jpg",
     },
   },
+
   {
     id: "webp-to-jpg",
     slug: "webp-to-jpg",
@@ -113,6 +118,7 @@ export const tools: Tool[] = [
       ogImage: "/images/og/default-og.jpg",
     },
   },
+
   {
     id: "webp-to-png",
     slug: "webp-to-png",
@@ -134,6 +140,7 @@ export const tools: Tool[] = [
       ogImage: "/images/og/default-og.jpg",
     },
   },
+
   {
     id: "image-compressor",
     slug: "image-compressor",
@@ -155,6 +162,7 @@ export const tools: Tool[] = [
       ogImage: "/images/og/default-og.jpg",
     },
   },
+
   {
     id: "image-resizer",
     slug: "image-resizer",
@@ -176,6 +184,7 @@ export const tools: Tool[] = [
       ogImage: "/images/og/default-og.jpg",
     },
   },
+
   {
     id: "image-cropper",
     slug: "image-cropper",
@@ -197,6 +206,7 @@ export const tools: Tool[] = [
       ogImage: "/images/og/default-og.jpg",
     },
   },
+
   {
     id: "image-to-pdf",
     slug: "image-to-pdf",
@@ -218,6 +228,7 @@ export const tools: Tool[] = [
       ogImage: "/images/og/default-og.jpg",
     },
   },
+
   {
     id: "image-metadata-viewer",
     slug: "image-metadata-viewer",
@@ -239,6 +250,7 @@ export const tools: Tool[] = [
       ogImage: "/images/og/default-og.jpg",
     },
   },
+
   {
     id: "background-remover",
     slug: "background-remover",
@@ -260,6 +272,7 @@ export const tools: Tool[] = [
       ogImage: "/images/og/default-og.jpg",
     },
   },
+
   {
     id: "jpg-to-pdf",
     slug: "jpg-to-pdf",
@@ -281,6 +294,7 @@ export const tools: Tool[] = [
       ogImage: "/images/og/default-og.jpg",
     },
   },
+
   {
     id: "png-to-pdf",
     slug: "png-to-pdf",
@@ -302,6 +316,7 @@ export const tools: Tool[] = [
       ogImage: "/images/og/default-og.jpg",
     },
   },
+
   {
     id: "merge-pdf",
     slug: "merge-pdf",
@@ -323,6 +338,7 @@ export const tools: Tool[] = [
       ogImage: "/images/og/default-og.jpg",
     },
   },
+
   {
     id: "split-pdf",
     slug: "split-pdf",
@@ -344,6 +360,7 @@ export const tools: Tool[] = [
       ogImage: "/images/og/default-og.jpg",
     },
   },
+
   {
     id: "photo-qr",
     slug: "photo-qr",
