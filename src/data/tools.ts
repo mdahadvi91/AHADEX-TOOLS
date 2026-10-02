@@ -253,6 +253,22 @@ export const tools: Tool[] = [
     relatedTools: [],
     seo: { title: "Image Resizer — Free, Fast & Private | AHADEX Tools", description: "Resize images in your browser to any dimension.", ogImage: "/images/og/default-og.svg" },
   },
+  {
+    id: "jpg-to-pdf",
+    slug: "jpg-to-pdf",
+    name: "JPG to PDF",
+    path: "/tools/jpg-to-pdf",
+    description: "Combine JPG images into a multi-page PDF in your browser. Reorderable, A4/Letter, no uploads.",
+    longDescription: "JPG to PDF Converter combines one or many JPG images into a clean multi-page PDF. Reorder pages, choose A4 or Letter, set orientation and margins, and export — all in your browser using pdf-lib.",
+    keywords: ["jpg to pdf", "jpeg to pdf", "image to pdf", "convert"],
+    popular: true,
+    newTool: true,
+    features: [],
+    howTo: [],
+    faq: [],
+    relatedTools: [],
+    seo: { title: "JPG to PDF Converter — Free, Fast & Private | AHADEX Tools", description: "Convert JPG to PDF in your browser. Multi-page, reorderable.", ogImage: "/images/og/default-og.svg" },
+  },
 ];
 
 export const TOOL_COUNT = tools.length;

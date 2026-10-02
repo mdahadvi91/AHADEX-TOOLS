@@ -56,6 +56,10 @@ export const toolTranslationsBn: Record<string, ToolTranslation> = {
     name: "ইমেজ রিসাইজার",
     description: "JPG, PNG, WebP ছবি যেকোনো মাপে রিসাইজ করুন — aspect lock, সম্পূর্ণ ব্রাউজারেই।",
   },
+  "jpg-to-pdf": {
+    name: "JPG থেকে PDF",
+    description: "JPG ছবি এক multi-page PDF-এ যুক্ত করুন — reorder, A4/Letter, সম্পূর্ণ ব্রাউজারেই।",
+  },
 };
 
 export function getToolTranslation(
