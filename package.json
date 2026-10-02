@@ -9,7 +9,7 @@
   "homepage": "https://ahadex.fun",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/mdahadvi91/gost-tools.git"
+    "url": "git+https://github.com/mdahadvi91/AHADEX-TOOLS.git"
   },
   "engines": {
     "node": ">=18.0.0",
@@ -17,11 +17,12 @@
   },
   "scripts": {
     "dev": "vite",
-    "build": "tsc -b && vite build",
+    "build": "npm run sitemap && tsc -b && vite build",
     "preview": "vite preview --port 4173",
     "lint": "tsc --noEmit",
     "type-check": "tsc --noEmit",
-    "clean": "rm -rf dist node_modules/.vite"
+    "clean": "rm -rf dist node_modules/.vite",
+    "sitemap": "tsx scripts/generate-sitemap.ts"
   },
   "dependencies": {
     "@imgly/background-removal": "^1.5.5",

@@ -1,0 +1,84 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" width="1200" height="630">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0A0A0A"/>
+      <stop offset="100%" stop-color="#1A0F1A"/>
+    </linearGradient>
+    <linearGradient id="rose" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#D88B9A"/>
+      <stop offset="50%" stop-color="#C99667"/>
+      <stop offset="100%" stop-color="#8B3A4F"/>
+    </linearGradient>
+    <linearGradient id="gold" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#E5C9A4"/>
+      <stop offset="100%" stop-color="#C99667"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Background -->
+  <rect width="1200" height="630" fill="url(#bg)"/>
+
+  <!-- Rose glow top-left -->
+  <circle cx="150" cy="100" r="300" fill="#D88B9A" opacity="0.15" filter="blur(80px)"/>
+  <!-- Gold glow bottom-right -->
+  <circle cx="1050" cy="530" r="300" fill="#C99667" opacity="0.15" filter="blur(80px)"/>
+
+  <!-- Card mockup left -->
+  <g transform="translate(80, 175)">
+    <!-- Card shadow -->
+    <rect x="4" y="4" width="440" height="260" rx="18" fill="#000" opacity="0.4"/>
+    <!-- Card front -->
+    <rect width="440" height="260" rx="18" fill="#0F0F0F"/>
+    <rect x="12" y="12" width="416" height="236" rx="12" fill="none" stroke="url(#gold)" stroke-width="0.8" opacity="0.6"/>
+
+    <!-- Gold corner ornament top-right -->
+    <g transform="translate(395, 40)">
+      <path d="M 0 40 L 0 0 L -40 0" fill="none" stroke="url(#gold)" stroke-width="1.5"/>
+      <path d="M 0 28 L 0 12 L -28 12" fill="none" stroke="#C99667" stroke-width="0.8" opacity="0.6"/>
+    </g>
+
+    <!-- Gold corner ornament bottom-left -->
+    <g transform="translate(45, 220)">
+      <path d="M 0 -40 L 0 0 L 40 0" fill="none" stroke="url(#gold)" stroke-width="1.5"/>
+    </g>
+
+    <!-- Logo circle -->
+    <circle cx="220" cy="115" r="26" fill="none" stroke="url(#gold)" stroke-width="1.2" opacity="0.7"/>
+    <text x="220" y="121" font-family="Georgia, serif" font-size="18" font-weight="700" fill="url(#gold)" text-anchor="middle">AH</text>
+
+    <!-- Brand text -->
+    <text x="220" y="170" font-family="Georgia, serif" font-size="26" font-weight="700" fill="#E5C9A4" text-anchor="middle" letter-spacing="4">AHADEX TOOLS</text>
+    <text x="220" y="196" font-family="Georgia, serif" font-size="9" fill="#8B6A45" text-anchor="middle" letter-spacing="3">TOOLS FOR A SMARTER TOMORROW</text>
+  </g>
+
+  <!-- Right side text -->
+  <g transform="translate(600, 200)">
+    <!-- Category label -->
+    <text x="0" y="0" font-family="Inter, sans-serif" font-size="14" font-weight="700" fill="#D88B9A" letter-spacing="6">DESIGN STUDIO</text>
+
+    <!-- Main heading -->
+    <text x="0" y="70" font-family="Georgia, serif" font-size="56" font-weight="900" fill="#FFF6F1">Visiting Card</text>
+    <text x="0" y="132" font-family="Georgia, serif" font-size="56" font-weight="900" fill="url(#rose)">Maker</text>
+
+    <!-- Subtitle -->
+    <text x="0" y="180" font-family="Inter, sans-serif" font-size="18" fill="#B8B8C8">20 premium templates · Front &amp; back</text>
+
+    <!-- Badges -->
+    <g transform="translate(0, 220)">
+      <rect x="0" y="0" width="110" height="32" rx="16" fill="#D88B9A" opacity="0.15" stroke="#D88B9A" stroke-width="0.8"/>
+      <text x="55" y="21" font-family="Inter, sans-serif" font-size="12" font-weight="600" fill="#E8B4B8" text-anchor="middle">FREE</text>
+
+      <rect x="122" y="0" width="130" height="32" rx="16" fill="#C99667" opacity="0.15" stroke="#C99667" stroke-width="0.8"/>
+      <text x="187" y="21" font-family="Inter, sans-serif" font-size="12" font-weight="600" fill="#E5C9A4" text-anchor="middle">PNG · JPG</text>
+
+      <rect x="264" y="0" width="150" height="32" rx="16" fill="#8B3A4F" opacity="0.15" stroke="#8B3A4F" stroke-width="0.8"/>
+      <text x="339" y="21" font-family="Inter, sans-serif" font-size="12" font-weight="600" fill="#D88B9A" text-anchor="middle">100% PRIVATE</text>
+    </g>
+  </g>
+
+  <!-- Footer -->
+  <text x="600" y="580" font-family="Inter, sans-serif" font-size="13" fill="#8B6A45" letter-spacing="2">ahadex.fun</text>
+
+  <!-- Top decorative line -->
+  <rect x="0" y="0" width="1200" height="3" fill="url(#rose)"/>
+</svg>
