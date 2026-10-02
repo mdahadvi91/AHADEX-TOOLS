@@ -68,6 +68,10 @@ export const toolTranslationsBn: Record<string, ToolTranslation> = {
     name: "ইমেজ ক্রপার",
     description: "JPG, PNG, WebP ছবি ক্রপ করুন — ৮টি aspect প্রিসেট, লাইভ প্রিভিউ, সম্পূর্ণ ব্রাউজারেই।",
   },
+  "merge-pdf": {
+    name: "PDF মার্জ",
+    description: "একাধিক PDF এক ডকুমেন্টে যুক্ত করুন — reorder, সম্পূর্ণ ব্রাউজারেই।",
+  },
 };
 
 export function getToolTranslation(

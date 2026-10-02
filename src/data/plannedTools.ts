@@ -68,6 +68,7 @@ export const plannedTools: PlannedTool[] = [
 
 
 
+
   {
     id: "image-to-pdf",
     slug: "image-to-pdf",
@@ -89,6 +90,7 @@ export const plannedTools: PlannedTool[] = [
 
 
 
+
   {
     id: "image-metadata-viewer",
     slug: "image-metadata-viewer",
@@ -99,6 +101,7 @@ export const plannedTools: PlannedTool[] = [
     descriptionBn: "ছবির EXIF, GPS ও ক্যামেরার তথ্য দেখুন।",
     eta: "Coming soon",
   },
+
 
 
 
@@ -148,16 +151,7 @@ export const plannedTools: PlannedTool[] = [
 
 
 
-  {
-    id: "merge-pdf",
-    slug: "merge-pdf",
-    name: "Merge PDF",
-    nameBn: "PDF মার্জ",
-    path: "/tools/merge-pdf",
-    description: "Combine multiple PDF files into one document.",
-    descriptionBn: "একাধিক PDF এক ফাইলে যুক্ত করুন।",
-    eta: "Coming soon",
-  },
+
 
 
 

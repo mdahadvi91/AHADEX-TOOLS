@@ -1,0 +1,87 @@
+import { PDFDocument } from "pdf-lib";
+import type { PdfInput, MergedPdf } from "./types";
+
+export const MAX_FILE_SIZE = 100 * 1024 * 1024;
+export const ACCEPTED_TYPES = ["application/pdf"];
+export const MAX_FILES = 20;
+
+export function makeId(): string {
+  return `${Date.now()}-${Math.random().toString(36).slice(2, 8)}`;
+}
+
+export function formatBytes(bytes: number): string {
+  if (bytes === 0) return "0 B";
+  const k = 1024;
+  const sizes = ["B", "KB", "MB", "GB"];
+  const i = Math.floor(Math.log(bytes) / Math.log(k));
+  return `${(bytes / Math.pow(k, i)).toFixed(i === 0 ? 0 : 1)} ${sizes[i]}`;
+}
+
+export function validateFile(file: File): string | null {
+  if (!ACCEPTED_TYPES.includes(file.type) && !file.name.toLowerCase().endsWith(".pdf")) {
+    return "Only PDF files are supported.";
+  }
+  if (file.size > MAX_FILE_SIZE) return "File is too large (max 100 MB).";
+  return null;
+}
+
+export async function readPdfInput(
+  file: File,
+  onError?: (msg: string) => void
+): Promise<PdfInput | null> {
+  const err = validateFile(file);
+  if (err) { onError?.(err); return null; }
+  try {
+    const bytes = await file.arrayBuffer();
+    const doc = await PDFDocument.load(bytes, { ignoreEncryption: true });
+    return {
+      id: makeId(),
+      name: file.name,
+      size: file.size,
+      pageCount: doc.getPageCount(),
+      bytes,
+    };
+  } catch (e) {
+    onError?.(e instanceof Error ? e.message : "Failed to read PDF");
+    return null;
+  }
+}
+
+export async function mergePdfs(inputs: PdfInput[]): Promise<MergedPdf> {
+  if (inputs.length < 2) throw new Error("Add at least two PDFs to merge.");
+
+  const merged = await PDFDocument.create();
+
+  for (const input of inputs) {
+    const src = await PDFDocument.load(input.bytes, { ignoreEncryption: true });
+    const copied = await merged.copyPages(src, src.getPageIndices());
+    copied.forEach((p) => merged.addPage(p));
+  }
+
+  const bytes = await merged.save();
+  const buffer = new ArrayBuffer(bytes.byteLength);
+  new Uint8Array(buffer).set(bytes);
+  const blob = new Blob([buffer], { type: "application/pdf" });
+  const url = URL.createObjectURL(blob);
+
+  return {
+    blob,
+    url,
+    size: blob.size,
+    totalPages: merged.getPageCount(),
+    fileCount: inputs.length,
+  };
+}
+
+export function downloadMerged(result: MergedPdf, filename = "merged.pdf"): void {
+  const a = document.createElement("a");
+  a.href = result.url;
+  a.download = filename;
+  document.body.appendChild(a);
+  a.click();
+  document.body.removeChild(a);
+}
+
+export function revokeMerged(result: MergedPdf): void {
+  URL.revokeObjectURL(result.url);
+}
