@@ -1,16 +1,5 @@
 # ads.txt — Google AdSense Authorized Digital Sellers
 # ====================================================
-#
-# STATUS: Pending AdSense approval.
-#
-# DO NOT add a fake publisher ID here. Wait until AdSense
-# approves the site, then replace the placeholder below with
-# your actual line from the AdSense dashboard.
-#
-# Format (after approval):
-#   google.com, pub-XXXXXXXXXXXXXXXX, DIRECT, f08c47fec0942fa0
-#
-# The pub-XXXX number appears on the AdSense dashboard under:
-#   Account → Settings → Account information
-#
-# Reference: https://support.google.com/adsense/answer/12171612
+# AHADEX Tools — https://ahadex.fun
+
+google.com, pub-5216241068377334, DIRECT, f08c47fec0942fa0
