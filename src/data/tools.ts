@@ -205,6 +205,22 @@ export const tools: Tool[] = [
     relatedTools: [],
     seo: { title: "WebP to JPG Converter", description: "Convert WebP to JPG.", ogImage: "/images/og/default-og.svg" },
   },
+  {
+    id: "webp-to-png",
+    slug: "webp-to-png",
+    name: "WebP to PNG",
+    path: "/tools/webp-to-png",
+    description: "Convert WebP images to PNG format. Lossless output, transparency preserved, no uploads.",
+    longDescription: "WebP to PNG Converter re-encodes WebP images as lossless PNG files. Transparency is preserved. Everything runs in your browser.",
+    keywords: ["webp", "png", "convert", "lossless"],
+    popular: true,
+    newTool: true,
+    features: [],
+    howTo: [],
+    faq: [],
+    relatedTools: [],
+    seo: { title: "WebP to PNG Converter — Free & Private | AHADEX Tools", description: "Convert WebP to PNG instantly. Lossless, transparency preserved.", ogImage: "/images/og/default-og.svg" },
+  },
 ];
 
 export const TOOL_COUNT = tools.length;
