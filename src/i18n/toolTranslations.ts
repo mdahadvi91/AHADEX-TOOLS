@@ -48,6 +48,14 @@ export const toolTranslationsBn: Record<string, ToolTranslation> = {
     name: "WebP থেকে PNG",
     description: "WebP ছবি PNG ফরম্যাটে রূপান্তর করুন — lossless, স্বচ্ছতা সংরক্ষিত, সম্পূর্ণ ব্রাউজারেই।",
   },
+  "image-compressor": {
+    name: "ইমেজ কমপ্রেসর",
+    description: "JPG, PNG, WebP ছবি কমপ্রেস করুন — সমন্বয়যোগ্য কোয়ালিটি, সম্পূর্ণ ব্রাউজারেই।",
+  },
+  "image-resizer": {
+    name: "ইমেজ রিসাইজার",
+    description: "JPG, PNG, WebP ছবি যেকোনো মাপে রিসাইজ করুন — aspect lock, সম্পূর্ণ ব্রাউজারেই।",
+  },
 };
 
 export function getToolTranslation(
