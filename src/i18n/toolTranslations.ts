@@ -76,6 +76,10 @@ export const toolTranslationsBn: Record<string, ToolTranslation> = {
     name: "PDF স্প্লিট",
     description: "PDF থেকে পেজ এক্সট্রাক্ট করুন বা পেজ-by-পেজ ভাগ করুন — কাস্টম রেঞ্জ, সম্পূর্ণ ব্রাউজারেই।",
   },
+  "word-counter": {
+    name: "শব্দ গণনা",
+    description: "শব্দ, অক্ষর, বাক্য ও অনুচ্ছেদ রিয়েল-টাইমে গণনা করুন — পড়ার সময়, কীওয়ার্ড ঘনত্ব, সম্পূর্ণ ব্রাউজারেই।",
+  },
 };
 
 export function getToolTranslation(

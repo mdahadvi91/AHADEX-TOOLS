@@ -333,6 +333,22 @@ export const tools: Tool[] = [
     relatedTools: [],
     seo: { title: "Split PDF — Extract Pages Free & Private | AHADEX Tools", description: "Split PDFs in your browser. Custom page ranges, no uploads.", ogImage: "/images/og/default-og.svg" },
   },
+  {
+    id: "word-counter",
+    slug: "word-counter",
+    name: "Word Counter",
+    path: "/tools/word-counter",
+    description: "Count words, characters, sentences, and paragraphs in real time. Reading time, speaking time, keyword density — all in your browser.",
+    longDescription: "Word Counter analyzes your text live: words, characters with and without spaces, sentences, paragraphs, lines, reading time, speaking time, average word length, and top keyword density. Everything runs in your browser.",
+    keywords: ["word counter", "character counter", "word count", "reading time"],
+    popular: true,
+    newTool: true,
+    features: [],
+    howTo: [],
+    faq: [],
+    relatedTools: [],
+    seo: { title: "Word Counter — Live Word, Character & Reading Time | AHADEX Tools", description: "Count words, characters, sentences live. Reading time & keyword density.", ogImage: "/images/og/default-og.svg" },
+  },
 ];
 
 export const TOOL_COUNT = tools.length;

@@ -43,6 +43,7 @@ const PngToPdfTool = lazy(() => import("@tools/image/png-to-pdf"));
 const ImageCropperTool = lazy(() => import("@tools/image/image-cropper"));
 const MergePdfTool = lazy(() => import("@tools/pdf/merge-pdf"));
 const SplitPdfTool = lazy(() => import("@tools/pdf/split-pdf"));
+const WordCounterTool = lazy(() => import("@tools/text/word-counter"));
 
 const CVBuilderEditor = lazy(() =>
   import("@tools/documents/cv-builder/editor").then((m) => ({
@@ -116,6 +117,7 @@ export default function App() {
                   <Route path="tools/image-cropper" element={<ImageCropperTool />} />
                   <Route path="tools/merge-pdf" element={<MergePdfTool />} />
                   <Route path="tools/split-pdf" element={<SplitPdfTool />} />
+                  <Route path="tools/word-counter" element={<WordCounterTool />} />
 
                   {/* Tool editors */}
                   <Route path="tools/cv-builder/edit/:templateId" element={<CVBuilderEditor />} />
