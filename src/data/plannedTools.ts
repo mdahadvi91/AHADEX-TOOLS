@@ -56,6 +56,7 @@ export const plannedTools: PlannedTool[] = [
 
 
 
+
   {
     id: "image-cropper",
     slug: "image-cropper",
@@ -66,6 +67,7 @@ export const plannedTools: PlannedTool[] = [
     descriptionBn: "সঠিক অনুপাতে ছবি ক্রপ করুন।",
     eta: "Coming soon",
   },
+
 
 
 
@@ -94,6 +96,7 @@ export const plannedTools: PlannedTool[] = [
 
 
 
+
   {
     id: "image-metadata-viewer",
     slug: "image-metadata-viewer",
@@ -104,6 +107,7 @@ export const plannedTools: PlannedTool[] = [
     descriptionBn: "ছবির EXIF, GPS ও ক্যামেরার তথ্য দেখুন।",
     eta: "Coming soon",
   },
+
 
 
 
@@ -140,16 +144,7 @@ export const plannedTools: PlannedTool[] = [
 
 
 
-  {
-    id: "png-to-pdf",
-    slug: "png-to-pdf",
-    name: "PNG to PDF",
-    nameBn: "PNG থেকে PDF",
-    path: "/tools/png-to-pdf",
-    description: "Convert PNG images into a PDF file.",
-    descriptionBn: "PNG ছবি PDF ফাইলে রূপান্তর করুন।",
-    eta: "Coming soon",
-  },
+
 
 
 
@@ -169,6 +164,7 @@ export const plannedTools: PlannedTool[] = [
     descriptionBn: "একাধিক PDF এক ফাইলে যুক্ত করুন।",
     eta: "Coming soon",
   },
+
 
 
 

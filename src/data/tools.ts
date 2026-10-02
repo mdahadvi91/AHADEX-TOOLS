@@ -269,6 +269,22 @@ export const tools: Tool[] = [
     relatedTools: [],
     seo: { title: "JPG to PDF Converter — Free, Fast & Private | AHADEX Tools", description: "Convert JPG to PDF in your browser. Multi-page, reorderable.", ogImage: "/images/og/default-og.svg" },
   },
+  {
+    id: "png-to-pdf",
+    slug: "png-to-pdf",
+    name: "PNG to PDF",
+    path: "/tools/png-to-pdf",
+    description: "Combine PNG images into a multi-page PDF in your browser. Reorderable, A4/Letter, white background, no uploads.",
+    longDescription: "PNG to PDF Converter combines one or many PNG images into a clean multi-page PDF. Reorder pages, choose A4 or Letter, set orientation and margins, and export — all in your browser using pdf-lib. Transparent PNG areas are composited onto white for print-safe output.",
+    keywords: ["png to pdf", "image to pdf", "convert"],
+    popular: true,
+    newTool: true,
+    features: [],
+    howTo: [],
+    faq: [],
+    relatedTools: [],
+    seo: { title: "PNG to PDF Converter — Free, Fast & Private | AHADEX Tools", description: "Convert PNG to PDF in your browser. Multi-page, reorderable.", ogImage: "/images/og/default-og.svg" },
+  },
 ];
 
 export const TOOL_COUNT = tools.length;

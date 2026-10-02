@@ -60,6 +60,10 @@ export const toolTranslationsBn: Record<string, ToolTranslation> = {
     name: "JPG থেকে PDF",
     description: "JPG ছবি এক multi-page PDF-এ যুক্ত করুন — reorder, A4/Letter, সম্পূর্ণ ব্রাউজারেই।",
   },
+  "png-to-pdf": {
+    name: "PNG থেকে PDF",
+    description: "PNG ছবি এক multi-page PDF-এ যুক্ত করুন — reorder, A4/Letter, সাদা ব্যাকগ্রাউন্ড, সম্পূর্ণ ব্রাউজারেই।",
+  },
 };
 
 export function getToolTranslation(
