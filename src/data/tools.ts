@@ -301,6 +301,22 @@ export const tools: Tool[] = [
     relatedTools: [],
     seo: { title: "Image Cropper — Free, Fast & Private | AHADEX Tools", description: "Crop images in your browser with aspect presets.", ogImage: "/images/og/default-og.svg" },
   },
+  {
+    id: "merge-pdf",
+    slug: "merge-pdf",
+    name: "Merge PDF",
+    path: "/tools/merge-pdf",
+    description: "Combine multiple PDF files into one document in your browser. Reorder, no uploads, no servers.",
+    longDescription: "Merge PDF combines two or more PDF files into a single document. Drop files, reorder them, click Merge, and download — all in your browser using pdf-lib. Every page is copied byte-for-byte with no quality loss.",
+    keywords: ["merge pdf", "combine pdf", "join pdf", "pdf merger"],
+    popular: true,
+    newTool: true,
+    features: [],
+    howTo: [],
+    faq: [],
+    relatedTools: [],
+    seo: { title: "Merge PDF — Combine PDFs Free, Fast & Private | AHADEX Tools", description: "Merge multiple PDFs in your browser. Reorder, no uploads.", ogImage: "/images/og/default-og.svg" },
+  },
 ];
 
 export const TOOL_COUNT = tools.length;
