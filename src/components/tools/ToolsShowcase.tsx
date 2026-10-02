@@ -135,7 +135,7 @@ export function ToolsShowcase() {
           </div>
 
           <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-3 lg:gap-4">
-            {plannedTools.slice(0, 10).map((pt, i) => (
+            {plannedTools.map((pt, i) => (
               <ComingSoonCard key={pt.id} tool={pt} index={i} />
             ))}
           </div>

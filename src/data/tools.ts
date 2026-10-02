@@ -71,6 +71,31 @@ export const tools: Tool[] = [
       ogImage: "/images/og/tools/visiting-card-og.svg",
     },
   },
+  {
+    id: "cv-builder",
+    slug: "cv-builder",
+    name: "CV Builder",
+    category: "documents",
+    path: "/tools/cv-builder",
+    description:
+      "Build a professional CV in minutes. Real A4 templates, live preview, selectable-text PDF export, auto-save and full browser-side privacy.",
+    longDescription:
+      "CV Builder turns a blank page into a professional resume in under ten minutes. Choose a template, fill in your details, and download a print-ready PDF with selectable text, accurate page breaks, and full browser-side privacy. No account, no uploads, no watermarks.",
+    keywords: ["cv", "resume", "cv builder", "resume builder", "pdf cv", "ats resume", "cv template"],
+    popular: true,
+    newTool: true,
+    features: [],
+    howTo: [],
+    faq: [],
+    relatedTools: ["visiting-card", "photo-qr"],
+    seo: {
+      title:
+        "Free CV Builder — Create & Download Professional Resumes | AHADEX Tools",
+      description:
+        "Build a professional CV in minutes. Real A4 templates, selectable-text PDF export, auto-save, full privacy.",
+      ogImage: "/images/og/tools/cv-builder-og.svg",
+    },
+  },
 ];
 
 export const TOOL_COUNT = tools.length;

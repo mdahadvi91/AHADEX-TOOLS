@@ -5,7 +5,7 @@ export type CategoryId =
   | "text"
   | "developer"
   | "calculators"
-;
+  | "documents";
 
 export interface Category {
   id: CategoryId;

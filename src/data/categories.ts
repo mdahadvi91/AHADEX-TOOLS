@@ -2,12 +2,6 @@ import type { Category, CategoryId } from "@types/category";
 import { tools } from "./tools";
 import { plannedTools } from "./plannedTools";
 
-/* ============================================================
- * Categories — counts are auto-calculated
- * - `count`        = implemented working tools
- * - `plannedCount` = coming soon tools
- * ============================================================ */
-
 interface CategoryWithPlanned extends Category {
   plannedCount: number;
 }
@@ -39,6 +33,15 @@ const baseCategories: Omit<CategoryWithPlanned, "count" | "plannedCount">[] = [
       "Generate and scan QR codes for URLs, Wi-Fi, email, vCards, and more. Perfect for print or screen.",
     icon: "/images/icons/qr-tools.svg",
     color: "#C99667",
+  },
+  {
+    id: "documents",
+    slug: "documents",
+    name: "Documents",
+    description:
+      "Create and edit documents in your browser — CVs, resumes, and more. No account, no uploads.",
+    icon: "/images/icons/text-tools.svg",
+    color: "#8B9DC7",
   },
   {
     id: "text",
@@ -74,7 +77,6 @@ export const categories: Category[] = baseCategories.map((cat) => ({
   count: tools.filter((t) => t.category === cat.id).length,
 }));
 
-/** Extended info with planned counts */
 export const categoriesWithPlanned: CategoryWithPlanned[] =
   baseCategories.map((cat) => ({
     ...cat,
@@ -90,8 +92,5 @@ export function getCategoryById(id: CategoryId): Category | undefined {
   return categories.find((c) => c.id === id);
 }
 
-/** Working tools count */
 export const totalToolCount = tools.length;
-
-/** Planned tools count */
 export const totalPlannedCount = plannedTools.length;
