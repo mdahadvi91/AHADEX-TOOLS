@@ -1,7 +1,8 @@
 export const APP_CONFIG = {
   name: "AHADEX Tools",
   shortName: "AHADEX",
-  description: "42 free, fast and private online tools for everyday digital tasks.",
+  description:
+    "Free, fast and private online tools for everyday digital tasks. Everything runs in your browser.",
   version: "1.0.0",
   domain: "ahadex.fun",
   url: "https://ahadex.fun",
