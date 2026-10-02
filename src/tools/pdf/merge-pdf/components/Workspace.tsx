@@ -77,7 +77,7 @@ export function Workspace() {
           </div>
           <div className="text-center px-3">
             <p className="font-display font-bold text-[15px] sm:text-lg text-light-text dark:text-dark-text mb-1.5">{busy ? (bn ? "লোড হচ্ছে..." : "Loading...") : (bn ? "PDF ফাইল ড্রপ করুন" : "Drop your PDF files")}</p>
-            <p className="text-[12px] sm:text-sm text-light-textSecondary dark:text-darkTextSecondary leading-relaxed">{bn ? "কমপক্ষে ২টি · সর্বোচ্চ ২০টি · প্রতি ফাইল ১০০ MB" : "At least 2 · Up to 20 files · 100 MB each"}</p>
+            <p className="text-[12px] sm:text-sm text-light-textSecondary dark:text-dark-textSecondary leading-relaxed">{bn ? "কমপক্ষে ২টি · সর্বোচ্চ ২০টি · প্রতি ফাইল ১০০ MB" : "At least 2 · Up to 20 files · 100 MB each"}</p>
           </div>
         </div>
       )}
@@ -109,7 +109,7 @@ export function Workspace() {
                 <span className="w-10 h-10 rounded-xl bg-silk-rose/10 border border-silk-rose/25 flex items-center justify-center shrink-0"><FileText className="w-5 h-5 text-silk-rose" /></span>
                 <div className="flex-1 min-w-0">
                   <p className="text-[12px] sm:text-sm font-semibold text-light-text dark:text-dark-text truncate">{f.name}</p>
-                  <p className="text-[10px] sm:text-[11px] text-light-textSecondary dark:text-darkTextSecondary mt-0.5">{f.pageCount} {bn ? "পেজ" : "pages"} · {formatBytes(f.size)}</p>
+                  <p className="text-[10px] sm:text-[11px] text-light-textSecondary dark:text-dark-textSecondary mt-0.5">{f.pageCount} {bn ? "পেজ" : "pages"} · {formatBytes(f.size)}</p>
                 </div>
                 <button type="button" onClick={() => move(f.id, "up")} disabled={i === 0} className="w-7 h-7 rounded-md flex items-center justify-center text-silk-rose disabled:opacity-20 hover:bg-silk-rose/10 transition-colors shrink-0" aria-label="Move up"><ChevronUp className="w-3.5 h-3.5" /></button>
                 <button type="button" onClick={() => move(f.id, "down")} disabled={i === files.length - 1} className="w-7 h-7 rounded-md flex items-center justify-center text-silk-rose disabled:opacity-20 hover:bg-silk-rose/10 transition-colors shrink-0" aria-label="Move down"><ChevronDown className="w-3.5 h-3.5" /></button>
@@ -132,7 +132,7 @@ export function Workspace() {
       )}
 
       {files.length === 0 && (
-        <div className="flex items-center justify-center gap-2 text-[11px] sm:text-xs text-lightTextSecondary dark:text-dark-textSecondary">
+        <div className="flex items-center justify-center gap-2 text-[11px] sm:text-xs text-light-textSecondary dark:text-dark-textSecondary">
           <FileText className="w-3.5 h-3.5 text-silk-rose" />
           {bn ? "সব ফাইল আপনার ব্রাউজারে প্রসেস হয়" : "All files are processed in your browser"}
         </div>

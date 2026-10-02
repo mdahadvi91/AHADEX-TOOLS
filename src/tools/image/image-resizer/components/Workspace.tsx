@@ -133,7 +133,7 @@ export function Workspace() {
       )}
 
       {items.length === 0 && (
-        <div className="flex items-center justify-center gap-2 text-[11px] sm:text-xs text-lightTextSecondary dark:text-dark-textSecondary">
+        <div className="flex items-center justify-center gap-2 text-[11px] sm:text-xs text-light-textSecondary dark:text-dark-textSecondary">
           <FileImage className="w-3.5 h-3.5 text-silk-rose" />
           {bn ? "সব ফাইল আপনার ব্রাউজারেই প্রসেস হয়" : "All files are processed in your browser"}
         </div>

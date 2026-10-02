@@ -19,7 +19,7 @@ export function ReferencesForm({ items, onChange }: Props) {
     <div className="space-y-3">
       {items.length === 0 && (
         <div className="text-center py-6 px-4 rounded-xl bg-silk-rose/5 border border-dashed border-silk-rose/30">
-          <p className="text-[12px] text-lightTextSecondary dark:text-dark-textSecondary">
+          <p className="text-[12px] text-light-textSecondary dark:text-dark-textSecondary">
             {bn ? "কোনো রেফারেন্স নেই।" : "No references yet."}
           </p>
         </div>

@@ -7,26 +7,12 @@ export const primaryNav: NavItem[] = [
   { label: "Contact", to: "/contact" },
 ];
 
-export const categoryNav: NavItem[] = [
-  { label: "Image Tools", to: "/categories/image" },
-  { label: "PDF Tools", to: "/categories/pdf" },
-  { label: "QR & Barcode", to: "/categories/qr" },
-  { label: "Text Tools", to: "/categories/text" },
-  { label: "Developer Tools", to: "/categories/developer" },
-  { label: "Calculators", to: "/categories/calculators" },
-];
 
 export const footerNav: NavSection[] = [
   {
     title: "Tools",
     items: [
       { label: "All Tools", to: "/tools" },
-      { label: "Image Tools", to: "/categories/image" },
-      { label: "PDF Tools", to: "/categories/pdf" },
-      { label: "QR & Barcode", to: "/categories/qr" },
-      { label: "Text Tools", to: "/categories/text" },
-      { label: "Developer Tools", to: "/categories/developer" },
-      { label: "Calculators", to: "/categories/calculators" },
     ],
   },
   {

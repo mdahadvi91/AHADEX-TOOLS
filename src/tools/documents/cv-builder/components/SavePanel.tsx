@@ -226,7 +226,7 @@ export function SavePanel({
                   <p className="text-[11px] font-medium text-light-text dark:text-dark-text truncate">
                     {r.name}
                   </p>
-                  <p className="text-[9px] text-lightTextSecondary dark:text-dark-textSecondary">
+                  <p className="text-[9px] text-light-textSecondary dark:text-dark-textSecondary">
                     {new Date(r.updatedAt).toLocaleDateString()}
                   </p>
                 </button>

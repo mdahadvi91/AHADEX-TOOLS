@@ -137,8 +137,8 @@ function buildSchemas() {
       {
         "@type": "ListItem",
         position: 2,
-        name: "QR & Barcode",
-        item: `${SITE_URL}/categories/qr`,
+        name: "Tools",
+        item: `${SITE_URL}/tools`,
       },
       {
         "@type": "ListItem",

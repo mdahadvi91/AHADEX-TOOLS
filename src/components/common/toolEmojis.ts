@@ -70,21 +70,3 @@ export const TOOL_EMOJIS: Record<string, string> = {
 export function getToolEmoji(toolId: string): string {
   return TOOL_EMOJIS[toolId] ?? "🛠️";
 }
-
-/* ------------------------------------------------------------
- * Category emoji fallbacks (used when tool ID has no emoji)
- * ------------------------------------------------------------ */
-
-export const CATEGORY_EMOJIS: Record<string, string> = {
-  image: "🖼️",
-  pdf: "📄",
-  qr: "🔲",
-  documents: "📄",
-  text: "📝",
-  developer: "💻",
-  calculators: "🧮",
-};
-
-export function getCategoryEmoji(categoryId: string): string {
-  return CATEGORY_EMOJIS[categoryId] ?? "🛠️";
-}

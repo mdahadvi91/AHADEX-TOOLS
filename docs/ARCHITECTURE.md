@@ -9,8 +9,7 @@ src/
 ├── contexts/            # Theme, Language, Sound
 ├── data/
 │   ├── tools.ts         # WORKING tools only
-│   ├── plannedTools.ts  # Coming Soon tools
-│   └── categories.ts    # Auto-counted
+│   └── plannedTools.ts  # Coming Soon tools
 ├── i18n/
 │   ├── en.ts
 │   ├── bn.ts

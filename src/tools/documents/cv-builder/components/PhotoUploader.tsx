@@ -179,7 +179,7 @@ export function PhotoUploader({
         </div>
       )}
 
-      <p className="text-[10px] text-lightTextSecondary dark:text-dark-textSecondary leading-relaxed">
+      <p className="text-[10px] text-light-textSecondary dark:text-dark-textSecondary leading-relaxed">
         {bn
           ? "ছবি সম্পূর্ণ ব্রাউজারেই প্রসেস হয় — কোথাও আপলোড হয় না।"
           : "Photos are processed entirely in your browser — nothing is uploaded."}

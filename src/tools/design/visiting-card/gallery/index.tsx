@@ -109,7 +109,7 @@ export function Gallery() {
                   <p className="font-display font-semibold text-sm text-light-text dark:text-dark-text leading-tight">
                     {language === "bn" ? t.titleBn : t.titleEn}
                   </p>
-                  <p className="text-[11px] text-lightTextSecondary dark:text-darkTextSecondary mt-0.5">
+                  <p className="text-[11px] text-light-textSecondary dark:text-dark-textSecondary mt-0.5">
                     {language === "bn" ? t.descBn : t.descEn}
                   </p>
                 </div>
@@ -211,7 +211,7 @@ function TemplateCard({
           <h3 className="font-display font-bold text-sm text-light-text dark:text-dark-text leading-tight truncate">
             {language === "bn" ? template.nameBn : template.name}
           </h3>
-          <p className="text-[10px] text-lightTextSecondary dark:text-darkTextSecondary capitalize mt-0.5">
+          <p className="text-[10px] text-light-textSecondary dark:text-dark-textSecondary capitalize mt-0.5">
             {template.category}
           </p>
         </div>

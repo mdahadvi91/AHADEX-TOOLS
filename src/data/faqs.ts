@@ -22,7 +22,7 @@ export const homeFaqs: FAQItem[] = [
   {
     question: "How many tools are available?",
     answer:
-      "We currently offer  across six categories: Image, PDF, QR & Barcode, Text, Developer, and Calculators. More tools are added regularly.",
+      "We currently offer 17 free tools for images, PDFs, documents, and text. More tools are added regularly.",
   },
   {
     question: "Does it work on mobile?",

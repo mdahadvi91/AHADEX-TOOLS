@@ -1,8 +1,6 @@
 export const ROUTES = {
   home: "/",
   tools: "/tools",
-  categories: "/categories",
-  category: (slug: string) => `/categories/${slug}`,
   tool: (slug: string) => `/tools/${slug}`,
 
   about: "/about",
@@ -17,11 +15,3 @@ export const ROUTES = {
   notFound: "/404",
 } as const;
 
-export const CATEGORY_ROUTES = {
-  image: "/categories/image",
-  pdf: "/categories/pdf",
-  qr: "/categories/qr",
-  text: "/categories/text",
-  developer: "/categories/developer",
-  calculators: "/categories/calculators",
-} as const;

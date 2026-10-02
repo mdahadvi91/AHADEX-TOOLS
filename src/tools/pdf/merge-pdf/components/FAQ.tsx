@@ -27,7 +27,7 @@ function Item({ q, a }: { q: string; a: string }) {
         <motion.span animate={{ rotate: open ? 180 : 0 }} transition={{ duration: 0.25 }} className="shrink-0 text-silk-rose"><ChevronDown className="w-4 h-4" /></motion.span>
       </button>
       <AnimatePresence initial={false}>
-        {open && (<motion.div initial={{ height: 0, opacity: 0 }} animate={{ height: "auto", opacity: 1 }} exit={{ height: 0, opacity: 0 }} transition={{ duration: 0.28 }} className="overflow-hidden"><p className="px-4 pb-4 text-[12px] sm:text-[13px] text-lightTextSecondary dark:text-darkTextSecondary leading-relaxed">{a}</p></motion.div>)}
+        {open && (<motion.div initial={{ height: 0, opacity: 0 }} animate={{ height: "auto", opacity: 1 }} exit={{ height: 0, opacity: 0 }} transition={{ duration: 0.28 }} className="overflow-hidden"><p className="px-4 pb-4 text-[12px] sm:text-[13px] text-light-textSecondary dark:text-dark-textSecondary leading-relaxed">{a}</p></motion.div>)}
       </AnimatePresence>
     </div>
   );
