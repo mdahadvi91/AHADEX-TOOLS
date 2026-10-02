@@ -2,6 +2,7 @@ import { useEffect } from "react";
 import { useLanguage } from "@contexts/LanguageContext";
 import { photoQrData } from "./data";
 import { photoQrContent } from "./content";
+import { getMetaKeywordsString } from "./tags";
 
 const SITE_URL = "https://ahadex.fun";
 const SITE_NAME = "AHADEX Tools";
@@ -27,7 +28,7 @@ export function SEO(_props: SEOProps) {
 
     // ---------- Meta tags ----------
     setMeta("name", "description", description);
-    setMeta("name", "keywords", photoQrData.keywords.join(", "));
+    setMeta("name", "keywords", getMetaKeywordsString());
     setMeta("name", "robots", "index, follow, max-image-preview:large");
     setMeta("name", "author", "AHADEX");
 

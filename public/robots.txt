@@ -11,12 +11,17 @@ Disallow: /*?preview=true
 
 Sitemap: https://ahadex.fun/sitemap.xml
 
+# ---------- Google Search ----------
 User-agent: Googlebot
 Allow: /
 
 User-agent: Googlebot-Image
 Allow: /
 
+User-agent: Googlebot-News
+Allow: /
+
+# ---------- Google AdSense ----------
 User-agent: Mediapartners-Google
 Allow: /
 
@@ -26,24 +31,34 @@ Allow: /
 User-agent: AdsBot-Google-Mobile
 Allow: /
 
+# ---------- Bing ----------
 User-agent: Bingbot
 Allow: /
 
+User-agent: msnbot
+Allow: /
+
+# ---------- Yahoo ----------
 User-agent: Slurp
 Allow: /
 
+# ---------- DuckDuckGo ----------
 User-agent: DuckDuckBot
 Allow: /
 
+# ---------- Yandex ----------
 User-agent: YandexBot
 Allow: /
 
+# ---------- Baidu ----------
 User-agent: Baiduspider
 Allow: /
 
+# ---------- Apple ----------
 User-agent: Applebot
 Allow: /
 
+# ---------- Social ----------
 User-agent: Twitterbot
 Allow: /
 
@@ -59,6 +74,10 @@ Allow: /
 User-agent: TelegramBot
 Allow: /
 
+User-agent: Pinterest
+Allow: /
+
+# ---------- Block aggressive SEO crawlers ----------
 User-agent: AhrefsBot
 Disallow: /
 
@@ -80,6 +99,7 @@ Disallow: /
 User-agent: DataForSeoBot
 Disallow: /
 
+# ---------- Block AI training crawlers ----------
 User-agent: GPTBot
 Disallow: /
 
