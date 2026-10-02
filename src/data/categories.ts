@@ -1,6 +1,18 @@
 import type { Category, CategoryId } from "@types/category";
+import { tools } from "./tools";
+import { plannedTools } from "./plannedTools";
 
-export const categories: Category[] = [
+/* ============================================================
+ * Categories — counts are auto-calculated
+ * - `count`        = implemented working tools
+ * - `plannedCount` = coming soon tools
+ * ============================================================ */
+
+interface CategoryWithPlanned extends Category {
+  plannedCount: number;
+}
+
+const baseCategories: Omit<CategoryWithPlanned, "count" | "plannedCount">[] = [
   {
     id: "image",
     slug: "image",
@@ -9,7 +21,6 @@ export const categories: Category[] = [
       "Convert, compress, resize, and edit images right in your browser. No uploads, no quality loss.",
     icon: "/images/icons/image-tools.svg",
     color: "#D88B9A",
-    count: 12,
   },
   {
     id: "pdf",
@@ -19,7 +30,6 @@ export const categories: Category[] = [
       "Merge, split, compress, and convert PDF files instantly. Everything runs locally on your device.",
     icon: "/images/icons/pdf-tools.svg",
     color: "#B36878",
-    count: 8,
   },
   {
     id: "qr",
@@ -29,7 +39,6 @@ export const categories: Category[] = [
       "Generate and scan QR codes for URLs, Wi-Fi, email, vCards, and more. Perfect for print or screen.",
     icon: "/images/icons/qr-tools.svg",
     color: "#C99667",
-    count: 8,
   },
   {
     id: "text",
@@ -39,7 +48,6 @@ export const categories: Category[] = [
       "Count words, change case, format JSON, encode Base64, and clean up text — all offline.",
     icon: "/images/icons/text-tools.svg",
     color: "#8B3A4F",
-    count: 6,
   },
   {
     id: "developer",
@@ -49,7 +57,6 @@ export const categories: Category[] = [
       "URL encoding, UUID generation, regex testing — small utilities for everyday coding tasks.",
     icon: "/images/icons/dev-tools.svg",
     color: "#D88B9A",
-    count: 3,
   },
   {
     id: "calculators",
@@ -59,9 +66,21 @@ export const categories: Category[] = [
       "Percentage, age, date difference, units, BMI — everyday math made simple and accurate.",
     icon: "/images/icons/calculator-tools.svg",
     color: "#C99667",
-    count: 5,
   },
 ];
+
+export const categories: Category[] = baseCategories.map((cat) => ({
+  ...cat,
+  count: tools.filter((t) => t.category === cat.id).length,
+}));
+
+/** Extended info with planned counts */
+export const categoriesWithPlanned: CategoryWithPlanned[] =
+  baseCategories.map((cat) => ({
+    ...cat,
+    count: tools.filter((t) => t.category === cat.id).length,
+    plannedCount: plannedTools.filter((t) => t.category === cat.id).length,
+  }));
 
 export function getCategoryBySlug(slug: string): Category | undefined {
   return categories.find((c) => c.slug === slug);
@@ -71,4 +90,8 @@ export function getCategoryById(id: CategoryId): Category | undefined {
   return categories.find((c) => c.id === id);
 }
 
-export const totalToolCount = categories.reduce((sum, cat) => sum + cat.count, 0);
+/** Working tools count */
+export const totalToolCount = tools.length;
+
+/** Planned tools count */
+export const totalPlannedCount = plannedTools.length;
