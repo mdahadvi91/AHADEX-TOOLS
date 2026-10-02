@@ -1,19 +1,10 @@
 import QRCode from "qrcode";
 import { renderToStaticMarkup } from "react-dom/server";
-import type { Platform } from "./platforms";
+import type { PlatformConfig, RenderOptions } from "./types";
 
-export type Position = "top-left" | "top-right" | "bottom-left" | "bottom-right";
-export type QrBackground = "white" | "rounded" | "none";
-
-export interface RenderOptions {
-  photoFile: File;
-  platform: Platform;
-  values: Record<string, string>;
-  position: Position;
-  sizePercent: number;
-  padding: number;
-  qrBackground: QrBackground;
-}
+/* ============================================================
+ * IMAGE LOADING
+ * ============================================================ */
 
 export function loadImageFromFile(file: File): Promise<HTMLImageElement> {
   return new Promise((resolve, reject) => {
@@ -31,7 +22,11 @@ export function loadImageFromFile(file: File): Promise<HTMLImageElement> {
   });
 }
 
-function buildLogoDataUrl(platform: Platform, size: number): string {
+/* ============================================================
+ * LOGO BUILDER — platform icon inside colored circle
+ * ============================================================ */
+
+function buildLogoDataUrl(platform: PlatformConfig, size: number): string {
   const IconComponent = platform.Icon;
   const iconMarkup = renderToStaticMarkup(
     IconComponent({ size: 100, color: "#FFFFFF" })
@@ -41,7 +36,9 @@ function buildLogoDataUrl(platform: Platform, size: number): string {
     <svg xmlns="http://www.w3.org/2000/svg" width="${size}" height="${size}" viewBox="0 0 100 100">
       <circle cx="50" cy="50" r="50" fill="${platform.color}"/>
       <g transform="translate(25, 25)">
-        ${iconMarkup.replace(/width="[^"]*"/g, 'width="50"').replace(/height="[^"]*"/g, 'height="50"')}
+        ${iconMarkup
+          .replace(/width="[^"]*"/g, 'width="50"')
+          .replace(/height="[^"]*"/g, 'height="50"')}
       </g>
     </svg>
   `;
@@ -57,9 +54,38 @@ function loadSvgImage(dataUrl: string): Promise<HTMLImageElement> {
   });
 }
 
+/* ============================================================
+ * ROUNDED RECT HELPER
+ * ============================================================ */
+
+function roundRect(
+  ctx: CanvasRenderingContext2D,
+  x: number,
+  y: number,
+  w: number,
+  h: number,
+  r: number
+) {
+  ctx.beginPath();
+  ctx.moveTo(x + r, y);
+  ctx.lineTo(x + w - r, y);
+  ctx.quadraticCurveTo(x + w, y, x + w, y + r);
+  ctx.lineTo(x + w, y + h - r);
+  ctx.quadraticCurveTo(x + w, y + h, x + w - r, y + h);
+  ctx.lineTo(x + r, y + h);
+  ctx.quadraticCurveTo(x, y + h, x, y + h - r);
+  ctx.lineTo(x, y + r);
+  ctx.quadraticCurveTo(x, y, x + r, y);
+  ctx.closePath();
+}
+
+/* ============================================================
+ * QR + LOGO GENERATOR
+ * ============================================================ */
+
 export async function generateQrWithLogo(
   payload: string,
-  platform: Platform,
+  platform: PlatformConfig,
   qrPixelSize: number
 ): Promise<HTMLCanvasElement> {
   const qrCanvas = document.createElement("canvas");
@@ -98,26 +124,59 @@ export async function generateQrWithLogo(
   return qrCanvas;
 }
 
-function roundRect(
+/* ============================================================
+ * POSITION CALCULATOR
+ * ============================================================ */
+
+function getPositionCoords(
+  position: string,
+  W: number,
+  H: number,
+  totalBox: number,
+  innerPad: number
+): { x: number; y: number } {
+  switch (position) {
+    case "top-left":
+      return { x: innerPad, y: innerPad };
+    case "top-right":
+      return { x: W - totalBox - innerPad, y: innerPad };
+    case "bottom-left":
+      return { x: innerPad, y: H - totalBox - innerPad };
+    case "bottom-right":
+    default:
+      return { x: W - totalBox - innerPad, y: H - totalBox - innerPad };
+  }
+}
+
+/* ============================================================
+ * DRAW BACKGROUND BEHIND QR
+ * ============================================================ */
+
+function drawQrBackground(
   ctx: CanvasRenderingContext2D,
+  bg: string,
   x: number,
   y: number,
-  w: number,
-  h: number,
-  r: number
+  totalBox: number,
+  qrSize: number
 ) {
-  ctx.beginPath();
-  ctx.moveTo(x + r, y);
-  ctx.lineTo(x + w - r, y);
-  ctx.quadraticCurveTo(x + w, y, x + w, y + r);
-  ctx.lineTo(x + w, y + h - r);
-  ctx.quadraticCurveTo(x + w, y + h, x + w - r, y + h);
-  ctx.lineTo(x + r, y + h);
-  ctx.quadraticCurveTo(x, y + h, x, y + h - r);
-  ctx.lineTo(x, y + r);
-  ctx.quadraticCurveTo(x, y, x + r, y);
-  ctx.closePath();
+  if (bg === "none") return;
+  ctx.save();
+  if (bg === "rounded") {
+    const r = Math.round(qrSize * 0.16);
+    roundRect(ctx, x, y, totalBox, totalBox, r);
+  } else {
+    ctx.beginPath();
+    ctx.rect(x, y, totalBox, totalBox);
+  }
+  ctx.fillStyle = "#FFFFFF";
+  ctx.fill();
+  ctx.restore();
 }
+
+/* ============================================================
+ * COMPOSE FULL RESOLUTION PHOTO
+ * ============================================================ */
 
 export async function composePhoto(options: RenderOptions): Promise<Blob> {
   const {
@@ -152,43 +211,22 @@ export async function composePhoto(options: RenderOptions): Promise<Blob> {
   const innerPad = Math.round(qrSize * 0.06);
   const effectivePadding = qrBackground === "none" ? 0 : padding;
   const totalBox = qrSize + effectivePadding * 2;
-  let x = 0;
-  let y = 0;
+  const { x, y } = getPositionCoords(
+    position,
+    W,
+    H,
+    totalBox,
+    innerPad
+  );
 
-  switch (position) {
-    case "top-left":
-      x = innerPad;
-      y = innerPad;
-      break;
-    case "top-right":
-      x = W - totalBox - innerPad;
-      y = innerPad;
-      break;
-    case "bottom-left":
-      x = innerPad;
-      y = H - totalBox - innerPad;
-      break;
-    case "bottom-right":
-      x = W - totalBox - innerPad;
-      y = H - totalBox - innerPad;
-      break;
-  }
-
-  if (qrBackground !== "none") {
-    ctx.save();
-    if (qrBackground === "rounded") {
-      const r = Math.round(qrSize * 0.16);
-      roundRect(ctx, x, y, totalBox, totalBox, r);
-    } else {
-      ctx.beginPath();
-      ctx.rect(x, y, totalBox, totalBox);
-    }
-    ctx.fillStyle = "#FFFFFF";
-    ctx.fill();
-    ctx.restore();
-  }
-
-  ctx.drawImage(qrCanvas, x + effectivePadding, y + effectivePadding, qrSize, qrSize);
+  drawQrBackground(ctx, qrBackground, x, y, totalBox, qrSize);
+  ctx.drawImage(
+    qrCanvas,
+    x + effectivePadding,
+    y + effectivePadding,
+    qrSize,
+    qrSize
+  );
 
   return new Promise((resolve, reject) => {
     out.toBlob(
@@ -201,6 +239,10 @@ export async function composePhoto(options: RenderOptions): Promise<Blob> {
     );
   });
 }
+
+/* ============================================================
+ * GENERATE LOW-RES PREVIEW
+ * ============================================================ */
 
 export async function generatePreview(
   options: RenderOptions,
@@ -240,45 +282,19 @@ export async function generatePreview(
   ctx.drawImage(img, 0, 0, pw, ph);
 
   const innerPad = Math.round(qrSize * 0.06);
-  const scaledPadding = qrBackground === "none" ? 0 : Math.round(padding * scale);
+  const scaledPadding =
+    qrBackground === "none" ? 0 : Math.round(padding * scale);
   const totalBox = qrSize + scaledPadding * 2;
+  const { x, y } = getPositionCoords(position, pw, ph, totalBox, innerPad);
 
-  let x = 0;
-  let y = 0;
-  switch (position) {
-    case "top-left":
-      x = innerPad;
-      y = innerPad;
-      break;
-    case "top-right":
-      x = pw - totalBox - innerPad;
-      y = innerPad;
-      break;
-    case "bottom-left":
-      x = innerPad;
-      y = ph - totalBox - innerPad;
-      break;
-    case "bottom-right":
-      x = pw - totalBox - innerPad;
-      y = ph - totalBox - innerPad;
-      break;
-  }
-
-  if (qrBackground !== "none") {
-    ctx.save();
-    if (qrBackground === "rounded") {
-      const r = Math.round(qrSize * 0.16);
-      roundRect(ctx, x, y, totalBox, totalBox, r);
-    } else {
-      ctx.beginPath();
-      ctx.rect(x, y, totalBox, totalBox);
-    }
-    ctx.fillStyle = "#FFFFFF";
-    ctx.fill();
-    ctx.restore();
-  }
-
-  ctx.drawImage(qrCanvas, x + scaledPadding, y + scaledPadding, qrSize, qrSize);
+  drawQrBackground(ctx, qrBackground, x, y, totalBox, qrSize);
+  ctx.drawImage(
+    qrCanvas,
+    x + scaledPadding,
+    y + scaledPadding,
+    qrSize,
+    qrSize
+  );
 
   return out.toDataURL("image/png", 0.92);
 }
