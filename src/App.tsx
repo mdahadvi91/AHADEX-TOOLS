@@ -48,6 +48,7 @@ const ImageMetadataViewerTool = lazy(() => import("@tools/image/image-metadata-v
 const WordCounterTool = lazy(() => import("@tools/text/word-counter"));
 const PdfToPngTool = lazy(() => import("@tools/pdf/pdf-to-png"));
 const PdfToJpgTool = lazy(() => import("@tools/pdf/pdf-to-jpg"));
+const PdfToTextTool = lazy(() => import("@tools/pdf/pdf-to-text"));
 
 const CVBuilderEditor = lazy(() =>
   import("@tools/documents/cv-builder/editor").then((m) => ({
@@ -126,6 +127,7 @@ export default function App() {
                   <Route path="tools/word-counter" element={<WordCounterTool />} />
                   <Route path="tools/pdf-to-png" element={<PdfToPngTool />} />
                   <Route path="tools/pdf-to-jpg" element={<PdfToJpgTool />} />
+                  <Route path="tools/pdf-to-text" element={<PdfToTextTool />} />
 
                   {/* Tool editors */}
                   <Route path="tools/cv-builder/edit/:templateId" element={<CVBuilderEditor />} />
