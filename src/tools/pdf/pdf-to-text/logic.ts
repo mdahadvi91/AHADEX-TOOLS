@@ -1,5 +1,5 @@
 import * as pdfjsLib from "pdfjs-dist";
-// @ts-expect-error — Vite ?url import
+// @ts-ignore — Vite ?url import
 import pdfWorker from "pdfjs-dist/build/pdf.worker.min.mjs?url";
 import type { LoadedPdf, ExtractedPage, ExtractResult, ExtractOptions } from "./types";
 

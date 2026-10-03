@@ -10,7 +10,6 @@ import {
   Crop,
   FileOutput,
   FileSearch,
-  Eraser,
   FilePlus,
   FilePlus2,
   Layers,

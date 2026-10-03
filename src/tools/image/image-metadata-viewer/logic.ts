@@ -172,7 +172,7 @@ export async function readMetadata(file: File): Promise<MetadataResult> {
 
   let raw: Record<string, unknown> = {};
   try {
-    const parsed = await exifr.parse(file, { gps: true, exif: true, tiff: true, ifd0: true });
+    const parsed = await exifr.parse(file, { gps: true, exif: true, tiff: true });
     if (parsed && typeof parsed === "object") raw = parsed as Record<string, unknown>;
   } catch {
     raw = {};
