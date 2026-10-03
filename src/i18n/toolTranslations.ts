@@ -84,6 +84,10 @@ export const toolTranslationsBn: Record<string, ToolTranslation> = {
     name: "ইমেজ থেকে PDF",
     description: "JPG, PNG ও WebP ছবি এক PDF-এ যুক্ত করুন — সম্পূর্ণ ব্রাউজারেই, multi-page, A4/Letter।",
   },
+  "image-metadata-viewer": {
+    name: "ইমেজ মেটাডেটা",
+    description: "ছবির EXIF, GPS ও ক্যামেরার তথ্য দেখুন — সম্পূর্ণ ব্রাউজারেই, ১০০% প্রাইভেট।",
+  },
 };
 
 export function getToolTranslation(

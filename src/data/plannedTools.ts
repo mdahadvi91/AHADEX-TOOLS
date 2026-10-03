@@ -34,30 +34,6 @@ export const plannedTools: PlannedTool[] = [
 
 
   {
-    id: "image-metadata-viewer",
-    slug: "image-metadata-viewer",
-    name: "Image Metadata Viewer",
-    nameBn: "ইমেজ মেটাডেটা",
-    path: "/tools/image-metadata-viewer",
-    description: "View EXIF, GPS, and camera metadata in your photos.",
-    descriptionBn: "ছবির EXIF, GPS ও ক্যামেরার তথ্য দেখুন।",
-    eta: "Coming soon",
-  },
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  {
     id: "background-remover",
     slug: "background-remover",
     name: "Background Remover",

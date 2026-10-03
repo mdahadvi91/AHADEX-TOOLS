@@ -371,6 +371,28 @@ export const tools: Tool[] = [
       ogImage: "/images/og/default-og.svg",
     },
   },
+  {
+    id: "image-metadata-viewer",
+    slug: "image-metadata-viewer",
+    name: "Image Metadata Viewer",
+    path: "/tools/image-metadata-viewer",
+    description:
+      "View EXIF, GPS, camera, and file metadata hidden inside your photos — in your browser. No uploads, 100% private.",
+    longDescription:
+      "Image Metadata Viewer reads the EXIF, GPS, and file metadata inside your photos and displays it in clean, grouped sections: camera model and lens, exposure (shutter, aperture, ISO, focal length), timestamps, GPS coordinates with a map link, image details, and author info. Everything runs in your browser using exifr; nothing is uploaded.",
+    keywords: ["image metadata", "exif viewer", "gps viewer", "camera metadata", "photo exif", "view exif"],
+    popular: true,
+    newTool: true,
+    features: [],
+    howTo: [],
+    faq: [],
+    relatedTools: ["image-to-pdf", "image-compressor"],
+    seo: {
+      title: "Image Metadata Viewer — EXIF, GPS & Camera Data Free | AHADEX Tools",
+      description: "View EXIF, GPS, camera, and file metadata hidden inside your photos — in your browser.",
+      ogImage: "/images/og/default-og.svg",
+    },
+  },
 ];
 
 export const TOOL_COUNT = tools.length;
