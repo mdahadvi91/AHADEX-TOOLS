@@ -33,68 +33,6 @@ export const plannedTools: PlannedTool[] = [
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  {
-    id: "image-to-pdf",
-    slug: "image-to-pdf",
-    name: "Image to PDF",
-    nameBn: "ইমেজ থেকে PDF",
-    path: "/tools/image-to-pdf",
-    description: "Convert images to a multi-page PDF document.",
-    descriptionBn: "অনেক ছবি মিলিয়ে একটা PDF তৈরি করুন।",
-    eta: "Coming soon",
-  },
-
-
-
-
-
-
-
-
-
-
-
-
-
-
   {
     id: "image-metadata-viewer",
     slug: "image-metadata-viewer",
