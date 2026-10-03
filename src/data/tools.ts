@@ -481,6 +481,28 @@ export const tools: Tool[] = [
       ogImage: "/images/og/default-og.svg",
     },
   },
+  {
+    id: "pdf-page-extractor",
+    slug: "pdf-page-extractor",
+    name: "PDF Page Extractor",
+    path: "/tools/pdf-page-extractor",
+    description:
+      "Extract pages from any PDF in custom order, with duplicates. One combined PDF or separate files. Runs in your browser.",
+    longDescription:
+      "PDF Page Extractor pulls pages out of your PDF and gives you either one combined PDF or separate files — one per page. Unlike simpler extractors, this respects the exact order you type and allows the same page to appear more than once. Type '3, 1, 3, 5' and get a 4-page PDF: 3, 1, 3, 5. Everything runs in your browser using pdf-lib; pages are copied byte-for-byte with no re-compression.",
+    keywords: ["pdf page extractor", "extract pdf pages", "extract pages from pdf", "pdf page splitter", "pdf reorder pages"],
+    popular: true,
+    newTool: true,
+    features: [],
+    howTo: [],
+    faq: [],
+    relatedTools: ["split-pdf", "merge-pdf"],
+    seo: {
+      title: "PDF Page Extractor — Custom Order Page Extract Free | AHADEX Tools",
+      description: "Extract pages from any PDF in custom order, with duplicates. Combined PDF or separate files.",
+      ogImage: "/images/og/default-og.svg",
+    },
+  },
 ];
 
 export const TOOL_COUNT = tools.length;

@@ -104,6 +104,10 @@ export const toolTranslationsBn: Record<string, ToolTranslation> = {
     name: "PDF রোটেটর",
     description: "PDF পেজ 90°/180° ঘোরান — সব পেজ বা নির্দিষ্ট রেঞ্জ, lossless, সম্পূর্ণ ব্রাউজারেই।",
   },
+  "pdf-page-extractor": {
+    name: "PDF পেজ এক্সট্রাক্টর",
+    description: "PDF থেকে পেজ বের করুন — নিজের ক্রমে, duplicate সহ। Combined PDF বা আলাদা ফাইল।",
+  },
 };
 
 export function getToolTranslation(
