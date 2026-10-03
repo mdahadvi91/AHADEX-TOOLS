@@ -415,6 +415,28 @@ export const tools: Tool[] = [
       ogImage: "/images/og/default-og.svg",
     },
   },
+  {
+    id: "pdf-to-jpg",
+    slug: "pdf-to-jpg",
+    name: "PDF to JPG",
+    path: "/tools/pdf-to-jpg",
+    description:
+      "Convert every page of your PDF into a high-quality JPG image — in your browser. Up to 300 DPI, page ranges, batch download.",
+    longDescription:
+      "PDF to JPG renders each page of your PDF as a standalone JPG image. Choose 72/150/300 DPI, select specific page ranges or all pages, and download individually or in a batch. JPG files are 5–10× smaller than PNG at equivalent visual quality and open on every device.",
+    keywords: ["pdf to jpg", "pdf to image", "convert pdf to jpg", "pdf page to image", "free pdf to jpg"],
+    popular: true,
+    newTool: true,
+    features: [],
+    howTo: [],
+    faq: [],
+    relatedTools: ["pdf-to-png", "merge-pdf"],
+    seo: {
+      title: "PDF to JPG — Convert PDF Pages to Images Free | AHADEX Tools",
+      description: "Convert PDF pages to high-quality JPG images in your browser. Up to 300 DPI, page ranges.",
+      ogImage: "/images/og/default-og.svg",
+    },
+  },
 ];
 
 export const TOOL_COUNT = tools.length;
