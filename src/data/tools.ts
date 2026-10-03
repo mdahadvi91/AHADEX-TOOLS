@@ -437,6 +437,28 @@ export const tools: Tool[] = [
       ogImage: "/images/og/default-og.svg",
     },
   },
+  {
+    id: "pdf-to-text",
+    slug: "pdf-to-text",
+    name: "PDF to Text",
+    path: "/tools/pdf-to-text",
+    description:
+      "Extract plain text from any PDF — in your browser. Page ranges, line-break options, download .txt or copy to clipboard. No uploads.",
+    longDescription:
+      "PDF to Text reads the text layer inside your PDF and extracts it as plain text. Every PDF with selectable text has an invisible text layer behind the pixels. This tool pulls that text out, preserving paragraph and line structure where you want it, and gives you a .txt file or a clipboard copy. Everything runs in your browser using pdf.js.",
+    keywords: ["pdf to text", "extract text from pdf", "pdf text extractor", "convert pdf to text", "pdf to txt"],
+    popular: true,
+    newTool: true,
+    features: [],
+    howTo: [],
+    faq: [],
+    relatedTools: ["pdf-to-jpg", "pdf-to-png"],
+    seo: {
+      title: "PDF to Text — Extract Plain Text from PDF Free | AHADEX Tools",
+      description: "Extract plain text from any PDF in your browser. Page ranges, line-break options, copy or .txt download.",
+      ogImage: "/images/og/default-og.svg",
+    },
+  },
 ];
 
 export const TOOL_COUNT = tools.length;

@@ -96,6 +96,10 @@ export const toolTranslationsBn: Record<string, ToolTranslation> = {
     name: "PDF থেকে JPG",
     description: "PDF-এর প্রতিটি পেজ JPG ছবিতে রূপান্তর করুন — সম্পূর্ণ ব্রাউজারেই, ৩০০ DPI পর্যন্ত।",
   },
+  "pdf-to-text": {
+    name: "PDF থেকে টেক্সট",
+    description: "PDF থেকে প্লেন টেক্সট বের করুন — পেজ রেঞ্জ, লাইন ব্রেক অপশন, কপি বা .txt ডাউনলোড।",
+  },
 };
 
 export function getToolTranslation(
