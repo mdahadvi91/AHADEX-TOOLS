@@ -1,16 +1,16 @@
-import { AuroraBlobs } from "./AuroraBlobs";
 import { ParticleField } from "./ParticleField";
 import { FallingPetals } from "./FallingPetals";
-import { ImageBackground } from "./ImageBackground";
+import { RotatingBackground } from "./RotatingBackground";
+import { AuroraBlobs } from "./AuroraBlobs";
 
 export function CinematicBackground() {
   return (
     <>
-      <ImageBackground />
+      <RotatingBackground />
       <FallingPetals />
       <ParticleField />
     </>
   );
 }
 
-export { AuroraBlobs, ParticleField, FallingPetals, ImageBackground };
+export { AuroraBlobs, ParticleField, FallingPetals, RotatingBackground };
