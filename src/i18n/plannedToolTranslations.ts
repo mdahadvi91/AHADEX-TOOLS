@@ -11,12 +11,7 @@
 
 import type { ToolTranslation } from "./toolTranslations";
 
-export const plannedToolTranslationsBn: Record<string, ToolTranslation> = {
-  "background-remover": {
-    name: "ব্যাকগ্রাউন্ড রিমুভার",
-    description: "AI দিয়ে স্বয়ংক্রিয়ভাবে ব্যাকগ্রাউন্ড সরান।",
-  },
-};
+export const plannedToolTranslationsBn: Record<string, ToolTranslation> = {};
 
 export function getPlannedToolTranslation(
   toolId: string,

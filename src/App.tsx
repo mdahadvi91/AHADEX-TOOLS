@@ -46,6 +46,7 @@ const SplitPdfTool = lazy(() => import("@tools/pdf/split-pdf"));
 const ImageToPdfTool = lazy(() => import("@tools/image/image-to-pdf"));
 const ImageMetadataViewerTool = lazy(() => import("@tools/image/image-metadata-viewer"));
 const WordCounterTool = lazy(() => import("@tools/text/word-counter"));
+const PdfToPngTool = lazy(() => import("@tools/pdf/pdf-to-png"));
 
 const CVBuilderEditor = lazy(() =>
   import("@tools/documents/cv-builder/editor").then((m) => ({
@@ -122,6 +123,7 @@ export default function App() {
                   <Route path="tools/image-to-pdf" element={<ImageToPdfTool />} />
                   <Route path="tools/image-metadata-viewer" element={<ImageMetadataViewerTool />} />
                   <Route path="tools/word-counter" element={<WordCounterTool />} />
+                  <Route path="tools/pdf-to-png" element={<PdfToPngTool />} />
 
                   {/* Tool editors */}
                   <Route path="tools/cv-builder/edit/:templateId" element={<CVBuilderEditor />} />
