@@ -459,6 +459,28 @@ export const tools: Tool[] = [
       ogImage: "/images/og/default-og.svg",
     },
   },
+  {
+    id: "pdf-rotator",
+    slug: "pdf-rotator",
+    name: "PDF Rotator",
+    path: "/tools/pdf-rotator",
+    description:
+      "Rotate pages in any PDF — in your browser. Rotate all pages or just a few, 90° left/right or 180°. Lossless, no uploads.",
+    longDescription:
+      "PDF Rotator changes the rotation of pages inside your PDF. Every page carries a rotation value (0°, 90°, 180°, or 270°); this tool adjusts those values — rotating selected pages 90° clockwise, 90° counter-clockwise, or 180° — and saves a new PDF. Only rotation metadata changes, so nothing is re-rendered or re-compressed.",
+    keywords: ["pdf rotator", "rotate pdf", "rotate pdf pages", "pdf rotation", "turn pdf pages", "free pdf rotator"],
+    popular: true,
+    newTool: true,
+    features: [],
+    howTo: [],
+    faq: [],
+    relatedTools: ["pdf-to-jpg", "pdf-to-png"],
+    seo: {
+      title: "PDF Rotator — Rotate PDF Pages Free & Private | AHADEX Tools",
+      description: "Rotate pages in any PDF 90°/180° in your browser. All pages or specific ranges, lossless.",
+      ogImage: "/images/og/default-og.svg",
+    },
+  },
 ];
 
 export const TOOL_COUNT = tools.length;

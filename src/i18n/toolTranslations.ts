@@ -100,6 +100,10 @@ export const toolTranslationsBn: Record<string, ToolTranslation> = {
     name: "PDF থেকে টেক্সট",
     description: "PDF থেকে প্লেন টেক্সট বের করুন — পেজ রেঞ্জ, লাইন ব্রেক অপশন, কপি বা .txt ডাউনলোড।",
   },
+  "pdf-rotator": {
+    name: "PDF রোটেটর",
+    description: "PDF পেজ 90°/180° ঘোরান — সব পেজ বা নির্দিষ্ট রেঞ্জ, lossless, সম্পূর্ণ ব্রাউজারেই।",
+  },
 };
 
 export function getToolTranslation(
