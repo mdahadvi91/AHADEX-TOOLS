@@ -393,6 +393,28 @@ export const tools: Tool[] = [
       ogImage: "/images/og/default-og.svg",
     },
   },
+  {
+    id: "pdf-to-png",
+    slug: "pdf-to-png",
+    name: "PDF to PNG",
+    path: "/tools/pdf-to-png",
+    description:
+      "Convert every page of your PDF into a high-quality PNG image — in your browser. Up to 300 DPI, page ranges, batch download.",
+    longDescription:
+      "PDF to PNG renders each page of your PDF as a standalone PNG image. Choose 72/150/300 DPI, select specific page ranges or all pages, and download individually or in a batch. The entire pipeline — PDF parsing, canvas rendering, and PNG encoding — runs in your browser using pdf.js.",
+    keywords: ["pdf to png", "pdf to image", "convert pdf to png", "pdf page to image", "free pdf to png"],
+    popular: true,
+    newTool: true,
+    features: [],
+    howTo: [],
+    faq: [],
+    relatedTools: ["merge-pdf", "split-pdf"],
+    seo: {
+      title: "PDF to PNG — Convert PDF Pages to Images Free | AHADEX Tools",
+      description: "Convert PDF pages to high-quality PNG images in your browser. Up to 300 DPI, page ranges.",
+      ogImage: "/images/og/default-og.svg",
+    },
+  },
 ];
 
 export const TOOL_COUNT = tools.length;

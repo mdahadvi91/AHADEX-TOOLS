@@ -66,7 +66,6 @@ export const TOOL_ICONS: Record<string, typeof Images> = {
   "image-cropper": Crop,
   "image-to-pdf": FileOutput,
   "image-metadata-viewer": FileSearch,
-  "background-remover": Eraser,
 
   // PDF
   "jpg-to-pdf": FilePlus,

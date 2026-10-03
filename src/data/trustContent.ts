@@ -258,7 +258,7 @@ export const trustContent: Record<
           bullets: [
             "Some decorative animations may still be distracting. If they are, enable 'prefers-reduced-motion' in your operating system.",
             "The Bengali translation is a work in progress.",
-            "Complex tools (like Background Remover) may take longer on older devices.",
+            "Complex tools (like PDF rendering) may take longer on older devices.",
           ],
         },
         {
@@ -571,7 +571,7 @@ export const trustContent: Record<
           bullets: [
             "কিছু decorative animation এখনো বিভ্রান্তিকর হতে পারে। চাইলে OS-এ 'prefers-reduced-motion' চালু করুন।",
             "বাংলা অনুবাদ এখনো চলমান।",
-            "জটিল টুল (Background Remover) পুরনো ডিভাইসে বেশি সময় নিতে পারে।",
+            "জটিল টুল (যেমন PDF রেন্ডারিং) পুরনো ডিভাইসে বেশি সময় নিতে পারে।",
           ],
         },
         {

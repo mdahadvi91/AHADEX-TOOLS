@@ -24,7 +24,6 @@ export const TOOL_EMOJIS: Record<string, string> = {
   "image-cropper": "✂️",
   "image-to-pdf": "📑",
   "image-metadata-viewer": "🔍",
-  "background-remover": "🪄",
 
   // ---- PDF tools ----
   "jpg-to-pdf": "📕",

@@ -88,6 +88,10 @@ export const toolTranslationsBn: Record<string, ToolTranslation> = {
     name: "ইমেজ মেটাডেটা",
     description: "ছবির EXIF, GPS ও ক্যামেরার তথ্য দেখুন — সম্পূর্ণ ব্রাউজারেই, ১০০% প্রাইভেট।",
   },
+  "pdf-to-png": {
+    name: "PDF থেকে PNG",
+    description: "PDF-এর প্রতিটি পেজ PNG ছবিতে রূপান্তর করুন — সম্পূর্ণ ব্রাউজারেই, ৩০০ DPI পর্যন্ত।",
+  },
 };
 
 export function getToolTranslation(
