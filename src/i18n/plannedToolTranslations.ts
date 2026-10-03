@@ -12,10 +12,6 @@
 import type { ToolTranslation } from "./toolTranslations";
 
 export const plannedToolTranslationsBn: Record<string, ToolTranslation> = {
-  "image-metadata-viewer": {
-    name: "ইমেজ মেটাডেটা",
-    description: "ছবির EXIF, GPS ও ক্যামেরার তথ্য দেখুন।",
-  },
   "background-remover": {
     name: "ব্যাকগ্রাউন্ড রিমুভার",
     description: "AI দিয়ে স্বয়ংক্রিয়ভাবে ব্যাকগ্রাউন্ড সরান।",
