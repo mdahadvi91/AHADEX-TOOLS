@@ -349,6 +349,28 @@ export const tools: Tool[] = [
     relatedTools: [],
     seo: { title: "Word Counter — Live Word, Character & Reading Time | AHADEX Tools", description: "Count words, characters, sentences live. Reading time & keyword density.", ogImage: "/images/og/default-og.svg" },
   },
+  {
+    id: "image-to-pdf",
+    slug: "image-to-pdf",
+    name: "Image to PDF",
+    path: "/tools/image-to-pdf",
+    description:
+      "Combine JPG, PNG, and WebP images into a single multi-page PDF — in your browser. Reorderable, A4/Letter, no uploads.",
+    longDescription:
+      "Image to PDF combines mixed JPG, PNG, and WebP files into one clean multi-page PDF. JPG images are embedded byte-for-byte; PNG and WebP are composited onto white and re-encoded losslessly. Reorder pages, choose A4 or Letter, set orientation and margins, and export — all in your browser using pdf-lib.",
+    keywords: ["image to pdf", "jpg to pdf", "png to pdf", "webp to pdf", "combine images to pdf", "mixed format pdf"],
+    popular: true,
+    newTool: true,
+    features: [],
+    howTo: [],
+    faq: [],
+    relatedTools: ["jpg-to-pdf", "png-to-pdf"],
+    seo: {
+      title: "Image to PDF — Combine JPG, PNG, WebP Free | AHADEX Tools",
+      description: "Combine JPG, PNG, and WebP images into one PDF in your browser. Multi-page, reorderable.",
+      ogImage: "/images/og/default-og.svg",
+    },
+  },
 ];
 
 export const TOOL_COUNT = tools.length;

@@ -80,6 +80,10 @@ export const toolTranslationsBn: Record<string, ToolTranslation> = {
     name: "শব্দ গণনা",
     description: "শব্দ, অক্ষর, বাক্য ও অনুচ্ছেদ রিয়েল-টাইমে গণনা করুন — পড়ার সময়, কীওয়ার্ড ঘনত্ব, সম্পূর্ণ ব্রাউজারেই।",
   },
+  "image-to-pdf": {
+    name: "ইমেজ থেকে PDF",
+    description: "JPG, PNG ও WebP ছবি এক PDF-এ যুক্ত করুন — সম্পূর্ণ ব্রাউজারেই, multi-page, A4/Letter।",
+  },
 };
 
 export function getToolTranslation(

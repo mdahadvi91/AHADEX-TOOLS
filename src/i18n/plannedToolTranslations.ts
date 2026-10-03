@@ -12,10 +12,6 @@
 import type { ToolTranslation } from "./toolTranslations";
 
 export const plannedToolTranslationsBn: Record<string, ToolTranslation> = {
-  "image-to-pdf": {
-    name: "ইমেজ থেকে PDF",
-    description: "অনেক ছবি মিলিয়ে একটা PDF তৈরি করুন।",
-  },
   "image-metadata-viewer": {
     name: "ইমেজ মেটাডেটা",
     description: "ছবির EXIF, GPS ও ক্যামেরার তথ্য দেখুন।",
