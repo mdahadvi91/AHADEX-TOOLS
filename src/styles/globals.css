@@ -188,3 +188,11 @@ html[lang="ar"] .live-text > span {
   animation: none !important;
   display: inline !important;
 }
+
+/* ============================================================
+ * Performance: defer rendering of off-screen content
+ * ============================================================ */
+.cv-auto {
+  content-visibility: auto;
+  contain-intrinsic-size: 500px 800px;
+}

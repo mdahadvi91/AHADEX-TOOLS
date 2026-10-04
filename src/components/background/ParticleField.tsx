@@ -38,6 +38,8 @@ export function ParticleField() {
     let width = 0;
     let height = 0;
     let dpr = 1;
+    let lastFrame = 0;
+    const FRAME_MS = 1000 / 30; // throttle to 30fps
     const isMobile = window.innerWidth < 768;
 
     const resize = () => {
@@ -76,7 +78,14 @@ export function ParticleField() {
       mouseRef.current.active = false;
     };
 
-    const draw = () => {
+    const draw = (timestamp: number) => {
+      // FPS throttle — skip if under 33ms since last frame (30fps cap)
+      if (timestamp - lastFrame < FRAME_MS) {
+        rafId = requestAnimationFrame(draw);
+        return;
+      }
+      lastFrame = timestamp;
+
       ctx.clearRect(0, 0, width, height);
 
       for (let i = 0; i < particles.length; i++) {
@@ -129,7 +138,7 @@ export function ParticleField() {
     };
 
     resize();
-    draw();
+    rafId = requestAnimationFrame(draw);
 
     window.addEventListener("resize", resize);
     window.addEventListener("mousemove", onMouseMove);

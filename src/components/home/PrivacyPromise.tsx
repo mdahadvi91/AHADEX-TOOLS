@@ -12,7 +12,7 @@ const PROMISES = [
 
 export function PrivacyPromise() {
   return (
-    <section className="relative py-16 sm:py-20">
+    <section className="cv-auto relative py-16 sm:py-20">
       <motion.div
         initial={{ opacity: 0, y: 24 }}
         whileInView={{ opacity: 1, y: 0 }}
