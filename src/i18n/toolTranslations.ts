@@ -120,6 +120,10 @@ export const toolTranslationsBn: Record<string, ToolTranslation> = {
     name: "URL এনকোডার / ডিকোডার",
     description: "URL এনকোড বা ডিকোড করুন — Unicode, emoji, special char সাপোর্টেড, দুই scope।",
   },
+  "uuid-generator": {
+    name: "UUID জেনারেটর",
+    description: "UUID v4 ও v7 তৈরি করুন — Web Crypto randomness, ১০০০ পর্যন্ত ব্যাচ, কপি বা .txt ডাউনলোড।",
+  },
 };
 
 export function getToolTranslation(

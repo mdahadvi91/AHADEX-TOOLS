@@ -569,6 +569,28 @@ export const tools: Tool[] = [
       ogImage: "/images/og/default-og.svg",
     },
   },
+  {
+    id: "uuid-generator",
+    slug: "uuid-generator",
+    name: "UUID Generator",
+    path: "/tools/uuid-generator",
+    description:
+      "Generate UUID v4 (random) and v7 (time-ordered) identifiers in your browser. Batch up to 1000, uppercase, hyphens on/off.",
+    longDescription:
+      "UUID Generator produces RFC-compliant universally unique identifiers entirely in your browser using the Web Crypto API. Choose v4 (pure random) or v7 (time-ordered), generate up to 1000 at once, toggle uppercase or hyphen removal, and copy or download the batch. Nothing is sent over the network — works offline.",
+    keywords: ["uuid generator", "uuid v4", "uuid v7", "guid generator", "random uuid"],
+    popular: true,
+    newTool: true,
+    features: [],
+    howTo: [],
+    faq: [],
+    relatedTools: ["url-encoder", "json-formatter"],
+    seo: {
+      title: "UUID Generator — v4 & v7 Crypto-Random Free | AHADEX Tools",
+      description: "Generate UUID v4 and v7 identifiers in your browser. Batch up to 1000, uppercase, hyphens on/off.",
+      ogImage: "/images/og/default-og.svg",
+    },
+  },
 ];
 
 export const TOOL_COUNT = tools.length;
