@@ -701,6 +701,28 @@ export const tools: Tool[] = [
       ogImage: "/images/og/default-og.svg",
     },
   },
+  {
+    id: "password-generator",
+    slug: "password-generator",
+    name: "Password Generator",
+    path: "/tools/password-generator",
+    description:
+      "Generate strong, cryptographically random passwords in your browser. Length, sets, ambiguity, live strength, batch up to 50.",
+    longDescription:
+      "Password Generator creates strong, random passwords using the browser's cryptographic random number generator (Web Crypto API) with rejection sampling — no modulo bias. Choose length (4–128), toggle character sets, exclude ambiguous characters, and generate up to 50 at once. Live strength analysis shows entropy in bits and estimated offline crack time. Everything runs in your browser.",
+    keywords: ["password generator", "strong password", "random password", "secure password", "crypto password"],
+    popular: true,
+    newTool: true,
+    features: [],
+    howTo: [],
+    faq: [],
+    relatedTools: ["uuid-generator", "base64-encoder"],
+    seo: {
+      title: "Password Generator — Strong & Crypto-Random Free | AHADEX Tools",
+      description: "Generate strong, cryptographically random passwords in your browser. Length, sets, live strength.",
+      ogImage: "/images/og/default-og.svg",
+    },
+  },
 ];
 
 export const TOOL_COUNT = tools.length;
