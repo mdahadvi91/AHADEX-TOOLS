@@ -13,21 +13,35 @@ import { GridBackground } from "./GridBackground";
 import { getToolEmoji } from "@components/common/toolEmojis";
 import { getPlannedToolTranslation } from "@i18n/plannedToolTranslations";
 
+/** Tools that always appear first, in this exact order */
+const PINNED_ORDER = ["photo-qr", "visiting-card", "cv-builder"];
+
 export function ToolsShowcase() {
   const [query, setQuery] = useState("");
   const isSearching = query.trim().length > 0;
   const { isFavorite, toggle } = useFavorites();
   const { t, language } = useLanguage();
 
-  /** All working tools, popular first, then favorites */
+  /** All working tools — pinned first, then favorites, then popular */
   const sortedTools = useMemo(() => {
+    const pinIndex = (id: string) => {
+      const i = PINNED_ORDER.indexOf(id);
+      return i === -1 ? 999 : i;
+    };
     return [...tools].sort((a, b) => {
+      // 1. Pinned tools (Photo QR, Visiting Card, CV Builder) — always first
+      const ap = pinIndex(a.id);
+      const bp = pinIndex(b.id);
+      if (ap !== bp) return ap - bp;
+      // 2. Favorites
       const af = isFavorite(a.id) ? 1 : 0;
       const bf = isFavorite(b.id) ? 1 : 0;
       if (af !== bf) return bf - af;
-      const ap = a.popular ? 1 : 0;
-      const bp = b.popular ? 1 : 0;
-      if (ap !== bp) return bp - ap;
+      // 3. Popular
+      const apo = a.popular ? 1 : 0;
+      const bpo = b.popular ? 1 : 0;
+      if (apo !== bpo) return bpo - apo;
+      // 4. New
       const an = a.newTool ? 1 : 0;
       const bn = b.newTool ? 1 : 0;
       return bn - an;
