@@ -132,6 +132,10 @@ export const toolTranslationsBn: Record<string, ToolTranslation> = {
     name: "ইমেজ থেকে স্কেচ",
     description: "যেকোনো ছবিকে হাতে-আঁকা পেন্সিল স্কেচে রূপান্তর করুন — লাইভ স্লাইডার, PNG ডাউনলোড।",
   },
+  "image-to-cartoon": {
+    name: "ইমেজ থেকে কার্টুন",
+    description: "যেকোনো ছবিকে সেল-শেডেড কার্টুনে রূপান্তর করুন — লাইভ স্লাইডার, PNG ডাউনলোড।",
+  },
 };
 
 export function getToolTranslation(

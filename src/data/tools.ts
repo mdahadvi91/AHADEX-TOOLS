@@ -635,6 +635,28 @@ export const tools: Tool[] = [
       ogImage: "/images/og/default-og.svg",
     },
   },
+  {
+    id: "image-to-cartoon",
+    slug: "image-to-cartoon",
+    name: "Image to Cartoon",
+    path: "/tools/image-to-cartoon",
+    description:
+      "Turn any photo into a cel-shaded cartoon in your browser. Posterized colors, Sobel outlines, live sliders, PNG export.",
+    longDescription:
+      "Image to Cartoon converts a photo into a cel-shaded illustration. It smooths the image, posterizes each RGB channel into flat bands, runs Sobel edge detection to find contours, and darkens those contours. Three live sliders control color levels, edge strength, and smoothness. Everything runs in your browser using the Canvas API — nothing is uploaded.",
+    keywords: ["image to cartoon", "photo to cartoon", "cartoon effect", "cel shading", "anime filter", "cartoon maker"],
+    popular: true,
+    newTool: true,
+    features: [],
+    howTo: [],
+    faq: [],
+    relatedTools: ["image-to-sketch", "image-compressor"],
+    seo: {
+      title: "Image to Cartoon — Cel-Shaded Effect Free | AHADEX Tools",
+      description: "Turn any photo into a cel-shaded cartoon in your browser. Live sliders, PNG export.",
+      ogImage: "/images/og/default-og.svg",
+    },
+  },
 ];
 
 export const TOOL_COUNT = tools.length;
