@@ -1,3 +1,4 @@
+import { useToolAnalytics } from "@hooks/useToolAnalytics";
 import { useEffect, useMemo, useRef, useState } from "react";
 import { useLanguage } from "@contexts/LanguageContext";
 import { getPlatform } from "./options";
@@ -17,6 +18,7 @@ import { photoQrContent } from "./content";
 import type { Position, QrBackground } from "./types";
 
 export default function PhotoQrTool() {
+  useToolAnalytics("photo-qr");
   const { language } = useLanguage();
   const content = photoQrContent[language];
 

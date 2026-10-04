@@ -1,3 +1,4 @@
+import { useToolAnalytics } from "@hooks/useToolAnalytics";
 import { PdfPageExtractorSEO } from "./SEO";
 import { Hero } from "./components/Hero";
 import { Workspace } from "./components/Workspace";
@@ -9,6 +10,7 @@ import { FAQ } from "./components/FAQ";
 import { RelatedTools } from "./components/RelatedTools";
 
 export default function PdfPageExtractorTool() {
+  useToolAnalytics("pdf-page-extractor");
   return (
     <>
       <PdfPageExtractorSEO />
