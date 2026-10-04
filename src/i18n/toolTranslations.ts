@@ -128,6 +128,10 @@ export const toolTranslationsBn: Record<string, ToolTranslation> = {
     name: "টেক্সট কেস কনভার্টার",
     description: "টেক্সট ১২টি case-এ convert করুন — UPPER, lower, Title, camel, snake, kebab ইত্যাদি।",
   },
+  "image-to-sketch": {
+    name: "ইমেজ থেকে স্কেচ",
+    description: "যেকোনো ছবিকে হাতে-আঁকা পেন্সিল স্কেচে রূপান্তর করুন — লাইভ স্লাইডার, PNG ডাউনলোড।",
+  },
 };
 
 export function getToolTranslation(

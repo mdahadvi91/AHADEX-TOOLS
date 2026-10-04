@@ -613,6 +613,28 @@ export const tools: Tool[] = [
       ogImage: "/images/og/default-og.svg",
     },
   },
+  {
+    id: "image-to-sketch",
+    slug: "image-to-sketch",
+    name: "Image to Sketch",
+    path: "/tools/image-to-sketch",
+    description:
+      "Turn any photo into a hand-drawn pencil sketch in your browser. Live sliders for stroke darkness & line thickness, PNG export.",
+    longDescription:
+      "Image to Sketch converts a photo into a graphite-pencil drawing using the classic color-dodge algorithm: grayscale, invert, blur, then dodge-blend. Two live sliders control stroke intensity and line detail. Everything runs in your browser using the Canvas API — nothing is uploaded.",
+    keywords: ["image to sketch", "photo to sketch", "pencil sketch effect", "photo to drawing", "sketch filter"],
+    popular: true,
+    newTool: true,
+    features: [],
+    howTo: [],
+    faq: [],
+    relatedTools: ["image-compressor", "image-cropper"],
+    seo: {
+      title: "Image to Sketch — Pencil Drawing Effect Free | AHADEX Tools",
+      description: "Turn any photo into a hand-drawn pencil sketch in your browser. Live sliders, PNG export.",
+      ogImage: "/images/og/default-og.svg",
+    },
+  },
 ];
 
 export const TOOL_COUNT = tools.length;
