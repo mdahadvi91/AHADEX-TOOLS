@@ -1,5 +1,4 @@
 import { useState, useMemo } from "react";
-import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import { SearchX, Clock, ArrowRight } from "lucide-react";
 import { tools } from "@data/tools";
@@ -97,11 +96,7 @@ export function ToolsShowcase() {
               </button>
             </div>
           ) : (
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-3 lg:gap-4"
-            >
+            <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-3 lg:gap-4">
               {listToRender.map((tool, i) => (
                 <SmallToolCard
                   key={tool.id}
@@ -111,7 +106,7 @@ export function ToolsShowcase() {
                   onToggleFavorite={toggle}
                 />
               ))}
-            </motion.div>
+            </div>
           )}
         </div>
       </div>
@@ -135,8 +130,8 @@ export function ToolsShowcase() {
           </div>
 
           <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-3 lg:gap-4">
-            {plannedTools.map((pt, i) => (
-              <ComingSoonCard key={pt.id} tool={pt} index={i} />
+            {plannedTools.map((pt) => (
+              <ComingSoonCard key={pt.id} tool={pt} />
             ))}
           </div>
         </section>
@@ -151,15 +146,11 @@ export function ToolsShowcase() {
 
 import type { PlannedTool } from "@data/plannedTools";
 
-function ComingSoonCard({ tool, index }: { tool: PlannedTool; index: number }) {
+function ComingSoonCard({ tool }: { tool: PlannedTool }) {
   const { language } = useLanguage();
 
   return (
-    <motion.div
-      initial={{ opacity: 0, y: 12 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, amount: 0.2 }}
-      transition={{ duration: 0.4, delay: index * 0.04 }}
+    <div
       className={cn(
         "relative flex flex-col p-4 rounded-2xl",
         "bg-white/50 dark:bg-dark-surface/50 backdrop-blur-xl",
@@ -188,6 +179,6 @@ function ComingSoonCard({ tool, index }: { tool: PlannedTool; index: number }) {
       <p className="text-[11px] text-light-textSecondary/70 dark:text-dark-textSecondary/70 leading-relaxed line-clamp-2">
         {getPlannedToolTranslation(tool.id, language, { name: tool.name, description: tool.description }).description}
       </p>
-    </motion.div>
+    </div>
   );
 }
