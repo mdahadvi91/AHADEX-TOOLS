@@ -30,7 +30,9 @@ export function Logo({
   const { resolvedTheme } = useTheme();
   const isDark = resolvedTheme === "dark";
 
-  const markSrc = "/images/logo/ahadex-logo.png";
+  const markSrc = isDark
+    ? "/images/logo/ahadex-mark-white.png"
+    : "/images/logo/ahadex-mark-black.png";
 
   const inner = (
     <span
