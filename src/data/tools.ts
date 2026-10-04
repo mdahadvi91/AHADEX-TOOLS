@@ -503,6 +503,28 @@ export const tools: Tool[] = [
       ogImage: "/images/og/default-og.svg",
     },
   },
+  {
+    id: "svg-to-png",
+    slug: "svg-to-png",
+    name: "SVG to PNG",
+    path: "/tools/svg-to-png",
+    description:
+      "Convert SVG vector files to high-resolution PNG in your browser. Up to 8× scale, transparent background, no uploads.",
+    longDescription:
+      "SVG to PNG renders your SVG vector file onto a canvas at your chosen scale (1×, 2×, 4×, or 8×) and encodes the result as a PNG image. Choose transparent, white, or black background. Everything runs in your browser using the Canvas API — nothing is uploaded.",
+    keywords: ["svg to png", "svg converter", "convert svg to png", "svg to image", "free svg converter"],
+    popular: true,
+    newTool: true,
+    features: [],
+    howTo: [],
+    faq: [],
+    relatedTools: ["jpg-to-png", "png-to-jpg"],
+    seo: {
+      title: "SVG to PNG — Convert SVG to PNG Up to 8× Free | AHADEX Tools",
+      description: "Convert SVG vector files to high-resolution PNG in your browser. Up to 8× scale, transparent background.",
+      ogImage: "/images/og/default-og.svg",
+    },
+  },
 ];
 
 export const TOOL_COUNT = tools.length;
