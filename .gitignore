@@ -21,3 +21,8 @@ coverage/
 .wrangler/
 *.pem
 *.key
+
+# Local backups (not committed)
+backups/
+*.bak
+*.backup
