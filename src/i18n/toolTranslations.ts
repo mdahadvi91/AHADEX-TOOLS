@@ -116,6 +116,10 @@ export const toolTranslationsBn: Record<string, ToolTranslation> = {
     name: "JSON ফরম্যাটার",
     description: "JSON ফরম্যাট, ভ্যালিডেট ও মিনিফাই করুন — লাইভ error line/column, sort keys, 2/4 space বা tab।",
   },
+  "url-encoder": {
+    name: "URL এনকোডার / ডিকোডার",
+    description: "URL এনকোড বা ডিকোড করুন — Unicode, emoji, special char সাপোর্টেড, দুই scope।",
+  },
 };
 
 export function getToolTranslation(

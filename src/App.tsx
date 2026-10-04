@@ -47,6 +47,7 @@ const ImageToPdfTool = lazy(() => import("@tools/image/image-to-pdf"));
 const ImageMetadataViewerTool = lazy(() => import("@tools/image/image-metadata-viewer"));
 const SvgToPngTool = lazy(() => import("@tools/image/svg-to-png"));
 const JsonFormatterTool = lazy(() => import("@tools/developer/json-formatter"));
+const UrlEncoderTool = lazy(() => import("@tools/developer/url-encoder"));
 const WordCounterTool = lazy(() => import("@tools/text/word-counter"));
 const PdfToPngTool = lazy(() => import("@tools/pdf/pdf-to-png"));
 const PdfToJpgTool = lazy(() => import("@tools/pdf/pdf-to-jpg"));
@@ -130,6 +131,7 @@ export default function App() {
                   <Route path="tools/image-metadata-viewer" element={<ImageMetadataViewerTool />} />
                   <Route path="tools/svg-to-png" element={<SvgToPngTool />} />
                   <Route path="tools/json-formatter" element={<JsonFormatterTool />} />
+                  <Route path="tools/url-encoder" element={<UrlEncoderTool />} />
                   <Route path="tools/word-counter" element={<WordCounterTool />} />
                   <Route path="tools/pdf-to-png" element={<PdfToPngTool />} />
                   <Route path="tools/pdf-to-jpg" element={<PdfToJpgTool />} />
