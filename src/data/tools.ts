@@ -547,6 +547,28 @@ export const tools: Tool[] = [
       ogImage: "/images/og/default-og.svg",
     },
   },
+  {
+    id: "url-encoder",
+    slug: "url-encoder",
+    name: "URL Encoder / Decoder",
+    path: "/tools/url-encoder",
+    description:
+      "Encode or decode URLs and URI components in your browser. Unicode, emoji, special chars. Two scopes: component or full URI.",
+    longDescription:
+      "URL Encoder / Decoder converts between raw text and percent-encoded (URL-safe) format. Choose encode or decode, component or full URI scope. Handles Unicode, Bangla, Arabic, emoji, and any other script. Live preview, byte-delta stat, and one-click copy. Everything runs in your browser.",
+    keywords: ["url encoder", "url decoder", "uri encoder", "percent encoding", "url encode online"],
+    popular: true,
+    newTool: true,
+    features: [],
+    howTo: [],
+    faq: [],
+    relatedTools: ["json-formatter", "svg-to-png"],
+    seo: {
+      title: "URL Encoder / Decoder — Free & Private | AHADEX Tools",
+      description: "Encode or decode URLs in your browser. Unicode, emoji, two scopes.",
+      ogImage: "/images/og/default-og.svg",
+    },
+  },
 ];
 
 export const TOOL_COUNT = tools.length;
