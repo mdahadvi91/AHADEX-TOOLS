@@ -50,6 +50,7 @@ const JsonFormatterTool = lazy(() => import("@tools/developer/json-formatter"));
 const UrlEncoderTool = lazy(() => import("@tools/developer/url-encoder"));
 const UuidGeneratorTool = lazy(() => import("@tools/developer/uuid-generator"));
 const TextCaseConverterTool = lazy(() => import("@tools/text/text-case-converter"));
+const ImageToSketchTool = lazy(() => import("@tools/image/image-to-sketch"));
 const WordCounterTool = lazy(() => import("@tools/text/word-counter"));
 const PdfToPngTool = lazy(() => import("@tools/pdf/pdf-to-png"));
 const PdfToJpgTool = lazy(() => import("@tools/pdf/pdf-to-jpg"));
@@ -136,6 +137,7 @@ export default function App() {
                   <Route path="tools/url-encoder" element={<UrlEncoderTool />} />
                   <Route path="tools/uuid-generator" element={<UuidGeneratorTool />} />
                   <Route path="tools/text-case-converter" element={<TextCaseConverterTool />} />
+                  <Route path="tools/image-to-sketch" element={<ImageToSketchTool />} />
                   <Route path="tools/word-counter" element={<WordCounterTool />} />
                   <Route path="tools/pdf-to-png" element={<PdfToPngTool />} />
                   <Route path="tools/pdf-to-jpg" element={<PdfToJpgTool />} />
