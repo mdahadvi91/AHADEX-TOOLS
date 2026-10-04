@@ -21,7 +21,7 @@ export function PrivacyPromise() {
         className={cn(
           "relative overflow-hidden rounded-[32px]",
           "p-8 sm:p-12 lg:p-16",
-          "bg-gradient-to-br from-dark-surface via-silk-rose/[0.05] to-dark-elevated",
+          "bg-gradient-to-br from-silk-sand via-silk-rose/[0.06] to-silk-cream dark:from-[#251820] dark:via-silk-rose/[0.05] dark:to-[#32202A]",
           "border border-silk-rose/20"
         )}
       >
