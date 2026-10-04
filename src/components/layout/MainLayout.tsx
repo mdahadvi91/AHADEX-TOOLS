@@ -8,14 +8,20 @@ import { PageTransition } from "./PageTransition";
 import { CinematicBackground } from "@components/background";
 import { BackButton } from "@components/common/BackButton";
 import { AdSenseLoader } from "@components/ads/AdSenseLoader";
+import { GoogleAnalyticsLoader } from "@components/analytics/GoogleAnalyticsLoader";
+import { usePageTracking } from "@hooks/usePageTracking";
 
 export function MainLayout() {
   const [leftOpen, setLeftOpen] = useState(false);
   const [rightOpen, setRightOpen] = useState(false);
 
+  // GA4: fire page_view on every SPA route change
+  usePageTracking();
+
   return (
     <>
       <AdSenseLoader />
+      <GoogleAnalyticsLoader />
       <CinematicBackground />
 
       <Header

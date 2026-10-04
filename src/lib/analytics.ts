@@ -8,7 +8,7 @@ type EventName =
   | "copy_result"
   | "conversion_success"
   | "conversion_error"
-  | "search"
+  | "search";
 
 interface EventParams {
   [key: string]: string | number | boolean | undefined;
@@ -29,7 +29,11 @@ function canTrack(): boolean {
 
 export function trackEvent(name: EventName, params: EventParams = {}): void {
   if (!canTrack()) return;
-  try { window.gtag!("event", name, params); } catch {}
+  try {
+    window.gtag!("event", name, params);
+  } catch {
+    /* swallow — analytics must never break the app */
+  }
 }
 
 export function trackPageView(path: string, title?: string): void {
@@ -38,8 +42,11 @@ export function trackPageView(path: string, title?: string): void {
     window.gtag!("event", "page_view", {
       page_path: path,
       page_title: title ?? document.title,
+      page_location: window.location.href,
     });
-  } catch {}
+  } catch {
+    /* swallow */
+  }
 }
 
 export const analytics = {
