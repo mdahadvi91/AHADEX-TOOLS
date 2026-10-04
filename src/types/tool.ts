@@ -28,6 +28,10 @@ export interface Tool {
   longDescription: string;
   keywords: string[];
   path: string;
+  /** Monthly Google searches (rough, used for grid ordering).
+   *  Higher = shown earlier in the tools grid.
+   *  New tools MUST declare this — see docs/TOOL_RULES.md. */
+  searchVolume?: number;
   icon?: string;
   popular?: boolean;
   newTool?: boolean;

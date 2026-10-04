@@ -102,3 +102,33 @@ Tools never add their own ads.
 ---
 
 *Last updated: 2026-10-02*
+
+---
+
+## Rule 11 — Every Tool MUST Declare `searchVolume`
+
+Every tool in `src/data/tools.ts` must include a `searchVolume` field:
+
+```typescript
+{
+  id: "qr-code-generator",
+  searchVolume: 3000000, // monthly Google searches (rough estimate)
+  ...
+}
+```
+
+Why: The tools grid is sorted by searchVolume (descending) — highest-volume tools appear first, giving visitors the most-likely-needed tools immediately.
+
+How to estimate: Use Google Keyword Planner, Ahrefs, Ubersuggest, or Semrush for the primary keyword (e.g. "qr code generator", "merge pdf"). Round to a clean number (1000, 50000, 500000, 3000000).
+
+Rule:
+
+· Existing tools: already populated
+· New tools: MUST include searchVolume in the registry entry
+· Never use 0 — if unknown, use a reasonable minimum like 10000
+· Update searchVolume annually (Google search trends shift)
+
+Tie-breaking: If two tools share the same volume, newTool: true sorts first, then alphabetical by name.
+
+---
+

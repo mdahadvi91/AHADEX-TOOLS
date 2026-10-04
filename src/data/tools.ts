@@ -19,6 +19,7 @@ export const tools: Tool[] = [
     slug: "photo-qr",
     name: "Photo QR Code",
     path: "/tools/photo-qr",
+    searchVolume: 50000,
     description:
       "Add a real, scannable QR badge to any photo — WhatsApp, Facebook, WiFi, and more.",
     longDescription:
@@ -42,6 +43,7 @@ export const tools: Tool[] = [
     slug: "visiting-card",
     name: "Visiting Card Maker",
     path: "/tools/visiting-card",
+    searchVolume: 200000,
     description:
       "Design print-ready visiting cards in seconds. 20 premium templates — front & back. Free, private, exports PNG/JPG.",
     longDescription:
@@ -74,6 +76,7 @@ export const tools: Tool[] = [
     slug: "cv-builder",
     name: "CV Builder",
     path: "/tools/cv-builder",
+    searchVolume: 1500000,
     description:
       "Build a professional CV in minutes. Real A4 templates, live preview, selectable-text PDF export, auto-save and full browser-side privacy.",
     longDescription:
@@ -98,6 +101,7 @@ export const tools: Tool[] = [
     slug: "jpg-to-png",
     name: "JPG to PNG",
     path: "/tools/jpg-to-png",
+    searchVolume: 2000000,
     description:
       "Convert JPG images to PNG format instantly in your browser. Lossless, batch-capable, no uploads.",
     longDescription:
@@ -122,6 +126,7 @@ export const tools: Tool[] = [
     slug: "png-to-jpg",
     name: "PNG to JPG",
     path: "/tools/png-to-jpg",
+    searchVolume: 1500000,
     description:
       "Convert PNG images to JPG format instantly in your browser. Smaller files, universal compatibility, no uploads.",
     longDescription:
@@ -146,6 +151,7 @@ export const tools: Tool[] = [
     slug: "jpg-to-webp",
     name: "JPG to WebP",
     path: "/tools/jpg-to-webp",
+    searchVolume: 400000,
     description:
       "Convert JPG images to modern WebP format. 25-35% smaller files at the same quality. Batch-capable, no uploads.",
     longDescription:
@@ -170,6 +176,7 @@ export const tools: Tool[] = [
     slug: "png-to-webp",
     name: "PNG to WebP",
     path: "/tools/png-to-webp",
+    searchVolume: 200000,
     description:
       "Convert PNG images to modern WebP format. 30-50% smaller files, transparency preserved, batch-capable, no uploads.",
     longDescription:
@@ -194,6 +201,7 @@ export const tools: Tool[] = [
     slug: "webp-to-jpg",
     name: "WebP to JPG",
     path: "/tools/webp-to-jpg",
+    searchVolume: 300000,
     description: "Convert WebP images to JPG format. Universal compatibility, no uploads.",
     longDescription: "WebP to JPG Converter re-encodes WebP images as standard JPG at 92% quality. Everything runs in your browser.",
     keywords: ["webp", "jpg", "convert"],
@@ -210,6 +218,7 @@ export const tools: Tool[] = [
     slug: "webp-to-png",
     name: "WebP to PNG",
     path: "/tools/webp-to-png",
+    searchVolume: 150000,
     description: "Convert WebP images to PNG format. Lossless output, transparency preserved, no uploads.",
     longDescription: "WebP to PNG Converter re-encodes WebP images as lossless PNG files. Transparency is preserved. Everything runs in your browser.",
     keywords: ["webp", "png", "convert", "lossless"],
@@ -226,6 +235,7 @@ export const tools: Tool[] = [
     slug: "image-compressor",
     name: "Image Compressor",
     path: "/tools/image-compressor",
+    searchVolume: 1500000,
     description: "Compress JPG, PNG, and WebP images in your browser. Adjustable quality, batch, no uploads.",
     longDescription: "Image Compressor shrinks JPG, PNG, and WebP files using the browser native encoder. Adjust quality and max width, see the savings live, and download.",
     keywords: ["image compressor", "compress", "jpg", "png", "webp"],
@@ -242,6 +252,7 @@ export const tools: Tool[] = [
     slug: "image-resizer",
     name: "Image Resizer",
     path: "/tools/image-resizer",
+    searchVolume: 800000,
     description: "Resize JPG, PNG, and WebP images to any dimension in your browser. Lock aspect ratio, exact width/height, no uploads.",
     longDescription: "Image Resizer changes the pixel dimensions of JPG, PNG, and WebP files. Set exact width and height, optionally lock aspect ratio, and download resized files. Everything runs in your browser.",
     keywords: ["image resizer", "resize", "jpg", "png", "webp", "dimensions"],
@@ -258,6 +269,7 @@ export const tools: Tool[] = [
     slug: "jpg-to-pdf",
     name: "JPG to PDF",
     path: "/tools/jpg-to-pdf",
+    searchVolume: 1500000,
     description: "Combine JPG images into a multi-page PDF in your browser. Reorderable, A4/Letter, no uploads.",
     longDescription: "JPG to PDF Converter combines one or many JPG images into a clean multi-page PDF. Reorder pages, choose A4 or Letter, set orientation and margins, and export — all in your browser using pdf-lib.",
     keywords: ["jpg to pdf", "jpeg to pdf", "image to pdf", "convert"],
@@ -274,6 +286,7 @@ export const tools: Tool[] = [
     slug: "png-to-pdf",
     name: "PNG to PDF",
     path: "/tools/png-to-pdf",
+    searchVolume: 400000,
     description: "Combine PNG images into a multi-page PDF in your browser. Reorderable, A4/Letter, white background, no uploads.",
     longDescription: "PNG to PDF Converter combines one or many PNG images into a clean multi-page PDF. Reorder pages, choose A4 or Letter, set orientation and margins, and export — all in your browser using pdf-lib. Transparent PNG areas are composited onto white for print-safe output.",
     keywords: ["png to pdf", "image to pdf", "convert"],
@@ -290,6 +303,7 @@ export const tools: Tool[] = [
     slug: "image-cropper",
     name: "Image Cropper",
     path: "/tools/image-cropper",
+    searchVolume: 500000,
     description: "Crop JPG, PNG, and WebP images in your browser. 8 aspect presets, live preview, pixel-precise fields, no uploads.",
     longDescription: "Image Cropper trims any JPG, PNG, or WebP image to the exact area you want. Drag the crop box, pick from aspect presets, or type exact coordinates. Everything runs in your browser with the Canvas API.",
     keywords: ["image cropper", "crop", "jpg", "png", "webp", "aspect ratio"],
@@ -306,6 +320,7 @@ export const tools: Tool[] = [
     slug: "merge-pdf",
     name: "Merge PDF",
     path: "/tools/merge-pdf",
+    searchVolume: 2000000,
     description: "Combine multiple PDF files into one document in your browser. Reorder, no uploads, no servers.",
     longDescription: "Merge PDF combines two or more PDF files into a single document. Drop files, reorder them, click Merge, and download — all in your browser using pdf-lib. Every page is copied byte-for-byte with no quality loss.",
     keywords: ["merge pdf", "combine pdf", "join pdf", "pdf merger"],
@@ -322,6 +337,7 @@ export const tools: Tool[] = [
     slug: "split-pdf",
     name: "Split PDF",
     path: "/tools/split-pdf",
+    searchVolume: 800000,
     description: "Extract pages from any PDF or split every page — in your browser. Custom ranges, no uploads.",
     longDescription: "Split PDF extracts selected page ranges (e.g. 1-3, 5, 7-9) or breaks every page into its own PDF. Everything runs in your browser using pdf-lib — no uploads, no servers.",
     keywords: ["split pdf", "extract pdf", "pdf splitter"],
@@ -338,6 +354,7 @@ export const tools: Tool[] = [
     slug: "word-counter",
     name: "Word Counter",
     path: "/tools/word-counter",
+    searchVolume: 2000000,
     description: "Count words, characters, sentences, and paragraphs in real time. Reading time, speaking time, keyword density — all in your browser.",
     longDescription: "Word Counter analyzes your text live: words, characters with and without spaces, sentences, paragraphs, lines, reading time, speaking time, average word length, and top keyword density. Everything runs in your browser.",
     keywords: ["word counter", "character counter", "word count", "reading time"],
@@ -354,6 +371,7 @@ export const tools: Tool[] = [
     slug: "image-to-pdf",
     name: "Image to PDF",
     path: "/tools/image-to-pdf",
+    searchVolume: 300000,
     description:
       "Combine JPG, PNG, and WebP images into a single multi-page PDF — in your browser. Reorderable, A4/Letter, no uploads.",
     longDescription:
@@ -376,6 +394,7 @@ export const tools: Tool[] = [
     slug: "image-metadata-viewer",
     name: "Image Metadata Viewer",
     path: "/tools/image-metadata-viewer",
+    searchVolume: 50000,
     description:
       "View EXIF, GPS, camera, and file metadata hidden inside your photos — in your browser. No uploads, 100% private.",
     longDescription:
@@ -398,6 +417,7 @@ export const tools: Tool[] = [
     slug: "pdf-to-png",
     name: "PDF to PNG",
     path: "/tools/pdf-to-png",
+    searchVolume: 200000,
     description:
       "Convert every page of your PDF into a high-quality PNG image — in your browser. Up to 300 DPI, page ranges, batch download.",
     longDescription:
@@ -420,6 +440,7 @@ export const tools: Tool[] = [
     slug: "pdf-to-jpg",
     name: "PDF to JPG",
     path: "/tools/pdf-to-jpg",
+    searchVolume: 500000,
     description:
       "Convert every page of your PDF into a high-quality JPG image — in your browser. Up to 300 DPI, page ranges, batch download.",
     longDescription:
@@ -442,6 +463,7 @@ export const tools: Tool[] = [
     slug: "pdf-to-text",
     name: "PDF to Text",
     path: "/tools/pdf-to-text",
+    searchVolume: 150000,
     description:
       "Extract plain text from any PDF — in your browser. Page ranges, line-break options, download .txt or copy to clipboard. No uploads.",
     longDescription:
@@ -464,6 +486,7 @@ export const tools: Tool[] = [
     slug: "pdf-rotator",
     name: "PDF Rotator",
     path: "/tools/pdf-rotator",
+    searchVolume: 100000,
     description:
       "Rotate pages in any PDF — in your browser. Rotate all pages or just a few, 90° left/right or 180°. Lossless, no uploads.",
     longDescription:
@@ -486,6 +509,7 @@ export const tools: Tool[] = [
     slug: "pdf-page-extractor",
     name: "PDF Page Extractor",
     path: "/tools/pdf-page-extractor",
+    searchVolume: 80000,
     description:
       "Extract pages from any PDF in custom order, with duplicates. One combined PDF or separate files. Runs in your browser.",
     longDescription:
@@ -508,6 +532,7 @@ export const tools: Tool[] = [
     slug: "svg-to-png",
     name: "SVG to PNG",
     path: "/tools/svg-to-png",
+    searchVolume: 100000,
     description:
       "Convert SVG vector files to high-resolution PNG in your browser. Up to 8× scale, transparent background, no uploads.",
     longDescription:
@@ -530,6 +555,7 @@ export const tools: Tool[] = [
     slug: "json-formatter",
     name: "JSON Formatter",
     path: "/tools/json-formatter",
+    searchVolume: 1000000,
     description:
       "Format, validate, and minify JSON in your browser. Live errors with line/column, sort keys, 2/4-space or tab indent.",
     longDescription:
@@ -552,6 +578,7 @@ export const tools: Tool[] = [
     slug: "url-encoder",
     name: "URL Encoder / Decoder",
     path: "/tools/url-encoder",
+    searchVolume: 200000,
     description:
       "Encode or decode URLs and URI components in your browser. Unicode, emoji, special chars. Two scopes: component or full URI.",
     longDescription:
@@ -574,6 +601,7 @@ export const tools: Tool[] = [
     slug: "uuid-generator",
     name: "UUID Generator",
     path: "/tools/uuid-generator",
+    searchVolume: 300000,
     description:
       "Generate UUID v4 (random) and v7 (time-ordered) identifiers in your browser. Batch up to 1000, uppercase, hyphens on/off.",
     longDescription:
@@ -596,6 +624,7 @@ export const tools: Tool[] = [
     slug: "text-case-converter",
     name: "Text Case Converter",
     path: "/tools/text-case-converter",
+    searchVolume: 100000,
     description:
       "Convert text between 12 case styles — UPPERCASE, lowercase, Title, camelCase, snake_case, kebab-case, and more. Runs in your browser.",
     longDescription:
@@ -618,6 +647,7 @@ export const tools: Tool[] = [
     slug: "image-to-sketch",
     name: "Image to Sketch",
     path: "/tools/image-to-sketch",
+    searchVolume: 200000,
     description:
       "Turn any photo into a hand-drawn pencil sketch in your browser. Live sliders for stroke darkness & line thickness, PNG export.",
     longDescription:
@@ -640,6 +670,7 @@ export const tools: Tool[] = [
     slug: "image-to-cartoon",
     name: "Image to Cartoon",
     path: "/tools/image-to-cartoon",
+    searchVolume: 300000,
     description:
       "Turn any photo into a cel-shaded cartoon in your browser. Posterized colors, Sobel outlines, live sliders, PNG export.",
     longDescription:
@@ -662,6 +693,7 @@ export const tools: Tool[] = [
     slug: "qr-code-generator",
     name: "QR Code Generator",
     path: "/tools/qr-code-generator",
+    searchVolume: 3000000,
     description:
       "Generate QR codes for text, URLs, Wi-Fi, email, phone, SMS, vCard, and locations. Custom colors, up to 1024px, PNG/SVG export.",
     longDescription:
@@ -684,6 +716,7 @@ export const tools: Tool[] = [
     slug: "base64-encoder",
     name: "Base64 Encoder / Decoder",
     path: "/tools/base64-encoder",
+    searchVolume: 500000,
     description:
       "Encode or decode Base64 for text and files. Unicode-safe, URL-safe option, image preview. Runs in your browser.",
     longDescription:
@@ -706,6 +739,7 @@ export const tools: Tool[] = [
     slug: "password-generator",
     name: "Password Generator",
     path: "/tools/password-generator",
+    searchVolume: 1500000,
     description:
       "Generate strong, cryptographically random passwords in your browser. Length, sets, ambiguity, live strength, batch up to 50.",
     longDescription:
@@ -728,6 +762,7 @@ export const tools: Tool[] = [
     slug: "barcode-generator",
     name: "Barcode Generator",
     path: "/tools/barcode-generator",
+    searchVolume: 800000,
     description:
       "Generate 1D barcodes in 9 formats — CODE128, CODE39, EAN-13, EAN-8, UPC-A, ITF-14, MSI, Pharmacode, Codabar. PNG or SVG.",
     longDescription:
