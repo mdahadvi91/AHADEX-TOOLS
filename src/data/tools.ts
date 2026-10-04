@@ -525,6 +525,28 @@ export const tools: Tool[] = [
       ogImage: "/images/og/default-og.svg",
     },
   },
+  {
+    id: "json-formatter",
+    slug: "json-formatter",
+    name: "JSON Formatter",
+    path: "/tools/json-formatter",
+    description:
+      "Format, validate, and minify JSON in your browser. Live errors with line/column, sort keys, 2/4-space or tab indent.",
+    longDescription:
+      "JSON Formatter takes raw or minified JSON and produces clean, readable output. Validates the input with precise error locations, pretty-prints with 2/4 spaces or tabs, optionally sorts keys alphabetically, and can minify to the smallest valid form. Reports structural stats: total keys, arrays, and max nesting depth. Everything runs in your browser.",
+    keywords: ["json formatter", "json validator", "json beautifier", "json minifier", "format json online"],
+    popular: true,
+    newTool: true,
+    features: [],
+    howTo: [],
+    faq: [],
+    relatedTools: ["svg-to-png", "word-counter"],
+    seo: {
+      title: "JSON Formatter — Validate, Format & Minify Free | AHADEX Tools",
+      description: "Format, validate, and minify JSON in your browser. Live errors with line/column.",
+      ogImage: "/images/og/default-og.svg",
+    },
+  },
 ];
 
 export const TOOL_COUNT = tools.length;
