@@ -31,12 +31,11 @@ export function SmallToolCard({
 
   return (
     <motion.div
-      initial={{ opacity: 0, y: 12 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, amount: 0.1 }}
+      initial={{ opacity: 0, y: 8 }}
+      animate={{ opacity: 1, y: 0 }}
       transition={{
-        duration: 0.4,
-        delay: Math.min(index * 0.025, 0.2),
+        duration: 0.35,
+        delay: Math.min(index * 0.02, 0.15),
         ease: [0.16, 1, 0.3, 1],
       }}
       className="h-full"
@@ -79,22 +78,12 @@ export function SmallToolCard({
                 animation: "icon-glow-spin 3s linear infinite",
               }}
             />
-            <motion.span
-              animate={{
-                y: [0, -2, 0, -1, 0],
-                rotate: [0, 2, 0, -2, 0],
-              }}
-              transition={{
-                duration: 4 + (index % 5) * 0.3,
-                repeat: Infinity,
-                ease: "easeInOut",
-                delay: index * 0.15,
-              }}
+            <span
               className="relative flex items-center justify-center text-2xl sm:text-3xl leading-none"
               aria-hidden="true"
             >
               {emoji}
-            </motion.span>
+            </span>
           </div>
 
           {onToggleFavorite && (
@@ -145,7 +134,7 @@ export function SmallToolCard({
           {translated.description}
         </p>
 
-        {/* Bottom row — just arrow, no category label */}
+        {/* Bottom row — just arrow */}
         <div className="relative flex items-center justify-end pt-3 mt-3 border-t border-silk-rose/10">
           <ArrowUpRight className="w-3.5 h-3.5 text-silk-rose opacity-60 group-hover:opacity-100 -translate-x-1 group-hover:translate-x-0 transition-all duration-300" />
         </div>
