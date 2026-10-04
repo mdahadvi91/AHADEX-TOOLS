@@ -18,7 +18,7 @@ export function TextCaseSEO() {
         ? "টেক্সট ১২টি case-এ convert করুন — UPPER, lower, Title, camel, snake, kebab ইত্যাদি। সম্পূর্ণ ব্রাউজারেই।"
         : "Convert text between 12 case styles — UPPER, lower, Title, camelCase, snake_case, kebab-case, and more. Runs in your browser.";
     const canonical = `${SITE_URL}${TOOL_PATH}`;
-    const ogImage = `${SITE_URL}/images/og/default-og.svg`;
+    const ogImage = `${SITE_URL}/images/og/tools/text-case-converter-og.png`;
     document.title = title;
     setMeta("name", "description", description);
     setMeta("name", "keywords", "text case converter, title case, sentence case, camel case, snake case, kebab case, upper case, lower case, convert text case");

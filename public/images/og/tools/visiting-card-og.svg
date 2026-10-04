@@ -1,84 +1,62 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" width="1200" height="630">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" width="1200" height="630" fill="none">
   <defs>
-    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#0A0A0A"/>
-      <stop offset="100%" stop-color="#1A0F1A"/>
+    <linearGradient id="bg" x1="0" y1="0" x2="1200" y2="630" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#1A1114"/>
+      <stop offset="100%" stop-color="#32202A"/>
     </linearGradient>
-    <linearGradient id="rose" x1="0%" y1="0%" x2="100%" y2="0%">
+    <linearGradient id="accent" x1="0" y1="0" x2="1200" y2="630" gradientUnits="userSpaceOnUse">
       <stop offset="0%" stop-color="#D88B9A"/>
-      <stop offset="50%" stop-color="#C99667"/>
-      <stop offset="100%" stop-color="#8B3A4F"/>
-    </linearGradient>
-    <linearGradient id="gold" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#E5C9A4"/>
+      <stop offset="50%" stop-color="#8B3A4F"/>
       <stop offset="100%" stop-color="#C99667"/>
     </linearGradient>
+    <radialGradient id="glow1" cx="0.15" cy="0.2" r="0.6">
+      <stop offset="0%" stop-color="#D88B9A" stop-opacity="0.35"/>
+      <stop offset="100%" stop-color="#D88B9A" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="glow2" cx="0.9" cy="0.85" r="0.7">
+      <stop offset="0%" stop-color="#C99667" stop-opacity="0.35"/>
+      <stop offset="100%" stop-color="#C99667" stop-opacity="0"/>
+    </radialGradient>
   </defs>
 
-  <!-- Background -->
   <rect width="1200" height="630" fill="url(#bg)"/>
+  <rect width="1200" height="630" fill="url(#glow1)"/>
+  <rect width="1200" height="630" fill="url(#glow2)"/>
 
-  <!-- Rose glow top-left -->
-  <circle cx="150" cy="100" r="300" fill="#D88B9A" opacity="0.15" filter="blur(80px)"/>
-  <!-- Gold glow bottom-right -->
-  <circle cx="1050" cy="530" r="300" fill="#C99667" opacity="0.15" filter="blur(80px)"/>
+  <rect x="0" y="0" width="1200" height="6" fill="url(#accent)"/>
+  <rect x="0" y="624" width="1200" height="6" fill="url(#accent)"/>
 
-  <!-- Card mockup left -->
-  <g transform="translate(80, 175)">
-    <!-- Card shadow -->
-    <rect x="4" y="4" width="440" height="260" rx="18" fill="#000" opacity="0.4"/>
-    <!-- Card front -->
-    <rect width="440" height="260" rx="18" fill="#0F0F0F"/>
-    <rect x="12" y="12" width="416" height="236" rx="12" fill="none" stroke="url(#gold)" stroke-width="0.8" opacity="0.6"/>
+  <!-- Category badge -->
+  <rect x="100" y="90" width="203" height="50" rx="25" fill="#D88B9A" opacity="0.15" stroke="#D88B9A" stroke-width="1.5"/>
+  <text x="201.5" y="122" text-anchor="middle" font-family="'Noto Sans','Droid Sans',system-ui,sans-serif" font-size="22" font-weight="600" fill="#E8B4B8" letter-spacing="0.5">DESIGN &amp; DOCS</text>
 
-    <!-- Gold corner ornament top-right -->
-    <g transform="translate(395, 40)">
-      <path d="M 0 40 L 0 0 L -40 0" fill="none" stroke="url(#gold)" stroke-width="1.5"/>
-      <path d="M 0 28 L 0 12 L -28 12" fill="none" stroke="#C99667" stroke-width="0.8" opacity="0.6"/>
-    </g>
+  <!-- Main title -->
+  <text x="100" y="260" font-family="'Noto Sans','Droid Sans',system-ui,sans-serif" font-size="80" font-weight="800" fill="#F8F6F1" letter-spacing="-2">Visiting Card Maker</text>
 
-    <!-- Gold corner ornament bottom-left -->
-    <g transform="translate(45, 220)">
-      <path d="M 0 -40 L 0 0 L 40 0" fill="none" stroke="url(#gold)" stroke-width="1.5"/>
-    </g>
+  <!-- Subtitle -->
+  <text x="100" y="335" font-family="'Noto Sans','Droid Sans',system-ui,sans-serif" font-size="26" font-weight="400" fill="#C4A89E" letter-spacing="-0.3">Design print-ready visiting cards in seconds. 20 premium templates — fr…</text>
 
-    <!-- Logo circle -->
-    <circle cx="220" cy="115" r="26" fill="none" stroke="url(#gold)" stroke-width="1.2" opacity="0.7"/>
-    <text x="220" y="121" font-family="Georgia, serif" font-size="18" font-weight="700" fill="url(#gold)" text-anchor="middle">AH</text>
+  <!-- Feature pills -->
+  <g transform="translate(100, 460)">
+    <rect x="0" y="0" width="240" height="56" rx="28" fill="#FFFFFF" opacity="0.06" stroke="#D88B9A" stroke-width="1.5"/>
+    <circle cx="30" cy="28" r="6" fill="#D88B9A"/>
+    <text x="52" y="36" font-family="'Noto Sans','Droid Sans',sans-serif" font-size="18" font-weight="500" fill="#F8F6F1">Visiting Card</text>
 
-    <!-- Brand text -->
-    <text x="220" y="170" font-family="Georgia, serif" font-size="26" font-weight="700" fill="#E5C9A4" text-anchor="middle" letter-spacing="4">AHADEX TOOLS</text>
-    <text x="220" y="196" font-family="Georgia, serif" font-size="9" fill="#8B6A45" text-anchor="middle" letter-spacing="3">TOOLS FOR A SMARTER TOMORROW</text>
+    <rect x="260" y="0" width="240" height="56" rx="28" fill="#FFFFFF" opacity="0.06" stroke="#C99667" stroke-width="1.5"/>
+    <circle cx="290" cy="28" r="6" fill="#C99667"/>
+    <text x="312" y="36" font-family="'Noto Sans','Droid Sans',sans-serif" font-size="18" font-weight="500" fill="#F8F6F1">Business Card</text>
+
+    <rect x="520" y="0" width="240" height="56" rx="28" fill="#FFFFFF" opacity="0.06" stroke="#B36878" stroke-width="1.5"/>
+    <circle cx="550" cy="28" r="6" fill="#B36878"/>
+    <text x="572" y="36" font-family="'Noto Sans','Droid Sans',sans-serif" font-size="18" font-weight="500" fill="#F8F6F1">Card Maker</text>
   </g>
 
-  <!-- Right side text -->
-  <g transform="translate(600, 200)">
-    <!-- Category label -->
-    <text x="0" y="0" font-family="Inter, sans-serif" font-size="14" font-weight="700" fill="#D88B9A" letter-spacing="6">DESIGN STUDIO</text>
+  <!-- Domain -->
+  <text x="100" y="580" font-family="'Noto Sans Mono','Droid Sans Mono',monospace" font-size="22" font-weight="500" fill="#D88B9A" letter-spacing="0.5" opacity="0.85">ahadex.fun</text>
 
-    <!-- Main heading -->
-    <text x="0" y="70" font-family="Georgia, serif" font-size="56" font-weight="900" fill="#FFF6F1">Visiting Card</text>
-    <text x="0" y="132" font-family="Georgia, serif" font-size="56" font-weight="900" fill="url(#rose)">Maker</text>
-
-    <!-- Subtitle -->
-    <text x="0" y="180" font-family="Inter, sans-serif" font-size="18" fill="#B8B8C8">20 premium templates · Front &amp; back</text>
-
-    <!-- Badges -->
-    <g transform="translate(0, 220)">
-      <rect x="0" y="0" width="110" height="32" rx="16" fill="#D88B9A" opacity="0.15" stroke="#D88B9A" stroke-width="0.8"/>
-      <text x="55" y="21" font-family="Inter, sans-serif" font-size="12" font-weight="600" fill="#E8B4B8" text-anchor="middle">FREE</text>
-
-      <rect x="122" y="0" width="130" height="32" rx="16" fill="#C99667" opacity="0.15" stroke="#C99667" stroke-width="0.8"/>
-      <text x="187" y="21" font-family="Inter, sans-serif" font-size="12" font-weight="600" fill="#E5C9A4" text-anchor="middle">PNG · JPG</text>
-
-      <rect x="264" y="0" width="150" height="32" rx="16" fill="#8B3A4F" opacity="0.15" stroke="#8B3A4F" stroke-width="0.8"/>
-      <text x="339" y="21" font-family="Inter, sans-serif" font-size="12" font-weight="600" fill="#D88B9A" text-anchor="middle">100% PRIVATE</text>
-    </g>
+  <!-- Brand mark (right) -->
+  <g transform="translate(900, 220)">
+    <circle cx="140" cy="130" r="130" fill="url(#accent)" opacity="0.15"/>
+    <path d="M 140 40 L 90 220 L 118 220 L 128 172 L 152 172 L 162 220 L 190 220 L 140 40 Z M 133 152 L 147 152 L 140 110 L 133 152 Z" fill="url(#accent)"/>
   </g>
-
-  <!-- Footer -->
-  <text x="600" y="580" font-family="Inter, sans-serif" font-size="13" fill="#8B6A45" letter-spacing="2">ahadex.fun</text>
-
-  <!-- Top decorative line -->
-  <rect x="0" y="0" width="1200" height="3" fill="url(#rose)"/>
 </svg>

@@ -18,7 +18,7 @@ export function BarcodeGeneratorSEO() {
         ? "CODE128, CODE39, EAN-13, EAN-8, UPC-A, ITF-14 সহ ৯ ফরম্যাটে বারকোড তৈরি করুন — কাস্টম রঙ, PNG/SVG।"
         : "Generate 1D barcodes in 9 formats — CODE128, CODE39, EAN-13, EAN-8, UPC-A, ITF-14, MSI, Pharmacode, Codabar.";
     const canonical = `${SITE_URL}${TOOL_PATH}`;
-    const ogImage = `${SITE_URL}/images/og/default-og.svg`;
+    const ogImage = `${SITE_URL}/images/og/tools/barcode-generator-og.png`;
     document.title = title;
     setMeta("name", "description", description);
     setMeta("name", "keywords", "barcode generator, free barcode, code128, ean13, upc, code39, itf14, barcode maker, barcode png, barcode svg");

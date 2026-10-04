@@ -15,7 +15,7 @@ export function PngToJpgSEO() {
     const description =
       "Convert PNG images to JPG instantly in your browser. Smaller files, universal compatibility, batch-capable, no uploads, no servers.";
     const canonical = `${SITE_URL}${TOOL_PATH}`;
-    const ogImage = `${SITE_URL}/images/og/default-og.svg`;
+    const ogImage = `${SITE_URL}/images/og/tools/png-to-jpg-og.png`;
 
     document.title = title;
 

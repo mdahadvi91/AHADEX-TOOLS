@@ -18,7 +18,7 @@ export function PasswordGeneratorSEO() {
         ? "শক্তিশালী, ক্রিপ্টোগ্রাফিক্যালি র‍্যান্ডম পাসওয়ার্ড তৈরি করুন — length, character set, ambiguity নিয়ন্ত্রণ, লাইভ strength।"
         : "Generate strong, cryptographically random passwords in your browser. Length, sets, ambiguity, live strength, batch up to 50.";
     const canonical = `${SITE_URL}${TOOL_PATH}`;
-    const ogImage = `${SITE_URL}/images/og/default-og.svg`;
+    const ogImage = `${SITE_URL}/images/og/tools/password-generator-og.png`;
     document.title = title;
     setMeta("name", "description", description);
     setMeta("name", "keywords", "password generator, strong password, random password, secure password, free password generator, crypto password, password maker");

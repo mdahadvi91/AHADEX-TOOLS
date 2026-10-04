@@ -12,7 +12,7 @@ export function MergePdfSEO() {
     const title = "Merge PDF — Combine PDFs Free, Fast & Private | AHADEX Tools";
     const description = "Combine multiple PDF files into one document in your browser. Reorder files, no uploads, no servers, no accounts.";
     const canonical = `${SITE_URL}${TOOL_PATH}`;
-    const ogImage = `${SITE_URL}/images/og/default-og.svg`;
+    const ogImage = `${SITE_URL}/images/og/tools/merge-pdf-og.png`;
     document.title = title;
     setMeta("name", "description", description);
     setMeta("name", "keywords", "merge pdf, combine pdf, join pdf, pdf merger, free merge pdf, offline pdf merger");

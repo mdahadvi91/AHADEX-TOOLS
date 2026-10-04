@@ -18,7 +18,7 @@ export function PdfToTextSEO() {
         ? "PDF থেকে প্লেন টেক্সট বের করুন — সম্পূর্ণ ব্রাউজারেই। পেজ রেঞ্জ, লাইন ব্রেক অপশন, কপি বা .txt ডাউনলোড।"
         : "Extract plain text from any PDF in your browser. Page ranges, line-break options, copy or download as .txt. No uploads.";
     const canonical = `${SITE_URL}${TOOL_PATH}`;
-    const ogImage = `${SITE_URL}/images/og/default-og.svg`;
+    const ogImage = `${SITE_URL}/images/og/tools/pdf-to-text-og.png`;
     document.title = title;
     setMeta("name", "description", description);
     setMeta("name", "keywords", "pdf to text, extract text from pdf, pdf text extractor, convert pdf to text, pdf to txt, free pdf text extractor");

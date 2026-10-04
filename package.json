@@ -3,7 +3,7 @@
   "private": true,
   "version": "1.0.0",
   "type": "module",
-  "description": "AHADEX Tools — Free, fast and private online tools for everyday digital tasks.",
+  "description": "AHADEX Tools \u2014 Free, fast and private online tools for everyday digital tasks.",
   "author": "AHADEX <mdahadvi91@gmail.com>",
   "license": "MIT",
   "homepage": "https://ahadex.fun",
@@ -17,12 +17,13 @@
   },
   "scripts": {
     "dev": "vite",
-    "build": "npm run sitemap && tsc --noEmit && vite build",
+    "build": "npm run sitemap && npm run og:images && tsc --noEmit && vite build",
     "preview": "vite preview --port 4173",
     "lint": "tsc --noEmit",
     "type-check": "tsc --noEmit",
     "clean": "rm -rf dist node_modules/.vite",
-    "sitemap": "tsx scripts/generate-sitemap.ts"
+    "sitemap": "tsx scripts/generate-sitemap.ts",
+    "og:images": "tsx scripts/generate-og-images.ts"
   },
   "dependencies": {
     "@imgly/background-removal": "^1.5.5",

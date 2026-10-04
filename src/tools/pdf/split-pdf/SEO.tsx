@@ -12,7 +12,7 @@ export function SplitPdfSEO() {
     const title = "Split PDF — Extract Pages Free, Fast & Private | AHADEX Tools";
     const description = "Split PDF files in your browser. Extract custom page ranges or split every page. No uploads, no servers, no accounts.";
     const canonical = `${SITE_URL}${TOOL_PATH}`;
-    const ogImage = `${SITE_URL}/images/og/default-og.svg`;
+    const ogImage = `${SITE_URL}/images/og/tools/split-pdf-og.png`;
     document.title = title;
     setMeta("name", "description", description);
     setMeta("name", "keywords", "split pdf, extract pdf pages, pdf splitter, split pdf online, free pdf splitter, offline pdf splitter");

@@ -12,7 +12,7 @@ export function PngToPdfSEO() {
     const title = "PNG to PDF Converter — Free, Fast & Private | AHADEX Tools";
     const description = "Combine PNG images into a single PDF in your browser. Multi-page, reorderable, A4/Letter, white background, no uploads.";
     const canonical = `${SITE_URL}${TOOL_PATH}`;
-    const ogImage = `${SITE_URL}/images/og/default-og.svg`;
+    const ogImage = `${SITE_URL}/images/og/tools/png-to-pdf-og.png`;
     document.title = title;
     setMeta("name", "description", description);
     setMeta("name", "keywords", "png to pdf, convert png to pdf, image to pdf, free png to pdf, offline pdf converter");

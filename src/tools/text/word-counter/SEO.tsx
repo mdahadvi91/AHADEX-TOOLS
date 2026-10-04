@@ -12,7 +12,7 @@ export function WordCounterSEO() {
     const title = "Word Counter — Live Word, Character & Reading Time | AHADEX Tools";
     const description = "Count words, characters, sentences, and paragraphs in real time. Reading time, speaking time, keyword density — all in your browser.";
     const canonical = `${SITE_URL}${TOOL_PATH}`;
-    const ogImage = `${SITE_URL}/images/og/default-og.svg`;
+    const ogImage = `${SITE_URL}/images/og/tools/word-counter-og.png`;
     document.title = title;
     setMeta("name", "description", description);
     setMeta("name", "keywords", "word counter, character counter, word count, reading time, speaking time, keyword density, free word counter");

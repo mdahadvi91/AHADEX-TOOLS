@@ -18,7 +18,7 @@ export function ImageToPdfSEO() {
         ? "JPG, PNG, WebP ছবি এক PDF-এ যুক্ত করুন — সম্পূর্ণ ব্রাউজারেই, কোনো আপলোড নেই, মাল্টি-পেজ, A4/Letter।"
         : "Combine JPG, PNG, and WebP images into one PDF in your browser. Multi-page, reorderable, A4/Letter, no uploads, no servers.";
     const canonical = `${SITE_URL}${TOOL_PATH}`;
-    const ogImage = `${SITE_URL}/images/og/default-og.svg`;
+    const ogImage = `${SITE_URL}/images/og/tools/image-to-pdf-og.png`;
     document.title = title;
     setMeta("name", "description", description);
     setMeta("name", "keywords", "image to pdf, jpg to pdf, png to pdf, webp to pdf, combine images to pdf, mixed format pdf, free pdf converter, offline pdf converter");
