@@ -28,3 +28,7 @@ export const FEATURE_FLAGS = {
   enableAnalytics: import.meta.env.VITE_ENABLE_ANALYTICS === "true",
   enableAdSense: import.meta.env.VITE_ENABLE_ADSENSE === "true",
 } as const;
+
+export const ANALYTICS_CONFIG = {
+  measurementId: (import.meta.env.VITE_GA_MEASUREMENT_ID as string | undefined)?.trim() ?? "",
+} as const;
