@@ -44,7 +44,7 @@ export function SmallToolCard({
         to={tool.path}
         className={cn(
           "group relative flex flex-col h-full p-4 sm:p-5 rounded-2xl overflow-hidden",
-          "bg-white/75 dark:bg-dark-surface/75 backdrop-blur-xl",
+          "bg-white dark:bg-dark-surface",
           "border",
           isFavorite
             ? "border-silk-gold/50 shadow-[0_6px_20px_-8px_rgba(201,150,103,0.35)]"
@@ -115,7 +115,7 @@ export function SmallToolCard({
           className={cn(
             "relative font-display font-bold leading-tight mb-1.5 sm:mb-2",
             "text-[15px] sm:text-[15px]",
-            "text-light-text dark:text-dark-text",
+            "text-[#2B1810] dark:text-[#F5EAE3]",
             "group-hover:text-silk-wine dark:group-hover:text-silk-rose-soft",
             "transition-colors"
           )}
@@ -128,7 +128,7 @@ export function SmallToolCard({
           className={cn(
             "relative leading-relaxed line-clamp-2 flex-1",
             "text-[12px] sm:text-[11.5px]",
-            "text-light-textSecondary dark:text-dark-textSecondary"
+            "text-[#7A5E52] dark:text-[#C4A89E]"
           )}
         >
           {translated.description}
