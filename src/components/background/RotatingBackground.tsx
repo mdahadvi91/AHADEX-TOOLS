@@ -18,12 +18,29 @@ export function RotatingBackground() {
   const [index, setIndex] = useState(0);
   const [paused, setPaused] = useState(false);
 
-  // Preload all 5 images on mount so rotation is instant
+  // Preload only the first image on mount; others load on demand
+  // (saves 500 KB of eager downloads on first visit)
   useEffect(() => {
-    ROTATING_BACKGROUNDS.forEach((src) => {
-      const img = new Image();
-      img.src = src;
-    });
+    if (ROTATING_BACKGROUNDS.length === 0) return;
+    const img = new Image();
+    img.src = ROTATING_BACKGROUNDS[0];
+
+    // Preload the rest after the page is fully idle
+    const idle = () => {
+      ROTATING_BACKGROUNDS.slice(1).forEach((src) => {
+        const i = new Image();
+        i.src = src;
+      });
+    };
+    type IdleWindow = Window & {
+      requestIdleCallback?: (cb: () => void) => void;
+    };
+    const w = window as IdleWindow;
+    if (typeof w.requestIdleCallback === "function") {
+      w.requestIdleCallback(idle);
+    } else {
+      window.setTimeout(idle, 4000);
+    }
   }, []);
 
   // Pause rotation while the tab is hidden (battery-friendly)
