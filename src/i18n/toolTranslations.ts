@@ -124,6 +124,10 @@ export const toolTranslationsBn: Record<string, ToolTranslation> = {
     name: "UUID জেনারেটর",
     description: "UUID v4 ও v7 তৈরি করুন — Web Crypto randomness, ১০০০ পর্যন্ত ব্যাচ, কপি বা .txt ডাউনলোড।",
   },
+  "text-case-converter": {
+    name: "টেক্সট কেস কনভার্টার",
+    description: "টেক্সট ১২টি case-এ convert করুন — UPPER, lower, Title, camel, snake, kebab ইত্যাদি।",
+  },
 };
 
 export function getToolTranslation(
