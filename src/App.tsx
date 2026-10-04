@@ -55,6 +55,7 @@ const ImageToCartoonTool = lazy(() => import("@tools/image/image-to-cartoon"));
 const QrCodeGeneratorTool = lazy(() => import("@tools/qr/qr-code-generator"));
 const Base64EncoderTool = lazy(() => import("@tools/developer/base64-encoder"));
 const PasswordGeneratorTool = lazy(() => import("@tools/developer/password-generator"));
+const BarcodeGeneratorTool = lazy(() => import("@tools/qr/barcode-generator"));
 const WordCounterTool = lazy(() => import("@tools/text/word-counter"));
 const PdfToPngTool = lazy(() => import("@tools/pdf/pdf-to-png"));
 const PdfToJpgTool = lazy(() => import("@tools/pdf/pdf-to-jpg"));
@@ -146,6 +147,7 @@ export default function App() {
                   <Route path="tools/qr-code-generator" element={<QrCodeGeneratorTool />} />
                   <Route path="tools/base64-encoder" element={<Base64EncoderTool />} />
                   <Route path="tools/password-generator" element={<PasswordGeneratorTool />} />
+                  <Route path="tools/barcode-generator" element={<BarcodeGeneratorTool />} />
                   <Route path="tools/word-counter" element={<WordCounterTool />} />
                   <Route path="tools/pdf-to-png" element={<PdfToPngTool />} />
                   <Route path="tools/pdf-to-jpg" element={<PdfToJpgTool />} />
