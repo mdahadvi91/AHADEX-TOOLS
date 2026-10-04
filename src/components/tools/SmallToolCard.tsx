@@ -1,6 +1,5 @@
 import { Link } from "react-router-dom";
 import { ArrowUpRight } from "lucide-react";
-import { motion } from "framer-motion";
 import { getToolEmoji } from "@components/common/toolEmojis";
 import { FavoriteButton } from "./FavoriteButton";
 import { useLanguage } from "@contexts/LanguageContext";
@@ -17,7 +16,6 @@ interface SmallToolCardProps {
 
 export function SmallToolCard({
   tool,
-  index = 0,
   isFavorite = false,
   onToggleFavorite,
 }: SmallToolCardProps) {
@@ -30,115 +28,59 @@ export function SmallToolCard({
   });
 
   return (
-    <motion.div
-      initial={{ opacity: 0, y: 8 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{
-        duration: 0.35,
-        delay: Math.min(index * 0.02, 0.15),
-        ease: [0.16, 1, 0.3, 1],
-      }}
-      className="h-full"
+    <Link
+      to={tool.path}
+      className={cn(
+        "group relative flex flex-col h-full p-4 sm:p-5 rounded-2xl overflow-hidden",
+        "bg-white dark:bg-dark-surface",
+        "border",
+        isFavorite
+          ? "border-silk-gold/50 shadow-[0_6px_20px_-8px_rgba(201,150,103,0.35)]"
+          : "border-silk-rose/15 hover:border-silk-rose/50",
+        "shadow-[0_2px_10px_-6px_rgba(139,58,79,0.10)]",
+        "hover:shadow-[0_14px_32px_-14px_rgba(139,58,79,0.35)]",
+        "hover:-translate-y-1",
+        "transition-all duration-300"
+      )}
     >
-      <Link
-        to={tool.path}
-        className={cn(
-          "group relative flex flex-col h-full p-4 sm:p-5 rounded-2xl overflow-hidden",
-          "bg-white dark:bg-dark-surface",
-          "border",
-          isFavorite
-            ? "border-silk-gold/50 shadow-[0_6px_20px_-8px_rgba(201,150,103,0.35)]"
-            : "border-silk-rose/15 hover:border-silk-rose/50",
-          "shadow-[0_2px_10px_-6px_rgba(139,58,79,0.10)]",
-          "hover:shadow-[0_14px_32px_-14px_rgba(139,58,79,0.35)]",
-          "hover:-translate-y-1",
-          "transition-all duration-300"
+      <div className="relative flex items-start justify-between gap-2 mb-3 sm:mb-4">
+        <div className="w-12 h-12 sm:w-14 sm:h-14 rounded-2xl bg-silk-rose/15 border border-silk-rose/25 flex items-center justify-center text-2xl sm:text-3xl leading-none">
+          {emoji}
+        </div>
+        {onToggleFavorite && (
+          <FavoriteButton
+            active={isFavorite}
+            onToggle={() => onToggleFavorite(tool.id)}
+          />
         )}
-      >
-        {/* Rose glow */}
-        <span
-          aria-hidden="true"
-          className="absolute -top-10 -right-10 w-28 h-28 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"
-          style={{
-            background:
-              "radial-gradient(circle, rgba(216,139,154,0.6) 0%, transparent 70%)",
-            filter: "blur(20px)",
-          }}
-        />
+      </div>
 
-        {/* Top row — emoji + favorite */}
-        <div className="relative flex items-start justify-between gap-2 mb-3 sm:mb-4">
-          <div className="w-12 h-12 sm:w-14 sm:h-14 rounded-2xl bg-gradient-to-br from-silk-rose/15 via-silk-wine/8 to-silk-gold/10 border border-silk-rose/25 flex items-center justify-center group-hover:bg-silk-rose/25 group-hover:border-silk-rose/45 transition-all duration-400 overflow-hidden relative">
-            <span
-              aria-hidden="true"
-              className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500"
-              style={{
-                background:
-                  "conic-gradient(from 0deg, transparent, rgba(216,139,154,0.4), transparent 30%)",
-                animation: "icon-glow-spin 3s linear infinite",
-              }}
-            />
-            <span
-              className="relative flex items-center justify-center text-2xl sm:text-3xl leading-none"
-              aria-hidden="true"
-            >
-              {emoji}
+      {(tool.popular || tool.newTool) && (
+        <div className="absolute top-[68px] sm:top-[80px] right-4 flex gap-1">
+          {tool.popular && (
+            <span className="px-1.5 py-0.5 rounded-full bg-gradient-to-r from-silk-rose to-silk-gold text-white text-[8px] font-bold tracking-wider uppercase leading-none">
+              Top
             </span>
-          </div>
-
-          {onToggleFavorite && (
-            <FavoriteButton
-              active={isFavorite}
-              onToggle={() => onToggleFavorite(tool.id)}
-            />
+          )}
+          {tool.newTool && (
+            <span className="px-1.5 py-0.5 rounded-full bg-silk-wine/15 text-silk-wine text-[8px] font-bold tracking-wider uppercase border border-silk-wine/25 leading-none">
+              New
+            </span>
           )}
         </div>
+      )}
 
-        {/* Badges */}
-        {(tool.popular || tool.newTool) && (
-          <div className="absolute top-[68px] sm:top-[80px] right-4 flex gap-1">
-            {tool.popular && (
-              <span className="px-1.5 py-0.5 rounded-full bg-gradient-to-r from-silk-rose to-silk-gold text-white text-[8px] font-bold tracking-wider uppercase leading-none">
-                Top
-              </span>
-            )}
-            {tool.newTool && (
-              <span className="px-1.5 py-0.5 rounded-full bg-silk-wine/15 text-silk-wine dark:text-silk-rose-soft text-[8px] font-bold tracking-wider uppercase border border-silk-wine/25 leading-none">
-                New
-              </span>
-            )}
-          </div>
-        )}
+      <h3 className="relative font-display font-bold leading-tight mb-1.5 sm:mb-2 text-[15px] text-[#2B1810] group-hover:text-silk-wine transition-colors">
+        {translated.name}
+      </h3>
 
-        {/* Title */}
-        <h3
-          className={cn(
-            "relative font-display font-bold leading-tight mb-1.5 sm:mb-2",
-            "text-[15px] sm:text-[15px]",
-            "text-[#2B1810] dark:text-[#F5EAE3]",
-            "group-hover:text-silk-wine dark:group-hover:text-silk-rose-soft",
-            "transition-colors"
-          )}
-        >
-          {translated.name}
-        </h3>
+      <p className="relative leading-relaxed line-clamp-2 flex-1 text-[12px] sm:text-[11.5px] text-[#7A5E52]">
+        {translated.description}
+      </p>
 
-        {/* Description */}
-        <p
-          className={cn(
-            "relative leading-relaxed line-clamp-2 flex-1",
-            "text-[12px] sm:text-[11.5px]",
-            "text-[#7A5E52] dark:text-[#C4A89E]"
-          )}
-        >
-          {translated.description}
-        </p>
-
-        {/* Bottom row — just arrow */}
-        <div className="relative flex items-center justify-end pt-3 mt-3 border-t border-silk-rose/10">
-          <ArrowUpRight className="w-3.5 h-3.5 text-silk-rose opacity-60 group-hover:opacity-100 -translate-x-1 group-hover:translate-x-0 transition-all duration-300" />
-        </div>
-      </Link>
-    </motion.div>
+      <div className="relative flex items-center justify-end pt-3 mt-3 border-t border-silk-rose/10">
+        <ArrowUpRight className="w-3.5 h-3.5 text-silk-rose opacity-60 group-hover:opacity-100 transition-all duration-300" />
+      </div>
+    </Link>
   );
 }
