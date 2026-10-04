@@ -112,6 +112,10 @@ export const toolTranslationsBn: Record<string, ToolTranslation> = {
     name: "SVG থেকে PNG",
     description: "SVG ভেক্টর ফাইল PNG ছবিতে রূপান্তর করুন — ৮× স্কেল, transparent background, সম্পূর্ণ ব্রাউজারেই।",
   },
+  "json-formatter": {
+    name: "JSON ফরম্যাটার",
+    description: "JSON ফরম্যাট, ভ্যালিডেট ও মিনিফাই করুন — লাইভ error line/column, sort keys, 2/4 space বা tab।",
+  },
 };
 
 export function getToolTranslation(
