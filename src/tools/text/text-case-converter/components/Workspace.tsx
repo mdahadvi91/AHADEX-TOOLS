@@ -1,5 +1,5 @@
 import { useMemo, useState } from "react";
-import { Copy, ClipboardCheck, Trash2, ArrowRight } from "lucide-react";
+import { Copy, ClipboardCheck, Trash2, ArrowRight, Type } from "lucide-react";
 import { useLanguage } from "@contexts/LanguageContext";
 import { cn } from "@lib/cn";
 import { convert, formatNumber, MAX_CHARS } from "../logic";
