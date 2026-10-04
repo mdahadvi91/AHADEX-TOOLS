@@ -230,13 +230,6 @@ export const TOOL_META: Record<string, ToolMeta> = {
     description: "Turn any photo into a cel-shaded cartoon in your browser. Live sliders, PNG export.",
     ogImage: "/images/og/tools/image-to-cartoon-og.png",
   },
-  "qr-code-generator": {
-    name: "QR Code Generator",
-    path: "/tools/qr-code-generator",
-    title: "QR Code Generator — Text, URL, WiFi, vCard Free | AHADEX Tools",
-    description: "Generate QR codes for text, URLs, Wi-Fi, email, phone, SMS, vCard, and locations. Custom colors.",
-    ogImage: "/images/og/tools/qr-code-generator-og.png",
-  },
   "base64-encoder": {
     name: "Base64 Encoder / Decoder",
     path: "/tools/base64-encoder",

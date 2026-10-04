@@ -52,7 +52,6 @@ const UuidGeneratorTool = lazy(() => import("@tools/developer/uuid-generator"));
 const TextCaseConverterTool = lazy(() => import("@tools/text/text-case-converter"));
 const ImageToSketchTool = lazy(() => import("@tools/image/image-to-sketch"));
 const ImageToCartoonTool = lazy(() => import("@tools/image/image-to-cartoon"));
-const QrCodeGeneratorTool = lazy(() => import("@tools/qr/qr-code-generator"));
 const Base64EncoderTool = lazy(() => import("@tools/developer/base64-encoder"));
 const PasswordGeneratorTool = lazy(() => import("@tools/developer/password-generator"));
 const BarcodeGeneratorTool = lazy(() => import("@tools/qr/barcode-generator"));
@@ -144,7 +143,6 @@ export default function App() {
                   <Route path="tools/text-case-converter" element={<TextCaseConverterTool />} />
                   <Route path="tools/image-to-sketch" element={<ImageToSketchTool />} />
                   <Route path="tools/image-to-cartoon" element={<ImageToCartoonTool />} />
-                  <Route path="tools/qr-code-generator" element={<QrCodeGeneratorTool />} />
                   <Route path="tools/base64-encoder" element={<Base64EncoderTool />} />
                   <Route path="tools/password-generator" element={<PasswordGeneratorTool />} />
                   <Route path="tools/barcode-generator" element={<BarcodeGeneratorTool />} />

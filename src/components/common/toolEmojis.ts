@@ -36,7 +36,6 @@ export const TOOL_EMOJIS: Record<string, string> = {
   "pdf-page-extractor": "📃",
 
   // ---- QR tools ----
-  "qr-code-generator": "🔲",
   "wifi-qr-generator": "📶",
   "email-qr-generator": "✉️",
   "phone-qr-generator": "📞",

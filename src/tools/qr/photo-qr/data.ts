@@ -27,7 +27,6 @@ export const photoQrData = {
   },
 
   relatedTools: [
-    "qr-code-generator",
     "qr-code-with-logo",
     "wifi-qr-generator",
   ],
