@@ -657,6 +657,28 @@ export const tools: Tool[] = [
       ogImage: "/images/og/default-og.svg",
     },
   },
+  {
+    id: "qr-code-generator",
+    slug: "qr-code-generator",
+    name: "QR Code Generator",
+    path: "/tools/qr-code-generator",
+    description:
+      "Generate QR codes for text, URLs, Wi-Fi, email, phone, SMS, vCard, and locations. Custom colors, up to 1024px, PNG/SVG export.",
+    longDescription:
+      "QR Code Generator creates scannable QR codes for eight content types — text, URL, Wi-Fi credentials, email, phone, SMS, vCard contacts, and geo location. Choose error correction level, size (128–1024px), and custom colors. Download as PNG or SVG. Everything runs in your browser using the qrcode library.",
+    keywords: ["qr code generator", "free qr code", "wifi qr code", "vcard qr code", "url qr code", "custom qr code"],
+    popular: true,
+    newTool: true,
+    features: [],
+    howTo: [],
+    faq: [],
+    relatedTools: ["photo-qr", "visiting-card"],
+    seo: {
+      title: "QR Code Generator — Text, URL, WiFi, vCard Free | AHADEX Tools",
+      description: "Generate QR codes for text, URLs, Wi-Fi, email, phone, SMS, vCard, and locations. Custom colors.",
+      ogImage: "/images/og/default-og.svg",
+    },
+  },
 ];
 
 export const TOOL_COUNT = tools.length;
