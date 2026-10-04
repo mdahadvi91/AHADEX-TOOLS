@@ -77,7 +77,6 @@ export const TOOL_ICONS: Record<string, typeof Images> = {
   "pdf-page-extractor": FileOutput,
 
   // QR
-  "qr-code-generator": QrCode,
   "wifi-qr-generator": Wifi,
   "email-qr-generator": Mail,
   "phone-qr-generator": Phone,

@@ -136,10 +136,6 @@ export const toolTranslationsBn: Record<string, ToolTranslation> = {
     name: "ইমেজ থেকে কার্টুন",
     description: "যেকোনো ছবিকে সেল-শেডেড কার্টুনে রূপান্তর করুন — লাইভ স্লাইডার, PNG ডাউনলোড।",
   },
-  "qr-code-generator": {
-    name: "QR কোড জেনারেটর",
-    description: "Text, URL, Wi-Fi, email, phone, SMS, vCard ও location-এর জন্য QR তৈরি করুন — কাস্টম রঙ, ১০২৪px।",
-  },
   "base64-encoder": {
     name: "Base64 এনকোডার / ডিকোডার",
     description: "টেক্সট ও ফাইলের Base64 encode/decode — Unicode-safe, URL-safe, image preview সহ।",

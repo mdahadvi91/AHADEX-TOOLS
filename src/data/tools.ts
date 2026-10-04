@@ -19,7 +19,7 @@ export const tools: Tool[] = [
     slug: "photo-qr",
     name: "Photo QR Code",
     path: "/tools/photo-qr",
-    searchVolume: 50000,
+    searchVolume: 5000000,
     description:
       "Add a real, scannable QR badge to any photo — WhatsApp, Facebook, WiFi, and more.",
     longDescription:
@@ -689,29 +689,6 @@ export const tools: Tool[] = [
     },
   },
   {
-    id: "qr-code-generator",
-    slug: "qr-code-generator",
-    name: "QR Code Generator",
-    path: "/tools/qr-code-generator",
-    searchVolume: 3000000,
-    description:
-      "Generate QR codes for text, URLs, Wi-Fi, email, phone, SMS, vCard, and locations. Custom colors, up to 1024px, PNG/SVG export.",
-    longDescription:
-      "QR Code Generator creates scannable QR codes for eight content types — text, URL, Wi-Fi credentials, email, phone, SMS, vCard contacts, and geo location. Choose error correction level, size (128–1024px), and custom colors. Download as PNG or SVG. Everything runs in your browser using the qrcode library.",
-    keywords: ["qr code generator", "free qr code", "wifi qr code", "vcard qr code", "url qr code", "custom qr code"],
-    popular: true,
-    newTool: true,
-    features: [],
-    howTo: [],
-    faq: [],
-    relatedTools: ["photo-qr", "visiting-card"],
-    seo: {
-      title: "QR Code Generator — Text, URL, WiFi, vCard Free | AHADEX Tools",
-      description: "Generate QR codes for text, URLs, Wi-Fi, email, phone, SMS, vCard, and locations. Custom colors.",
-      ogImage: "/images/og/tools/qr-code-generator-og.png",
-    },
-  },
-  {
     id: "base64-encoder",
     slug: "base64-encoder",
     name: "Base64 Encoder / Decoder",
@@ -773,7 +750,7 @@ export const tools: Tool[] = [
     features: [],
     howTo: [],
     faq: [],
-    relatedTools: ["qr-code-generator", "photo-qr"],
+    relatedTools: ["photo-qr", "barcode-generator"],
     seo: {
       title: "Barcode Generator — 9 Formats, PNG & SVG Free | AHADEX Tools",
       description: "Generate 1D barcodes in 9 formats — CODE128, CODE39, EAN-13, UPC-A, and more. PNG or SVG export.",
