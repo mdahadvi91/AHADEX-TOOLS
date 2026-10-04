@@ -1,14 +1,16 @@
 import { useEffect } from "react";
+import { applyStoredConsent } from "@lib/consent";
 
 /* ============================================================
  * Google Analytics 4 Loader
  * ------------------------------------------------------------
- * Loads gtag.js only when:
+ * Loads gtag.js when:
  *   1. VITE_GA_MEASUREMENT_ID is set (G-XXXXXXXXXX)
  *   2. VITE_ENABLE_ANALYTICS is "true"
  *
+ * Consent Mode v2 defaults are set inline in index.html.
+ * After gtag loads, we re-apply any stored user choice.
  * Idempotent — safe to mount multiple times.
- * Mounted in MainLayout.
  * ============================================================ */
 
 declare global {
@@ -27,31 +29,35 @@ export function GoogleAnalyticsLoader() {
 
     if (!enabled || !measurementId) return;
 
-    // Already loaded? (idempotent guard)
+    // Initialize dataLayer + gtag stub (harmless if already set)
+    window.dataLayer = window.dataLayer || [];
+    if (typeof window.gtag !== "function") {
+      window.gtag = function gtag(...args: unknown[]) {
+        window.dataLayer!.push(args);
+      };
+    }
+
+    // Already loaded?
     if (
-      document.querySelector(
-        'script[src*="googletagmanager.com/gtag/js"]'
-      )
+      document.querySelector('script[src*="googletagmanager.com/gtag/js"]')
     ) {
+      applyStoredConsent();
       return;
     }
 
-    // 1) Initialize dataLayer + gtag stub BEFORE the script loads
-    window.dataLayer = window.dataLayer || [];
-    window.gtag = function gtag(...args: unknown[]) {
-      window.dataLayer!.push(args);
-    };
     window.gtag("js", new Date());
     window.gtag("config", measurementId, {
       send_page_view: false, // we send page views manually on route change
       anonymize_ip: true,
     });
 
-    // 2) Load the gtag.js script
     const script = document.createElement("script");
     script.async = true;
     script.src = `https://www.googletagmanager.com/gtag/js?id=${measurementId}`;
     document.head.appendChild(script);
+
+    // After gtag.js loads, apply stored consent (if any)
+    script.onload = () => applyStoredConsent();
   }, []);
 
   return null;
