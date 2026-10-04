@@ -108,6 +108,10 @@ export const toolTranslationsBn: Record<string, ToolTranslation> = {
     name: "PDF পেজ এক্সট্রাক্টর",
     description: "PDF থেকে পেজ বের করুন — নিজের ক্রমে, duplicate সহ। Combined PDF বা আলাদা ফাইল।",
   },
+  "svg-to-png": {
+    name: "SVG থেকে PNG",
+    description: "SVG ভেক্টর ফাইল PNG ছবিতে রূপান্তর করুন — ৮× স্কেল, transparent background, সম্পূর্ণ ব্রাউজারেই।",
+  },
 };
 
 export function getToolTranslation(
