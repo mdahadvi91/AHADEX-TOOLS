@@ -679,6 +679,28 @@ export const tools: Tool[] = [
       ogImage: "/images/og/default-og.svg",
     },
   },
+  {
+    id: "base64-encoder",
+    slug: "base64-encoder",
+    name: "Base64 Encoder / Decoder",
+    path: "/tools/base64-encoder",
+    description:
+      "Encode or decode Base64 for text and files. Unicode-safe, URL-safe option, image preview. Runs in your browser.",
+    longDescription:
+      "Base64 Encoder / Decoder converts between raw data and Base64. Supports text (Unicode-safe via TextEncoder) and files up to 10 MB — images, PDFs, anything. URL-safe mode for JWT and URLs. Decoded images preview inline. Everything runs in your browser.",
+    keywords: ["base64 encoder", "base64 decoder", "encode base64", "decode base64", "image to base64", "url-safe base64"],
+    popular: true,
+    newTool: true,
+    features: [],
+    howTo: [],
+    faq: [],
+    relatedTools: ["url-encoder", "json-formatter"],
+    seo: {
+      title: "Base64 Encoder / Decoder — Text & Files Free | AHADEX Tools",
+      description: "Encode or decode Base64 for text and files. Unicode-safe, URL-safe, image preview.",
+      ogImage: "/images/og/default-og.svg",
+    },
+  },
 ];
 
 export const TOOL_COUNT = tools.length;
