@@ -144,6 +144,10 @@ export const toolTranslationsBn: Record<string, ToolTranslation> = {
     name: "Base64 এনকোডার / ডিকোডার",
     description: "টেক্সট ও ফাইলের Base64 encode/decode — Unicode-safe, URL-safe, image preview সহ।",
   },
+  "password-generator": {
+    name: "পাসওয়ার্ড জেনারেটর",
+    description: "শক্তিশালী, ক্রিপ্টোগ্রাফিক্যালি র‍্যান্ডম পাসওয়ার্ড তৈরি করুন — লাইভ strength, batch ৫০ পর্যন্ত।",
+  },
 };
 
 export function getToolTranslation(
