@@ -1,3 +1,4 @@
+import { useToolAnalytics } from "@hooks/useToolAnalytics";
 import { JpgToPngSEO } from "./SEO";
 import { Hero } from "./components/Hero";
 import { Workspace } from "./components/Workspace";
@@ -9,6 +10,7 @@ import { FAQ } from "./components/FAQ";
 import { RelatedTools } from "./components/RelatedTools";
 
 export default function JpgToPngTool() {
+  useToolAnalytics("jpg-to-png");
   return (
     <>
       <JpgToPngSEO />

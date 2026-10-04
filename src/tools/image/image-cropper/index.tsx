@@ -1,3 +1,4 @@
+import { useToolAnalytics } from "@hooks/useToolAnalytics";
 import { ImageCropperSEO } from "./SEO";
 import { Hero } from "./components/Hero";
 import { Workspace } from "./components/Workspace";
@@ -9,6 +10,7 @@ import { FAQ } from "./components/FAQ";
 import { RelatedTools } from "./components/RelatedTools";
 
 export default function ImageCropperTool() {
+  useToolAnalytics("image-cropper");
   return (
     <>
       <ImageCropperSEO />

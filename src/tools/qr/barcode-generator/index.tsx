@@ -1,3 +1,4 @@
+import { useToolAnalytics } from "@hooks/useToolAnalytics";
 import { BarcodeGeneratorSEO } from "./SEO";
 import { Hero } from "./components/Hero";
 import { Workspace } from "./components/Workspace";
@@ -9,6 +10,7 @@ import { FAQ } from "./components/FAQ";
 import { RelatedTools } from "./components/RelatedTools";
 
 export default function BarcodeGeneratorTool() {
+  useToolAnalytics("barcode-generator");
   return (
     <>
       <BarcodeGeneratorSEO />

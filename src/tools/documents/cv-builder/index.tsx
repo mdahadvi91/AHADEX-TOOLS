@@ -1,3 +1,4 @@
+import { useToolAnalytics } from "@hooks/useToolAnalytics";
 import { CVBuilderSEO } from "./SEO";
 import { CVBuilderHero } from "./components/Hero";
 import { TemplateGallery } from "./components/TemplateGallery";
@@ -9,6 +10,7 @@ import { CVBuilderFAQ } from "./components/FAQ";
 import { CVBuilderRelatedTools } from "./components/RelatedTools";
 
 export default function CVBuilderTool() {
+  useToolAnalytics("cv-builder");
   return (
     <>
       <CVBuilderSEO />
