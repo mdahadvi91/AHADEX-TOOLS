@@ -591,6 +591,28 @@ export const tools: Tool[] = [
       ogImage: "/images/og/default-og.svg",
     },
   },
+  {
+    id: "text-case-converter",
+    slug: "text-case-converter",
+    name: "Text Case Converter",
+    path: "/tools/text-case-converter",
+    description:
+      "Convert text between 12 case styles — UPPERCASE, lowercase, Title, camelCase, snake_case, kebab-case, and more. Runs in your browser.",
+    longDescription:
+      "Text Case Converter rewrites text in any of 12 case styles: UPPERCASE, lowercase, Title, Sentence, camelCase, PascalCase, snake_case, kebab-case, CONSTANT_CASE, dot.case, alternating, and inverse. Word-boundary detection handles existing camelCase, PascalCase, snake_case, and kebab-case inputs. Live preview, one-click copy, all in your browser.",
+    keywords: ["text case converter", "title case", "camel case", "snake case", "kebab case", "upper case"],
+    popular: true,
+    newTool: true,
+    features: [],
+    howTo: [],
+    faq: [],
+    relatedTools: ["word-counter", "json-formatter"],
+    seo: {
+      title: "Text Case Converter — 12 Case Styles Free | AHADEX Tools",
+      description: "Convert text between 12 case styles — UPPER, lower, Title, camelCase, snake_case, kebab-case.",
+      ogImage: "/images/og/default-og.svg",
+    },
+  },
 ];
 
 export const TOOL_COUNT = tools.length;
