@@ -12,7 +12,7 @@ export function ImageResizerSEO() {
     const title = "Image Resizer — Free, Fast & Private | AHADEX Tools";
     const description = "Resize JPG, PNG, and WebP images to any dimension in your browser. Lock aspect ratio, exact width/height, batch-capable, no uploads.";
     const canonical = `${SITE_URL}${TOOL_PATH}`;
-    const ogImage = `${SITE_URL}/images/og/default-og.svg`;
+    const ogImage = `${SITE_URL}/images/og/tools/image-resizer-og.png`;
     document.title = title;
     setMeta("name", "description", description);
     setMeta("name", "keywords", "image resizer, resize image, resize jpg, resize png, resize webp, image dimensions, free image resizer");

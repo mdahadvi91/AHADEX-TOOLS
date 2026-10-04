@@ -1,0 +1,62 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" width="1200" height="630" fill="none">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1200" y2="630" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#1A1114"/>
+      <stop offset="100%" stop-color="#32202A"/>
+    </linearGradient>
+    <linearGradient id="accent" x1="0" y1="0" x2="1200" y2="630" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#D88B9A"/>
+      <stop offset="50%" stop-color="#8B3A4F"/>
+      <stop offset="100%" stop-color="#C99667"/>
+    </linearGradient>
+    <radialGradient id="glow1" cx="0.15" cy="0.2" r="0.6">
+      <stop offset="0%" stop-color="#D88B9A" stop-opacity="0.35"/>
+      <stop offset="100%" stop-color="#D88B9A" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="glow2" cx="0.9" cy="0.85" r="0.7">
+      <stop offset="0%" stop-color="#C99667" stop-opacity="0.35"/>
+      <stop offset="100%" stop-color="#C99667" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+
+  <rect width="1200" height="630" fill="url(#bg)"/>
+  <rect width="1200" height="630" fill="url(#glow1)"/>
+  <rect width="1200" height="630" fill="url(#glow2)"/>
+
+  <rect x="0" y="0" width="1200" height="6" fill="url(#accent)"/>
+  <rect x="0" y="624" width="1200" height="6" fill="url(#accent)"/>
+
+  <!-- Category badge -->
+  <rect x="100" y="90" width="128" height="50" rx="25" fill="#D88B9A" opacity="0.15" stroke="#D88B9A" stroke-width="1.5"/>
+  <text x="164" y="122" text-anchor="middle" font-family="'Noto Sans','Droid Sans',system-ui,sans-serif" font-size="22" font-weight="600" fill="#E8B4B8" letter-spacing="0.5">PDF TOOL</text>
+
+  <!-- Main title -->
+  <text x="100" y="260" font-family="'Noto Sans','Droid Sans',system-ui,sans-serif" font-size="96" font-weight="800" fill="#F8F6F1" letter-spacing="-2">PDF Rotator</text>
+
+  <!-- Subtitle -->
+  <text x="100" y="335" font-family="'Noto Sans','Droid Sans',system-ui,sans-serif" font-size="26" font-weight="400" fill="#C4A89E" letter-spacing="-0.3">Rotate pages in any PDF — in your browser. Rotate all pages or just a f…</text>
+
+  <!-- Feature pills -->
+  <g transform="translate(100, 460)">
+    <rect x="0" y="0" width="240" height="56" rx="28" fill="#FFFFFF" opacity="0.06" stroke="#D88B9A" stroke-width="1.5"/>
+    <circle cx="30" cy="28" r="6" fill="#D88B9A"/>
+    <text x="52" y="36" font-family="'Noto Sans','Droid Sans',sans-serif" font-size="18" font-weight="500" fill="#F8F6F1">Pdf Rotator</text>
+
+    <rect x="260" y="0" width="240" height="56" rx="28" fill="#FFFFFF" opacity="0.06" stroke="#C99667" stroke-width="1.5"/>
+    <circle cx="290" cy="28" r="6" fill="#C99667"/>
+    <text x="312" y="36" font-family="'Noto Sans','Droid Sans',sans-serif" font-size="18" font-weight="500" fill="#F8F6F1">Rotate Pdf</text>
+
+    <rect x="520" y="0" width="240" height="56" rx="28" fill="#FFFFFF" opacity="0.06" stroke="#B36878" stroke-width="1.5"/>
+    <circle cx="550" cy="28" r="6" fill="#B36878"/>
+    <text x="572" y="36" font-family="'Noto Sans','Droid Sans',sans-serif" font-size="18" font-weight="500" fill="#F8F6F1">Rotate Pdf Pages</text>
+  </g>
+
+  <!-- Domain -->
+  <text x="100" y="580" font-family="'Noto Sans Mono','Droid Sans Mono',monospace" font-size="22" font-weight="500" fill="#D88B9A" letter-spacing="0.5" opacity="0.85">ahadex.fun</text>
+
+  <!-- Brand mark (right) -->
+  <g transform="translate(900, 220)">
+    <circle cx="140" cy="130" r="130" fill="url(#accent)" opacity="0.15"/>
+    <path d="M 140 40 L 90 220 L 118 220 L 128 172 L 152 172 L 162 220 L 190 220 L 140 40 Z M 133 152 L 147 152 L 140 110 L 133 152 Z" fill="url(#accent)"/>
+  </g>
+</svg>

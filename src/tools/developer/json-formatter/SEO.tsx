@@ -18,7 +18,7 @@ export function JsonFormatterSEO() {
         ? "JSON ফরম্যাট, ভ্যালিডেট ও মিনিফাই করুন — সম্পূর্ণ ব্রাউজারেই। লাইভ error line/column, sort keys, 2/4 space বা tab।"
         : "Format, validate, and minify JSON in your browser. Live errors with line/column, sort keys, 2/4-space or tab indent.";
     const canonical = `${SITE_URL}${TOOL_PATH}`;
-    const ogImage = `${SITE_URL}/images/og/default-og.svg`;
+    const ogImage = `${SITE_URL}/images/og/tools/json-formatter-og.png`;
     document.title = title;
     setMeta("name", "description", description);
     setMeta("name", "keywords", "json formatter, json validator, json beautifier, json minifier, format json online, json pretty print, free json formatter");

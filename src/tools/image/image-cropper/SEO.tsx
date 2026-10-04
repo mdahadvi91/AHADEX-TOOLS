@@ -12,7 +12,7 @@ export function ImageCropperSEO() {
     const title = "Image Cropper — Free, Fast & Private | AHADEX Tools";
     const description = "Crop JPG, PNG, and WebP images in your browser. 8 aspect presets, live preview, pixel-precise fields, no uploads.";
     const canonical = `${SITE_URL}${TOOL_PATH}`;
-    const ogImage = `${SITE_URL}/images/og/default-og.svg`;
+    const ogImage = `${SITE_URL}/images/og/tools/image-cropper-og.png`;
     document.title = title;
     setMeta("name", "description", description);
     setMeta("name", "keywords", "image cropper, crop image, crop jpg, crop png, crop webp, aspect ratio crop, free image cropper");

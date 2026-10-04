@@ -18,7 +18,7 @@ export function UuidGeneratorSEO() {
         ? "UUID v4 ও v7 তৈরি করুন — সম্পূর্ণ ব্রাউজারেই। ১০০০ পর্যন্ত ব্যাচ, uppercase, hyphen on/off, কপি বা .txt ডাউনলোড।"
         : "Generate UUID v4 and v7 identifiers in your browser. Batch up to 1000, uppercase, hyphens on/off, copy or download.";
     const canonical = `${SITE_URL}${TOOL_PATH}`;
-    const ogImage = `${SITE_URL}/images/og/default-og.svg`;
+    const ogImage = `${SITE_URL}/images/og/tools/uuid-generator-og.png`;
     document.title = title;
     setMeta("name", "description", description);
     setMeta("name", "keywords", "uuid generator, uuid v4, uuid v7, guid generator, random uuid, free uuid generator, generate uuid online");

@@ -12,7 +12,7 @@ export function JpgToPdfSEO() {
     const title = "JPG to PDF Converter — Free, Fast & Private | AHADEX Tools";
     const description = "Combine JPG images into a single PDF document in your browser. Multi-page, reorderable, A4/Letter, no uploads, no servers.";
     const canonical = `${SITE_URL}${TOOL_PATH}`;
-    const ogImage = `${SITE_URL}/images/og/default-og.svg`;
+    const ogImage = `${SITE_URL}/images/og/tools/jpg-to-pdf-og.png`;
     document.title = title;
     setMeta("name", "description", description);
     setMeta("name", "keywords", "jpg to pdf, jpeg to pdf, convert jpg to pdf, image to pdf, free jpg to pdf, offline pdf converter");

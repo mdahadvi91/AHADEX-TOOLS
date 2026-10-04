@@ -12,7 +12,7 @@ export function WebpToPngSEO() {
     const title = "WebP to PNG Converter — Free, Fast & Private | AHADEX Tools";
     const description = "Convert WebP images to PNG format instantly. Lossless output, transparency preserved, batch-capable, no uploads, no servers.";
     const canonical = `${SITE_URL}${TOOL_PATH}`;
-    const ogImage = `${SITE_URL}/images/og/default-og.svg`;
+    const ogImage = `${SITE_URL}/images/og/tools/webp-to-png-og.png`;
     document.title = title;
     setMeta("name", "description", description);
     setMeta("name", "keywords", "webp to png, image converter, png converter, lossless webp, transparent webp");

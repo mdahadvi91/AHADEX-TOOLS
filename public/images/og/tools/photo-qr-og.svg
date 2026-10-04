@@ -27,57 +27,36 @@
   <rect x="0" y="624" width="1200" height="6" fill="url(#accent)"/>
 
   <!-- Category badge -->
-  <rect x="100" y="90" width="220" height="50" rx="25" fill="#D88B9A" opacity="0.15" stroke="#D88B9A" stroke-width="1.5"/>
-  <text x="210" y="122" text-anchor="middle"
-        font-family="'Inter',system-ui,sans-serif" font-size="22" font-weight="600"
-        fill="#E8B4B8" letter-spacing="0.5">QR + PHOTO</text>
+  <rect x="100" y="90" width="188" height="50" rx="25" fill="#D88B9A" opacity="0.15" stroke="#D88B9A" stroke-width="1.5"/>
+  <text x="194" y="122" text-anchor="middle" font-family="'Noto Sans','Droid Sans',system-ui,sans-serif" font-size="22" font-weight="600" fill="#E8B4B8" letter-spacing="0.5">QR &amp; BARCODE</text>
 
   <!-- Main title -->
-  <text x="100" y="255"
-        font-family="'Clash Display','Fraunces',system-ui,sans-serif"
-        font-size="96" font-weight="800" fill="#F8F6F1" letter-spacing="-3">
-    Photo QR Code
-  </text>
+  <text x="100" y="260" font-family="'Noto Sans','Droid Sans',system-ui,sans-serif" font-size="96" font-weight="800" fill="#F8F6F1" letter-spacing="-2">Photo QR Code</text>
 
   <!-- Subtitle -->
-  <text x="100" y="330"
-        font-family="'Inter',system-ui,sans-serif"
-        font-size="30" font-weight="400" fill="#C4A89E" letter-spacing="-0.3">
-    Add a real, scannable QR badge to any photo.
-  </text>
-
-  <text x="100" y="380"
-        font-family="'Inter',system-ui,sans-serif"
-        font-size="26" font-weight="400" fill="#A0A2C0" opacity="0.75" letter-spacing="-0.2">
-    WhatsApp · Facebook · Instagram · WiFi · 100% Private
-  </text>
+  <text x="100" y="335" font-family="'Noto Sans','Droid Sans',system-ui,sans-serif" font-size="26" font-weight="400" fill="#C4A89E" letter-spacing="-0.3">Add a real, scannable QR badge to any photo — WhatsApp, Facebook, WiFi,…</text>
 
   <!-- Feature pills -->
   <g transform="translate(100, 460)">
-    <rect x="0" y="0" width="200" height="56" rx="28" fill="#FFFFFF" opacity="0.06" stroke="#D88B9A" stroke-width="1.5"/>
+    <rect x="0" y="0" width="240" height="56" rx="28" fill="#FFFFFF" opacity="0.06" stroke="#D88B9A" stroke-width="1.5"/>
     <circle cx="30" cy="28" r="6" fill="#D88B9A"/>
-    <text x="50" y="36" font-family="'Inter',sans-serif" font-size="18" font-weight="500" fill="#F8F6F1">11 Platforms</text>
+    <text x="52" y="36" font-family="'Noto Sans','Droid Sans',sans-serif" font-size="18" font-weight="500" fill="#F8F6F1">Photo</text>
 
-    <rect x="220" y="0" width="200" height="56" rx="28" fill="#FFFFFF" opacity="0.06" stroke="#C99667" stroke-width="1.5"/>
-    <circle cx="250" cy="28" r="6" fill="#C99667"/>
-    <text x="270" y="36" font-family="'Inter',sans-serif" font-size="18" font-weight="500" fill="#F8F6F1">Full HD Output</text>
+    <rect x="260" y="0" width="240" height="56" rx="28" fill="#FFFFFF" opacity="0.06" stroke="#C99667" stroke-width="1.5"/>
+    <circle cx="290" cy="28" r="6" fill="#C99667"/>
+    <text x="312" y="36" font-family="'Noto Sans','Droid Sans',sans-serif" font-size="18" font-weight="500" fill="#F8F6F1">Qr</text>
 
-    <rect x="440" y="0" width="200" height="56" rx="28" fill="#FFFFFF" opacity="0.06" stroke="#B36878" stroke-width="1.5"/>
-    <circle cx="470" cy="28" r="6" fill="#B36878"/>
-    <text x="490" y="36" font-family="'Inter',sans-serif" font-size="18" font-weight="500" fill="#F8F6F1">No Uploads</text>
+    <rect x="520" y="0" width="240" height="56" rx="28" fill="#FFFFFF" opacity="0.06" stroke="#B36878" stroke-width="1.5"/>
+    <circle cx="550" cy="28" r="6" fill="#B36878"/>
+    <text x="572" y="36" font-family="'Noto Sans','Droid Sans',sans-serif" font-size="18" font-weight="500" fill="#F8F6F1">Image</text>
   </g>
 
   <!-- Domain -->
-  <text x="100" y="580"
-        font-family="'JetBrains Mono',monospace"
-        font-size="22" font-weight="500" fill="#D88B9A" letter-spacing="0.5" opacity="0.85">
-    ahadex.fun
-  </text>
+  <text x="100" y="580" font-family="'Noto Sans Mono','Droid Sans Mono',monospace" font-size="22" font-weight="500" fill="#D88B9A" letter-spacing="0.5" opacity="0.85">ahadex.fun</text>
 
-  <!-- Big brand mark right -->
-  <g transform="translate(920, 220)">
-    <circle cx="130" cy="130" r="120" fill="url(#accent)" opacity="0.15"/>
-    <path d="M 130 40 L 90 210 L 115 210 L 125 165 L 135 165 L 145 210 L 170 210 L 130 40 Z M 122 145 L 138 145 L 130 105 L 122 145 Z"
-          fill="url(#accent)"/>
+  <!-- Brand mark (right) -->
+  <g transform="translate(900, 220)">
+    <circle cx="140" cy="130" r="130" fill="url(#accent)" opacity="0.15"/>
+    <path d="M 140 40 L 90 220 L 118 220 L 128 172 L 152 172 L 162 220 L 190 220 L 140 40 Z M 133 152 L 147 152 L 140 110 L 133 152 Z" fill="url(#accent)"/>
   </g>
 </svg>

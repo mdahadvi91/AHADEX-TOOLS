@@ -16,7 +16,7 @@ export function JpgToPngSEO() {
     const description =
       "Convert JPG images to PNG format instantly in your browser. Lossless, batch-capable, no uploads, no servers. Free forever.";
     const canonical = `${SITE_URL}${TOOL_PATH}`;
-    const ogImage = `${SITE_URL}/images/og/default-og.svg`;
+    const ogImage = `${SITE_URL}/images/og/tools/jpg-to-png-og.png`;
 
     document.title = title;
 

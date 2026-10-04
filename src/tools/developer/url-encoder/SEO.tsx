@@ -18,7 +18,7 @@ export function UrlEncoderSEO() {
         ? "URL এনকোড বা ডিকোড করুন — সম্পূর্ণ ব্রাউজারেই। Unicode, emoji ও special character সাপোর্টেড। Component বা full URI।"
         : "Encode or decode URLs and URI components in your browser. Unicode, emoji, special chars. Two scopes.";
     const canonical = `${SITE_URL}${TOOL_PATH}`;
-    const ogImage = `${SITE_URL}/images/og/default-og.svg`;
+    const ogImage = `${SITE_URL}/images/og/tools/url-encoder-og.png`;
     document.title = title;
     setMeta("name", "description", description);
     setMeta("name", "keywords", "url encoder, url decoder, url encode, url decode, uri encoder, percent encoding, free url encoder");

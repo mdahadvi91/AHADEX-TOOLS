@@ -18,7 +18,7 @@ export function PdfPageExtractorSEO() {
         ? "PDF থেকে পেজ বের করুন — নিজের ক্রমে, duplicate সহ। Combined PDF বা আলাদা ফাইল। সম্পূর্ণ ব্রাউজারেই।"
         : "Extract pages from any PDF in custom order, with duplicates. One combined PDF or separate files. Runs in your browser.";
     const canonical = `${SITE_URL}${TOOL_PATH}`;
-    const ogImage = `${SITE_URL}/images/og/default-og.svg`;
+    const ogImage = `${SITE_URL}/images/og/tools/pdf-page-extractor-og.png`;
     document.title = title;
     setMeta("name", "description", description);
     setMeta("name", "keywords", "pdf page extractor, extract pdf pages, extract pages from pdf, pdf page splitter, pdf reorder pages, free pdf extractor");

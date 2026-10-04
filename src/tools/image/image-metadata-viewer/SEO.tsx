@@ -18,7 +18,7 @@ export function ImageMetadataSEO() {
         ? "আপনার ছবির EXIF, GPS, ক্যামেরার তথ্য দেখুন — সম্পূর্ণ ব্রাউজারেই। কোনো আপলোড নেই, ১০০% প্রাইভেট।"
         : "View EXIF, GPS, camera, and file metadata hidden inside your photos — in your browser. No uploads, 100% private.";
     const canonical = `${SITE_URL}${TOOL_PATH}`;
-    const ogImage = `${SITE_URL}/images/og/default-og.svg`;
+    const ogImage = `${SITE_URL}/images/og/tools/image-metadata-viewer-og.png`;
     document.title = title;
     setMeta("name", "description", description);
     setMeta("name", "keywords", "image metadata, exif viewer, gps viewer, camera metadata, photo exif, view exif online, free exif viewer");

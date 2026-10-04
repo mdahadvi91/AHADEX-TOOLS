@@ -18,7 +18,7 @@ export function PdfToPngSEO() {
         ? "PDF-এর প্রতিটি পেজ PNG ছবিতে রূপান্তর করুন — সম্পূর্ণ ব্রাউজারেই, ৩০০ DPI পর্যন্ত, কোনো আপলোড নেই।"
         : "Convert every page of your PDF into a high-quality PNG image in your browser. Up to 300 DPI, page ranges, batch download. No uploads.";
     const canonical = `${SITE_URL}${TOOL_PATH}`;
-    const ogImage = `${SITE_URL}/images/og/default-og.svg`;
+    const ogImage = `${SITE_URL}/images/og/tools/pdf-to-png-og.png`;
     document.title = title;
     setMeta("name", "description", description);
     setMeta("name", "keywords", "pdf to png, pdf to image, convert pdf to png, pdf page to image, pdf to jpg, free pdf to png, offline pdf converter");

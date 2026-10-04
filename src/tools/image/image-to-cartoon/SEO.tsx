@@ -18,7 +18,7 @@ export function ImageToCartoonSEO() {
         ? "যেকোনো ছবিকে সেল-শেডেড কার্টুনে রূপান্তর করুন — সম্পূর্ণ ব্রাউজারেই। লাইভ স্লাইডার, PNG ডাউনলোড, কোনো আপলোড নেই।"
         : "Turn any photo into a cel-shaded cartoon in your browser. Live sliders, PNG export, no uploads.";
     const canonical = `${SITE_URL}${TOOL_PATH}`;
-    const ogImage = `${SITE_URL}/images/og/default-og.svg`;
+    const ogImage = `${SITE_URL}/images/og/tools/image-to-cartoon-og.png`;
     document.title = title;
     setMeta("name", "description", description);
     setMeta("name", "keywords", "image to cartoon, photo to cartoon, cartoon effect, cel shading, anime filter, cartoon maker, free cartoon converter");

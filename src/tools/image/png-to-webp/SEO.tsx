@@ -13,7 +13,7 @@ export function PngToWebpSEO() {
     const title = "PNG to WebP Converter — Free, Fast & Private | AHADEX Tools";
     const description = "Convert PNG images to modern WebP format. 30-50% smaller files, transparency preserved, batch-capable, no uploads, no servers.";
     const canonical = `${SITE_URL}${TOOL_PATH}`;
-    const ogImage = `${SITE_URL}/images/og/default-og.svg`;
+    const ogImage = `${SITE_URL}/images/og/tools/png-to-webp-og.png`;
 
     document.title = title;
     setMeta("name", "description", description);

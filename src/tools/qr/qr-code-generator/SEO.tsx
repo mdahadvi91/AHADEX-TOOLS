@@ -18,7 +18,7 @@ export function QrCodeGeneratorSEO() {
         ? "Text, URL, Wi-Fi, email, phone, SMS, vCard ও location-এর জন্য QR কোড তৈরি করুন — কাস্টম রঙ, ১০২৪px, PNG/SVG, সম্পূর্ণ ব্রাউজারেই।"
         : "Generate QR codes for text, URLs, Wi-Fi, email, phone, SMS, vCard, and locations. Custom colors, 1024px, PNG/SVG, all in your browser.";
     const canonical = `${SITE_URL}${TOOL_PATH}`;
-    const ogImage = `${SITE_URL}/images/og/default-og.svg`;
+    const ogImage = `${SITE_URL}/images/og/tools/qr-code-generator-og.png`;
     document.title = title;
     setMeta("name", "description", description);
     setMeta("name", "keywords", "qr code generator, free qr code, qr code maker, wifi qr code, vcard qr code, url qr code, custom qr code");

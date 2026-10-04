@@ -18,7 +18,7 @@ export function Base64SEO() {
         ? "টেক্সট ও ফাইলের Base64 encode/decode করুন — Unicode-safe, URL-safe, image preview সহ। সম্পূর্ণ ব্রাউজারেই।"
         : "Encode or decode Base64 for text and files. Unicode-safe, URL-safe option, image preview. Runs in your browser.";
     const canonical = `${SITE_URL}${TOOL_PATH}`;
-    const ogImage = `${SITE_URL}/images/og/default-og.svg`;
+    const ogImage = `${SITE_URL}/images/og/tools/base64-encoder-og.png`;
     document.title = title;
     setMeta("name", "description", description);
     setMeta("name", "keywords", "base64 encoder, base64 decoder, encode base64, decode base64, base64 converter, image to base64, base64 to image, url-safe base64");

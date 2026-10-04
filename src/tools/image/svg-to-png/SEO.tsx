@@ -18,7 +18,7 @@ export function SvgToPngSEO() {
         ? "SVG ভেক্টর ফাইল PNG ছবিতে রূপান্তর করুন — ৮× পর্যন্ত স্কেল, transparent background, সম্পূর্ণ ব্রাউজারেই।"
         : "Convert SVG vector files to high-resolution PNG in your browser. Up to 8× scale, transparent background, no uploads.";
     const canonical = `${SITE_URL}${TOOL_PATH}`;
-    const ogImage = `${SITE_URL}/images/og/default-og.svg`;
+    const ogImage = `${SITE_URL}/images/og/tools/svg-to-png-og.png`;
     document.title = title;
     setMeta("name", "description", description);
     setMeta("name", "keywords", "svg to png, svg to png converter, convert svg to png, svg to image, free svg converter, svg to png offline");

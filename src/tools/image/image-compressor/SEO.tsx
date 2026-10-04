@@ -12,7 +12,7 @@ export function ImageCompressorSEO() {
     const title = "Image Compressor — Free, Fast & Private | AHADEX Tools";
     const description = "Compress JPG, PNG, and WebP images in your browser. Adjustable quality, max width control, batch-capable, no uploads.";
     const canonical = `${SITE_URL}${TOOL_PATH}`;
-    const ogImage = `${SITE_URL}/images/og/default-og.svg`;
+    const ogImage = `${SITE_URL}/images/og/tools/image-compressor-og.png`;
     document.title = title;
     setMeta("name", "description", description);
     setMeta("name", "keywords", "image compressor, compress jpg, compress png, compress webp, reduce image size, free image compressor");

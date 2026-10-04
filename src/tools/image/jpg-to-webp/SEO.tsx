@@ -13,7 +13,7 @@ export function JpgToWebpSEO() {
     const title = "JPG to WebP Converter — Free, Fast & Private | AHADEX Tools";
     const description = "Convert JPG images to modern WebP format instantly. 25-35% smaller files at the same quality. Batch-capable, no uploads, no servers.";
     const canonical = `${SITE_URL}${TOOL_PATH}`;
-    const ogImage = `${SITE_URL}/images/og/default-og.svg`;
+    const ogImage = `${SITE_URL}/images/og/tools/jpg-to-webp-og.png`;
 
     document.title = title;
     setMeta("name", "description", description);

@@ -18,7 +18,7 @@ export function PdfRotatorSEO() {
         ? "PDF পেজ 90°/180° ঘোরান — সম্পূর্ণ ব্রাউজারেই। সব পেজ বা নির্দিষ্ট রেঞ্জ, lossless, কোনো আপলোড নেই।"
         : "Rotate pages in any PDF 90°/180° in your browser. All pages or specific ranges, lossless, no uploads.";
     const canonical = `${SITE_URL}${TOOL_PATH}`;
-    const ogImage = `${SITE_URL}/images/og/default-og.svg`;
+    const ogImage = `${SITE_URL}/images/og/tools/pdf-rotator-og.png`;
     document.title = title;
     setMeta("name", "description", description);
     setMeta("name", "keywords", "pdf rotator, rotate pdf, rotate pdf pages, pdf rotation, turn pdf pages, free pdf rotator");
