@@ -148,6 +148,10 @@ export const toolTranslationsBn: Record<string, ToolTranslation> = {
     name: "পাসওয়ার্ড জেনারেটর",
     description: "শক্তিশালী, ক্রিপ্টোগ্রাফিক্যালি র‍্যান্ডম পাসওয়ার্ড তৈরি করুন — লাইভ strength, batch ৫০ পর্যন্ত।",
   },
+  "barcode-generator": {
+    name: "বারকোড জেনারেটর",
+    description: "৯ ফরম্যাটে বারকোড তৈরি করুন — CODE128, EAN-13, UPC-A সহ। PNG/SVG export।",
+  },
 };
 
 export function getToolTranslation(

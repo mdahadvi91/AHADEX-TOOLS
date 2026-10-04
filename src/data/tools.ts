@@ -723,6 +723,28 @@ export const tools: Tool[] = [
       ogImage: "/images/og/default-og.svg",
     },
   },
+  {
+    id: "barcode-generator",
+    slug: "barcode-generator",
+    name: "Barcode Generator",
+    path: "/tools/barcode-generator",
+    description:
+      "Generate 1D barcodes in 9 formats — CODE128, CODE39, EAN-13, EAN-8, UPC-A, ITF-14, MSI, Pharmacode, Codabar. PNG or SVG.",
+    longDescription:
+      "Barcode Generator creates standard 1D barcodes from text or numeric input. Nine formats supported: CODE128, CODE39, EAN-13, EAN-8, UPC-A, ITF-14, MSI, Pharmacode, and Codabar. EAN/UPC/ITF-14 auto-compute the check digit. Customize bar width, height, font, margin, and colors. Export as PNG (3× scale) or SVG (vector for print).",
+    keywords: ["barcode generator", "free barcode", "code128", "ean13", "upc", "code39", "itf14", "barcode maker"],
+    popular: true,
+    newTool: true,
+    features: [],
+    howTo: [],
+    faq: [],
+    relatedTools: ["qr-code-generator", "photo-qr"],
+    seo: {
+      title: "Barcode Generator — 9 Formats, PNG & SVG Free | AHADEX Tools",
+      description: "Generate 1D barcodes in 9 formats — CODE128, CODE39, EAN-13, UPC-A, and more. PNG or SVG export.",
+      ogImage: "/images/og/default-og.svg",
+    },
+  },
 ];
 
 export const TOOL_COUNT = tools.length;
