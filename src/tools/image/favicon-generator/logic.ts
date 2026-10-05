@@ -191,7 +191,19 @@ async function packIco(pngBlobs: { size: number; blob: Blob }[]): Promise<Blob> 
   hv.setUint16(2, 1, true);
   hv.setUint16(4, pngBlobs.length, true);
 
-  return new Blob([header, ...entries, ...imageBuffers], { type: "image/x-icon" });
+  // Copy each Uint8Array into a fresh ArrayBuffer (avoids SharedArrayBuffer type union)
+  const toArrayBuffer = (u: Uint8Array): ArrayBuffer => {
+    const ab = new ArrayBuffer(u.byteLength);
+    new Uint8Array(ab).set(u);
+    return ab;
+  };
+
+  const parts: BlobPart[] = [
+    toArrayBuffer(header),
+    ...entries.map(toArrayBuffer),
+    ...imageBuffers.map((b) => b.slice(0) as ArrayBuffer),
+  ];
+  return new Blob(parts, { type: "image/x-icon" });
 }
 
 export async function generateAll(
