@@ -4,7 +4,7 @@ export const SEO_DEFAULTS = {
   titleSuffix: ` | ${APP_CONFIG.name}`,
   description:
     "Free, fast and private online tools. Convert images, merge PDFs, generate QR codes, and more — all in your browser.",
-  ogImage: "/images/og/default-og.svg",
+  ogImage: "/images/og/default-og.png",
   ogType: "website" as const,
   twitterCard: "summary_large_image" as const,
 } as const;
