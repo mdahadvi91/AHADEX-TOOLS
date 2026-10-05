@@ -22,6 +22,7 @@ export const TOOL_EMOJIS: Record<string, string> = {
   "image-compressor": "🗜️",
   "image-resizer": "📐",
   "image-cropper": "✂️",
+  "favicon-generator": "🎯",
   "image-to-pdf": "📑",
   "image-metadata-viewer": "🔍",
 

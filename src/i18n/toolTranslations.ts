@@ -152,6 +152,10 @@ export const toolTranslationsBn: Record<string, ToolTranslation> = {
     name: "ক্যারেক্টার কাউন্টার",
     description: "X (টুইটার), ইনস্টাগ্রাম, SMS ও SEO লিমিটের বিপরীতে লাইভ ক্যারেক্টার গণনা।",
   },
+  "favicon-generator": {
+    name: "ফ্যাভিকন জেনারেটর",
+    description: "যেকোনো ছবি থেকে সম্পূর্ণ favicon সেট — 16 থেকে 512px PNG, favicon.ico, webmanifest।",
+  },
 };
 
 export function getToolTranslation(
