@@ -8,6 +8,7 @@ import { HowTo } from "./components/HowTo";
 import { PrivacyNote } from "./components/PrivacyNote";
 import { FAQ } from "./components/FAQ";
 import { RelatedTools } from "./components/RelatedTools";
+import { RecommendedProducts } from "@components/affiliate/RecommendedProducts";
 
 export default function TextCaseConverterTool() {
   useToolAnalytics("text-case-converter");
@@ -17,6 +18,7 @@ export default function TextCaseConverterTool() {
       <div className="mx-auto max-w-[1200px] px-4 sm:px-6 lg:px-8">
         <Hero />
         <Workspace />
+        <RecommendedProducts toolId="text-case-converter" />
         <Intro />
         <Features />
         <HowTo />

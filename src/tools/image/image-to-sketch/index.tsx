@@ -18,12 +18,12 @@ export default function ImageToSketchTool() {
       <div className="mx-auto max-w-[1200px] px-4 sm:px-6 lg:px-8">
         <Hero />
         <Workspace />
+        <RecommendedProducts toolId="image-to-sketch" />
         <Intro />
         <Features />
         <HowTo />
         <PrivacyNote />
         <FAQ />
-        <RecommendedProducts toolId="image-to-sketch" />
         <RelatedTools />
       </div>
     </>

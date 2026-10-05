@@ -22,6 +22,7 @@ export interface AffiliateProduct {
 export const AFFILIATE_BY_TOOL: Record<string, string[]> = {
   "image-compressor": ["amazon-image-compressor"],
   "image-resizer": ["amazon-image-resizer"],
+  "merge-pdf": ["amazon-merge-pdf"],
   "image-cropper": ["amazon-image-cropper"],
   "jpg-to-png": ["amazon-jpg-to-png"],
   "png-to-jpg": ["amazon-png-to-jpg"],
@@ -37,9 +38,24 @@ export const AFFILIATE_BY_TOOL: Record<string, string[]> = {
   "svg-to-png": ["amazon-svg-to-png"],
   "image-to-cartoon": ["amazon-image-to-cartoon"],
   "image-to-sketch": ["amazon-image-to-sketch"],
-  "merge-pdf": ["amazon-merge-pdf"],
   "split-pdf": ["amazon-split-pdf"],
   "pdf-to-jpg": ["amazon-pdf-to-jpg"],
+  "pdf-to-png": ["amazon-pdf-to-jpg"],
+  "pdf-to-text": ["amazon-split-pdf"],
+  "pdf-rotator": ["amazon-merge-pdf"],
+  "pdf-page-extractor": ["amazon-split-pdf"],
+  "base64-encoder": ["amazon-image-compressor"],
+  "json-formatter": ["amazon-image-resizer"],
+  "url-encoder": ["amazon-jpg-to-png"],
+  "uuid-generator": ["amazon-png-to-jpg"],
+  "password-generator": ["amazon-image-cropper"],
+  "word-counter": ["amazon-image-resizer"],
+  "character-counter": ["amazon-image-compressor"],
+  "text-case-converter": ["amazon-image-compressor"],
+  "barcode-generator": ["amazon-favicon-generator"],
+  "photo-qr": ["amazon-image-cropper"],
+  "cv-builder": ["amazon-image-resizer"],
+  "visiting-card": ["amazon-image-compressor"],
 };
 
 export const AFFILIATE_PRODUCTS: Record<string, AffiliateProduct> = {

@@ -18,12 +18,12 @@ export default function ImageCropperTool() {
       <div className="mx-auto max-w-[1200px] px-4 sm:px-6 lg:px-8">
         <Hero />
         <Workspace />
+        <RecommendedProducts toolId="image-cropper" />
         <Intro />
         <Features />
         <HowTo />
         <PrivacyNote />
         <FAQ />
-        <RecommendedProducts toolId="image-cropper" />
         <RelatedTools />
       </div>
     </>
