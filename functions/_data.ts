@@ -258,4 +258,11 @@ export const TOOL_META: Record<string, ToolMeta> = {
     description: "Count characters against X (Twitter), Instagram, LinkedIn, SMS, SEO meta limits in real time.",
     ogImage: "/images/og/tools/character-counter-og.png",
   },
+  "favicon-generator": {
+    name: "Favicon Generator",
+    path: "/tools/favicon-generator",
+    title: "Favicon Generator — Complete Set Free | AHADEX Tools",
+    description: "Turn any image into a complete favicon set — 16 to 512px PNGs, favicon.ico, and web manifest.",
+    ogImage: "/images/og/tools/favicon-generator-og.png",
+  },
 };

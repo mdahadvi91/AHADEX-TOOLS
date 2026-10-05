@@ -780,6 +780,29 @@ export const tools: Tool[] = [
       ogImage: "/images/og/tools/character-counter-og.png",
     },
   },
+  {
+    id: "favicon-generator",
+    slug: "favicon-generator",
+    name: "Favicon Generator",
+    path: "/tools/favicon-generator",
+    searchVolume: 600000,
+    description:
+      "Turn any image into a complete favicon set — 16 to 512px PNGs, favicon.ico, and web manifest. Padding, background, rounded corners.",
+    longDescription:
+      "Favicon Generator turns any image (JPG, PNG, WebP, SVG) into a complete favicon set. It produces every size modern browsers, iOS, and Android need, packs a multi-size favicon.ico, and includes a ready-to-use site.webmanifest. Live preview with configurable padding, background (including auto-detected from image), and rounded corners. Everything runs in your browser.",
+    keywords: ["favicon generator", "favicon maker", "apple touch icon", "pwa icons", "website icon", "favicon.ico"],
+    popular: true,
+    newTool: true,
+    features: [],
+    howTo: [],
+    faq: [],
+    relatedTools: ["image-compressor", "image-resizer"],
+    seo: {
+      title: "Favicon Generator — Complete Set Free | AHADEX Tools",
+      description: "Turn any image into a complete favicon set — 16 to 512px PNGs, favicon.ico, and web manifest.",
+      ogImage: "/images/og/tools/favicon-generator-og.png",
+    },
+  },
 ];
 
 export const TOOL_COUNT = tools.length;

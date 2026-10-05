@@ -45,6 +45,7 @@ const MergePdfTool = lazy(() => import("@tools/pdf/merge-pdf"));
 const SplitPdfTool = lazy(() => import("@tools/pdf/split-pdf"));
 const ImageToPdfTool = lazy(() => import("@tools/image/image-to-pdf"));
 const ImageMetadataViewerTool = lazy(() => import("@tools/image/image-metadata-viewer"));
+const FaviconGeneratorTool = lazy(() => import("@tools/image/favicon-generator"));
 const SvgToPngTool = lazy(() => import("@tools/image/svg-to-png"));
 const JsonFormatterTool = lazy(() => import("@tools/developer/json-formatter"));
 const UrlEncoderTool = lazy(() => import("@tools/developer/url-encoder"));
@@ -137,6 +138,7 @@ export default function App() {
                   <Route path="tools/split-pdf" element={<SplitPdfTool />} />
                   <Route path="tools/image-to-pdf" element={<ImageToPdfTool />} />
                   <Route path="tools/image-metadata-viewer" element={<ImageMetadataViewerTool />} />
+                  <Route path="tools/favicon-generator" element={<FaviconGeneratorTool />} />
                   <Route path="tools/svg-to-png" element={<SvgToPngTool />} />
                   <Route path="tools/json-formatter" element={<JsonFormatterTool />} />
                   <Route path="tools/url-encoder" element={<UrlEncoderTool />} />
