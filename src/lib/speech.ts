@@ -52,7 +52,6 @@ async function loadVoices(): Promise<SpeechSynthesisVoice[]> {
       }
     };
     synth.addEventListener("voiceschanged", handler);
-    // Fallback: some browsers never fire voiceschanged
     window.setTimeout(() => {
       const v = synth.getVoices();
       voicesCache = v;
@@ -67,7 +66,6 @@ function pickVoice(
   lang: "en" | "bn"
 ): SpeechSynthesisVoice | null {
   const target = lang === "bn" ? "bn" : "en";
-  // Exact region match preferred (bn-BD, bn-IN / en-US, en-GB, en-IN)
   const exact = voices.find((v) => v.lang.toLowerCase().startsWith(target));
   return exact ?? null;
 }
@@ -77,7 +75,6 @@ export interface SpeakOptions {
   rate?: number;
   volume?: number;
   pitch?: number;
-  /** interrupt any ongoing speech (default true) */
   interrupt?: boolean;
 }
 
@@ -91,9 +88,10 @@ export async function speak(text: string, opts: SpeakOptions = {}): Promise<void
   const synth = window.speechSynthesis;
   if (opts.interrupt !== false) synth.cancel();
 
-  const voices = await loadVoices();
   const utter = new SpeechSynthesisUtterance(clean);
 
+  // ভয়েস লোড এবং সিলেক্ট করা (এটি আগে মিসিং ছিল)
+  const voices = await loadVoices();
   const voice = pickVoice(voices, lang);
   if (voice) {
     utter.voice = voice;
@@ -101,15 +99,22 @@ export async function speak(text: string, opts: SpeakOptions = {}): Promise<void
   } else {
     utter.lang = lang === "bn" ? "bn-BD" : "en-US";
   }
+
   utter.rate = opts.rate ?? 1;
   utter.volume = opts.volume ?? 1;
   utter.pitch = opts.pitch ?? 1;
 
-  try {
-    synth.speak(utter);
-  } catch {
-    /* swallow — TTS must never break the app */
-  }
+  return new Promise((resolve) => {
+    // ভয়েস শেষ হলে বা এরর হলে প্রমিজ রিজলভ হবে
+    utter.onend = () => resolve();
+    utter.onerror = () => resolve();
+
+    try {
+      synth.speak(utter);
+    } catch {
+      resolve();
+    }
+  });
 }
 
 export function stopSpeaking(): void {
