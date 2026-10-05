@@ -24,6 +24,12 @@ export function Footer() {
       ],
     },
     {
+      title: "Support",
+      links: [
+        { to: "https://ko-fi.com/ahadex", label: "☕ Buy me a coffee", external: true },
+      ],
+    },
+    {
       title: t.footer.legal,
       links: [
         { to: "/privacy", label: t.footer.privacy },
