@@ -46,6 +46,7 @@ export const bn: TranslationKeys = {
     language: "ভাষা",
     sound: "সাউন্ড",
     soundEffects: "সাউন্ড ইফেক্ট",
+    ambientMusic: "অ্যাম্বিয়েন্ট মিউজিক",
     more: "আরও",
     github: "গিটহাব",
     contact: "যোগাযোগ",
