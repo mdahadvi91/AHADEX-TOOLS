@@ -1,3 +1,4 @@
+import { announceDownload } from "@lib/speech";
 import { PDFDocument } from "pdf-lib";
 import type { LoadedPdf, SplitResult } from "./types";
 
@@ -121,6 +122,7 @@ export function downloadResult(result: SplitResult): void {
   document.body.appendChild(a);
   a.click();
   document.body.removeChild(a);
+  announceDownload();
 }
 
 export function revokeResult(result: SplitResult): void {

@@ -1,3 +1,4 @@
+import { announceDownload } from "@lib/speech";
 import { PDFDocument } from "pdf-lib";
 import type { PdfInput, MergedPdf } from "./types";
 
@@ -80,6 +81,7 @@ export function downloadMerged(result: MergedPdf, filename = "merged.pdf"): void
   document.body.appendChild(a);
   a.click();
   document.body.removeChild(a);
+  announceDownload();
 }
 
 export function revokeMerged(result: MergedPdf): void {

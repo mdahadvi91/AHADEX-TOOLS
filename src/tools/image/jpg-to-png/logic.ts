@@ -1,3 +1,4 @@
+import { announceDownload } from "@lib/speech";
 import type { ConvertedFile } from "./types";
 
 /* ============================================================
@@ -112,6 +113,7 @@ export function downloadFile(item: ConvertedFile): void {
   document.body.appendChild(a);
   a.click();
   document.body.removeChild(a);
+  announceDownload();
 }
 
 export function downloadAll(items: ConvertedFile[]): void {

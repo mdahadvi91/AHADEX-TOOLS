@@ -1,3 +1,4 @@
+import { announceDownload } from "@lib/speech";
 import { PDFDocument, degrees } from "pdf-lib";
 import type { LoadedPdf, RotateResult, RotationDelta } from "./types";
 
@@ -95,6 +96,7 @@ export function downloadResult(result: RotateResult): void {
   document.body.appendChild(a);
   a.click();
   document.body.removeChild(a);
+  announceDownload();
 }
 
 export function revokeResult(result: RotateResult): void {

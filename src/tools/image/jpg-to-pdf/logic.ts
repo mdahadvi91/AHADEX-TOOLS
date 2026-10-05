@@ -1,3 +1,4 @@
+import { announceDownload } from "@lib/speech";
 import { PDFDocument } from "pdf-lib";
 import type { PdfPage, PdfResult } from "./types";
 
@@ -134,6 +135,7 @@ export function downloadPdf(result: PdfResult, filename = "images.pdf"): void {
   document.body.appendChild(a);
   a.click();
   document.body.removeChild(a);
+  announceDownload();
 }
 
 export function revokePdf(result: PdfResult): void {

@@ -1,3 +1,4 @@
+import { announceDownload } from "@lib/speech";
 import type { ResizedFile } from "./types";
 
 export const MAX_FILE_SIZE = 50 * 1024 * 1024;
@@ -113,6 +114,7 @@ export function downloadFile(item: ResizedFile): void {
   document.body.appendChild(a);
   a.click();
   document.body.removeChild(a);
+  announceDownload();
 }
 
 export function downloadAll(items: ResizedFile[]): void {

@@ -1,3 +1,4 @@
+import { announceDownload } from "@lib/speech";
 import type { CompressedFile } from "./types";
 
 export const MAX_FILE_SIZE = 50 * 1024 * 1024;
@@ -99,6 +100,7 @@ export function downloadFile(item: CompressedFile): void {
   document.body.appendChild(a);
   a.click();
   document.body.removeChild(a);
+  announceDownload();
 }
 
 export function downloadAll(items: CompressedFile[]): void {
