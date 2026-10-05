@@ -22,6 +22,7 @@ export default function CVBuilderTool() {
         <CVBuilderFeatures />
         <CVBuilderHowTo />
         <CVBuilderPrivacyNote />
+        <RecommendedProducts toolId="cv-builder" />
         <CVBuilderFAQ />
         <div className="pb-16">
           <CVBuilderRelatedTools />

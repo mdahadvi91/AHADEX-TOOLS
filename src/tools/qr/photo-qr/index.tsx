@@ -155,7 +155,6 @@ export default function PhotoQrTool() {
             generating={generating}
             error={error}
           />
-        <RecommendedProducts toolId="photo-qr" />
         }
         previewPanel={
           <PreviewPanel
@@ -173,6 +172,8 @@ export default function PhotoQrTool() {
           />
         }
       />
+
+      <RecommendedProducts toolId="photo-qr" />
 
       <PrivacyNote text={content.privacyNote} />
 
