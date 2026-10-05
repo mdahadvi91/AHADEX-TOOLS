@@ -1,27 +1,42 @@
 import { useMemo, useState } from "react";
-import { Copy, ClipboardCheck, ArrowLeftRight, AlertCircle, Trash2 } from "lucide-react";
+import { motion } from "framer-motion";
+import {
+  ArrowLeftRight,
+  AlertCircle,
+  Sparkles,
+} from "lucide-react";
 import { useLanguage } from "@contexts/LanguageContext";
+import { useSound } from "@contexts/SoundContext";
 import { cn } from "@lib/cn";
+import { TextPanel, ToolButton, WorkspacePanel } from "@components/workspace";
 import { transform, formatBytes, SAMPLES } from "../logic";
 import type { Mode, Scope } from "../types";
 
 export function Workspace() {
   const { language } = useLanguage();
+  const { play } = useSound();
   const bn = language === "bn";
+
   const [input, setInput] = useState("");
   const [mode, setMode] = useState<Mode>("encode");
   const [scope, setScope] = useState<Scope>("component");
   const [copied, setCopied] = useState(false);
 
-  const result = useMemo(() => transform(input, mode, scope), [input, mode, scope]);
+  const result = useMemo(
+    () => transform(input, mode, scope),
+    [input, mode, scope]
+  );
 
   const handleCopy = async () => {
     if (!result.output) return;
     try {
       await navigator.clipboard.writeText(result.output);
       setCopied(true);
+      play("success");
       setTimeout(() => setCopied(false), 2000);
-    } catch { /* ignore */ }
+    } catch {
+      /* ignore */
+    }
   };
 
   const swap = () => {
@@ -31,115 +46,189 @@ export function Workspace() {
 
   const loadSample = () => {
     const s = SAMPLES[language];
-    setInput(mode === "encode" ? (scope === "component" ? s.component : s.url) : s.encoded);
+    setInput(
+      mode === "encode"
+        ? scope === "component"
+          ? s.component
+          : s.url
+        : s.encoded
+    );
   };
 
   const delta = result.byteDelta;
   const deltaLabel =
     delta === 0
-      ? bn ? "পরিবর্তন নেই" : "no change"
+      ? bn
+        ? "পরিবর্তন নেই"
+        : "no change"
       : delta > 0
         ? `+${delta} B`
         : `${delta} B`;
 
+  const inputBytes = formatBytes(new Blob([input]).size);
+  const outputBytes = result.output
+    ? formatBytes(new Blob([result.output]).size)
+    : "0 B";
+
   return (
-    <section className="pb-12 space-y-4">
+    <section className="pb-12 space-y-4 sm:space-y-5">
       {/* Controls */}
-      <div className="rounded-2xl bg-white/70 dark:bg-dark-surface/70 backdrop-blur-xl border border-silk-rose/20 p-3 space-y-3">
+      <WorkspacePanel className="p-3.5 sm:p-4 space-y-3.5">
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+          {/* Mode */}
           <div>
-            <p className="text-[10px] uppercase tracking-wider font-semibold text-silk-wine/70 dark:text-silk-rose/60 mb-2">{bn ? "মোড" : "Mode"}</p>
+            <p className="text-[10px] uppercase tracking-[0.2em] font-bold text-silk-wine/70 dark:text-silk-rose/60 mb-2">
+              {bn ? "মোড" : "Mode"}
+            </p>
             <div className="grid grid-cols-2 gap-2">
-              <button type="button" onClick={() => setMode("encode")} className={cn("h-10 rounded-lg border text-[12px] font-medium transition-all", mode === "encode" ? "bg-silk-rose/15 border-silk-rose/50 text-silk-wine dark:text-silk-rose-soft" : "bg-silk-rose/5 border-silk-rose/15 text-light-textSecondary dark:text-dark-textSecondary hover:border-silk-rose/40")}>
-                {bn ? "Encode" : "Encode"}
-              </button>
-              <button type="button" onClick={() => setMode("decode")} className={cn("h-10 rounded-lg border text-[12px] font-medium transition-all", mode === "decode" ? "bg-silk-rose/15 border-silk-rose/50 text-silk-wine dark:text-silk-rose-soft" : "bg-silk-rose/5 border-silk-rose/15 text-light-textSecondary dark:text-dark-textSecondary hover:border-silk-rose/40")}>
-                {bn ? "Decode" : "Decode"}
-              </button>
+              <ToggleBtn
+                active={mode === "encode"}
+                onClick={() => setMode("encode")}
+              >
+                Encode
+              </ToggleBtn>
+              <ToggleBtn
+                active={mode === "decode"}
+                onClick={() => setMode("decode")}
+              >
+                Decode
+              </ToggleBtn>
             </div>
           </div>
 
+          {/* Scope */}
           <div>
-            <p className="text-[10px] uppercase tracking-wider font-semibold text-silk-wine/70 dark:text-silk-rose/60 mb-2">{bn ? "Scope" : "Scope"}</p>
+            <p className="text-[10px] uppercase tracking-[0.2em] font-bold text-silk-wine/70 dark:text-silk-rose/60 mb-2">
+              {bn ? "স্কোপ" : "Scope"}
+            </p>
             <div className="grid grid-cols-2 gap-2">
-              <button type="button" onClick={() => setScope("component")} className={cn("h-10 rounded-lg border text-[12px] font-medium transition-all", scope === "component" ? "bg-silk-rose/15 border-silk-rose/50 text-silk-wine dark:text-silk-rose-soft" : "bg-silk-rose/5 border-silk-rose/15 text-light-textSecondary dark:text-dark-textSecondary hover:border-silk-rose/40")}>
-                {bn ? "Component" : "Component"}
-              </button>
-              <button type="button" onClick={() => setScope("fullUri")} className={cn("h-10 rounded-lg border text-[12px] font-medium transition-all", scope === "fullUri" ? "bg-silk-rose/15 border-silk-rose/50 text-silk-wine dark:text-silk-rose-soft" : "bg-silk-rose/5 border-silk-rose/15 text-light-textSecondary dark:text-dark-textSecondary hover:border-silk-rose/40")}>
-                {bn ? "Full URI" : "Full URI"}
-              </button>
+              <ToggleBtn
+                active={scope === "component"}
+                onClick={() => setScope("component")}
+              >
+                Component
+              </ToggleBtn>
+              <ToggleBtn
+                active={scope === "fullUri"}
+                onClick={() => setScope("fullUri")}
+              >
+                Full URI
+              </ToggleBtn>
             </div>
           </div>
         </div>
 
-        <div className="flex items-center gap-2 flex-wrap">
-          <button type="button" onClick={swap} disabled={!result.output} className="inline-flex items-center gap-1.5 h-8 px-3 rounded-lg bg-silk-rose/10 border border-silk-rose/25 text-[11px] font-medium text-silk-rose hover:bg-silk-rose/20 transition-all disabled:opacity-40">
-            <ArrowLeftRight className="w-3.5 h-3.5" />
-            {bn ? "Swap" : "Swap"}
-          </button>
-          <button type="button" onClick={loadSample} className="inline-flex items-center gap-1.5 h-8 px-3 rounded-lg bg-silk-rose/10 border border-silk-rose/25 text-[11px] font-medium text-silk-rose hover:bg-silk-rose/20 transition-all">
+        {/* Actions */}
+        <div className="flex items-center gap-2 flex-wrap pt-2 border-t border-silk-rose/10">
+          <ToolButton
+            size="sm"
+            variant="secondary"
+            icon={<ArrowLeftRight className="w-3.5 h-3.5" />}
+            onClick={swap}
+            disabled={!result.output}
+          >
+            {bn ? "সোয়াপ" : "Swap"}
+          </ToolButton>
+
+          <ToolButton
+            size="sm"
+            variant="secondary"
+            icon={<Sparkles className="w-3.5 h-3.5" />}
+            onClick={loadSample}
+          >
             {bn ? "নমুনা" : "Sample"}
-          </button>
-          {input.length > 0 && (
-            <button type="button" onClick={() => setInput("")} className="inline-flex items-center gap-1.5 h-8 px-3 rounded-lg text-[11px] font-medium text-red-500 hover:bg-red-500/10 transition-colors">
-              <Trash2 className="w-3.5 h-3.5" />
-              {bn ? "মুছুন" : "Clear"}
-            </button>
-          )}
-          <span className="ml-auto text-[10px] text-lightTextSecondary dark:text-dark-textSecondary font-mono">
+          </ToolButton>
+
+          <span className="ml-auto text-[10px] font-mono font-bold text-silk-rose bg-silk-rose/10 px-2.5 py-1 rounded-md">
             {deltaLabel}
           </span>
         </div>
-      </div>
+      </WorkspacePanel>
 
       {/* Input */}
-      <div className="rounded-2xl bg-white/70 dark:bg-dark-surface/70 backdrop-blur-xl border border-silk-rose/20 overflow-hidden">
-        <div className="px-4 py-2.5 border-b border-silk-rose/15">
-          <span className="text-[11px] font-semibold text-light-text dark:text-dark-text">
-            {mode === "encode" ? (bn ? "Raw input" : "Raw input") : (bn ? "Encoded input" : "Encoded input")}
-          </span>
-        </div>
-        <textarea
-          value={input}
-          onChange={(e) => setInput(e.target.value)}
-          placeholder={mode === "encode" ? (bn ? "যা encode করতে চান লিখুন বা paste করুন..." : "Paste or type text to encode...") : (bn ? "%20 à¦ à¦ªà¦°à¦¿ à¦¹à§ à¦ à¦à¦¨ à¦à¦à¦¨ à¦ªà§ à¦¸à§ à¦ à¦à¦à¦¨ à¦à¦°à§ à¦¨..." : "Paste a URL-encoded string...")}
-          spellCheck={false}
-          className="w-full min-h-[140px] p-4 resize-y bg-transparent text-[13px] font-mono leading-relaxed text-light-text dark:text-dark-text placeholder:text-lightTextSecondary/50 dark:placeholder:text-darkTextSecondary/40 outline-none"
-        />
-      </div>
+      <TextPanel
+        label={
+          mode === "encode"
+            ? bn
+              ? "র ইনপুট"
+              : "Raw input"
+            : bn
+              ? "এনকোডেড ইনপুট"
+              : "Encoded input"
+        }
+        value={input}
+        onChange={setInput}
+        placeholder={
+          mode === "encode"
+            ? bn
+              ? "যা এনকোড করতে চান লিখুন বা পেস্ট করুন..."
+              : "Paste or type text to encode..."
+            : bn
+              ? "URL-encoded স্ট্রিং পেস্ট করুন..."
+              : "Paste a URL-encoded string..."
+        }
+        onClear={() => setInput("")}
+        meta={inputBytes}
+      />
 
       {/* Error */}
       {result.error && (
-        <div className="flex items-start gap-2 p-3 rounded-2xl bg-red-500/10 border border-red-500/30 text-[12px] text-red-600 dark:text-red-400">
+        <motion.div
+          initial={{ opacity: 0, y: -8 }}
+          animate={{ opacity: 1, y: 0 }}
+          className="flex items-start gap-2.5 p-3.5 rounded-xl bg-red-500/10 border border-red-500/30 text-[12px] sm:text-[13px] text-red-600 dark:text-red-400 font-medium"
+        >
           <AlertCircle className="w-4 h-4 shrink-0 mt-0.5" />
           <span>{result.error}</span>
-        </div>
+        </motion.div>
       )}
 
       {/* Output */}
       {result.output && (
-        <div className="rounded-2xl bg-white/70 dark:bg-dark-surface/70 backdrop-blur-xl border border-silk-rose/20 overflow-hidden">
-          <div className="flex items-center justify-between gap-2 px-4 py-2.5 border-b border-silk-rose/15 flex-wrap">
-            <span className="text-[11px] font-semibold text-light-text dark:text-dark-text">
-              {mode === "encode" ? (bn ? "Encoded output" : "Encoded output") : (bn ? "Decoded output" : "Decoded output")} · {formatBytes(new Blob([result.output]).size)}
-            </span>
-            <button type="button" onClick={() => void handleCopy()} className="inline-flex items-center gap-1.5 h-8 px-2.5 rounded-lg bg-silk-rose/10 border border-silk-rose/25 text-[11px] font-medium text-silk-rose hover:bg-silk-rose/20 transition-all">
-              {copied ? <ClipboardCheck className="w-3.5 h-3.5" /> : <Copy className="w-3.5 h-3.5" />}
-              {copied ? (bn ? "কপি হয়েছে" : "Copied") : (bn ? "কপি" : "Copy")}
-            </button>
-          </div>
-          <pre className="p-4 max-h-[300px] overflow-auto text-[12px] font-mono leading-relaxed text-light-text dark:text-dark-text whitespace-pre-wrap break-all">
-            {result.output}
-          </pre>
-        </div>
-      )}
-
-      {!input && (
-        <div className="flex items-center justify-center gap-2 text-[11px] sm:text-xs text-lightTextSecondary dark:text-dark-textSecondary">
-          <ArrowLeftRight className="w-3.5 h-3.5 text-silk-rose" />
-          {bn ? "আপনার URL ব্রাউজারেই process হয়" : "Your URL is processed in your browser"}
-        </div>
+        <TextPanel
+          label={
+            mode === "encode"
+              ? bn
+                ? "আউটপুট"
+                : "Encoded output"
+              : bn
+                ? "ডিকোডেড আউটপুট"
+                : "Decoded output"
+          }
+          value={result.output}
+          readOnly
+          copied={copied}
+          onCopy={handleCopy}
+          meta={outputBytes}
+        >
+          <pre className="sr-only">{result.output}</pre>
+        </TextPanel>
       )}
     </section>
+  );
+}
+
+function ToggleBtn({
+  active,
+  onClick,
+  children,
+}: {
+  active: boolean;
+  onClick: () => void;
+  children: React.ReactNode;
+}) {
+  return (
+    <button
+      type="button"
+      onClick={onClick}
+      className={cn(
+        "h-10 rounded-xl border text-[12px] font-bold transition-all",
+        active
+          ? "bg-silk-rose/15 border-silk-rose/50 text-silk-wine dark:text-silk-rose-soft shadow-[0_6px_16px_-8px_rgba(139,58,79,0.35)]"
+          : "bg-silk-rose/5 border-silk-rose/15 text-light-textSecondary dark:text-dark-textSecondary hover:border-silk-rose/40"
+      )}
+    >
+      {children}
+    </button>
   );
 }

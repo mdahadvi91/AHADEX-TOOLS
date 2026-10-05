@@ -1,8 +1,29 @@
 import { useMemo, useState } from "react";
-import { Copy, ClipboardCheck, Download, X, Trash2, AlertCircle, CheckCircle2, Wand2, Minimize2 } from "lucide-react";
+import { motion, AnimatePresence } from "framer-motion";
+import {
+  Download,
+  Trash2,
+  AlertCircle,
+  CheckCircle2,
+  Wand2,
+  Minimize2,
+} from "lucide-react";
 import { useLanguage } from "@contexts/LanguageContext";
+import { useSound } from "@contexts/SoundContext";
 import { cn } from "@lib/cn";
-import { analyze, stringify, minify, formatBytes, formatNumber } from "../logic";
+import {
+  TextPanel,
+  ToolButton,
+  WorkspacePanel,
+  ResultStat,
+} from "@components/workspace";
+import {
+  analyze,
+  stringify,
+  minify,
+  formatBytes,
+  formatNumber,
+} from "../logic";
 import type { IndentOption, OutputMode } from "../types";
 
 const INDENTS: { value: IndentOption; label: string }[] = [
@@ -13,7 +34,9 @@ const INDENTS: { value: IndentOption; label: string }[] = [
 
 export function Workspace() {
   const { language } = useLanguage();
+  const { play } = useSound();
   const bn = language === "bn";
+
   const [input, setInput] = useState("");
   const [indent, setIndent] = useState<IndentOption>(2);
   const [sortKeys, setSortKeys] = useState(false);
@@ -38,8 +61,11 @@ export function Workspace() {
     try {
       await navigator.clipboard.writeText(output);
       setCopied(true);
+      play("success");
       setTimeout(() => setCopied(false), 2000);
-    } catch { /* ignore */ }
+    } catch {
+      /* ignore */
+    }
   };
 
   const handleDownload = () => {
@@ -60,140 +86,259 @@ export function Workspace() {
     setCopied(false);
   };
 
+  const loadSample = () => {
+    setInput(
+      JSON.stringify(
+        {
+          name: "AHADEX Tools",
+          version: "1.0.0",
+          tools: ["image-compressor", "merge-pdf", "json-formatter"],
+          features: { free: true, private: true, noUploads: true },
+          stats: { users: 1000, rating: 4.9 },
+        },
+        null,
+        2
+      )
+    );
+  };
+
+  const inputBytes = input ? formatBytes(new Blob([input]).size) : "0 B";
+  const outputBytes = output ? formatBytes(new Blob([output]).size) : "0 B";
+
   return (
-    <section className="pb-12 space-y-4">
+    <section className="pb-12 space-y-4 sm:space-y-5">
       {/* Controls */}
-      <div className="rounded-2xl bg-white/70 dark:bg-dark-surface/70 backdrop-blur-xl border border-silk-rose/20 p-3 space-y-3">
+      <WorkspacePanel className="p-3.5 sm:p-4 space-y-3.5">
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
+          {/* Indent */}
           <div>
-            <p className="text-[10px] uppercase tracking-wider font-semibold text-silk-wine/70 dark:text-silk-rose/60 mb-2">{bn ? "ইন্ডেন্ট" : "Indent"}</p>
+            <p className="text-[10px] uppercase tracking-[0.2em] font-bold text-silk-wine/70 dark:text-silk-rose/60 mb-2">
+              {bn ? "ইন্ডেন্ট" : "Indent"}
+            </p>
             <div className="grid grid-cols-3 gap-2">
               {INDENTS.map((i) => (
-                <button key={String(i.value)} type="button" onClick={() => setIndent(i.value)} className={cn("h-9 rounded-lg border text-[11px] font-medium transition-all", indent === i.value ? "bg-silk-rose/15 border-silk-rose/50 text-silk-wine dark:text-silk-rose-soft" : "bg-silk-rose/5 border-silk-rose/15 text-light-textSecondary dark:text-dark-textSecondary hover:border-silk-rose/40")}>
+                <ToggleBtn
+                  key={String(i.value)}
+                  active={indent === i.value}
+                  onClick={() => setIndent(i.value)}
+                >
                   {i.label}
-                </button>
+                </ToggleBtn>
               ))}
             </div>
           </div>
 
+          {/* Mode */}
           <div>
-            <p className="text-[10px] uppercase tracking-wider font-semibold text-silk-wine/70 dark:text-silk-rose/60 mb-2">{bn ? "মোড" : "Mode"}</p>
+            <p className="text-[10px] uppercase tracking-[0.2em] font-bold text-silk-wine/70 dark:text-silk-rose/60 mb-2">
+              {bn ? "মোড" : "Mode"}
+            </p>
             <div className="grid grid-cols-2 gap-2">
-              <button type="button" onClick={() => setMode("formatted")} className={cn("h-9 rounded-lg border text-[11px] font-medium transition-all inline-flex items-center justify-center gap-1", mode === "formatted" ? "bg-silk-rose/15 border-silk-rose/50 text-silk-wine dark:text-silk-rose-soft" : "bg-silk-rose/5 border-silk-rose/15 text-light-textSecondary dark:text-dark-textSecondary hover:border-silk-rose/40")}>
-                <Wand2 className="w-3 h-3" /> Format
-              </button>
-              <button type="button" onClick={() => setMode("minified")} className={cn("h-9 rounded-lg border text-[11px] font-medium transition-all inline-flex items-center justify-center gap-1", mode === "minified" ? "bg-silk-rose/15 border-silk-rose/50 text-silk-wine dark:text-silk-rose-soft" : "bg-silk-rose/5 border-silk-rose/15 text-light-textSecondary dark:text-dark-textSecondary hover:border-silk-rose/40")}>
-                <Minimize2 className="w-3 h-3" /> Minify
-              </button>
+              <ToggleBtn
+                active={mode === "formatted"}
+                onClick={() => setMode("formatted")}
+              >
+                <Wand2 className="w-3.5 h-3.5" />
+                Format
+              </ToggleBtn>
+              <ToggleBtn
+                active={mode === "minified"}
+                onClick={() => setMode("minified")}
+              >
+                <Minimize2 className="w-3.5 h-3.5" />
+                Minify
+              </ToggleBtn>
             </div>
           </div>
 
+          {/* Options */}
           <div>
-            <p className="text-[10px] uppercase tracking-wider font-semibold text-silk-wine/70 dark:text-silk-rose/60 mb-2">{bn ? "অপশন" : "Options"}</p>
-            <button type="button" onClick={() => setSortKeys((v) => !v)} className={cn("h-9 w-full rounded-lg border text-[11px] font-medium transition-all", sortKeys ? "bg-silk-rose/15 border-silk-rose/50 text-silk-wine dark:text-silk-rose-soft" : "bg-silk-rose/5 border-silk-rose/15 text-light-textSecondary dark:text-dark-textSecondary hover:border-silk-rose/40")}>
-              {sortKeys ? "✓ " : ""}{bn ? "Sort keys" : "Sort keys"}
-            </button>
+            <p className="text-[10px] uppercase tracking-[0.2em] font-bold text-silk-wine/70 dark:text-silk-rose/60 mb-2">
+              {bn ? "অপশন" : "Options"}
+            </p>
+            <ToggleBtn
+              active={sortKeys}
+              onClick={() => setSortKeys((v) => !v)}
+            >
+              {sortKeys ? "✓ " : ""}
+              {bn ? "কি সাজান" : "Sort keys"}
+            </ToggleBtn>
           </div>
         </div>
-      </div>
+
+        {/* Actions + Status */}
+        <div className="flex items-center gap-2 flex-wrap pt-2 border-t border-silk-rose/10">
+          <ToolButton
+            size="sm"
+            variant="secondary"
+            icon={<Wand2 className="w-3.5 h-3.5" />}
+            onClick={loadSample}
+          >
+            {bn ? "নমুনা" : "Sample"}
+          </ToolButton>
+
+          {input.trim() && (
+            <ToolButton
+              size="sm"
+              variant="danger"
+              icon={<Trash2 className="w-3.5 h-3.5" />}
+              onClick={clearAll}
+            >
+              {bn ? "মুছুন" : "Clear"}
+            </ToolButton>
+          )}
+
+          {input.trim() && (
+            <span className="ml-auto inline-flex items-center gap-1.5 text-[10px] font-bold">
+              {analysis.valid ? (
+                <>
+                  <CheckCircle2 className="w-3.5 h-3.5 text-emerald-500" />
+                  <span className="text-emerald-600 dark:text-emerald-400">
+                    {bn ? "ভ্যালিড JSON" : "Valid JSON"}
+                  </span>
+                </>
+              ) : (
+                <>
+                  <AlertCircle className="w-3.5 h-3.5 text-red-500" />
+                  <span className="text-red-600 dark:text-red-400">
+                    {bn ? "ভুল JSON" : "Invalid JSON"}
+                  </span>
+                </>
+              )}
+            </span>
+          )}
+        </div>
+      </WorkspacePanel>
 
       {/* Input */}
-      <div className="rounded-2xl bg-white/70 dark:bg-dark-surface/70 backdrop-blur-xl border border-silk-rose/20 overflow-hidden">
-        <div className="flex items-center justify-between gap-2 px-4 py-2.5 border-b border-silk-rose/15">
-          <span className="text-[11px] font-semibold text-light-text dark:text-dark-text">{bn ? "ইনপুট" : "Input"}</span>
-          <div className="flex items-center gap-2">
-            {analysis.valid && input.trim() && (
-              <span className="inline-flex items-center gap-1 text-[10px] text-emerald-600 dark:text-emerald-400">
-                <CheckCircle2 className="w-3 h-3" /> {bn ? "ভ্যালিড" : "Valid"}
-              </span>
-            )}
-            {!analysis.valid && (
-              <span className="inline-flex items-center gap-1 text-[10px] text-red-600 dark:text-red-400">
-                <AlertCircle className="w-3 h-3" /> {bn ? "ভুল" : "Invalid"}
-              </span>
-            )}
-            {input.length > 0 && (
-              <button type="button" onClick={clearAll} className="inline-flex items-center gap-1 text-[11px] text-red-500 hover:bg-red-500/10 px-2 py-1 rounded-md transition-colors">
-                <Trash2 className="w-3 h-3" /> {bn ? "মুছুন" : "Clear"}
-              </button>
-            )}
-          </div>
-        </div>
-        <textarea
-          value={input}
-          onChange={(e) => setInput(e.target.value)}
-          placeholder={bn ? '{"hello": "world", "items": [1, 2, 3]}' : '{"hello": "world", "items": [1, 2, 3]}'}
-          spellCheck={false}
-          className="w-full min-h-[220px] p-4 resize-y bg-transparent text-[13px] font-mono leading-relaxed text-light-text dark:text-dark-text placeholder:text-lightTextSecondary/50 dark:placeholder:text-darkTextSecondary/40 outline-none"
-        />
-      </div>
+      <TextPanel
+        label={bn ? "ইনপুট JSON" : "JSON input"}
+        value={input}
+        onChange={setInput}
+        placeholder={'{\n  "hello": "world",\n  "items": [1, 2, 3]\n}'}
+        minHeight="min-h-[220px]"
+        onClear={input ? clearAll : undefined}
+        meta={input ? inputBytes : undefined}
+      />
 
       {/* Error */}
-      {!analysis.valid && analysis.error && (
-        <div className="flex items-start gap-2 p-3 rounded-2xl bg-red-500/10 border border-red-500/30 text-[12px] text-red-600 dark:text-red-400">
-          <AlertCircle className="w-4 h-4 shrink-0 mt-0.5" />
-          <div className="flex-1 min-w-0">
-            <p className="font-semibold">{analysis.error.message}</p>
-            {analysis.error.line != null && (
-              <p className="mt-0.5 text-[11px]">
-                {bn ? "লাইন" : "Line"} {analysis.error.line}
-                {analysis.error.column != null ? `, ${bn ? "কলাম" : "column"} ${analysis.error.column}` : ""}
-              </p>
-            )}
-          </div>
-        </div>
-      )}
+      <AnimatePresence>
+        {!analysis.valid && analysis.error && (
+          <motion.div
+            initial={{ opacity: 0, y: -8 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -8 }}
+            className="flex items-start gap-2.5 p-3.5 rounded-xl bg-red-500/10 border border-red-500/30 text-[12px] sm:text-[13px] text-red-600 dark:text-red-400 font-medium"
+          >
+            <AlertCircle className="w-4 h-4 shrink-0 mt-0.5" />
+            <div className="flex-1 min-w-0">
+              <p className="font-bold">{analysis.error.message}</p>
+              {analysis.error.line != null && (
+                <p className="mt-0.5 text-[11px] font-mono opacity-80">
+                  {bn ? "লাইন" : "Line"} {analysis.error.line}
+                  {analysis.error.column != null
+                    ? `, ${bn ? "কলাম" : "column"} ${analysis.error.column}`
+                    : ""}
+                </p>
+              )}
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
 
       {/* Stats */}
       {input.trim() && (
-        <div className="grid grid-cols-3 sm:grid-cols-6 gap-2">
-          <Stat label={bn ? "বাইট" : "Bytes"} value={formatNumber(analysis.stats.bytes)} />
-          <Stat label={bn ? "লাইন" : "Lines"} value={formatNumber(analysis.stats.lines)} />
-          <Stat label={bn ? "অক্ষর" : "Chars"} value={formatNumber(analysis.stats.chars)} />
-          <Stat label={bn ? "Keys" : "Keys"} value={formatNumber(analysis.stats.keys)} />
-          <Stat label={bn ? "Arrays" : "Arrays"} value={formatNumber(analysis.stats.arrays)} />
-          <Stat label={bn ? "Depth" : "Depth"} value={formatNumber(analysis.stats.depth)} />
+        <div className="grid grid-cols-3 sm:grid-cols-6 gap-2.5 sm:gap-3">
+          <ResultStat
+            label={bn ? "বাইট" : "Bytes"}
+            value={formatNumber(analysis.stats.bytes)}
+            accent="rose"
+          />
+          <ResultStat
+            label={bn ? "লাইন" : "Lines"}
+            value={formatNumber(analysis.stats.lines)}
+            accent="rose"
+          />
+          <ResultStat
+            label={bn ? "অক্ষর" : "Chars"}
+            value={formatNumber(analysis.stats.chars)}
+            accent="rose"
+          />
+          <ResultStat
+            label={bn ? "Keys" : "Keys"}
+            value={formatNumber(analysis.stats.keys)}
+            accent="rose"
+          />
+          <ResultStat
+            label={bn ? "Arrays" : "Arrays"}
+            value={formatNumber(analysis.stats.arrays)}
+            accent="rose"
+          />
+          <ResultStat
+            label={bn ? "Depth" : "Depth"}
+            value={formatNumber(analysis.stats.depth)}
+            accent="rose"
+          />
         </div>
       )}
 
       {/* Output */}
       {analysis.valid && output && (
-        <div className="rounded-2xl bg-white/70 dark:bg-dark-surface/70 backdrop-blur-xl border border-silk-rose/20 overflow-hidden">
-          <div className="flex items-center justify-between gap-2 px-4 py-2.5 border-b border-silk-rose/15 flex-wrap">
-            <span className="text-[11px] font-semibold text-light-text dark:text-dark-text">
-              {bn ? "আউটপুট" : "Output"} · {formatBytes(new Blob([output]).size)}
-            </span>
-            <div className="flex items-center gap-2">
-              <button type="button" onClick={() => void handleCopy()} className="inline-flex items-center gap-1.5 h-8 px-2.5 rounded-lg bg-silk-rose/10 border border-silk-rose/25 text-[11px] font-medium text-silk-rose hover:bg-silk-rose/20 transition-all">
-                {copied ? <ClipboardCheck className="w-3.5 h-3.5" /> : <Copy className="w-3.5 h-3.5" />}
-                {copied ? (bn ? "কপি হয়েছে" : "Copied") : (bn ? "কপি" : "Copy")}
-              </button>
-              <button type="button" onClick={handleDownload} className="inline-flex items-center gap-1.5 h-8 px-2.5 rounded-lg bg-emerald-600 text-white text-[11px] font-semibold hover:bg-emerald-700 transition-colors">
-                <Download className="w-3.5 h-3.5" /> .json
-              </button>
-            </div>
+        <TextPanel
+          label={bn ? "ফরম্যাটেড JSON" : "Formatted JSON"}
+          value={output}
+          readOnly
+          copied={copied}
+          onCopy={handleCopy}
+          meta={outputBytes}
+        >
+          <div className="flex items-center justify-end gap-2 px-4 pb-3">
+            <ToolButton
+              size="sm"
+              variant="primary"
+              icon={<Download className="w-3.5 h-3.5" />}
+              onClick={handleDownload}
+            >
+              {bn ? "ডাউনলোড" : "Download .json"}
+            </ToolButton>
           </div>
-          <pre className="p-4 max-h-[420px] overflow-auto text-[12px] font-mono leading-relaxed text-light-text dark:text-dark-text whitespace-pre">
-            {output}
-          </pre>
-        </div>
+        </TextPanel>
       )}
 
+      {/* Empty state */}
       {!input && (
         <div className="flex items-center justify-center gap-2 text-[11px] sm:text-xs text-lightTextSecondary dark:text-dark-textSecondary">
-          <X className="w-3.5 h-3.5 text-silk-rose" />
-          {bn ? "আপনার JSON ব্রাউজারেই প্রসেস হয়" : "Your JSON is processed in your browser"}
+          <Wand2 className="w-3.5 h-3.5 text-silk-rose" />
+          {bn
+            ? "আপনার JSON ব্রাউজারেই প্রসেস হয়"
+            : "Your JSON is processed in your browser"}
         </div>
       )}
     </section>
   );
 }
 
-function Stat({ label, value }: { label: string; value: string }) {
+function ToggleBtn({
+  active,
+  onClick,
+  children,
+}: {
+  active: boolean;
+  onClick: () => void;
+  children: React.ReactNode;
+}) {
   return (
-    <div className="rounded-xl bg-white/70 dark:bg-dark-surface/70 backdrop-blur-xl border border-silk-rose/20 p-2.5">
-      <p className="font-display font-black text-[15px] text-silk-rose leading-none">{value}</p>
-      <p className="text-[9px] uppercase tracking-wider text-lightTextSecondary dark:text-dark-textSecondary mt-1">{label}</p>
-    </div>
+    <button
+      type="button"
+      onClick={onClick}
+      className={cn(
+        "inline-flex items-center justify-center gap-1.5 h-9 rounded-xl border text-[11px] sm:text-[12px] font-bold transition-all px-2",
+        active
+          ? "bg-silk-rose/15 border-silk-rose/50 text-silk-wine dark:text-silk-rose-soft shadow-[0_6px_16px_-8px_rgba(139,58,79,0.35)]"
+          : "bg-silk-rose/5 border-silk-rose/15 text-light-textSecondary dark:text-dark-textSecondary hover:border-silk-rose/40"
+      )}
+    >
+      {children}
+    </button>
   );
 }
