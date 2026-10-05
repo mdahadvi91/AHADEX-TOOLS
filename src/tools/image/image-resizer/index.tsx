@@ -7,6 +7,7 @@ import { Features } from "./components/Features";
 import { HowTo } from "./components/HowTo";
 import { PrivacyNote } from "./components/PrivacyNote";
 import { FAQ } from "./components/FAQ";
+import { RecommendedProducts } from "@components/affiliate/RecommendedProducts";
 import { RelatedTools } from "./components/RelatedTools";
 
 export default function ImageResizerTool() {
@@ -22,6 +23,7 @@ export default function ImageResizerTool() {
         <HowTo />
         <PrivacyNote />
         <FAQ />
+        <RecommendedProducts toolId="image-resizer" />
         <RelatedTools />
       </div>
     </>
