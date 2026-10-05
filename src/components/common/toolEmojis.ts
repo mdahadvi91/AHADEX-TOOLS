@@ -46,6 +46,7 @@ export const TOOL_EMOJIS: Record<string, string> = {
 
   // ---- Text tools ----
   "word-counter": "🔤",
+  "character-counter": "🔡",
   "case-converter": "🔠",
   "text-cleaner": "🧹",
   "json-formatter": "{}",

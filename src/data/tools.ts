@@ -757,6 +757,29 @@ export const tools: Tool[] = [
       ogImage: "/images/og/tools/barcode-generator-og.png",
     },
   },
+  {
+    id: "character-counter",
+    slug: "character-counter",
+    name: "Character Counter",
+    path: "/tools/character-counter",
+    searchVolume: 800000,
+    description:
+      "Count characters against X (Twitter), Instagram, LinkedIn, SMS, and SEO limits in real time. Everything runs in your browser.",
+    longDescription:
+      "Character Counter tracks your text against eight platform limits at once: X (Twitter) at 280, SMS at 160, meta description at 160, Instagram caption at 2,200, LinkedIn post at 3,000, Facebook post at 63,206, YouTube title at 100, and SEO title at 60. Live character counts, over-limit alerts, and word/line/paragraph stats — all in your browser.",
+    keywords: ["character counter", "twitter character count", "instagram caption counter", "sms counter", "meta description length", "character count"],
+    popular: true,
+    newTool: true,
+    features: [],
+    howTo: [],
+    faq: [],
+    relatedTools: ["word-counter", "text-case-converter"],
+    seo: {
+      title: "Character Counter — Twitter, Instagram, SMS Limits | AHADEX Tools",
+      description: "Count characters against X (Twitter), Instagram, LinkedIn, SMS, SEO meta limits in real time.",
+      ogImage: "/images/og/tools/character-counter-og.png",
+    },
+  },
 ];
 
 export const TOOL_COUNT = tools.length;

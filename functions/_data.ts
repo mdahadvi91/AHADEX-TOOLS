@@ -251,4 +251,11 @@ export const TOOL_META: Record<string, ToolMeta> = {
     description: "Generate 1D barcodes in 9 formats — CODE128, CODE39, EAN-13, UPC-A, and more. PNG or SVG export.",
     ogImage: "/images/og/tools/barcode-generator-og.png",
   },
+  "character-counter": {
+    name: "Character Counter",
+    path: "/tools/character-counter",
+    title: "Character Counter — Twitter, Instagram, SMS Limits | AHADEX Tools",
+    description: "Count characters against X (Twitter), Instagram, LinkedIn, SMS, SEO meta limits in real time.",
+    ogImage: "/images/og/tools/character-counter-og.png",
+  },
 };
