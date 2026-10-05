@@ -16,6 +16,7 @@ import { RelatedTools } from "./RelatedTools";
 import { photoQrData } from "./data";
 import { photoQrContent } from "./content";
 import type { Position, QrBackground } from "./types";
+import { RecommendedProducts } from "@components/affiliate/RecommendedProducts";
 
 export default function PhotoQrTool() {
   useToolAnalytics("photo-qr");
@@ -154,6 +155,7 @@ export default function PhotoQrTool() {
             generating={generating}
             error={error}
           />
+        <RecommendedProducts toolId="photo-qr" />
         }
         previewPanel={
           <PreviewPanel

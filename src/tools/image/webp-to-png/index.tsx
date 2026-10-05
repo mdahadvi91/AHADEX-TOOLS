@@ -18,12 +18,12 @@ export default function WebpToPngTool() {
       <div className="mx-auto max-w-[1200px] px-4 sm:px-6 lg:px-8">
         <Hero />
         <Workspace />
+        <RecommendedProducts toolId="webp-to-png" />
         <Intro />
         <Features />
         <HowTo />
         <PrivacyNote />
         <FAQ />
-        <RecommendedProducts toolId="webp-to-png" />
         <RelatedTools />
       </div>
     </>

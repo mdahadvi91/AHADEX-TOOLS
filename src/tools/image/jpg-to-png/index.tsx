@@ -18,12 +18,12 @@ export default function JpgToPngTool() {
       <div className="mx-auto max-w-[1200px] px-4 sm:px-6 lg:px-8">
         <Hero />
         <Workspace />
+        <RecommendedProducts toolId="jpg-to-png" />
         <Intro />
         <Features />
         <HowTo />
         <PrivacyNote />
         <FAQ />
-        <RecommendedProducts toolId="jpg-to-png" />
         <RelatedTools />
       </div>
     </>

@@ -8,6 +8,7 @@ import { CVBuilderHowTo } from "./components/HowTo";
 import { CVBuilderPrivacyNote } from "./components/PrivacyNote";
 import { CVBuilderFAQ } from "./components/FAQ";
 import { CVBuilderRelatedTools } from "./components/RelatedTools";
+import { RecommendedProducts } from "@components/affiliate/RecommendedProducts";
 
 export default function CVBuilderTool() {
   useToolAnalytics("cv-builder");
