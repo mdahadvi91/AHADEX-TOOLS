@@ -201,3 +201,28 @@ function main(): void {
 }
 
 main();
+
+/* ── Home & default OG ── */
+function generateRootOg(): void {
+  const root = resolve(process.cwd(), "public/images/og");
+  const files = ["home-og", "default-og"];
+  for (const f of files) {
+    const svg = resolve(root, `${f}.svg`);
+    const png = resolve(root, `${f}.png`);
+    if (!existsSync(svg)) {
+      console.log(`⚠️  ${f}.svg not found, skipping`);
+      continue;
+    }
+    try {
+      execFileSync("rsvg-convert", ["-w", String(W), "-h", String(H), "-o", png, svg]);
+      console.log(`✅ ${f}.png`);
+    } catch {
+      console.log(`❌ Failed: ${f}.png`);
+    }
+  }
+}
+
+// Run at end of script (after tools loop)
+if (typeof require !== "undefined" && require.main === module) {
+  generateRootOg();
+}

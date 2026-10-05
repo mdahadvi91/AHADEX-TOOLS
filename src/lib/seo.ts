@@ -16,7 +16,7 @@ export function buildHomeSEO(): PageSEO {
     title: TITLE_TEMPLATES.home,
     description: APP_CONFIG.description,
     canonical: `${APP_CONFIG.url}/`,
-    ogImage: "/images/og/home-og.svg",
+    ogImage: "/images/og/home-og.png",
     ogType: "website",
     noIndex: false,
   };
@@ -27,7 +27,7 @@ export function buildToolsSEO(): PageSEO {
     title: TITLE_TEMPLATES.tools,
     description: APP_CONFIG.description,
     canonical: `${APP_CONFIG.url}/tools`,
-    ogImage: "/images/og/default-og.svg",
+    ogImage: "/images/og/default-og.png",
     ogType: "website",
     noIndex: false,
   };
@@ -56,7 +56,7 @@ export function buildNotFoundSEO(): PageSEO {
     title: TITLE_TEMPLATES.notFound,
     description: "The page you were looking for could not be found.",
     canonical: `${APP_CONFIG.url}/404`,
-    ogImage: "/images/og/default-og.svg",
+    ogImage: "/images/og/default-og.png",
     ogType: "website",
     noIndex: true,
   };
