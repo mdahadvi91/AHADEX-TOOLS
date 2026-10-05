@@ -19,31 +19,35 @@ export function useToolAnalytics(toolId: string): void {
   const { language } = useLanguage();
   const { soundEnabled } = useSound();
 
+  // 1. Analytics Tracking (Runs ONLY when tool changes)
   useEffect(() => {
     startRef.current = Date.now();
     analytics.toolOpen(toolId);
 
-    // Speak the tool name after a small delay (let page settle)
-    const tool = tools.find((t) => t.id === toolId);
-    if (tool && soundEnabled) {
-      const translated = getToolTranslation(toolId, language, {
-        name: tool.name,
-        description: tool.description,
-      });
-      const timer = window.setTimeout(() => {
-        void speakFn(translated.name, { lang: language, rate: 0.95 });
-      }, 500);
-
-      return () => {
-        window.clearTimeout(timer);
-        const duration = Date.now() - startRef.current;
-        if (duration > 3000) analytics.toolComplete(toolId, duration);
-      };
-    }
-
     return () => {
       const duration = Date.now() - startRef.current;
-      if (duration > 3000) analytics.toolComplete(toolId, duration);
+      if (duration > 3000) {
+        analytics.toolComplete(toolId, duration);
+      }
     };
+  }, [toolId]);
+
+  // 2. Text-to-Speech Announcement (Runs when tool, language, or sound changes)
+  useEffect(() => {
+    if (!soundEnabled) return;
+
+    const tool = tools.find((t) => t.id === toolId);
+    if (!tool) return;
+
+    const translated = getToolTranslation(toolId, language, {
+      name: tool.name,
+      description: tool.description,
+    });
+
+    const timer = window.setTimeout(() => {
+      void speakFn(translated.name, { lang: language, rate: 0.95 });
+    }, 500);
+
+    return () => window.clearTimeout(timer);
   }, [toolId, language, soundEnabled]);
 }

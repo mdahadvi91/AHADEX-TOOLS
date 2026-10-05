@@ -18,12 +18,11 @@ export function useSpeech() {
       if (!soundEnabled || !supported || !text.trim()) return;
       setIsSpeaking(true);
       try {
-        await speakFn(text, { lang: language });
-        // Rough duration estimate: 12 chars/second
-        const est = Math.max(800, (text.length / 12) * 1000);
-        window.setTimeout(() => setIsSpeaking(false), est);
+        await speakFn(text, { lang: language }); // Wait for speech to finish
       } catch {
-        setIsSpeaking(false);
+        // Handle any unexpected errors silently
+      } finally {
+        setIsSpeaking(false); // Only turn off when speech is truly done
       }
     },
     [soundEnabled, supported, language]
@@ -36,7 +35,6 @@ export function useSpeech() {
 
   useEffect(() => {
     return () => {
-      // Stop speech when component unmounts
       stopSpeaking();
     };
   }, []);
