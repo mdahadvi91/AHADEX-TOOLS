@@ -20,34 +20,281 @@ export interface AffiliateProduct {
 
 /** Map: toolId → product IDs */
 export const AFFILIATE_BY_TOOL: Record<string, string[]> = {
-  "image-compressor":     ["adobe-cc", "canva-pro", "cloudinary"],
-  "image-resizer":        ["adobe-cc", "figma-pro", "canva-pro"],
-  "image-cropper":        ["adobe-cc", "figma-pro"],
-  "image-to-pdf":         ["adobe-acrobat", "smallpdf-pro"],
-  "jpg-to-pdf":           ["adobe-acrobat", "smallpdf-pro"],
-  "png-to-pdf":           ["adobe-acrobat", "smallpdf-pro"],
-  "merge-pdf":            ["adobe-acrobat", "smallpdf-pro"],
-  "split-pdf":            ["adobe-acrobat", "smallpdf-pro"],
-  "pdf-to-jpg":           ["adobe-acrobat", "smallpdf-pro"],
-  "pdf-to-png":           ["adobe-acrobat", "smallpdf-pro"],
-  "pdf-rotator":          ["adobe-acrobat"],
-  "pdf-page-extractor":   ["adobe-acrobat", "smallpdf-pro"],
-  "password-generator":   ["1password", "nordvpn", "bitwarden-premium"],
-  "uuid-generator":       ["1password", "digitalocean"],
-  "json-formatter":       ["digitalocean", "jetbrains", "postman-pro"],
-  "base64-encoder":       ["digitalocean", "jetbrains"],
-  "url-encoder":          ["digitalocean", "postman-pro"],
-  "image-metadata-viewer":["adobe-cc", "exiftool-pro"],
-  "favicon-generator":    ["canva-pro", "figma-pro"],
-  "image-to-cartoon":     ["canva-pro", "adobe-cc"],
-  "image-to-sketch":      ["canva-pro", "adobe-cc"],
-  "svg-to-png":           ["figma-pro", "adobe-cc"],
-  "barcode-generator":    ["canva-pro"],
-  "cv-builder":           ["canva-pro", "resume-io", "zety"],
-  "visiting-card":        ["canva-pro", "vistaprint", "moo"],
+  "image-compressor": ["amazon-image-compressor"],
+  "image-resizer": ["amazon-image-resizer"],
+  "image-cropper": ["amazon-image-cropper"],
+  "jpg-to-png": ["amazon-jpg-to-png"],
+  "png-to-jpg": ["amazon-png-to-jpg"],
+  "jpg-to-webp": ["amazon-jpg-to-webp"],
+  "png-to-webp": ["amazon-png-to-webp"],
+  "webp-to-jpg": ["amazon-webp-to-jpg"],
+  "webp-to-png": ["amazon-webp-to-png"],
+  "jpg-to-pdf": ["amazon-jpg-to-pdf"],
+  "png-to-pdf": ["amazon-png-to-pdf"],
+  "image-to-pdf": ["amazon-image-to-pdf"],
+  "image-metadata-viewer": ["amazon-image-metadata-viewer"],
+  "favicon-generator": ["amazon-favicon-generator"],
+  "svg-to-png": ["amazon-svg-to-png"],
+  "image-to-cartoon": ["amazon-image-to-cartoon"],
+  "image-to-sketch": ["amazon-image-to-sketch"],
+  "merge-pdf": ["amazon-merge-pdf"],
+  "split-pdf": ["amazon-split-pdf"],
+  "pdf-to-jpg": ["amazon-pdf-to-jpg"],
 };
 
 export const AFFILIATE_PRODUCTS: Record<string, AffiliateProduct> = {
+  "amazon-pdf-to-jpg": {
+    id: "amazon-pdf-to-jpg",
+    name: "Recommended Pick",
+    tagline: { en: "Top rated on Amazon", bn: "অ্যামাজনে টপ রেটেড" },
+    description: {
+      en: "A highly rated product that pairs well with this tool.",
+      bn: "এই টুলের সাথে ভালোভাবে কাজ করে এমন একটি জনপ্রিয় প্রোডাক্ট।",
+    },
+    ctaLabel: { en: "View on Amazon", bn: "অ্যামাজনে দেখুন" },
+    url: "https://amzn.eu/d/02wsy6pl?tag=ahadextools2-21",
+    emoji: "🛒",
+    network: "amazon",
+  },
+
+  "amazon-split-pdf": {
+    id: "amazon-split-pdf",
+    name: "Recommended Pick",
+    tagline: { en: "Top rated on Amazon", bn: "অ্যামাজনে টপ রেটেড" },
+    description: {
+      en: "A highly rated product that pairs well with this tool.",
+      bn: "এই টুলের সাথে ভালোভাবে কাজ করে এমন একটি জনপ্রিয় প্রোডাক্ট।",
+    },
+    ctaLabel: { en: "View on Amazon", bn: "অ্যামাজনে দেখুন" },
+    url: "https://amzn.eu/d/0gcVRom5?tag=ahadextools2-21",
+    emoji: "🛒",
+    network: "amazon",
+  },
+
+  "amazon-merge-pdf": {
+    id: "amazon-merge-pdf",
+    name: "Recommended Pick",
+    tagline: { en: "Top rated on Amazon", bn: "অ্যামাজনে টপ রেটেড" },
+    description: {
+      en: "A highly rated product that pairs well with this tool.",
+      bn: "এই টুলের সাথে ভালোভাবে কাজ করে এমন একটি জনপ্রিয় প্রোডাক্ট।",
+    },
+    ctaLabel: { en: "View on Amazon", bn: "অ্যামাজনে দেখুন" },
+    url: "https://amzn.eu/d/0iTTgf1m?tag=ahadextools2-21",
+    emoji: "🛒",
+    network: "amazon",
+  },
+
+  "amazon-image-to-sketch": {
+    id: "amazon-image-to-sketch",
+    name: "Recommended Pick",
+    tagline: { en: "Top rated on Amazon", bn: "অ্যামাজনে টপ রেটেড" },
+    description: {
+      en: "A highly rated product that pairs well with this tool.",
+      bn: "এই টুলের সাথে ভালোভাবে কাজ করে এমন একটি জনপ্রিয় প্রোডাক্ট।",
+    },
+    ctaLabel: { en: "View on Amazon", bn: "অ্যামাজনে দেখুন" },
+    url: "https://amzn.eu/d/022ta3Zb?tag=ahadextools2-21",
+    emoji: "🛒",
+    network: "amazon",
+  },
+
+  "amazon-image-to-cartoon": {
+    id: "amazon-image-to-cartoon",
+    name: "Recommended Pick",
+    tagline: { en: "Top rated on Amazon", bn: "অ্যামাজনে টপ রেটেড" },
+    description: {
+      en: "A highly rated product that pairs well with this tool.",
+      bn: "এই টুলের সাথে ভালোভাবে কাজ করে এমন একটি জনপ্রিয় প্রোডাক্ট।",
+    },
+    ctaLabel: { en: "View on Amazon", bn: "অ্যামাজনে দেখুন" },
+    url: "https://amzn.eu/d/0iypCag0?tag=ahadextools2-21",
+    emoji: "🛒",
+    network: "amazon",
+  },
+
+  "amazon-svg-to-png": {
+    id: "amazon-svg-to-png",
+    name: "Recommended Pick",
+    tagline: { en: "Top rated on Amazon", bn: "অ্যামাজনে টপ রেটেড" },
+    description: {
+      en: "A highly rated product that pairs well with this tool.",
+      bn: "এই টুলের সাথে ভালোভাবে কাজ করে এমন একটি জনপ্রিয় প্রোডাক্ট।",
+    },
+    ctaLabel: { en: "View on Amazon", bn: "অ্যামাজনে দেখুন" },
+    url: "https://amzn.eu/d/03mixrQ4?tag=ahadextools2-21",
+    emoji: "🛒",
+    network: "amazon",
+  },
+
+  "amazon-favicon-generator": {
+    id: "amazon-favicon-generator",
+    name: "Recommended Pick",
+    tagline: { en: "Top rated on Amazon", bn: "অ্যামাজনে টপ রেটেড" },
+    description: {
+      en: "A highly rated product that pairs well with this tool.",
+      bn: "এই টুলের সাথে ভালোভাবে কাজ করে এমন একটি জনপ্রিয় প্রোডাক্ট।",
+    },
+    ctaLabel: { en: "View on Amazon", bn: "অ্যামাজনে দেখুন" },
+    url: "https://amzn.eu/d/0bJfGriN?tag=ahadextools2-21",
+    emoji: "🛒",
+    network: "amazon",
+  },
+
+  "amazon-image-metadata-viewer": {
+    id: "amazon-image-metadata-viewer",
+    name: "Recommended Pick",
+    tagline: { en: "Top rated on Amazon", bn: "অ্যামাজনে টপ রেটেড" },
+    description: {
+      en: "A highly rated product that pairs well with this tool.",
+      bn: "এই টুলের সাথে ভালোভাবে কাজ করে এমন একটি জনপ্রিয় প্রোডাক্ট।",
+    },
+    ctaLabel: { en: "View on Amazon", bn: "অ্যামাজনে দেখুন" },
+    url: "https://amzn.eu/d/00eZ2xbg?tag=ahadextools2-21",
+    emoji: "🛒",
+    network: "amazon",
+  },
+
+  "amazon-image-to-pdf": {
+    id: "amazon-image-to-pdf",
+    name: "Recommended Pick",
+    tagline: { en: "Top rated on Amazon", bn: "অ্যামাজনে টপ রেটেড" },
+    description: {
+      en: "A highly rated product that pairs well with this tool.",
+      bn: "এই টুলের সাথে ভালোভাবে কাজ করে এমন একটি জনপ্রিয় প্রোডাক্ট।",
+    },
+    ctaLabel: { en: "View on Amazon", bn: "অ্যামাজনে দেখুন" },
+    url: "https://amzn.eu/d/03bvJJfF?tag=ahadextools2-21",
+    emoji: "🛒",
+    network: "amazon",
+  },
+
+  "amazon-png-to-pdf": {
+    id: "amazon-png-to-pdf",
+    name: "Recommended Pick",
+    tagline: { en: "Top rated on Amazon", bn: "অ্যামাজনে টপ রেটেড" },
+    description: {
+      en: "A highly rated product that pairs well with this tool.",
+      bn: "এই টুলের সাথে ভালোভাবে কাজ করে এমন একটি জনপ্রিয় প্রোডাক্ট।",
+    },
+    ctaLabel: { en: "View on Amazon", bn: "অ্যামাজনে দেখুন" },
+    url: "https://amzn.eu/d/02csgLcM?tag=ahadextools2-21",
+    emoji: "🛒",
+    network: "amazon",
+  },
+
+  "amazon-jpg-to-pdf": {
+    id: "amazon-jpg-to-pdf",
+    name: "Recommended Pick",
+    tagline: { en: "Top rated on Amazon", bn: "অ্যামাজনে টপ রেটেড" },
+    description: {
+      en: "A highly rated product that pairs well with this tool.",
+      bn: "এই টুলের সাথে ভালোভাবে কাজ করে এমন একটি জনপ্রিয় প্রোডাক্ট।",
+    },
+    ctaLabel: { en: "View on Amazon", bn: "অ্যামাজনে দেখুন" },
+    url: "https://amzn.eu/d/0gMlXGQ7?tag=ahadextools2-21",
+    emoji: "🛒",
+    network: "amazon",
+  },
+
+  "amazon-webp-to-png": {
+    id: "amazon-webp-to-png",
+    name: "Recommended Pick",
+    tagline: { en: "Top rated on Amazon", bn: "অ্যামাজনে টপ রেটেড" },
+    description: {
+      en: "A highly rated product that pairs well with this tool.",
+      bn: "এই টুলের সাথে ভালোভাবে কাজ করে এমন একটি জনপ্রিয় প্রোডাক্ট।",
+    },
+    ctaLabel: { en: "View on Amazon", bn: "অ্যামাজনে দেখুন" },
+    url: "https://amzn.eu/d/0ifx0Gdh?tag=ahadextools2-21",
+    emoji: "🛒",
+    network: "amazon",
+  },
+
+  "amazon-webp-to-jpg": {
+    id: "amazon-webp-to-jpg",
+    name: "Recommended Pick",
+    tagline: { en: "Top rated on Amazon", bn: "অ্যামাজনে টপ রেটেড" },
+    description: {
+      en: "A highly rated product that pairs well with this tool.",
+      bn: "এই টুলের সাথে ভালোভাবে কাজ করে এমন একটি জনপ্রিয় প্রোডাক্ট।",
+    },
+    ctaLabel: { en: "View on Amazon", bn: "অ্যামাজনে দেখুন" },
+    url: "https://amzn.eu/d/049HTWq6?tag=ahadextools2-21",
+    emoji: "🛒",
+    network: "amazon",
+  },
+
+  "amazon-png-to-webp": {
+    id: "amazon-png-to-webp",
+    name: "Recommended Pick",
+    tagline: { en: "Top rated on Amazon", bn: "অ্যামাজনে টপ রেটেড" },
+    description: {
+      en: "A highly rated product that pairs well with this tool.",
+      bn: "এই টুলের সাথে ভালোভাবে কাজ করে এমন একটি জনপ্রিয় প্রোডাক্ট।",
+    },
+    ctaLabel: { en: "View on Amazon", bn: "অ্যামাজনে দেখুন" },
+    url: "https://amzn.eu/d/08CWiAHG?tag=ahadextools2-21",
+    emoji: "🛒",
+    network: "amazon",
+  },
+
+  "amazon-jpg-to-webp": {
+    id: "amazon-jpg-to-webp",
+    name: "Recommended Pick",
+    tagline: { en: "Top rated on Amazon", bn: "অ্যামাজনে টপ রেটেড" },
+    description: {
+      en: "A highly rated product that pairs well with this tool.",
+      bn: "এই টুলের সাথে ভালোভাবে কাজ করে এমন একটি জনপ্রিয় প্রোডাক্ট।",
+    },
+    ctaLabel: { en: "View on Amazon", bn: "অ্যামাজনে দেখুন" },
+    url: "https://amzn.eu/d/0aAhURkF?tag=ahadextools2-21",
+    emoji: "🛒",
+    network: "amazon",
+  },
+
+  "amazon-png-to-jpg": {
+    id: "amazon-png-to-jpg",
+    name: "Recommended Pick",
+    tagline: { en: "Top rated on Amazon", bn: "অ্যামাজনে টপ রেটেড" },
+    description: {
+      en: "A highly rated product that pairs well with this tool.",
+      bn: "এই টুলের সাথে ভালোভাবে কাজ করে এমন একটি জনপ্রিয় প্রোডাক্ট।",
+    },
+    ctaLabel: { en: "View on Amazon", bn: "অ্যামাজনে দেখুন" },
+    url: "https://amzn.eu/d/01o0z9xQ?tag=ahadextools2-21",
+    emoji: "🛒",
+    network: "amazon",
+  },
+
+  "amazon-jpg-to-png": {
+    id: "amazon-jpg-to-png",
+    name: "Recommended Pick",
+    tagline: { en: "Top rated on Amazon", bn: "অ্যামাজনে টপ রেটেড" },
+    description: {
+      en: "A highly rated product that pairs well with this tool.",
+      bn: "এই টুলের সাথে ভালোভাবে কাজ করে এমন একটি জনপ্রিয় প্রোডাক্ট।",
+    },
+    ctaLabel: { en: "View on Amazon", bn: "অ্যামাজনে দেখুন" },
+    url: "https://amzn.eu/d/0aWJss7s?tag=ahadextools2-21",
+    emoji: "🛒",
+    network: "amazon",
+  },
+
+  "amazon-image-cropper": {
+    id: "amazon-image-cropper",
+    name: "Recommended Pick",
+    tagline: { en: "Top rated on Amazon", bn: "অ্যামাজনে টপ রেটেড" },
+    description: {
+      en: "A highly rated product that pairs well with this tool.",
+      bn: "এই টুলের সাথে ভালোভাবে কাজ করে এমন একটি জনপ্রিয় প্রোডাক্ট।",
+    },
+    ctaLabel: { en: "View on Amazon", bn: "অ্যামাজনে দেখুন" },
+    url: "https://amzn.eu/d/0hYOVVid?tag=ahadextools2-21",
+    emoji: "🛒",
+    network: "amazon",
+  },
+
   "adobe-cc": {
     id: "adobe-cc",
     name: "Adobe Creative Cloud",

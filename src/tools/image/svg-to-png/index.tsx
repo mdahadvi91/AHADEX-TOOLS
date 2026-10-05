@@ -7,6 +7,7 @@ import { Features } from "./components/Features";
 import { HowTo } from "./components/HowTo";
 import { PrivacyNote } from "./components/PrivacyNote";
 import { FAQ } from "./components/FAQ";
+import { RecommendedProducts } from "@components/affiliate/RecommendedProducts";
 import { RelatedTools } from "./components/RelatedTools";
 
 export default function SvgToPngTool() {
@@ -22,6 +23,7 @@ export default function SvgToPngTool() {
         <HowTo />
         <PrivacyNote />
         <FAQ />
+        <RecommendedProducts toolId="svg-to-png" />
         <RelatedTools />
       </div>
     </>
