@@ -22,6 +22,7 @@ const TermsPage = lazy(() => import("@pages/TermsPage"));
 const DisclaimerPage = lazy(() => import("@pages/DisclaimerPage"));
 const AccessibilityPage = lazy(() => import("@pages/AccessibilityPage"));
 const CookiePolicyPage = lazy(() => import("@pages/CookiePolicyPage"));
+const AffiliateDisclosurePage = lazy(() => import("@pages/AffiliateDisclosurePage"));
 const NotFoundPage = lazy(() => import("@pages/NotFoundPage"));
 
 /* ------------------------------------------------------------------
@@ -169,6 +170,7 @@ export default function App() {
                   <Route path="disclaimer" element={<DisclaimerPage />} />
                   <Route path="accessibility" element={<AccessibilityPage />} />
                   <Route path="cookie-policy" element={<CookiePolicyPage />} />
+                  <Route path="affiliate-disclosure" element={<AffiliateDisclosurePage />} />
 
                   {/* Fallback */}
                   <Route path="404" element={<NotFoundPage />} />

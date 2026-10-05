@@ -30,6 +30,7 @@ export function Footer() {
         { to: "/terms", label: t.footer.terms },
         { to: "/disclaimer", label: t.footer.disclaimer },
         { to: "/cookie-policy", label: "Cookies" },
+        { to: "/affiliate-disclosure", label: "Affiliates" },
         { to: "/accessibility", label: t.footer.accessibility },
       ],
     },
