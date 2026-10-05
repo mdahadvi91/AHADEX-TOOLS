@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { X, Sun, Moon, Monitor, Volume2, VolumeX, Github, Mail, Check } from "lucide-react";
+import { Check, Github, Mail, Monitor, Moon, Music, Music2, Sun, Volume2, VolumeX, X } from "lucide-react";
 import { cn } from "@lib/cn";
 import { useSound } from "@contexts/SoundContext";
 import { useTheme } from "@contexts/ThemeContext";
@@ -25,7 +25,7 @@ const LANGS = [
 ];
 
 function PanelBody({ onClose }: { onClose?: () => void }) {
-  const { soundEnabled, toggleSound } = useSound();
+  const { soundEnabled, toggleSound, ambientEnabled, toggleAmbient, ambientReady } = useSound();
   const { theme, resolvedTheme, setTheme } = useTheme();
   const { language, setLanguage, t } = useLanguage();
 
@@ -179,6 +179,43 @@ function PanelBody({ onClose }: { onClose?: () => void }) {
                 className={cn(
                   "absolute top-0.5 w-5 h-5 rounded-full bg-white shadow transition-transform",
                   soundEnabled ? "translate-x-4" : "translate-x-0.5"
+                )}
+              />
+            </span>
+          </button>
+
+          {/* Ambient background music toggle */}
+          <button
+            type="button"
+            onClick={toggleAmbient}
+            disabled={!ambientReady}
+            className={cn(
+              "w-full flex items-center gap-3 px-4 py-3 rounded-xl border transition-all mt-2",
+              ambientEnabled
+                ? "bg-silk-rose/15 border-silk-rose/40 hover:border-silk-rose/60"
+                : "bg-silk-rose/5 border-silk-rose/15 hover:border-silk-rose/35",
+              !ambientReady && "opacity-50 cursor-not-allowed"
+            )}
+            title={!ambientReady ? "Audio file not available" : undefined}
+          >
+            {ambientEnabled ? (
+              <Music className="w-4 h-4 text-silk-rose" />
+            ) : (
+              <Music2 className="w-4 h-4 text-light-textSecondary dark:text-dark-textSecondary" />
+            )}
+            <span className="flex-1 text-sm font-medium text-light-text dark:text-dark-text text-left">
+              {t.settings.ambientMusic ?? "Ambient music"}
+            </span>
+            <span
+              className={cn(
+                "relative w-10 h-6 rounded-full transition-colors shrink-0",
+                ambientEnabled ? "bg-silk-rose" : "bg-silk-rose/20"
+              )}
+            >
+              <span
+                className={cn(
+                  "absolute top-0.5 w-5 h-5 rounded-full bg-white shadow transition-transform",
+                  ambientEnabled ? "translate-x-4" : "translate-x-0.5"
                 )}
               />
             </span>

@@ -44,6 +44,7 @@ export const en = {
     language: "Language",
     sound: "Sound",
     soundEffects: "Sound Effects",
+    ambientMusic: "Ambient music",
     more: "More",
     github: "GitHub",
     contact: "Contact",
