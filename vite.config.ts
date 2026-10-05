@@ -41,22 +41,61 @@ export default defineConfig(({ mode }) => {
       outDir: "dist",
       sourcemap: false,
       minify: "esbuild",
-      cssMinify: true,
+      cssMinify: "esbuild",
       cssCodeSplit: true,
-      chunkSizeWarningLimit: 1000,
+      chunkSizeWarningLimit: 600,
       reportCompressedSize: false,
+      assetsInlineLimit: 4096,
 
       rollupOptions: {
         output: {
-          manualChunks: {
-            "react-vendor": ["react", "react-dom", "react-router-dom"],
-            "animation-vendor": ["framer-motion", "gsap", "lenis"],
-            "pdf-vendor": ["jspdf", "pdf-lib", "pdfjs-dist"],
-            "image-vendor": ["browser-image-compression", "html2canvas", "react-image-crop"],
-            "qr-vendor": ["qrcode", "jsbarcode", "jsqr"],
-            "i18n-vendor": ["i18next", "react-i18next"],
-            "icons-vendor": ["lucide-react"],
+          manualChunks(id) {
+            if (!id.includes("node_modules")) return;
+
+            // ── Heavy tool libs (lazy-loaded per tool) ──
+            if (id.includes("pdfjs-dist") || id.includes("pdf-lib") || id.includes("jspdf")) {
+              return "pdf-engine";
+            }
+            if (id.includes("@imgly/background-removal")) {
+              return "bg-removal";
+            }
+            if (id.includes("browser-image-compression")) {
+              return "img-compress";
+            }
+            if (id.includes("html2canvas")) {
+              return "html2canvas";
+            }
+            if (id.includes("exifr")) {
+              return "exif";
+            }
+            if (id.includes("three")) {
+              return "three";
+            }
+            if (id.includes("qrcode") || id.includes("jsbarcode") || id.includes("jsqr")) {
+              return "qr-libs";
+            }
+
+            // ── React core (put react-dom + react before react-router) ──
+            if (id.includes("node_modules/react-dom")) return "react-core";
+            if (id.includes("node_modules/react/")) return "react-core";
+            if (id.includes("node_modules/scheduler")) return "react-core";
+
+            // ── Router ──
+            if (id.includes("react-router")) return "react-router";
+
+            // ── Other vendors ──
+            if (id.includes("framer-motion")) return "motion";
+            if (id.includes("gsap") || id.includes("lenis")) return "anim-extra";
+            if (id.includes("i18next") || id.includes("react-i18next")) return "i18n";
+            if (id.includes("lucide-react")) return "icons";
+            if (id.includes("react-icons")) return "icons";
+            if (id.includes("file-saver")) return "vendor";
+            if (id.includes("react-dropzone")) return "vendor";
+            if (id.includes("react-image-crop")) return "vendor";
+
+            return "vendor";
           },
+
           chunkFileNames: "assets/js/[name]-[hash].js",
           entryFileNames: "assets/js/[name]-[hash].js",
           assetFileNames: (assetInfo) => {
@@ -82,14 +121,17 @@ export default defineConfig(({ mode }) => {
         "react",
         "react-dom",
         "react-router-dom",
-        "framer-motion",
-        "gsap",
-        "lenis",
-        "lucide-react",
         "clsx",
         "tailwind-merge",
       ],
-      exclude: ["@imgly/background-removal", "pdfjs-dist"],
+      exclude: [
+        "@imgly/background-removal",
+        "pdfjs-dist",
+        "pdf-lib",
+        "jspdf",
+        "three",
+        "exifr",
+      ],
     },
 
     esbuild: {

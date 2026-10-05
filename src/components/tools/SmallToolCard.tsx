@@ -15,6 +15,19 @@ interface SmallToolCardProps {
   onToggleFavorite?: (id: string) => void;
 }
 
+/* ── Category detection for badge ── */
+function getCategory(tool: Tool): string {
+  const p = tool.path.toLowerCase();
+  const id = tool.id.toLowerCase();
+  if (p.includes("/pdf/") || id.includes("pdf")) return "PDF";
+  if (p.includes("/image/") || id.includes("image") || id.includes("jpg") || id.includes("png") || id.includes("webp") || id.includes("svg") || id.includes("favicon")) return "IMAGE";
+  if (p.includes("/text/") || id.includes("word") || id.includes("character") || id.includes("case")) return "TEXT";
+  if (p.includes("/developer/") || id.includes("json") || id.includes("url") || id.includes("uuid") || id.includes("base64") || id.includes("password")) return "DEV";
+  if (id.includes("qr") || id.includes("barcode")) return "QR";
+  if (id.includes("cv") || id.includes("visiting") || id.includes("photo-qr")) return "DESIGN";
+  return "TOOL";
+}
+
 export function SmallToolCard({
   tool,
   isFavorite = false,
@@ -23,84 +36,164 @@ export function SmallToolCard({
   const emoji = getToolEmoji(tool.id);
   const { language } = useLanguage();
   const { play } = useSound();
+  const category = getCategory(tool);
 
   const translated = getToolTranslation(tool.id, language, {
     name: tool.name,
     description: tool.description,
   });
 
+  const openLabel = language === "bn" ? "টুল খুলুন" : "Open tool";
+
   return (
     <Link
       to={tool.path}
       onMouseEnter={() => play("hover")}
       onClick={() => play("click")}
-      className={cn(
-        "group relative flex flex-col h-full p-4 sm:p-5 rounded-2xl overflow-hidden",
-        "bg-white dark:bg-[#251820]",
-        "border",
-        isFavorite
-          ? "border-silk-gold/50 shadow-[0_6px_20px_-8px_rgba(201,150,103,0.35)]"
-          : "border-silk-rose/20 hover:border-silk-rose/55",
-        "shadow-[0_2px_10px_-6px_rgba(139,58,79,0.10)]",
-        "hover:shadow-[0_14px_32px_-14px_rgba(139,58,79,0.35)]",
-        "hover:-translate-y-1",
-        "transition-all duration-300"
-      )}
+      className="group relative block min-h-[180px] sm:min-h-[200px] rounded-[22px] focus:outline-none focus-visible:ring-2 focus-visible:ring-silk-rose/60"
     >
+      {/* Animated gradient border — appears on hover */}
       <span
         aria-hidden="true"
-        className="absolute -top-12 -right-12 w-32 h-32 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"
+        className="absolute -inset-[1px] rounded-[23px] opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"
         style={{
           background:
-            "radial-gradient(circle, rgba(216,139,154,0.55) 0%, transparent 70%)",
-          filter: "blur(22px)",
+            "linear-gradient(135deg, #D88B9A 0%, #C99667 45%, #8B3A4F 100%)",
         }}
       />
 
-      <div className="relative flex items-start justify-between gap-2 mb-4">
-        <div className="w-14 h-14 sm:w-16 sm:h-16 rounded-2xl bg-gradient-to-br from-silk-rose/20 via-silk-rose/10 to-silk-gold/15 border border-silk-rose/30 flex items-center justify-center text-3xl sm:text-4xl leading-none shadow-[inset_0_1px_0_rgba(255,255,255,0.4)] transition-all duration-400 group-hover:scale-105 group-hover:border-silk-rose/50">
-          {emoji}
-        </div>
-        {onToggleFavorite && (
-          <FavoriteButton
-            active={isFavorite}
-            onToggle={() => onToggleFavorite(tool.id)}
-          />
+      <div
+        className={cn(
+          "relative flex flex-col h-full p-4 sm:p-5 rounded-[22px] overflow-hidden",
+          "bg-white dark:bg-[#251820]",
+          "border",
+          isFavorite
+            ? "border-silk-gold/50"
+            : "border-silk-rose/15 group-hover:border-transparent",
+          "shadow-[0_2px_12px_-6px_rgba(139,58,79,0.08)]",
+          "group-hover:shadow-[0_24px_48px_-20px_rgba(139,58,79,0.4)]",
+          "group-hover:-translate-y-1",
+          "transition-all duration-300 ease-out"
         )}
-      </div>
+      >
+        {/* Background dot-grid — appears on hover */}
+        <span
+          aria-hidden="true"
+          className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"
+          style={{
+            backgroundImage:
+              "radial-gradient(circle at 1px 1px, rgba(216,139,154,0.18) 1px, transparent 0)",
+            backgroundSize: "18px 18px",
+          }}
+        />
 
-      {(tool.popular || tool.newTool) && (
-        <div className="absolute top-[72px] sm:top-[82px] right-4 flex gap-1">
-          {tool.popular && (
-            <span className="px-1.5 py-0.5 rounded-full bg-gradient-to-r from-silk-rose to-silk-gold text-white text-[8px] font-bold tracking-wider uppercase leading-none">
-              Top
+        {/* Corner radial glow */}
+        <span
+          aria-hidden="true"
+          className="absolute -top-24 -right-24 w-48 h-48 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none"
+          style={{
+            background:
+              "radial-gradient(circle, rgba(216,139,154,0.55) 0%, transparent 70%)",
+            filter: "blur(32px)",
+          }}
+        />
+
+        {/* ── Header: Icon + Favorite + Category ── */}
+        <div className="relative flex items-start justify-between gap-2 mb-4">
+          <div className="relative shrink-0">
+            {/* Icon glow */}
+            <span
+              aria-hidden="true"
+              className="absolute inset-0 rounded-2xl bg-silk-rose/30 blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"
+            />
+            <div
+              className={cn(
+                "relative w-12 h-12 sm:w-14 sm:h-14 rounded-2xl",
+                "bg-gradient-to-br from-silk-rose/20 via-silk-rose/10 to-silk-gold/15",
+                "border border-silk-rose/25",
+                "flex items-center justify-center text-2xl sm:text-3xl leading-none",
+                "shadow-[inset_0_1px_0_rgba(255,255,255,0.4)]",
+                "transition-all duration-500",
+                "group-hover:scale-[1.06] group-hover:border-silk-rose/50"
+              )}
+            >
+              <span className="drop-shadow-sm">{emoji}</span>
+            </div>
+          </div>
+
+          <div className="flex flex-col items-end gap-2">
+            {onToggleFavorite && (
+              <FavoriteButton
+                active={isFavorite}
+                onToggle={() => onToggleFavorite(tool.id)}
+              />
+            )}
+            <span
+              className={cn(
+                "text-[8px] sm:text-[9px] font-bold uppercase tracking-[0.18em]",
+                "text-silk-rose/45 dark:text-silk-rose-soft/45",
+                "transition-colors duration-300",
+                "group-hover:text-silk-rose/80 dark:group-hover:text-silk-rose-soft/80"
+              )}
+            >
+              {category}
             </span>
-          )}
-          {tool.newTool && (
-            <span className="px-1.5 py-0.5 rounded-full bg-silk-wine/15 text-silk-wine dark:text-silk-rose-soft text-[8px] font-bold tracking-wider uppercase border border-silk-wine/25 leading-none">
-              New
-            </span>
-          )}
+          </div>
         </div>
-      )}
 
-      <h3 className="relative font-serif font-bold leading-[1.15] mb-1.5 text-[17px] sm:text-[18px] tracking-[-0.015em] bg-gradient-to-r from-silk-wine via-silk-rose to-silk-gold bg-clip-text text-transparent group-hover:from-silk-rose group-hover:via-silk-gold group-hover:to-silk-wine transition-all duration-500">
-        {translated.name}
-      </h3>
+        {/* ── Title ── */}
+        <h3
+          className={cn(
+            "relative font-serif font-bold leading-[1.2] mb-2",
+            "text-[15px] sm:text-[17px] tracking-[-0.015em]",
+            "bg-gradient-to-r from-silk-wine via-silk-rose to-silk-gold",
+            "bg-clip-text text-transparent",
+            "group-hover:from-silk-rose group-hover:via-silk-gold group-hover:to-silk-wine",
+            "transition-all duration-500"
+          )}
+        >
+          {translated.name}
+        </h3>
 
-      <div className="relative flex items-center gap-2 mb-2">
-        <span className="h-[1.5px] w-6 rounded-full bg-gradient-to-r from-silk-rose to-silk-gold/60" />
-        <span className="font-script text-[11px] text-silk-rose/70 dark:text-silk-rose-soft/70 tracking-wide leading-none">
-          free
-        </span>
-      </div>
+        {/* ── Free accent ── */}
+        <div className="relative flex items-center gap-2 mb-2.5">
+          <span className="h-[1.5px] w-5 rounded-full bg-gradient-to-r from-silk-rose to-silk-gold/60" />
+          <span className="font-script text-[10px] text-silk-rose/70 dark:text-silk-rose-soft/70 tracking-wide leading-none">
+            free
+          </span>
+        </div>
 
-      <p className="relative leading-relaxed line-clamp-2 flex-1 text-[12px] sm:text-[11.5px] text-[#7A5E52] dark:text-[#C4A89E]">
-        {translated.description}
-      </p>
+        {/* ── Description ── */}
+        <p
+          className={cn(
+            "relative leading-relaxed line-clamp-2 flex-1",
+            "text-[11.5px] sm:text-[12px]",
+            "text-[#7A5E52] dark:text-[#C4A89E]"
+          )}
+        >
+          {translated.description}
+        </p>
 
-      <div className="relative flex items-center justify-end pt-3 mt-3 border-t border-silk-rose/10">
-        <ArrowUpRight className="w-3.5 h-3.5 text-silk-rose opacity-60 group-hover:opacity-100 -translate-x-1 group-hover:translate-x-0 transition-all duration-300" />
+        {/* ── Footer: Open label + Arrow ── */}
+        <div className="relative flex items-center justify-between pt-3 mt-3 border-t border-silk-rose/10">
+          <span
+            className={cn(
+              "text-[10px] font-semibold tracking-wide uppercase",
+              "text-silk-rose/0 group-hover:text-silk-rose/80",
+              "transition-colors duration-300"
+            )}
+          >
+            {openLabel}
+          </span>
+          <ArrowUpRight
+            className={cn(
+              "w-3.5 h-3.5 text-silk-rose",
+              "opacity-60 group-hover:opacity-100",
+              "-translate-x-1 group-hover:translate-x-0",
+              "transition-all duration-300"
+            )}
+          />
+        </div>
       </div>
     </Link>
   );

@@ -10,6 +10,8 @@ import { MainLayout } from "@components/layout/MainLayout";
 import { ThemeProvider } from "@contexts/ThemeContext";
 import { LanguageProvider } from "@contexts/LanguageContext";
 import { SoundProvider } from "@contexts/SoundContext";
+import { Loader } from "@components/common/Loader";
+import { ToolSkeleton } from "@components/common/ToolSkeleton";
 
 /* ------------------------------------------------------------------
  * Pages
@@ -88,23 +90,31 @@ function ScrollToTop() {
   return null;
 }
 
-function Loader() {
+/**
+ * ToolSuspense — fallback for tool routes.
+ * Shows a layout-preserving skeleton so the page doesn't flash blank.
+ */
+function ToolSuspense({ children }: { children: React.ReactNode }) {
   return (
-    <div className="min-h-screen flex items-center justify-center bg-silk-cream dark:bg-dark-bg">
-      <div className="w-8 h-8 rounded-full border-2 border-silk-rose/30 border-t-silk-rose animate-spin" />
-    </div>
+    <Suspense fallback={<ToolSkeleton />}>
+      {children}
+    </Suspense>
+  );
+}
+
+/**
+ * PageSuspense — fallback for top-level pages (full-screen loader).
+ */
+function PageSuspense({ children }: { children: React.ReactNode }) {
+  return (
+    <Suspense fallback={<Loader />}>
+      {children}
+    </Suspense>
   );
 }
 
 /* ------------------------------------------------------------------
  * App
- *
- * NOTE FOR FUTURE TOOLS:
- * Add each tool as a SINGLE-LINE <Route /> below. Keeping them on
- * one line makes them safe to add/remove with `sed` and `awk`.
- *
- * Format:
- *   <Route path="tools/<slug>" element={<Component />} />
  * ------------------------------------------------------------------ */
 export default function App() {
   return (
@@ -113,71 +123,83 @@ export default function App() {
         <SoundProvider>
           <BrowserRouter>
             <ScrollToTop />
-            <Suspense fallback={<Loader />}>
-              <Routes>
-                <Route element={<MainLayout />}>
-                  {/* Home */}
-                  <Route index element={<ToolsIndexPage />} />
-                  <Route path="tools" element={<ToolsIndexPage />} />
+            <Routes>
+              <Route element={<MainLayout />}>
+                {/* Home */}
+                <Route
+                  index
+                  element={
+                    <PageSuspense>
+                      <ToolsIndexPage />
+                    </PageSuspense>
+                  }
+                />
+                <Route
+                  path="tools"
+                  element={
+                    <PageSuspense>
+                      <ToolsIndexPage />
+                    </PageSuspense>
+                  }
+                />
 
-                  {/* Tools — one line each */}
-                  <Route path="tools/photo-qr" element={<PhotoQrTool />} />
-                  <Route path="tools/visiting-card" element={<VisitingCardTool />} />
-                  <Route path="tools/cv-builder" element={<CVBuilderTool />} />
-                  <Route path="tools/jpg-to-png" element={<JpgToPngTool />} />
-                  <Route path="tools/png-to-jpg" element={<PngToJpgTool />} />
-                  <Route path="tools/jpg-to-webp" element={<JpgToWebpTool />} />
-                  <Route path="tools/png-to-webp" element={<PngToWebpTool />} />
-                  <Route path="tools/webp-to-jpg" element={<WebpToJpgTool />} />
-                  <Route path="tools/webp-to-png" element={<WebpToPngTool />} />
-                  <Route path="tools/image-compressor" element={<ImageCompressorTool />} />
-                  <Route path="tools/image-resizer" element={<ImageResizerTool />} />
-                  <Route path="tools/jpg-to-pdf" element={<JpgToPdfTool />} />
-                  <Route path="tools/png-to-pdf" element={<PngToPdfTool />} />
-                  <Route path="tools/image-cropper" element={<ImageCropperTool />} />
-                  <Route path="tools/merge-pdf" element={<MergePdfTool />} />
-                  <Route path="tools/split-pdf" element={<SplitPdfTool />} />
-                  <Route path="tools/image-to-pdf" element={<ImageToPdfTool />} />
-                  <Route path="tools/image-metadata-viewer" element={<ImageMetadataViewerTool />} />
-                  <Route path="tools/favicon-generator" element={<FaviconGeneratorTool />} />
-                  <Route path="tools/svg-to-png" element={<SvgToPngTool />} />
-                  <Route path="tools/json-formatter" element={<JsonFormatterTool />} />
-                  <Route path="tools/url-encoder" element={<UrlEncoderTool />} />
-                  <Route path="tools/uuid-generator" element={<UuidGeneratorTool />} />
-                  <Route path="tools/text-case-converter" element={<TextCaseConverterTool />} />
-                  <Route path="tools/image-to-sketch" element={<ImageToSketchTool />} />
-                  <Route path="tools/image-to-cartoon" element={<ImageToCartoonTool />} />
-                  <Route path="tools/base64-encoder" element={<Base64EncoderTool />} />
-                  <Route path="tools/password-generator" element={<PasswordGeneratorTool />} />
-                  <Route path="tools/barcode-generator" element={<BarcodeGeneratorTool />} />
-                  <Route path="tools/word-counter" element={<WordCounterTool />} />
-                  <Route path="tools/character-counter" element={<CharacterCounterTool />} />
-                  <Route path="tools/pdf-to-png" element={<PdfToPngTool />} />
-                  <Route path="tools/pdf-to-jpg" element={<PdfToJpgTool />} />
-                  <Route path="tools/pdf-to-text" element={<PdfToTextTool />} />
-                  <Route path="tools/pdf-rotator" element={<PdfRotatorTool />} />
-                  <Route path="tools/pdf-page-extractor" element={<PdfPageExtractorTool />} />
+                {/* ── Tools — each wrapped in ToolSuspense for skeleton ── */}
+                <Route path="tools/photo-qr" element={<ToolSuspense><PhotoQrTool /></ToolSuspense>} />
+                <Route path="tools/visiting-card" element={<ToolSuspense><VisitingCardTool /></ToolSuspense>} />
+                <Route path="tools/cv-builder" element={<ToolSuspense><CVBuilderTool /></ToolSuspense>} />
+                <Route path="tools/jpg-to-png" element={<ToolSuspense><JpgToPngTool /></ToolSuspense>} />
+                <Route path="tools/png-to-jpg" element={<ToolSuspense><PngToJpgTool /></ToolSuspense>} />
+                <Route path="tools/jpg-to-webp" element={<ToolSuspense><JpgToWebpTool /></ToolSuspense>} />
+                <Route path="tools/png-to-webp" element={<ToolSuspense><PngToWebpTool /></ToolSuspense>} />
+                <Route path="tools/webp-to-jpg" element={<ToolSuspense><WebpToJpgTool /></ToolSuspense>} />
+                <Route path="tools/webp-to-png" element={<ToolSuspense><WebpToPngTool /></ToolSuspense>} />
+                <Route path="tools/image-compressor" element={<ToolSuspense><ImageCompressorTool /></ToolSuspense>} />
+                <Route path="tools/image-resizer" element={<ToolSuspense><ImageResizerTool /></ToolSuspense>} />
+                <Route path="tools/jpg-to-pdf" element={<ToolSuspense><JpgToPdfTool /></ToolSuspense>} />
+                <Route path="tools/png-to-pdf" element={<ToolSuspense><PngToPdfTool /></ToolSuspense>} />
+                <Route path="tools/image-cropper" element={<ToolSuspense><ImageCropperTool /></ToolSuspense>} />
+                <Route path="tools/merge-pdf" element={<ToolSuspense><MergePdfTool /></ToolSuspense>} />
+                <Route path="tools/split-pdf" element={<ToolSuspense><SplitPdfTool /></ToolSuspense>} />
+                <Route path="tools/image-to-pdf" element={<ToolSuspense><ImageToPdfTool /></ToolSuspense>} />
+                <Route path="tools/image-metadata-viewer" element={<ToolSuspense><ImageMetadataViewerTool /></ToolSuspense>} />
+                <Route path="tools/favicon-generator" element={<ToolSuspense><FaviconGeneratorTool /></ToolSuspense>} />
+                <Route path="tools/svg-to-png" element={<ToolSuspense><SvgToPngTool /></ToolSuspense>} />
+                <Route path="tools/json-formatter" element={<ToolSuspense><JsonFormatterTool /></ToolSuspense>} />
+                <Route path="tools/url-encoder" element={<ToolSuspense><UrlEncoderTool /></ToolSuspense>} />
+                <Route path="tools/uuid-generator" element={<ToolSuspense><UuidGeneratorTool /></ToolSuspense>} />
+                <Route path="tools/text-case-converter" element={<ToolSuspense><TextCaseConverterTool /></ToolSuspense>} />
+                <Route path="tools/image-to-sketch" element={<ToolSuspense><ImageToSketchTool /></ToolSuspense>} />
+                <Route path="tools/image-to-cartoon" element={<ToolSuspense><ImageToCartoonTool /></ToolSuspense>} />
+                <Route path="tools/base64-encoder" element={<ToolSuspense><Base64EncoderTool /></ToolSuspense>} />
+                <Route path="tools/password-generator" element={<ToolSuspense><PasswordGeneratorTool /></ToolSuspense>} />
+                <Route path="tools/barcode-generator" element={<ToolSuspense><BarcodeGeneratorTool /></ToolSuspense>} />
+                <Route path="tools/word-counter" element={<ToolSuspense><WordCounterTool /></ToolSuspense>} />
+                <Route path="tools/character-counter" element={<ToolSuspense><CharacterCounterTool /></ToolSuspense>} />
+                <Route path="tools/pdf-to-png" element={<ToolSuspense><PdfToPngTool /></ToolSuspense>} />
+                <Route path="tools/pdf-to-jpg" element={<ToolSuspense><PdfToJpgTool /></ToolSuspense>} />
+                <Route path="tools/pdf-to-text" element={<ToolSuspense><PdfToTextTool /></ToolSuspense>} />
+                <Route path="tools/pdf-rotator" element={<ToolSuspense><PdfRotatorTool /></ToolSuspense>} />
+                <Route path="tools/pdf-page-extractor" element={<ToolSuspense><PdfPageExtractorTool /></ToolSuspense>} />
 
-                  {/* Tool editors */}
-                  <Route path="tools/cv-builder/edit/:templateId" element={<CVBuilderEditor />} />
-                  <Route path="tools/visiting-card/edit/:templateId" element={<VisitingCardEditor />} />
+                {/* Tool editors */}
+                <Route path="tools/cv-builder/edit/:templateId" element={<ToolSuspense><CVBuilderEditor /></ToolSuspense>} />
+                <Route path="tools/visiting-card/edit/:templateId" element={<ToolSuspense><VisitingCardEditor /></ToolSuspense>} />
 
-                  {/* Static */}
-                  <Route path="about" element={<AboutPage />} />
-                  <Route path="contact" element={<ContactPage />} />
-                  <Route path="privacy" element={<PrivacyPage />} />
-                  <Route path="terms" element={<TermsPage />} />
-                  <Route path="disclaimer" element={<DisclaimerPage />} />
-                  <Route path="accessibility" element={<AccessibilityPage />} />
-                  <Route path="cookie-policy" element={<CookiePolicyPage />} />
-                  <Route path="affiliate-disclosure" element={<AffiliateDisclosurePage />} />
+                {/* Static pages */}
+                <Route path="about" element={<PageSuspense><AboutPage /></PageSuspense>} />
+                <Route path="contact" element={<PageSuspense><ContactPage /></PageSuspense>} />
+                <Route path="privacy" element={<PageSuspense><PrivacyPage /></PageSuspense>} />
+                <Route path="terms" element={<PageSuspense><TermsPage /></PageSuspense>} />
+                <Route path="disclaimer" element={<PageSuspense><DisclaimerPage /></PageSuspense>} />
+                <Route path="accessibility" element={<PageSuspense><AccessibilityPage /></PageSuspense>} />
+                <Route path="cookie-policy" element={<PageSuspense><CookiePolicyPage /></PageSuspense>} />
+                <Route path="affiliate-disclosure" element={<PageSuspense><AffiliateDisclosurePage /></PageSuspense>} />
 
-                  {/* Fallback */}
-                  <Route path="404" element={<NotFoundPage />} />
-                  <Route path="*" element={<Navigate to="/404" replace />} />
-                </Route>
-              </Routes>
-            </Suspense>
+                {/* Fallback */}
+                <Route path="404" element={<PageSuspense><NotFoundPage /></PageSuspense>} />
+                <Route path="*" element={<Navigate to="/404" replace />} />
+              </Route>
+            </Routes>
           </BrowserRouter>
         </SoundProvider>
       </LanguageProvider>
