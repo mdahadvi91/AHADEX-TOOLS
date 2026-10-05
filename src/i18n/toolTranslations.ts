@@ -148,6 +148,10 @@ export const toolTranslationsBn: Record<string, ToolTranslation> = {
     name: "বারকোড জেনারেটর",
     description: "৯ ফরম্যাটে বারকোড তৈরি করুন — CODE128, EAN-13, UPC-A সহ। PNG/SVG export।",
   },
+  "character-counter": {
+    name: "ক্যারেক্টার কাউন্টার",
+    description: "X (টুইটার), ইনস্টাগ্রাম, SMS ও SEO লিমিটের বিপরীতে লাইভ ক্যারেক্টার গণনা।",
+  },
 };
 
 export function getToolTranslation(
