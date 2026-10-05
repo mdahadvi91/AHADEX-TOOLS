@@ -1,3 +1,4 @@
+import { announceDownload } from "@lib/speech";
 import type { LoadedImage, FaviconOptions, GeneratedFile, GenerationResult } from "./types";
 
 export const MAX_FILE_SIZE = 10 * 1024 * 1024;
@@ -268,6 +269,7 @@ export function downloadFile(file: GeneratedFile): void {
   document.body.appendChild(a);
   a.click();
   document.body.removeChild(a);
+  announceDownload();
 }
 
 export function downloadManifest(manifest: string): void {

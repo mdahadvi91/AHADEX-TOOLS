@@ -1,3 +1,4 @@
+import { announceDownload } from "@lib/speech";
 import type { TransformResult, FileInfo } from "./types";
 
 export const MAX_FILE_SIZE = 10 * 1024 * 1024;
@@ -107,6 +108,7 @@ export function downloadDataUrl(dataUrl: string, filename: string): void {
   document.body.appendChild(a);
   a.click();
   document.body.removeChild(a);
+  announceDownload();
 }
 
 export const SAMPLES = {

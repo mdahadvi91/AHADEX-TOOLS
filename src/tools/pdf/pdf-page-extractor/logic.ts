@@ -1,3 +1,4 @@
+import { announceDownload } from "@lib/speech";
 import { PDFDocument } from "pdf-lib";
 import type { LoadedPdf, ExtractedFile, ExtractMode } from "./types";
 
@@ -144,6 +145,7 @@ export function downloadFile(file: ExtractedFile): void {
   document.body.appendChild(a);
   a.click();
   document.body.removeChild(a);
+  announceDownload();
 }
 
 export function revokeFile(file: ExtractedFile): void {

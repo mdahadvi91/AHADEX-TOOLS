@@ -1,3 +1,4 @@
+import { announceDownload } from "@lib/speech";
 import * as pdfjsLib from "pdfjs-dist";
 // @ts-ignore — Vite ?url import
 import pdfWorker from "pdfjs-dist/build/pdf.worker.min.mjs?url";
@@ -133,6 +134,7 @@ export function downloadTxt(result: ExtractResult): void {
   document.body.appendChild(a);
   a.click();
   document.body.removeChild(a);
+  announceDownload();
 }
 
 export function revokeTxt(result: ExtractResult): void {

@@ -1,3 +1,4 @@
+import { announceDownload } from "@lib/speech";
 import type { LoadedImage, SketchOptions, SketchResult } from "./types";
 
 export const MAX_FILE_SIZE = 25 * 1024 * 1024;
@@ -217,4 +218,5 @@ export function downloadSketch(
   document.body.appendChild(a);
   a.click();
   document.body.removeChild(a);
+  announceDownload();
 }
