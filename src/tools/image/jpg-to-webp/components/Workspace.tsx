@@ -1,13 +1,29 @@
 import { useRef, useState } from "react";
-import { Upload, X, Download, Loader2, CheckCircle2, FileImage } from "lucide-react";
+import { Download, CheckCircle2, Trash2, Plus, FileImage } from "lucide-react";
+import { motion, AnimatePresence } from "framer-motion";
 import { useLanguage } from "@contexts/LanguageContext";
+import { useSound } from "@contexts/SoundContext";
 import { cn } from "@lib/cn";
-import { convertJpgToWebp, downloadFile, downloadAll, formatBytes, revokeUrls } from "../logic";
+import {
+  WorkspacePanel,
+  DropZone,
+  ToolButton,
+  ResultStat,
+} from "@components/workspace";
+import {
+  convertJpgToWebp,
+  downloadFile,
+  downloadAll,
+  formatBytes,
+  revokeUrls,
+} from "../logic";
 import type { ConvertedFile } from "../types";
 
 export function Workspace() {
   const { language } = useLanguage();
+  const { play } = useSound();
   const bn = language === "bn";
+
   const inputRef = useRef<HTMLInputElement>(null);
   const [items, setItems] = useState<ConvertedFile[]>([]);
   const [busy, setBusy] = useState(false);
@@ -26,112 +42,210 @@ export function Workspace() {
     setItems((prev) => [...prev, ...newItems]);
     setBusy(false);
     if (inputRef.current) inputRef.current.value = "";
+    if (newItems.length > 0) play("success");
   };
 
-  const onDrop = (e: React.DragEvent) => { e.preventDefault(); setDrag(false); void handleFiles(e.dataTransfer.files); };
-  const remove = (id: string) => { setItems((prev) => { const f = prev.find((i) => i.id === id); if (f) revokeUrls(f); return prev.filter((i) => i.id !== id); }); };
-  const clearAll = () => { items.forEach(revokeUrls); setItems([]); setError(null); if (inputRef.current) inputRef.current.value = ""; };
+  const remove = (id: string) => {
+    setItems((prev) => {
+      const f = prev.find((i) => i.id === id);
+      if (f) revokeUrls(f);
+      return prev.filter((i) => i.id !== id);
+    });
+  };
 
-  const totalSaved = items.reduce((sum, i) => sum + (i.originalSize - i.convertedSize), 0);
+  const clearAll = () => {
+    items.forEach(revokeUrls);
+    setItems([]);
+    setError(null);
+    if (inputRef.current) inputRef.current.value = "";
+  };
+
+  const totalOriginal = items.reduce((s, i) => s + i.originalSize, 0);
+  const totalConverted = items.reduce((s, i) => s + i.convertedSize, 0);
 
   return (
-    <section className="pb-12">
-      <input ref={inputRef} type="file" accept="image/jpeg,image/jpg" multiple onChange={(e) => void handleFiles(e.target.files)} className="hidden" />
+    <section className="pb-12 space-y-4 sm:space-y-5">
+      <input
+        ref={inputRef}
+        type="file"
+        accept="image/jpeg,image/jpg"
+        multiple
+        onChange={(e) => void handleFiles(e.target.files)}
+        className="hidden"
+      />
 
       {items.length === 0 && (
-        <div
-          onDragOver={(e) => { e.preventDefault(); setDrag(true); }}
-          onDragLeave={() => setDrag(false)}
-          onDrop={onDrop}
-          onClick={() => inputRef.current?.click()}
-          role="button"
-          tabIndex={0}
-          onKeyDown={(e) => { if (e.key === "Enter" || e.key === " ") inputRef.current?.click(); }}
-          className={cn("flex flex-col items-center justify-center gap-4 p-8 sm:p-16 rounded-3xl cursor-pointer", "bg-white/70 dark:bg-dark-surface/70 backdrop-blur-xl", "border-2 border-dashed transition-all duration-300", drag ? "border-silk-rose/70 bg-silk-rose/10 scale-[1.01]" : "border-silk-rose/25 hover:border-silk-rose/50")}
-        >
-          <div className={cn("w-16 h-16 sm:w-20 sm:h-20 rounded-2xl flex items-center justify-center transition-all", "bg-gradient-to-br from-silk-rose/20 to-silk-gold/10 border border-silk-rose/25", drag && "scale-110")}>
-            {busy ? <Loader2 className="w-7 h-7 sm:w-9 sm:h-9 text-silk-rose animate-spin" /> : <Upload className="w-7 h-7 sm:w-9 sm:h-9 text-silk-rose" />}
-          </div>
-          <div className="text-center px-3">
-            <p className="font-display font-bold text-[15px] sm:text-lg text-light-text dark:text-dark-text mb-1.5">
-              {busy ? (bn ? "কনভার্ট হচ্ছে..." : "Converting...") : (bn ? "JPG ফাইল ড্রপ করুন" : "Drop your JPG files")}
-            </p>
-            <p className="text-[12px] sm:text-sm text-light-textSecondary dark:text-dark-textSecondary leading-relaxed">
-              {bn ? "ক্লিক করুন বা টেনে আনুন · একাধিক ফাইল · ৫০ MB পর্যন্ত" : "Click or drag · Multiple files · Up to 50 MB"}
-            </p>
-          </div>
-        </div>
+        <DropZone
+          onFiles={handleFiles}
+          accept="image/jpeg,image/jpg"
+          multiple
+          busy={busy}
+          drag={drag}
+          onDragChange={setDrag}
+          title={
+            busy
+              ? bn
+                ? "কনভার্ট হচ্ছে..."
+                : "Converting..."
+              : bn
+                ? "JPG ফাইল ড্রপ করুন"
+                : "Drop your JPG files"
+          }
+          subtitle={
+            bn
+              ? "ক্লিক করুন বা টেনে আনুন · একাধিক ফাইল · ৫০ MB পর্যন্ত"
+              : "Click or drag · Multiple files · Up to 50 MB"
+          }
+          icon={<FileImage className="w-7 h-7 sm:w-9 sm:h-9 text-silk-rose" />}
+        />
       )}
 
-      {error && <div className="mt-3 p-3 rounded-xl bg-red-500/10 border border-red-500/30 text-[12px] text-red-600 dark:text-red-400">{error}</div>}
+      <AnimatePresence>
+        {error && (
+          <motion.div
+            initial={{ opacity: 0, y: -8 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -8 }}
+            className="p-3.5 rounded-xl bg-red-500/10 border border-red-500/30 text-[12px] sm:text-[13px] text-red-600 dark:text-red-400 font-medium"
+          >
+            {error}
+          </motion.div>
+        )}
+      </AnimatePresence>
 
       {items.length > 0 && (
-        <div className="space-y-4">
-          <div className="flex items-center justify-between gap-3 flex-wrap p-3 rounded-2xl bg-white/70 dark:bg-dark-surface/70 backdrop-blur-xl border border-silk-rose/20">
-            <div className="flex items-center gap-2 text-[12px] sm:text-sm text-light-text dark:text-dark-text">
-              <CheckCircle2 className="w-4 h-4 text-emerald-500" />
-              <span className="font-semibold">{items.length} {bn ? "ফাইল কনভার্টেড" : "file(s) converted"}</span>
-            </div>
-            <div className="flex items-center gap-2">
-              <button type="button" onClick={() => inputRef.current?.click()} className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-silk-rose/10 border border-silk-rose/25 text-[11px] sm:text-xs font-medium text-silk-rose hover:bg-silk-rose/20 transition-all">
-                <Upload className="w-3.5 h-3.5" />
-                {bn ? "আরও" : "Add more"}
-              </button>
-              <button type="button" onClick={() => downloadAll(items)} className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-gradient-to-r from-silk-rose to-silk-wine-deep text-white text-[11px] sm:text-xs font-semibold shadow-silk-soft hover:shadow-silk-deep transition-all">
-                <Download className="w-3.5 h-3.5" />
-                {bn ? "সব ডাউনলোড" : "Download all"}
-              </button>
-              <button type="button" onClick={clearAll} className="inline-flex items-center justify-center w-7 h-7 rounded-lg text-red-500 hover:bg-red-500/10 transition-colors" aria-label="Clear all">
-                <X className="w-3.5 h-3.5" />
-              </button>
-            </div>
+        <>
+          <div className="grid grid-cols-2 sm:grid-cols-4 gap-2.5 sm:gap-3">
+            <ResultStat
+              label={bn ? "ফাইল" : "Files"}
+              value={String(items.length)}
+              accent="rose"
+            />
+            <ResultStat
+              label={bn ? "আগে" : "Before"}
+              value={formatBytes(totalOriginal)}
+              accent="rose"
+            />
+            <ResultStat
+              label={bn ? "এখন" : "After"}
+              value={formatBytes(totalConverted)}
+              accent="rose"
+            />
+            <ResultStat
+              label={bn ? "রেডি" : "Ready"}
+              value={`${items.length} ✓`}
+              accent="emerald"
+            />
           </div>
 
-          <div className="space-y-2.5">
-            {items.map((item) => (
-              <div key={item.id} className="flex items-center gap-3 p-3 rounded-2xl bg-white/70 dark:bg-dark-surface/70 backdrop-blur-xl border border-silk-rose/20">
-                <div className="w-14 h-14 sm:w-16 sm:h-16 rounded-xl overflow-hidden bg-silk-rose/5 border border-silk-rose/15 flex items-center justify-center shrink-0">
-                  <img src={item.convertedUrl} alt={item.originalName} className="w-full h-full object-cover" />
-                </div>
-                <div className="flex-1 min-w-0">
-                  <p className="text-[12px] sm:text-sm font-semibold text-light-text dark:text-dark-text truncate">{item.originalName.replace(/\.(jpe?g)$/i, "")}.webp</p>
-                  <p className="text-[10px] sm:text-[11px] text-light-textSecondary dark:text-dark-textSecondary mt-0.5">{item.width} × {item.height} px</p>
-                  <div className="flex items-center gap-2 mt-1 text-[10px] sm:text-[11px]">
-                    <span className="text-light-textSecondary dark:text-dark-textSecondary">{formatBytes(item.originalSize)}</span>
-                    <span className="text-silk-rose">→</span>
-                    <span className="text-silk-rose font-semibold">{formatBytes(item.convertedSize)}</span>
-                    {item.originalSize > item.convertedSize && (
-                      <span className="text-[9px] px-1.5 py-0.5 rounded bg-emerald-500/15 text-emerald-600 dark:text-emerald-400 font-semibold">
-                        -{Math.round(((item.originalSize - item.convertedSize) / item.originalSize) * 100)}%
-                      </span>
-                    )}
-                  </div>
-                </div>
-                <button type="button" onClick={() => downloadFile(item)} className="inline-flex items-center justify-center gap-1.5 h-9 px-3 sm:px-4 rounded-xl bg-gradient-to-r from-silk-rose to-silk-wine-deep text-white text-[11px] sm:text-xs font-semibold shadow-silk-soft hover:shadow-silk-deep transition-all shrink-0">
-                  <Download className="w-3.5 h-3.5" />
-                  <span className="hidden sm:inline">{bn ? "ডাউনলোড" : "Download"}</span>
-                </button>
-                <button type="button" onClick={() => remove(item.id)} className="w-7 h-7 rounded-lg flex items-center justify-center text-red-500 hover:bg-red-500/10 transition-colors shrink-0" aria-label="Remove">
-                  <X className="w-3.5 h-3.5" />
+          <WorkspacePanel className="p-3.5 sm:p-4" animate={false}>
+            <div className="flex items-center justify-between gap-3 flex-wrap">
+              <div className="flex items-center gap-2 text-[12px] sm:text-[13px] text-light-text dark:text-dark-text">
+                <CheckCircle2 className="w-4 h-4 text-emerald-500 shrink-0" />
+                <span className="font-bold">
+                  {items.length} {bn ? "টি ফাইল রেডি" : "files ready"}
+                </span>
+              </div>
+
+              <div className="flex items-center gap-2 flex-wrap">
+                <ToolButton
+                  size="sm"
+                  variant="secondary"
+                  icon={<Plus className="w-3.5 h-3.5" />}
+                  onClick={() => inputRef.current?.click()}
+                >
+                  {bn ? "আরও যোগ" : "Add more"}
+                </ToolButton>
+
+                <ToolButton
+                  size="sm"
+                  variant="primary"
+                  icon={<Download className="w-3.5 h-3.5" />}
+                  onClick={() => downloadAll(items)}
+                >
+                  {bn ? "সব ডাউনলোড" : "Download all"}
+                </ToolButton>
+
+                <button
+                  type="button"
+                  onClick={clearAll}
+                  aria-label="Clear all"
+                  className="w-8 h-8 rounded-xl flex items-center justify-center text-red-500 bg-red-500/10 border border-red-500/25 hover:bg-red-500/20 transition-all"
+                >
+                  <Trash2 className="w-3.5 h-3.5" />
                 </button>
               </div>
-            ))}
+            </div>
+          </WorkspacePanel>
+
+          <div className="space-y-2.5">
+            <AnimatePresence>
+              {items.map((item, i) => (
+                <motion.div
+                  key={item.id}
+                  initial={{ opacity: 0, y: 12 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, x: -20 }}
+                  transition={{
+                    duration: 0.35,
+                    delay: Math.min(i * 0.04, 0.3),
+                  }}
+                  className={cn(
+                    "group flex items-center gap-3 p-3 sm:p-3.5 rounded-2xl",
+                    "bg-white/70 dark:bg-dark-surface/70 backdrop-blur-xl",
+                    "border border-silk-rose/20 hover:border-silk-rose/40",
+                    "transition-colors duration-300"
+                  )}
+                >
+                  <div className="w-14 h-14 sm:w-16 sm:h-16 rounded-xl overflow-hidden bg-silk-rose/5 border border-silk-rose/15 flex items-center justify-center shrink-0">
+                    <img
+                      src={item.convertedUrl}
+                      alt={item.originalName}
+                      className="w-full h-full object-cover"
+                    />
+                  </div>
+
+                  <div className="flex-1 min-w-0">
+                    <p className="text-[12px] sm:text-sm font-bold text-light-text dark:text-dark-text truncate">
+                      {item.originalName.replace(/\.[jpe?g]$/i, "")}.webp
+                    </p>
+                    <p className="text-[10px] sm:text-[11px] text-light-textSecondary dark:text-dark-textSecondary mt-0.5 font-mono">
+                      {item.width} × {item.height} px
+                    </p>
+                    <div className="flex items-center gap-1.5 sm:gap-2 mt-1 text-[10px] sm:text-[11px]">
+                      <span className="text-light-textSecondary dark:text-dark-textSecondary font-mono">
+                        {formatBytes(item.originalSize)}
+                      </span>
+                      <span className="text-silk-rose">→</span>
+                      <span className="text-silk-rose font-mono font-bold">
+                        {formatBytes(item.convertedSize)}
+                      </span>
+                    </div>
+                  </div>
+
+                  <div className="flex items-center gap-1.5 shrink-0">
+                    <button
+                      type="button"
+                      onClick={() => downloadFile(item)}
+                      aria-label="Download"
+                      className="w-9 h-9 rounded-xl flex items-center justify-center bg-silk-rose/10 border border-silk-rose/25 text-silk-rose hover:bg-silk-rose/20 hover:border-silk-rose/50 hover:-translate-y-0.5 transition-all"
+                    >
+                      <Download className="w-3.5 h-3.5" />
+                    </button>
+                    <button
+                      type="button"
+                      onClick={() => remove(item.id)}
+                      aria-label="Remove"
+                      className="w-9 h-9 rounded-xl flex items-center justify-center text-red-500 bg-red-500/5 border border-red-500/15 hover:bg-red-500/15 transition-all"
+                    >
+                      <Trash2 className="w-3.5 h-3.5" />
+                    </button>
+                  </div>
+                </motion.div>
+              ))}
+            </AnimatePresence>
           </div>
-
-          {totalSaved > 0 && (
-            <p className="text-center text-[11px] sm:text-xs text-light-textSecondary dark:text-dark-textSecondary">
-              {bn ? "মোট সাইজ সেভ: " : "Total saved: "}
-              <span className="text-emerald-600 dark:text-emerald-400 font-semibold">{formatBytes(totalSaved)}</span>
-            </p>
-          )}
-        </div>
-      )}
-
-      {items.length === 0 && (
-        <div className="mt-4 flex items-center justify-center gap-2 text-[11px] sm:text-xs text-light-textSecondary dark:text-dark-textSecondary">
-          <FileImage className="w-3.5 h-3.5 text-silk-rose" />
-          {bn ? "সব ফাইল আপনার ব্রাউজারেই প্রসেস হয় — কিছুই আপলোড হয় না" : "All files are processed in your browser — nothing is uploaded"}
-        </div>
+        </>
       )}
     </section>
   );
