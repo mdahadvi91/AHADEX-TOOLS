@@ -2,10 +2,6 @@
 <html lang="en" class="dark">
   <head>
     <meta charset="UTF-8" />
-    <!-- Ezoic CMP (Consent Management Platform) — must load FIRST -->
-    <script data-cfasync="false" src="https://cmp.gatekeeperconsent.com/min.js"></script>
-    <script data-cfasync="false" src="https://the.gatekeeperconsent.com/cmp.min.js"></script>
-
     <meta
       name="viewport"
       content="width=device-width, initial-scale=1.0, viewport-fit=cover"
@@ -149,16 +145,6 @@
         anonymize_ip: true
       });
     </script>
-
-    <!-- Ezoic Standalone Script -->
-    <script async src="//www.ezojs.com/ezoic/sa.min.js"></script>
-    <script>
-      window.ezstandalone = window.ezstandalone || {};
-      ezstandalone.cmd = ezstandalone.cmd || [];
-    </script>
-
-    <!-- Ezoic Analytics -->
-    <script src="//ezoicanalytics.com/analytics.js"></script>
 
   </head>
 
