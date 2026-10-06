@@ -29,7 +29,7 @@ export function ToolsSearch({ value, onChange }: ToolsSearchProps) {
 
     timeoutRef.current = window.setTimeout(() => {
       if (trimmed !== lastFiredRef.current) {
-        analytics.search(trimmed);
+        analytics.search(trimmed, 0);
         lastFiredRef.current = trimmed;
       }
     }, 800);
