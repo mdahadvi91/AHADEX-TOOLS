@@ -9,6 +9,7 @@ import { PrivacyNote } from "./components/PrivacyNote";
 import { FAQ } from "./components/FAQ";
 import { RecommendedProducts } from "@components/affiliate/RecommendedProducts";
 import { RelatedTools } from "./components/RelatedTools";
+import { RelatedArticles } from "@components/blog/RelatedArticles";
 
 export default function PdfToJpgTool() {
   useToolAnalytics("pdf-to-jpg");
@@ -24,6 +25,7 @@ export default function PdfToJpgTool() {
         <HowTo />
         <PrivacyNote />
         <FAQ />
+        <RelatedArticles toolId="pdf-to-jpg" />
         <RelatedTools />
       </div>
     </>

@@ -9,6 +9,7 @@ import { PrivacyNote } from "./components/PrivacyNote";
 import { FAQ } from "./components/FAQ";
 import { RelatedTools } from "./components/RelatedTools";
 import { RecommendedProducts } from "@components/affiliate/RecommendedProducts";
+import { RelatedArticles } from "@components/blog/RelatedArticles";
 
 export default function PasswordGeneratorTool() {
   useToolAnalytics("password-generator");
@@ -24,6 +25,7 @@ export default function PasswordGeneratorTool() {
         <HowTo />
         <PrivacyNote />
         <FAQ />
+        <RelatedArticles toolId="password-generator" />
         <RelatedTools />
       </div>
     </>

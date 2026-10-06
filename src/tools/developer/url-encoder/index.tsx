@@ -9,6 +9,7 @@ import { PrivacyNote } from "./components/PrivacyNote";
 import { FAQ } from "./components/FAQ";
 import { RelatedTools } from "./components/RelatedTools";
 import { RecommendedProducts } from "@components/affiliate/RecommendedProducts";
+import { RelatedArticles } from "@components/blog/RelatedArticles";
 
 export default function UrlEncoderTool() {
   useToolAnalytics("url-encoder");
@@ -24,6 +25,7 @@ export default function UrlEncoderTool() {
         <HowTo />
         <PrivacyNote />
         <FAQ />
+        <RelatedArticles toolId="url-encoder" />
         <RelatedTools />
       </div>
     </>

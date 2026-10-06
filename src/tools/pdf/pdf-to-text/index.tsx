@@ -9,6 +9,7 @@ import { PrivacyNote } from "./components/PrivacyNote";
 import { FAQ } from "./components/FAQ";
 import { RelatedTools } from "./components/RelatedTools";
 import { RecommendedProducts } from "@components/affiliate/RecommendedProducts";
+import { RelatedArticles } from "@components/blog/RelatedArticles";
 
 export default function PdfToTextTool() {
   useToolAnalytics("pdf-to-text");
@@ -24,6 +25,7 @@ export default function PdfToTextTool() {
         <HowTo />
         <PrivacyNote />
         <FAQ />
+        <RelatedArticles toolId="pdf-to-text" />
         <RelatedTools />
       </div>
     </>

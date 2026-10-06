@@ -36,6 +36,7 @@ const staticRoutes: SitemapEntry[] = [
   { loc: "/accessibility", changefreq: "yearly", priority: 0.3 },
   { loc: "/cookie-policy", changefreq: "yearly", priority: 0.3 },
   { loc: "/affiliate-disclosure", changefreq: "yearly", priority: 0.3 },
+  { loc: "/editorial-policy", changefreq: "yearly", priority: 0.3 },
 ];
 
 /* ── Tool routes ── */

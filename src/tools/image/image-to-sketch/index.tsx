@@ -9,6 +9,7 @@ import { PrivacyNote } from "./components/PrivacyNote";
 import { FAQ } from "./components/FAQ";
 import { RecommendedProducts } from "@components/affiliate/RecommendedProducts";
 import { RelatedTools } from "./components/RelatedTools";
+import { RelatedArticles } from "@components/blog/RelatedArticles";
 
 export default function ImageToSketchTool() {
   useToolAnalytics("image-to-sketch");
@@ -24,6 +25,7 @@ export default function ImageToSketchTool() {
         <HowTo />
         <PrivacyNote />
         <FAQ />
+        <RelatedArticles toolId="image-to-sketch" />
         <RelatedTools />
       </div>
     </>

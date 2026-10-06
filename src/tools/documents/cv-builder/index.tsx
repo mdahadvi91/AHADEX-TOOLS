@@ -9,6 +9,7 @@ import { CVBuilderPrivacyNote } from "./components/PrivacyNote";
 import { CVBuilderFAQ } from "./components/FAQ";
 import { CVBuilderRelatedTools } from "./components/RelatedTools";
 import { RecommendedProducts } from "@components/affiliate/RecommendedProducts";
+import { RelatedArticles } from "@components/blog/RelatedArticles";
 
 export default function CVBuilderTool() {
   useToolAnalytics("cv-builder");
@@ -26,6 +27,9 @@ export default function CVBuilderTool() {
         <CVBuilderFAQ />
         <div className="pb-16">
           <CVBuilderRelatedTools />
+        </div>
+        <div className="mx-auto max-w-[1200px] px-4 sm:px-6 lg:px-8">
+          <RelatedArticles toolId="cv-builder" />
         </div>
       </div>
     </>
