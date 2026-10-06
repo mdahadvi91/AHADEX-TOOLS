@@ -18,3 +18,4 @@ User-agent: AdsBot-Google
 Allow: /
 
 Sitemap: https://ahadex.fun/sitemap.xml
+Sitemap: https://ahadex.fun/rss.xml

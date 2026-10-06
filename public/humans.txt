@@ -1,17 +1,11 @@
 /* TEAM */
-  Developer: AHADEX
-  Contact: mdahadvi91@gmail.com
-  Location: Remote
+    Author: Mohammad Ahad
+    Contact: mdahadvi91@gmail.com
+    Location: Dubai, United Arab Emirates
 
 /* SITE */
-  Last update: 2025/10/02
-  Language: English, Bengali
-  Doctype: HTML5
-  IDE: VS Code + Vim
-  Framework: React 18 + TypeScript + Vite
-  Hosting: Cloudflare Pages
-  Components: Tailwind CSS, Framer Motion
-
-/* THANKS */
-  Icons: Lucide, React Icons
-  Fonts: Google Fonts, Fontshare
+    Last update: 2026/10/06
+    Language: English, Bengali
+    Doctype: HTML5
+    IDE: VS Code
+    Standards: HTML5, CSS3, ES2020

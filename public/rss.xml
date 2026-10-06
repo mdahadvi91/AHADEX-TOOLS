@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>AHADEX Tools Blog</title>
+    <link>https://ahadex.fun/blog</link>
+    <description>Guides, tips, and tutorials for AHADEX Tools — free browser-based utilities.</description>
+    <language>en-us</language>
+    <lastBuildDate>Tue, 06 Oct 2026 14:44:34 GMT</lastBuildDate>
+    <atom:link href="https://ahadex.fun/rss.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>How to Compress Images Without Losing Quality (2026 Guide)</title>
+      <link>https://ahadex.fun/blog/how-to-compress-images-without-losing-quality</link>
+      <guid isPermaLink="true">https://ahadex.fun/blog/how-to-compress-images-without-losing-quality</guid>
+      <pubDate>Tue, 06 Oct 2026 00:00:00 GMT</pubDate>
+      <description>Learn how to reduce image file sizes by 70-90% while keeping them looking sharp. A complete guide to image compression for web, email, and social media.</description>
+      <category>Image Tools</category>
+    </item>
+    <item>
+      <title>Merge PDF Files Online: The Complete 2026 Guide</title>
+      <link>https://ahadex.fun/blog/merge-pdf-files-online-complete-guide</link>
+      <guid isPermaLink="true">https://ahadex.fun/blog/merge-pdf-files-online-complete-guide</guid>
+      <pubDate>Tue, 06 Oct 2026 00:00:00 GMT</pubDate>
+      <description>Learn how to combine multiple PDF files into one document. Covers ordering, security, file size optimization, and why browser-based merging is safer than cloud tools.</description>
+      <category>PDF Tools</category>
+    </item>
+    <item>
+      <title>JSON Formatter: Why Every Developer Needs One (2026)</title>
+      <link>https://ahadex.fun/blog/json-formatter-complete-developer-guide</link>
+      <guid isPermaLink="true">https://ahadex.fun/blog/json-formatter-complete-developer-guide</guid>
+      <pubDate>Tue, 06 Oct 2026 00:00:00 GMT</pubDate>
+      <description>JSON is the lingua franca of modern APIs. Learn how to format, validate, minify, and debug JSON quickly — with a free browser-based tool that never sends your data anywhere.</description>
+      <category>Developer Tools</category>
+    </item>
+    <item>
+      <title>How to Create Unbreakable Passwords (2026 Guide)</title>
+      <link>https://ahadex.fun/blog/strong-password-generator-complete-guide</link>
+      <guid isPermaLink="true">https://ahadex.fun/blog/strong-password-generator-complete-guide</guid>
+      <pubDate>Tue, 06 Oct 2026 00:00:00 GMT</pubDate>
+      <description>Most passwords are cracked in seconds. Learn what makes a password truly strong, how entropy works, and how to generate passwords that resist modern attacks.</description>
+      <category>Security</category>
+    </item>
+    <item>
+      <title>Base64 Encoding Explained: A Practical Guide</title>
+      <link>https://ahadex.fun/blog/base64-encoding-explained-beginner-guide</link>
+      <guid isPermaLink="true">https://ahadex.fun/blog/base64-encoding-explained-beginner-guide</guid>
+      <pubDate>Tue, 06 Oct 2026 00:00:00 GMT</pubDate>
+      <description>Base64 is everywhere — in emails, data URLs, JWTs, and APIs. Learn what it actually is, when to use it, when not to use it, and how to encode safely in your browser.</description>
+      <category>Developer Tools</category>
+    </item>
+    <item>
+      <title>JPG vs PNG vs WebP: Which Format Should You Use in 2026?</title>
+      <link>https://ahadex.fun/blog/jpg-vs-png-vs-webp-which-format</link>
+      <guid isPermaLink="true">https://ahadex.fun/blog/jpg-vs-png-vs-webp-which-format</guid>
+      <pubDate>Tue, 06 Oct 2026 00:00:00 GMT</pubDate>
+      <description>Choosing the wrong image format costs you bandwidth, quality, and SEO. This guide compares JPG, PNG, WebP, and AVIF with real-world examples and decision rules.</description>
+      <category>Image Tools</category>
+    </item>
+    <item>
+      <title>How to Convert JPG to PDF: The Complete 2026 Guide</title>
+      <link>https://ahadex.fun/blog/convert-jpg-to-pdf-complete-guide</link>
+      <guid isPermaLink="true">https://ahadex.fun/blog/convert-jpg-to-pdf-complete-guide</guid>
+      <pubDate>Tue, 06 Oct 2026 00:00:00 GMT</pubDate>
+      <description>Convert photos and scans into professional PDF documents. Covers quality settings, multi-page workflows, file size optimization, and privacy-safe browser-based conversion.</description>
+      <category>PDF Tools</category>
+    </item>
+    <item>
+      <title>UUID v4 vs v7: When to Use Each (Developer Guide)</title>
+      <link>https://ahadex.fun/blog/uuid-v4-vs-v7-when-to-use-each</link>
+      <guid isPermaLink="true">https://ahadex.fun/blog/uuid-v4-vs-v7-when-to-use-each</guid>
+      <pubDate>Tue, 06 Oct 2026 00:00:00 GMT</pubDate>
+      <description>UUIDs are not all equal. Learn the difference between random v4, time-ordered v7, and when each one is the right choice for databases, APIs, and distributed systems.</description>
+      <category>Developer Tools</category>
+    </item>
+    <item>
+      <title>QR Codes for Business Cards and Marketing: Best Practices</title>
+      <link>https://ahadex.fun/blog/qr-codes-business-cards-marketing</link>
+      <guid isPermaLink="true">https://ahadex.fun/blog/qr-codes-business-cards-marketing</guid>
+      <pubDate>Tue, 06 Oct 2026 00:00:00 GMT</pubDate>
+      <description>QR codes are back. Learn how to use them effectively on business cards, product packaging, and marketing materials — with real design and placement rules.</description>
+      <category>QR Tools</category>
+    </item>
+    <item>
+      <title>Word Count Guide: How Many Words Should Your Content Be?</title>
+      <link>https://ahadex.fun/blog/word-count-guide-writing-content</link>
+      <guid isPermaLink="true">https://ahadex.fun/blog/word-count-guide-writing-content</guid>
+      <pubDate>Tue, 06 Oct 2026 00:00:00 GMT</pubDate>
+      <description>Blog posts, product descriptions, meta descriptions, emails — each format has an optimal word count. Here is the data-backed breakdown for 2026.</description>
+      <category>Text Tools</category>
+    </item>
+    <item>
+      <title>Perfect Image Sizes for Instagram, Facebook, Twitter &amp; LinkedIn (2026)</title>
+      <link>https://ahadex.fun/blog/image-sizes-social-media-2026-guide</link>
+      <guid isPermaLink="true">https://ahadex.fun/blog/image-sizes-social-media-2026-guide</guid>
+      <pubDate>Tue, 06 Oct 2026 00:00:00 GMT</pubDate>
+      <description>Wrong image size kills engagement. Here is the complete 2026 reference for every major social platform — with pixel dimensions, aspect ratios, and file size limits.</description>
+      <category>Image Tools</category>
+    </item>
+    <item>
+      <title>PDF to JPG: When, Why, and How to Convert (Complete Guide)</title>
+      <link>https://ahadex.fun/blog/pdf-to-jpg-when-and-why</link>
+      <guid isPermaLink="true">https://ahadex.fun/blog/pdf-to-jpg-when-and-why</guid>
+      <pubDate>Tue, 06 Oct 2026 00:00:00 GMT</pubDate>
+      <description>PDF is perfect for documents, JPG is perfect for images. Learn when to convert between them, how to preserve quality, and how to do it privately in your browser.</description>
+      <category>PDF Tools</category>
+    </item>
+    <item>
+      <title>JSON vs XML: Which Should You Use in 2026?</title>
+      <link>https://ahadex.fun/blog/json-vs-xml-complete-comparison</link>
+      <guid isPermaLink="true">https://ahadex.fun/blog/json-vs-xml-complete-comparison</guid>
+      <pubDate>Tue, 06 Oct 2026 00:00:00 GMT</pubDate>
+      <description>Two data formats, one war that has already been decided. Learn when XML still wins, why JSON dominates APIs, and how to choose for your project.</description>
+      <category>Developer Tools</category>
+    </item>
+    <item>
+      <title>Favicon Complete Guide: Create Website Icons That Convert</title>
+      <link>https://ahadex.fun/blog/favicon-complete-guide-website-icons</link>
+      <guid isPermaLink="true">https://ahadex.fun/blog/favicon-complete-guide-website-icons</guid>
+      <pubDate>Tue, 06 Oct 2026 00:00:00 GMT</pubDate>
+      <description>Your favicon is the smallest brand asset with the biggest impact. Learn how to design, generate, and install favicons for modern browsers, Apple devices, and PWAs.</description>
+      <category>Image Tools</category>
+    </item>
+    <item>
+      <title>URL Encoding Explained: Special Characters &amp; Best Practices</title>
+      <link>https://ahadex.fun/blog/url-encoding-explained-special-characters</link>
+      <guid isPermaLink="true">https://ahadex.fun/blog/url-encoding-explained-special-characters</guid>
+      <pubDate>Tue, 06 Oct 2026 00:00:00 GMT</pubDate>
+      <description>Every %20 you have ever typed into a URL came from URL encoding. Learn what needs encoding, why, and how to handle it correctly in every language.</description>
+      <category>Developer Tools</category>
+    </item>
+    <item>
+      <title>Twitter/X Character Limit Guide 2026: How Many Characters Can You Post?</title>
+      <link>https://ahadex.fun/blog/twitter-character-limit-guide-2026</link>
+      <guid isPermaLink="true">https://ahadex.fun/blog/twitter-character-limit-guide-2026</guid>
+      <pubDate>Tue, 06 Oct 2026 00:00:00 GMT</pubDate>
+      <description>Twitter/X has different limits for tweets, bios, DMs, and display names. Here is the complete 2026 reference — plus tips for staying under the limit.</description>
+      <category>Text Tools</category>
+    </item>
+    <item>
+      <title>Barcode vs QR Code: Which One Should You Use?</title>
+      <link>https://ahadex.fun/blog/barcode-vs-qr-code-when-to-use</link>
+      <guid isPermaLink="true">https://ahadex.fun/blog/barcode-vs-qr-code-when-to-use</guid>
+      <pubDate>Tue, 06 Oct 2026 00:00:00 GMT</pubDate>
+      <description>Barcodes and QR codes look similar but serve different purposes. Learn when to use 1D barcodes, when to use QR codes, and how to generate both for free.</description>
+      <category>QR Tools</category>
+    </item>
+    <item>
+      <title>Title Case vs Sentence Case: A Complete Writing Guide</title>
+      <link>https://ahadex.fun/blog/title-case-vs-sentence-case-writing-guide</link>
+      <guid isPermaLink="true">https://ahadex.fun/blog/title-case-vs-sentence-case-writing-guide</guid>
+      <pubDate>Tue, 06 Oct 2026 00:00:00 GMT</pubDate>
+      <description>Not sure whether to capitalize &apos;the&apos; or &apos;of&apos; in your title? This guide covers every rule of title case, sentence case, and when each one is correct.</description>
+      <category>Text Tools</category>
+    </item>
+    <item>
+      <title>How to Convert Photos to Sketches and Cartoons (Complete Guide)</title>
+      <link>https://ahadex.fun/blog/image-to-sketch-cartoon-how-it-works</link>
+      <guid isPermaLink="true">https://ahadex.fun/blog/image-to-sketch-cartoon-how-it-works</guid>
+      <pubDate>Tue, 06 Oct 2026 00:00:00 GMT</pubDate>
+      <description>Turn any photo into a pencil sketch or cartoon illustration in seconds. Learn how the algorithms work, what makes a good source photo, and how to do it privately.</description>
+      <category>Image Tools</category>
+    </item>
+    <item>
+      <title>Image Cropping Guide: Aspect Ratios for Every Platform (2026)</title>
+      <link>https://ahadex.fun/blog/image-cropping-guide-aspect-ratios</link>
+      <guid isPermaLink="true">https://ahadex.fun/blog/image-cropping-guide-aspect-ratios</guid>
+      <pubDate>Tue, 06 Oct 2026 00:00:00 GMT</pubDate>
+      <description>Cropping is the difference between a photo that fits and one that looks stretched. Learn every common aspect ratio and when to use each one.</description>
+      <category>Image Tools</category>
+    </item>
+  </channel>
+</rss>
