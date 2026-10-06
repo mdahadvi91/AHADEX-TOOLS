@@ -1,7 +1,14 @@
 import { useMemo, useState } from "react";
-import { Copy, ClipboardCheck, Trash2, ArrowRight, Type } from "lucide-react";
+import { motion } from "framer-motion";
+import {
+  ArrowRight,
+  Type,
+  Sparkles,
+} from "lucide-react";
 import { useLanguage } from "@contexts/LanguageContext";
+import { useSound } from "@contexts/SoundContext";
 import { cn } from "@lib/cn";
+import { TextPanel, WorkspacePanel } from "@components/workspace";
 import { convert, formatNumber, MAX_CHARS } from "../logic";
 import type { CaseType, CaseDefinition } from "../types";
 
@@ -22,7 +29,9 @@ const CASES: CaseDefinition[] = [
 
 export function Workspace() {
   const { language } = useLanguage();
+  const { play } = useSound();
   const bn = language === "bn";
+
   const [input, setInput] = useState("");
   const [active, setActive] = useState<CaseType>("upper");
   const [copied, setCopied] = useState(false);
@@ -35,8 +44,11 @@ export function Workspace() {
     try {
       await navigator.clipboard.writeText(output);
       setCopied(true);
+      play("success");
       setTimeout(() => setCopied(false), 2000);
-    } catch { /* ignore */ }
+    } catch {
+      /* ignore */
+    }
   };
 
   const clear = () => {
@@ -44,93 +56,134 @@ export function Workspace() {
     setCopied(false);
   };
 
-  return (
-    <section className="pb-12 space-y-4">
-      {/* Case buttons */}
-      <div className="rounded-2xl bg-white/70 dark:bg-dark-surface/70 backdrop-blur-xl border border-silk-rose/20 p-3">
-        <p className="text-[10px] uppercase tracking-wider font-semibold text-silk-wine/70 dark:text-silk-rose/60 mb-2">
-          {bn ? "কেস স্টাইল" : "Case style"}
-        </p>
-        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-2">
-          {CASES.map((c) => (
-            <button
-              key={c.id}
-              type="button"
-              onClick={() => setActive(c.id)}
-              className={cn(
-                "h-14 rounded-lg border text-left px-3 transition-all",
-                active === c.id
-                  ? "bg-silk-rose/15 border-silk-rose/50 text-silk-wine dark:text-silk-rose-soft"
-                  : "bg-silk-rose/5 border-silk-rose/15 text-light-textSecondary dark:text-dark-textSecondary hover:border-silk-rose/40"
-              )}
-            >
-              <div className="text-[11px] sm:text-[12px] font-semibold text-light-text dark:text-dark-text">
-                {c.label}
-              </div>
-              <div className="text-[9px] sm:text-[10px] font-mono mt-0.5 opacity-60 truncate">
-                {c.example}
-              </div>
-            </button>
-          ))}
-        </div>
-      </div>
+  const activeCase = CASES.find((c) => c.id === active);
 
-      {/* Input */}
-      <div className="rounded-2xl bg-white/70 dark:bg-dark-surface/70 backdrop-blur-xl border border-silk-rose/20 overflow-hidden">
-        <div className="flex items-center justify-between gap-2 px-4 py-2.5 border-b border-silk-rose/15">
-          <span className="text-[11px] font-semibold text-light-text dark:text-dark-text">
-            {bn ? "ইনপুট" : "Input"}
+  return (
+    <section className="pb-12 space-y-4 sm:space-y-5">
+      {/* ── Case style grid ── */}
+      <WorkspacePanel className="p-3.5 sm:p-4 space-y-3">
+        <div className="flex items-center gap-2">
+          <span className="w-7 h-7 rounded-lg bg-silk-rose/15 border border-silk-rose/25 flex items-center justify-center">
+            <Sparkles className="w-3.5 h-3.5 text-silk-rose" />
           </span>
-          {input.length > 0 && (
-            <button type="button" onClick={clear} className="inline-flex items-center gap-1 text-[11px] text-red-500 hover:bg-red-500/10 px-2 py-1 rounded-md transition-colors">
-              <Trash2 className="w-3 h-3" />
-              {bn ? "মুছুন" : "Clear"}
-            </button>
+          <span className="text-[12px] sm:text-sm font-bold text-light-text dark:text-dark-text">
+            {bn ? "কেস স্টাইল" : "Case style"}
+          </span>
+          {activeCase && (
+            <span className="ml-auto text-[10px] font-mono font-bold text-silk-rose bg-silk-rose/10 px-2 py-0.5 rounded-md">
+              {activeCase.label}
+            </span>
           )}
         </div>
-        <textarea
-          value={input}
-          onChange={(e) => setInput(e.target.value)}
-          placeholder={bn ? "এখানে আপনার টেক্সট পেস্ট বা টাইপ করুন..." : "Paste or type your text here..."}
-          spellCheck={false}
-          className="w-full min-h-[160px] p-4 resize-y bg-transparent text-[14px] leading-relaxed text-light-text dark:text-dark-text placeholder:text-lightTextSecondary/50 dark:placeholder:text-darkTextSecondary/40 outline-none"
-        />
+
+        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-2">
+          {CASES.map((c, i) => {
+            const isActive = active === c.id;
+            return (
+              <motion.button
+                key={c.id}
+                type="button"
+                onClick={() => {
+                  setActive(c.id);
+                  play("click");
+                }}
+                initial={{ opacity: 0, y: 6 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.3, delay: Math.min(i * 0.03, 0.3) }}
+                className={cn(
+                  "relative h-[58px] rounded-xl border text-left px-3 overflow-hidden transition-all duration-300",
+                  isActive
+                    ? "bg-gradient-to-br from-silk-rose/20 via-silk-rose/10 to-silk-gold/10 border-silk-rose/50 shadow-[0_10px_24px_-12px_rgba(139,58,79,0.5)]"
+                    : "bg-silk-rose/5 border-silk-rose/15 hover:border-silk-rose/40 hover:bg-silk-rose/8"
+                )}
+              >
+                {isActive && (
+                  <span
+                    aria-hidden="true"
+                    className="absolute -top-6 -right-6 w-16 h-16 rounded-full bg-silk-rose/25 blur-2xl pointer-events-none"
+                  />
+                )}
+                <div
+                  className={cn(
+                    "relative text-[11px] sm:text-[12px] font-bold",
+                    isActive
+                      ? "text-silk-wine dark:text-silk-rose-soft"
+                      : "text-light-text dark:text-dark-text"
+                  )}
+                >
+                  {c.label}
+                </div>
+                <div className="relative text-[9px] sm:text-[10px] font-mono mt-0.5 opacity-60 truncate text-light-textSecondary dark:text-dark-textSecondary">
+                  {c.example}
+                </div>
+              </motion.button>
+            );
+          })}
+        </div>
+      </WorkspacePanel>
+
+      {/* ── Input ── */}
+      <TextPanel
+        label={bn ? "ইনপুট" : "Input"}
+        value={input}
+        onChange={setInput}
+        placeholder={
+          bn
+            ? "এখানে আপনার টেক্সট পেস্ট বা টাইপ করুন..."
+            : "Paste or type your text here..."
+        }
+        minHeight="min-h-[160px]"
+        mono={false}
+        onClear={input.length > 0 ? clear : undefined}
+        meta={
+          input.length > 0
+            ? `${formatNumber(input.length)} / ${formatNumber(MAX_CHARS)}`
+            : undefined
+        }
+      >
         {overLimit && (
-          <div className="px-4 py-2 text-[11px] text-red-500 border-t border-red-500/20 bg-red-500/5">
-            {bn ? `সর্বোচ্চ ${formatNumber(MAX_CHARS)} অক্ষর।` : `Max ${formatNumber(MAX_CHARS)} characters.`}
+          <div className="mx-4 mb-4 px-3.5 py-2.5 rounded-lg text-[11px] font-bold text-red-600 dark:text-red-400 bg-red-500/10 border border-red-500/30">
+            {bn
+              ? `সর্বোচ্চ ${formatNumber(MAX_CHARS)} অক্ষর।`
+              : `Max ${formatNumber(MAX_CHARS)} characters.`}
           </div>
         )}
-      </div>
+      </TextPanel>
 
-      {/* Arrow indicator */}
+      {/* ── Arrow indicator ── */}
       {input && (
         <div className="flex justify-center">
-          <ArrowRight className="w-4 h-4 text-silk-rose/60 rotate-90" />
+          <motion.div
+            initial={{ opacity: 0, scale: 0.8 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.3 }}
+            className="w-8 h-8 rounded-full bg-silk-rose/15 border border-silk-rose/30 flex items-center justify-center"
+          >
+            <ArrowRight className="w-4 h-4 text-silk-rose rotate-90" />
+          </motion.div>
         </div>
       )}
 
-      {/* Output */}
+      {/* ── Output ── */}
       {output && (
-        <div className="rounded-2xl bg-white/70 dark:bg-dark-surface/70 backdrop-blur-xl border border-silk-rose/20 overflow-hidden">
-          <div className="flex items-center justify-between gap-2 px-4 py-2.5 border-b border-silk-rose/15">
-            <span className="text-[11px] font-semibold text-light-text dark:text-dark-text">
-              {bn ? "আউটপুট" : "Output"}
-            </span>
-            <button type="button" onClick={() => void handleCopy()} className="inline-flex items-center gap-1.5 h-8 px-2.5 rounded-lg bg-silk-rose/10 border border-silk-rose/25 text-[11px] font-medium text-silk-rose hover:bg-silk-rose/20 transition-all">
-              {copied ? <ClipboardCheck className="w-3.5 h-3.5" /> : <Copy className="w-3.5 h-3.5" />}
-              {copied ? (bn ? "কপি হয়েছে" : "Copied") : (bn ? "কপি" : "Copy")}
-            </button>
-          </div>
-          <pre className="p-4 min-h-[120px] max-h-[360px] overflow-auto text-[14px] leading-relaxed text-light-text dark:text-dark-text whitespace-pre-wrap break-words">
-            {output}
-          </pre>
-        </div>
+        <TextPanel
+          label={`${bn ? "আউটপুট" : "Output"} · ${activeCase?.label ?? ""}`}
+          value={output}
+          readOnly
+          copied={copied}
+          onCopy={handleCopy}
+          minHeight="min-h-[120px]"
+          mono={false}
+        />
       )}
 
+      {/* ── Empty state ── */}
       {!input && (
         <div className="flex items-center justify-center gap-2 text-[11px] sm:text-xs text-lightTextSecondary dark:text-dark-textSecondary">
           <Type className="w-3.5 h-3.5 text-silk-rose" />
-          {bn ? "আপনার টেক্সট ব্রাউজারেই প্রসেস হয়" : "Your text is processed in your browser"}
+          {bn
+            ? "আপনার টেক্সট ব্রাউজারেই প্রসেস হয়"
+            : "Your text is processed in your browser"}
         </div>
       )}
     </section>
