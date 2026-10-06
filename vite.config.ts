@@ -68,9 +68,6 @@ export default defineConfig(({ mode }) => {
             if (id.includes("exifr")) {
               return "exif";
             }
-            if (id.includes("three")) {
-              return "three";
-            }
             if (id.includes("qrcode") || id.includes("jsbarcode") || id.includes("jsqr")) {
               return "qr-libs";
             }
@@ -128,7 +125,6 @@ export default defineConfig(({ mode }) => {
         "pdfjs-dist",
         "pdf-lib",
         "jspdf",
-        "three",
         "exifr",
       ],
     },
