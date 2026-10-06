@@ -258,6 +258,33 @@ export default function BlogPostPage() {
         </motion.div>
       )}
 
+      {/* Author Bio */}
+      <motion.div
+        initial={{ opacity: 0, y: 12 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        className="mt-12 p-6 rounded-3xl bg-white/70 dark:bg-dark-surface/70 backdrop-blur-xl border border-silk-rose/20"
+      >
+        <div className="flex items-start gap-4">
+          <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-silk-rose via-silk-rose-deep to-silk-wine flex items-center justify-center text-white font-black text-xl shrink-0">
+            MA
+          </div>
+          <div className="flex-1 min-w-0">
+            <p className="text-[10px] font-black uppercase tracking-[0.2em] text-silk-wine dark:text-silk-rose-soft mb-1">
+              {bn ? "লেখক" : "Written by"}
+            </p>
+            <h3 className="font-serif font-black text-lg text-light-text dark:text-dark-text mb-1">
+              Mohammad Ahad
+            </h3>
+            <p className="text-[12px] text-light-textSecondary dark:text-dark-textSecondary leading-relaxed">
+              {bn
+                ? "স্বাধীন ডেভেলপার ও AHADEX Tools-এর প্রতিষ্ঠাতা। দুবাই, UAE-তে অবস্থিত। ফ্রি ব্রাউজার-বেইজড টুল এবং প্রাইভেসি-ফোকাসড ওয়েব অ্যাপ্লিকেশন তৈরিতে বিশেষজ্ঞ।"
+                : "Independent developer and founder of AHADEX Tools. Based in Dubai, UAE. Focused on building free browser-based tools and privacy-first web applications."}
+            </p>
+          </div>
+        </div>
+      </motion.div>
+
       {/* Other posts */}
       {otherPosts.length > 0 && (
         <div className="mt-16 pt-10 border-t border-silk-rose/15">
