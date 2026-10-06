@@ -201,8 +201,37 @@ export const onRequest: PagesFunction<Env> = async (context) => {
     }
   }
 
-  /* No meta match — pass through SPA */
+  /* No meta match — check if route is known */
   if (!meta) {
+    // Known route prefixes (SPA will handle these)
+    const knownPrefixes = [
+      "/tools/",
+      "/blog/",
+      "/tools",
+      "/blog",
+    ];
+    const isKnownRoute =
+      STATIC_META[pathname] ||
+      knownPrefixes.some((p) => pathname === p || pathname.startsWith(p));
+
+    // Return 404 with proper status for unknown routes
+    if (!isKnownRoute) {
+      const html = await fetchIndexHtml(url, context.request, context.env);
+      if (html) {
+        const injected = html.replace(
+          "</head>",
+          `<meta name="robots" content="noindex, follow" /><link rel="canonical" href="${SITE_URL}/404" /><title>Page Not Found | AHADEX Tools</title></head>`
+        );
+        return new Response(injected, {
+          status: 404,
+          headers: {
+            "content-type": "text/html; charset=utf-8",
+            "cache-control": "public, max-age=60",
+          },
+        });
+      }
+    }
+
     return context.next();
   }
 
