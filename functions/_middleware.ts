@@ -147,13 +147,17 @@ export const onRequest: PagesFunction<Env> = async (context) => {
     return context.next();
   }
 
-  /* 0. Editor routes → force noindex */
+  /* 0. Editor routes → force noindex + precise canonical to parent tool */
   if (isEditorRoute(pathname)) {
+    const editorMatch = pathname.match(/^\/tools\/(cv-builder|visiting-card)\/edit\//);
+    const parentSlug = editorMatch ? editorMatch[1] : "tools";
+    const canonical = `${SITE_URL}/tools/${parentSlug}`;
+
     const html = await fetchIndexHtml(url, context.request, context.env);
     if (!html) return context.next();
     const injected = html.replace(
       "</head>",
-      `<meta name="robots" content="noindex, follow" /><link rel="canonical" href="${SITE_URL}/tools" /></head>`
+      `<meta name="robots" content="noindex, follow" /><link rel="canonical" href="${canonical}" /></head>`
     );
     return new Response(injected, {
       status: 200,
