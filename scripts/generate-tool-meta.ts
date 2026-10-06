@@ -1,42 +1,127 @@
 /* ============================================================
- * Tool Meta Generator
+ * Meta Generator for Cloudflare Middleware
  * ------------------------------------------------------------
- * Reads:  src/data/tools.ts
- * Writes: functions/_data.ts (compact meta map for middleware)
- *
- * Run:  npm run tool:meta
- * Auto: runs before `npm run build` and in Cloudflare
+ * Generates functions/_data.ts containing:
+ *   - TOOL_META: tool page meta (per slug)
+ *   - STATIC_META: static page meta (per path)
+ *   - BLOG_META: blog post meta (per slug)
  * ============================================================ */
 
 import { existsSync, mkdirSync, writeFileSync } from "node:fs";
 import { resolve } from "node:path";
 import { tools } from "../src/data/tools";
+import { blogPosts } from "../src/data/blog";
 
 const OUT_DIR = resolve(process.cwd(), "functions");
 const OUT_FILE = resolve(OUT_DIR, "_data.ts");
 
 if (!existsSync(OUT_DIR)) mkdirSync(OUT_DIR, { recursive: true });
 
-const entries = tools
+/* ── Tool meta ── */
+const toolEntries = tools
   .map((t) => {
     const slug = t.path.replace(/^\/tools\//, "");
     const title = t.seo?.title || `${t.name} — Free | AHADEX Tools`;
     const description = t.seo?.description || t.description;
-    const ogImage = t.seo?.ogImage || "/images/og/default-og.svg";
-    return `  ${JSON.stringify(slug)}: {
-    name: ${JSON.stringify(t.name)},
-    path: ${JSON.stringify(t.path)},
-    title: ${JSON.stringify(title)},
-    description: ${JSON.stringify(description)},
-    ogImage: ${JSON.stringify(ogImage)},
-  },`;
+    const ogImage = t.seo?.ogImage || "/images/og/default-og.png";
+    return `  ${JSON.stringify(slug)}: { name: ${JSON.stringify(t.name)}, path: ${JSON.stringify(t.path)}, title: ${JSON.stringify(title)}, description: ${JSON.stringify(description)}, ogImage: ${JSON.stringify(ogImage)} },`;
   })
   .join("\n");
 
+/* ── Static page meta ── */
+const staticPages: Record<string, { title: string; description: string; ogImage: string }> = {
+  "/": {
+    title: "AHADEX Tools — Free, Fast, Private Online Tools",
+    description: "Free, fast and private online tools for everyday digital tasks. Everything runs in your browser.",
+    ogImage: "/images/og/home-og.png",
+  },
+  "/tools": {
+    title: "All Tools — Free Online Utilities | AHADEX Tools",
+    description: "Browse 36+ free browser-based tools for images, PDFs, text, and developer tasks.",
+    ogImage: "/images/og/home-og.png",
+  },
+  "/about": {
+    title: "About | AHADEX Tools",
+    description: "Learn about AHADEX Tools — a collection of free, privacy-first browser utilities.",
+    ogImage: "/images/og/home-og.png",
+  },
+  "/contact": {
+    title: "Contact Us | AHADEX Tools",
+    description: "Get in touch with the AHADEX Tools team.",
+    ogImage: "/images/og/home-og.png",
+  },
+  "/privacy": {
+    title: "Privacy Policy | AHADEX Tools",
+    description: "How AHADEX Tools handles your data — spoiler: we don't collect any.",
+    ogImage: "/images/og/home-og.png",
+  },
+  "/terms": {
+    title: "Terms of Service | AHADEX Tools",
+    description: "Terms of service for using AHADEX Tools.",
+    ogImage: "/images/og/home-og.png",
+  },
+  "/disclaimer": {
+    title: "Disclaimer | AHADEX Tools",
+    description: "Disclaimer for AHADEX Tools.",
+    ogImage: "/images/og/home-og.png",
+  },
+  "/accessibility": {
+    title: "Accessibility Statement | AHADEX Tools",
+    description: "Our commitment to accessibility on AHADEX Tools.",
+    ogImage: "/images/og/home-og.png",
+  },
+  "/cookie-policy": {
+    title: "Cookie Policy | AHADEX Tools",
+    description: "How we use cookies on AHADEX Tools.",
+    ogImage: "/images/og/home-og.png",
+  },
+  "/editorial-policy": {
+    title: "Editorial Policy | AHADEX Tools",
+    description: "Our editorial standards and content review process.",
+    ogImage: "/images/og/home-og.png",
+  },
+  "/affiliate-disclosure": {
+    title: "Affiliate Disclosure | AHADEX Tools",
+    description: "How we earn from affiliate links at no cost to you.",
+    ogImage: "/images/og/home-og.png",
+  },
+  "/sitemap": {
+    title: "Sitemap | AHADEX Tools",
+    description: "All pages and tools on AHADEX Tools.",
+    ogImage: "/images/og/home-og.png",
+  },
+  "/blog": {
+    title: "Blog — Guides & Tutorials | AHADEX Tools",
+    description: "In-depth guides on image optimization, PDF workflows, developer tips, and digital security.",
+    ogImage: "/images/og/home-og.png",
+  },
+  "/404": {
+    title: "Page Not Found | AHADEX Tools",
+    description: "The page you were looking for could not be found.",
+    ogImage: "/images/og/home-og.png",
+  },
+};
+
+const staticEntries = Object.entries(staticPages)
+  .map(
+    ([path, m]) =>
+      `  ${JSON.stringify(path)}: { title: ${JSON.stringify(m.title)}, description: ${JSON.stringify(m.description)}, ogImage: ${JSON.stringify(m.ogImage)} },`
+  )
+  .join("\n");
+
+/* ── Blog meta ── */
+const blogEntries = blogPosts
+  .map((p) => {
+    const path = `/blog/${p.slug}`;
+    return `  ${JSON.stringify(p.slug)}: { path: ${JSON.stringify(path)}, title: ${JSON.stringify(p.title)}, description: ${JSON.stringify(p.excerpt)}, ogImage: "/images/og/home-og.png" },`;
+  })
+  .join("\n");
+
+/* ── Write file ── */
 const file = `/* ============================================================
  * AUTO-GENERATED — do not edit by hand
  * Generated by scripts/generate-tool-meta.ts
- * Source: src/data/tools.ts
+ * Sources: src/data/tools.ts + src/data/blog.ts
  * ============================================================ */
 
 export interface ToolMeta {
@@ -47,10 +132,33 @@ export interface ToolMeta {
   ogImage: string;
 }
 
+export interface StaticMeta {
+  title: string;
+  description: string;
+  ogImage: string;
+}
+
+export interface BlogMeta {
+  path: string;
+  title: string;
+  description: string;
+  ogImage: string;
+}
+
 export const TOOL_META: Record<string, ToolMeta> = {
-${entries}
+${toolEntries}
+};
+
+export const STATIC_META: Record<string, StaticMeta> = {
+${staticEntries}
+};
+
+export const BLOG_META: Record<string, BlogMeta> = {
+${blogEntries}
 };
 `;
 
 writeFileSync(OUT_FILE, file, "utf-8");
-console.log(`✅ Generated ${tools.length} tool meta entries → ${OUT_FILE}`);
+console.log(
+  `✅ Generated meta → ${OUT_FILE}\n   Tools: ${tools.length}, Static: ${Object.keys(staticPages).length}, Blog: ${blogPosts.length}`
+);

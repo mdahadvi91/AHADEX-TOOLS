@@ -5,7 +5,7 @@
     <link>https://ahadex.fun/blog</link>
     <description>Guides, tips, and tutorials for AHADEX Tools — free browser-based utilities.</description>
     <language>en-us</language>
-    <lastBuildDate>Tue, 06 Oct 2026 15:27:00 GMT</lastBuildDate>
+    <lastBuildDate>Tue, 06 Oct 2026 20:23:24 GMT</lastBuildDate>
     <atom:link href="https://ahadex.fun/rss.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>How to Compress Images Without Losing Quality (2026 Guide)</title>
@@ -165,6 +165,134 @@
       <guid isPermaLink="true">https://ahadex.fun/blog/image-cropping-guide-aspect-ratios</guid>
       <pubDate>Tue, 06 Oct 2026 00:00:00 GMT</pubDate>
       <description>Cropping is the difference between a photo that fits and one that looks stretched. Learn every common aspect ratio and when to use each one.</description>
+      <category>Image Tools</category>
+    </item>
+    <item>
+      <title>How to Reduce PDF File Size Without Losing Quality</title>
+      <link>https://ahadex.fun/blog/how-to-reduce-pdf-file-size</link>
+      <guid isPermaLink="true">https://ahadex.fun/blog/how-to-reduce-pdf-file-size</guid>
+      <pubDate>Tue, 06 Oct 2026 00:00:00 GMT</pubDate>
+      <description>Large PDFs are difficult to email, upload, and archive. Learn every legitimate way to shrink a PDF — from image compression to font subsetting — without ruining readability.</description>
+      <category>PDF Tools</category>
+    </item>
+    <item>
+      <title>Best Free Online Tools Every Student Needs in 2026</title>
+      <link>https://ahadex.fun/blog/best-free-tools-for-students-2026</link>
+      <guid isPermaLink="true">https://ahadex.fun/blog/best-free-tools-for-students-2026</guid>
+      <pubDate>Tue, 06 Oct 2026 00:00:00 GMT</pubDate>
+      <description>From PDF merging to CV building, here are the free online tools that save students hours every week — all browser-based, no signup, no uploads.</description>
+      <category>Productivity</category>
+    </item>
+    <item>
+      <title>What Is EXIF Metadata? (And Why It Can Leak Your Privacy)</title>
+      <link>https://ahadex.fun/blog/what-is-exif-metadata-privacy-guide</link>
+      <guid isPermaLink="true">https://ahadex.fun/blog/what-is-exif-metadata-privacy-guide</guid>
+      <pubDate>Tue, 06 Oct 2026 00:00:00 GMT</pubDate>
+      <description>Every photo you take contains hidden data — location, camera, timestamp, and more. Learn what EXIF is, what it reveals, and how to remove it before sharing.</description>
+      <category>Privacy</category>
+    </item>
+    <item>
+      <title>WebP Image Format: The Complete 2026 Guide</title>
+      <link>https://ahadex.fun/blog/webp-image-format-complete-guide</link>
+      <guid isPermaLink="true">https://ahadex.fun/blog/webp-image-format-complete-guide</guid>
+      <pubDate>Tue, 06 Oct 2026 00:00:00 GMT</pubDate>
+      <description>WebP is 25-35% smaller than JPG at the same quality. Learn why it matters, when to use it, and how to convert your existing images — all in your browser.</description>
+      <category>Image Tools</category>
+    </item>
+    <item>
+      <title>How to Write a Professional CV That Gets Interviews (2026)</title>
+      <link>https://ahadex.fun/blog/professional-cv-writing-tips-2026</link>
+      <guid isPermaLink="true">https://ahadex.fun/blog/professional-cv-writing-tips-2026</guid>
+      <pubDate>Tue, 06 Oct 2026 00:00:00 GMT</pubDate>
+      <description>A great CV gets you interviews. A great interview gets you the job. Learn the structure, formatting rules, and content that actually works in 2026.</description>
+      <category>Career</category>
+    </item>
+    <item>
+      <title>How to Merge Multiple Images Into One (2026 Guide)</title>
+      <link>https://ahadex.fun/blog/how-to-merge-images-into-one</link>
+      <guid isPermaLink="true">https://ahadex.fun/blog/how-to-merge-images-into-one</guid>
+      <pubDate>Tue, 06 Oct 2026 00:00:00 GMT</pubDate>
+      <description>Combine multiple photos into a single image for collages, comparison shots, or social media. Complete guide with aspect ratio rules and quality tips.</description>
+      <category>Image Tools</category>
+    </item>
+    <item>
+      <title>YouTube Thumbnail Design: The Complete 2026 Guide</title>
+      <link>https://ahadex.fun/blog/youtube-thumbnail-design-guide</link>
+      <guid isPermaLink="true">https://ahadex.fun/blog/youtube-thumbnail-design-guide</guid>
+      <pubDate>Tue, 06 Oct 2026 00:00:00 GMT</pubDate>
+      <description>Your thumbnail is the single biggest factor in click-through rate. Learn the dimensions, design rules, and psychology behind thumbnails that get clicks.</description>
+      <category>Image Tools</category>
+    </item>
+    <item>
+      <title>Email Attachment Size Limits: Every Provider Compared (2026)</title>
+      <link>https://ahadex.fun/blog/email-attachment-size-limits-guide</link>
+      <guid isPermaLink="true">https://ahadex.fun/blog/email-attachment-size-limits-guide</guid>
+      <pubDate>Tue, 06 Oct 2026 00:00:00 GMT</pubDate>
+      <description>Gmail, Outlook, Yahoo, and Apple Mail all have different attachment limits. Learn every size limit and how to send large files without a bounce-back.</description>
+      <category>Productivity</category>
+    </item>
+    <item>
+      <title>Color Picker Guide for Web Designers (2026)</title>
+      <link>https://ahadex.fun/blog/color-picker-guide-web-design</link>
+      <guid isPermaLink="true">https://ahadex.fun/blog/color-picker-guide-web-design</guid>
+      <pubDate>Tue, 06 Oct 2026 00:00:00 GMT</pubDate>
+      <description>Picking the right colors is 80% of what makes a website feel professional. Learn hex codes, RGB, HSL, and the color theory behind great interfaces.</description>
+      <category>Design</category>
+    </item>
+    <item>
+      <title>How to Protect Your Online Privacy in 2026 (Complete Guide)</title>
+      <link>https://ahadex.fun/blog/how-to-protect-online-privacy-2026</link>
+      <guid isPermaLink="true">https://ahadex.fun/blog/how-to-protect-online-privacy-2026</guid>
+      <pubDate>Tue, 06 Oct 2026 00:00:00 GMT</pubDate>
+      <description>Every website you visit, every app you use, every click you make is tracked. Here is a practical guide to protecting your privacy without giving up modern conveniences.</description>
+      <category>Privacy</category>
+    </item>
+    <item>
+      <title>How to Convert HEIC to JPG (iPhone Photos Explained)</title>
+      <link>https://ahadex.fun/blog/how-to-convert-heic-to-jpg</link>
+      <guid isPermaLink="true">https://ahadex.fun/blog/how-to-convert-heic-to-jpg</guid>
+      <pubDate>Tue, 06 Oct 2026 00:00:00 GMT</pubDate>
+      <description>iPhone photos are saved as HEIC by default — a format Windows and older software often cannot open. Here is how to convert them and why it matters.</description>
+      <category>Image Tools</category>
+    </item>
+    <item>
+      <title>How to Remove Background from Photos (Free Methods)</title>
+      <link>https://ahadex.fun/blog/how-to-remove-background-from-photos</link>
+      <guid isPermaLink="true">https://ahadex.fun/blog/how-to-remove-background-from-photos</guid>
+      <pubDate>Tue, 06 Oct 2026 00:00:00 GMT</pubDate>
+      <description>Background removal used to require Photoshop skills. Now free browser tools do it in 3 seconds. Here is how it works and when to use it.</description>
+      <category>Image Tools</category>
+    </item>
+    <item>
+      <title>Website Speed Optimization: The Complete 2026 Guide</title>
+      <link>https://ahadex.fun/blog/website-speed-optimization-guide</link>
+      <guid isPermaLink="true">https://ahadex.fun/blog/website-speed-optimization-guide</guid>
+      <pubDate>Tue, 06 Oct 2026 00:00:00 GMT</pubDate>
+      <description>Every second of load time costs you conversions and ranking. Learn the exact techniques that take a slow site to fast — with real measurements and priorities.</description>
+      <category>Developer Tools</category>
+    </item>
+    <item>
+      <title>Best Free Online Tools for Freelancers in 2026</title>
+      <link>https://ahadex.fun/blog/free-tools-for-freelancers-2026</link>
+      <guid isPermaLink="true">https://ahadex.fun/blog/free-tools-for-freelancers-2026</guid>
+      <pubDate>Tue, 06 Oct 2026 00:00:00 GMT</pubDate>
+      <description>Freelancers waste hours on admin work. These free browser-based tools handle invoicing, client files, portfolios, and everything in between.</description>
+      <category>Productivity</category>
+    </item>
+    <item>
+      <title>How to Create a Favicon From Your Logo (Step-by-Step)</title>
+      <link>https://ahadex.fun/blog/how-to-create-favicon-from-logo</link>
+      <guid isPermaLink="true">https://ahadex.fun/blog/how-to-create-favicon-from-logo</guid>
+      <pubDate>Tue, 06 Oct 2026 00:00:00 GMT</pubDate>
+      <description>Your favicon is your logo at 16 pixels. Most logos do not survive at that size. Learn how to design a favicon that stays recognizable at the smallest scale.</description>
+      <category>Design</category>
+    </item>
+    <item>
+      <title>How to Add a Watermark to Photos (Free Methods)</title>
+      <link>https://ahadex.fun/blog/how-to-add-watermark-to-photos</link>
+      <guid isPermaLink="true">https://ahadex.fun/blog/how-to-add-watermark-to-photos</guid>
+      <pubDate>Tue, 06 Oct 2026 00:00:00 GMT</pubDate>
+      <description>Watermarks protect your images from theft — but a bad watermark ruins the photo. Learn the placement, opacity, and design rules that actually work.</description>
       <category>Image Tools</category>
     </item>
   </channel>

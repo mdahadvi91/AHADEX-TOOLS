@@ -1,21 +1,27 @@
 /* ============================================================
  * Cloudflare Pages Middleware
  * ------------------------------------------------------------
- * Runs at the edge BEFORE serving static assets.
- * For /tools/:slug routes, injects tool-specific:
- *   - <title>
- *   - og:title, og:description, og:image, og:url
- *   - twitter:title, twitter:description, twitter:image
- *   - canonical link
- * into the static index.html
+ * Runs at edge before serving static assets.
+ * Injects correct meta tags for:
+ *   - /tools/:slug       → TOOL_META
+ *   - /blog/:slug        → BLOG_META
+ *   - /blog              → static blog index
+ *   - /*                 → STATIC_META (matching route)
  *
- * Why: The site is a React SPA. Search engines handle JS, but
- * social crawlers (WhatsApp, Facebook, Twitter, Telegram, etc.)
- * do NOT — they only read the initial HTML. This middleware
- * provides the correct meta tags server-side.
+ * Why: React SPA serves same index.html for every route.
+ * Search engines handle JS, but social crawlers (WhatsApp,
+ * Facebook, Twitter, Telegram) do NOT. This middleware
+ * provides correct meta tags server-side.
  * ============================================================ */
 
-import { TOOL_META, type ToolMeta } from "./_data";
+import {
+  TOOL_META,
+  STATIC_META,
+  BLOG_META,
+  type ToolMeta,
+  type StaticMeta,
+  type BlogMeta,
+} from "./_data";
 
 const SITE_URL = "https://ahadex.fun";
 
@@ -23,7 +29,7 @@ interface Env {
   ASSETS: { fetch: (req: Request) => Promise<Response> };
 }
 
-/* ── Minimal HTML escaping ── */
+/* ── HTML escape ── */
 function esc(s: string): string {
   return s
     .replace(/&/g, "&amp;")
@@ -33,39 +39,58 @@ function esc(s: string): string {
     .replace(/'/g, "&#39;");
 }
 
-/* ── Extract slug from /tools/xyz path ── */
+/* ── Extract slug from /tools/xyz ── */
 function extractToolSlug(pathname: string): string | null {
-  const match = pathname.match(/^\/tools\/([^/?#]+)\/?$/);
-  return match ? match[1] : null;
+  const m = pathname.match(/^\/tools\/([^/?#]+)\/?$/);
+  return m ? m[1] : null;
 }
 
-/* ── Build meta-block HTML to inject ── */
-function buildMetaBlock(t: ToolMeta): string {
-  const canonical = `${SITE_URL}${t.path}`;
-  const ogImage = t.ogImage.startsWith("http")
-    ? t.ogImage
-    : `${SITE_URL}${t.ogImage}`;
+/* ── Extract slug from /blog/xyz ── */
+function extractBlogSlug(pathname: string): string | null {
+  const m = pathname.match(/^\/blog\/([^/?#]+)\/?$/);
+  return m ? m[1] : null;
+}
 
-  return `
-    <!-- Injected by Cloudflare Pages middleware (tool-specific) -->
-    <title>${esc(t.title)}</title>
-    <meta name="description" content="${esc(t.description)}" />
-    <link rel="canonical" href="${canonical}" />
-    <meta property="og:type" content="website" />
-    <meta property="og:title" content="${esc(t.title)}" />
-    <meta property="og:description" content="${esc(t.description)}" />
-    <meta property="og:url" content="${canonical}" />
+/* ── Normalize path for static matching ── */
+function normalizePath(pathname: string): string {
+  if (pathname.length > 1 && pathname.endsWith("/")) {
+    return pathname.slice(0, -1);
+  }
+  return pathname;
+}
+
+/* ── Build meta block ── */
+function buildMetaBlock(opts: {
+  title: string;
+  description: string;
+  canonical: string;
+  ogImage: string;
+  ogType?: "website" | "article";
+}): string {
+  const ogImage = opts.ogImage.startsWith("http")
+    ? opts.ogImage
+    : `${SITE_URL}${opts.ogImage}`;
+  const ogType = opts.ogType || "website";
+
+  return `<!-- Injected by Cloudflare middleware -->
+    <title>${esc(opts.title)}</title>
+    <meta name="description" content="${esc(opts.description)}" />
+    <link rel="canonical" href="${opts.canonical}" />
+    <meta property="og:type" content="${ogType}" />
+    <meta property="og:title" content="${esc(opts.title)}" />
+    <meta property="og:description" content="${esc(opts.description)}" />
+    <meta property="og:url" content="${opts.canonical}" />
     <meta property="og:image" content="${ogImage}" />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="${esc(t.title)}" />
-    <meta name="twitter:description" content="${esc(t.description)}" />
+    <meta name="twitter:title" content="${esc(opts.title)}" />
+    <meta name="twitter:description" content="${esc(opts.description)}" />
     <meta name="twitter:image" content="${ogImage}" />
 `;
 }
 
-/* ── Remove existing generic meta tags that we're replacing ── */
+/* ── Remove generic meta tags we're replacing ── */
 function stripGenericMeta(html: string): string {
   return html
     .replace(/<title>[\s\S]*?<\/title>\s*/i, "")
@@ -75,43 +100,98 @@ function stripGenericMeta(html: string): string {
     .replace(/<meta\s+name="twitter:[^"]+"[^>]*>\s*/gi, "");
 }
 
+/* ── Fetch asset HTML ── */
+async function fetchIndexHtml(
+  url: URL,
+  request: Request,
+  env: Env
+): Promise<string | null> {
+  const assetUrl = new URL("/index.html", url.origin);
+  const resp = await env.ASSETS.fetch(
+    new Request(assetUrl.toString(), {
+      method: "GET",
+      headers: request.headers,
+    })
+  );
+  if (!resp.ok) return null;
+  return await resp.text();
+}
+
 /* ── Main middleware ── */
 export const onRequest: PagesFunction<Env> = async (context) => {
   const url = new URL(context.request.url);
-  const slug = extractToolSlug(url.pathname);
+  const pathname = normalizePath(url.pathname);
 
-  // Not a tool page → just pass through
-  if (!slug) {
+  let meta: {
+    title: string;
+    description: string;
+    canonical: string;
+    ogImage: string;
+    ogType?: "website" | "article";
+  } | null = null;
+
+  /* 1. Tool pages: /tools/:slug */
+  const toolSlug = extractToolSlug(pathname);
+  if (toolSlug) {
+    const tool: ToolMeta | undefined = TOOL_META[toolSlug];
+    if (tool) {
+      meta = {
+        title: tool.title,
+        description: tool.description,
+        canonical: `${SITE_URL}${tool.path}`,
+        ogImage: tool.ogImage,
+        ogType: "website",
+      };
+    }
+  }
+
+  /* 2. Blog post: /blog/:slug */
+  if (!meta) {
+    const blogSlug = extractBlogSlug(pathname);
+    if (blogSlug) {
+      const post: BlogMeta | undefined = BLOG_META[blogSlug];
+      if (post) {
+        meta = {
+          title: `${post.title} | AHADEX Blog`,
+          description: post.description,
+          canonical: `${SITE_URL}${post.path}`,
+          ogImage: post.ogImage,
+          ogType: "article",
+        };
+      }
+    }
+  }
+
+  /* 3. Static / index pages */
+  if (!meta) {
+    const staticMeta: StaticMeta | undefined = STATIC_META[pathname];
+    if (staticMeta) {
+      meta = {
+        title: staticMeta.title,
+        description: staticMeta.description,
+        canonical:
+          pathname === "/" ? SITE_URL + "/" : `${SITE_URL}${pathname}`,
+        ogImage: staticMeta.ogImage,
+        ogType: "website",
+      };
+    }
+  }
+
+  /* No meta match — pass through SPA */
+  if (!meta) {
     return context.next();
   }
 
-  const tool = TOOL_META[slug];
-
-  // Unknown tool → let SPA handle it (its own 404)
-  if (!tool) {
+  /* Fetch and inject */
+  const html = await fetchIndexHtml(url, context.request, context.env);
+  if (!html) {
     return context.next();
   }
 
-  // Fetch the static index.html from Cloudflare Pages assets
-  const assetUrl = new URL("/index.html", url.origin);
-  const assetResp = await context.env.ASSETS.fetch(
-    new Request(assetUrl.toString(), {
-      method: "GET",
-      headers: context.request.headers,
-    })
-  );
-
-  if (!assetResp.ok) {
-    return context.next();
-  }
-
-  const html = await assetResp.text();
-
-  // Inject meta tags right before </head>
   const stripped = stripGenericMeta(html);
   const injected = stripped.replace(
     "</head>",
-    `${buildMetaBlock(tool)}</head>`
+    `${buildMetaBlock(meta)}</head>`
   );
 
   return new Response(injected, {
