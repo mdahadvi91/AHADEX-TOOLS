@@ -28,7 +28,6 @@
     "rss": "tsx scripts/generate-rss.ts"
   },
   "dependencies": {
-    "@imgly/background-removal": "^1.5.5",
     "browser-image-compression": "^2.0.2",
     "clsx": "^2.1.1",
     "exifr": "^7.1.3",

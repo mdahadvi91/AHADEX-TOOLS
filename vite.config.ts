@@ -125,7 +125,6 @@ export default defineConfig(({ mode }) => {
         "tailwind-merge",
       ],
       exclude: [
-        "@imgly/background-removal",
         "pdfjs-dist",
         "pdf-lib",
         "jspdf",

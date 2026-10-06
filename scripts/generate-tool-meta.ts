@@ -37,7 +37,7 @@ const staticPages: Record<string, { title: string; description: string; ogImage:
   },
   "/tools": {
     title: "All Tools — Free Online Utilities | AHADEX Tools",
-    description: "Browse 36+ free browser-based tools for images, PDFs, text, and developer tasks.",
+    description: `Browse ${tools.length} free browser-based tools for images, PDFs, text, and developer tasks.`,
     ogImage: "/images/og/home-og.png",
   },
   "/about": {

@@ -117,7 +117,7 @@ export const tools: Tool[] = [
       title:
         "JPG to PNG Converter — Free, Fast & Private | AHADEX Tools",
       description:
-        "Convert JPG to PNG instantly in your browser. Lossless, batch, no uploads.",
+        "Convert JPG images to PNG format in your browser. Lossless output, batch conversion, transparency support, no uploads — 100% free and private.",
       ogImage: "/images/og/tools/jpg-to-png-og.png",
     },
   },
@@ -211,7 +211,7 @@ export const tools: Tool[] = [
     howTo: [],
     faq: [],
     relatedTools: [],
-    seo: { title: "WebP to JPG Converter — Free, Fast & Private | AHADEX Tools", description: "Convert WebP to JPG.", ogImage: "/images/og/tools/webp-to-jpg-og.png" },
+    seo: { title: "WebP to JPG Converter — Free, Fast & Private | AHADEX Tools", description: "Convert WebP images to JPG format directly in your browser. Universal compatibility, batch conversion, no uploads — free and private.", ogImage: "/images/og/tools/webp-to-jpg-og.png" },
   },
   {
     id: "webp-to-png",
@@ -228,7 +228,7 @@ export const tools: Tool[] = [
     howTo: [],
     faq: [],
     relatedTools: [],
-    seo: { title: "WebP to PNG Converter — Free & Private | AHADEX Tools", description: "Convert WebP to PNG instantly. Lossless, transparency preserved.", ogImage: "/images/og/tools/webp-to-png-og.png" },
+    seo: { title: "WebP to PNG Converter — Free & Private | AHADEX Tools", description: "Convert WebP images to PNG format instantly in your browser. Lossless output, transparency preserved, batch support — free and private.", ogImage: "/images/og/tools/webp-to-png-og.png" },
   },
   {
     id: "image-compressor",
@@ -245,7 +245,7 @@ export const tools: Tool[] = [
     howTo: [],
     faq: [],
     relatedTools: [],
-    seo: { title: "Image Compressor — Free, Fast & Private | AHADEX Tools", description: "Compress images in your browser. Adjustable quality, batch, no uploads.", ogImage: "/images/og/tools/image-compressor-og.png" },
+    seo: { title: "Image Compressor — Free, Fast & Private | AHADEX Tools", description: "Compress JPG, PNG, and WebP images in your browser. Adjustable quality slider, batch processing, max-width control, no uploads — 100% free.", ogImage: "/images/og/tools/image-compressor-og.png" },
   },
   {
     id: "image-resizer",
@@ -262,7 +262,7 @@ export const tools: Tool[] = [
     howTo: [],
     faq: [],
     relatedTools: [],
-    seo: { title: "Image Resizer — Free, Fast & Private | AHADEX Tools", description: "Resize images in your browser to any dimension.", ogImage: "/images/og/tools/image-resizer-og.png" },
+    seo: { title: "Image Resizer — Free, Fast & Private | AHADEX Tools", description: "Resize JPG, PNG, and WebP images to any dimension in your browser. Lock aspect ratio, exact width/height, batch support, no uploads — free.", ogImage: "/images/og/tools/image-resizer-og.png" },
   },
   {
     id: "jpg-to-pdf",
@@ -279,7 +279,7 @@ export const tools: Tool[] = [
     howTo: [],
     faq: [],
     relatedTools: [],
-    seo: { title: "JPG to PDF Converter — Free, Fast & Private | AHADEX Tools", description: "Convert JPG to PDF in your browser. Multi-page, reorderable.", ogImage: "/images/og/tools/jpg-to-pdf-og.png" },
+    seo: { title: "JPG to PDF Converter — Free, Fast & Private | AHADEX Tools", description: "Combine JPG images into a multi-page PDF in your browser. Reorderable pages, A4/Letter sizes, custom margins, no uploads — free and private.", ogImage: "/images/og/tools/jpg-to-pdf-og.png" },
   },
   {
     id: "png-to-pdf",
@@ -296,7 +296,7 @@ export const tools: Tool[] = [
     howTo: [],
     faq: [],
     relatedTools: [],
-    seo: { title: "PNG to PDF Converter — Free, Fast & Private | AHADEX Tools", description: "Convert PNG to PDF in your browser. Multi-page, reorderable.", ogImage: "/images/og/tools/png-to-pdf-og.png" },
+    seo: { title: "PNG to PDF Converter — Free, Fast & Private | AHADEX Tools", description: "Combine PNG images into a multi-page PDF in your browser. Reorderable pages, A4/Letter sizes, white background, no uploads — free and private.", ogImage: "/images/og/tools/png-to-pdf-og.png" },
   },
   {
     id: "image-cropper",
@@ -313,7 +313,7 @@ export const tools: Tool[] = [
     howTo: [],
     faq: [],
     relatedTools: [],
-    seo: { title: "Image Cropper — Free, Fast & Private | AHADEX Tools", description: "Crop images in your browser with aspect presets.", ogImage: "/images/og/tools/image-cropper-og.png" },
+    seo: { title: "Image Cropper — Free, Fast & Private | AHADEX Tools", description: "Crop JPG, PNG, and WebP images in your browser. 8 aspect presets, live preview, pixel-precise fields, no uploads — fast, free, private.", ogImage: "/images/og/tools/image-cropper-og.png" },
   },
   {
     id: "merge-pdf",
@@ -330,7 +330,7 @@ export const tools: Tool[] = [
     howTo: [],
     faq: [],
     relatedTools: [],
-    seo: { title: "Merge PDF — Combine PDFs Free, Fast & Private | AHADEX Tools", description: "Merge multiple PDFs in your browser. Reorder, no uploads.", ogImage: "/images/og/tools/merge-pdf-og.png" },
+    seo: { title: "Merge PDF — Combine PDFs Free, Fast & Private | AHADEX Tools", description: "Combine multiple PDF files into one document in your browser. Reorder pages, verify page count, no uploads, no servers — private and free.", ogImage: "/images/og/tools/merge-pdf-og.png" },
   },
   {
     id: "split-pdf",
@@ -347,7 +347,7 @@ export const tools: Tool[] = [
     howTo: [],
     faq: [],
     relatedTools: [],
-    seo: { title: "Split PDF — Extract Pages Free & Private | AHADEX Tools", description: "Split PDFs in your browser. Custom page ranges, no uploads.", ogImage: "/images/og/tools/split-pdf-og.png" },
+    seo: { title: "Split PDF — Extract Pages Free & Private | AHADEX Tools", description: "Extract pages from any PDF or split every page in your browser. Custom ranges, quick-select presets, no uploads — private, free, fast.", ogImage: "/images/og/tools/split-pdf-og.png" },
   },
   {
     id: "word-counter",
@@ -364,7 +364,7 @@ export const tools: Tool[] = [
     howTo: [],
     faq: [],
     relatedTools: [],
-    seo: { title: "Word Counter — Live Word, Character & Reading Time | AHADEX Tools", description: "Count words, characters, sentences live. Reading time & keyword density.", ogImage: "/images/og/tools/word-counter-og.png" },
+    seo: { title: "Word Counter — Live Word, Character & Reading Time | AHADEX Tools", description: "Count words, characters, sentences, and paragraphs in real time. Reading time, speaking time, keyword density — all in your browser.", ogImage: "/images/og/tools/word-counter-og.png" },
   },
   {
     id: "image-to-pdf",
