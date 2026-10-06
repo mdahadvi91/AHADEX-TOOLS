@@ -63,38 +63,65 @@ export const trustContent: Record<
         {
           heading: "5. Advertising",
           paragraphs: [
-            "The site may display advertising served by Google AdSense and its partners. These ads help keep AHADEX Tools free for everyone.",
-            "Google may use cookies to serve ads based on your prior visits to this and other websites. You can opt out of personalised advertising in your Google Ads Settings.",
+            "AHADEX Tools is supported by advertising. We work with Google AdSense and Ezoic to serve ads that help keep every tool free. Both partners may use cookies and similar technologies to display relevant ads and measure their performance.",
+            "Google may use cookies to serve ads based on your prior visits to this and other websites. You can opt out of personalised advertising at Google Ads Settings (adssettings.google.com).",
+            "Ezoic may also process limited technical data (IP address, device type, approximate location, and browsing behaviour on this site) to optimise ad delivery and measure campaign performance. Their privacy practices are governed by the Ezoic Privacy Policy (ezoic.com/privacy).",
             "We do not place ads on top of tool workspaces, download buttons, or anywhere that would confuse the user about what is an ad and what is a tool.",
           ],
         },
         {
-          heading: "6. Third-party services",
+          heading: "6. Consent Management",
           paragraphs: [
-            "Aside from Google Analytics and Google AdSense, we do not use any third-party services that receive your data. Fonts are loaded from Google Fonts. If you prefer, you can block them — the site will still work, using system fonts.",
+            "When you first visit the site, we show a consent banner powered by Ezoic's Consent Management Platform (CMP). This banner lets you choose whether to allow personalised advertising and analytics cookies.",
+            "By default, no personalised advertising or analytics cookies are set until you actively consent. If you reject, we serve non-personalised ads only and do not track you across sites.",
+            "You can change your consent choices at any time by clearing your browser cookies and reloading the page.",
           ],
         },
         {
-          heading: "7. Children's privacy",
+          heading: "7. Third-party services",
+          paragraphs: [
+            "The following third parties may receive limited technical data when you visit the site:",
+          ],
+          bullets: [
+            "Google Analytics 4 — anonymous page-view and tool-usage analytics (measurement ID G-NJB6S9E9N3).",
+            "Google AdSense — advertising delivery and measurement (publisher ID ca-pub-5216241068377334).",
+            "Ezoic — advertising optimisation and consent management.",
+            "Google Fonts — web font delivery (only your IP address is exposed to Google's servers).",
+            "Cloudflare — CDN, security, and performance (all traffic passes through Cloudflare's edge).",
+          ],
+        },
+        {
+          heading: "8. Cookies and similar technologies",
+          paragraphs: [
+            "We use the following categories of cookies and browser storage:",
+          ],
+          bullets: [
+            "Essential — needed for the site to function (consent preferences, theme, language).",
+            "Analytics — anonymous usage statistics via Google Analytics 4 (only after you consent).",
+            "Advertising — ad delivery and measurement via Google AdSense and Ezoic (only after you consent).",
+          ],
+        },
+        {
+          heading: "9. Children's privacy",
           paragraphs: [
             "AHADEX Tools is suitable for general audiences. We do not knowingly collect personal information from anyone, including children under 13. If you believe a child has submitted personal information to us (for example, via the contact form), please email us and we'll delete it.",
           ],
         },
         {
-          heading: "8. Your rights",
+          heading: "10. Your rights",
           paragraphs: [
             "You have the right to request access to any personal data we hold about you, to correct it, or to have it deleted. In practice, we hold almost no personal data — only what you send us through the contact form.",
             `To exercise any of these rights, email us at ${CONTACT}.`,
           ],
         },
         {
-          heading: "9. Changes to this policy",
+          heading: "11. Changes to this policy",
           paragraphs: [
             "We may update this policy from time to time. The latest version will always be available on this page, with the 'Last updated' date at the top. Significant changes will be highlighted on the homepage.",
           ],
         },
         {
-          heading: "10. Contact",
+          heading: "12. Contact",
           paragraphs: [
             `Questions about privacy? Email us at ${CONTACT}. We aim to respond within 48 hours.`,
           ],
@@ -171,7 +198,7 @@ export const trustContent: Record<
           ],
         },
         {
-          heading: "10. Contact",
+          heading: "12. Contact",
           paragraphs: [
             `Questions about these terms? Email us at ${CONTACT}.`,
           ],
@@ -376,38 +403,65 @@ export const trustContent: Record<
         {
           heading: "৫. বিজ্ঞাপন",
           paragraphs: [
-            "সাইটে Google AdSense ও তার পার্টনারদের বিজ্ঞাপন দেখানো হতে পারে। এগুলো AHADEX Tools ফ্রি রাখতে সাহায্য করে।",
-            "Google আপনার আগের ভিজিটের ভিত্তিতে ad serve করতে cookie ব্যবহার করতে পারে। আপনি Google Ads Settings থেকে personalised ads বন্ধ করতে পারেন।",
-            "আমরা টুল workspace, download button, বা বিভ্রান্তিকর কোথাও ad বসাই না।",
+            "AHADEX Tools বিজ্ঞাপনের সহায়তায় চলে। আমরা Google AdSense এবং Ezoic-এর সাথে কাজ করি, যারা প্রতিটি টুল ফ্রি রাখতে সাহায্য করে। উভয় পার্টনার প্রাসঙ্গিক বিজ্ঞাপন দেখাতে এবং পারফরম্যান্স মাপতে cookies ও অনুরূপ টেকনোলজি ব্যবহার করতে পারে।",
+            "Google আপনার এই ও অন্যান্য ওয়েবসাইটে পূর্বের ভিজিটের ওপর ভিত্তি করে বিজ্ঞাপন দেখাতে cookies ব্যবহার করতে পারে। Google Ads Settings (adssettings.google.com) থেকে আপনি পার্সোনালাইজড বিজ্ঞাপন বন্ধ করতে পারেন।",
+            "Ezoic সীমিত টেকনিক্যাল ডেটা (IP ঠিকানা, ডিভাইসের ধরন, আনুমানিক অবস্থান এবং এই সাইটে ব্রাউজিং আচরণ) প্রসেস করতে পারে বিজ্ঞাপন ডেলিভারি অপটিমাইজ করতে। তাদের প্রাইভেসি প্র্যাকটিস Ezoic Privacy Policy (ezoic.com/privacy) দ্বারা নিয়ন্ত্রিত।",
+            "আমরা টুল workspace, ডাউনলোড বাটন বা এমন কোনো জায়গায় বিজ্ঞাপন বসাই না যা ব্যবহারকারীকে বিভ্রান্ত করতে পারে কোনটা বিজ্ঞাপন আর কোনটা টুল।",
           ],
         },
         {
-          heading: "৬. থার্ড-পার্টি সেবা",
+          heading: "৬. কনসেন্ট ম্যানেজমেন্ট",
           paragraphs: [
-            "Google Analytics ও Google AdSense ছাড়া আপনার ডেটা পাওয়ার মতো কোনো থার্ড-পার্টি সেবা আমরা ব্যবহার করি না। ফন্ট Google Fonts থেকে লোড হয়। চাইলে block করুন — সাইট system font দিয়ে চলবে।",
+            "প্রথম ভিজিটে আমরা Ezoic-এর Consent Management Platform (CMP) দ্বারা পরিচালিত একটি কনসেন্ট ব্যানার দেখাই। এই ব্যানার দিয়ে আপনি বেছে নিতে পারেন পার্সোনালাইজড বিজ্ঞাপন এবং অ্যানালিটিক্স cookies অনুমোদন করবেন কি না।",
+            "ডিফল্টভাবে, আপনার সক্রিয় সম্মতি ছাড়া কোনো পার্সোনালাইজড বিজ্ঞাপন বা অ্যানালিটিক্স cookie সেট হয় না। আপনি যদি প্রত্যাখ্যান করেন, আমরা শুধু নন-পার্সোনালাইজড বিজ্ঞাপন দেখাই এবং সাইটের বাইরে আপনাকে ট্র্যাক করি না।",
+            "আপনি যেকোনো সময় আপনার ব্রাউজার cookies ক্লিয়ার করে পেজ রিলোড করে কনসেন্ট পছন্দ পরিবর্তন করতে পারেন।",
           ],
         },
         {
-          heading: "৭. শিশুদের প্রাইভেসি",
+          heading: "৭. থার্ড-পার্টি সেবা",
+          paragraphs: [
+            "নিম্নলিখিত থার্ড-পার্টিরা সাইট ভিজিটের সময় সীমিত টেকনিক্যাল ডেটা পেতে পারে:",
+          ],
+          bullets: [
+            "Google Analytics 4 — anonymous page-view এবং tool-usage analytics (measurement ID G-NJB6S9E9N3)।",
+            "Google AdSense — বিজ্ঞাপন ডেলিভারি ও মাপ (publisher ID ca-pub-5216241068377334)।",
+            "Ezoic — বিজ্ঞাপন অপটিমাইজেশন ও কনসেন্ট ম্যানেজমেন্ট।",
+            "Google Fonts — ওয়েব ফন্ট ডেলিভারি (শুধু আপনার IP ঠিকানা Google-এর সার্ভারে যায়)।",
+            "Cloudflare — CDN, সিকিউরিটি ও পারফরম্যান্স (সব ট্রাফিক Cloudflare edge দিয়ে যায়)।",
+          ],
+        },
+        {
+          heading: "৮. Cookies ও অনুরূপ টেকনোলজি",
+          paragraphs: [
+            "আমরা নিম্নলিখিত ধরনের cookies ও ব্রাউজার স্টোরেজ ব্যবহার করি:",
+          ],
+          bullets: [
+            "Essential — সাইট কাজ করার জন্য প্রয়োজন (কনসেন্ট পছন্দ, থিম, ভাষা)।",
+            "Analytics — Google Analytics 4-এর মাধ্যমে anonymous usage statistics (শুধু আপনার সম্মতির পরে)।",
+            "Advertising — Google AdSense ও Ezoic-এর মাধ্যমে বিজ্ঞাপন ডেলিভারি ও মাপ (শুধু আপনার সম্মতির পরে)।",
+          ],
+        },
+        {
+          heading: "৯. শিশুদের প্রাইভেসি",
           paragraphs: [
             "AHADEX Tools সাধারণ দর্শকদের জন্য উপযোগী। আমরা কারো কাছ থেকে, বিশেষ করে ১৩ বছরের কম শিশুদের কাছ থেকে, সচেতনভাবে ব্যক্তিগত তথ্য সংগ্রহ করি না।",
           ],
         },
         {
-          heading: "৮. আপনার অধিকার",
+          heading: "১০. আপনার অধিকার",
           paragraphs: [
             "আপনার আমাদের কাছে থাকা যেকোনো ব্যক্তিগত ডেটা দেখতে, সংশোধন করতে বা মুছতে বলার অধিকার আছে। বাস্তবে আমরা প্রায় কোনো ব্যক্তিগত ডেটা রাখি না — শুধু contact form-এ যা পাঠান।",
             `এই অধিকার প্রয়োগ করতে ${CONTACT}-এ ইমেইল করুন।`,
           ],
         },
         {
-          heading: "৯. পলিসি পরিবর্তন",
+          heading: "১১. পলিসি পরিবর্তন",
           paragraphs: [
             "আমরা সময়ে সময়ে এই পলিসি আপডেট করতে পারি। সর্বশেষ সংস্করণ এই পেজে থাকবে, উপরে 'সর্বশেষ আপডেট' তারিখ সহ।",
           ],
         },
         {
-          heading: "১০. যোগাযোগ",
+          heading: "১২. যোগাযোগ",
           paragraphs: [
             `প্রাইভেসি নিয়ে প্রশ্ন? ${CONTACT}-এ ইমেইল করুন। ৪৮ ঘণ্টার মধ্যে উত্তর দেওয়ার চেষ্টা করি।`,
           ],
