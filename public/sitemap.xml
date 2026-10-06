@@ -312,4 +312,34 @@
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
+  <url>
+    <loc>https://ahadex.fun/blog/jpg-vs-png-vs-webp-which-format</loc>
+    <lastmod>2026-10-06</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://ahadex.fun/blog/convert-jpg-to-pdf-complete-guide</loc>
+    <lastmod>2026-10-06</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://ahadex.fun/blog/uuid-v4-vs-v7-when-to-use-each</loc>
+    <lastmod>2026-10-06</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://ahadex.fun/blog/qr-codes-business-cards-marketing</loc>
+    <lastmod>2026-10-06</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://ahadex.fun/blog/word-count-guide-writing-content</loc>
+    <lastmod>2026-10-06</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
 </urlset>
