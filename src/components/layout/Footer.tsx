@@ -36,6 +36,7 @@ export function Footer() {
     {
       title: bn ? "কোম্পানি" : "Company",
       links: [
+        { to: "/blog", label: bn ? "ব্লগ" : "Blog" },
         { to: "/about", label: t.nav.about },
         { to: "/contact", label: t.nav.contact },
         { to: "/affiliate-disclosure", label: bn ? "অ্যাফিলিয়েট" : "Affiliates" },

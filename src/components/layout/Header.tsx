@@ -13,6 +13,7 @@ interface HeaderProps {
 
 const NAV_LINKS = [
   { to: "/tools", label: "Tools" },
+  { to: "/blog", label: "Blog" },
   { to: "/about", label: "About" },
   { to: "/contact", label: "Contact" },
 ];
