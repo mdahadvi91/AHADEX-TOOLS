@@ -1,14 +1,36 @@
 import { useEffect, useRef, useState } from "react";
-import { Copy, ClipboardCheck, AlertCircle, Barcode, FileCode2, ImageIcon } from "lucide-react";
+import { motion, AnimatePresence } from "framer-motion";
+import {
+  Copy,
+  ClipboardCheck,
+  AlertCircle,
+  Barcode,
+  FileCode2,
+  Image as ImageIcon,
+  Settings2,
+  Hash,
+} from "lucide-react";
 import { useLanguage } from "@contexts/LanguageContext";
+import { useSound } from "@contexts/SoundContext";
 import { cn } from "@lib/cn";
 import {
-  FORMATS, DEFAULT_OPTIONS, renderBarcode, downloadSvg, downloadPng, copySvg, findFormat,
+  WorkspacePanel,
+  ToolButton,
+} from "@components/workspace";
+import {
+  FORMATS,
+  DEFAULT_OPTIONS,
+  renderBarcode,
+  downloadSvg,
+  downloadPng,
+  copySvg,
+  findFormat,
 } from "../logic";
 import type { BarcodeOptions, BarcodeFormat } from "../types";
 
 export function Workspace() {
   const { language } = useLanguage();
+  const { play } = useSound();
   const bn = language === "bn";
 
   const svgRef = useRef<SVGSVGElement>(null);
@@ -27,22 +49,31 @@ export function Workspace() {
   const handleFormat = (fmt: BarcodeFormat) => {
     const def = findFormat(fmt);
     setOpts((p) => ({ ...p, format: fmt }));
-    // Auto-fill example if value is empty
     if (!value.trim()) setValue(def.example);
+    play("click");
   };
 
   const handleDownloadPng = async () => {
     if (!svgRef.current || !value.trim()) return;
     setBusy(true);
     try {
-      await downloadPng(svgRef.current, `barcode-${opts.format}-${Date.now()}.png`, 3);
-    } catch { /* ignore */ }
-    finally { setBusy(false); }
+      await downloadPng(
+        svgRef.current,
+        `barcode-${opts.format}-${Date.now()}.png`,
+        3
+      );
+      play("success");
+    } catch {
+      /* ignore */
+    } finally {
+      setBusy(false);
+    }
   };
 
   const handleDownloadSvg = () => {
     if (!svgRef.current || !value.trim()) return;
     downloadSvg(svgRef.current, `barcode-${opts.format}-${Date.now()}.svg`);
+    play("success");
   };
 
   const handleCopy = async () => {
@@ -50,163 +81,349 @@ export function Workspace() {
     try {
       await copySvg(svgRef.current);
       setCopied(true);
+      play("success");
       setTimeout(() => setCopied(false), 1800);
-    } catch { /* ignore */ }
+    } catch {
+      /* ignore */
+    }
   };
 
   const current = findFormat(opts.format);
 
   return (
-    <section className="pb-12 space-y-4">
+    <section className="pb-12">
       <div className="grid grid-cols-1 lg:grid-cols-[1fr_360px] gap-4">
-        {/* Controls */}
-        <div className="space-y-3">
+        {/* ── Left: Controls ── */}
+        <div className="space-y-4">
           {/* Format selector */}
-          <div className="rounded-2xl bg-white/70 dark:bg-dark-surface/70 backdrop-blur-xl border border-silk-rose/20 p-3">
-            <p className="text-[10px] uppercase tracking-wider font-semibold text-silk-wine/70 dark:text-silk-rose/60 mb-2">
-              {bn ? "বারকোড ফরম্যাট" : "Barcode format"}
-            </p>
-            <div className="grid grid-cols-3 sm:grid-cols-5 lg:grid-cols-5 gap-1.5">
-              {FORMATS.map((f) => (
-                <button
-                  key={f.value}
-                  type="button"
-                  onClick={() => handleFormat(f.value)}
-                  className={cn(
-                    "h-11 rounded-lg border text-[10px] sm:text-[11px] font-mono font-semibold transition-all",
-                    opts.format === f.value
-                      ? "bg-silk-rose/15 border-silk-rose/50 text-silk-wine dark:text-silk-rose-soft"
-                      : "bg-silk-rose/5 border-silk-rose/15 text-light-textSecondary dark:text-dark-textSecondary hover:border-silk-rose/40"
-                  )}
-                >
-                  {f.label}
-                </button>
-              ))}
+          <WorkspacePanel className="p-4 space-y-3">
+            <div className="flex items-center gap-2">
+              <span className="w-7 h-7 rounded-lg bg-silk-rose/15 border border-silk-rose/25 flex items-center justify-center">
+                <Barcode className="w-3.5 h-3.5 text-silk-rose" />
+              </span>
+              <span className="text-[12px] sm:text-sm font-bold text-light-text dark:text-dark-text">
+                {bn ? "বারকোড ফরম্যাট" : "Barcode format"}
+              </span>
+              <span className="ml-auto text-[10px] font-mono font-bold text-silk-rose bg-silk-rose/10 px-2 py-0.5 rounded-md">
+                {current.label}
+              </span>
             </div>
-            <p className="mt-2 text-[10px] text-lightTextSecondary dark:text-dark-textSecondary">
-              <strong className="text-silk-rose">{current.label}:</strong> {current.hint}
+
+            <div className="grid grid-cols-3 sm:grid-cols-5 gap-1.5">
+              {FORMATS.map((f) => {
+                const isActive = opts.format === f.value;
+                return (
+                  <button
+                    key={f.value}
+                    type="button"
+                    onClick={() => handleFormat(f.value)}
+                    className={cn(
+                      "h-11 rounded-xl border text-[10px] sm:text-[11px] font-mono font-bold transition-all",
+                      isActive
+                        ? "bg-gradient-to-br from-silk-rose/20 to-silk-gold/10 border-silk-rose/50 text-silk-wine dark:text-silk-rose-soft shadow-[0_6px_16px_-8px_rgba(139,58,79,0.4)]"
+                        : "bg-silk-rose/5 border-silk-rose/15 text-light-textSecondary dark:text-dark-textSecondary hover:border-silk-rose/40 hover:bg-silk-rose/8"
+                    )}
+                  >
+                    {f.label}
+                  </button>
+                );
+              })}
+            </div>
+
+            <p className="text-[11px] text-light-textSecondary dark:text-dark-textSecondary leading-relaxed pt-1 border-t border-silk-rose/10">
+              <strong className="text-silk-rose font-bold">
+                {current.label}:
+              </strong>{" "}
+              {current.hint}
             </p>
-          </div>
+          </WorkspacePanel>
 
           {/* Value input */}
-          <div className="rounded-2xl bg-white/70 dark:bg-dark-surface/70 backdrop-blur-xl border border-silk-rose/20 p-3">
-            <label className="block text-[11px] font-medium text-light-text dark:text-dark-text mb-1.5">
-              {bn ? "মান" : "Value"}
-            </label>
+          <WorkspacePanel className="p-4 space-y-3">
+            <div className="flex items-center gap-2">
+              <span className="w-7 h-7 rounded-lg bg-silk-rose/15 border border-silk-rose/25 flex items-center justify-center">
+                <Hash className="w-3.5 h-3.5 text-silk-rose" />
+              </span>
+              <span className="text-[12px] sm:text-sm font-bold text-light-text dark:text-dark-text">
+                {bn ? "মান" : "Value"}
+              </span>
+            </div>
+
             <input
               type="text"
               value={value}
               onChange={(e) => setValue(e.target.value)}
               placeholder={current.example}
               spellCheck={false}
-              className="w-full h-11 px-3 rounded-lg text-[13px] font-mono bg-white/80 dark:bg-dark-surface/80 border border-silk-rose/20 focus:border-silk-rose/50 text-light-text dark:text-dark-text outline-none transition-all"
+              className="w-full h-12 px-4 rounded-xl text-[14px] font-mono font-bold bg-white/80 dark:bg-dark-surface/80 border border-silk-rose/20 focus:border-silk-rose/50 text-light-text dark:text-dark-text outline-none transition-all tracking-wide"
             />
-          </div>
+
+            <p className="text-[10px] text-light-textSecondary dark:text-dark-textSecondary font-mono">
+              {bn ? "উদা:" : "e.g."} {current.example}
+            </p>
+          </WorkspacePanel>
 
           {/* Options */}
-          <div className="rounded-2xl bg-white/70 dark:bg-dark-surface/70 backdrop-blur-xl border border-silk-rose/20 p-4 space-y-3">
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-              <div>
-                <div className="flex items-center justify-between mb-1.5">
-                  <label className="text-[11px] font-medium text-light-text dark:text-dark-text">
-                    {bn ? "Bar width" : "Bar width"}
-                  </label>
-                  <span className="text-[11px] font-mono text-silk-rose">{opts.width}</span>
-                </div>
-                <input type="range" min={1} max={6} step={0.5} value={opts.width} onChange={(e) => setOpts((p) => ({ ...p, width: parseFloat(e.target.value) }))} className="w-full accent-silk-rose" />
-              </div>
-              <div>
-                <div className="flex items-center justify-between mb-1.5">
-                  <label className="text-[11px] font-medium text-light-text dark:text-dark-text">
-                    {bn ? "Height" : "Height"}
-                  </label>
-                  <span className="text-[11px] font-mono text-silk-rose">{opts.height}</span>
-                </div>
-                <input type="range" min={40} max={300} step={10} value={opts.height} onChange={(e) => setOpts((p) => ({ ...p, height: parseInt(e.target.value) }))} className="w-full accent-silk-rose" />
-              </div>
-              <div>
-                <div className="flex items-center justify-between mb-1.5">
-                  <label className="text-[11px] font-medium text-light-text dark:text-dark-text">
-                    {bn ? "Font size" : "Font size"}
-                  </label>
-                  <span className="text-[11px] font-mono text-silk-rose">{opts.fontSize}</span>
-                </div>
-                <input type="range" min={10} max={40} step={1} value={opts.fontSize} onChange={(e) => setOpts((p) => ({ ...p, fontSize: parseInt(e.target.value) }))} className="w-full accent-silk-rose" />
-              </div>
-              <div>
-                <div className="flex items-center justify-between mb-1.5">
-                  <label className="text-[11px] font-medium text-light-text dark:text-dark-text">
-                    {bn ? "Margin" : "Margin"}
-                  </label>
-                  <span className="text-[11px] font-mono text-silk-rose">{opts.margin}</span>
-                </div>
-                <input type="range" min={0} max={40} step={2} value={opts.margin} onChange={(e) => setOpts((p) => ({ ...p, margin: parseInt(e.target.value) }))} className="w-full accent-silk-rose" />
-              </div>
+          <WorkspacePanel className="p-4 space-y-4">
+            <div className="flex items-center gap-2">
+              <span className="w-7 h-7 rounded-lg bg-silk-rose/15 border border-silk-rose/25 flex items-center justify-center">
+                <Settings2 className="w-3.5 h-3.5 text-silk-rose" />
+              </span>
+              <span className="text-[12px] sm:text-sm font-bold text-light-text dark:text-dark-text">
+                {bn ? "সেটিংস" : "Settings"}
+              </span>
             </div>
 
-            <div className="grid grid-cols-3 gap-2">
-              <button type="button" onClick={() => setOpts((p) => ({ ...p, displayValue: !p.displayValue }))} className={cn("h-9 rounded-lg border text-[11px] font-medium transition-all", opts.displayValue ? "bg-silk-rose/15 border-silk-rose/50 text-silk-wine dark:text-silk-rose-soft" : "bg-silk-rose/5 border-silk-rose/15 text-light-textSecondary dark:text-dark-textSecondary hover:border-silk-rose/40")}>
-                {opts.displayValue ? (bn ? "✓ টেক্সট" : "✓ Text") : (bn ? "টেক্সট নেই" : "No text")}
-              </button>
-              <div className="flex items-center gap-1.5">
-                <input type="color" value={opts.lineColor} onChange={(e) => setOpts((p) => ({ ...p, lineColor: e.target.value }))} className="w-9 h-9 rounded-lg border border-silk-rose/20 cursor-pointer bg-transparent shrink-0" />
-                <input type="text" value={opts.lineColor} onChange={(e) => setOpts((p) => ({ ...p, lineColor: e.target.value }))} className="flex-1 min-w-0 h-9 px-2 rounded-lg text-[10px] font-mono bg-white/80 dark:bg-dark-surface/80 border border-silk-rose/20 focus:border-silk-rose/50 text-light-text dark:text-dark-text outline-none" />
-              </div>
-              <div className="flex items-center gap-1.5">
-                <input type="color" value={opts.background} onChange={(e) => setOpts((p) => ({ ...p, background: e.target.value }))} className="w-9 h-9 rounded-lg border border-silk-rose/20 cursor-pointer bg-transparent shrink-0" />
-                <input type="text" value={opts.background} onChange={(e) => setOpts((p) => ({ ...p, background: e.target.value }))} className="flex-1 min-w-0 h-9 px-2 rounded-lg text-[10px] font-mono bg-white/80 dark:bg-dark-surface/80 border border-silk-rose/20 focus:border-silk-rose/50 text-light-text dark:text-dark-text outline-none" />
-              </div>
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <SliderRow
+                label={bn ? "বার প্রস্থ" : "Bar width"}
+                value={opts.width}
+                min={1}
+                max={6}
+                step={0.5}
+                onChange={(v) => setOpts((p) => ({ ...p, width: v }))}
+              />
+              <SliderRow
+                label={bn ? "উচ্চতা" : "Height"}
+                value={opts.height}
+                min={40}
+                max={300}
+                step={10}
+                onChange={(v) => setOpts((p) => ({ ...p, height: v }))}
+              />
+              <SliderRow
+                label={bn ? "ফন্ট সাইজ" : "Font size"}
+                value={opts.fontSize}
+                min={10}
+                max={40}
+                step={1}
+                onChange={(v) => setOpts((p) => ({ ...p, fontSize: v }))}
+              />
+              <SliderRow
+                label={bn ? "মার্জিন" : "Margin"}
+                value={opts.margin}
+                min={0}
+                max={40}
+                step={2}
+                onChange={(v) => setOpts((p) => ({ ...p, margin: v }))}
+              />
             </div>
-          </div>
+
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 pt-3 border-t border-silk-rose/10">
+              <button
+                type="button"
+                onClick={() =>
+                  setOpts((p) => ({
+                    ...p,
+                    displayValue: !p.displayValue,
+                  }))
+                }
+                className={cn(
+                  "h-10 rounded-xl border text-[11px] font-bold transition-all",
+                  opts.displayValue
+                    ? "bg-silk-rose/15 border-silk-rose/50 text-silk-wine dark:text-silk-rose-soft"
+                    : "bg-silk-rose/5 border-silk-rose/15 text-light-textSecondary dark:text-dark-textSecondary hover:border-silk-rose/40"
+                )}
+              >
+                {opts.displayValue
+                  ? bn
+                    ? "✓ টেক্সট দেখাবে"
+                    : "✓ Show text"
+                  : bn
+                    ? "টেক্সট নেই"
+                    : "No text"}
+              </button>
+
+              <ColorField
+                label={bn ? "লাইন" : "Line"}
+                value={opts.lineColor}
+                onChange={(v) => setOpts((p) => ({ ...p, lineColor: v }))}
+              />
+
+              <ColorField
+                label={bn ? "ব্যাকগ্রাউন্ড" : "Background"}
+                value={opts.background}
+                onChange={(v) => setOpts((p) => ({ ...p, background: v }))}
+              />
+            </div>
+          </WorkspacePanel>
         </div>
 
-        {/* Preview */}
-        <div className="lg:sticky lg:top-4 space-y-3">
-          <div className="rounded-2xl bg-white/70 dark:bg-dark-surface/70 backdrop-blur-xl border border-silk-rose/20 p-4">
-            <div className="flex items-center justify-between mb-3">
-              <span className="text-[10px] uppercase tracking-wider font-semibold text-silk-wine/70 dark:text-silk-rose/60">
+        {/* ── Right: Preview + Actions ── */}
+        <div className="lg:sticky lg:top-4 space-y-3 lg:h-fit">
+          <WorkspacePanel className="p-4 space-y-3" animate={false}>
+            <div className="flex items-center justify-between">
+              <span className="text-[10px] uppercase tracking-[0.2em] font-bold text-silk-wine/70 dark:text-silk-rose/60">
                 {bn ? "প্রিভিউ" : "Preview"}
               </span>
-              <span className="text-[10px] font-mono text-lightTextSecondary dark:text-dark-textSecondary">{opts.format}</span>
+              <span className="text-[10px] font-mono font-bold text-silk-rose bg-silk-rose/10 px-2 py-0.5 rounded-md">
+                {opts.format}
+              </span>
             </div>
-            <div className="rounded-xl bg-white border border-silk-rose/15 flex items-center justify-center p-3 min-h-[160px] overflow-hidden">
+
+            <div className="rounded-xl bg-white border border-silk-rose/15 flex items-center justify-center p-4 min-h-[180px] overflow-hidden">
               {value.trim() && !error ? (
-                <svg ref={svgRef} className="max-w-full h-auto" />
+                <svg
+                  ref={svgRef}
+                  className="max-w-full h-auto"
+                  role="img"
+                  aria-label="barcode preview"
+                />
               ) : (
-                <div className="text-center text-lightTextSecondary dark:text-dark-textSecondary p-4">
-                  <Barcode className="w-10 h-10 text-silk-rose/40 mx-auto mb-2" />
-                  <p className="text-[11px]">
-                    {error ? (bn ? "অবৈধ মান" : "Invalid value") : (bn ? "মান লিখুন" : "Enter a value")}
+                <div className="text-center text-light-textSecondary dark:text-dark-textSecondary p-4">
+                  <Barcode className="w-12 h-12 text-silk-rose/40 mx-auto mb-3" />
+                  <p className="text-[12px] font-medium">
+                    {error
+                      ? bn
+                        ? "অবৈধ মান"
+                        : "Invalid value"
+                      : bn
+                        ? "মান লিখুন"
+                        : "Enter a value"}
                   </p>
                 </div>
               )}
             </div>
-            {/* Hidden SVG always mounted for rendering */}
-            <div className="sr-only"><svg ref={svgRef} /></div>
-          </div>
 
-          {error && (
-            <div className="flex items-start gap-2 p-3 rounded-2xl bg-red-500/10 border border-red-500/30 text-[12px] text-red-600 dark:text-red-400">
-              <AlertCircle className="w-4 h-4 shrink-0 mt-0.5" />
-              <span>{error}</span>
+            {/* Hidden SVG always mounted for rendering */}
+            <div className="sr-only">
+              <svg ref={svgRef} />
             </div>
-          )}
+          </WorkspacePanel>
+
+          <AnimatePresence>
+            {error && (
+              <motion.div
+                initial={{ opacity: 0, y: -6 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -6 }}
+                className="flex items-start gap-2.5 p-3.5 rounded-xl bg-red-500/10 border border-red-500/30 text-[12px] font-medium text-red-600 dark:text-red-400"
+              >
+                <AlertCircle className="w-4 h-4 shrink-0 mt-0.5" />
+                <span>{error}</span>
+              </motion.div>
+            )}
+          </AnimatePresence>
 
           <div className="grid grid-cols-2 gap-2">
-            <button type="button" onClick={() => void handleDownloadPng()} disabled={!value.trim() || !!error || busy} className="inline-flex items-center justify-center gap-1.5 h-11 rounded-lg bg-gradient-to-r from-silk-rose to-silk-wine-deep text-white text-[11px] sm:text-xs font-semibold shadow-silk-soft hover:shadow-silk-deep transition-all disabled:opacity-40">
-              <ImageIcon className="w-3.5 h-3.5" /> PNG
-            </button>
-            <button type="button" onClick={handleDownloadSvg} disabled={!value.trim() || !!error} className="inline-flex items-center justify-center gap-1.5 h-11 rounded-lg bg-silk-rose/10 border border-silk-rose/25 text-[11px] sm:text-xs font-semibold text-silk-rose hover:bg-silk-rose/20 transition-all disabled:opacity-40">
-              <FileCode2 className="w-3.5 h-3.5" /> SVG
-            </button>
+            <ToolButton
+              variant="primary"
+              size="md"
+              loading={busy}
+              disabled={!value.trim() || !!error}
+              icon={<ImageIcon className="w-3.5 h-3.5" />}
+              onClick={() => void handleDownloadPng()}
+            >
+              PNG
+            </ToolButton>
+            <ToolButton
+              variant="secondary"
+              size="md"
+              disabled={!value.trim() || !!error}
+              icon={<FileCode2 className="w-3.5 h-3.5" />}
+              onClick={handleDownloadSvg}
+            >
+              SVG
+            </ToolButton>
           </div>
 
-          <button type="button" onClick={() => void handleCopy()} disabled={!value.trim() || !!error} className="w-full inline-flex items-center justify-center gap-1.5 h-10 rounded-lg bg-white/70 dark:bg-dark-surface/70 backdrop-blur-xl border border-silk-rose/20 text-[11px] font-medium text-silk-rose hover:bg-silk-rose/10 transition-all disabled:opacity-40">
-            {copied ? <ClipboardCheck className="w-3.5 h-3.5" /> : <Copy className="w-3.5 h-3.5" />}
-            {copied ? (bn ? "কপি হয়েছে" : "Copied") : (bn ? "SVG কপি" : "Copy SVG")}
+          <button
+            type="button"
+            onClick={() => void handleCopy()}
+            disabled={!value.trim() || !!error}
+            className={cn(
+              "w-full inline-flex items-center justify-center gap-2 h-10 rounded-xl text-[12px] font-bold transition-all",
+              copied
+                ? "bg-emerald-500/15 border border-emerald-500/40 text-emerald-600 dark:text-emerald-400"
+                : "bg-white/70 dark:bg-dark-surface/70 backdrop-blur-xl border border-silk-rose/20 text-silk-rose hover:bg-silk-rose/10 hover:border-silk-rose/40",
+              (!value.trim() || !!error) && "opacity-40 cursor-not-allowed"
+            )}
+          >
+            {copied ? (
+              <ClipboardCheck className="w-4 h-4" />
+            ) : (
+              <Copy className="w-4 h-4" />
+            )}
+            {copied
+              ? bn
+                ? "কপি হয়েছে!"
+                : "Copied!"
+              : bn
+                ? "SVG কপি করুন"
+                : "Copy SVG"}
           </button>
         </div>
       </div>
     </section>
+  );
+}
+
+function SliderRow({
+  label,
+  value,
+  min,
+  max,
+  step,
+  onChange,
+}: {
+  label: string;
+  value: number;
+  min: number;
+  max: number;
+  step: number;
+  onChange: (v: number) => void;
+}) {
+  return (
+    <div>
+      <div className="flex items-center justify-between mb-2">
+        <label className="text-[11px] font-bold uppercase tracking-wider text-light-textSecondary dark:text-dark-textSecondary">
+          {label}
+        </label>
+        <span className="text-[12px] font-mono font-bold text-silk-rose px-2 py-0.5 rounded-md bg-silk-rose/10">
+          {value}
+        </span>
+      </div>
+      <input
+        type="range"
+        min={min}
+        max={max}
+        step={step}
+        value={value}
+        onChange={(e) => onChange(parseFloat(e.target.value))}
+        className="w-full accent-silk-rose cursor-pointer"
+      />
+    </div>
+  );
+}
+
+function ColorField({
+  label,
+  value,
+  onChange,
+}: {
+  label: string;
+  value: string;
+  onChange: (v: string) => void;
+}) {
+  return (
+    <div>
+      <label className="block text-[10px] font-bold uppercase tracking-wider text-light-textSecondary dark:text-dark-textSecondary mb-1.5">
+        {label}
+      </label>
+      <div className="flex items-center gap-1.5">
+        <input
+          type="color"
+          value={value}
+          onChange={(e) => onChange(e.target.value)}
+          className="w-9 h-9 rounded-lg border border-silk-rose/20 cursor-pointer bg-transparent shrink-0"
+        />
+        <input
+          type="text"
+          value={value}
+          onChange={(e) => onChange(e.target.value)}
+          className="flex-1 min-w-0 h-9 px-2 rounded-lg text-[10px] font-mono bg-white/80 dark:bg-dark-surface/80 border border-silk-rose/20 focus:border-silk-rose/50 text-light-text dark:text-dark-text outline-none uppercase"
+        />
+      </div>
+    </div>
   );
 }
