@@ -17,14 +17,15 @@
   },
   "scripts": {
     "dev": "vite",
-    "build": "npm run sitemap && npm run og:images && npm run tool:meta && tsc --noEmit && vite build",
+    "build": "npm run sitemap && npm run rss && npm run og:images && npm run tool:meta && tsc --noEmit && vite build",
     "preview": "vite preview --port 4173",
     "lint": "tsc --noEmit",
     "type-check": "tsc --noEmit",
     "clean": "rm -rf dist node_modules/.vite",
     "sitemap": "tsx scripts/generate-sitemap.ts",
     "og:images": "tsx scripts/generate-og-images.ts",
-    "tool:meta": "tsx scripts/generate-tool-meta.ts"
+    "tool:meta": "tsx scripts/generate-tool-meta.ts",
+    "rss": "tsx scripts/generate-rss.ts"
   },
   "dependencies": {
     "@imgly/background-removal": "^1.5.5",
