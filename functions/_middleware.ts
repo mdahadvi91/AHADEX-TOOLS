@@ -155,7 +155,8 @@ export const onRequest: PagesFunction<Env> = async (context) => {
 
     const html = await fetchIndexHtml(url, context.request, context.env);
     if (!html) return context.next();
-    const injected = html.replace(
+    const stripped = stripGenericMeta(html);
+    const injected = stripped.replace(
       "</head>",
       `<meta name="robots" content="noindex, follow" /><link rel="canonical" href="${canonical}" /></head>`
     );
