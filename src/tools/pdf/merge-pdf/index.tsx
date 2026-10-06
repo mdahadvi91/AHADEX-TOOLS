@@ -10,12 +10,14 @@ import { FAQ } from "./components/FAQ";
 import { RecommendedProducts } from "@components/affiliate/RecommendedProducts";
 import { RelatedTools } from "./components/RelatedTools";
 import { RelatedArticles } from "@components/blog/RelatedArticles";
+import { ToolBreadcrumb } from "@components/tools/ToolBreadcrumb";
 
 export default function MergePdfTool() {
   useToolAnalytics("merge-pdf");
   return (
     <>
       <MergePdfSEO />
+        <ToolBreadcrumb toolName="Merge PDF" category="PDF Tools" />
       <div className="mx-auto max-w-[1200px] px-4 sm:px-6 lg:px-8">
         <Hero />
         <Workspace />
