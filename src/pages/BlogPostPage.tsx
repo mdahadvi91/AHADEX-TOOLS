@@ -42,9 +42,13 @@ export default function BlogPostPage() {
       })
     : null;
 
-  const otherPosts = blogPosts
-    .filter((p) => p.slug !== post.slug)
-    .slice(0, 2);
+  const sameCategory = blogPosts.filter(
+    (p) => p.slug !== post.slug && p.category === post.category
+  );
+  const otherCategory = blogPosts.filter(
+    (p) => p.slug !== post.slug && p.category !== post.category
+  );
+  const otherPosts = [...sameCategory, ...otherCategory].slice(0, 3);
 
   return (
     <article className="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8 py-10 sm:py-14">
