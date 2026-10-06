@@ -9,6 +9,7 @@ import { FAQ } from "./components/FAQ";
 import { RelatedTools } from "./components/RelatedTools";
 import { useToolAnalytics } from "@hooks/useToolAnalytics";
 import { RecommendedProducts } from "@components/affiliate/RecommendedProducts";
+import { RelatedArticles } from "@components/blog/RelatedArticles";
 
 export default function CharacterCounterTool() {
   useToolAnalytics("character-counter");
@@ -24,6 +25,7 @@ export default function CharacterCounterTool() {
         <HowTo />
         <PrivacyNote />
         <FAQ />
+        <RelatedArticles toolId="character-counter" />
         <RelatedTools />
       </div>
     </>

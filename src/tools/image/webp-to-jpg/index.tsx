@@ -9,6 +9,7 @@ import { PrivacyNote } from "./components/PrivacyNote";
 import { FAQ } from "./components/FAQ";
 import { RecommendedProducts } from "@components/affiliate/RecommendedProducts";
 import { RelatedTools } from "./components/RelatedTools";
+import { RelatedArticles } from "@components/blog/RelatedArticles";
 
 export default function WebpToJpgTool() {
   useToolAnalytics("webp-to-jpg");
@@ -24,6 +25,7 @@ export default function WebpToJpgTool() {
         <HowTo />
         <PrivacyNote />
         <FAQ />
+        <RelatedArticles toolId="webp-to-jpg" />
         <RelatedTools />
       </div>
     </>

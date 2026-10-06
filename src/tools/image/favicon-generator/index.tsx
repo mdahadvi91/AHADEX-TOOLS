@@ -9,6 +9,7 @@ import { FAQ } from "./components/FAQ";
 import { RecommendedProducts } from "@components/affiliate/RecommendedProducts";
 import { RelatedTools } from "./components/RelatedTools";
 import { useToolAnalytics } from "@hooks/useToolAnalytics";
+import { RelatedArticles } from "@components/blog/RelatedArticles";
 
 export default function FaviconGeneratorTool() {
   useToolAnalytics("favicon-generator");
@@ -24,6 +25,7 @@ export default function FaviconGeneratorTool() {
         <HowTo />
         <PrivacyNote />
         <FAQ />
+        <RelatedArticles toolId="favicon-generator" />
         <RelatedTools />
       </div>
     </>

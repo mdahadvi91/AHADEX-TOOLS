@@ -25,6 +25,7 @@ const DisclaimerPage = lazy(() => import("@pages/DisclaimerPage"));
 const AccessibilityPage = lazy(() => import("@pages/AccessibilityPage"));
 const CookiePolicyPage = lazy(() => import("@pages/CookiePolicyPage"));
 const AffiliateDisclosurePage = lazy(() => import("@pages/AffiliateDisclosurePage"));
+const EditorialPolicyPage = lazy(() => import("@pages/EditorialPolicyPage"));
 const BlogIndexPage = lazy(() => import("@pages/BlogIndexPage"));
 const BlogPostPage = lazy(() => import("@pages/BlogPostPage"));
 const NotFoundPage = lazy(() => import("@pages/NotFoundPage"));
@@ -196,6 +197,7 @@ export default function App() {
                 <Route path="accessibility" element={<PageSuspense><AccessibilityPage /></PageSuspense>} />
                 <Route path="cookie-policy" element={<PageSuspense><CookiePolicyPage /></PageSuspense>} />
                 <Route path="affiliate-disclosure" element={<PageSuspense><AffiliateDisclosurePage /></PageSuspense>} />
+                <Route path="editorial-policy" element={<PageSuspense><EditorialPolicyPage /></PageSuspense>} />
                 <Route path="blog" element={<PageSuspense><BlogIndexPage /></PageSuspense>} />
                 <Route path="blog/:slug" element={<PageSuspense><BlogPostPage /></PageSuspense>} />
 

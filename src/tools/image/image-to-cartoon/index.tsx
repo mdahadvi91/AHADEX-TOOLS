@@ -9,6 +9,7 @@ import { PrivacyNote } from "./components/PrivacyNote";
 import { FAQ } from "./components/FAQ";
 import { RecommendedProducts } from "@components/affiliate/RecommendedProducts";
 import { RelatedTools } from "./components/RelatedTools";
+import { RelatedArticles } from "@components/blog/RelatedArticles";
 
 export default function ImageToCartoonTool() {
   useToolAnalytics("image-to-cartoon");
@@ -24,6 +25,7 @@ export default function ImageToCartoonTool() {
         <HowTo />
         <PrivacyNote />
         <FAQ />
+        <RelatedArticles toolId="image-to-cartoon" />
         <RelatedTools />
       </div>
     </>

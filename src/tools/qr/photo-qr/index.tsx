@@ -17,6 +17,7 @@ import { photoQrData } from "./data";
 import { photoQrContent } from "./content";
 import type { Position, QrBackground } from "./types";
 import { RecommendedProducts } from "@components/affiliate/RecommendedProducts";
+import { RelatedArticles } from "@components/blog/RelatedArticles";
 
 export default function PhotoQrTool() {
   useToolAnalytics("photo-qr");
@@ -185,7 +186,8 @@ export default function PhotoQrTool() {
         <FAQ faqs={content.faq} />
       </div>
 
-      <RelatedTools toolIds={photoQrData.relatedTools} />
+      <RelatedArticles toolId="photo-qr" />
+        <RelatedTools toolIds={photoQrData.relatedTools} />
     </div>
   );
 }

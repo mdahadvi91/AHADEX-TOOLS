@@ -50,6 +50,7 @@ export function Footer() {
         { to: "/terms", label: t.footer.terms },
         { to: "/disclaimer", label: t.footer.disclaimer },
         { to: "/cookie-policy", label: bn ? "কুকিজ" : "Cookies" },
+        { to: "/editorial-policy", label: bn ? "এডিটোরিয়াল" : "Editorial" },
       ],
     },
   ];

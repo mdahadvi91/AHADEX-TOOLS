@@ -67,6 +67,12 @@
     <priority>0.3</priority>
   </url>
   <url>
+    <loc>https://ahadex.fun/editorial-policy</loc>
+    <lastmod>2026-10-06</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+  </url>
+  <url>
     <loc>https://ahadex.fun/tools/photo-qr</loc>
     <lastmod>2026-10-06</lastmod>
     <changefreq>weekly</changefreq>

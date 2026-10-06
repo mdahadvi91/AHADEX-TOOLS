@@ -9,6 +9,7 @@ import { PrivacyNote } from "./components/PrivacyNote";
 import { FAQ } from "./components/FAQ";
 import { RelatedTools } from "./components/RelatedTools";
 import { RecommendedProducts } from "@components/affiliate/RecommendedProducts";
+import { RelatedArticles } from "@components/blog/RelatedArticles";
 
 export default function PdfPageExtractorTool() {
   useToolAnalytics("pdf-page-extractor");
@@ -24,6 +25,7 @@ export default function PdfPageExtractorTool() {
         <HowTo />
         <PrivacyNote />
         <FAQ />
+        <RelatedArticles toolId="pdf-page-extractor" />
         <RelatedTools />
       </div>
     </>
