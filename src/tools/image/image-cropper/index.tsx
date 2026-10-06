@@ -10,12 +10,14 @@ import { FAQ } from "./components/FAQ";
 import { RecommendedProducts } from "@components/affiliate/RecommendedProducts";
 import { RelatedTools } from "./components/RelatedTools";
 import { RelatedArticles } from "@components/blog/RelatedArticles";
+import { ToolBreadcrumb } from "@components/tools/ToolBreadcrumb";
 
 export default function ImageCropperTool() {
   useToolAnalytics("image-cropper");
   return (
     <>
       <ImageCropperSEO />
+        <ToolBreadcrumb toolName="Image Cropper" category="Image Tools" />
       <div className="mx-auto max-w-[1200px] px-4 sm:px-6 lg:px-8">
         <Hero />
         <Workspace />
