@@ -1,13 +1,36 @@
 import { useEffect, useRef, useState } from "react";
-import { Upload, X, Download, Loader2, RotateCcw, Crop as CropIcon } from "lucide-react";
+import { motion, AnimatePresence } from "framer-motion";
+import {
+  Download,
+  X,
+  RotateCcw,
+  Crop as CropIcon,
+  Settings2,
+} from "lucide-react";
 import { useLanguage } from "@contexts/LanguageContext";
+import { useSound } from "@contexts/SoundContext";
 import { cn } from "@lib/cn";
-import { cropImage, downloadFile, formatBytes, revokeUrls, ASPECT_PRESETS, fitAspect } from "../logic";
+import {
+  WorkspacePanel,
+  DropZone,
+  ToolButton,
+  ResultStat,
+} from "@components/workspace";
+import {
+  cropImage,
+  downloadFile,
+  formatBytes,
+  revokeUrls,
+  ASPECT_PRESETS,
+  fitAspect,
+} from "../logic";
 import type { CroppedFile, CropRect } from "../types";
 
 export function Workspace() {
   const { language } = useLanguage();
+  const { play } = useSound();
   const bn = language === "bn";
+
   const inputRef = useRef<HTMLInputElement>(null);
   const previewRef = useRef<HTMLDivElement>(null);
 
@@ -22,10 +45,15 @@ export function Workspace() {
   const [error, setError] = useState<string | null>(null);
   const [previewBox, setPreviewBox] = useState({ w: 0, h: 0 });
 
-  /* Load file into preview */
   const handleFile = async (f: File) => {
-    if (result) { revokeUrls(result); setResult(null); }
-    if (!f.type.startsWith("image/")) { setError(bn ? "শুধু ছবি দিন।" : "Please select an image."); return; }
+    if (result) {
+      revokeUrls(result);
+      setResult(null);
+    }
+    if (!f.type.startsWith("image/")) {
+      setError(bn ? "শুধু ছবি দিন।" : "Please select an image.");
+      return;
+    }
     setError(null);
     setFile(f);
     const url = URL.createObjectURL(f);
@@ -39,13 +67,6 @@ export function Workspace() {
     img.src = url;
   };
 
-  const onDrop = (e: React.DragEvent) => {
-    e.preventDefault(); setDrag(false);
-    const f = e.dataTransfer.files?.[0];
-    if (f) void handleFile(f);
-  };
-
-  /* Recompute preview box size when image loads */
   useEffect(() => {
     if (!imgDims.w || !imgDims.h || !previewRef.current) return;
     const update = () => {
@@ -60,7 +81,10 @@ export function Workspace() {
     const ro = new ResizeObserver(update);
     ro.observe(previewRef.current);
     window.addEventListener("resize", update);
-    return () => { ro.disconnect(); window.removeEventListener("resize", update); };
+    return () => {
+      ro.disconnect();
+      window.removeEventListener("resize", update);
+    };
   }, [imgDims]);
 
   const applyPreset = (id: string) => {
@@ -72,7 +96,10 @@ export function Workspace() {
 
   const updateNum = (key: keyof CropRect, val: number) => {
     setCrop((c) => {
-      const next = { ...c, [key]: Math.max(key === "w" || key === "h" ? 1 : 0, val) };
+      const next = {
+        ...c,
+        [key]: Math.max(key === "w" || key === "h" ? 1 : 0, val),
+      };
       next.x = Math.min(next.x, imgDims.w - 1);
       next.y = Math.min(next.y, imgDims.h - 1);
       next.w = Math.min(next.w, imgDims.w - next.x);
@@ -82,13 +109,22 @@ export function Workspace() {
     setPreset("free");
   };
 
-  /* Interactive drag on crop box */
-  const dragState = useRef<{ mode: "move" | "se" | null; startX: number; startY: number; orig: CropRect } | null>(null);
+  const dragState = useRef<{
+    mode: "move" | "se" | null;
+    startX: number;
+    startY: number;
+    orig: CropRect;
+  } | null>(null);
 
   const onPointerDown = (mode: "move" | "se", e: React.PointerEvent) => {
     e.preventDefault();
     (e.target as HTMLElement).setPointerCapture(e.pointerId);
-    dragState.current = { mode, startX: e.clientX, startY: e.clientY, orig: { ...crop } };
+    dragState.current = {
+      mode,
+      startX: e.clientX,
+      startY: e.clientY,
+      orig: { ...crop },
+    };
   };
 
   const onPointerMove = (e: React.PointerEvent) => {
@@ -116,7 +152,9 @@ export function Workspace() {
     });
   };
 
-  const onPointerUp = () => { dragState.current = null; };
+  const onPointerUp = () => {
+    dragState.current = null;
+  };
 
   const handleCrop = async () => {
     if (!file) return;
@@ -125,8 +163,13 @@ export function Workspace() {
     try {
       if (result) revokeUrls(result);
       const r = await cropImage(file, crop, setError);
-      if (r) setResult(r);
-    } finally { setBusy(false); }
+      if (r) {
+        setResult(r);
+        play("success");
+      }
+    } finally {
+      setBusy(false);
+    }
   };
 
   const resetCrop = () => {
@@ -137,123 +180,327 @@ export function Workspace() {
   const clearAll = () => {
     if (imgUrl) URL.revokeObjectURL(imgUrl);
     if (result) revokeUrls(result);
-    setFile(null); setImgUrl(null); setResult(null); setError(null);
+    setFile(null);
+    setImgUrl(null);
+    setResult(null);
+    setError(null);
     setImgDims({ w: 0, h: 0 });
     if (inputRef.current) inputRef.current.value = "";
   };
 
-  /* Scale helper for crop box on preview */
   const scale = previewBox.w && imgDims.w ? previewBox.w / imgDims.w : 0;
 
   return (
-    <section className="pb-12 space-y-4">
-      <input ref={inputRef} type="file" accept="image/jpeg,image/jpg,image/png,image/webp" onChange={(e) => { const f = e.target.files?.[0]; if (f) void handleFile(f); }} className="hidden" />
+    <section className="pb-12 space-y-4 sm:space-y-5">
+      <input
+        ref={inputRef}
+        type="file"
+        accept="image/jpeg,image/jpg,image/png,image/webp"
+        onChange={(e) => {
+          const f = e.target.files?.[0];
+          if (f) void handleFile(f);
+        }}
+        className="hidden"
+      />
 
+      {/* ── Empty state: Drop zone ── */}
       {!file && (
-        <div onDragOver={(e) => { e.preventDefault(); setDrag(true); }} onDragLeave={() => setDrag(false)} onDrop={onDrop} onClick={() => inputRef.current?.click()} role="button" tabIndex={0} onKeyDown={(e) => { if (e.key === "Enter" || e.key === " ") inputRef.current?.click(); }} className={cn("flex flex-col items-center justify-center gap-4 p-8 sm:p-16 rounded-3xl cursor-pointer", "bg-white/70 dark:bg-dark-surface/70 backdrop-blur-xl", "border-2 border-dashed transition-all duration-300", drag ? "border-silk-rose/70 bg-silk-rose/10 scale-[1.01]" : "border-silk-rose/25 hover:border-silk-rose/50")}>
-          <div className={cn("w-16 h-16 sm:w-20 sm:h-20 rounded-2xl flex items-center justify-center transition-all", "bg-gradient-to-br from-silk-rose/20 to-silk-gold/10 border border-silk-rose/25", drag && "scale-110")}>
-            <Upload className="w-7 h-7 sm:w-9 sm:h-9 text-silk-rose" />
-          </div>
-          <div className="text-center px-3">
-            <p className="font-display font-bold text-[15px] sm:text-lg text-light-text dark:text-dark-text mb-1.5">{bn ? "ছবি ড্রপ করুন" : "Drop your image"}</p>
-            <p className="text-[12px] sm:text-sm text-light-textSecondary dark:text-dark-textSecondary leading-relaxed">{bn ? "JPG · PNG · WebP · ৫০ MB পর্যন্ত" : "JPG · PNG · WebP · Up to 50 MB"}</p>
-          </div>
-        </div>
+        <DropZone
+          onFiles={(list) => {
+            const f = list?.[0];
+            if (f) void handleFile(f);
+          }}
+          accept="image/jpeg,image/jpg,image/png,image/webp"
+          busy={busy}
+          drag={drag}
+          onDragChange={setDrag}
+          title={bn ? "ছবি ড্রপ করুন" : "Drop your image"}
+          subtitle={
+            bn
+              ? "JPG · PNG · WebP · ৫০ MB পর্যন্ত"
+              : "JPG · PNG · WebP · Up to 50 MB"
+          }
+          icon={<CropIcon className="w-7 h-7 sm:w-9 sm:h-9 text-silk-rose" />}
+        />
       )}
 
-      {error && <div className="p-3 rounded-xl bg-red-500/10 border border-red-500/30 text-[12px] text-red-600 dark:text-red-400">{error}</div>}
+      {/* ── Error ── */}
+      <AnimatePresence>
+        {error && (
+          <motion.div
+            initial={{ opacity: 0, y: -8 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -8 }}
+            className="p-3.5 rounded-xl bg-red-500/10 border border-red-500/30 text-[12px] sm:text-[13px] text-red-600 dark:text-red-400 font-medium"
+          >
+            {error}
+          </motion.div>
+        )}
+      </AnimatePresence>
 
       {file && imgUrl && (
         <>
-          {/* Aspect presets */}
-          <div className="rounded-2xl bg-white/70 dark:bg-dark-surface/70 backdrop-blur-xl border border-silk-rose/20 p-3">
-            <p className="text-[10px] uppercase tracking-wider font-semibold text-silk-wine/70 dark:text-silk-rose/60 mb-2">{bn ? "Aspect ratio" : "Aspect ratio"}</p>
-            <div className="flex flex-wrap gap-1.5">
-              {ASPECT_PRESETS.map((p) => (
-                <button key={p.id} type="button" onClick={() => applyPreset(p.id)} className={cn("px-2.5 py-1 rounded-full text-[10px] font-medium transition-all", preset === p.id ? "bg-silk-rose text-white" : "bg-silk-rose/8 border border-silk-rose/25 text-light-textSecondary dark:text-dark-textSecondary hover:border-silk-rose/50")}>
-                  {bn ? p.labelBn : p.labelEn}
-                </button>
-              ))}
+          {/* ── Aspect presets ── */}
+          <WorkspacePanel className="p-3.5 sm:p-4" animate={false}>
+            <div className="flex items-center gap-2 mb-3">
+              <span className="w-7 h-7 rounded-lg bg-silk-rose/15 border border-silk-rose/25 flex items-center justify-center">
+                <Settings2 className="w-3.5 h-3.5 text-silk-rose" />
+              </span>
+              <span className="text-[12px] sm:text-sm font-bold text-light-text dark:text-dark-text">
+                {bn ? "অ্যাসপেক্ট রেশিও" : "Aspect ratio"}
+              </span>
             </div>
-          </div>
+            <div className="flex flex-wrap gap-1.5">
+              {ASPECT_PRESETS.map((p) => {
+                const active = preset === p.id;
+                return (
+                  <button
+                    key={p.id}
+                    type="button"
+                    onClick={() => applyPreset(p.id)}
+                    className={cn(
+                      "px-3 py-1.5 rounded-full text-[10px] font-bold transition-all",
+                      active
+                        ? "bg-gradient-to-r from-silk-rose to-silk-wine-deep text-white shadow-[0_6px_16px_-8px_rgba(139,58,79,0.5)]"
+                        : "bg-silk-rose/8 border border-silk-rose/25 text-silk-wine dark:text-silk-rose-soft hover:bg-silk-rose/15 hover:border-silk-rose/45"
+                    )}
+                  >
+                    {bn ? p.labelBn : p.labelEn}
+                  </button>
+                );
+              })}
+            </div>
+          </WorkspacePanel>
 
-          {/* Crop preview */}
-          <div className="rounded-2xl bg-silk-rose/5 border border-silk-rose/15 p-3 sm:p-4">
+          {/* ── Crop preview ── */}
+          <WorkspacePanel className="p-3 sm:p-4" animate={false}>
             <div ref={previewRef} className="flex justify-center">
-              <div className="relative select-none" style={{ width: previewBox.w, height: previewBox.h }}>
-                <img src={imgUrl} alt="preview" className="block w-full h-full select-none pointer-events-none" draggable={false} />
-                <div className="absolute inset-0 bg-black/40 pointer-events-none" style={{ clipPath: `polygon(0 0, 100% 0, 100% 100%, 0 100%, 0 0, ${crop.x * scale}px ${crop.y * scale}px, ${crop.x * scale}px ${(crop.y + crop.h) * scale}px, ${(crop.x + crop.w) * scale}px ${(crop.y + crop.h) * scale}px, ${(crop.x + crop.w) * scale}px ${crop.y * scale}px, ${crop.x * scale}px ${crop.y * scale}px)` }} />
-                <div onPointerDown={(e) => onPointerDown("move", e)} onPointerMove={onPointerMove} onPointerUp={onPointerUp} className="absolute border-2 border-silk-rose cursor-move" style={{ left: crop.x * scale, top: crop.y * scale, width: crop.w * scale, height: crop.h * scale }}>
+              <div
+                className="relative select-none rounded-lg overflow-hidden shadow-[0_12px_40px_-16px_rgba(139,58,79,0.35)]"
+                style={{ width: previewBox.w, height: previewBox.h }}
+              >
+                <img
+                  src={imgUrl}
+                  alt="preview"
+                  className="block w-full h-full select-none pointer-events-none"
+                  draggable={false}
+                />
+                <div
+                  className="absolute inset-0 bg-black/50 pointer-events-none"
+                  style={{
+                    clipPath: `polygon(0 0, 100% 0, 100% 100%, 0 100%, 0 0, ${crop.x * scale}px ${crop.y * scale}px, ${crop.x * scale}px ${(crop.y + crop.h) * scale}px, ${(crop.x + crop.w) * scale}px ${(crop.y + crop.h) * scale}px, ${(crop.x + crop.w) * scale}px ${crop.y * scale}px, ${crop.x * scale}px ${crop.y * scale}px)`,
+                  }}
+                />
+                <div
+                  onPointerDown={(e) => onPointerDown("move", e)}
+                  onPointerMove={onPointerMove}
+                  onPointerUp={onPointerUp}
+                  className="absolute border-2 border-silk-rose cursor-move"
+                  style={{
+                    left: crop.x * scale,
+                    top: crop.y * scale,
+                    width: crop.w * scale,
+                    height: crop.h * scale,
+                  }}
+                >
                   <div className="absolute inset-0 grid grid-cols-3 grid-rows-3 pointer-events-none">
-                    {Array.from({ length: 9 }).map((_, i) => (<div key={i} className="border border-white/30" />))}
+                    {Array.from({ length: 9 }).map((_, i) => (
+                      <div key={i} className="border border-white/30" />
+                    ))}
                   </div>
-                  <div onPointerDown={(e) => { e.stopPropagation(); onPointerDown("se", e); }} onPointerMove={onPointerMove} onPointerUp={onPointerUp} className="absolute -bottom-2 -right-2 w-4 h-4 bg-silk-rose rounded-full cursor-se-resize shadow-silk-medium" />
+                  <div
+                    onPointerDown={(e) => {
+                      e.stopPropagation();
+                      onPointerDown("se", e);
+                    }}
+                    onPointerMove={onPointerMove}
+                    onPointerUp={onPointerUp}
+                    className="absolute -bottom-2 -right-2 w-5 h-5 bg-silk-rose rounded-full cursor-se-resize shadow-[0_6px_16px_-4px_rgba(139,58,79,0.5)] border-2 border-white"
+                  />
                 </div>
               </div>
             </div>
-          </div>
+          </WorkspacePanel>
 
-          {/* Numeric inputs */}
-          <div className="rounded-2xl bg-white/70 dark:bg-dark-surface/70 backdrop-blur-xl border border-silk-rose/20 p-3">
-            <div className="grid grid-cols-2 sm:grid-cols-4 gap-2">
-              <NumField label="X" value={crop.x} max={imgDims.w} onChange={(v) => updateNum("x", v)} />
-              <NumField label="Y" value={crop.y} max={imgDims.h} onChange={(v) => updateNum("y", v)} />
-              <NumField label="W" value={crop.w} max={imgDims.w} onChange={(v) => updateNum("w", v)} />
-              <NumField label="H" value={crop.h} max={imgDims.h} onChange={(v) => updateNum("h", v)} />
+          {/* ── Numeric inputs ── */}
+          <WorkspacePanel className="p-3.5 sm:p-4" animate={false}>
+            <div className="grid grid-cols-2 sm:grid-cols-4 gap-2.5">
+              <NumField
+                label="X"
+                value={crop.x}
+                max={imgDims.w}
+                onChange={(v) => updateNum("x", v)}
+              />
+              <NumField
+                label="Y"
+                value={crop.y}
+                max={imgDims.h}
+                onChange={(v) => updateNum("y", v)}
+              />
+              <NumField
+                label="W"
+                value={crop.w}
+                max={imgDims.w}
+                onChange={(v) => updateNum("w", v)}
+              />
+              <NumField
+                label="H"
+                value={crop.h}
+                max={imgDims.h}
+                onChange={(v) => updateNum("h", v)}
+              />
             </div>
-            <div className="mt-2 flex items-center justify-between text-[10px] text-light-textSecondary dark:text-dark-textSecondary">
-              <span>{bn ? "মূল মাপ" : "Original"}: {imgDims.w} × {imgDims.h} px</span>
-              <button type="button" onClick={resetCrop} className="inline-flex items-center gap-1 text-silk-rose hover:underline"><RotateCcw className="w-3 h-3" />{bn ? "রিসেট" : "Reset"}</button>
-            </div>
-          </div>
-
-          {/* Action bar */}
-          <div className="flex items-center justify-between gap-3 flex-wrap p-3 rounded-2xl bg-white/70 dark:bg-dark-surface/70 backdrop-blur-xl border border-silk-rose/20">
-            <div className="flex items-center gap-2 text-[12px] text-light-text dark:text-dark-text">
-              <CropIcon className="w-4 h-4 text-silk-rose" />
-              <span className="font-semibold">{bn ? `ক্রপ: ${crop.w}×${crop.h}` : `Crop: ${crop.w}×${crop.h}`}</span>
-            </div>
-            <div className="flex items-center gap-2">
-              <button type="button" onClick={() => inputRef.current?.click()} className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-silk-rose/10 border border-silk-rose/25 text-[11px] sm:text-xs font-medium text-silk-rose hover:bg-silk-rose/20 transition-all"><Upload className="w-3.5 h-3.5" />{bn ? "নতুন ছবি" : "New image"}</button>
-              <button type="button" onClick={() => void handleCrop()} disabled={busy} className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-gradient-to-r from-silk-rose to-silk-wine-deep text-white text-[11px] sm:text-xs font-semibold shadow-silk-soft hover:shadow-silk-deep transition-all disabled:opacity-50">
-                {busy ? <Loader2 className="w-3.5 h-3.5 animate-spin" /> : <CropIcon className="w-3.5 h-3.5" />}
-                {bn ? "ক্রপ করুন" : "Apply crop"}
+            <div className="mt-3 flex items-center justify-between text-[10px] sm:text-[11px] text-light-textSecondary dark:text-dark-textSecondary pt-3 border-t border-silk-rose/10">
+              <span className="font-mono">
+                {bn ? "মূল মাপ" : "Original"}: {imgDims.w} × {imgDims.h} px
+              </span>
+              <button
+                type="button"
+                onClick={resetCrop}
+                className="inline-flex items-center gap-1.5 text-silk-rose hover:text-silk-wine dark:hover:text-silk-rose-soft font-bold transition-colors"
+              >
+                <RotateCcw className="w-3 h-3" />
+                {bn ? "রিসেট" : "Reset"}
               </button>
-              <button type="button" onClick={clearAll} className="w-7 h-7 rounded-lg flex items-center justify-center text-red-500 hover:bg-red-500/10 transition-colors" aria-label="Clear"><X className="w-3.5 h-3.5" /></button>
             </div>
+          </WorkspacePanel>
+
+          {/* ── Stats ── */}
+          <div className="grid grid-cols-2 sm:grid-cols-3 gap-2.5 sm:gap-3">
+            <ResultStat
+              label={bn ? "ক্রপ প্রস্থ" : "Crop W"}
+              value={`${crop.w}px`}
+              accent="rose"
+            />
+            <ResultStat
+              label={bn ? "ক্রপ উচ্চতা" : "Crop H"}
+              value={`${crop.h}px`}
+              accent="rose"
+            />
+            <ResultStat
+              label={bn ? "অনুপাত" : "Ratio"}
+              value={
+                crop.h > 0
+                  ? (crop.w / crop.h).toFixed(2).replace(/\.00$/, "")
+                  : "—"
+              }
+              accent="emerald"
+            />
           </div>
 
-          {/* Result */}
-          {result && (
-            <div className="flex items-center gap-3 p-3 rounded-2xl bg-white/70 dark:bg-dark-surface/70 backdrop-blur-xl border border-silk-rose/20">
-              <div className="w-16 h-16 rounded-xl overflow-hidden bg-silk-rose/5 border border-silk-rose/15 flex items-center justify-center shrink-0">
-                <img src={result.croppedUrl} alt="cropped" className="w-full h-full object-cover" />
+          {/* ── Action bar ── */}
+          <WorkspacePanel className="p-3.5 sm:p-4" animate={false}>
+            <div className="flex items-center justify-between gap-3 flex-wrap">
+              <div className="flex items-center gap-2 text-[12px] sm:text-[13px] text-light-text dark:text-dark-text">
+                <CropIcon className="w-4 h-4 text-silk-rose shrink-0" />
+                <span className="font-bold">
+                  {bn
+                    ? `ক্রপ: ${crop.w} × ${crop.h}`
+                    : `Crop: ${crop.w} × ${crop.h}`}
+                </span>
               </div>
-              <div className="flex-1 min-w-0">
-                <p className="text-[12px] sm:text-sm font-semibold text-light-text dark:text-dark-text truncate">{result.originalName}</p>
-                <p className="text-[10px] sm:text-[11px] text-light-textSecondary dark:text-dark-textSecondary mt-0.5">{result.cropW} × {result.cropH} px · {formatBytes(result.croppedSize)}</p>
-              </div>
-              <button type="button" onClick={() => downloadFile(result)} className="inline-flex items-center justify-center gap-1.5 h-9 px-3 sm:px-4 rounded-xl bg-gradient-to-r from-silk-rose to-silk-wine-deep text-white text-[11px] sm:text-xs font-semibold shadow-silk-soft hover:shadow-silk-deep transition-all shrink-0"><Download className="w-3.5 h-3.5" /><span className="hidden sm:inline">{bn ? "ডাউনলোড" : "Download"}</span></button>
-            </div>
-          )}
-        </>
-      )}
 
-      {!file && (
-        <div className="flex items-center justify-center gap-2 text-[11px] sm:text-xs text-light-textSecondary dark:text-dark-textSecondary">
-          <CropIcon className="w-3.5 h-3.5 text-silk-rose" />
-          {bn ? "সব ফাইল আপনার ব্রাউজারে প্রসেস হয়" : "All files are processed in your browser"}
-        </div>
+              <div className="flex items-center gap-2 flex-wrap">
+                <ToolButton
+                  size="sm"
+                  variant="secondary"
+                  onClick={() => inputRef.current?.click()}
+                >
+                  {bn ? "নতুন ছবি" : "New image"}
+                </ToolButton>
+
+                <ToolButton
+                  size="sm"
+                  variant="primary"
+                  loading={busy}
+                  icon={<CropIcon className="w-3.5 h-3.5" />}
+                  onClick={() => void handleCrop()}
+                >
+                  {bn ? "ক্রপ করুন" : "Apply crop"}
+                </ToolButton>
+
+                <button
+                  type="button"
+                  onClick={clearAll}
+                  aria-label="Clear"
+                  className="w-8 h-8 rounded-xl flex items-center justify-center text-red-500 bg-red-500/10 border border-red-500/25 hover:bg-red-500/20 transition-all"
+                >
+                  <X className="w-3.5 h-3.5" />
+                </button>
+              </div>
+            </div>
+          </WorkspacePanel>
+
+          {/* ── Result ── */}
+          <AnimatePresence>
+            {result && (
+              <motion.div
+                initial={{ opacity: 0, y: 16 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: 16 }}
+                transition={{ duration: 0.4 }}
+                className="flex items-center gap-3 p-4 rounded-2xl bg-emerald-500/10 border border-emerald-500/30"
+              >
+                <div className="w-16 h-16 rounded-xl overflow-hidden bg-white border border-emerald-500/20 flex items-center justify-center shrink-0">
+                  <img
+                    src={result.croppedUrl}
+                    alt="cropped"
+                    className="w-full h-full object-cover"
+                  />
+                </div>
+                <div className="flex-1 min-w-0">
+                  <p className="text-[12px] sm:text-sm font-bold text-emerald-700 dark:text-emerald-300 truncate">
+                    {result.originalName}
+                  </p>
+                  <p className="text-[10px] sm:text-[11px] text-emerald-700/80 dark:text-emerald-300/80 mt-0.5 font-mono">
+                    {result.cropW} × {result.cropH} px ·{" "}
+                    {formatBytes(result.croppedSize)}
+                  </p>
+                </div>
+                <ToolButton
+                  size="sm"
+                  variant="primary"
+                  icon={<Download className="w-3.5 h-3.5" />}
+                  onClick={() => downloadFile(result)}
+                >
+                  {bn ? "ডাউনলোড" : "Download"}
+                </ToolButton>
+              </motion.div>
+            )}
+          </AnimatePresence>
+        </>
       )}
     </section>
   );
 }
 
-function NumField({ label, value, max, onChange }: { label: string; value: number; max: number; onChange: (v: number) => void }) {
+function NumField({
+  label,
+  value,
+  max,
+  onChange,
+}: {
+  label: string;
+  value: number;
+  max: number;
+  onChange: (v: number) => void;
+}) {
   return (
     <div>
-      <label className="block text-[10px] font-medium text-light-text dark:text-dark-text mb-1">{label} <span className="text-light-textSecondary dark:text-dark-textSecondary">(0–{max})</span></label>
-      <input type="number" min={0} max={max} value={value} onChange={(e) => onChange(parseInt(e.target.value) || 0)} className="w-full h-9 px-2 rounded-lg text-[12px] bg-white/80 dark:bg-dark-surface/80 border border-silk-rose/20 focus:border-silk-rose/50 text-light-text dark:text-dark-text outline-none transition-all" />
+      <label className="block text-[10px] font-bold uppercase tracking-wider text-silk-wine/70 dark:text-silk-rose/60 mb-1.5">
+        {label}{" "}
+        <span className="text-light-textSecondary dark:text-dark-textSecondary font-normal">
+          (0–{max})
+        </span>
+      </label>
+      <input
+        type="number"
+        min={0}
+        max={max}
+        value={value}
+        onChange={(e) => onChange(parseInt(e.target.value) || 0)}
+        className="w-full h-9 px-2.5 rounded-lg text-[12px] font-mono font-bold bg-white/80 dark:bg-dark-surface/80 border border-silk-rose/20 focus:border-silk-rose/50 text-light-text dark:text-dark-text outline-none transition-all"
+      />
     </div>
   );
 }
