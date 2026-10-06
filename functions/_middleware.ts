@@ -65,6 +65,20 @@ function isEditorRoute(pathname: string): boolean {
   return /^\/tools\/(cv-builder|visiting-card)\/edit\//.test(pathname);
 }
 
+
+/* ── Static file paths that middleware should NOT handle ── */
+function isStaticFile(pathname: string): boolean {
+  // File extensions that indicate static assets
+  const staticExtensions = /\.(txt|xml|ico|png|jpg|jpeg|webp|gif|svg|css|js|json|woff|woff2|ttf|otf|mp3|mp4|webm|pdf|webmanifest|manifest)$/i;
+  if (staticExtensions.test(pathname)) return true;
+  
+  // Prefixes that are static asset directories
+  const staticPrefixes = ["/assets/", "/images/", "/audio/", "/.well-known/"];
+  if (staticPrefixes.some((p) => pathname.startsWith(p))) return true;
+  
+  return false;
+}
+
 /* ── Build meta block ── */
 function buildMetaBlock(opts: {
   title: string;
@@ -127,6 +141,11 @@ async function fetchIndexHtml(
 export const onRequest: PagesFunction<Env> = async (context) => {
   const url = new URL(context.request.url);
   const pathname = normalizePath(url.pathname);
+
+  /* Static files bypass middleware entirely */
+  if (isStaticFile(pathname)) {
+    return context.next();
+  }
 
   /* 0. Editor routes → force noindex */
   if (isEditorRoute(pathname)) {
