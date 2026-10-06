@@ -211,7 +211,7 @@ export const tools: Tool[] = [
     howTo: [],
     faq: [],
     relatedTools: [],
-    seo: { title: "WebP to JPG Converter", description: "Convert WebP to JPG.", ogImage: "/images/og/tools/webp-to-jpg-og.png" },
+    seo: { title: "WebP to JPG Converter — Free, Fast & Private | AHADEX Tools", description: "Convert WebP to JPG.", ogImage: "/images/og/tools/webp-to-jpg-og.png" },
   },
   {
     id: "webp-to-png",

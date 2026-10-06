@@ -59,6 +59,12 @@ function normalizePath(pathname: string): string {
   return pathname;
 }
 
+
+/* ── Editor route detection (must be noindex) ── */
+function isEditorRoute(pathname: string): boolean {
+  return /^\/tools\/(cv-builder|visiting-card)\/edit\//.test(pathname);
+}
+
 /* ── Build meta block ── */
 function buildMetaBlock(opts: {
   title: string;
@@ -121,6 +127,24 @@ async function fetchIndexHtml(
 export const onRequest: PagesFunction<Env> = async (context) => {
   const url = new URL(context.request.url);
   const pathname = normalizePath(url.pathname);
+
+  /* 0. Editor routes → force noindex */
+  if (isEditorRoute(pathname)) {
+    const html = await fetchIndexHtml(url, context.request, context.env);
+    if (!html) return context.next();
+    const injected = html.replace(
+      "</head>",
+      `<meta name="robots" content="noindex, follow" /><link rel="canonical" href="${SITE_URL}/tools" /></head>`
+    );
+    return new Response(injected, {
+      status: 200,
+      headers: {
+        "content-type": "text/html; charset=utf-8",
+        "cache-control": "public, max-age=300, must-revalidate",
+        "x-robots-tag": "noindex, follow",
+      },
+    });
+  }
 
   let meta: {
     title: string;
