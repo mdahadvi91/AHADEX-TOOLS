@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
 import { BookOpen, Mail } from "lucide-react";
 import { useLanguage } from "@contexts/LanguageContext";
+import { AdsterraNativeBanner } from "@components/ads/AdsterraNativeBanner";
 
 export default function EditorialPolicyPage() {
   const { language } = useLanguage();
@@ -139,6 +140,7 @@ export default function EditorialPolicyPage() {
           </div>
         </div>
       </motion.div>
+      <AdsterraNativeBanner />
     </div>
   );
 }

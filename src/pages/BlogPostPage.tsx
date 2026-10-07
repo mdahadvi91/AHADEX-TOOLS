@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import { ArrowLeft, Clock, Calendar, User, ArrowRight } from "lucide-react";
 import { useLanguage } from "@contexts/LanguageContext";
 import { AdsterraNativeBanner } from "@components/ads/AdsterraNativeBanner";
+import { AdsterraBanner728x90 } from "@components/ads/AdsterraBanner728x90";
 import { getPostBySlug, blogPosts } from "@data/blog";
 import { tools } from "@data/tools";
 import { getToolTranslation } from "@i18n/toolTranslations";
@@ -235,6 +236,8 @@ export default function BlogPostPage() {
           return null;
         })}
       </div>
+
+      <AdsterraBanner728x90 />
 
       {/* Ad — after article body */}
       <AdsterraNativeBanner />

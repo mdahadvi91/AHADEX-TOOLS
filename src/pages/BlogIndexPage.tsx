@@ -4,6 +4,7 @@ import { Sparkles, BookOpen } from "lucide-react";
 import { useLanguage } from "@contexts/LanguageContext";
 import { blogPosts, blogCategories } from "@data/blog";
 import { AdsterraNativeBanner } from "@components/ads/AdsterraNativeBanner";
+import { AdsterraBanner728x90 } from "@components/ads/AdsterraBanner728x90";
 import { BlogCard } from "@components/blog/BlogCard";
 import { cn } from "@lib/cn";
 
@@ -70,6 +71,7 @@ export default function BlogIndexPage() {
       </div>
 
       {/* Ad after filters */}
+      <AdsterraBanner728x90 />
       <AdsterraNativeBanner />
 
       {/* Grid */}
