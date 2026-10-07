@@ -3,6 +3,7 @@ import { motion } from "framer-motion";
 import { Sparkles, BookOpen } from "lucide-react";
 import { useLanguage } from "@contexts/LanguageContext";
 import { blogPosts, blogCategories } from "@data/blog";
+import { AdsterraNativeBanner } from "@components/ads/AdsterraNativeBanner";
 import { BlogCard } from "@components/blog/BlogCard";
 import { cn } from "@lib/cn";
 
@@ -67,6 +68,9 @@ export default function BlogIndexPage() {
           </button>
         ))}
       </div>
+
+      {/* Ad after filters */}
+      <AdsterraNativeBanner />
 
       {/* Grid */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">

@@ -1,3 +1,4 @@
+import { AdsterraNativeBanner } from "@components/ads/AdsterraNativeBanner";
 import { HomeSchema } from "@components/seo/HomeSchema";
 import { ToolsShowcase } from "@components/tools/ToolsShowcase";
 import { WhySection } from "@components/home/WhySection";
@@ -10,6 +11,7 @@ export default function ToolsIndexPage() {
     <>
       <HomeSchema />
       <ToolsShowcase />
+      <AdsterraNativeBanner />
       <div className="mx-auto max-w-[1400px] px-4 sm:px-6 lg:px-8">
         <WhySection />
         <HowItWorks />
