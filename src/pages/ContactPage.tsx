@@ -12,6 +12,7 @@ import {
 } from "lucide-react";
 import { useLanguage } from "@contexts/LanguageContext";
 import { cn } from "@lib/cn";
+import { AdsterraNativeBanner } from "@components/ads/AdsterraNativeBanner";
 
 interface FormState {
   name: string;
@@ -479,6 +480,7 @@ function Field({
           {error}
         </p>
       )}
+          <AdsterraNativeBanner />
     </div>
   );
 }
