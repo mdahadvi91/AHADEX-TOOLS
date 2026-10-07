@@ -155,6 +155,21 @@ async function fetchIndexHtml(
 
 /* ── Main middleware ── */
 export const onRequest: PagesFunction<Env> = async (context) => {
+  /* ── Redirect 1: WWW → non-WWW ── */
+  const reqUrl = new URL(context.request.url);
+  if (reqUrl.hostname === "www.ahadex.fun") {
+    const newUrl = new URL(reqUrl);
+    newUrl.hostname = "ahadex.fun";
+    return Response.redirect(newUrl.toString(), 301);
+  }
+
+  /* ── Redirect 2: Remove trailing slash (except root) ── */
+  if (reqUrl.pathname !== "/" && reqUrl.pathname.endsWith("/")) {
+    const newUrl = new URL(reqUrl);
+    newUrl.pathname = reqUrl.pathname.slice(0, -1);
+    return Response.redirect(newUrl.toString(), 301);
+  }
+
   const url = new URL(context.request.url);
   const pathname = normalizePath(url.pathname);
 
