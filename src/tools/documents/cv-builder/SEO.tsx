@@ -48,49 +48,11 @@ export function CVBuilderSEO() {
     setMeta("name", "twitter:image", ogImage);
 
     // Structured data
-    const schema = {
-      "@context": "https://schema.org",
-      "@graph": [
-        {
-          "@type": "WebApplication",
-          "@id": `${canonical}#app`,
-          name: "CV Builder",
-          description,
-          url: canonical,
-          applicationCategory: "BusinessApplication",
-          operatingSystem: "Any",
-          browserRequirements: "Requires JavaScript",
-          inLanguage: ["en", "bn"],
-          isAccessibleForFree: true,
-          offers: { "@type": "Offer", price: "0", priceCurrency: "USD" },
-          image: ogImage,
-          publisher: {
-            "@type": "Organization",
-            name: SITE_NAME,
-            url: SITE_URL,
-          },
-        },
-        {
-          "@type": "BreadcrumbList",
-          "@id": `${canonical}#breadcrumb`,
-          itemListElement: [
-            { "@type": "ListItem", position: 1, name: "Home", item: `${SITE_URL}/` },
-            { "@type": "ListItem", position: 2, name: "Tools", item: `${SITE_URL}/tools` },
-            { "@type": "ListItem", position: 3, name: "CV Builder", item: canonical },
-          ],
-        },
-      ],
-    };
+    // (schema const removed — see ToolSchema component)
+    // Schema removed — now handled by ToolSchema component
 
-    const script = document.createElement("script");
-    script.type = "application/ld+json";
-    script.id = "ahadex-cv-builder-schema";
-    script.textContent = JSON.stringify(schema);
-    document.head.appendChild(script);
 
-    return () => {
-      script.remove();
-    };
+    return;
   }, [language]);
 
   return null;

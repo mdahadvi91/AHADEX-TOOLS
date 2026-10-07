@@ -11,12 +11,14 @@ import { RecommendedProducts } from "@components/affiliate/RecommendedProducts";
 import { RelatedTools } from "./components/RelatedTools";
 import { RelatedArticles } from "@components/blog/RelatedArticles";
 import { ToolBreadcrumb } from "@components/tools/ToolBreadcrumb";
+import { ToolSchema } from "@components/seo/ToolSchema";
 
 export default function SplitPdfTool() {
   useToolAnalytics("split-pdf");
   return (
     <>
       <SplitPdfSEO />
+      <ToolSchema toolId="split-pdf" />
         <ToolBreadcrumb toolName="Split PDF" category="PDF Tools" />
       <div className="mx-auto max-w-[1200px] px-4 sm:px-6 lg:px-8">
         <Hero />

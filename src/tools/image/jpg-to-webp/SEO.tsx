@@ -34,26 +34,11 @@ export function JpgToWebpSEO() {
     setMeta("name", "twitter:title", title);
     setMeta("name", "twitter:description", description);
     setMeta("name", "twitter:image", ogImage);
+    // (schema const removed — see ToolSchema component)
+    // Schema removed — now handled by ToolSchema component
 
-    const schema = {
-      "@context": "https://schema.org",
-      "@graph": [
-        { "@type": "WebApplication", "@id": `${canonical}#app`, name: "JPG to WebP Converter", description, url: canonical, applicationCategory: "MultimediaApplication", operatingSystem: "Any", browserRequirements: "Requires JavaScript", inLanguage: ["en", "bn"], isAccessibleForFree: true, offers: { "@type": "Offer", price: "0", priceCurrency: "USD" }, image: ogImage, publisher: { "@type": "Organization", name: SITE_NAME, url: SITE_URL } },
-        { "@type": "BreadcrumbList", "@id": `${canonical}#breadcrumb`, itemListElement: [
-          { "@type": "ListItem", position: 1, name: "Home", item: `${SITE_URL}/` },
-          { "@type": "ListItem", position: 2, name: "Tools", item: `${SITE_URL}/tools` },
-          { "@type": "ListItem", position: 3, name: "JPG to WebP", item: canonical },
-        ]},
-      ],
-    };
 
-    const script = document.createElement("script");
-    script.type = "application/ld+json";
-    script.id = "ahadex-jpg-to-webp-schema";
-    script.textContent = JSON.stringify(schema);
-    document.head.appendChild(script);
-
-    return () => { script.remove(); };
+    return;
   }, [language]);
 
   return null;

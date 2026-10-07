@@ -11,12 +11,14 @@ import { RecommendedProducts } from "@components/affiliate/RecommendedProducts";
 import { RelatedTools } from "./components/RelatedTools";
 import { RelatedArticles } from "@components/blog/RelatedArticles";
 import { ToolBreadcrumb } from "@components/tools/ToolBreadcrumb";
+import { ToolSchema } from "@components/seo/ToolSchema";
 
 export default function JpgToPngTool() {
   useToolAnalytics("jpg-to-png");
   return (
     <>
       <JpgToPngSEO />
+      <ToolSchema toolId="jpg-to-png" />
         <ToolBreadcrumb toolName="JPG to PNG" category="Image Tools" />
       <div className="mx-auto max-w-[1200px] px-4 sm:px-6 lg:px-8">
         <Hero />

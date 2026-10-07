@@ -13,6 +13,7 @@ import { HowTo } from "./HowTo";
 import { Features } from "./Features";
 import { FAQ } from "./FAQ";
 import { RelatedTools } from "./RelatedTools";
+import { ToolSchema } from "@components/seo/ToolSchema";
 import { photoQrData } from "./data";
 import { photoQrContent } from "./content";
 import type { Position, QrBackground } from "./types";
@@ -135,6 +136,7 @@ export default function PhotoQrTool() {
 
   return (
     <div className="mx-auto max-w-[1400px] px-3 sm:px-6 lg:px-8">
+        <ToolSchema toolId="photo-qr" />
         <ToolBreadcrumb toolName="Photo QR Code" category="QR Tools" />
 
       <Hero />

@@ -1,4 +1,5 @@
 import { useToolAnalytics } from "@hooks/useToolAnalytics";
+import { ToolSchema } from "@components/seo/ToolSchema";
 import { Base64SEO } from "./SEO";
 import { Hero } from "./components/Hero";
 import { Workspace } from "./components/Workspace";
@@ -17,6 +18,7 @@ export default function Base64EncoderTool() {
   return (
     <>
       <Base64SEO />
+      <ToolSchema toolId="base64-encoder" />
       <div className="mx-auto max-w-[1200px] px-4 sm:px-6 lg:px-8">
         <ToolBreadcrumb toolName="Base64 Encoder / Decoder" category="Developer Tools" />
 
