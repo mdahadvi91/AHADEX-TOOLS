@@ -22,6 +22,7 @@ import {
   type StaticMeta,
   type BlogMeta,
 } from "./_data";
+import { SSR_CONTENT } from "./_ssr-content";
 
 const SITE_URL = "https://ahadex.fun";
 
@@ -77,6 +78,21 @@ function isStaticFile(pathname: string): boolean {
   if (staticPrefixes.some((p) => pathname.startsWith(p))) return true;
   
   return false;
+}
+
+
+/* ── Inject SSR content for crawlers (before <div id="root">) ── */
+function injectSSRContent(html: string, pathname: string): string {
+  const content = SSR_CONTENT[pathname];
+  if (!content) return html;
+
+  const wrapper = `<div id="ssr-content" style="display:none" aria-hidden="true" data-ssr="true">${content}</div>`;
+
+  // Inject right before <div id="root">
+  if (html.includes('<div id="root">')) {
+    return html.replace('<div id="root">', wrapper + '<div id="root">');
+  }
+  return html;
 }
 
 /* ── Build meta block ── */
@@ -225,6 +241,21 @@ export const onRequest: PagesFunction<Env> = async (context) => {
     }
   }
 
+  /* No meta match — check if SSR content exists */
+  if (!meta && SSR_CONTENT[pathname]) {
+    const html = await fetchIndexHtml(url, context.request, context.env);
+    if (html) {
+      const injected = injectSSRContent(html, pathname);
+      return new Response(injected, {
+        status: 200,
+        headers: {
+          "content-type": "text/html; charset=utf-8",
+          "cache-control": "public, max-age=300, must-revalidate",
+        },
+      });
+    }
+  }
+
   /* No meta match — check if route is known */
   if (!meta) {
     // Known route prefixes (SPA will handle these)
@@ -266,10 +297,11 @@ export const onRequest: PagesFunction<Env> = async (context) => {
   }
 
   const stripped = stripGenericMeta(html);
-  const injected = stripped.replace(
+  const withMeta = stripped.replace(
     "</head>",
     `${buildMetaBlock(meta)}</head>`
   );
+  const injected = injectSSRContent(withMeta, pathname);
 
   return new Response(injected, {
     status: 200,
