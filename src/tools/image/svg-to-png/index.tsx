@@ -11,12 +11,14 @@ import { RecommendedProducts } from "@components/affiliate/RecommendedProducts";
 import { RelatedTools } from "./components/RelatedTools";
 import { RelatedArticles } from "@components/blog/RelatedArticles";
 import { ToolBreadcrumb } from "@components/tools/ToolBreadcrumb";
+import { ToolSchema } from "@components/seo/ToolSchema";
 
 export default function SvgToPngTool() {
   useToolAnalytics("svg-to-png");
   return (
     <>
       <SvgToPngSEO />
+      <ToolSchema toolId="svg-to-png" />
         <ToolBreadcrumb toolName="SVG to PNG" category="Image Tools" />
       <div className="mx-auto max-w-[1200px] px-4 sm:px-6 lg:px-8">
         <Hero />

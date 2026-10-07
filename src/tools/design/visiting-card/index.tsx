@@ -1,5 +1,6 @@
 import { RecommendedProducts } from "@components/affiliate/RecommendedProducts";
 import { RelatedArticles } from "@components/blog/RelatedArticles";
+import { ToolSchema } from "@components/seo/ToolSchema";
 import { ToolBreadcrumb } from "@components/tools/ToolBreadcrumb";
 import { RelatedToolsBlock } from "@components/tools/RelatedToolsBlock";
 import { Gallery } from "./gallery";
@@ -7,6 +8,7 @@ import { Gallery } from "./gallery";
 export default function VisitingCardTool() {
   return (
     <>
+      <ToolSchema toolId="visiting-card" />
       <Gallery />
       <div className="mx-auto max-w-[1400px] px-3 sm:px-6 lg:px-8">
         <ToolBreadcrumb

@@ -2,7 +2,6 @@ import { useEffect } from "react";
 import { useLanguage } from "@contexts/LanguageContext";
 
 const SITE_URL = "https://ahadex.fun";
-const SITE_NAME = "AHADEX Tools";
 const TOOL_PATH = "/tools/text-case-converter";
 
 export function TextCaseSEO() {
@@ -34,23 +33,10 @@ export function TextCaseSEO() {
     setMeta("name", "twitter:title", title);
     setMeta("name", "twitter:description", description);
     setMeta("name", "twitter:image", ogImage);
-    const schema = {
-      "@context": "https://schema.org",
-      "@graph": [
-        { "@type": "WebApplication", "@id": `${canonical}#app`, name: "Text Case Converter", description, url: canonical, applicationCategory: "UtilitiesApplication", operatingSystem: "Any", isAccessibleForFree: true, offers: { "@type": "Offer", price: "0", priceCurrency: "USD" }, image: ogImage, publisher: { "@type": "Organization", name: SITE_NAME, url: SITE_URL } },
-        { "@type": "BreadcrumbList", "@id": `${canonical}#breadcrumb`, itemListElement: [
-          { "@type": "ListItem", position: 1, name: "Home", item: `${SITE_URL}/` },
-          { "@type": "ListItem", position: 2, name: "Tools", item: `${SITE_URL}/tools` },
-          { "@type": "ListItem", position: 3, name: "Text Case Converter", item: canonical },
-        ]},
-      ],
-    };
-    const script = document.createElement("script");
-    script.type = "application/ld+json";
-    script.id = "ahadex-text-case-schema";
-    script.textContent = JSON.stringify(schema);
-    document.head.appendChild(script);
-    return () => { script.remove(); };
+    // (schema const removed — see ToolSchema component)
+    // Schema removed — now handled by ToolSchema component
+
+    return;
   }, [language]);
   return null;
 }

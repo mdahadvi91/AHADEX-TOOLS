@@ -11,12 +11,14 @@ import { RelatedTools } from "./components/RelatedTools";
 import { RecommendedProducts } from "@components/affiliate/RecommendedProducts";
 import { RelatedArticles } from "@components/blog/RelatedArticles";
 import { ToolBreadcrumb } from "@components/tools/ToolBreadcrumb";
+import { ToolSchema } from "@components/seo/ToolSchema";
 
 export default function UuidGeneratorTool() {
   useToolAnalytics("uuid-generator");
   return (
     <>
       <UuidGeneratorSEO />
+      <ToolSchema toolId="uuid-generator" />
         <ToolBreadcrumb toolName="UUID Generator" category="Developer Tools" />
       <div className="mx-auto max-w-[1200px] px-4 sm:px-6 lg:px-8">
         <Hero />

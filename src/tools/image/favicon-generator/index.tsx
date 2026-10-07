@@ -11,12 +11,14 @@ import { RelatedTools } from "./components/RelatedTools";
 import { useToolAnalytics } from "@hooks/useToolAnalytics";
 import { RelatedArticles } from "@components/blog/RelatedArticles";
 import { ToolBreadcrumb } from "@components/tools/ToolBreadcrumb";
+import { ToolSchema } from "@components/seo/ToolSchema";
 
 export default function FaviconGeneratorTool() {
   useToolAnalytics("favicon-generator");
   return (
     <>
       <FaviconGeneratorSEO />
+      <ToolSchema toolId="favicon-generator" />
         <ToolBreadcrumb toolName="Favicon Generator" category="Image Tools" />
       <div className="mx-auto max-w-[1200px] px-4 sm:px-6 lg:px-8">
         <Hero />

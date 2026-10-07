@@ -11,12 +11,14 @@ import { RecommendedProducts } from "@components/affiliate/RecommendedProducts";
 import { RelatedTools } from "./components/RelatedTools";
 import { RelatedArticles } from "@components/blog/RelatedArticles";
 import { ToolBreadcrumb } from "@components/tools/ToolBreadcrumb";
+import { ToolSchema } from "@components/seo/ToolSchema";
 
 export default function ImageResizerTool() {
   useToolAnalytics("image-resizer");
   return (
     <>
       <ImageResizerSEO />
+      <ToolSchema toolId="image-resizer" />
         <ToolBreadcrumb toolName="Image Resizer" category="Image Tools" />
       <div className="mx-auto max-w-[1200px] px-4 sm:px-6 lg:px-8">
         <Hero />

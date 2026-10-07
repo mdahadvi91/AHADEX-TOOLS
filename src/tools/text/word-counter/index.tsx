@@ -11,12 +11,14 @@ import { RelatedTools } from "./components/RelatedTools";
 import { RecommendedProducts } from "@components/affiliate/RecommendedProducts";
 import { RelatedArticles } from "@components/blog/RelatedArticles";
 import { ToolBreadcrumb } from "@components/tools/ToolBreadcrumb";
+import { ToolSchema } from "@components/seo/ToolSchema";
 
 export default function WordCounterTool() {
   useToolAnalytics("word-counter");
   return (
     <>
       <WordCounterSEO />
+      <ToolSchema toolId="word-counter" />
         <ToolBreadcrumb toolName="Word Counter" category="Text Tools" />
       <div className="mx-auto max-w-[1200px] px-4 sm:px-6 lg:px-8">
         <Hero />
