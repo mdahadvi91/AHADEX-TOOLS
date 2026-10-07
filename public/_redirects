@@ -1,1 +1,19 @@
-/*    /index.html   200
+# WWW → non-WWW (single host, most specific)
+https://www.ahadex.fun/*  https://ahadex.fun/:splat  301
+
+# Trailing slash removal — specific known routes only (safer than wildcard)
+/about/           /about           301
+/contact/         /contact         301
+/privacy/         /privacy         301
+/terms/           /terms           301
+/disclaimer/      /disclaimer      301
+/accessibility/   /accessibility   301
+/cookie-policy/   /cookie-policy   301
+/editorial-policy/ /editorial-policy 301
+/affiliate-disclosure/ /affiliate-disclosure 301
+/sitemap/         /sitemap         301
+/blog/            /blog            301
+/tools/           /tools           301
+
+# SPA fallback — MUST be last
+/*  /index.html  200
