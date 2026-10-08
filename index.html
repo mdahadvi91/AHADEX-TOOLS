@@ -2,14 +2,11 @@
 <html lang="en" class="dark">
   <head>
     <meta charset="UTF-8" />
-    <!-- Ezoic CMP (Consent Management Platform) — must load FIRST -->
-    <script data-cfasync="false" src="https://cmp.gatekeeperconsent.com/min.js"></script>
-    <script data-cfasync="false" src="https://the.gatekeeperconsent.com/cmp.min.js"></script>
-
     <meta
       name="viewport"
       content="width=device-width, initial-scale=1.0, viewport-fit=cover"
     />
+
     <!-- Favicons -->
     <link rel="icon" href="/favicon.ico" sizes="any" />
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
@@ -20,8 +17,6 @@
     <meta name="apple-mobile-web-app-title" content="AHADEX" />
     <meta name="application-name" content="AHADEX" />
     <meta name="msapplication-TileColor" content="#8B3A4F" />
-    <meta name="theme-color" content="#8B3A4F" />
-
 
     <!-- Theme -->
     <meta name="theme-color" content="#1A1114" media="(prefers-color-scheme: dark)" />
@@ -32,7 +27,7 @@
     <title>AHADEX Tools — Free, Fast, Private Online Tools</title>
     <meta
       name="description"
-      content="Free, fast and private online tools for everyday digital tasks. Everything runs in your browser."
+      content="Free, fast and private online tools for everyday digital tasks. Compress images, convert PDFs, generate QR codes — everything runs in your browser, nothing is uploaded."
     />
     <meta name="author" content="AHADEX" />
     <meta
@@ -41,7 +36,7 @@
     />
     <link rel="canonical" href="https://ahadex.fun/" />
 
-    <!-- Open Graph / Facebook / LinkedIn / WhatsApp -->
+    <!-- Open Graph -->
     <meta property="og:type" content="website" />
     <meta property="og:site_name" content="AHADEX Tools" />
     <meta property="og:title" content="AHADEX Tools — Free, Fast, Private Online Tools" />
@@ -59,63 +54,10 @@
     <meta name="twitter:description" content="Free, fast and private online tools for everyday digital tasks." />
     <meta name="twitter:image" content="https://ahadex.fun/images/og/home-og.png" />
 
-
-    <!-- AdSense meta (uncomment after approval) -->
+    <!-- Google AdSense account verification -->
     <meta name="google-adsense-account" content="ca-pub-5216241068377334" />
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5216241068377334" crossorigin="anonymous"></script>
 
-    <!-- Preconnect — single set only -->
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link rel="dns-prefetch" href="https://pagead2.googlesyndication.com" />
-
-    <!-- Primary fonts -->
-    <link
-      href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;800;900&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap"
-      rel="stylesheet"
-    />
-
-
-    <!-- Bengali -->
-    <link
-      href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600;700&family=Baloo+Da+2:wght@500;700&family=Noto+Serif+Bengali:wght@700;900&display=swap"
-      rel="stylesheet"
-    />
-
-    <!-- Theme + language bootstrap (prevents FOUC) -->
-    <script>
-      (function () {
-        try {
-          var stored = localStorage.getItem("ahadex-theme");
-          var theme = stored || "system";
-          var isDark =
-            theme === "dark" ||
-            (theme === "system" &&
-              window.matchMedia("(prefers-color-scheme: dark)").matches);
-          document.documentElement.classList.toggle("dark", isDark);
-          document.documentElement.classList.toggle("light", !isDark);
-        } catch (e) {
-          document.documentElement.classList.add("dark");
-        }
-      })();
-
-      (function () {
-        try {
-          var stored = localStorage.getItem("ahadex-language");
-          var browserLang = (navigator.language || "en").slice(0, 2);
-          var lang =
-            stored ||
-            (["en", "bn"].includes(browserLang) ? browserLang : "en");
-          document.documentElement.setAttribute("lang", lang);
-          document.documentElement.setAttribute("dir", "ltr");
-        } catch (e) {
-          document.documentElement.setAttribute("lang", "en");
-          document.documentElement.setAttribute("dir", "ltr");
-        }
-      })();
-    </script>
-
-    <!-- Google Consent Mode v2 — default denied (required before gtag.js) -->
+    <!-- Google Consent Mode v2 — required BEFORE gtag.js and AdSense load -->
     <script>
       window.dataLayer = window.dataLayer || [];
       function gtag() { dataLayer.push(arguments); }
@@ -124,56 +66,27 @@
         ad_user_data: "denied",
         ad_personalization: "denied",
         analytics_storage: "denied",
-        personalization_storage: "denied",
         functionality_storage: "granted",
         security_storage: "granted",
         wait_for_update: 500
       });
       gtag("set", "ads_data_redaction", true);
+      gtag("set", "url_passthrough", true);
     </script>
 
-    <!-- Google tag (gtag.js) — loaded statically so Google scanner detects it -->
+    <!-- Google Analytics 4 -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-NJB6S9E9N3"></script>
     <script>
       window.dataLayer = window.dataLayer || [];
       function gtag() { dataLayer.push(arguments); }
       gtag("js", new Date());
-      gtag("config", "G-NJB6S9E9N3", {
-        send_page_view: false,
-        anonymize_ip: true
-      });
+      gtag("config", "G-NJB6S9E9N3", { anonymize_ip: true });
     </script>
 
-    <!-- Ezoic Standalone Script -->
-    <script async src="//www.ezojs.com/ezoic/sa.min.js"></script>
-    <script>
-      window.ezstandalone = window.ezstandalone || {};
-      ezstandalone.cmd = ezstandalone.cmd || [];
-    </script>
-
-    <!-- Ezoic Analytics -->
-    <script src="//ezoicanalytics.com/analytics.js"></script>
-
-    <!-- Adsterra Native Banner — main script -->
-    <script async="async" data-cfasync="false" src="https://pl31374906.profitableratecpmnetwork.com/754e14aa954e128c62cd2d9cf86b805c/invoke.js"></script>
-
-    <!-- Adsterra Social Bar — floating bottom bar -->
-    <script src="https://pl31703538.profitableratecpmnetwork.com/39/bd/ec/39bdec4a688434cb24949e7233ccbf88.js"></script>
-
-
-    <!-- ═══════════════════════════════════════════════════════ -->
-    <!-- Adsterra Ads — Global scripts                          -->
-    <!-- ═══════════════════════════════════════════════════════ -->
-
-    <!-- Adsterra Native Banner — main invoke script -->
-    <script async="async" data-cfasync="false" src="https://pl31374906.profitableratecpmnetwork.com/754e14aa954e128c62cd2d9cf86b805c/invoke.js"></script>
-
-    <!-- Adsterra Social Bar — floating bottom (all pages) -->
-    <script src="https://pl31703538.profitableratecpmnetwork.com/39/bd/ec/39bdec4a688434cb24949e7233ccbf88.js"></script>
-
-    <!-- Adsterra Popunder — 1 pop per user per session -->
-    <script src="https://pl31703537.profitableratecpmnetwork.com/43/82/90/43829031febe7060c990ee27d0b9b8b6.js"></script>
-
+    <!-- Google AdSense — auto ads + manual units -->
+    <script async
+      src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5216241068377334"
+      crossorigin="anonymous"></script>
   </head>
 
   <body>

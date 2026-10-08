@@ -7,7 +7,7 @@ import { RightSidebar } from "./RightSidebar";
 import { PageTransition } from "./PageTransition";
 import { CinematicBackground } from "@components/background";
 import { BackButton } from "@components/common/BackButton";
-import { AdSenseSlot } from "@components/ads/AdSenseSlot";
+import { AdSenseLoader } from "@components/ads/AdSenseLoader";
 import { GoogleAnalyticsLoader } from "@components/analytics/GoogleAnalyticsLoader";
 import { CookieConsentBanner, ConsentModeInit } from "@components/consent";
 import { usePageTracking } from "@hooks/usePageTracking";
@@ -21,6 +21,7 @@ export function MainLayout() {
   return (
     <>
       <ConsentModeInit />
+      <AdSenseLoader />
       <GoogleAnalyticsLoader />
       <CinematicBackground />
 
@@ -36,21 +37,11 @@ export function MainLayout() {
 
       <div className="h-24 lg:h-28" aria-hidden="true" />
 
-      {/* ── Header Ad — above main content ── */}
-      <div className="max-w-5xl mx-auto px-4 mb-4">
-        <AdSenseSlot slot="HEADER" label="Advertisement" />
-      </div>
-
       <main id="main-content" className="relative lg:ml-64 lg:mr-72 min-h-[60vh]">
         <PageTransition>
           <Outlet />
         </PageTransition>
       </main>
-
-      {/* ── Footer Ad — above footer ── */}
-      <div className="max-w-5xl mx-auto px-4 mt-8 mb-4">
-        <AdSenseSlot slot="FOOTER" label="Advertisement" />
-      </div>
 
       <Footer />
       <CookieConsentBanner />

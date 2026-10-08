@@ -3,8 +3,7 @@ import { useEffect } from "react";
 import { motion } from "framer-motion";
 import { ArrowLeft, Clock, Calendar, User, ArrowRight } from "lucide-react";
 import { useLanguage } from "@contexts/LanguageContext";
-import { AdsterraNativeBanner } from "@components/ads/AdsterraNativeBanner";
-import { AdsterraBanner728x90 } from "@components/ads/AdsterraBanner728x90";
+import { AdSenseSlot } from "@components/ads/AdSenseSlot";
 import { getPostBySlug, blogPosts } from "@data/blog";
 import { tools } from "@data/tools";
 import { getToolTranslation } from "@i18n/toolTranslations";
@@ -237,10 +236,10 @@ export default function BlogPostPage() {
         })}
       </div>
 
-      <AdsterraBanner728x90 />
+      <AdSenseSlot slot="IN_ARTICLE" label="Advertisement" />
 
       {/* Ad — after article body */}
-      <AdsterraNativeBanner />
+      <AdSenseSlot slot="FOOTER" label="Advertisement" />
 
       {/* Related tool bottom CTA */}
       {relatedTool && relatedTranslated && (

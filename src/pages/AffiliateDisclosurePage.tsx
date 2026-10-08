@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
 import { Handshake, Mail } from "lucide-react";
 import { useLanguage } from "@contexts/LanguageContext";
-import { AdsterraNativeBanner } from "@components/ads/AdsterraNativeBanner";
+import { AdSenseSlot } from "@components/ads/AdSenseSlot";
 
 export default function AffiliateDisclosurePage() {
   const { language } = useLanguage();
@@ -123,7 +123,7 @@ export default function AffiliateDisclosurePage() {
           </div>
         </div>
       </motion.div>
-      <AdsterraNativeBanner />
+      <AdSenseSlot slot="IN_ARTICLE" label="Advertisement" />
     </div>
   );
 }

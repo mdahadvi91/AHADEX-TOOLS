@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
 import { BookOpen, Mail } from "lucide-react";
 import { useLanguage } from "@contexts/LanguageContext";
-import { AdsterraNativeBanner } from "@components/ads/AdsterraNativeBanner";
+import { AdSenseSlot } from "@components/ads/AdSenseSlot";
 
 export default function EditorialPolicyPage() {
   const { language } = useLanguage();
@@ -140,7 +140,7 @@ export default function EditorialPolicyPage() {
           </div>
         </div>
       </motion.div>
-      <AdsterraNativeBanner />
+      <AdSenseSlot slot="IN_ARTICLE" label="Advertisement" />
     </div>
   );
 }
