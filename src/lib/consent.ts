@@ -3,6 +3,8 @@
  * ------------------------------------------------------------
  * Stores user's cookie/consent choices in localStorage.
  * Fires Google Consent Mode v2 signals when choice changes.
+ * Also exposes window.__ahadex_ad_consent__ so AdSenseSlot
+ * can decide whether to render ad units.
  * ============================================================ */
 
 export interface ConsentChoice {
@@ -22,7 +24,14 @@ const CONSENT_VERSION = 1;
 declare global {
   interface Window {
     gtag?: (...args: unknown[]) => void;
+    __ahadex_ad_consent__?: boolean;
   }
+}
+
+/** Sync the global ad-consent flag used by AdSenseSlot */
+function syncAdConsentFlag(granted: boolean): void {
+  if (typeof window === "undefined") return;
+  window.__ahadex_ad_consent__ = granted;
 }
 
 export function getStoredConsent(): ConsentState | null {
@@ -52,6 +61,7 @@ export function saveConsent(choice: ConsentChoice): ConsentState {
     } catch {
       /* ignore */
     }
+    syncAdConsentFlag(choice.ads);
   }
   return state;
 }
@@ -63,6 +73,7 @@ export function clearConsent(): void {
   } catch {
     /* ignore */
   }
+  syncAdConsentFlag(false);
 }
 
 /**
@@ -80,10 +91,19 @@ export function applyConsentToGtag(choice: ConsentChoice): void {
   });
 }
 
+/**
+ * Reads stored consent (if any) and:
+ *   1. Updates the global ad-consent flag
+ *   2. Fires gtag consent update
+ */
 export function applyStoredConsent(): void {
   const stored = getStoredConsent();
   if (stored) {
+    syncAdConsentFlag(stored.ads);
     applyConsentToGtag({ analytics: stored.analytics, ads: stored.ads });
+  } else {
+    // No choice yet → ads denied by default
+    syncAdConsentFlag(false);
   }
 }
 

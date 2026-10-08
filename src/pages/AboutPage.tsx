@@ -11,7 +11,7 @@ import {
 } from "lucide-react";
 import { useLanguage } from "@contexts/LanguageContext";
 import { cn } from "@lib/cn";
-import { AdsterraNativeBanner } from "@components/ads/AdsterraNativeBanner";
+import { AdSenseSlot } from "@components/ads/AdSenseSlot";
 
 const VALUE_ICONS = [Shield, Zap, Heart, Wand2];
 
@@ -402,7 +402,7 @@ export default function AboutPage() {
           </div>
         </motion.div>
       </section>
-          <AdsterraNativeBanner />
+          <AdSenseSlot slot="IN_ARTICLE" label="Advertisement" />
     </div>
   );
 }

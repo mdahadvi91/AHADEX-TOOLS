@@ -4,7 +4,7 @@ import { Map, FileText, Wrench, BookOpen, Info } from "lucide-react";
 import { useLanguage } from "@contexts/LanguageContext";
 import { tools } from "@data/tools";
 import { blogPosts } from "@data/blog";
-import { AdsterraNativeBanner } from "@components/ads/AdsterraNativeBanner";
+import { AdSenseSlot } from "@components/ads/AdSenseSlot";
 
 export default function HtmlSitemapPage() {
   const { language } = useLanguage();
@@ -140,7 +140,7 @@ export default function HtmlSitemapPage() {
           </ul>
         </div>
       </motion.div>
-      <AdsterraNativeBanner />
+      <AdSenseSlot slot="IN_ARTICLE" label="Advertisement" />
     </div>
   );
 }

@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
 import { Sparkles, Calendar, Mail, Shield } from "lucide-react";
 import { Link } from "react-router-dom";
-import { AdsterraNativeBanner } from "@components/ads/AdsterraNativeBanner";
+import { AdSenseSlot } from "@components/ads/AdSenseSlot";
 import { cn } from "@lib/cn";
 
 export interface TrustSection {
@@ -176,7 +176,7 @@ export function TrustPageLayout({
         </nav>
       </article>
 
-      <AdsterraNativeBanner />
+      <AdSenseSlot slot="IN_ARTICLE" label="Advertisement" />
     </div>
   );
 }

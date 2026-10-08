@@ -3,8 +3,7 @@ import { motion } from "framer-motion";
 import { Sparkles, BookOpen } from "lucide-react";
 import { useLanguage } from "@contexts/LanguageContext";
 import { blogPosts, blogCategories } from "@data/blog";
-import { AdsterraNativeBanner } from "@components/ads/AdsterraNativeBanner";
-import { AdsterraBanner728x90 } from "@components/ads/AdsterraBanner728x90";
+import { AdSenseSlot } from "@components/ads/AdSenseSlot";
 import { BlogCard } from "@components/blog/BlogCard";
 import { cn } from "@lib/cn";
 
@@ -71,8 +70,8 @@ export default function BlogIndexPage() {
       </div>
 
       {/* Ad after filters */}
-      <AdsterraBanner728x90 />
-      <AdsterraNativeBanner />
+      <AdSenseSlot slot="HEADER" label="Advertisement" />
+      <AdSenseSlot slot="FOOTER" label="Advertisement" />
 
       {/* Grid */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
