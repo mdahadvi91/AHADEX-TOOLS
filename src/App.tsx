@@ -9,7 +9,6 @@ import {
 import { MainLayout } from "@components/layout/MainLayout";
 import { ThemeProvider } from "@contexts/ThemeContext";
 import { LanguageProvider } from "@contexts/LanguageContext";
-import { SoundProvider } from "@contexts/SoundContext";
 import { Loader } from "@components/common/Loader";
 import { ToolSkeleton } from "@components/common/ToolSkeleton";
 
@@ -124,7 +123,6 @@ export default function App() {
   return (
     <ThemeProvider>
       <LanguageProvider>
-        <SoundProvider>
           <BrowserRouter>
             <ScrollToTop />
             <Routes>
@@ -209,7 +207,6 @@ export default function App() {
               </Route>
             </Routes>
           </BrowserRouter>
-        </SoundProvider>
       </LanguageProvider>
     </ThemeProvider>
   );

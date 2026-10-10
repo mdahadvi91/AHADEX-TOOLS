@@ -11,7 +11,6 @@ import {
   Trash2,
 } from "lucide-react";
 import { useLanguage } from "@contexts/LanguageContext";
-import { useSound } from "@contexts/SoundContext";
 import { cn } from "@lib/cn";
 import {
   WorkspacePanel,
@@ -31,7 +30,6 @@ import type { PdfInput, MergedPdf } from "../types";
 
 export function Workspace() {
   const { language } = useLanguage();
-  const { play } = useSound();
   const bn = language === "bn";
 
   const inputRef = useRef<HTMLInputElement>(null);
@@ -59,7 +57,6 @@ export function Workspace() {
     setFiles((prev) => [...prev, ...next]);
     setBusy(false);
     if (inputRef.current) inputRef.current.value = "";
-    if (next.length > 0) play("success");
   };
 
   const remove = (id: string) => {
@@ -106,7 +103,7 @@ export function Workspace() {
       const res = await mergePdfs(files);
       setResult(res);
       downloadMerged(res, `merged-${Date.now()}.pdf`);
-      play("success");
+      
     } catch (e) {
       setError(e instanceof Error ? e.message : "Merge failed");
     } finally {

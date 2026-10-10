@@ -11,7 +11,6 @@ import {
   FileText,
 } from "lucide-react";
 import { useLanguage } from "@contexts/LanguageContext";
-import { useSound } from "@contexts/SoundContext";
 import { cn } from "@lib/cn";
 import {
   TextPanel,
@@ -38,7 +37,6 @@ import type { Mode, InputKind, FileInfo } from "../types";
 
 export function Workspace() {
   const { language } = useLanguage();
-  const { play } = useSound();
   const bn = language === "bn";
 
   const [mode, setMode] = useState<Mode>("encode");
@@ -77,7 +75,7 @@ export function Workspace() {
     try {
       const info = await fileToBase64(file);
       setFileInfo(info);
-      play("success");
+      
     } catch (e) {
       setError(e instanceof Error ? e.message : "Failed to read file");
     }
@@ -95,7 +93,7 @@ export function Workspace() {
     try {
       await copyText(out);
       setCopied(true);
-      play("success");
+      
       setTimeout(() => setCopied(false), 1800);
     } catch {
       /* ignore */

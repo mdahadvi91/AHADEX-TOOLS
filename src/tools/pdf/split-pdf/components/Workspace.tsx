@@ -8,7 +8,6 @@ import {
   Trash2,
 } from "lucide-react";
 import { useLanguage } from "@contexts/LanguageContext";
-import { useSound } from "@contexts/SoundContext";
 import { cn } from "@lib/cn";
 import {
   WorkspacePanel,
@@ -30,7 +29,6 @@ type Mode = "extract" | "every";
 
 export function Workspace() {
   const { language } = useLanguage();
-  const { play } = useSound();
   const bn = language === "bn";
 
   const inputRef = useRef<HTMLInputElement>(null);
@@ -73,7 +71,7 @@ export function Workspace() {
       const res = await extractPages(pdf, pages);
       setSingle(res);
       downloadResult(res);
-      play("success");
+      
     } catch (e) {
       setError(e instanceof Error ? e.message : "Extract failed");
     } finally {
@@ -94,7 +92,7 @@ export function Workspace() {
       const res = await splitEveryPage(pdf);
       setMulti(res);
       res.forEach((r, i) => setTimeout(() => downloadResult(r), i * 300));
-      play("success");
+      
     } catch (e) {
       setError(e instanceof Error ? e.message : "Split failed");
     } finally {

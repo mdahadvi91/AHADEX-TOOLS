@@ -2,14 +2,12 @@ import { useMemo, useState } from "react";
 import { motion } from "framer-motion";
 import { Clock, Mic2, KeyRound, Trash2 } from "lucide-react";
 import { useLanguage } from "@contexts/LanguageContext";
-import { useSound } from "@contexts/SoundContext";
 import { cn } from "@lib/cn";
 import { TextPanel, WorkspacePanel } from "@components/workspace";
 import { countStats, formatNumber, MAX_CHARS } from "../logic";
 
 export function Workspace() {
   const { language } = useLanguage();
-  const { play } = useSound();
   const bn = language === "bn";
 
   const [text, setText] = useState("");
@@ -18,7 +16,7 @@ export function Workspace() {
 
   const clearAll = () => {
     setText("");
-    play("click");
+    
   };
 
   return (

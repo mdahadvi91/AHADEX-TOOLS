@@ -2,7 +2,6 @@ import { useEffect, useRef } from "react";
 import { analytics } from "@lib/analytics";
 import { speak as speakFn } from "@lib/speech";
 import { useLanguage } from "@contexts/LanguageContext";
-import { useSound } from "@contexts/SoundContext";
 import { tools } from "@data/tools";
 import { getToolTranslation } from "@i18n/toolTranslations";
 
@@ -17,7 +16,6 @@ import { getToolTranslation } from "@i18n/toolTranslations";
 export function useToolAnalytics(toolId: string): void {
   const startRef = useRef<number>(Date.now());
   const { language } = useLanguage();
-  const { soundEnabled } = useSound();
 
   // 1. Analytics Tracking (Runs ONLY when tool changes)
   useEffect(() => {
@@ -34,7 +32,6 @@ export function useToolAnalytics(toolId: string): void {
 
   // 2. Text-to-Speech Announcement (Runs when tool, language, or sound changes)
   useEffect(() => {
-    if (!soundEnabled) return;
 
     const tool = tools.find((t) => t.id === toolId);
     if (!tool) return;
@@ -49,5 +46,5 @@ export function useToolAnalytics(toolId: string): void {
     }, 500);
 
     return () => window.clearTimeout(timer);
-  }, [toolId, language, soundEnabled]);
+  }, [toolId, language]);
 }

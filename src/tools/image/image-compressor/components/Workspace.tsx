@@ -10,7 +10,6 @@ import {
   Trash2,
 } from "lucide-react";
 import { useLanguage } from "@contexts/LanguageContext";
-import { useSound } from "@contexts/SoundContext";
 import { cn } from "@lib/cn";
 import {
   WorkspacePanel,
@@ -29,7 +28,6 @@ import type { CompressedFile } from "../types";
 
 export function Workspace() {
   const { language } = useLanguage();
-  const { play } = useSound();
   const bn = language === "bn";
 
   const inputRef = useRef<HTMLInputElement>(null);
@@ -57,7 +55,6 @@ export function Workspace() {
     setItems((prev) => [...prev, ...newItems]);
     setBusy(false);
     if (inputRef.current) inputRef.current.value = "";
-    if (newItems.length > 0) play("success");
   };
 
   const remove = (id: string) => {

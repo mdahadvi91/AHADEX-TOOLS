@@ -8,7 +8,6 @@ import {
   Trash2,
 } from "lucide-react";
 import { useLanguage } from "@contexts/LanguageContext";
-import { useSound } from "@contexts/SoundContext";
 import { cn } from "@lib/cn";
 import {
   WorkspacePanel,
@@ -28,7 +27,6 @@ import type { LoadedPdf, JpgPageResult, DpiOption } from "../types";
 
 export function Workspace() {
   const { language } = useLanguage();
-  const { play } = useSound();
   const bn = language === "bn";
 
   const inputRef = useRef<HTMLInputElement>(null);
@@ -66,7 +64,7 @@ export function Workspace() {
       setResults([]);
       const res = await renderPagesToJpg(pdf, pages, dpi);
       setResults(res);
-      play("success");
+      
     } catch (e) {
       setError(e instanceof Error ? e.message : "Conversion failed");
     } finally {

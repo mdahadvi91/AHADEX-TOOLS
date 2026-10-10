@@ -9,7 +9,6 @@ import {
   Eye,
 } from "lucide-react";
 import { useLanguage } from "@contexts/LanguageContext";
-import { useSound } from "@contexts/SoundContext";
 import { cn } from "@lib/cn";
 import { WorkspacePanel, DropZone, ToolButton, ResultStat } from "@components/workspace";
 import { readMetadata, revokeResult, formatBytes } from "../logic";
@@ -17,7 +16,6 @@ import type { MetadataResult } from "../types";
 
 export function Workspace() {
   const { language } = useLanguage();
-  const { play } = useSound();
   const bn = language === "bn";
 
   const inputRef = useRef<HTMLInputElement>(null);
@@ -34,7 +32,7 @@ export function Workspace() {
       if (result) revokeResult(result);
       const res = await readMetadata(file);
       setResult(res);
-      play("success");
+      
     } catch (e) {
       setError(e instanceof Error ? e.message : "Failed to read file");
     } finally {

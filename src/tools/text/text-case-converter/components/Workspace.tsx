@@ -6,7 +6,6 @@ import {
   Sparkles,
 } from "lucide-react";
 import { useLanguage } from "@contexts/LanguageContext";
-import { useSound } from "@contexts/SoundContext";
 import { cn } from "@lib/cn";
 import { TextPanel, WorkspacePanel } from "@components/workspace";
 import { convert, formatNumber, MAX_CHARS } from "../logic";
@@ -29,7 +28,6 @@ const CASES: CaseDefinition[] = [
 
 export function Workspace() {
   const { language } = useLanguage();
-  const { play } = useSound();
   const bn = language === "bn";
 
   const [input, setInput] = useState("");
@@ -44,7 +42,7 @@ export function Workspace() {
     try {
       await navigator.clipboard.writeText(output);
       setCopied(true);
-      play("success");
+      
       setTimeout(() => setCopied(false), 2000);
     } catch {
       /* ignore */
@@ -85,7 +83,7 @@ export function Workspace() {
                 type="button"
                 onClick={() => {
                   setActive(c.id);
-                  play("click");
+                  
                 }}
                 initial={{ opacity: 0, y: 6 }}
                 animate={{ opacity: 1, y: 0 }}

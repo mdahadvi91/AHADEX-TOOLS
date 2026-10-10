@@ -11,7 +11,6 @@ import {
   ListOrdered,
 } from "lucide-react";
 import { useLanguage } from "@contexts/LanguageContext";
-import { useSound } from "@contexts/SoundContext";
 import { cn } from "@lib/cn";
 import { WorkspacePanel, DropZone, ToolButton, ResultStat } from "@components/workspace";
 import {
@@ -26,7 +25,6 @@ import type { LoadedPdf, ExtractedFile, ExtractMode } from "../types";
 
 export function Workspace() {
   const { language } = useLanguage();
-  const { play } = useSound();
   const bn = language === "bn";
 
   const inputRef = useRef<HTMLInputElement>(null);
@@ -62,7 +60,7 @@ export function Workspace() {
       setResults([]);
       const res = await extractPages(pdf, pages, mode);
       setResults(res);
-      play("success");
+      
     } catch (e) {
       setError(e instanceof Error ? e.message : "Extraction failed");
     } finally {
@@ -74,7 +72,7 @@ export function Workspace() {
     results.forEach((r, i) =>
       setTimeout(() => downloadFile(r), i * 300)
     );
-    play("success");
+    
   };
 
   const clearAll = () => {

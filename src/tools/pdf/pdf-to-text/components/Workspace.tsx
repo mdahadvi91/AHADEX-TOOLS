@@ -11,7 +11,6 @@ import {
   Settings2,
 } from "lucide-react";
 import { useLanguage } from "@contexts/LanguageContext";
-import { useSound } from "@contexts/SoundContext";
 import { cn } from "@lib/cn";
 import { WorkspacePanel, DropZone, ToolButton, ResultStat } from "@components/workspace";
 import {
@@ -26,7 +25,6 @@ import type { LoadedPdf, ExtractResult } from "../types";
 
 export function Workspace() {
   const { language } = useLanguage();
-  const { play } = useSound();
   const bn = language === "bn";
 
   const inputRef = useRef<HTMLInputElement>(null);
@@ -70,7 +68,7 @@ export function Workspace() {
         revokeTxt(res);
       } else {
         setResult(res);
-        play("success");
+        
       }
     } catch (e) {
       setError(e instanceof Error ? e.message : "Extraction failed");
@@ -85,7 +83,7 @@ export function Workspace() {
       const text = result.pages.map((p) => p.text).join("\n\n");
       await navigator.clipboard.writeText(text);
       setCopied(true);
-      play("success");
+      
       setTimeout(() => setCopied(false), 2000);
     } catch {
       /* ignore */

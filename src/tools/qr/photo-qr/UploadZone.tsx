@@ -2,7 +2,6 @@ import { useState, useRef } from "react";
 import { motion } from "framer-motion";
 import { ImageIcon, Upload } from "lucide-react";
 import { useLanguage } from "@contexts/LanguageContext";
-import { useSound } from "@contexts/SoundContext";
 import { cn } from "@lib/cn";
 import { MAX_FILE_SIZE, ACCEPTED_TYPES, ACCEPT_ATTR } from "./options";
 
@@ -13,7 +12,6 @@ interface UploadZoneProps {
 
 export function UploadZone({ onPhotoChange, onError }: UploadZoneProps) {
   const { language } = useLanguage();
-  const { play } = useSound();
   const bn = language === "bn";
   const [isDragging, setIsDragging] = useState(false);
   const inputRef = useRef<HTMLInputElement>(null);
@@ -39,7 +37,7 @@ export function UploadZone({ onPhotoChange, onError }: UploadZoneProps) {
       return;
     }
     onPhotoChange(file);
-    play("success");
+    
   };
 
   const onDrop = (e: React.DragEvent) => {

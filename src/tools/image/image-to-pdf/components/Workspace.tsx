@@ -12,7 +12,6 @@ import {
   FileDown,
 } from "lucide-react";
 import { useLanguage } from "@contexts/LanguageContext";
-import { useSound } from "@contexts/SoundContext";
 import { cn } from "@lib/cn";
 import {
   WorkspacePanel,
@@ -32,7 +31,6 @@ import type { ImagePage, PdfResult, PdfBuildOptions } from "../types";
 
 export function Workspace() {
   const { language } = useLanguage();
-  const { play } = useSound();
   const bn = language === "bn";
 
   const inputRef = useRef<HTMLInputElement>(null);
@@ -61,7 +59,6 @@ export function Workspace() {
     setPages((prev) => [...prev, ...newPages]);
     setBusy(false);
     if (inputRef.current) inputRef.current.value = "";
-    if (newPages.length > 0) play("success");
   };
 
   const remove = (id: string) => {
@@ -101,7 +98,7 @@ export function Workspace() {
       const res = await buildPdf(pages, { pageSize, orientation, margin });
       setResult(res);
       downloadPdf(res, `images-${Date.now()}.pdf`);
-      play("success");
+      
     } catch (e) {
       setError(e instanceof Error ? e.message : "Failed to build PDF");
     } finally {

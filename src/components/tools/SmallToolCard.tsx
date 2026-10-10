@@ -3,7 +3,6 @@ import { ArrowUpRight } from "lucide-react";
 import { getToolEmoji } from "@components/common/toolEmojis";
 import { FavoriteButton } from "./FavoriteButton";
 import { useLanguage } from "@contexts/LanguageContext";
-import { useSound } from "@contexts/SoundContext";
 import { getToolTranslation } from "@i18n/toolTranslations";
 import { cn } from "@lib/cn";
 import type { Tool } from "@/types/tool";
@@ -35,7 +34,6 @@ export function SmallToolCard({
 }: SmallToolCardProps) {
   const emoji = getToolEmoji(tool.id);
   const { language } = useLanguage();
-  const { play } = useSound();
   const category = getCategory(tool);
 
   const translated = getToolTranslation(tool.id, language, {
@@ -48,8 +46,8 @@ export function SmallToolCard({
   return (
     <Link
       to={tool.path}
-      onMouseEnter={() => play("hover")}
-      onClick={() => play("click")}
+      
+      
       className="group relative block min-h-[180px] sm:min-h-[200px] rounded-[22px] focus:outline-none focus-visible:ring-2 focus-visible:ring-silk-rose/60"
     >
       {/* Animated gradient border — appears on hover */}
