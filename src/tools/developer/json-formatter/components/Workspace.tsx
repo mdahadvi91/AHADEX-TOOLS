@@ -9,7 +9,6 @@ import {
   Minimize2,
 } from "lucide-react";
 import { useLanguage } from "@contexts/LanguageContext";
-import { useSound } from "@contexts/SoundContext";
 import { cn } from "@lib/cn";
 import {
   TextPanel,
@@ -34,7 +33,6 @@ const INDENTS: { value: IndentOption; label: string }[] = [
 
 export function Workspace() {
   const { language } = useLanguage();
-  const { play } = useSound();
   const bn = language === "bn";
 
   const [input, setInput] = useState("");
@@ -61,7 +59,7 @@ export function Workspace() {
     try {
       await navigator.clipboard.writeText(output);
       setCopied(true);
-      play("success");
+      
       setTimeout(() => setCopied(false), 2000);
     } catch {
       /* ignore */

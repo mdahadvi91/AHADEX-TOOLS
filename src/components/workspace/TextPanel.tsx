@@ -2,7 +2,6 @@ import { useRef, type ReactNode } from "react";
 import { Copy, ClipboardCheck, Trash2 } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useLanguage } from "@contexts/LanguageContext";
-import { useSound } from "@contexts/SoundContext";
 import { cn } from "@lib/cn";
 
 interface TextPanelProps {
@@ -37,7 +36,6 @@ export function TextPanel({
   className,
 }: TextPanelProps) {
   const { language } = useLanguage();
-  const { play } = useSound();
   const bn = language === "bn";
   const textareaRef = useRef<HTMLTextAreaElement>(null);
 
@@ -70,7 +68,7 @@ export function TextPanel({
               type="button"
               onClick={() => {
                 if (!value) return;
-                play("click");
+                
                 onCopy();
               }}
               disabled={!value}

@@ -1,6 +1,5 @@
 import { motion, type HTMLMotionProps } from "framer-motion";
 import { Loader2 } from "lucide-react";
-import { useSound } from "@contexts/SoundContext";
 import { cn } from "@lib/cn";
 
 type Variant = "primary" | "secondary" | "ghost" | "danger";
@@ -25,7 +24,6 @@ export function ToolButton({
   disabled,
   ...rest
 }: ToolButtonProps) {
-  const { play } = useSound();
 
   const base = cn(
     "relative inline-flex items-center justify-center gap-2 font-bold rounded-xl sm:rounded-full",
@@ -66,7 +64,7 @@ export function ToolButton({
     <motion.button
       whileTap={{ scale: 0.97 }}
       onClick={(e) => {
-        if (!disabled && !loading) play("click");
+        if (!disabled && !loading) 
         onClick?.(e);
       }}
       disabled={disabled || loading}

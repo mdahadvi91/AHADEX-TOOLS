@@ -12,7 +12,6 @@ import {
   Star,
 } from "lucide-react";
 import { useLanguage } from "@contexts/LanguageContext";
-import { useSound } from "@contexts/SoundContext";
 import { cn } from "@lib/cn";
 import {
   WorkspacePanel,
@@ -33,7 +32,6 @@ import type { LoadedImage, FaviconOptions, GeneratedFile } from "../types";
 
 export function Workspace() {
   const { language } = useLanguage();
-  const { play } = useSound();
   const bn = language === "bn";
 
   const inputRef = useRef<HTMLInputElement>(null);
@@ -76,7 +74,7 @@ export function Workspace() {
     const loaded = await loadImageFile(file, setError);
     if (loaded) {
       setImage(loaded);
-      play("success");
+      
     }
   };
 
@@ -94,7 +92,7 @@ export function Workspace() {
     files.forEach((f, i) =>
       setTimeout(() => downloadFile(f), i * 200)
     );
-    play("success");
+    
   };
 
   const totalSize = files.reduce((s, f) => s + f.size, 0);

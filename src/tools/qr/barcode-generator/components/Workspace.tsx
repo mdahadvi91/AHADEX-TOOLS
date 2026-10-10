@@ -11,7 +11,6 @@ import {
   Hash,
 } from "lucide-react";
 import { useLanguage } from "@contexts/LanguageContext";
-import { useSound } from "@contexts/SoundContext";
 import { cn } from "@lib/cn";
 import {
   WorkspacePanel,
@@ -30,7 +29,6 @@ import type { BarcodeOptions, BarcodeFormat } from "../types";
 
 export function Workspace() {
   const { language } = useLanguage();
-  const { play } = useSound();
   const bn = language === "bn";
 
   const svgRef = useRef<SVGSVGElement>(null);
@@ -50,7 +48,7 @@ export function Workspace() {
     const def = findFormat(fmt);
     setOpts((p) => ({ ...p, format: fmt }));
     if (!value.trim()) setValue(def.example);
-    play("click");
+    
   };
 
   const handleDownloadPng = async () => {
@@ -62,7 +60,7 @@ export function Workspace() {
         `barcode-${opts.format}-${Date.now()}.png`,
         3
       );
-      play("success");
+      
     } catch {
       /* ignore */
     } finally {
@@ -73,7 +71,7 @@ export function Workspace() {
   const handleDownloadSvg = () => {
     if (!svgRef.current || !value.trim()) return;
     downloadSvg(svgRef.current, `barcode-${opts.format}-${Date.now()}.svg`);
-    play("success");
+    
   };
 
   const handleCopy = async () => {
@@ -81,7 +79,7 @@ export function Workspace() {
     try {
       await copySvg(svgRef.current);
       setCopied(true);
-      play("success");
+      
       setTimeout(() => setCopied(false), 1800);
     } catch {
       /* ignore */

@@ -9,7 +9,6 @@ import {
   Hash,
 } from "lucide-react";
 import { useLanguage } from "@contexts/LanguageContext";
-import { useSound } from "@contexts/SoundContext";
 import { cn } from "@lib/cn";
 import {
   WorkspacePanel,
@@ -39,7 +38,6 @@ const VERSIONS: { value: UuidVersion; label: string; sub: string }[] = [
 
 export function Workspace() {
   const { language } = useLanguage();
-  const { play } = useSound();
   const bn = language === "bn";
 
   const [items, setItems] = useState<UuidItem[]>(() =>
@@ -71,14 +69,14 @@ export function Workspace() {
     setUppercase(next.uppercase);
     setHyphens(next.hyphens);
     setItems(generateBatch(next));
-    play("success");
+    
   };
 
   const handleCopyOne = async (item: UuidItem) => {
     try {
       await copyText(formatUuid(item.value, { uppercase, hyphens }));
       setCopiedOne(item.id);
-      play("click");
+      
       setTimeout(() => setCopiedOne(null), 1500);
     } catch {
       /* ignore */
@@ -89,7 +87,7 @@ export function Workspace() {
     try {
       await copyText(copyAll(items, { uppercase, hyphens }));
       setCopiedAll(true);
-      play("success");
+      
       setTimeout(() => setCopiedAll(false), 2000);
     } catch {
       /* ignore */

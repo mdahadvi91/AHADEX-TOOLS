@@ -2,7 +2,6 @@ import { useMemo, useState } from "react";
 import { motion } from "framer-motion";
 import { Copy, ClipboardCheck, Download, Type } from "lucide-react";
 import { useLanguage } from "@contexts/LanguageContext";
-import { useSound } from "@contexts/SoundContext";
 import { cn } from "@lib/cn";
 import { TextPanel, WorkspacePanel } from "@components/workspace";
 import {
@@ -16,7 +15,6 @@ import {
 
 export function Workspace() {
   const { language } = useLanguage();
-  const { play } = useSound();
   const bn = language === "bn";
 
   const [text, setText] = useState("");
@@ -30,7 +28,7 @@ export function Workspace() {
     try {
       await copyText(text);
       setCopied(true);
-      play("success");
+      
       setTimeout(() => setCopied(false), 1800);
     } catch {
       /* ignore */

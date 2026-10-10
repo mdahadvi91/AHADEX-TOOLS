@@ -9,7 +9,6 @@ import {
   Trash2,
 } from "lucide-react";
 import { useLanguage } from "@contexts/LanguageContext";
-import { useSound } from "@contexts/SoundContext";
 import { cn } from "@lib/cn";
 import { WorkspacePanel, DropZone, ToolButton, ResultStat } from "@components/workspace";
 import { loadSvgFile, renderToPng, downloadPng, revokePng, revokeSvg, formatBytes } from "../logic";
@@ -24,7 +23,6 @@ const BACKGROUNDS: { value: RenderOptions["background"]; label: string }[] = [
 
 export function Workspace() {
   const { language } = useLanguage();
-  const { play } = useSound();
   const bn = language === "bn";
 
   const inputRef = useRef<HTMLInputElement>(null);
@@ -44,7 +42,7 @@ export function Workspace() {
     const loaded = await loadSvgFile(file, setError);
     if (loaded) {
       setSvg(loaded);
-      play("success");
+      
     }
   };
 
@@ -57,7 +55,7 @@ export function Workspace() {
       const res = await renderToPng(svg, { scale, background });
       setResult(res);
       downloadPng(res);
-      play("success");
+      
     } catch (e) {
       setError(e instanceof Error ? e.message : "Conversion failed");
     } finally {

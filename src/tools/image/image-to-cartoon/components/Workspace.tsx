@@ -9,7 +9,6 @@ import {
   Image as ImageIcon,
 } from "lucide-react";
 import { useLanguage } from "@contexts/LanguageContext";
-import { useSound } from "@contexts/SoundContext";
 import {
   WorkspacePanel,
   DropZone,
@@ -31,7 +30,6 @@ import type {
 
 export function Workspace() {
   const { language } = useLanguage();
-  const { play } = useSound();
   const bn = language === "bn";
 
   const inputRef = useRef<HTMLInputElement>(null);
@@ -86,7 +84,7 @@ export function Workspace() {
   const handleDownload = () => {
     if (!image || !result) return;
     downloadCartoon(result, image.name);
-    play("success");
+    
   };
 
   return (

@@ -11,7 +11,6 @@ import {
   KeyRound,
 } from "lucide-react";
 import { useLanguage } from "@contexts/LanguageContext";
-import { useSound } from "@contexts/SoundContext";
 import { cn } from "@lib/cn";
 import {
   WorkspacePanel,
@@ -31,7 +30,6 @@ import type { PasswordOptions, GeneratedPassword } from "../types";
 
 export function Workspace() {
   const { language } = useLanguage();
-  const { play } = useSound();
   const bn = language === "bn";
 
   const [opts, setOpts] = useState<PasswordOptions>(DEFAULT_OPTIONS);
@@ -48,14 +46,14 @@ export function Workspace() {
 
   const regenerate = () => {
     setPasswords(generateBatch(opts, batch));
-    play("success");
+    
   };
 
   const handleCopyOne = async (p: GeneratedPassword) => {
     try {
       await copyText(p.value);
       setCopiedOne(p.id);
-      play("click");
+      
       setTimeout(() => setCopiedOne(null), 1500);
     } catch {
       /* ignore */
@@ -66,7 +64,7 @@ export function Workspace() {
     try {
       await copyText(passwords.map((p) => p.value).join("\n"));
       setCopiedAll(true);
-      play("success");
+      
       setTimeout(() => setCopiedAll(false), 2000);
     } catch {
       /* ignore */

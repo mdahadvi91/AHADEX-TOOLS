@@ -12,7 +12,6 @@ import {
   FileDown,
 } from "lucide-react";
 import { useLanguage } from "@contexts/LanguageContext";
-import { useSound } from "@contexts/SoundContext";
 import { cn } from "@lib/cn";
 import { WorkspacePanel, DropZone, ToolButton, ResultStat } from "@components/workspace";
 import { addPngPage, buildPdf, downloadPdf, formatBytes, revokePdf, MAX_PAGES } from "../logic";
@@ -26,7 +25,6 @@ type PdfBuildOptions = {
 
 export function Workspace() {
   const { language } = useLanguage();
-  const { play } = useSound();
   const bn = language === "bn";
 
   const inputRef = useRef<HTMLInputElement>(null);
@@ -55,7 +53,6 @@ export function Workspace() {
     setPages((prev) => [...prev, ...next]);
     setBusy(false);
     if (inputRef.current) inputRef.current.value = "";
-    if (next.length > 0) play("success");
   };
 
   const remove = (id: string) => {
@@ -92,7 +89,7 @@ export function Workspace() {
       const res = await buildPdf(pages, { pageSize, orientation, margin });
       setResult(res);
       downloadPdf(res, `pngs-${Date.now()}.pdf`);
-      play("success");
+      
     } catch (e) {
       setError(e instanceof Error ? e.message : "Failed to build PDF");
     } finally { setBusy(false); }
