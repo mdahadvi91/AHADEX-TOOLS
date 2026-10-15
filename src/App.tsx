@@ -17,6 +17,7 @@ import { ToolSkeleton } from "@components/common/ToolSkeleton";
  * ------------------------------------------------------------------ */
 const ToolsIndexPage = lazy(() => import("@pages/ToolsIndexPage"));
 const AboutPage = lazy(() => import("@pages/AboutPage"));
+const AuthorPage = lazy(() => import("@pages/AuthorPage"));
 const ContactPage = lazy(() => import("@pages/ContactPage"));
 const PrivacyPage = lazy(() => import("@pages/PrivacyPage"));
 const TermsPage = lazy(() => import("@pages/TermsPage"));
@@ -171,6 +172,7 @@ export default function App() {
 
                 {/* Static pages */}
                 <Route path="about" element={<PageSuspense><AboutPage /></PageSuspense>} />
+                <Route path="about/author/:id" element={<PageSuspense><AuthorPage /></PageSuspense>} />
                 <Route path="contact" element={<PageSuspense><ContactPage /></PageSuspense>} />
                 <Route path="privacy" element={<PageSuspense><PrivacyPage /></PageSuspense>} />
                 <Route path="terms" element={<PageSuspense><TermsPage /></PageSuspense>} />

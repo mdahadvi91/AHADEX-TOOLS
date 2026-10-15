@@ -19,7 +19,10 @@ export interface BlogPost {
   category: string;
   readTime: number;
   publishedAt: string;
-  author: string;
+  /** ISO date the article was last reviewed/updated. Falls back to publishedAt. */
+  updatedAt?: string;
+  /** Author id — resolved against src/data/authors.ts. */
+  authorId: string;
   relatedTool: string;
   blocks: BlogBlock[];
 }
@@ -35,7 +38,7 @@ export const blogPosts: BlogPost[] = [
     category: "Image Tools",
     readTime: 8,
     publishedAt: "2026-10-06",
-    author: "AHADEX Team",
+    authorId: "mohammad-ahad",
     relatedTool: "image-compressor",
     blocks: [
       { type: "p", content: "Large image files slow down websites, bounce emails, and eat up cloud storage. But shrinking them naively with heavy compression ruins the visual quality — text becomes blurry, gradients turn patchy, and photos lose their crisp edges." },
@@ -101,7 +104,7 @@ export const blogPosts: BlogPost[] = [
     category: "PDF Tools",
     readTime: 7,
     publishedAt: "2026-10-06",
-    author: "AHADEX Team",
+    authorId: "mohammad-ahad",
     relatedTool: "merge-pdf",
     blocks: [
       { type: "p", content: "PDF is the universal format for invoices, contracts, resumes, and reports. But when you need to send multiple PDFs together — say, three invoices plus a cover letter — sending separate files is messy and unprofessional." },
@@ -160,7 +163,7 @@ export const blogPosts: BlogPost[] = [
     category: "Developer Tools",
     readTime: 6,
     publishedAt: "2026-10-06",
-    author: "AHADEX Team",
+    authorId: "mohammad-ahad",
     relatedTool: "json-formatter",
     blocks: [
       { type: "p", content: "JSON (JavaScript Object Notation) is the format that APIs speak, config files use, and databases export. It is everywhere — and it is also one of the easiest formats to corrupt with a single misplaced comma." },
@@ -217,7 +220,7 @@ export const blogPosts: BlogPost[] = [
     category: "Security",
     readTime: 6,
     publishedAt: "2026-10-06",
-    author: "AHADEX Team",
+    authorId: "mohammad-ahad",
     relatedTool: "password-generator",
     blocks: [
       { type: "p", content: "Every year, billions of stolen passwords end up on the dark web. Most are cracked within minutes because they follow predictable patterns: names, dates, dictionary words, and small variations of common phrases." },
@@ -271,7 +274,7 @@ export const blogPosts: BlogPost[] = [
     category: "Developer Tools",
     readTime: 5,
     publishedAt: "2026-10-06",
-    author: "AHADEX Team",
+    authorId: "mohammad-ahad",
     relatedTool: "base64-encoder",
     blocks: [
       { type: "p", content: "Base64 is one of those technologies you use without realizing it — every email attachment, every JWT token, every data URL in CSS. It looks cryptic, but the concept behind it is straightforward." },
@@ -325,7 +328,7 @@ export const blogPosts: BlogPost[] = [
     category: "Image Tools",
     readTime: 9,
     publishedAt: "2026-10-06",
-    author: "AHADEX Team",
+    authorId: "mohammad-ahad",
     relatedTool: "image-resizer",
     blocks: [
       { type: "p", content: "Every image you publish uses one of a handful of formats. Choosing the wrong one costs you page speed, visual quality, SEO ranking, and — at scale — hosting bills. This guide gives you a clear decision framework for JPG, PNG, WebP, and AVIF." },
@@ -435,7 +438,7 @@ export const blogPosts: BlogPost[] = [
     category: "PDF Tools",
     readTime: 7,
     publishedAt: "2026-10-06",
-    author: "AHADEX Team",
+    authorId: "mohammad-ahad",
     relatedTool: "jpg-to-pdf",
     blocks: [
       { type: "p", content: "JPG-to-PDF conversion is one of those tasks that seems simple but has real decisions hidden inside: page size, orientation, image quality, file size, and — most importantly — whether your files stay private during conversion." },
@@ -518,7 +521,7 @@ export const blogPosts: BlogPost[] = [
     category: "Developer Tools",
     readTime: 6,
     publishedAt: "2026-10-06",
-    author: "AHADEX Team",
+    authorId: "mohammad-ahad",
     relatedTool: "uuid-generator",
     blocks: [
       { type: "p", content: "A UUID (Universally Unique Identifier) is a 128-bit value used to identify records, files, sessions, and API resources without a central registry. But not all UUIDs behave the same — and picking the wrong version can hurt your database performance." },
@@ -603,7 +606,7 @@ export const blogPosts: BlogPost[] = [
     category: "QR Tools",
     readTime: 6,
     publishedAt: "2026-10-06",
-    author: "AHADEX Team",
+    authorId: "mohammad-ahad",
     relatedTool: "photo-qr",
     blocks: [
       { type: "p", content: "QR codes were invented in 1994 for tracking car parts. Thirty years later they are everywhere — restaurant menus, product packaging, event tickets, and every modern business card. But most people use them badly." },
@@ -700,7 +703,7 @@ export const blogPosts: BlogPost[] = [
     category: "Text Tools",
     readTime: 7,
     publishedAt: "2026-10-06",
-    author: "AHADEX Team",
+    authorId: "mohammad-ahad",
     relatedTool: "word-counter",
     blocks: [
       { type: "p", content: "Word count sounds like a school exercise — until you realize it affects your Google ranking, your email open rate, your product page conversion, and how much of your blog post visitors actually read." },
@@ -811,7 +814,7 @@ export const blogPosts: BlogPost[] = [
     category: "Image Tools",
     readTime: 8,
     publishedAt: "2026-10-06",
-    author: "AHADEX Team",
+    authorId: "mohammad-ahad",
     relatedTool: "image-resizer",
     blocks: [
       { type: "p", content: "Every social platform crops, compresses, and re-renders your uploaded images. If you upload at the wrong dimensions, the platform either stretches your image (ugly), crops it badly (frustrating), or compresses it heavily (blurry). Getting the size right the first time is the difference between a scroll-stopping post and an ignored one." },
@@ -948,7 +951,7 @@ export const blogPosts: BlogPost[] = [
     category: "PDF Tools",
     readTime: 7,
     publishedAt: "2026-10-06",
-    author: "AHADEX Team",
+    authorId: "mohammad-ahad",
     relatedTool: "pdf-to-jpg",
     blocks: [
       { type: "p", content: "PDF and JPG serve different purposes. PDF is a document format that preserves layout, fonts, and vector graphics. JPG is an image format optimized for photographs and continuous-tone images. Converting between them is a daily task for students, designers, and office workers." },
@@ -1029,7 +1032,7 @@ export const blogPosts: BlogPost[] = [
     category: "Developer Tools",
     readTime: 6,
     publishedAt: "2026-10-06",
-    author: "AHADEX Team",
+    authorId: "mohammad-ahad",
     relatedTool: "json-formatter",
     blocks: [
       { type: "p", content: "In 2010, XML was the universal data format. By 2015, JSON had replaced it in almost every new API. In 2026, XML survives in enterprise systems, government data, and a handful of industries that never migrated. This guide explains why — and when each one still wins." },
@@ -1123,7 +1126,7 @@ export const blogPosts: BlogPost[] = [
     category: "Image Tools",
     readTime: 7,
     publishedAt: "2026-10-06",
-    author: "AHADEX Team",
+    authorId: "mohammad-ahad",
     relatedTool: "favicon-generator",
     blocks: [
       { type: "p", content: "The favicon is the small icon that appears in your browser tab, bookmarks bar, mobile home screen, and search results. It is 16×16 pixels of brand identity — and most sites get it wrong." },
@@ -1221,7 +1224,7 @@ export const blogPosts: BlogPost[] = [
     category: "Developer Tools",
     readTime: 6,
     publishedAt: "2026-10-06",
-    author: "AHADEX Team",
+    authorId: "mohammad-ahad",
     relatedTool: "url-encoder",
     blocks: [
       { type: "p", content: "You have seen %20 in URLs — the encoding of a space character. You have seen + in form submissions — the encoding of a space in query strings. What you may not have realized is how much breaks when encoding goes wrong." },
@@ -1314,7 +1317,7 @@ export const blogPosts: BlogPost[] = [
     category: "Text Tools",
     readTime: 6,
     publishedAt: "2026-10-06",
-    author: "AHADEX Team",
+    authorId: "mohammad-ahad",
     relatedTool: "character-counter",
     blocks: [
       { type: "p", content: "Twitter/X counts characters differently from most text editors. Emoji count as multiple characters, URLs are shortened automatically, and different fields have different limits. Getting it wrong means your post gets cut off — or worse, silently truncated." },
@@ -1399,7 +1402,7 @@ export const blogPosts: BlogPost[] = [
     category: "QR Tools",
     readTime: 6,
     publishedAt: "2026-10-06",
-    author: "AHADEX Team",
+    authorId: "mohammad-ahad",
     relatedTool: "barcode-generator",
     blocks: [
       { type: "p", content: "Barcodes were invented in 1952, QR codes in 1994. Both encode information in a scannable pattern. But they serve different purposes, hold different amounts of data, and are read by different equipment. Here is when to use each." },
@@ -1504,7 +1507,7 @@ export const blogPosts: BlogPost[] = [
     category: "Text Tools",
     readTime: 6,
     publishedAt: "2026-10-06",
-    author: "AHADEX Team",
+    authorId: "mohammad-ahad",
     relatedTool: "text-case-converter",
     blocks: [
       { type: "p", content: "Every writer faces the same question at least once a week: is 'the' capitalized in this heading? Does 'of' get a capital letter? Which style guide should you follow? This guide answers all of it." },
@@ -1608,7 +1611,7 @@ export const blogPosts: BlogPost[] = [
     category: "Image Tools",
     readTime: 7,
     publishedAt: "2026-10-06",
-    author: "AHADEX Team",
+    authorId: "mohammad-ahad",
     relatedTool: "image-to-sketch",
     blocks: [
       { type: "p", content: "Converting a photo to a sketch or cartoon used to require Photoshop skills and 30 minutes of manual work. Today it takes 2 seconds — and the best tools do it entirely in your browser without uploading your photo." },
@@ -1691,7 +1694,7 @@ export const blogPosts: BlogPost[] = [
     category: "Image Tools",
     readTime: 7,
     publishedAt: "2026-10-06",
-    author: "AHADEX Team",
+    authorId: "mohammad-ahad",
     relatedTool: "image-cropper",
     blocks: [
       { type: "p", content: "Cropping is the single most impactful edit you can make to a photo. The right crop makes a boring shot dramatic. The wrong crop chops off heads, misaligns horizons, and makes products look awkward. This guide covers every aspect ratio you will ever need." },
@@ -1828,7 +1831,7 @@ export const blogPosts: BlogPost[] = [
     category: "PDF Tools",
     readTime: 7,
     publishedAt: "2026-10-06",
-    author: "AHADEX Team",
+    authorId: "mohammad-ahad",
     relatedTool: "merge-pdf",
     blocks: [
       { type: "p", content: "PDFs are the universal document format — but they can also be the heaviest. A scanned contract can easily be 50 MB. A photo-heavy brochure might hit 100 MB. Email providers cap attachments at 25 MB. Cloud storage fills up fast. Learning to shrink PDFs is a genuinely useful skill." },
@@ -1909,7 +1912,7 @@ export const blogPosts: BlogPost[] = [
     category: "Productivity",
     readTime: 8,
     publishedAt: "2026-10-06",
-    author: "AHADEX Team",
+    authorId: "mohammad-ahad",
     relatedTool: "merge-pdf",
     blocks: [
       { type: "p", content: "Students waste hours every week on tasks that should take minutes: merging assignment PDFs, converting lecture slides to images, formatting citations, building resumes. This guide lists the free tools that fix every one of those problems — and unlike most, they run entirely in your browser." },
@@ -2004,7 +2007,7 @@ export const blogPosts: BlogPost[] = [
     category: "Privacy",
     readTime: 6,
     publishedAt: "2026-10-06",
-    author: "AHADEX Team",
+    authorId: "mohammad-ahad",
     relatedTool: "image-metadata-viewer",
     blocks: [
       { type: "p", content: "Every photo you take with a smartphone contains invisible data attached to the image. This data — called EXIF metadata — includes the exact GPS coordinates where the photo was taken, the timestamp, the device model, and sometimes more. When you post the photo online, you are sharing all of that." },
@@ -2090,7 +2093,7 @@ export const blogPosts: BlogPost[] = [
     category: "Image Tools",
     readTime: 7,
     publishedAt: "2026-10-06",
-    author: "AHADEX Team",
+    authorId: "mohammad-ahad",
     relatedTool: "jpg-to-webp",
     blocks: [
       { type: "p", content: "WebP was released by Google in 2010 as a modern replacement for JPG, PNG, and GIF. Fourteen years later, it has finally achieved universal browser support and is now the default image format for most modern websites. If you are not using WebP, you are probably wasting 25-35% of your image bandwidth." },
@@ -2177,7 +2180,7 @@ export const blogPosts: BlogPost[] = [
     category: "Career",
     readTime: 8,
     publishedAt: "2026-10-06",
-    author: "AHADEX Team",
+    authorId: "mohammad-ahad",
     relatedTool: "cv-builder",
     blocks: [
       { type: "p", content: "Recruiters spend an average of 7 seconds scanning a CV before deciding whether to shortlist it. That is not enough time to read every line. It is barely enough time to notice a clean layout, a strong headline, and relevant keywords. This guide is about making those 7 seconds count." },
@@ -2284,7 +2287,7 @@ export const blogPosts: BlogPost[] = [
     category: "Image Tools",
     readTime: 6,
     publishedAt: "2026-10-06",
-    author: "AHADEX Team",
+    authorId: "mohammad-ahad",
     relatedTool: "image-resizer",
     blocks: [
       { type: "p", content: "Combining multiple images into a single file is useful for dozens of everyday tasks: creating photo collages, comparing before-and-after shots, building product grids for e-commerce, or preparing social media carousels. Here is how to do it well." },
@@ -2365,7 +2368,7 @@ export const blogPosts: BlogPost[] = [
     category: "Image Tools",
     readTime: 7,
     publishedAt: "2026-10-06",
-    author: "AHADEX Team",
+    authorId: "mohammad-ahad",
     relatedTool: "image-resizer",
     blocks: [
       { type: "p", content: "YouTube is a visual platform. Your video could be the best ever made on its topic — but if the thumbnail does not earn a click, nobody will ever know. This guide covers the technical dimensions, design principles, and psychology that drive real click-through rates." },
@@ -2453,7 +2456,7 @@ export const blogPosts: BlogPost[] = [
     category: "Productivity",
     readTime: 6,
     publishedAt: "2026-10-06",
-    author: "AHADEX Team",
+    authorId: "mohammad-ahad",
     relatedTool: "image-compressor",
     blocks: [
       { type: "p", content: "You attach a file, hit send, and get an error message. The attachment is too large. It happens to everyone — but the limit depends entirely on which email provider you and the recipient use." },
@@ -2526,7 +2529,7 @@ export const blogPosts: BlogPost[] = [
     category: "Design",
     readTime: 7,
     publishedAt: "2026-10-06",
-    author: "AHADEX Team",
+    authorId: "mohammad-ahad",
     relatedTool: "favicon-generator",
     blocks: [
       { type: "p", content: "Colors determine whether a website feels premium or amateur. Two sites can have identical layouts — one feels expensive, the other feels cheap. The difference is almost always in the color choices. This guide covers the mechanics, the formats, and the design principles." },
@@ -2630,7 +2633,7 @@ export const blogPosts: BlogPost[] = [
     category: "Privacy",
     readTime: 9,
     publishedAt: "2026-10-06",
-    author: "AHADEX Team",
+    authorId: "mohammad-ahad",
     relatedTool: "password-generator",
     blocks: [
       { type: "p", content: "Every website you visit knows more about you than you think. The browser fingerprint, the time zone, the fonts installed, the plugins enabled — a modern tracking ecosystem pieces these together into a detailed profile. Protecting privacy is not about paranoia. It is about knowing what you share and choosing what to keep private." },
@@ -2756,7 +2759,7 @@ export const blogPosts: BlogPost[] = [
     category: "Image Tools",
     readTime: 6,
     publishedAt: "2026-10-06",
-    author: "AHADEX Team",
+    authorId: "mohammad-ahad",
     relatedTool: "jpg-to-png",
     blocks: [
       { type: "p", content: "Since 2017, every iPhone saves photos as HEIC (High Efficiency Image Container) instead of JPG. This produces smaller files at the same quality — great for storage, frustrating for compatibility. Windows PCs, older Android phones, many websites, and most online forms still do not accept HEIC." },
@@ -2835,7 +2838,7 @@ export const blogPosts: BlogPost[] = [
     category: "Image Tools",
     readTime: 6,
     publishedAt: "2026-10-06",
-    author: "AHADEX Team",
+    authorId: "mohammad-ahad",
     relatedTool: "image-cropper",
     blocks: [
       { type: "p", content: "Removing a background used to require manual selection work in Photoshop — hours of edge refinement, hair detail isolation, and transparency cleanup. In 2026, AI models do the same work in 2-3 seconds with better results than most manual selections." },
@@ -2912,7 +2915,7 @@ export const blogPosts: BlogPost[] = [
     category: "Developer Tools",
     readTime: 8,
     publishedAt: "2026-10-06",
-    author: "AHADEX Team",
+    authorId: "mohammad-ahad",
     relatedTool: "image-compressor",
     blocks: [
       { type: "p", content: "Site speed affects everything: conversion rate, bounce rate, Google rankings, and user satisfaction. But most speed advice is too technical or too vague. This guide gives you specific priorities in order of impact." },
@@ -3031,7 +3034,7 @@ export const blogPosts: BlogPost[] = [
     category: "Productivity",
     readTime: 8,
     publishedAt: "2026-10-06",
-    author: "AHADEX Team",
+    authorId: "mohammad-ahad",
     relatedTool: "merge-pdf",
     blocks: [
       { type: "p", content: "Freelancing means being a one-person business: sales, delivery, admin, and support. The right tools save hours per week. Here are the free browser-based tools that every freelancer should keep in their bookmarks." },
@@ -3130,7 +3133,7 @@ export const blogPosts: BlogPost[] = [
     category: "Design",
     readTime: 6,
     publishedAt: "2026-10-06",
-    author: "AHADEX Team",
+    authorId: "mohammad-ahad",
     relatedTool: "favicon-generator",
     blocks: [
       { type: "p", content: "You have a beautiful logo. Now you need it to work at 16×16 pixels — the size of a browser tab. Most detailed logos turn into illegible mush at that size. Here is how to design a favicon that actually works." },
@@ -3224,7 +3227,7 @@ export const blogPosts: BlogPost[] = [
     category: "Image Tools",
     readTime: 6,
     publishedAt: "2026-10-06",
-    author: "AHADEX Team",
+    authorId: "mohammad-ahad",
     relatedTool: "image-cropper",
     blocks: [
       { type: "p", content: "Watermarks exist for one reason: to prove ownership and discourage reuse. But a heavy watermark ruins the image. A light one can be cropped out. The best watermarks balance protection, professionalism, and visual appeal." },

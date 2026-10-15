@@ -69,6 +69,7 @@ const staticRoutes: SitemapEntry[] = [
   { loc: "/tools", changefreq: "weekly", priority: 0.9, lastmod: TOOLS_LASTMOD },
   { loc: "/blog", changefreq: "weekly", priority: 0.7, lastmod: BLOG_LASTMOD },
   { loc: "/about", changefreq: "monthly", priority: 0.6, lastmod: TRUST_LASTMOD },
+  { loc: "/about/author/mohammad-ahad", changefreq: "monthly", priority: 0.6, lastmod: TRUST_LASTMOD },
   { loc: "/contact", changefreq: "monthly", priority: 0.6, lastmod: TRUST_LASTMOD },
   { loc: "/privacy", changefreq: "yearly", priority: 0.3, lastmod: TRUST_LASTMOD },
   { loc: "/terms", changefreq: "yearly", priority: 0.3, lastmod: TRUST_LASTMOD },

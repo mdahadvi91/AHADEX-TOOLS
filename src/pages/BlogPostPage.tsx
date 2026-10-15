@@ -5,6 +5,8 @@ import { ArrowLeft, Clock, Calendar, User, ArrowRight } from "lucide-react";
 import { useLanguage } from "@contexts/LanguageContext";
 import { AdSenseSlot } from "@components/ads/AdSenseSlot";
 import { getPostBySlug, blogPosts } from "@data/blog";
+import { getAuthor } from "@data/authors";
+import { AuthorSchema } from "@components/seo/AuthorSchema";
 import { tools } from "@data/tools";
 import { getToolTranslation } from "@i18n/toolTranslations";
 
@@ -14,6 +16,7 @@ export default function BlogPostPage() {
   const bn = language === "bn";
 
   const post = slug ? getPostBySlug(slug) : undefined;
+  const author = getAuthor(post?.authorId);
 
   useEffect(() => {
     if (post) {
@@ -52,6 +55,8 @@ export default function BlogPostPage() {
   const otherPosts = [...sameCategory, ...otherCategory].slice(0, 3);
 
   return (
+      <>
+      <AuthorSchema author={author} />
     <article className="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8 py-10 sm:py-14">
       {/* Back */}
       <Link
@@ -85,7 +90,7 @@ export default function BlogPostPage() {
 
         <div className="flex items-center gap-4 flex-wrap text-[11px] sm:text-xs text-light-textSecondary dark:text-dark-textSecondary font-medium pb-6 border-b border-silk-rose/15">
           <span className="inline-flex items-center gap-1.5">
-            <User className="w-3.5 h-3.5" /> {post.author}
+            <User className="w-3.5 h-3.5" /> {author.name}
           </span>
           <span className="inline-flex items-center gap-1.5">
             <Calendar className="w-3.5 h-3.5" /> {date}
@@ -284,12 +289,13 @@ export default function BlogPostPage() {
               {bn ? "লেখক" : "Written by"}
             </p>
             <h3 className="font-serif font-black text-lg text-light-text dark:text-dark-text mb-1">
-              Mohammad Ahad
+              {author.name}
             </h3>
+            <p className="text-[11px] font-medium text-silk-wine dark:text-silk-rose-soft mb-2">
+              {author.role}
+            </p>
             <p className="text-[12px] text-light-textSecondary dark:text-dark-textSecondary leading-relaxed">
-              {bn
-                ? "স্বাধীন ডেভেলপার ও AHADEX Tools-এর প্রতিষ্ঠাতা। দুবাই, UAE-তে অবস্থিত। ফ্রি ব্রাউজার-বেইজড টুল এবং প্রাইভেসি-ফোকাসড ওয়েব অ্যাপ্লিকেশন তৈরিতে বিশেষজ্ঞ।"
-                : "Independent developer and founder of AHADEX Tools. Based in Dubai, UAE. Focused on building free browser-based tools and privacy-first web applications."}
+              {bn ? author.bioBn : author.bio}
             </p>
           </div>
         </div>
@@ -318,5 +324,6 @@ export default function BlogPostPage() {
         </div>
       )}
     </article>
+      </>
   );
 }
