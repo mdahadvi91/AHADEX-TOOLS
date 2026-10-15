@@ -1,6 +1,6 @@
 export const pdfToImageContent = {
   en: {
-    heroTag: "PDF to PNG",
+    heroTag: "PDF to Image",
     heroSubtitle:
       "Convert every page of your PDF into a high-quality PNG image — right in your browser. Choose pages, pick 72/150/300 DPI, download single files or all at once. No uploads, no servers, no accounts.",
     heroStats: [
@@ -18,12 +18,12 @@ export const pdfToImageContent = {
       { emoji: "🌐", title: "Lossless PNG", text: "No JPEG artifacts, no re-compression." },
     ],
     introBlocks: [
-      { emoji: "🪄", title: "What this tool does", text: "PDF to PNG renders each page of your PDF as a standalone PNG image. You pick a DPI (72 for screen, 150 for web, 300 for print), choose specific page ranges or all pages, and download. The entire rendering pipeline — PDF parsing, canvas drawing, and PNG encoding — runs inside your browser using pdf.js." },
+      { emoji: "🪄", title: "What this tool does", text: "PDF to Image renders each page of your PDF as a standalone image — either PNG (lossless, sharp text) or JPG (universal, smaller). Choose 72, 150, or 300 DPI for anything from screen previews to print-ready output. Extract a single page, a range like 1-3, 5, 7-9, or the entire document. The entire pipeline — PDF parsing, canvas rendering, and image encoding — runs inside your browser using pdf.js and the Canvas API." },
       { emoji: "📄", title: "When you need it", text: "Turn slide decks into shareable images, extract charts from reports, generate thumbnails for a document viewer, or convert scanned forms into images that can be embedded anywhere. PNG is lossless, so nothing degrades — perfect for graphics, screenshots of text, or anything with sharp edges." },
       { emoji: "⚡", title: "How the conversion works", text: "PDF.js parses the file, renders each page onto an off-screen canvas at the scale you picked, and the browser encodes the canvas as PNG. At 300 DPI, an A4 page becomes roughly 2480×3508 pixels — ideal for print. Nothing is uploaded at any point." },
       { emoji: "🔐", title: "Your files stay with you", text: "There is no server. No accounts. No analytics. Close the tab and everything disappears from memory. Your PDFs — contracts, IDs, medical records — never touch a network." },
     ],
-    howToTitle: "How to convert PDF to PNG",
+    howToTitle: "How to convert PDF to images",
     howTo: [
       { step: 1, title: "Drop your PDF", description: "Drag a PDF file into the upload area, or click to browse. Up to 100 MB." },
       { step: 2, title: "Pick pages and DPI", description: "Choose specific page ranges (e.g. 1-3, 5) or all pages, and select 72, 150, or 300 DPI." },
@@ -54,7 +54,7 @@ export const pdfToImageContent = {
     relatedTitle: "Other tools you may like",
   },
   bn: {
-    heroTag: "PDF থেকে PNG",
+    heroTag: "PDF থেকে Image",
     heroSubtitle:
       "আপনার PDF-এর প্রতিটি পেজ উচ্চ-মানের PNG ছবিতে রূপান্তর করুন — সম্পূর্ণ আপনার ব্রাউজারেই। পেজ বেছে নিন, 72/150/300 DPI ঠিক করুন, এক বা সব ফাইল ডাউনলোড করুন।",
     heroStats: [
@@ -72,7 +72,7 @@ export const pdfToImageContent = {
       { emoji: "🌐", title: "Lossless PNG", text: "JPEG artifact নেই, re-compression নেই।" },
     ],
     introBlocks: [
-      { emoji: "🪄", title: "এই টুল কী করে", text: "PDF to PNG আপনার PDF-এর প্রতিটি পেজ আলাদা PNG ছবি হিসেবে রেন্ডার করে। DPI বেছে নিন (screen-এর জন্য 72, web-এর জন্য 150, print-এর জন্য 300), পেজ রেঞ্জ বা সব পেজ ঠিক করুন, এবং ডাউনলোড করুন। সম্পূর্ণ প্রক্রিয়া pdf.js দিয়ে আপনার ব্রাউজারেই।" },
+      { emoji: "🪄", title: "এই টুল কী করে", text: "PDF to Image আপনার PDF-এর প্রতিটি পেজকে আলাদা ছবি হিসেবে রেন্ডার করে — হয় PNG (lossless, তীক্ষ্ণ টেক্সট), অথবা JPG (সর্বজনীন, ছোট ফাইল)। স্ক্রিন প্রিভিউ থেকে প্রিন্ট-রেডি আউটপুট পর্যন্ত যেকোনো কিছুর জন্য 72, 150 বা 300 DPI বেছে নিন। একটি পেজ, একটি রেঞ্জ যেমন 1-3, 5, 7-9, বা পুরো ডকুমেন্ট বের করুন। সম্পূর্ণ প্রক্রিয়া pdf.js ও Canvas API দিয়ে আপনার ব্রাউজারেই চলে।" },
       { emoji: "📄", title: "কখন দরকার", text: "স্লাইড ডেককে ছবিতে বানানো, রিপোর্ট থেকে চার্ট বের করা, ডকুমেন্ট ভিউয়ারের জন্য thumbnail, বা স্ক্যান করা ফর্ম ছবিতে রূপান্তর — সবের জন্য। PNG lossless, তাই কিছু নষ্ট হয় না।" },
       { emoji: "⚡", title: "কনভার্সন কীভাবে কাজ করে", text: "PDF.js ফাইল parse করে, প্রতিটি পেজ আপনার বেছে নেওয়া scale-এ off-screen canvas-এ render করে, এবং ব্রাউজার canvas-টিকে PNG হিসেবে encode করে। 300 DPI-তে A4 পেজ প্রায় 2480×3508 পিক্সেল — print-এর জন্য আদর্শ।" },
       { emoji: "🔐", title: "আপনার ফাইল আপনার সাথেই থাকে", text: "কোনো সার্ভার নেই। কোনো অ্যাকাউন্ট নেই। কোনো অ্যানালিটিক্স নেই। ট্যাব বন্ধ করলেই সব চলে যায়। আপনার PDF — চুক্তি, আইডি, মেডিক্যাল রেকর্ড — কখনো নেটওয়ার্ক ছোঁয় না।" },

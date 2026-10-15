@@ -1,5 +1,5 @@
 /* ============================================================
- * JPG → PNG — Bilingual Content
+ * Image Converter — Bilingual Content
  * ============================================================ */
 
 export const imageConverterContent = {
@@ -28,7 +28,7 @@ export const imageConverterContent = {
         emoji: "🪄",
         icon: "sparkle",
         title: "What this tool does",
-        text: "JPG to PNG Converter takes your JPEG photos and re-encodes them into lossless PNG images. It reads the JPG file locally in your browser, draws it onto an off-screen canvas at full resolution, and exports the result as a PNG blob — all without a single byte leaving your device. You can drop in one file or a hundred, and the tool converts them one by one, showing you both the original and converted sizes side by side.",
+        text: "Image Converter re-encodes your images between JPG, PNG, and WebP. Pick an output format, drop one or many files, and download every converted image in a single session. JPG stays JPG unless you ask otherwise, PNG keeps its transparency, and WebP stays WebP. You can mix formats freely in the same batch — the tool detects each one automatically. Everything runs in your browser using the HTML5 Canvas API and the browser's native codec: no uploads, no servers, no accounts, no watermark.",
       },
       {
         emoji: "🎨",
@@ -50,7 +50,7 @@ export const imageConverterContent = {
       },
     ],
 
-    howToTitle: "How to convert JPG to PNG",
+    howToTitle: "How to convert images",
     howTo: [
       { step: 1, title: "Drop your JPG files", description: "Drag and drop one or more JPG or JPEG files into the upload area, or click to browse. Files up to 50 MB each are supported." },
       { step: 2, title: "Wait a moment", description: "The tool converts each file in sequence. Conversion happens on your device, so it usually takes less than a second per file." },
@@ -107,7 +107,7 @@ export const imageConverterContent = {
     ],
 
     introBlocks: [
-      { emoji: "🪄", icon: "sparkle", title: "এই টুল কী করে", text: "JPG থেকে PNG কনভার্টার আপনার JPEG ছবিগুলোকে lossless PNG ছবিতে রূপান্তর করে। এটি JPG ফাইলটি আপনার ব্রাউজারেই পড়ে, সম্পূর্ণ রেজোলিউশনে একটি off-screen ক্যানভাসে আঁকে এবং ফলাফলটি PNG হিসেবে এক্সপোর্ট করে — সবকিছু আপনার ডিভাইসেই, একটি বাইটও বাইরে যায় না। আপনি একটি ফাইল বা একশ ফাইল — যত খুশি দিন, টুলটি একটার পর একটা কনভার্ট করবে এবং মূল ও নতুন সাইজ পাশাপাশি দেখাবে।" },
+      { emoji: "🪄", icon: "sparkle", title: "এই টুল কী করে", text: "Image Converter আপনার ছবিগুলোকে JPG, PNG, এবং WebP-এর মধ্যে রূপান্তর করে। আউটপুট ফরম্যাট বেছে নিন, একটি বা একশ ছবি ড্রপ করুন, এবং একই সেশনে সব রূপান্তরিত ছবি ডাউনলোড করুন। JPG না চাইলে JPG-ই থাকে, PNG ট্রান্সপারেন্সি রাখে, আর WebP WebP-ই থাকে। একই ব্যাচে ফরম্যাট মিশিয়ে দিতে পারেন — টুল নিজেই ডিটেক্ট করে নেয়। সবকিছু আপনার ব্রাউজারে HTML5 Canvas API ও ব্রাউজারের নেটিভ কোডেক দিয়ে চলে: কোনো আপলোড নেই, সার্ভার নেই, অ্যাকাউন্ট নেই, ওয়াটারমার্ক নেই।" },
       { emoji: "🎨", icon: "target", title: "কেন PNG?", text: "PNG একটি lossless ফরম্যাট। JPG-এর বিপরীতে, প্রতিবার re-save করার সময় এতে কোনো কম্প্রেশন আর্টিফ্যাক্ট তৈরি হয় না। তাই PNG এডিটিং ওয়ার্কফ্লো, স্ক্রিনশট, তীক্ষ্ণ কিনারাযুক্ত গ্রাফিক্স এবং বারবার এডিট করা ছবির জন্য আদর্শ। PNG স্বচ্ছতাও সাপোর্ট করে — যদিও JPG সোর্সে স্বচ্ছতার তথ্য থাকে না, তাই ফলস্বরূপ PNG-তে ব্যাকগ্রাউন্ড সলিডই থাকবে।" },
       { emoji: "⚡", icon: "printer", title: "কনভার্সন কীভাবে কাজ করে", text: "টুলটি ব্রাউজারের HTML5 Canvas API ব্যবহার করে। আপনি যখন JPG ড্রপ করেন, ব্রাউজার সেটি raw pixel data-তে ডিকোড করে। ক্যানভাস সেই পিক্সেলগুলো এক এক করে আঁকে, তারপর lossless encoder দিয়ে PNG হিসেবে এক্সপোর্ট করে। যেহেতু ডিকোডিং ও এনকোডিং দুটোই আপনার ব্রাউজারে ঘটে, কোনো নেটওয়ার্ক ট্রাফিক নেই। কয়েক মেগাপিক্সেল পর্যন্ত সাধারণত এক সেকেন্ডেরও কম সময় লাগে।" },
       { emoji: "🔐", icon: "lock", title: "আপনার ফাইল আপনার সাথেই থাকে", text: "কোনো সার্ভার নেই। কোনো অ্যাকাউন্ট নেই। আপনার আপলোড ট্র্যাক করার কোনো অ্যানালিটিক্স নেই। পুরো টুলটি আপনি যে পেজটি দেখছেন সেটির ভেতরেই JavaScript হিসেবে চলে। ট্যাব বন্ধ করলেই আপনার ফাইলের সব চিহ্ন মেমরি থেকে মুছে যায়।" },
