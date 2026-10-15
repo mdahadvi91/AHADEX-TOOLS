@@ -9,7 +9,8 @@
  * Auto: runs before `npm run build` (after sitemap)
  * ============================================================ */
 
-import { execFileSync } from "node:child_process";
+import { Resvg } from "@resvg/resvg-js";
+import { readFileSync } from "node:fs";
 import { existsSync, mkdirSync, writeFileSync } from "node:fs";
 import { resolve } from "node:path";
 import { tools } from "../src/data/tools";
@@ -182,11 +183,10 @@ function main(): void {
 
     try {
       writeFileSync(svgPath, svg, "utf-8");
-      execFileSync(
-        "rsvg-convert",
-        ["-w", String(W), "-h", String(H), "-o", pngPath, svgPath],
-        { stdio: "pipe" }
-      );
+      const renderer = new Resvg(svg, {
+        fitTo: { mode: "width", value: W },
+      });
+      writeFileSync(pngPath, renderer.render().asPng());
       okCount += 1;
       console.log(`✅ ${tool.id}-og.png`);
     } catch (e) {
@@ -214,7 +214,11 @@ function generateRootOg(): void {
       continue;
     }
     try {
-      execFileSync("rsvg-convert", ["-w", String(W), "-h", String(H), "-o", png, svg]);
+      const rootSvg = readFileSync(svg, "utf-8");
+      const renderer = new Resvg(rootSvg, {
+        fitTo: { mode: "width", value: W },
+      });
+      writeFileSync(png, renderer.render().asPng());
       console.log(`✅ ${f}.png`);
     } catch {
       console.log(`❌ Failed: ${f}.png`);
