@@ -1,5 +1,6 @@
 import type { Tool } from "@/types/tool";
 import { newTools } from "./new-tools-content";
+import { deepDives } from "./deep-dives";
 
 /* ============================================================
  * AHADEX Tools — Working Tools Registry
@@ -1022,6 +1023,13 @@ const legacyTools: Tool[] = [
  * newTools:    consolidated tools that replace multiple pages
  *              (image-converter, pdf-to-image, image-to-pdf, split-pdf)
  * ============================================================ */
-export const tools: Tool[] = [...legacyTools, ...newTools];
+/* Legacy tools pick up their deep-dive sections from deep-dives.ts.
+ * New unified tools already declare them inline in new-tools-content.ts. */
+const legacyWithDeepDives: Tool[] = legacyTools.map((t) => ({
+  ...t,
+  deepDive: t.deepDive ?? deepDives[t.id],
+}));
+
+export const tools: Tool[] = [...legacyWithDeepDives, ...newTools];
 
 export const TOOL_COUNT = tools.length;
