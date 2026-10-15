@@ -16,6 +16,7 @@ import { resolve } from "node:path";
 import { trustContent } from "../src/data/trustContent";
 import { tools } from "../src/data/tools";
 import { toolTranslationsBn } from "../src/i18n/toolTranslations";
+import { toolFieldNotes } from "../src/data/tool-field-notes";
 import { blogPosts } from "../src/data/blog";
 
 const OUT_FILE = resolve(process.cwd(), "functions/_ssr-content.ts");
@@ -113,8 +114,24 @@ function buildToolPage(tool: typeof tools[0]): string {
     ${faq}
     ${deepDiveBlock}
     ${relatedBlock}
+    ${buildFieldNoteSection(tool)}
     ${buildBengaliSection(tool)}
   </article>`;
+}
+
+/* ── Build the "From our own testing" field-note section ── */
+function buildFieldNoteSection(tool: typeof tools[0]): string {
+  const note = toolFieldNotes[tool.id];
+  if (!note) return "";
+
+  const items = note.items
+    .map((item) => `<li>${esc(item)}</li>`)
+    .join("");
+
+  return `<section class="tool-field-note">
+    <h2>${esc(note.title)}</h2>
+    <ul>${items}</ul>
+  </section>`;
 }
 
 /* ── Build the Bengali summary section ────────────────────────

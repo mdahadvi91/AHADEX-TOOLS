@@ -14,6 +14,7 @@ import { Features } from "./Features";
 import { FAQ } from "./FAQ";
 import { RelatedTools } from "./RelatedTools";
 import { ToolSchema } from "@components/seo/ToolSchema";
+import { ToolFieldNote } from "@components/tools/ToolFieldNote";
 import { photoQrData } from "./data";
 import { photoQrContent } from "./content";
 import type { Position, QrBackground } from "./types";
@@ -190,6 +191,8 @@ export default function PhotoQrTool() {
         <Features features={content.features} />
         <FAQ faqs={content.faq} />
       </div>
+
+      <ToolFieldNote toolId="photo-qr" />
 
       <RelatedArticles toolId="photo-qr" />
         <RelatedTools toolIds={photoQrData.relatedTools} />

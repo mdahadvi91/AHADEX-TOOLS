@@ -12,6 +12,7 @@ import { RelatedTools } from "./components/RelatedTools";
 import { RelatedArticles } from "@components/blog/RelatedArticles";
 import { ToolBreadcrumb } from "@components/tools/ToolBreadcrumb";
 import { ToolSchema } from "@components/seo/ToolSchema";
+import { ToolFieldNote } from "@components/tools/ToolFieldNote";
 
 export default function ImageConverterTool() {
   useToolAnalytics("image-converter");
@@ -29,6 +30,7 @@ export default function ImageConverterTool() {
         <HowTo />
         <PrivacyNote />
         <FAQ />
+          <ToolFieldNote toolId="image-converter" />
         <RelatedArticles toolId="image-converter" />
         <RelatedTools />
       </div>

@@ -12,6 +12,7 @@ import { RecommendedProducts } from "@components/affiliate/RecommendedProducts";
 import { RelatedArticles } from "@components/blog/RelatedArticles";
 import { ToolBreadcrumb } from "@components/tools/ToolBreadcrumb";
 import { ToolSchema } from "@components/seo/ToolSchema";
+import { ToolFieldNote } from "@components/tools/ToolFieldNote";
 
 export default function ImageCompressorTool() {
   useToolAnalytics("image-compressor");
@@ -29,6 +30,7 @@ export default function ImageCompressorTool() {
         <HowTo />
         <PrivacyNote />
         <FAQ />
+          <ToolFieldNote toolId="image-compressor" />
         <RelatedArticles toolId="image-compressor" />
         <RelatedTools />
       </div>

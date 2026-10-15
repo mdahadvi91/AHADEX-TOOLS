@@ -12,6 +12,7 @@ import { RelatedTools } from "./components/RelatedTools";
 import { RelatedArticles } from "@components/blog/RelatedArticles";
 import { ToolBreadcrumb } from "@components/tools/ToolBreadcrumb";
 import { ToolSchema } from "@components/seo/ToolSchema";
+import { ToolFieldNote } from "@components/tools/ToolFieldNote";
 
 export default function ImageToPdfTool() {
   useToolAnalytics("image-to-pdf");
@@ -29,6 +30,7 @@ export default function ImageToPdfTool() {
         <HowTo />
         <PrivacyNote />
         <FAQ />
+          <ToolFieldNote toolId="image-to-pdf" />
         <RelatedArticles toolId="image-to-pdf" />
         <RelatedTools />
       </div>

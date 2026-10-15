@@ -12,6 +12,7 @@ import { RelatedTools } from "./components/RelatedTools";
 import { RelatedArticles } from "@components/blog/RelatedArticles";
 import { ToolBreadcrumb } from "@components/tools/ToolBreadcrumb";
 import { ToolSchema } from "@components/seo/ToolSchema";
+import { ToolFieldNote } from "@components/tools/ToolFieldNote";
 
 export default function ImageResizerTool() {
   useToolAnalytics("image-resizer");
@@ -29,6 +30,7 @@ export default function ImageResizerTool() {
         <HowTo />
         <PrivacyNote />
         <FAQ />
+          <ToolFieldNote toolId="image-resizer" />
         <RelatedArticles toolId="image-resizer" />
         <RelatedTools />
       </div>
