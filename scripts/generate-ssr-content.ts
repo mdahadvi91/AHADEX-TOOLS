@@ -19,6 +19,7 @@ import { toolTranslationsBn } from "../src/i18n/toolTranslations";
 import { toolFieldNotes } from "../src/data/tool-field-notes";
 import { staticPageContents } from "../src/data/static-ssr-content";
 import { blogPosts } from "../src/data/blog";
+import { getToolCategory, CATEGORY_PRIVACY } from "../src/lib/toolCategory";
 
 const OUT_FILE = resolve(process.cwd(), "functions/_ssr-content.ts");
 
@@ -55,9 +56,24 @@ function buildTrustPage(content: typeof trustContent.en.privacy): string {
   </article>`;
 }
 
-/* ── Shared privacy paragraph (same truth for every tool) ── */
-const PRIVACY_PARAGRAPH =
-  "This tool runs entirely inside your browser using standard web technologies — the Canvas API for images, pdf-lib for PDFs, Web Crypto for passwords, and pure JavaScript for everything else. Your files, text, and data are never uploaded to any server, never stored, and never shared with anyone. There is no account to create, no signup, and no analytics on your content. Close the tab and every trace is gone.";
+/* ── Build a category-aware privacy section ──
+ * Instead of one boilerplate paragraph repeated across all 27 tools,
+ * each tool gets a privacy block tailored to its file type: images,
+ * PDFs, developer data, text, QR payloads, or design assets. This
+ * reduces the "template smell" AdSense reviewers look for while
+ * keeping the core message (nothing is uploaded) intact.
+ */
+function buildPrivacySection(tool: typeof tools[0]): string {
+  const category = getToolCategory(tool.id, tool.path);
+  const { specific, why } = CATEGORY_PRIVACY[category];
+
+  return `
+    <h2>Privacy — why your file never leaves your device</h2>
+    <p>${esc(specific)}</p>
+    <p>${esc(why)}</p>
+    <p>No account is required, no analytics are collected on the content you process, and no file or fragment of your data is written to any server. Close the tab and everything you used is gone from memory.</p>
+  `;
+}
 
 /* ── Build tool page HTML ── */
 function buildToolPage(tool: typeof tools[0]): string {
@@ -109,8 +125,7 @@ function buildToolPage(tool: typeof tools[0]): string {
     <ul>${features}</ul>
     <h2>How to use</h2>
     <ol>${howTo}</ol>
-    <h2>Privacy — your files never leave your device</h2>
-    <p>${esc(PRIVACY_PARAGRAPH)}</p>
+    ${buildPrivacySection(tool)}
     <h2>Frequently asked questions</h2>
     ${faq}
     ${deepDiveBlock}
