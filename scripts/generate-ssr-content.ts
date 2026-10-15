@@ -67,6 +67,7 @@ function buildToolPage(tool: typeof tools[0]): string {
   return `<article>
     <h1>${esc(tool.name)}</h1>
     <p>${esc(tool.description)}</p>
+    <p>${esc(tool.longDescription || tool.description)}</p>
     <h2>Features</h2>
     <ul>${features}</ul>
     <h2>How to use</h2>

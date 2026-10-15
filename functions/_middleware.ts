@@ -86,11 +86,11 @@ function injectSSRContent(html: string, pathname: string): string {
   const content = SSR_CONTENT[pathname];
   if (!content) return html;
 
-  const wrapper = `<div id="ssr-content" style="display:none" aria-hidden="true" data-ssr="true">${content}</div>`;
-
-  // Inject right before <div id="root">
-  if (html.includes('<div id="root">')) {
-    return html.replace('<div id="root">', wrapper + '<div id="root">');
+  // Include readable fallback content in the root's initial HTML.
+  // React createRoot replaces this fallback with the interactive app.
+  const marker = '<div id="root">';
+  if (html.includes(marker)) {
+    return html.replace(marker, marker + content);
   }
   return html;
 }
