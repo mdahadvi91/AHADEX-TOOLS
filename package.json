@@ -3,7 +3,7 @@
   "private": true,
   "version": "1.0.0",
   "type": "module",
-  "description": "AHADEX Tools — Free, fast and private online tools for everyday digital tasks.",
+  "description": "AHADEX Tools \u2014 Free, fast and private online tools for everyday digital tasks.",
   "author": "AHADEX <mdahadvi91@gmail.com>",
   "license": "MIT",
   "homepage": "https://ahadex.fun",
@@ -17,7 +17,7 @@
   },
   "scripts": {
     "dev": "vite",
-    "build": "npm run sitemap && npm run rss && npm run og:images && npm run tool:meta && npm run ssr:content && npm run schema && tsc --noEmit && vite build",
+    "build": "npm run sitemap && npm run rss && npm run og:images && npm run tool:meta && npm run ssr:content && npm run schema && npm run verify:count && tsc --noEmit && vite build",
     "preview": "vite preview --port 4173",
     "lint": "tsc --noEmit",
     "type-check": "tsc --noEmit",
@@ -27,7 +27,8 @@
     "tool:meta": "tsx scripts/generate-tool-meta.ts",
     "rss": "tsx scripts/generate-rss.ts",
     "ssr:content": "tsx scripts/generate-ssr-content.ts",
-    "schema": "tsx scripts/generate-schema.ts"
+    "schema": "tsx scripts/generate-schema.ts",
+    "verify:count": "tsx scripts/verify-count-consistency.ts"
   },
   "dependencies": {
     "browser-image-compression": "^2.0.2",

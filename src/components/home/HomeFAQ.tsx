@@ -1,10 +1,11 @@
 import { useState } from "react";
+import { tools } from "@data/tools";
 import { motion, AnimatePresence } from "framer-motion";
 import { Plus, HelpCircle } from "lucide-react";
 import { useLanguage } from "@contexts/LanguageContext";
 import { cn } from "@lib/cn";
 
-const FAQS_EN = [
+const getFaqsEn = (): { question: string; answer: string }[] => [
   {
     question: "Is AHADEX Tools really free?",
     answer:
@@ -23,7 +24,7 @@ const FAQS_EN = [
   {
     question: "How many tools are available?",
     answer:
-      "We currently offer 35+ free tools for images, PDFs, documents, text, and developer tasks. New tools are added regularly.",
+      `We currently offer ${tools.length} free browser-based tools for images, PDFs, text, developer tasks, QR codes, and design documents. New tools are added regularly.`,
   },
   {
     question: "Does it work on mobile?",
@@ -37,7 +38,7 @@ const FAQS_EN = [
   },
 ];
 
-const FAQS_BN = [
+const getFaqsBn = (): { question: string; answer: string }[] => [
   {
     question: "AHADEX Tools কি সত্যিই ফ্রি?",
     answer:
@@ -56,7 +57,7 @@ const FAQS_BN = [
   {
     question: "কতগুলো টুল আছে?",
     answer:
-      "আমরা ইমেজ, PDF, ডকুমেন্ট, টেক্সট ও ডেভেলপার কাজের জন্য ৩৫+ ফ্রি টুল অফার করছি। নিয়মিত নতুন টুল যোগ হচ্ছে।",
+      `আমরা বর্তমানে ${tools.length}টি ফ্রি ব্রাউজার-বেইজড টুল অফার করছি — ছবি, PDF, টেক্সট, ডেভেলপার, QR কোড ও ডিজাইন ডকুমেন্টের জন্য। নিয়মিত নতুন টুল যোগ হচ্ছে।`,
   },
   {
     question: "মোবাইলে কাজ করে?",
@@ -73,7 +74,7 @@ const FAQS_BN = [
 export function HomeFAQ() {
   const { language, t } = useLanguage();
   const [open, setOpen] = useState<number | null>(0);
-  const faqs = language === "bn" ? FAQS_BN : FAQS_EN;
+  const faqs = language === "bn" ? getFaqsBn() : getFaqsEn();
 
   return (
     <section className="relative py-20 sm:py-28">

@@ -17,6 +17,7 @@ import { trustContent } from "../src/data/trustContent";
 import { tools } from "../src/data/tools";
 import { toolTranslationsBn } from "../src/i18n/toolTranslations";
 import { toolFieldNotes } from "../src/data/tool-field-notes";
+import { staticPageContents } from "../src/data/static-ssr-content";
 import { blogPosts } from "../src/data/blog";
 
 const OUT_FILE = resolve(process.cwd(), "functions/_ssr-content.ts");
@@ -180,7 +181,12 @@ function buildBlogPost(post: typeof blogPosts[0]): string {
 /* ── Build map ── */
 const SSR_CONTENT: Record<string, string> = {};
 
-// Trust pages (EN)
+// Static pages (home, tools, blog, about, contact, editorial, affiliate, sitemap)
+for (const page of staticPageContents) {
+  SSR_CONTENT[page.path] = page.html;
+}
+
+// Trust pages (EN) — these override any static content if the same path appears
 const trustPages: Array<[string, keyof typeof trustContent.en]> = [
   ["/privacy", "privacy"],
   ["/terms", "terms"],
