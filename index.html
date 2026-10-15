@@ -2,6 +2,13 @@
 <html lang="en" class="dark">
   <head>
     <meta charset="UTF-8" />
+
+    <!-- Performance hints: preconnect + dns-prefetch -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="dns-prefetch" href="https://www.googletagmanager.com" />
+    <link rel="dns-prefetch" href="https://pagead2.googlesyndication.com" />
+    <link rel="dns-prefetch" href="https://googleads.g.doubleclick.net" />
     <meta
       name="viewport"
       content="width=device-width, initial-scale=1.0, viewport-fit=cover"
@@ -90,6 +97,13 @@
   </head>
 
   <body>
+    <!-- Accessibility: skip navigation link (visible on keyboard focus) -->
+    <a
+      href="#root"
+      style="position:absolute;left:-9999px;top:0;z-index:9999;padding:12px 20px;background:#8B3A4F;color:#fff;text-decoration:none;border-radius:0 0 8px 0;font-family:system-ui,sans-serif;font-size:14px;font-weight:600;"
+      onfocus="this.style.left='0'"
+      onblur="this.style.left='-9999px'"
+    >Skip to main content</a>
     <div id="root" suppressHydrationWarning></div>
     <noscript>
       <div style="max-width: 640px; margin: 4rem auto; padding: 2rem; font-family: system-ui, -apple-system, sans-serif; text-align: center; color: #2b2b2b;">
