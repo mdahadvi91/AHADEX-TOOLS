@@ -53,9 +53,15 @@ export default defineConfig(({ mode }) => {
             if (!id.includes("node_modules")) return;
 
             // ── Heavy tool libs (lazy-loaded per tool) ──
-            if (id.includes("pdfjs-dist") || id.includes("pdf-lib") || id.includes("jspdf")) {
-              return "pdf-engine";
-            }
+            // Split PDF libraries so PDF writers do not pull in the
+            // heavy pdf.js reader (and vice versa):
+            //   - pdf-lib      (~120 KB): image-to-pdf, merge-pdf,
+            //                             pdf-rotator, split-pdf
+            //   - pdfjs-dist   (~600 KB): pdf-to-text, pdf-to-image
+            //   - jspdf        (optional): reserved for future export features
+            if (id.includes("pdfjs-dist")) return "pdfjs";
+            if (id.includes("pdf-lib")) return "pdf-lib";
+            if (id.includes("jspdf")) return "jspdf";
             if (id.includes("@imgly/background-removal")) {
               return "bg-removal";
             }
