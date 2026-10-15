@@ -30,6 +30,8 @@ backups/
 *.backup*
 *.backup-*
 *.backup2-*
+*.pre-*
+*.pre
 *.old
 *.orig
 *.swp
