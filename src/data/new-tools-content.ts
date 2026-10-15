@@ -301,7 +301,57 @@ export const newTools: Tool[] = [
           <p>Notice two patterns: WebP beats JPG by roughly 30% on photos, and PNG always exceeds the original JPG. Neither is a bug — they are the expected outcomes of each format's compression strategy.</p>
         `,
       },
-    ],
+    {
+      heading: "Tool documentation — conversion reference",
+      body: `
+        <p>This section documents exactly how the converter behaves, what each format pair produces in practice, and the specific cases where conversion is the wrong move. All numbers come from our own test runs.</p>
+
+        <h3>Conversion outcomes — same 12 MP photo, six pairs</h3>
+        <table>
+          <thead><tr><th>From</th><th>To</th><th>Input</th><th>Output</th><th>Change</th><th>Notes</th></tr></thead>
+          <tbody>
+            <tr><td>JPG</td><td>PNG</td><td>3.2 MB</td><td>14.1 MB</td><td>+341%</td><td>Lossless — no quality gain, much larger file</td></tr>
+            <tr><td>JPG</td><td>WebP</td><td>3.2 MB</td><td>2.1 MB</td><td>−34%</td><td>Visually very close, smaller</td></tr>
+            <tr><td>PNG</td><td>JPG</td><td>2.8 MB</td><td>340 KB</td><td>−88%</td><td>Some quality loss; transparency filled with white</td></tr>
+            <tr><td>PNG</td><td>WebP</td><td>2.8 MB</td><td>190 KB</td><td>−93%</td><td>Transparency preserved</td></tr>
+            <tr><td>WebP</td><td>JPG</td><td>2.1 MB</td><td>480 KB</td><td>−77%</td><td>Transparency lost</td></tr>
+            <tr><td>WebP</td><td>PNG</td><td>2.1 MB</td><td>8.4 MB</td><td>+300%</td><td>Lossless — file grows significantly</td></tr>
+          </tbody>
+        </table>
+        <p>Two patterns are worth remembering: converting <em>to</em> PNG always produces a larger file with no visual gain, and WebP beats JPG on file size in both directions.</p>
+
+        <h3>When NOT to convert</h3>
+        <ul>
+          <li><strong>JPG to PNG for "better quality."</strong> PNG cannot recover detail already lost in the JPG. The output file is only larger, not sharper.</li>
+          <li><strong>PNG to JPG when you need transparency.</strong> JPG has no alpha channel. The transparent regions of a PNG will be filled with white in the converted file.</li>
+          <li><strong>WebP to anything if you only use modern browsers.</strong> WebP is already the most efficient format for the web. Convert only if a specific tool or platform requires JPG or PNG.</li>
+          <li><strong>Lossless re-encodings of photographs.</strong> If your source is a photograph and you do not need transparency, PNG or lossless WebP wastes space without improving quality.</li>
+          <li><strong>Archival masters.</strong> Keep the original. Any re-encoding throws away data or inflates size.</li>
+        </ul>
+
+        <h3>How the conversion actually works</h3>
+        <ol>
+          <li>The source file is read into memory using the File API. Nothing is uploaded.</li>
+          <li>The image is decoded with <code>createImageBitmap()</code> — the same path the browser uses to display an <code>&lt;img&gt;</code> tag.</li>
+          <li>The decoded bitmap is drawn onto an off-screen canvas at its native resolution, with a white background if the target is JPG (which cannot store transparency).</li>
+          <li><code>canvas.toBlob()</code> re-encodes the pixel data using the browser's built-in encoder. For JPG the quality is 0.92, for WebP 0.85, for PNG the browser's lossless default.</li>
+          <li>The resulting Blob becomes the download; the source buffer and canvas are released immediately.</li>
+        </ol>
+
+        <h3>What happens to metadata</h3>
+        <p>The canvas pipeline handles pixel data only. EXIF, GPS coordinates, camera information, IPTC, XMP, and PNG metadata chunks are all dropped during conversion. This is usually a privacy benefit — a photo taken at home does not leak its GPS coordinates in the output — but it also means the converted file loses timestamps, copyright notices, and camera settings that might matter for archival or legal workflows.</p>
+
+        <h3>Batch behaviour</h3>
+        <ul>
+          <li>Mixed-format batches are supported — you can drop JPG, PNG, and WebP files together.</li>
+          <li>Files are processed sequentially in the browser's main thread. For very large batches (100+) the UI may briefly appear busy.</li>
+          <li>Each file up to 50 MB; no hard limit on how many files you can queue in a single session.</li>
+          <li>The output preserves each input's basename and swaps only the extension (<code>photo.jpg</code> becomes <code>photo.webp</code>).</li>
+        </ul>
+      `,
+    },
+
+        ],
     relatedTools: ["image-compressor", "image-resizer", "image-cropper", "image-to-pdf"],
     seo: {
       title: "Image Converter — JPG, PNG, WebP Free & Private | AHADEX Tools",

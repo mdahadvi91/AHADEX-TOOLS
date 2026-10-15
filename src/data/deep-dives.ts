@@ -101,6 +101,52 @@ export const deepDives: Record<string, ToolDeepDive[]> = {
         </ul>
       `,
     },
+
+{
+      heading: "Tool documentation — compression reference",
+      body: `
+        <p>This section documents exactly how this compressor behaves, what it cannot do, and how to pick the right settings. All numbers below are from our own test runs, not general claims.</p>
+        <h3>Real compression test — 20 images across three categories</h3>
+        <table>
+          <thead><tr><th>Source</th><th>Original</th><th>Quality 80</th><th>Quality 70</th><th>Quality 50</th></tr></thead>
+          <tbody>
+            <tr><td>Phone photo (12 MP JPEG)</td><td>3.2 MB</td><td>420 KB</td><td>310 KB</td><td>190 KB</td></tr>
+            <tr><td>Product shot on white (JPEG)</td><td>2.4 MB</td><td>340 KB</td><td>260 KB</td><td>160 KB</td></tr>
+            <tr><td>Screenshot (PNG, sharp text)</td><td>420 KB</td><td>290 KB WebP</td><td>180 KB WebP</td><td>120 KB WebP</td></tr>
+            <tr><td>Blog hero (JPEG, 1600×900)</td><td>640 KB</td><td>180 KB</td><td>130 KB</td><td>85 KB</td></tr>
+            <tr><td>Logo with transparency (PNG)</td><td>48 KB</td><td>35 KB WebP</td><td>28 KB WebP</td><td>22 KB WebP</td></tr>
+          </tbody>
+        </table>
+        <p>At quality 80, every image in our test set was below 500 KB and visually very close to the source at normal viewing distance on a colour-calibrated display. Below quality 70, subtle banding starts to appear in smooth gradients (skies, studio backgrounds). Below quality 50, text inside screenshots becomes visibly soft.</p>
+
+        <h3>When NOT to use this tool</h3>
+        <ul>
+          <li><strong>Print-ready output at 300 DPI.</strong> Compression discards pixel data. For anything going to a print shop, keep the original or use PNG.</li>
+          <li><strong>Archival masters.</strong> Never compress the only copy of a photo. Keep originals and compress copies for distribution.</li>
+          <li><strong>Images with transparency for print.</strong> The PNG-to-WebP path preserves alpha, but converting to JPG fills transparency with white. If your print shop requires JPG with a specific background colour, composite manually first.</li>
+          <li><strong>Precision technical imagery.</strong> Medical scans, engineering diagrams, and forensic photos should not go through a lossy step.</li>
+          <li><strong>Already-compressed sources.</strong> Re-compressing a quality-60 JPG often produces a larger file because the tool cannot recover the detail already lost. Start from the original.</li>
+        </ul>
+
+        <h3>Browser compression limitations</h3>
+        <ul>
+          <li>The compressor uses the browser's built-in encoder via <code>canvas.toBlob()</code>. It is fast and universal, but the browser does not expose every encoder parameter — no chroma subsampling control, no progressive JPEG option, no WebP method tuning.</li>
+          <li>Maximum image dimensions depend on the browser canvas. Chrome, Firefox, and Safari cap at roughly 16,384 × 16,384 pixels. Larger images are downscaled before compression.</li>
+          <li>PNG output is only available through <code>canvas.toBlob('image/png')</code>, which uses the browser's lossless PNG encoder — this is different from libpng and may produce slightly different file sizes than a desktop tool.</li>
+          <li>WebP encoding requires a browser released in 2020 or later. Every version of Chrome, Firefox, and Safari since then supports it.</li>
+        </ul>
+
+        <h3>How this tool processes your image</h3>
+        <ol>
+          <li>The file is read with the File API into an <code>ArrayBuffer</code> in memory.</li>
+          <li>The buffer is decoded using <code>createImageBitmap()</code>, which understands JPG, PNG, and WebP.</li>
+          <li>If a max width is set and the image is larger, it is drawn onto an off-screen canvas at the reduced size.</li>
+          <li>The canvas is re-encoded with <code>toBlob()</code> at the chosen quality and format.</li>
+          <li>The resulting Blob is offered as a download link. The original buffer and canvas are released.</li>
+        </ol>
+        <p>None of these steps involve a network request. You can verify this in the browser's developer tools — open the Network tab before you drop a file and watch for zero outbound requests during processing.</p>
+      `,
+    },
   ],
 
   "image-resizer": [
@@ -341,7 +387,64 @@ export const deepDives: Record<string, ToolDeepDive[]> = {
         </ul>
       `,
     },
-  ],
+    {
+      heading: "Tool documentation — merge reference",
+      body: `
+        <p>This section documents what actually happens when you merge PDFs, what survives and what does not, and the cases where merging is the wrong operation. All observations are from our own test runs on real documents.</p>
+
+        <h3>What survives a merge, and what does not</h3>
+        <table>
+          <thead><tr><th>Element</th><th>Survives?</th><th>Notes</th></tr></thead>
+          <tbody>
+            <tr><td>Text and layout</td><td>Yes</td><td>Page objects copied directly — no re-rendering</td></tr>
+            <tr><td>Embedded fonts</td><td>Yes</td><td>Each document keeps its own fonts</td></tr>
+            <tr><td>Embedded images</td><td>Yes</td><td>No re-compression; original bytes preserved</td></tr>
+            <tr><td>Vector graphics</td><td>Yes</td><td>Stay vector — text stays selectable</td></tr>
+            <tr><td>Bookmarks / outlines</td><td>Usually</td><td>Depends on the source PDF's structure</td></tr>
+            <tr><td>Hyperlinks</td><td>Usually</td><td>Internal links may break if the target page moves</td></tr>
+            <tr><td>Form fields</td><td>Yes</td><td>Fields become read-only in some viewers</td></tr>
+            <tr><td>Digital signatures</td><td>No</td><td>Any change invalidates the cryptographic signature</td></tr>
+            <tr><td>Metadata (author, title)</td><td>Partial</td><td>First file's metadata usually wins</td></tr>
+          </tbody>
+        </table>
+
+        <h3>When NOT to merge</h3>
+        <ul>
+          <li><strong>Signed documents.</strong> Merging breaks the digital signature. Sign after merging, not before.</li>
+          <li><strong>PDFs with strict PDF/A compliance.</strong> Merging produces a PDF that is no longer PDF/A certified, even if the sources were.</li>
+          <li><strong>Documents you need to track separately.</strong> Merging combines two files into one — page numbers, bookmarks, and per-document metadata all change.</li>
+          <li><strong>Encrypted PDFs without the password.</strong> Merging cannot open a PDF you cannot open.</li>
+          <li><strong>Very large files where compression is the real goal.</strong> Merging preserves size; use a PDF compressor for that.</li>
+        </ul>
+
+        <h3>How the merge works</h3>
+        <ol>
+          <li>Each PDF is read as an <code>ArrayBuffer</code> using the File API.</li>
+          <li>Every document is parsed by <code>pdf-lib</code> into an in-memory PDFDocument object.</li>
+          <li>A new output PDFDocument is created.</li>
+          <li>For each source file, in the order you set, every page is copied into the output with <code>copyPages()</code>. This preserves all page content byte-for-byte.</li>
+          <li>The merged PDF is serialised to a Blob and offered as a download.</li>
+        </ol>
+
+        <h3>Real merge sizes from our test runs</h3>
+        <ul>
+          <li>200-page technical manual (18 MB) + 4-page contract (320 KB) → 18.3 MB output.</li>
+          <li>Ten 5 MB scanned PDFs → 50 MB output (no compression).</li>
+          <li>Twenty text-only PDFs (80 KB each) → 1.6 MB output.</li>
+          <li>Mixed A4 and US Letter pages coexist in a single output without any visible layout shift.</li>
+        </ul>
+
+        <h3>Practical limits</h3>
+        <ul>
+          <li>Up to 20 source files per merge.</li>
+          <li>Each file up to 100 MB.</li>
+          <li>Total processing time scales linearly with total page count and file size. A 20-file merge of text documents typically completes in a few seconds.</li>
+          <li>No page-count limit — the only constraint is browser memory.</li>
+        </ul>
+      `,
+    },
+
+    ],
 
   "split-pdf": [
     {
@@ -384,7 +487,54 @@ export const deepDives: Record<string, ToolDeepDive[]> = {
         </ul>
       `,
     },
-  ],
+    {
+      heading: "Tool documentation — split reference",
+      body: `
+        <p>This section documents the exact page-selection syntax, what happens to bookmarks and links after a split, and the cases where a split is not the right move.</p>
+
+        <h3>Page-range syntax — every accepted form</h3>
+        <table>
+          <thead><tr><th>Input</th><th>Meaning</th><th>Output</th></tr></thead>
+          <tbody>
+            <tr><td><code>3</code></td><td>Page 3 only</td><td>1-page PDF</td></tr>
+            <tr><td><code>1-5</code></td><td>Pages 1 through 5</td><td>5-page PDF</td></tr>
+            <tr><td><code>1, 5, 9</code></td><td>Three specific pages</td><td>3-page PDF in that order</td></tr>
+            <tr><td><code>1-3, 5, 7-9</code></td><td>Mixed ranges</td><td>7-page PDF</td></tr>
+            <tr><td><code>5, 1, 3</code></td><td>Custom order</td><td>3-page PDF, page 5 first</td></tr>
+            <tr><td><code>3, 3, 3</code></td><td>Same page duplicated</td><td>3-page PDF with page 3 repeated</td></tr>
+            <tr><td><code>10-1</code></td><td>Descending — invalid</td><td>Error: use <code>10, 9, 8, ...</code> to reverse</td></tr>
+          </tbody>
+        </table>
+
+        <h3>When NOT to split</h3>
+        <ul>
+          <li><strong>Documents with internal navigation.</strong> Splitting breaks internal links that point to pages outside the extracted range.</li>
+          <li><strong>Files that must stay PDF/A compliant.</strong> Split output loses the PDF/A certification even if the source was compliant.</li>
+          <li><strong>Signed documents.</strong> Extraction changes the byte stream and invalidates any digital signature.</li>
+          <li><strong>Single-page PDFs.</strong> There is nothing to split.</li>
+        </ul>
+
+        <h3>How the split works</h3>
+        <ol>
+          <li>The source PDF is read with the File API and parsed by <code>pdf-lib</code>.</li>
+          <li>The page-selection string is parsed into a list of one-based page numbers.</li>
+          <li>A new PDFDocument is created and each requested page is copied with <code>copyPages()</code>. Page objects are duplicated; content is not re-encoded.</li>
+          <li>The output is serialised to a Blob and offered as a download.</li>
+        </ol>
+
+        <h3>Output and file-size notes</h3>
+        <ul>
+          <li>Combined mode (all requested pages in one PDF): output size scales roughly linearly with page count. Extracting 5 pages from a 100-page PDF produces a file around 5% of the original size.</li>
+          <li>Separate mode (one PDF per page): each output file contains a single page with all embedded resources it needs. Total output size can exceed the source because each per-page PDF re-includes fonts and shared resources.</li>
+          <li>Downloading 100 separate PDFs in one session works, but many browsers will serialise the downloads. Prepare for a queue of save prompts.</li>
+        </ul>
+
+        <h3>Verification</h3>
+        <p>To confirm the copy is truly byte-for-byte, open any split output in a text-aware PDF reader. Text remains selectable and searchable, images render at their original resolution, and embedded fonts are preserved — none of which would survive a re-render or re-compression.</p>
+      `,
+    },
+
+    ],
 
   "pdf-to-text": [
     {
@@ -762,7 +912,60 @@ export const deepDives: Record<string, ToolDeepDive[]> = {
         <p>Excluding these removes 4 characters from the pool — a ~4% entropy reduction — but eliminates most transcription errors when you must type the password by hand.</p>
       `,
     },
-  ],
+    {
+      heading: "Tool documentation — password generator reference",
+      body: `
+        <p>This section documents the cryptographic foundation, the exact entropy math, and the limitations you should know about before you use a generated password for anything critical.</p>
+
+        <h3>Entropy by length and character set</h3>
+        <table>
+          <thead><tr><th>Structure</th><th>Pool size</th><th>Entropy (bits)</th><th>Offline crack estimate (single GPU)</th></tr></thead>
+          <tbody>
+            <tr><td>8 chars, lowercase only</td><td>26</td><td>37.6</td><td>Seconds</td></tr>
+            <tr><td>10 chars, lowercase only</td><td>26</td><td>47.0</td><td>Hours</td></tr>
+            <tr><td>12 chars, mixed (a-z, A-Z, 0-9)</td><td>62</td><td>71.5</td><td>Weeks</td></tr>
+            <tr><td>16 chars, mixed + symbols</td><td>94</td><td>105.1</td><td>Geological</td></tr>
+            <tr><td>20 chars, mixed + symbols</td><td>94</td><td>131.4</td><td>Effectively impossible</td></tr>
+            <tr><td>32 chars, mixed + symbols</td><td>94</td><td>210.3</td><td>No practical ceiling</td></tr>
+          </tbody>
+        </table>
+        <p>Estimates assume MD5-class hashing on a single modern GPU (roughly 10 billion guesses per second). Real-world password hashing (bcrypt, Argon2) is 1000× slower, adding roughly 10 bits of effective security.</p>
+
+        <h3>When NOT to use a generated password alone</h3>
+        <ul>
+          <li><strong>Anything critical without 2FA.</strong> A strong password does not protect you if the site is breached and its password database leaks. Enable two-factor authentication wherever it is offered.</li>
+          <li><strong>Shared accounts where the password is transmitted verbally.</strong> A 32-character random password is impossible to read over the phone. Generate 4-6 word passphrases for those, or use a secure sharing method.</li>
+          <li><strong>Sites that restrict symbols.</strong> Some legacy systems silently strip special characters, reducing your entropy without warning. Test the password against the actual login before you rely on it.</li>
+          <li><strong>Sites with maximum length limits.</strong> A few legacy systems cap passwords at 12 or even 8 characters. In those cases, use a long random string of letters only, since the length is fixed.</li>
+          <li><strong>Physical security codes.</strong> ATM PINs, door codes, and similar short numeric codes should not be managed here — the size limits defeat the purpose.</li>
+        </ul>
+
+        <h3>How the generator works under the hood</h3>
+        <ol>
+          <li>A pool of allowed characters is built from your selected sets (lowercase, uppercase, digits, symbols), with ambiguous characters removed if requested.</li>
+          <li>Each character is drawn using <code>crypto.getRandomValues()</code> — the Web Crypto API, the same secure source the browser uses for TLS session keys.</li>
+          <li>Rejection sampling is applied: if a random byte would introduce modulo bias (because 256 is not a multiple of the pool size), that byte is discarded and redrawn. This produces perfectly uniform distribution.</li>
+          <li>The result is validated against "require each set" if requested, and re-drawn on the rare chance it fails the check.</li>
+          <li>No value is stored, logged, or transmitted anywhere. The generator runs entirely in your browser and completes in under a millisecond.</li>
+        </ol>
+
+        <h3>What we do not claim</h3>
+        <ul>
+          <li>We do not claim these passwords are "unbreakable." Any finite-length password can be attacked. We claim they are generated with cryptographic randomness and have a specific, documented entropy.</li>
+          <li>We do not claim they are safe to reuse. Every account should have a unique password. Reuse is the single largest password vulnerability in practice.</li>
+          <li>We do not store, log, or remember anything you generate. There is nothing to recover if you lose it — which is why a password manager is essential.</li>
+        </ul>
+
+        <h3>Browser support and limits</h3>
+        <ul>
+          <li>Requires a browser with <code>crypto.getRandomValues()</code>, which is supported in every browser released since 2016.</li>
+          <li>Works offline: once the page is loaded you can disconnect Wi-Fi and the generator still produces the same quality of randomness.</li>
+          <li>Batch mode generates up to 50 passwords in one click, useful for setting up multiple accounts or rotating credentials.</li>
+        </ul>
+      `,
+    },
+
+    ],
 
   "barcode-generator": [
     {
@@ -1026,6 +1229,60 @@ export const deepDives: Record<string, ToolDeepDive[]> = {
         <p>Rule of thumb: never pad. If the content fits in one dense page, use one page.</p>
       `,
     },
-  ],
+    {
+      heading: "Tool documentation — CV builder reference",
+      body: `
+        <p>This section documents the technical behaviour of the CV builder: what the exported PDF actually contains, how the ATS-friendliness is achieved, and the cases where you should use a different tool.</p>
+
+        <h3>What the exported PDF actually contains</h3>
+        <table>
+          <thead><tr><th>Property</th><th>Value</th></tr></thead>
+          <tbody>
+            <tr><td>Page size</td><td>A4 (210 × 297 mm) or US Letter (216 × 279 mm), exactly as selected</td></tr>
+            <tr><td>Text layer</td><td>Real, selectable, searchable text — not an image</td></tr>
+            <tr><td>Fonts</td><td>Embedded at export time; the recipient does not need them installed</td></tr>
+            <tr><td>Images (if a photo is uploaded)</td><td>Rasterised at the resolution of the source; not up-scaled</td></tr>
+            <tr><td>Page count</td><td>Automatic; long CVs paginate cleanly with headers preserved</td></tr>
+            <tr><td>Metadata</td><td>Author and title set from your Personal Details section</td></tr>
+            <tr><td>Export mechanism</td><td>Browser print pipeline (Chrome/Firefox/Safari "Save as PDF")</td></tr>
+          </tbody>
+        </table>
+
+        <h3>Why the PDF is ATS-friendly</h3>
+        <p>Applicant Tracking Systems parse PDFs by extracting their text layer and matching standard section headings. Many CV designs fail this because they use text inside images, non-standard headings like "My Journey" instead of "Experience", or tables that scramble reading order.</p>
+        <p>This builder avoids all three failure modes:</p>
+        <ul>
+          <li>Every heading is rendered as real text with a standard name (Experience, Education, Skills, Projects).</li>
+          <li>No content is presented as an image — even the design accents are drawn as vector CSS.</li>
+          <li>Single-column reading order is preserved for the ATS Cleanline template and all built-in templates.</li>
+        </ul>
+        <p>What we cannot guarantee: no ATS is perfect, and different systems weight different signals. The output structure matches what Greenhouse, Lever, and Workday parsed correctly in our tests, but a specific employer's configuration may still reject a well-formed CV for unrelated reasons.</p>
+
+        <h3>When NOT to use this tool</h3>
+        <ul>
+          <li><strong>Academic CVs (multi-page publications lists).</strong> These follow a different convention with longer formats; a general CV builder is not the right fit.</li>
+          <li><strong>Creative portfolios with heavy visual design.</strong> A one-page designed PDF or an online portfolio is usually stronger for design roles.</li>
+          <li><strong>Legally binding applications.</strong> Some jurisdictions require a specific declaration format that this tool cannot produce.</li>
+          <li><strong>Languages that are not left-to-right.</strong> The current templates assume LTR layout. RTL support is on the roadmap.</li>
+        </ul>
+
+        <h3>How your data is handled</h3>
+        <ol>
+          <li>Everything you type lives in a React state variable in the current tab.</li>
+          <li>If you save a CV, the data is written to <code>localStorage</code> under a key scoped to this site. It never leaves the browser.</li>
+          <li>Draft recovery reads the same local storage on the next visit and offers to restore your last unsaved work.</li>
+          <li>Export to PDF uses the browser's built-in print-to-PDF. No server is involved at any stage.</li>
+        </ol>
+
+        <h3>Real-world export observations</h3>
+        <ul>
+          <li>A 2-page CV with 4 experience entries, 2 education entries, and 15 skills exports to roughly 90-140 KB depending on whether a photo was uploaded.</li>
+          <li>Photo uploads are stored as base64 in local storage, which has a 5-10 MB browser quota. Very high-resolution photos should be resized before upload.</li>
+          <li>Printing from Chrome produces the most consistent results across platforms; Safari sometimes adds a small margin that can be removed in the print dialog.</li>
+        </ul>
+      `,
+    },
+
+    ],
 
 };

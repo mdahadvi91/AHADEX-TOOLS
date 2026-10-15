@@ -1023,13 +1023,25 @@ const legacyTools: Tool[] = [
  * newTools:    consolidated tools that replace multiple pages
  *              (image-converter, pdf-to-image, image-to-pdf, split-pdf)
  * ============================================================ */
-/* Legacy tools pick up their deep-dive sections from deep-dives.ts.
- * New unified tools already declare them inline in new-tools-content.ts. */
-const legacyWithDeepDives: Tool[] = legacyTools.map((t) => ({
-  ...t,
-  deepDive: t.deepDive ?? deepDives[t.id],
-}));
+/* Deep-dive sections are stored in two places:
+ *   - Inline in each tool's own definition (new-tools-content.ts)
+ *   - Externally in src/data/deep-dives.ts, keyed by tool id
+ * Merge both so any tool can carry content from either source. Inline
+ * sections come first so they read as the primary explanation; external
+ * sections follow as supporting documentation. */
+function withDeepDives(t: Tool): Tool {
+  const external = deepDives[t.id];
+  if (!external || external.length === 0) return t;
+  const inline = t.deepDive ?? [];
+  return {
+    ...t,
+    deepDive: [...inline, ...external],
+  };
+}
 
-export const tools: Tool[] = [...legacyWithDeepDives, ...newTools];
+export const tools: Tool[] = [
+  ...legacyTools.map(withDeepDives),
+  ...newTools.map(withDeepDives),
+];
 
 export const TOOL_COUNT = tools.length;
