@@ -34,7 +34,7 @@
   <text x="100" y="260" font-family="'Noto Sans','Droid Sans',system-ui,sans-serif" font-size="96" font-weight="800" fill="#F8F6F1" letter-spacing="-2">Split PDF</text>
 
   <!-- Subtitle -->
-  <text x="100" y="335" font-family="'Noto Sans','Droid Sans',system-ui,sans-serif" font-size="26" font-weight="400" fill="#C4A89E" letter-spacing="-0.3">Extract pages from any PDF or split every page — in your browser. Custo…</text>
+  <text x="100" y="335" font-family="'Noto Sans','Droid Sans',system-ui,sans-serif" font-size="26" font-weight="400" fill="#C4A89E" letter-spacing="-0.3">Extract pages from any PDF in custom order, with duplicates, or split e…</text>
 
   <!-- Feature pills -->
   <g transform="translate(100, 460)">
@@ -44,11 +44,11 @@
 
     <rect x="260" y="0" width="240" height="56" rx="28" fill="#FFFFFF" opacity="0.06" stroke="#C99667" stroke-width="1.5"/>
     <circle cx="290" cy="28" r="6" fill="#C99667"/>
-    <text x="312" y="36" font-family="'Noto Sans','Droid Sans',sans-serif" font-size="18" font-weight="500" fill="#F8F6F1">Extract Pdf</text>
+    <text x="312" y="36" font-family="'Noto Sans','Droid Sans',sans-serif" font-size="18" font-weight="500" fill="#F8F6F1">Extract Pdf Pages</text>
 
     <rect x="520" y="0" width="240" height="56" rx="28" fill="#FFFFFF" opacity="0.06" stroke="#B36878" stroke-width="1.5"/>
     <circle cx="550" cy="28" r="6" fill="#B36878"/>
-    <text x="572" y="36" font-family="'Noto Sans','Droid Sans',sans-serif" font-size="18" font-weight="500" fill="#F8F6F1">Pdf Splitter</text>
+    <text x="572" y="36" font-family="'Noto Sans','Droid Sans',sans-serif" font-size="18" font-weight="500" fill="#F8F6F1">Pdf Page Extractor</text>
   </g>
 
   <!-- Domain -->

@@ -1,0 +1,31 @@
+# ============================================================
+# AHADEX Tools — Cloudflare Pages Redirects (301)
+# ------------------------------------------------------------
+# All redirects are permanent (301) to preserve SEO equity.
+# Left side: old URL.  Right side: new URL.  301 = permanent.
+#
+# Consolidated tools (Oct 2026 refactor):
+#   - 6 image conversion pages → /tools/image-converter
+#   - 2 image-to-PDF pages     → /tools/image-to-pdf
+#   - 2 PDF-to-image pages     → /tools/pdf-to-image
+#   - 1 PDF extractor page     → /tools/split-pdf
+# ============================================================
+
+# ── Image conversion (6 pages → image-converter) ──
+/tools/jpg-to-png      /tools/image-converter      301
+/tools/png-to-jpg      /tools/image-converter      301
+/tools/jpg-to-webp     /tools/image-converter      301
+/tools/png-to-webp     /tools/image-converter      301
+/tools/webp-to-jpg     /tools/image-converter      301
+/tools/webp-to-png     /tools/image-converter      301
+
+# ── Image → PDF (2 pages → image-to-pdf) ──
+/tools/jpg-to-pdf      /tools/image-to-pdf         301
+/tools/png-to-pdf      /tools/image-to-pdf         301
+
+# ── PDF → Image (2 pages → pdf-to-image) ──
+/tools/pdf-to-png      /tools/pdf-to-image         301
+/tools/pdf-to-jpg      /tools/pdf-to-image         301
+
+# ── PDF page extraction (1 page → split-pdf) ──
+/tools/pdf-page-extractor  /tools/split-pdf        301

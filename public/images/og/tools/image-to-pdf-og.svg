@@ -34,7 +34,7 @@
   <text x="100" y="260" font-family="'Noto Sans','Droid Sans',system-ui,sans-serif" font-size="96" font-weight="800" fill="#F8F6F1" letter-spacing="-2">Image to PDF</text>
 
   <!-- Subtitle -->
-  <text x="100" y="335" font-family="'Noto Sans','Droid Sans',system-ui,sans-serif" font-size="26" font-weight="400" fill="#C4A89E" letter-spacing="-0.3">Combine JPG, PNG, and WebP images into a single multi-page PDF — in you…</text>
+  <text x="100" y="335" font-family="'Noto Sans','Droid Sans',system-ui,sans-serif" font-size="26" font-weight="400" fill="#C4A89E" letter-spacing="-0.3">Combine JPG, PNG, and WebP images into a single multi-page PDF in your…</text>
 
   <!-- Feature pills -->
   <g transform="translate(100, 460)">
