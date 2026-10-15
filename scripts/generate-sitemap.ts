@@ -14,15 +14,40 @@
  *   - Blog posts ship an <image:image> using their OG image
  * ============================================================ */
 
-import { writeFileSync } from "node:fs";
+import { writeFileSync, existsSync } from "node:fs";
 import { resolve } from "node:path";
+import { execSync } from "node:child_process";
 import { tools } from "../src/data/tools";
 import { blogPosts } from "../src/data/blog";
 
 const SITE_URL = "https://ahadex.fun";
 
-/* ── Stable site-wide lastmod (update manually when site content changes) ── */
-const SITE_LASTMOD = "2026-10-15";
+/* ── Git-based lastmod lookup ────────────────────────────────
+ * Reads the date of the most recent commit that touched a given
+ * file, so lastmod reflects actual content changes instead of a
+ * manually-maintained constant.
+ *
+ * Falls back to today's date if git is unavailable (e.g. a shallow
+ * clone without history, or a build environment that strips .git).
+ * ─────────────────────────────────────────────────────────── */
+function gitLastMod(filePath: string): string {
+  try {
+    const date = execSync(`git log -1 --format=%cs -- "${filePath}"`, {
+      encoding: "utf-8",
+      stdio: ["pipe", "pipe", "ignore"],
+    }).trim();
+    if (date) return date;
+  } catch {
+    /* ignore */
+  }
+  return new Date().toISOString().slice(0, 10);
+}
+
+/* Compute once, reuse across all entries from the same source. */
+const TOOLS_LASTMOD = gitLastMod("src/data/tools.ts");
+const TRUST_LASTMOD = gitLastMod("src/data/trustContent.ts");
+const BLOG_LASTMOD = gitLastMod("src/data/blog.ts");
+const HOME_LASTMOD = gitLastMod("src/pages/ToolsIndexPage.tsx");
 
 interface SitemapImage {
   loc: string;
@@ -40,19 +65,19 @@ interface SitemapEntry {
 
 /* ── Static routes ── */
 const staticRoutes: SitemapEntry[] = [
-  { loc: "/", changefreq: "weekly", priority: 1.0, lastmod: SITE_LASTMOD },
-  { loc: "/tools", changefreq: "weekly", priority: 0.9, lastmod: SITE_LASTMOD },
-  { loc: "/blog", changefreq: "weekly", priority: 0.7, lastmod: SITE_LASTMOD },
-  { loc: "/about", changefreq: "monthly", priority: 0.6, lastmod: SITE_LASTMOD },
-  { loc: "/contact", changefreq: "monthly", priority: 0.6, lastmod: SITE_LASTMOD },
-  { loc: "/privacy", changefreq: "yearly", priority: 0.3, lastmod: SITE_LASTMOD },
-  { loc: "/terms", changefreq: "yearly", priority: 0.3, lastmod: SITE_LASTMOD },
-  { loc: "/disclaimer", changefreq: "yearly", priority: 0.3, lastmod: SITE_LASTMOD },
-  { loc: "/accessibility", changefreq: "yearly", priority: 0.3, lastmod: SITE_LASTMOD },
-  { loc: "/cookie-policy", changefreq: "yearly", priority: 0.3, lastmod: SITE_LASTMOD },
-  { loc: "/editorial-policy", changefreq: "yearly", priority: 0.3, lastmod: SITE_LASTMOD },
-  { loc: "/affiliate-disclosure", changefreq: "yearly", priority: 0.3, lastmod: SITE_LASTMOD },
-  { loc: "/sitemap", changefreq: "monthly", priority: 0.4, lastmod: SITE_LASTMOD },
+  { loc: "/", changefreq: "weekly", priority: 1.0, lastmod: HOME_LASTMOD },
+  { loc: "/tools", changefreq: "weekly", priority: 0.9, lastmod: TOOLS_LASTMOD },
+  { loc: "/blog", changefreq: "weekly", priority: 0.7, lastmod: BLOG_LASTMOD },
+  { loc: "/about", changefreq: "monthly", priority: 0.6, lastmod: TRUST_LASTMOD },
+  { loc: "/contact", changefreq: "monthly", priority: 0.6, lastmod: TRUST_LASTMOD },
+  { loc: "/privacy", changefreq: "yearly", priority: 0.3, lastmod: TRUST_LASTMOD },
+  { loc: "/terms", changefreq: "yearly", priority: 0.3, lastmod: TRUST_LASTMOD },
+  { loc: "/disclaimer", changefreq: "yearly", priority: 0.3, lastmod: TRUST_LASTMOD },
+  { loc: "/accessibility", changefreq: "yearly", priority: 0.3, lastmod: TRUST_LASTMOD },
+  { loc: "/cookie-policy", changefreq: "yearly", priority: 0.3, lastmod: TRUST_LASTMOD },
+  { loc: "/editorial-policy", changefreq: "yearly", priority: 0.3, lastmod: TRUST_LASTMOD },
+  { loc: "/affiliate-disclosure", changefreq: "yearly", priority: 0.3, lastmod: TRUST_LASTMOD },
+  { loc: "/sitemap", changefreq: "monthly", priority: 0.4, lastmod: TRUST_LASTMOD },
 ];
 
 /* ── Tool routes (each ships its OG image) ── */
@@ -64,7 +89,7 @@ const toolRoutes: SitemapEntry[] = tools.map((t) => {
     loc: t.path,
     changefreq: "weekly" as const,
     priority: t.popular ? 0.9 : 0.8,
-    lastmod: SITE_LASTMOD,
+    lastmod: TOOLS_LASTMOD,
     images: [
       {
         loc: og,
@@ -91,7 +116,7 @@ const blogRoutes: SitemapEntry[] = blogPosts.map((p) => {
     loc: `/blog/${p.slug}`,
     changefreq: "monthly" as const,
     priority: 0.6,
-    lastmod: p.publishedAt || SITE_LASTMOD,
+    lastmod: p.publishedAt || BLOG_LASTMOD,
     images,
   };
 });
