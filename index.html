@@ -90,11 +90,17 @@
   </head>
 
   <body>
-    <div id="root"></div>
+    <div id="root" suppressHydrationWarning></div>
     <noscript>
-      <div style="padding: 2rem; font-family: system-ui; text-align: center;">
-        <h1>AHADEX Tools</h1>
-        <p>Please enable JavaScript to use AHADEX Tools.</p>
+      <div style="max-width: 640px; margin: 4rem auto; padding: 2rem; font-family: system-ui, -apple-system, sans-serif; text-align: center; color: #2b2b2b;">
+        <h1 style="font-size: 1.75rem; font-weight: 800; margin-bottom: 1rem;">AHADEX Tools</h1>
+        <p style="font-size: 1rem; line-height: 1.6; margin-bottom: 1rem;">
+          AHADEX Tools requires JavaScript to run its browser-based tools.
+        </p>
+        <p style="font-size: 0.9rem; line-height: 1.6; color: #666;">
+          Every tool on this site processes files locally in your browser &mdash; nothing is uploaded. JavaScript is what makes that possible.
+          Please enable JavaScript in your browser settings, then reload this page.
+        </p>
       </div>
     </noscript>
     <script type="module" src="/src/main.tsx"></script>

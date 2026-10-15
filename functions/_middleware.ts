@@ -86,11 +86,21 @@ function injectSSRContent(html: string, pathname: string): string {
   const content = SSR_CONTENT[pathname];
   if (!content) return html;
 
-  // Include readable fallback content in the root's initial HTML.
-  // React createRoot replaces this fallback with the interactive app.
+  // Inject readable fallback content inside #root.
+  //
+  // Why this pattern:
+  //   - Crawlers (Google, Bing, social bots) that do not run JS still see
+  //     the full article HTML in the initial response — good for SEO and
+  //     AdSense review.
+  //   - Users with JS disabled still read a complete, styled page.
+  //   - When JS loads, main.tsx removes [data-ssr] before React mounts,
+  //     so there is no hydration mismatch and no flash of duplicate content.
+  //
+  // The [data-ssr] attribute is the contract between this middleware and
+  // src/main.tsx. Do not remove it without updating both files.
   const marker = '<div id="root">';
   if (html.includes(marker)) {
-    return html.replace(marker, marker + content);
+    return html.replace(marker, marker + `<div data-ssr="true">${content}</div>`);
   }
   return html;
 }
