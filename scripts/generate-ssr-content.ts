@@ -87,6 +87,17 @@ function buildToolPage(tool: typeof tools[0]): string {
     <ul>${relatedTools}</ul>`
     : "";
 
+  // Deep-dive sections: authored as { heading, body } where body is a
+  // trusted HTML subset (tables, lists, links). Rendered between FAQ and
+  // Related tools so the reading flow stays: intro → features → how-to →
+  // privacy → FAQ → deep dive → related.
+  const deepDiveBlock = (tool.deepDive || [])
+    .map(
+      (section) =>
+        `<section><h2>${esc(section.heading)}</h2>${section.body}</section>`
+    )
+    .join("\n    ");
+
   return `<article>
     <h1>${esc(tool.name)}</h1>
     <p><strong>${esc(tool.description)}</strong></p>
@@ -99,6 +110,7 @@ function buildToolPage(tool: typeof tools[0]): string {
     <p>${esc(PRIVACY_PARAGRAPH)}</p>
     <h2>Frequently asked questions</h2>
     ${faq}
+    ${deepDiveBlock}
     ${relatedBlock}
   </article>`;
 }

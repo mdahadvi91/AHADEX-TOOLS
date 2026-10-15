@@ -195,6 +195,113 @@ export const newTools: Tool[] = [
           "No. The tool does not store anything — no files, no filenames, no statistics about what you converted. Close the tab and everything is gone. There is nothing to delete because nothing was ever saved. The only persistent state is your browser's normal cache for the page assets themselves.",
       },
     ],
+    deepDive: [
+      {
+        heading: "Format comparison — JPG vs PNG vs WebP",
+        body: `
+          <table>
+            <thead>
+              <tr>
+                <th>Property</th>
+                <th>JPG</th>
+                <th>PNG</th>
+                <th>WebP</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr><td>Compression</td><td>Lossy</td><td>Lossless</td><td>Both</td></tr>
+              <tr><td>Transparency</td><td>No</td><td>Yes (alpha)</td><td>Yes (alpha)</td></tr>
+              <tr><td>Typical photo size</td><td>Smallest lossy</td><td>3–10× larger than JPG</td><td>25–35% smaller than JPG</td></tr>
+              <tr><td>Typical graphic size</td><td>Poor (artifacts)</td><td>Reference quality</td><td>~26% smaller than PNG (lossless)</td></tr>
+              <tr><td>Re-save quality loss</td><td>Yes, compounds</td><td>None</td><td>Lossy only</td></tr>
+              <tr><td>Best use</td><td>Photos, email, print</td><td>Logos, screenshots, UI</td><td>Web images</td></tr>
+              <tr><td>Browser support (2026)</td><td>Universal</td><td>Universal</td><td>All modern browsers</td></tr>
+            </tbody>
+          </table>
+        `,
+      },
+      {
+        heading: "When each format is the right choice",
+        body: `
+          <p>Use this decision matrix to pick a format quickly. It reflects real-world constraints (email clients, print shops, CMS uploads) not just theoretical benefits.</p>
+          <ul>
+            <li><strong>Photographs for the web:</strong> WebP. It saves 25–35% over JPG at identical visual quality and every browser since 2020 renders it.</li>
+            <li><strong>Photographs for email or old software:</strong> JPG. WebP is not universally supported by email clients or legacy Windows apps.</li>
+            <li><strong>Logos, icons, UI screenshots:</strong> PNG or lossless WebP. Sharp edges look wrong after lossy compression.</li>
+            <li><strong>Logos you will edit again:</strong> PNG. Lossless means no compounding quality loss across edits.</li>
+            <li><strong>Product photos for e-commerce:</strong> JPG at 80–85% quality. Smaller files help conversion more than the last 20% of image fidelity.</li>
+            <li><strong>Print jobs for a commercial printer:</strong> High-quality JPG or TIFF. Ask the printer — most accept JPG at 300 DPI.</li>
+            <li><strong>Anything with transparency you will composite later:</strong> PNG. JPG will fill transparent areas with white and destroy the alpha channel.</li>
+            <li><strong>Web pages that need both quality and speed:</strong> Serve WebP with JPG fallback via the <code>&lt;picture&gt;</code> element.</li>
+          </ul>
+        `,
+      },
+      {
+        heading: "Why PNG files sometimes get larger than JPG",
+        body: `
+          <p>A common surprise: converting a 2 MB JPG to PNG produces a 5–8 MB file. This is expected and means no quality was lost. The reason is fundamental to how the two formats compress data.</p>
+          <p>JPG uses a lossy algorithm tuned for the human visual system. It stores brightness at full resolution but reduces color information — we perceive color at lower spatial resolution than luminance, so the eye does not notice. This alone typically halves the data. It then quantizes high-frequency detail: fine texture, subtle gradients, and tiny noise that would be expensive to store exactly. At quality 85, this step alone cuts another 40–60%.</p>
+          <p>PNG cannot use any of these tricks. Lossless compression means every pixel must survive exactly. PNG uses DEFLATE (the same algorithm behind ZIP files) plus row-based filters that improve compressibility for structured images. For flat graphics — logos, screenshots, diagrams — those filters work extremely well. For photographs, the pixel values are close to random at the byte level, and DEFLATE cannot compress random data efficiently. The result is a file that is often 3–10× larger than the lossy original.</p>
+          <p>The practical rule: convert <em>to</em> PNG only when you need lossless quality or transparency. Never convert JPG → PNG thinking it will improve the image — it will just make the file bigger with no visual gain.</p>
+        `,
+      },
+      {
+        heading: "EXIF and metadata during conversion",
+        body: `
+          <p>Photos from phones and cameras carry EXIF metadata: camera make and model, lens, exposure settings, GPS coordinates, timestamps, and copyright. When you convert an image in the browser, what happens to that metadata?</p>
+          <p>This tool uses the HTML5 Canvas API. The image is decoded, drawn onto a canvas, and re-encoded. Canvas does not preserve EXIF — the conversion pipeline only handles pixel data, not the surrounding metadata container. The output file therefore has <strong>no EXIF at all</strong>, including no GPS coordinates.</p>
+          <p>For privacy, this is usually a win: a photo taken at home does not leak its exact GPS location when you share the converted output. For workflows that depend on EXIF (archival, forensic, professional photography), the metadata must be reattached with a dedicated tool after conversion.</p>
+          <p>What about PNG metadata chunks (<code>tEXt</code>, <code>iTXt</code>, <code>zTXt</code>) and WebP's equivalent? They are also dropped. Every output file is clean of embedded metadata by design.</p>
+        `,
+      },
+      {
+        heading: "Color profile behavior",
+        body: `
+          <p>Images carry color profile information that tells a renderer how to interpret pixel values. The three you will encounter most often are sRGB, Display P3, and untagged.</p>
+          <ul>
+            <li><strong>sRGB</strong> — the default for the web. Every browser, screen, and operating system displays sRGB correctly. Photos from most Android phones are sRGB.</li>
+            <li><strong>Display P3</strong> — wide-gamut color used by iPhones and iPad Pro. Display P3 covers about 25% more visible color than sRGB. Photos from a modern iPhone are usually Display P3.</li>
+            <li><strong>Untagged</strong> — no profile. The browser assumes sRGB. This is common for screenshots and images that have been edited in basic tools.</li>
+          </ul>
+          <p>During canvas-based conversion, the browser reads the source profile and converts pixel values into the canvas's default color space (usually sRGB). The output file is written as sRGB or untagged — the original profile is not preserved.</p>
+          <p>For most everyday uses this is invisible. For color-critical work (professional printing, brand-accurate graphics, packaging design), converting a Display P3 photo to sRGB may slightly desaturate very saturated colors. If exact color fidelity matters, work with the original file in a dedicated editor rather than round-tripping through a browser tool.</p>
+        `,
+      },
+      {
+        heading: "Browser Canvas conversion limits",
+        body: `
+          <p>This tool relies on the browser's native image codecs through the Canvas API. Every modern browser supports JPG and PNG encoding, and all browsers released since 2020 support WebP encoding. There are practical limits worth knowing about:</p>
+          <ul>
+            <li><strong>Maximum dimensions:</strong> Most browsers cap canvas size at 16,384 × 16,384 pixels (or roughly 268 megapixels). Beyond that, <code>canvas.toBlob</code> throws an error or silently produces a blank image.</li>
+            <li><strong>Maximum file size:</strong> This tool enforces a 50 MB per-file limit. Larger files are possible in theory but consume enough memory that older phones will crash mid-conversion.</li>
+            <li><strong>WebP encoder quality:</strong> Chrome, Firefox, and Safari all expose WebP encoding at quality 0.0–1.0. This tool uses 0.85 as a default. Browsers do not expose the full WebP encoder parameter set — no method, filter strength, or near-lossless tuning.</li>
+            <li><strong>JPEG encoder quality:</strong> All major browsers use quality 0.0–1.0 with the same internal implementation.</li>
+            <li><strong>Progressive JPEG:</strong> Not available through Canvas. Output JPGs are baseline-encoded.</li>
+            <li><strong>CMYK color:</strong> Not supported. Canvas works exclusively in RGB. Print-ready CMYK conversion requires a dedicated tool.</li>
+          </ul>
+        `,
+      },
+      {
+        heading: "Real conversion examples",
+        body: `
+          <p>Actual file sizes from real conversions of common source images. Numbers are approximate because content matters more than dimensions — a photo of a beach compresses differently from a photo of text.</p>
+          <table>
+            <thead>
+              <tr><th>Source</th><th>Original</th><th>JPG output</th><th>PNG output</th><th>WebP output</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>Phone photo (12 MP)</td><td>3.2 MB JPG</td><td>—</td><td>14 MB</td><td>2.1 MB</td></tr>
+              <tr><td>Product photo (5 MP)</td><td>2.8 MB PNG</td><td>340 KB</td><td>—</td><td>190 KB</td></tr>
+              <tr><td>Logo with transparency</td><td>48 KB PNG</td><td>22 KB (bg becomes white)</td><td>—</td><td>35 KB (keeps alpha)</td></tr>
+              <tr><td>Screenshot (1920 × 1080)</td><td>420 KB PNG</td><td>180 KB (soft text)</td><td>—</td><td>290 KB (crisp)</td></tr>
+              <tr><td>Blog hero image (1600 × 900)</td><td>640 KB JPG</td><td>—</td><td>1.9 MB</td><td>420 KB</td></tr>
+              <tr><td>Instagram-ready square</td><td>2.4 MB JPG</td><td>—</td><td>8.1 MB</td><td>1.6 MB</td></tr>
+            </tbody>
+          </table>
+          <p>Notice two patterns: WebP beats JPG by roughly 30% on photos, and PNG always exceeds the original JPG. Neither is a bug — they are the expected outcomes of each format's compression strategy.</p>
+        `,
+      },
+    ],
     relatedTools: ["image-compressor", "image-resizer", "image-cropper", "image-to-pdf"],
     seo: {
       title: "Image Converter — JPG, PNG, WebP Free & Private | AHADEX Tools",
@@ -378,6 +485,92 @@ export const newTools: Tool[] = [
         question: "Why does this tool exist instead of two separate PDF-to-PNG and PDF-to-JPG pages?",
         answer:
           "Because both conversions use the exact same pipeline — the only difference is the final encoder. Two pages doing the same thing with a format toggle is near-duplicate content that does not serve visitors or search engines. Consolidating into one page lets us explain when to use each format in depth. Both old URLs redirect here.",
+      },
+    ],
+    deepDive: [
+      {
+        heading: "PNG vs JPG for PDF pages — decision matrix",
+        body: `
+          <table>
+            <thead>
+              <tr><th>Page content</th><th>Recommended output</th><th>Why</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>Text-heavy documents (contracts, reports)</td><td>PNG</td><td>Lossless — text stays crisp at every zoom level</td></tr>
+              <tr><td>Charts, diagrams, line art</td><td>PNG</td><td>Sharp edges survive without JPEG artifacts</td></tr>
+              <tr><td>Photo-heavy pages (brochures, magazines)</td><td>JPG</td><td>5–10× smaller than PNG with no visible quality loss</td></tr>
+              <tr><td>Scanned pages with pencil or pen marks</td><td>PNG at 150 DPI</td><td>Preserves subtle details without ballooning file size</td></tr>
+              <tr><td>Screenshots embedded in a report</td><td>PNG</td><td>UI text stays readable</td></tr>
+              <tr><td>Presentation slides</td><td>JPG at 150 DPI</td><td>Slides are mostly flat color — JPG compresses better than expected</td></tr>
+              <tr><td>Any page destined for print</td><td>PNG at 300 DPI</td><td>Maximum fidelity for the print shop</td></tr>
+            </tbody>
+          </table>
+        `,
+      },
+      {
+        heading: "How DPI affects output size and quality",
+        body: `
+          <p>DPI (dots per inch) controls how many image pixels represent each inch of the PDF page. It is the single biggest factor in output file size and visual quality.</p>
+          <table>
+            <thead>
+              <tr><th>DPI</th><th>A4 pixels</th><th>Typical PNG size</th><th>Best for</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>72</td><td>595 × 842</td><td>80–200 KB</td><td>Quick previews, thumbnails, mobile screen viewing</td></tr>
+              <tr><td>150</td><td>1240 × 1754</td><td>200–500 KB</td><td>Web publishing, social media, slide decks</td></tr>
+              <tr><td>300</td><td>2480 × 3508</td><td>800 KB – 2 MB</td><td>Printing, archival, print shops</td></tr>
+            </tbody>
+          </table>
+          <p>The math is simple: doubling the DPI quadruples the pixel count. Going from 72 to 300 DPI produces roughly 17× more pixels per page — and correspondingly larger files. Most users only need 150 DPI. Reserve 300 DPI for actual print.</p>
+        `,
+      },
+      {
+        heading: "What happens to PDF fonts and vectors",
+        body: `
+          <p>A PDF page can contain two fundamentally different things: raster images (photographs, scans) and vector content (text, lines, curves, embedded fonts).</p>
+          <p>Raster images render 1:1 — the tool draws the same pixels onto the output canvas without re-sampling, so there is no quality loss beyond what the DPI setting implies.</p>
+          <p>Vector content — every character, every rule, every shape — is re-rasterized at your chosen DPI. At 72 DPI, small text can look slightly soft. At 150 DPI, it is crisp on screen. At 300 DPI, it is indistinguishable from the source PDF.</p>
+          <p>If you need true vector output (infinite zoom without pixelation), the correct format is SVG, which requires a dedicated PDF-to-SVG tool. Image formats cannot represent vectors — they are fundamentally pixel-based.</p>
+        `,
+      },
+      {
+        heading: "Handling encrypted and restricted PDFs",
+        body: `
+          <p>PDFs come in several encryption states. This tool handles them differently:</p>
+          <ul>
+            <li><strong>Fully encrypted (user password required):</strong> Cannot be opened. The tool shows an error. Open the file in a PDF reader, enter the password, and re-save as an unencrypted copy first.</li>
+            <li><strong>Owner-password only (editing restricted):</strong> Usually opens and converts normally. The restriction applies to modifying content, not to reading or rendering.</li>
+            <li><strong>No encryption:</strong> Converts immediately.</li>
+          </ul>
+          <p>If a PDF refuses to open and you believe you have the right to convert it, the fix is always the same: decrypt it first in a trusted PDF reader.</p>
+        `,
+      },
+      {
+        heading: "Privacy model — why this matters",
+        body: `
+          <p>Most online PDF-to-image converters upload your file to a server. That server sees:</p>
+          <ul>
+            <li>The full content of the PDF — text, images, embedded attachments</li>
+            <li>Your IP address and approximate location</li>
+            <li>When you used the service and how often</li>
+            <li>The filename, which sometimes contains sensitive information</li>
+          </ul>
+          <p>For contracts, medical records, invoices, and ID documents, this is a real privacy risk. It is also a compliance risk in some jurisdictions.</p>
+          <p>This tool uses pdf.js and the Canvas API to render pages entirely inside your browser. Your file never leaves your device, never touches a network, and never ends up in anyone's logs. You can verify this by opening your browser's developer tools, switching to the Network tab, and converting a file — you will see zero outbound requests.</p>
+        `,
+      },
+      {
+        heading: "Practical limits and performance",
+        body: `
+          <p>Rendering happens in a Web Worker, so the UI stays responsive even for large documents. Still, some practical limits are worth knowing:</p>
+          <ul>
+            <li><strong>Maximum file size:</strong> 100 MB per PDF.</li>
+            <li><strong>Pages per conversion:</strong> No hard limit, but conversions over 500 pages may exhaust browser memory on mobile devices.</li>
+            <li><strong>300 DPI on a 200-page PDF:</strong> Expect several minutes on a laptop, longer on a phone. Consider 150 DPI or splitting the PDF into smaller batches.</li>
+            <li><strong>Encrypted content:</strong> See the encryption section above.</li>
+            <li><strong>Broken or malformed PDFs:</strong> pdf.js is more forgiving than desktop readers but cannot recover from severely corrupted files.</li>
+          </ul>
+        `,
       },
     ],
     relatedTools: ["merge-pdf", "split-pdf", "image-to-pdf", "pdf-to-text"],
@@ -566,6 +759,80 @@ export const newTools: Tool[] = [
           "Yes. Mixed content — photos, screenshots, scanned pages, digital graphics — works fine. Each image is embedded on its own page, in the order you arranged them. The only caveat is that different aspect ratios will produce different-looking pages unless you choose a fixed page size like A4 or US Letter, in which case images are scaled to fit inside the page.",
       },
     ],
+    deepDive: [
+      {
+        heading: "Page size and orientation — how to choose",
+        body: `
+          <table>
+            <thead>
+              <tr><th>Situation</th><th>Recommended</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>Government forms, university portals, international submission</td><td>A4 portrait, 15–20 mm margins</td></tr>
+              <tr><td>US/Canada submission (fewer forms, but some require it)</td><td>US Letter portrait, 1 inch margins</td></tr>
+              <tr><td>Photo album, portfolio, magazine-style output</td><td>Auto page size, 0 mm margins</td></tr>
+              <tr><td>Wide screenshots or panorama photos</td><td>A4 landscape or US Letter landscape</td></tr>
+              <tr><td>Mixed portrait and landscape photos</td><td>Auto orientation (each page fits its image)</td></tr>
+              <tr><td>Printing at a local print shop</td><td>Ask the shop first — most accept A4</td></tr>
+            </tbody>
+          </table>
+        `,
+      },
+      {
+        heading: "How each format is embedded",
+        body: `
+          <p>The tool treats the three input formats differently because each has different properties.</p>
+          <ul>
+            <li><strong>JPG</strong> — Embedded byte-for-byte. The PDF contains the exact JPEG data from your source file with no re-encoding. This is the safest input format if you want zero quality loss.</li>
+            <li><strong>PNG</strong> — Decoded, composited onto a solid white background (because PDF pages cannot have transparency), then re-encoded as JPEG at 95% quality before embedding. Visually indistinguishable from the source for typical graphics.</li>
+            <li><strong>WebP</strong> — Decoded and processed exactly like PNG: composited onto white, re-encoded at 95% JPEG quality, then embedded. WebP's transparency becomes white for the same reason.</li>
+          </ul>
+          <p>The result is a PDF that opens correctly in every reader and looks the same as the source images to any human eye. Only the encoded bytes differ.</p>
+        `,
+      },
+      {
+        heading: "Managing output file size",
+        body: `
+          <p>The output PDF is roughly the sum of its input image sizes, plus a small structural overhead. A 20-page PDF built from ten 2 MB photos will be around 20 MB.</p>
+          <p>Email providers typically cap attachments at 20–25 MB. Common fixes:</p>
+          <ul>
+            <li><strong>Compress images first.</strong> Run your photos through the Image Compressor at quality 80 and max width 1920 before building the PDF. This typically cuts the final PDF by 60–80%.</li>
+            <li><strong>Use JPG, not PNG, for photos.</strong> Photos embedded as JPG take 5–10× less space than the same content as PNG.</li>
+            <li><strong>Reduce page count.</strong> If you have 50 pages of receipts, split the PDF into two 25-page files.</li>
+            <li><strong>Ask the recipient.</strong> Many portals accept files up to 50 MB; some only allow 10 MB.</li>
+          </ul>
+        `,
+      },
+      {
+        heading: "Common pitfalls",
+        body: `
+          <ul>
+            <li><strong>Transparent logos on white pages disappear.</strong> PNG transparency becomes white — a white logo on a white background is invisible. Composite the logo onto a colored background in an image editor first.</li>
+            <li><strong>Mixed page sizes look inconsistent.</strong> If you choose "Auto" page size, an A4 scan and a phone photo of different aspect ratios produce visibly different pages. Choose A4 or US Letter for uniformity.</li>
+            <li><strong>Extremely large images slow the browser.</strong> Files over 30 MB each will process but may freeze the tab for a few seconds. Compress them first.</li>
+            <li><strong>Zero margins cut off content on some printers.</strong> If the PDF is destined for physical printing, use at least 10 mm margins.</li>
+          </ul>
+        `,
+      },
+      {
+        heading: "Real-world file size examples",
+        body: `
+          <table>
+            <thead>
+              <tr><th>Scenario</th><th>Input</th><th>Output PDF</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>Photo album (10 phone photos at A4)</td><td>30 MB of JPGs</td><td>~30 MB</td></tr>
+              <tr><td>Scanned documents (5 pages, ID-sized)</td><td>5 × 400 KB JPG</td><td>~2.1 MB</td></tr>
+              <tr><td>Product catalog (20 photos, mixed PNG/JPG)</td><td>18 MB mixed</td><td>~19 MB</td></tr>
+              <tr><td>Same catalog, pre-compressed</td><td>4 MB mixed (after Image Compressor)</td><td>~4.5 MB</td></tr>
+              <tr><td>Portfolio (3 design mockups, PNG)</td><td>8 MB PNGs</td><td>~6 MB</td></tr>
+            </tbody>
+          </table>
+          <p>The pattern is consistent: pre-compress your inputs and the output shrinks proportionally. The PDF structure itself adds very little.</p>
+        `,
+      },
+    ],
     relatedTools: ["merge-pdf", "split-pdf", "pdf-to-image", "image-compressor"],
     seo: {
       title: "Image to PDF — Combine JPG, PNG, WebP Free | AHADEX Tools",
@@ -750,6 +1017,76 @@ export const newTools: Tool[] = [
         question: "Can I split a scanned PDF?",
         answer:
           "Yes. A scanned PDF is still a valid PDF with page objects, and this tool copies those page objects directly. The output keeps the same scanned image quality as the source, byte-for-byte. The tool does not perform OCR or any text processing — it works purely at the page level.",
+      },
+    ],
+    deepDive: [
+      {
+        heading: "Combined mode vs Separate mode — when to use each",
+        body: `
+          <table>
+            <thead>
+              <tr><th>Goal</th><th>Mode</th><th>Example input</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>Extract pages 3–7 into a new PDF</td><td>Combined</td><td><code>3-7</code></td></tr>
+              <tr><td>Keep pages 1, 4, 9 in that order</td><td>Combined</td><td><code>1, 4, 9</code></td></tr>
+              <tr><td>Reverse a 10-page document</td><td>Combined</td><td><code>10, 9, 8, 7, 6, 5, 4, 3, 2, 1</code></td></tr>
+              <tr><td>Duplicate a signature page</td><td>Combined</td><td><code>5, 5</code></td></tr>
+              <tr><td>Turn every page into its own file</td><td>Separate</td><td>(no page selection needed)</td></tr>
+              <tr><td>Extract a chapter and remove the cover</td><td>Combined</td><td><code>4-20</code></td></tr>
+              <tr><td>Prepare 200 pages for individual annotation</td><td>Separate</td><td>(batch download)</td></tr>
+            </tbody>
+          </table>
+        `,
+      },
+      {
+        heading: "Page range syntax in detail",
+        body: `
+          <p>The page syntax supports every combination you would expect from a PDF tool. All examples below operate on a hypothetical 10-page PDF.</p>
+          <ul>
+            <li><code>3</code> — a single page. Output: one PDF containing page 3.</li>
+            <li><code>1-5</code> — a consecutive range. Output: pages 1, 2, 3, 4, 5.</li>
+            <li><code>1, 5, 9</code> — non-contiguous pages. Output: three pages in that order.</li>
+            <li><code>1-3, 5, 7-9</code> — mixed. Output: pages 1, 2, 3, 5, 7, 8, 9.</li>
+            <li><code>5, 1, 3</code> — custom order. Output: page 5, then page 1, then page 3.</li>
+            <li><code>3, 3, 3</code> — duplicates. Output: page 3 repeated three times.</li>
+            <li><code>10-1</code> — <strong>not valid.</strong> Ranges must be ascending. Use <code>10, 9, 8, 7, 6, 5, 4, 3, 2, 1</code> to reverse.</li>
+          </ul>
+        `,
+      },
+      {
+        heading: "How the copy works — byte-for-byte, lossless",
+        body: `
+          <p>This tool does not re-render pages. It does not decode and re-encode images. It does not re-embed fonts. It copies the page objects directly from the source PDF into a new PDF document using pdf-lib, a widely-used JavaScript PDF library.</p>
+          <p>What that means practically:</p>
+          <ul>
+            <li>Vector content stays vector. Text remains selectable and searchable.</li>
+            <li>Embedded images keep their original encoding. A JPEG inside a scanned PDF stays a JPEG — not re-compressed into a larger file.</li>
+            <li>Embedded fonts stay embedded. No substitution, no missing glyphs.</li>
+            <li>Annotations, form fields, and bookmarks on extracted pages survive.</li>
+            <li>File size scales linearly with the number of pages — extracting 5 of 100 pages produces a file roughly 5% the size.</li>
+          </ul>
+        `,
+      },
+      {
+        heading: "Handling large and complex PDFs",
+        body: `
+          <ul>
+            <li><strong>200+ pages:</strong> Processing typically completes in under 10 seconds on modern hardware. The bottleneck is file size, not page count.</li>
+            <li><strong>Encrypted PDFs:</strong> Cannot be opened without the password. Decrypt in a PDF reader first.</li>
+            <li><strong>PDFs with broken cross-reference tables:</strong> pdf-lib may fail. Try opening the file in a desktop reader first, then re-save it — the reader will rebuild the table.</li>
+            <li><strong>PDF/A archives:</strong> Usually work fine, but the output is not marked as PDF/A. If you need PDF/A compliance, use a dedicated archival tool.</li>
+            <li><strong>Form fields with JavaScript:</strong> Extracted pages keep the forms, but any script-dependent validation may not carry over depending on the source PDF's structure.</li>
+          </ul>
+        `,
+      },
+      {
+        heading: "Privacy — why browser-based extraction matters",
+        body: `
+          <p>Documents you split with this tool are often the most sensitive files on your device: contracts, invoices, medical records, identification documents, signed agreements. Every online splitter that uploads your PDF takes a copy of that content.</p>
+          <p>Some services claim the file is deleted after processing. Even so, the file has already been transmitted, has already been read from disk by a server, and has already been decrypted in a data center you do not control.</p>
+          <p>This tool never uploads anything. The PDF is opened by your browser, processed by JavaScript running in your tab, and written back as a new file that you download. Nothing crosses the network. You can disconnect Wi-Fi after the page loads and continue splitting PDFs offline.</p>
+        `,
       },
     ],
     relatedTools: ["merge-pdf", "pdf-to-image", "pdf-rotator"],

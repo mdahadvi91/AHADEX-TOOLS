@@ -22,12 +22,20 @@ coverage/
 *.pem
 *.key
 
-# Local backups (not committed)
+# Local backups (not committed) — comprehensive
 backups/
 *.bak
+*.bak*
 *.backup
+*.backup*
+*.backup-*
+*.backup2-*
+*.old
+*.orig
+*.swp
+*~
+
 # Temp dirs
 .tmp-*/
 .tmp-*
-
-*.backup-*
+.trash-*/
