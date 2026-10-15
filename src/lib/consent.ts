@@ -31,7 +31,9 @@ declare global {
 /** Sync the global ad-consent flag used by AdSenseSlot */
 function syncAdConsentFlag(granted: boolean): void {
   if (typeof window === "undefined") return;
+
   window.__ahadex_ad_consent__ = granted;
+  window.dispatchEvent(new Event("ahadex:consent-change"));
 }
 
 export function getStoredConsent(): ConsentState | null {

@@ -66,38 +66,62 @@ export function AdSenseSlot({
   const finalSlotId = (slotId ?? getSlotId(slot)).trim();
 
   useEffect(() => {
-    if (!enabled) return;
-    if (!clientId) return;
-    if (!finalSlotId) return;
-    if (pushedRef.current) return;
-    if (!insRef.current) return;
+    if (!enabled || !clientId || !finalSlotId || !insRef.current) return;
 
-    // Respect consent — if denied, do not push
-    if (!isAdConsentGranted()) return;
-
-    // Lazy render: only when scrolled into view
     const node = insRef.current;
-    const observer = new IntersectionObserver(
-      (entries) => {
-        for (const entry of entries) {
-          if (!entry.isIntersecting) continue;
-          if (pushedRef.current) break;
-          try {
-            // eslint-disable-next-line @typescript-eslint/no-explicit-any
-            ((window as any).adsbygoogle = (window as any).adsbygoogle || []).push({});
-            pushedRef.current = true;
-          } catch {
-            /* AdSense throws if already filled — ignore */
-          }
-          observer.disconnect();
-          break;
-        }
-      },
-      { rootMargin: "200px 0px", threshold: 0.01 }
-    );
+    let observer: IntersectionObserver | null = null;
 
-    observer.observe(node);
-    return () => observer.disconnect();
+    const stopObserving = () => {
+      observer?.disconnect();
+      observer = null;
+    };
+
+    const startObserving = () => {
+      if (!isAdConsentGranted() || pushedRef.current || observer) return;
+      if (typeof IntersectionObserver === "undefined") return;
+
+      observer = new IntersectionObserver(
+        (entries) => {
+          for (const entry of entries) {
+            if (!entry.isIntersecting) continue;
+            if (pushedRef.current) {
+              stopObserving();
+              break;
+            }
+
+            try {
+              // eslint-disable-next-line @typescript-eslint/no-explicit-any
+              ((window as any).adsbygoogle = (window as any).adsbygoogle || []).push({});
+              pushedRef.current = true;
+            } catch {
+              /* Ignore AdSense push errors; do not claim success. */
+            }
+
+            stopObserving();
+            break;
+          }
+        },
+        { rootMargin: "200px 0px", threshold: 0.01 }
+      );
+
+      observer.observe(node);
+    };
+
+    const handleConsentChange = () => {
+      if (isAdConsentGranted()) {
+        startObserving();
+      } else {
+        stopObserving();
+      }
+    };
+
+    window.addEventListener("ahadex:consent-change", handleConsentChange);
+    handleConsentChange();
+
+    return () => {
+      window.removeEventListener("ahadex:consent-change", handleConsentChange);
+      stopObserving();
+    };
   }, [enabled, clientId, finalSlotId]);
 
   // Silent no-op when disabled or unconfigured

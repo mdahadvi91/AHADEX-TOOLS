@@ -26,7 +26,6 @@ coverage/
 backups/
 *.bak
 *.backup
-index.html.bak-ezoic
 # Temp dirs
 .tmp-*/
 .tmp-*

@@ -2,8 +2,8 @@ import type { TrustPageContent } from "@components/trust/TrustPageLayout";
 import type { Language } from "@/types/common";
 
 const CONTACT = "mdahadvi91@gmail.com";
-const UPDATED_EN = "Last updated: October 2025";
-const UPDATED_BN = "সর্বশেষ আপডেট: অক্টোবর ২০২৫";
+const UPDATED_EN = "Last updated: October 2026";
+const UPDATED_BN = "সর্বশেষ আপডেট: অক্টোবর ২০২৬";
 
 export const trustContent: Record<
   Language,
@@ -63,18 +63,18 @@ export const trustContent: Record<
         {
           heading: "5. Advertising",
           paragraphs: [
-            "AHADEX Tools is supported by advertising. We work with Google AdSense and Ezoic to serve ads that help keep every tool free. Both partners may use cookies and similar technologies to display relevant ads and measure their performance.",
+            "AHADEX Tools is supported by Google AdSense advertising, which helps keep our tools free. Google may use cookies and similar technologies for ad delivery and measurement, subject to applicable settings and consent signals.",
             "Google may use cookies to serve ads based on your prior visits to this and other websites. You can opt out of personalised advertising at Google Ads Settings (adssettings.google.com).",
-            "Ezoic may also process limited technical data (IP address, device type, approximate location, and browsing behaviour on this site) to optimise ad delivery and measure campaign performance. Their privacy practices are governed by the Ezoic Privacy Policy (ezoic.com/privacy).",
+            "Google and its advertising partners may process technical information such as browser or device data, cookie identifiers, approximate location, and interactions with ads, subject to Google's policies and applicable law.",
             "We do not place ads on top of tool workspaces, download buttons, or anywhere that would confuse the user about what is an ad and what is a tool.",
           ],
         },
         {
           heading: "6. Consent Management",
           paragraphs: [
-            "When you first visit the site, we show a consent banner powered by Ezoic's Consent Management Platform (CMP). This banner lets you choose whether to allow personalised advertising and analytics cookies.",
-            "By default, no personalised advertising or analytics cookies are set until you actively consent. If you reject, we serve non-personalised ads only and do not track you across sites.",
-            "You can change your consent choices at any time by clearing your browser cookies and reloading the page.",
+            "When you first visit, our own consent banner lets you choose whether to allow analytics and advertising. Google Consent Mode defaults are configured before Google tags load, and the site sends consent updates when you save your choice. This custom banner is not represented as a Google-certified consent management platform.",
+            "Optional analytics and advertising consent signals default to denied until you make a choice. Google scripts may still be requested by the page, and rejecting consent does not guarantee that every third-party network request is blocked.",
+            "To display the consent banner again, clear this site's stored site data in your browser and reload the page.",
           ],
         },
         {
@@ -85,7 +85,6 @@ export const trustContent: Record<
           bullets: [
             "Google Analytics 4 — anonymous page-view and tool-usage analytics (measurement ID G-NJB6S9E9N3).",
             "Google AdSense — advertising delivery and measurement (publisher ID ca-pub-5216241068377334).",
-            "Ezoic — advertising optimisation and consent management.",
             "Google Fonts — web font delivery (only your IP address is exposed to Google's servers).",
             "Cloudflare — CDN, security, and performance (all traffic passes through Cloudflare's edge).",
           ],
@@ -98,7 +97,7 @@ export const trustContent: Record<
           bullets: [
             "Essential — needed for the site to function (consent preferences, theme, language).",
             "Analytics — anonymous usage statistics via Google Analytics 4 (only after you consent).",
-            "Advertising — ad delivery and measurement via Google AdSense and Ezoic (only after you consent).",
+            "Advertising — Google AdSense ad delivery and measurement, subject to consent signals, product settings, and applicable law.",
           ],
         },
         {
@@ -403,18 +402,18 @@ export const trustContent: Record<
         {
           heading: "৫. বিজ্ঞাপন",
           paragraphs: [
-            "AHADEX Tools বিজ্ঞাপনের সহায়তায় চলে। আমরা Google AdSense এবং Ezoic-এর সাথে কাজ করি, যারা প্রতিটি টুল ফ্রি রাখতে সাহায্য করে। উভয় পার্টনার প্রাসঙ্গিক বিজ্ঞাপন দেখাতে এবং পারফরম্যান্স মাপতে cookies ও অনুরূপ টেকনোলজি ব্যবহার করতে পারে।",
+            "AHADEX Tools Google AdSense বিজ্ঞাপনের সহায়তায় চলে, যা আমাদের টুলগুলো বিনামূল্যে রাখতে সাহায্য করে। Google প্রযোজ্য সেটিংস ও সম্মতির সংকেত অনুযায়ী বিজ্ঞাপন দেখানো এবং তার কার্যকারিতা মাপার জন্য cookies ও অনুরূপ প্রযুক্তি ব্যবহার করতে পারে।",
             "Google আপনার এই ও অন্যান্য ওয়েবসাইটে পূর্বের ভিজিটের ওপর ভিত্তি করে বিজ্ঞাপন দেখাতে cookies ব্যবহার করতে পারে। Google Ads Settings (adssettings.google.com) থেকে আপনি পার্সোনালাইজড বিজ্ঞাপন বন্ধ করতে পারেন।",
-            "Ezoic সীমিত টেকনিক্যাল ডেটা (IP ঠিকানা, ডিভাইসের ধরন, আনুমানিক অবস্থান এবং এই সাইটে ব্রাউজিং আচরণ) প্রসেস করতে পারে বিজ্ঞাপন ডেলিভারি অপটিমাইজ করতে। তাদের প্রাইভেসি প্র্যাকটিস Ezoic Privacy Policy (ezoic.com/privacy) দ্বারা নিয়ন্ত্রিত।",
+            "Google এবং তার বিজ্ঞাপন-সংক্রান্ত পার্টনাররা ব্রাউজার বা ডিভাইসের তথ্য, cookie identifier, আনুমানিক অবস্থান এবং বিজ্ঞাপনের সঙ্গে ব্যবহারকারীর মিথস্ক্রিয়ার মতো প্রযুক্তিগত তথ্য প্রক্রিয়া করতে পারে। এটি Google-এর নীতি ও প্রযোজ্য আইন অনুযায়ী পরিচালিত হয়।",
             "আমরা টুল workspace, ডাউনলোড বাটন বা এমন কোনো জায়গায় বিজ্ঞাপন বসাই না যা ব্যবহারকারীকে বিভ্রান্ত করতে পারে কোনটা বিজ্ঞাপন আর কোনটা টুল।",
           ],
         },
         {
           heading: "৬. কনসেন্ট ম্যানেজমেন্ট",
           paragraphs: [
-            "প্রথম ভিজিটে আমরা Ezoic-এর Consent Management Platform (CMP) দ্বারা পরিচালিত একটি কনসেন্ট ব্যানার দেখাই। এই ব্যানার দিয়ে আপনি বেছে নিতে পারেন পার্সোনালাইজড বিজ্ঞাপন এবং অ্যানালিটিক্স cookies অনুমোদন করবেন কি না।",
-            "ডিফল্টভাবে, আপনার সক্রিয় সম্মতি ছাড়া কোনো পার্সোনালাইজড বিজ্ঞাপন বা অ্যানালিটিক্স cookie সেট হয় না। আপনি যদি প্রত্যাখ্যান করেন, আমরা শুধু নন-পার্সোনালাইজড বিজ্ঞাপন দেখাই এবং সাইটের বাইরে আপনাকে ট্র্যাক করি না।",
-            "আপনি যেকোনো সময় আপনার ব্রাউজার cookies ক্লিয়ার করে পেজ রিলোড করে কনসেন্ট পছন্দ পরিবর্তন করতে পারেন।",
+            "প্রথমবার ভিজিট করলে আমাদের নিজস্ব কনসেন্ট ব্যানারে অ্যানালিটিক্স ও বিজ্ঞাপনের অনুমতি বেছে নেওয়া যায়। Google tag লোড হওয়ার আগেই Consent Mode-এর ডিফল্ট সেটিংস নির্ধারণ করা হয় এবং পছন্দ সেভ করলে Google-কে আপডেট পাঠানো হয়। এই কাস্টম ব্যানারকে Google-certified consent management platform বলে দাবি করা হচ্ছে না।",
+            "আপনি পছন্দ জানানোর আগে ঐচ্ছিক অ্যানালিটিক্স ও বিজ্ঞাপনের সম্মতির সংকেত ডিফল্টভাবে denied থাকে। তবুও পেজ থেকে Google-এর script-এর অনুরোধ যেতে পারে; সম্মতি প্রত্যাখ্যান করলেই প্রতিটি third-party network request বন্ধ হবে, এমন নিশ্চয়তা নেই।",
+            "কনসেন্ট ব্যানার আবার দেখাতে ব্রাউজারে এই সাইটের সংরক্ষিত site data মুছে পেজ রিলোড করুন।",
           ],
         },
         {
@@ -425,7 +424,6 @@ export const trustContent: Record<
           bullets: [
             "Google Analytics 4 — anonymous page-view এবং tool-usage analytics (measurement ID G-NJB6S9E9N3)।",
             "Google AdSense — বিজ্ঞাপন ডেলিভারি ও মাপ (publisher ID ca-pub-5216241068377334)।",
-            "Ezoic — বিজ্ঞাপন অপটিমাইজেশন ও কনসেন্ট ম্যানেজমেন্ট।",
             "Google Fonts — ওয়েব ফন্ট ডেলিভারি (শুধু আপনার IP ঠিকানা Google-এর সার্ভারে যায়)।",
             "Cloudflare — CDN, সিকিউরিটি ও পারফরম্যান্স (সব ট্রাফিক Cloudflare edge দিয়ে যায়)।",
           ],
@@ -438,7 +436,7 @@ export const trustContent: Record<
           bullets: [
             "Essential — সাইট কাজ করার জন্য প্রয়োজন (কনসেন্ট পছন্দ, থিম, ভাষা)।",
             "Analytics — Google Analytics 4-এর মাধ্যমে anonymous usage statistics (শুধু আপনার সম্মতির পরে)।",
-            "Advertising — Google AdSense ও Ezoic-এর মাধ্যমে বিজ্ঞাপন ডেলিভারি ও মাপ (শুধু আপনার সম্মতির পরে)।",
+            "বিজ্ঞাপন — সম্মতির সংকেত, পণ্যের সেটিংস ও প্রযোজ্য আইন অনুযায়ী Google AdSense-এর বিজ্ঞাপন প্রদর্শন ও পরিমাপ।",
           ],
         },
         {
