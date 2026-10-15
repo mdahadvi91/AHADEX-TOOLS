@@ -90,7 +90,7 @@ export const photoQrContent = {
         step: 5,
         title: "Download at full resolution ⬇️",
         description:
-          "Click Download to save a PNG at the original photo resolution. The QR stays perfectly sharp and scannable at any size — screen or print. 🖨️",
+          "Click Download to save a PNG at the original photo resolution. The QR remains sharp and scannable at typical sizes — screen or print. 🖨️",
       },
     ],
     features: [
@@ -145,7 +145,7 @@ export const photoQrContent = {
       {
         question: "Which file formats are supported? 📁",
         answer:
-          "You can upload JPG, PNG, and WebP images. The upload is limited to 50 MB per file, which covers almost every photo taken by any modern phone or camera. The output is always a PNG file — we choose PNG because it is lossless and keeps both your original photo and the QR code perfectly sharp. ✨",
+          "You can upload JPG, PNG, and WebP images. The upload is limited to 50 MB per file, which covers almost every photo taken by any modern phone or camera. The output is always a PNG file — we choose PNG because it is lossless and keeps both your original photo and the QR code sharp. ✨",
       },
       {
         question: "Can I use the result for commercial purposes? 💼",

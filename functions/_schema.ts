@@ -86,7 +86,7 @@ export const SSR_SCHEMA: Record<string, object> = {
             "name": "Which file formats are supported? 📁",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "You can upload JPG, PNG, and WebP images. The upload is limited to 50 MB per file, which covers almost every photo taken by any modern phone or camera. The output is always a PNG file — we choose PNG because it is lossless and keeps both your original photo and the QR code perfectly sharp. ✨"
+              "text": "You can upload JPG, PNG, and WebP images. The upload is limited to 50 MB per file, which covers almost every photo taken by any modern phone or camera. The output is always a PNG file — we choose PNG because it is lossless and keeps both your original photo and the QR code sharp. ✨"
             }
           },
           {
@@ -156,7 +156,7 @@ export const SSR_SCHEMA: Record<string, object> = {
             "@type": "HowToStep",
             "position": 5,
             "name": "Download at full resolution ⬇️",
-            "text": "Click Download to save a PNG at the original photo resolution. The QR stays perfectly sharp and scannable at any size — screen or print. 🖨️"
+            "text": "Click Download to save a PNG at the original photo resolution. The QR remains sharp and scannable at typical sizes — screen or print. 🖨️"
           }
         ]
       }
@@ -3770,7 +3770,7 @@ export const SSR_SCHEMA: Record<string, object> = {
             "name": "Will the quality drop when I convert?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "It depends on the direction. Converting to PNG is lossless — every pixel survives exactly. Converting to JPG uses 92% quality, which is visually indistinguishable from the source in normal viewing. Converting to WebP uses 85% quality, which also looks identical at normal sizes and saves the most bytes. Only when you go from PNG → JPG or WebP → JPG do you risk losing transparency (JPG has no alpha channel; transparent areas become white)."
+              "text": "It depends on the direction. Converting to PNG is lossless — every pixel survives exactly. Converting to JPG uses 92% quality, which is visually very close to the source at normal viewing distance. Converting to WebP uses 85% quality, which also looks identical at normal sizes and saves the most bytes. Only when you go from PNG → JPG or WebP → JPG do you risk losing transparency (JPG has no alpha channel; transparent areas become white)."
             }
           },
           {
@@ -3810,7 +3810,7 @@ export const SSR_SCHEMA: Record<string, object> = {
             "name": "Is there a file size limit?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "Each file can be up to 50 MB, which covers almost every image produced by a modern phone or DSLR camera. There is no limit on the number of files you convert in one session — a batch of 200 photos works fine. Very large images (over 8000 pixels on the long edge) may take a second or two longer to process on older devices."
+              "text": "Each file can be up to 50 MB, which covers almost every image produced by a modern phone or DSLR camera. There is no limit on the number of files you convert in one session — a batch of 200 photos typically converts without trouble. Very large images (over 8000 pixels on the long edge) may take a second or two longer to process on older devices."
             }
           },
           {
@@ -3826,7 +3826,7 @@ export const SSR_SCHEMA: Record<string, object> = {
             "name": "Does converting to WebP affect how the image looks on screen?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "No. At the quality setting this tool uses (85%), WebP is visually indistinguishable from the source for photographs, screenshots, and graphics. Every browser since 2020 renders WebP natively, so images display identically across Chrome, Firefox, Safari, and Edge. The only visible difference is the smaller file size and faster page load."
+              "text": "No. At the quality setting this tool uses (85%), WebP is visually very close to the source for photographs, screenshots, and graphics. Every browser since 2020 renders WebP natively, so images display identically across Chrome, Firefox, Safari, and Edge. The only visible difference is the smaller file size and faster page load."
             }
           },
           {
@@ -4064,7 +4064,7 @@ export const SSR_SCHEMA: Record<string, object> = {
             "name": "What image format should I pick for print?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "For print, use 300 DPI and PNG. PNG is lossless, so text and line art stay perfectly sharp. For photographs, PNG is fine too, though JPG at 300 DPI is also acceptable and produces much smaller files."
+              "text": "For print, use 300 DPI and PNG. PNG is lossless, so text and line art stay sharp. For photographs, PNG is fine too, though JPG at 300 DPI is also acceptable and produces much smaller files."
             }
           },
           {
@@ -4222,7 +4222,7 @@ export const SSR_SCHEMA: Record<string, object> = {
             "name": "What image formats can I combine into a PDF?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "JPG, JPEG, PNG, and WebP — and you can mix them freely in the same batch. JPG images are embedded byte-for-byte, so the output PDF contains the original JPEG data exactly. PNG and WebP images are composited onto a solid white background and re-encoded at 95% JPEG quality, which is visually indistinguishable from the source for typical graphics and screenshots. Transparent areas in PNG and WebP become white — this is standard behaviour because PDF pages cannot contain transparency."
+              "text": "JPG, JPEG, PNG, and WebP — and you can mix them freely in the same batch. JPG images are embedded byte-for-byte, so the output PDF contains the original JPEG data exactly. PNG and WebP images are composited onto a solid white background and re-encoded at 95% JPEG quality, which is visually very close to the source for typical graphics and screenshots. Transparent areas in PNG and WebP become white — this is standard behaviour because PDF pages cannot contain transparency."
             }
           },
           {
@@ -4238,7 +4238,7 @@ export const SSR_SCHEMA: Record<string, object> = {
             "name": "Will the image quality drop when I convert to PDF?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "For JPG input, no — the image is embedded byte-for-byte, so the PDF contains the exact JPEG data from your source. For PNG and WebP input, the images are composited onto white and re-encoded at 95% JPEG quality, which is visually identical for the vast majority of graphics, screenshots, and photos. If you need guaranteed lossless output, JPG input is the safest choice because it avoids any re-encoding."
+              "text": "For JPG input, no — the image is embedded byte-for-byte, so the PDF contains the original JPEG stream from your source. For PNG and WebP input, the images are composited onto white and re-encoded at 95% JPEG quality, which is visually very close for the vast majority of graphics, screenshots, and photos. If you need lossless output, JPG input is the safest choice because it avoids any re-encoding."
             }
           },
           {
@@ -4334,7 +4334,7 @@ export const SSR_SCHEMA: Record<string, object> = {
             "name": "Can I combine photos and screenshots in the same PDF?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "Yes. Mixed content — photos, screenshots, scanned pages, digital graphics — works fine. Each image is embedded on its own page, in the order you arranged them. The only caveat is that different aspect ratios will produce different-looking pages unless you choose a fixed page size like A4 or US Letter, in which case images are scaled to fit inside the page."
+              "text": "Yes. Mixed content — photos, screenshots, scanned pages, digital graphics — all work. Each image is embedded on its own page, in the order you arranged them. The only caveat is that different aspect ratios will produce different-looking pages unless you choose a fixed page size like A4 or US Letter, in which case images are scaled to fit inside the page."
             }
           }
         ]
