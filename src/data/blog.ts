@@ -46,7 +46,7 @@ export const blogPosts: BlogPost[] = [
     emoji: "📸",
     category: "Image Tools",
     readTime: 8,
-    publishedAt: "2026-10-06",
+    publishedAt: "2026-08-06",
     authorId: "mohammad-ahad",
     relatedTool: "image-compressor",
     blocks: [
@@ -121,7 +121,7 @@ export const blogPosts: BlogPost[] = [
     emoji: "📄",
     category: "PDF Tools",
     readTime: 7,
-    publishedAt: "2026-10-06",
+    publishedAt: "2026-08-24",
     authorId: "mohammad-ahad",
     relatedTool: "merge-pdf",
     blocks: [
@@ -188,7 +188,7 @@ export const blogPosts: BlogPost[] = [
     emoji: "📋",
     category: "Developer Tools",
     readTime: 6,
-    publishedAt: "2026-10-06",
+    publishedAt: "2026-09-02",
     authorId: "mohammad-ahad",
     relatedTool: "json-formatter",
     blocks: [
@@ -253,7 +253,7 @@ export const blogPosts: BlogPost[] = [
     emoji: "🔐",
     category: "Security",
     readTime: 6,
-    publishedAt: "2026-10-06",
+    publishedAt: "2026-09-08",
     authorId: "mohammad-ahad",
     relatedTool: "password-generator",
     blocks: [
@@ -315,7 +315,7 @@ export const blogPosts: BlogPost[] = [
     emoji: "🔤",
     category: "Developer Tools",
     readTime: 5,
-    publishedAt: "2026-10-06",
+    publishedAt: "2026-09-05",
     authorId: "mohammad-ahad",
     relatedTool: "base64-encoder",
     blocks: [
@@ -369,7 +369,7 @@ export const blogPosts: BlogPost[] = [
     emoji: "🖼️",
     category: "Image Tools",
     readTime: 9,
-    publishedAt: "2026-10-06",
+    publishedAt: "2026-08-12",
     authorId: "mohammad-ahad",
     relatedTool: "image-resizer",
     blocks: [
@@ -488,7 +488,7 @@ export const blogPosts: BlogPost[] = [
     emoji: "📄",
     category: "PDF Tools",
     readTime: 7,
-    publishedAt: "2026-10-06",
+    publishedAt: "2026-08-29",
     authorId: "mohammad-ahad",
     relatedTool: "jpg-to-pdf",
     blocks: [
@@ -571,7 +571,7 @@ export const blogPosts: BlogPost[] = [
     emoji: "🆔",
     category: "Developer Tools",
     readTime: 6,
-    publishedAt: "2026-10-06",
+    publishedAt: "2026-09-11",
     authorId: "mohammad-ahad",
     relatedTool: "uuid-generator",
     blocks: [
@@ -656,7 +656,7 @@ export const blogPosts: BlogPost[] = [
     emoji: "📱",
     category: "QR Tools",
     readTime: 6,
-    publishedAt: "2026-10-06",
+    publishedAt: "2026-10-08",
     authorId: "mohammad-ahad",
     relatedTool: "photo-qr",
     blocks: [
@@ -753,7 +753,7 @@ export const blogPosts: BlogPost[] = [
     emoji: "📝",
     category: "Text Tools",
     readTime: 7,
-    publishedAt: "2026-10-06",
+    publishedAt: "2026-09-23",
     authorId: "mohammad-ahad",
     relatedTool: "word-counter",
     blocks: [
@@ -864,7 +864,7 @@ export const blogPosts: BlogPost[] = [
     emoji: "📐",
     category: "Image Tools",
     readTime: 8,
-    publishedAt: "2026-10-06",
+    publishedAt: "2026-10-02",
     authorId: "mohammad-ahad",
     relatedTool: "image-resizer",
     blocks: [
@@ -1001,7 +1001,7 @@ export const blogPosts: BlogPost[] = [
     emoji: "🖼️",
     category: "PDF Tools",
     readTime: 7,
-    publishedAt: "2026-10-06",
+    publishedAt: "2026-09-28",
     authorId: "mohammad-ahad",
     relatedTool: "pdf-to-jpg",
     blocks: [
@@ -1082,7 +1082,7 @@ export const blogPosts: BlogPost[] = [
     emoji: "📊",
     category: "Developer Tools",
     readTime: 6,
-    publishedAt: "2026-10-06",
+    publishedAt: "2026-09-17",
     authorId: "mohammad-ahad",
     relatedTool: "json-formatter",
     blocks: [
@@ -1176,7 +1176,7 @@ export const blogPosts: BlogPost[] = [
     emoji: "⭐",
     category: "Image Tools",
     readTime: 7,
-    publishedAt: "2026-10-06",
+    publishedAt: "2026-10-10",
     authorId: "mohammad-ahad",
     relatedTool: "favicon-generator",
     blocks: [
@@ -1274,7 +1274,7 @@ export const blogPosts: BlogPost[] = [
     emoji: "🔗",
     category: "Developer Tools",
     readTime: 6,
-    publishedAt: "2026-10-06",
+    publishedAt: "2026-09-14",
     authorId: "mohammad-ahad",
     relatedTool: "url-encoder",
     blocks: [
@@ -1367,7 +1367,7 @@ export const blogPosts: BlogPost[] = [
     emoji: "🐦",
     category: "Text Tools",
     readTime: 6,
-    publishedAt: "2026-10-06",
+    publishedAt: "2026-09-25",
     authorId: "mohammad-ahad",
     relatedTool: "character-counter",
     blocks: [
@@ -1452,7 +1452,7 @@ export const blogPosts: BlogPost[] = [
     emoji: "📊",
     category: "QR Tools",
     readTime: 6,
-    publishedAt: "2026-10-06",
+    publishedAt: "2026-10-09",
     authorId: "mohammad-ahad",
     relatedTool: "barcode-generator",
     blocks: [
@@ -1557,7 +1557,7 @@ export const blogPosts: BlogPost[] = [
     emoji: "✍️",
     category: "Text Tools",
     readTime: 6,
-    publishedAt: "2026-10-06",
+    publishedAt: "2026-09-20",
     authorId: "mohammad-ahad",
     relatedTool: "text-case-converter",
     blocks: [
@@ -1661,7 +1661,7 @@ export const blogPosts: BlogPost[] = [
     emoji: "🎨",
     category: "Image Tools",
     readTime: 7,
-    publishedAt: "2026-10-06",
+    publishedAt: "2026-10-03",
     authorId: "mohammad-ahad",
     relatedTool: "image-to-sketch",
     blocks: [
@@ -1744,7 +1744,7 @@ export const blogPosts: BlogPost[] = [
     emoji: "✂️",
     category: "Image Tools",
     readTime: 7,
-    publishedAt: "2026-10-06",
+    publishedAt: "2026-10-01",
     authorId: "mohammad-ahad",
     relatedTool: "image-cropper",
     blocks: [
@@ -1881,7 +1881,7 @@ export const blogPosts: BlogPost[] = [
     emoji: "📉",
     category: "PDF Tools",
     readTime: 7,
-    publishedAt: "2026-10-06",
+    publishedAt: "2026-09-27",
     authorId: "mohammad-ahad",
     relatedTool: "merge-pdf",
     blocks: [
@@ -1962,7 +1962,7 @@ export const blogPosts: BlogPost[] = [
     emoji: "🎓",
     category: "Productivity",
     readTime: 8,
-    publishedAt: "2026-10-06",
+    publishedAt: "2026-10-15",
     authorId: "mohammad-ahad",
     relatedTool: "merge-pdf",
     blocks: [
@@ -2057,7 +2057,7 @@ export const blogPosts: BlogPost[] = [
     emoji: "🔍",
     category: "Privacy",
     readTime: 6,
-    publishedAt: "2026-10-06",
+    publishedAt: "2026-10-13",
     authorId: "mohammad-ahad",
     relatedTool: "image-metadata-viewer",
     blocks: [
@@ -2143,7 +2143,7 @@ export const blogPosts: BlogPost[] = [
     emoji: "🌐",
     category: "Image Tools",
     readTime: 7,
-    publishedAt: "2026-10-06",
+    publishedAt: "2026-08-18",
     authorId: "mohammad-ahad",
     relatedTool: "jpg-to-webp",
     blocks: [
@@ -2238,7 +2238,7 @@ export const blogPosts: BlogPost[] = [
     emoji: "💼",
     category: "Career",
     readTime: 8,
-    publishedAt: "2026-10-06",
+    publishedAt: "2026-10-13",
     authorId: "mohammad-ahad",
     relatedTool: "cv-builder",
     blocks: [
@@ -2345,7 +2345,7 @@ export const blogPosts: BlogPost[] = [
     emoji: "🖼️",
     category: "Image Tools",
     readTime: 6,
-    publishedAt: "2026-10-06",
+    publishedAt: "2026-10-05",
     authorId: "mohammad-ahad",
     relatedTool: "image-resizer",
     blocks: [
@@ -2426,7 +2426,7 @@ export const blogPosts: BlogPost[] = [
     emoji: "🎬",
     category: "Image Tools",
     readTime: 7,
-    publishedAt: "2026-10-06",
+    publishedAt: "2026-10-12",
     authorId: "mohammad-ahad",
     relatedTool: "image-resizer",
     blocks: [
@@ -2514,7 +2514,7 @@ export const blogPosts: BlogPost[] = [
     emoji: "📧",
     category: "Productivity",
     readTime: 6,
-    publishedAt: "2026-10-06",
+    publishedAt: "2026-10-14",
     authorId: "mohammad-ahad",
     relatedTool: "image-compressor",
     blocks: [
@@ -2587,7 +2587,7 @@ export const blogPosts: BlogPost[] = [
     emoji: "🎨",
     category: "Design",
     readTime: 7,
-    publishedAt: "2026-10-06",
+    publishedAt: "2026-10-11",
     authorId: "mohammad-ahad",
     relatedTool: "favicon-generator",
     blocks: [
@@ -2691,7 +2691,7 @@ export const blogPosts: BlogPost[] = [
     emoji: "🛡️",
     category: "Privacy",
     readTime: 9,
-    publishedAt: "2026-10-06",
+    publishedAt: "2026-10-15",
     authorId: "mohammad-ahad",
     relatedTool: "password-generator",
     blocks: [
@@ -2817,7 +2817,7 @@ export const blogPosts: BlogPost[] = [
     emoji: "📱",
     category: "Image Tools",
     readTime: 6,
-    publishedAt: "2026-10-06",
+    publishedAt: "2026-10-04",
     authorId: "mohammad-ahad",
     relatedTool: "jpg-to-png",
     blocks: [
@@ -2973,7 +2973,7 @@ export const blogPosts: BlogPost[] = [
     emoji: "⚡",
     category: "Developer Tools",
     readTime: 8,
-    publishedAt: "2026-10-06",
+    publishedAt: "2026-10-14",
     authorId: "mohammad-ahad",
     relatedTool: "image-compressor",
     blocks: [
@@ -3092,7 +3092,7 @@ export const blogPosts: BlogPost[] = [
     emoji: "💻",
     category: "Productivity",
     readTime: 8,
-    publishedAt: "2026-10-06",
+    publishedAt: "2026-10-15",
     authorId: "mohammad-ahad",
     relatedTool: "merge-pdf",
     blocks: [
@@ -3191,7 +3191,7 @@ export const blogPosts: BlogPost[] = [
     emoji: "⭐",
     category: "Design",
     readTime: 6,
-    publishedAt: "2026-10-06",
+    publishedAt: "2026-10-10",
     authorId: "mohammad-ahad",
     relatedTool: "favicon-generator",
     blocks: [
@@ -3285,7 +3285,7 @@ export const blogPosts: BlogPost[] = [
     emoji: "🔒",
     category: "Image Tools",
     readTime: 6,
-    publishedAt: "2026-10-06",
+    publishedAt: "2026-10-07",
     authorId: "mohammad-ahad",
     relatedTool: "image-cropper",
     blocks: [
