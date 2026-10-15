@@ -1072,7 +1072,7 @@ export const SSR_SCHEMA: Record<string, object> = {
             "name": "Will the PDF quality drop?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "No. Pages are copied byte-for-byte without re-rendering — the merged PDF is identical to the originals."
+              "text": "No. Page content is copied without re-rendering — text stays selectable, embedded fonts and images keep their original encoding, and every page opens identically to the source."
             }
           },
           {
