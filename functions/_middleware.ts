@@ -23,6 +23,7 @@ import {
   type BlogMeta,
 } from "./_data";
 import { SSR_CONTENT } from "./_ssr-content";
+import { SSR_SCHEMA } from "./_schema";
 
 const SITE_URL = "https://ahadex.fun";
 
@@ -80,6 +81,42 @@ function isStaticFile(pathname: string): boolean {
   return false;
 }
 
+
+/* ── Inject JSON-LD schema into <head> for a tool path ── */
+function injectSchema(html: string, pathname: string): string {
+  const schema = SSR_SCHEMA[pathname];
+  if (!schema) return html;
+
+  const scriptTag = `<script type="application/ld+json" data-ssr-schema="true">${JSON.stringify(schema)}</script>`;
+
+  // Remove any prior injected schema to keep responses idempotent.
+  const cleaned = html.replace(
+    /<script type="application\/ld\+json" data-ssr-schema="true">[\s\S]*?<\/script>/g,
+    ""
+  );
+
+  if (cleaned.includes("</head>")) {
+    return cleaned.replace("</head>", `${scriptTag}</head>`);
+  }
+  return cleaned;
+}
+
+/* ── Inject hreflang tags for bilingual SEO ── */
+function injectHreflang(html: string, canonical: string): string {
+  // Both en and bn serve the same URL (no /bn/ prefix), so hreflang
+  // points both language variants at the canonical URL. This tells
+  // Google that bn and en are alternatives of the same page, not
+  // duplicates.
+  const tags = `
+    <link rel="alternate" hreflang="en" href="${canonical}" />
+    <link rel="alternate" hreflang="bn" href="${canonical}" />
+    <link rel="alternate" hreflang="x-default" href="${canonical}" />`;
+
+  if (html.includes("</head>")) {
+    return html.replace("</head>", `${tags}</head>`);
+  }
+  return html;
+}
 
 /* ── Inject SSR content for crawlers (before <div id="root">) ── */
 function injectSSRContent(html: string, pathname: string): string {
@@ -333,7 +370,9 @@ export const onRequest: PagesFunction<Env> = async (context) => {
     "</head>",
     `${buildMetaBlock(meta)}</head>`
   );
-  const injected = injectSSRContent(withMeta, pathname);
+  const withSchema = injectSchema(withMeta, pathname);
+  const withHreflang = injectHreflang(withSchema, meta.canonical);
+  const injected = injectSSRContent(withHreflang, pathname);
 
   return new Response(injected, {
     status: 200,
