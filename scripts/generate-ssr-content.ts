@@ -52,28 +52,54 @@ function buildTrustPage(content: typeof trustContent.en.privacy): string {
   </article>`;
 }
 
-/* ── Build tool page HTML (basic) ── */
+/* ── Shared privacy paragraph (same truth for every tool) ── */
+const PRIVACY_PARAGRAPH =
+  "This tool runs entirely inside your browser using standard web technologies — the Canvas API for images, pdf-lib for PDFs, Web Crypto for passwords, and pure JavaScript for everything else. Your files, text, and data are never uploaded to any server, never stored, and never shared with anyone. There is no account to create, no signup, and no analytics on your content. Close the tab and every trace is gone.";
+
+/* ── Build tool page HTML ── */
 function buildToolPage(tool: typeof tools[0]): string {
   const features = tool.features
     .map((f) => `<li><strong>${esc(f.title)}</strong>: ${esc(f.description)}</li>`)
     .join("");
+
   const howTo = tool.howTo
     .map((h) => `<li><strong>${esc(h.title)}</strong>: ${esc(h.description)}</li>`)
     .join("");
+
   const faq = tool.faq
     .map((f) => `<div><h3>${esc(f.question)}</h3><p>${esc(f.answer)}</p></div>`)
     .join("");
 
+  // Related tools — look up each slug in the full tools array so we can
+  // emit both a link and a short description. Slugs that no longer exist
+  // (e.g. from an old consolidation) are silently dropped.
+  const relatedTools = (tool.relatedTools || [])
+    .map((slug) => {
+      const related = tools.find((t) => t.slug === slug);
+      if (!related) return "";
+      return `<li><a href="${related.path}">${esc(related.name)}</a> — ${esc(related.description)}</li>`;
+    })
+    .filter(Boolean)
+    .join("");
+
+  const relatedBlock = relatedTools
+    ? `<h2>Related tools</h2>
+    <ul>${relatedTools}</ul>`
+    : "";
+
   return `<article>
     <h1>${esc(tool.name)}</h1>
-    <p>${esc(tool.description)}</p>
+    <p><strong>${esc(tool.description)}</strong></p>
     <p>${esc(tool.longDescription || tool.description)}</p>
     <h2>Features</h2>
     <ul>${features}</ul>
     <h2>How to use</h2>
     <ol>${howTo}</ol>
-    <h2>FAQ</h2>
+    <h2>Privacy — your files never leave your device</h2>
+    <p>${esc(PRIVACY_PARAGRAPH)}</p>
+    <h2>Frequently asked questions</h2>
     ${faq}
+    ${relatedBlock}
   </article>`;
 }
 

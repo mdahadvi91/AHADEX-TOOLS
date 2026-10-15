@@ -752,7 +752,7 @@ export const newTools: Tool[] = [
           "Yes. A scanned PDF is still a valid PDF with page objects, and this tool copies those page objects directly. The output keeps the same scanned image quality as the source, byte-for-byte. The tool does not perform OCR or any text processing — it works purely at the page level.",
       },
     ],
-    relatedTools: ["merge-pdf", "pdf-to-image", "pdf-rotator", "pdf-page-extractor"],
+    relatedTools: ["merge-pdf", "pdf-to-image", "pdf-rotator"],
     seo: {
       title: "Split PDF — Extract Pages, Custom Order Free | AHADEX Tools",
       description:

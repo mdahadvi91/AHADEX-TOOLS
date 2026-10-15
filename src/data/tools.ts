@@ -197,7 +197,7 @@ const legacyTools: Tool[] = [
       { question: "Is there a file size limit?", answer: "Each file can be up to 50 MB. No limit on the number of files." },
       { question: "What output format is used?", answer: "JPG stays JPG, WebP stays WebP. PNG is re-encoded as WebP (which supports transparency and compresses better)." },
     ],
-    relatedTools: ["image-resizer", "image-cropper", "jpg-to-png", "png-to-jpg"],
+    relatedTools: ["image-resizer", "image-cropper", "image-converter"],
     seo: { title: "Image Compressor — Free, Fast & Private | AHADEX Tools", description: "Compress JPG, PNG, and WebP images in your browser. Adjustable quality slider, batch processing, max-width control, no uploads — 100% free.", ogImage: "/images/og/tools/image-compressor-og.png" },
   },
   {
@@ -235,7 +235,7 @@ const legacyTools: Tool[] = [
       { question: "Is there a file size limit?", answer: "Each file can be up to 50 MB. No limit on the number of files." },
       { question: "Will transparency be preserved?", answer: "PNG and WebP keep transparency. JPG does not — transparent areas become white." },
     ],
-    relatedTools: ["image-compressor", "image-cropper", "jpg-to-png", "png-to-jpg"],
+    relatedTools: ["image-compressor", "image-cropper", "image-converter"],
     seo: { title: "Image Resizer — Free, Fast & Private | AHADEX Tools", description: "Resize JPG, PNG, and WebP images to any dimension in your browser. Lock aspect ratio, exact width/height, batch support, no uploads — free.", ogImage: "/images/og/tools/image-resizer-og.png" },
   },
   {
@@ -273,7 +273,7 @@ const legacyTools: Tool[] = [
       { question: "Can I undo a crop?", answer: "Click the Reset button to return the crop rectangle to the full image. The original file is never modified." },
       { question: "What image formats are supported?", answer: "JPG, JPEG, PNG, and WebP. Output stays in the same format as the input." },
     ],
-    relatedTools: ["image-compressor", "image-resizer", "jpg-to-png", "png-to-jpg"],
+    relatedTools: ["image-compressor", "image-resizer", "image-converter"],
     seo: { title: "Image Cropper — Free, Fast & Private | AHADEX Tools", description: "Crop JPG, PNG, and WebP images in your browser. 8 aspect presets, live preview, pixel-precise fields, no uploads — fast, free, private.", ogImage: "/images/og/tools/image-cropper-og.png" },
   },
   {
@@ -311,7 +311,7 @@ const legacyTools: Tool[] = [
       { question: "Can I split a merged PDF?", answer: "Not with this tool. Use our Split PDF tool for that." },
       { question: "Does it work on mobile?", answer: "Yes. The tool is fully responsive and works on iOS Safari and Android Chrome." },
     ],
-    relatedTools: ["photo-qr", "visiting-card", "cv-builder", "jpg-to-png"],
+    relatedTools: ["photo-qr", "visiting-card", "cv-builder", "image-converter"],
     seo: { title: "Merge PDF — Combine PDFs Free, Fast & Private | AHADEX Tools", description: "Combine multiple PDF files into one document in your browser. Reorder pages, verify page count, no uploads, no servers — private and free.", ogImage: "/images/og/tools/merge-pdf-og.png" },
   },
   {
@@ -433,7 +433,7 @@ const legacyTools: Tool[] = [
       { question: "Does it work with Bangla, Arabic, or Chinese?", answer: "Yes — as long as the PDF has a proper text layer. Output is UTF-8 plain text and preserves any script." },
       { question: "Does it work on mobile?", answer: "Yes. Large PDFs may take longer on phones, but the tool is fully responsive." },
     ],
-    relatedTools: ["pdf-to-jpg", "pdf-to-png"],
+    relatedTools: ["pdf-to-image", "pdf-rotator"],
     seo: {
       title: "PDF to Text — Extract Plain Text from PDF Free | AHADEX Tools",
       description: "Extract plain text from any PDF in your browser. Page ranges, line-break options, copy or .txt download.",
@@ -477,7 +477,7 @@ const legacyTools: Tool[] = [
       { question: "Can I undo a rotation?", answer: "Yes — just open the rotated PDF again and apply the opposite rotation (90° left cancels 90° right)." },
       { question: "Does it work on mobile?", answer: "Yes. The tool is fully responsive and works on iOS Safari and Android Chrome." },
     ],
-    relatedTools: ["pdf-to-jpg", "pdf-to-png"],
+    relatedTools: ["pdf-to-image", "pdf-rotator"],
     seo: {
       title: "PDF Rotator — Rotate PDF Pages Free & Private | AHADEX Tools",
       description: "Rotate pages in any PDF 90°/180° in your browser. All pages or specific ranges, lossless.",
@@ -521,7 +521,7 @@ const legacyTools: Tool[] = [
       { question: "Does it work on mobile?", answer: "Yes. The tool is fully responsive and works on iOS Safari and Android Chrome." },
       { question: "Can I convert multiple SVGs at once?", answer: "This tool converts one SVG per session. Run it again for the next file — it's fast enough that batch conversion isn't necessary." },
     ],
-    relatedTools: ["jpg-to-png", "png-to-jpg"],
+    relatedTools: ["image-converter", "favicon-generator"],
     seo: {
       title: "SVG to PNG — Convert SVG to PNG Up to 8× Free | AHADEX Tools",
       description: "Convert SVG vector files to high-resolution PNG in your browser. Up to 8× scale, transparent background.",
