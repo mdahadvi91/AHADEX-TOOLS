@@ -546,20 +546,6 @@ export const newTools: Tool[] = [
         `,
       },
       {
-        heading: "Privacy model — why this matters",
-        body: `
-          <p>Most online PDF-to-image converters upload your file to a server. That server sees:</p>
-          <ul>
-            <li>The full content of the PDF — text, images, embedded attachments</li>
-            <li>Your IP address and approximate location</li>
-            <li>When you used the service and how often</li>
-            <li>The filename, which sometimes contains sensitive information</li>
-          </ul>
-          <p>For contracts, medical records, invoices, and ID documents, this is a real privacy risk. It is also a compliance risk in some jurisdictions.</p>
-          <p>This tool uses pdf.js and the Canvas API to render pages entirely inside your browser. Your file never leaves your device, never touches a network, and never ends up in anyone's logs. You can verify this by opening your browser's developer tools, switching to the Network tab, and converting a file — you will see zero outbound requests.</p>
-        `,
-      },
-      {
         heading: "Practical limits and performance",
         body: `
           <p>Rendering happens in a Web Worker, so the UI stays responsive even for large documents. Still, some practical limits are worth knowing:</p>
@@ -1078,14 +1064,6 @@ export const newTools: Tool[] = [
             <li><strong>PDF/A archives:</strong> Usually work fine, but the output is not marked as PDF/A. If you need PDF/A compliance, use a dedicated archival tool.</li>
             <li><strong>Form fields with JavaScript:</strong> Extracted pages keep the forms, but any script-dependent validation may not carry over depending on the source PDF's structure.</li>
           </ul>
-        `,
-      },
-      {
-        heading: "Privacy — why browser-based extraction matters",
-        body: `
-          <p>Documents you split with this tool are often the most sensitive files on your device: contracts, invoices, medical records, identification documents, signed agreements. Every online splitter that uploads your PDF takes a copy of that content.</p>
-          <p>Some services claim the file is deleted after processing. Even so, the file has already been transmitted, has already been read from disk by a server, and has already been decrypted in a data center you do not control.</p>
-          <p>This tool never uploads anything. The PDF is opened by your browser, processed by JavaScript running in your tab, and written back as a new file that you download. Nothing crosses the network. You can disconnect Wi-Fi after the page loads and continue splitting PDFs offline.</p>
         `,
       },
     ],
