@@ -45,7 +45,7 @@ export const visitingCardContent = {
       {
         emoji: "🔐",
         icon: "lock",
-        title: "Your design never leaves your device",
+        title: "Your design is not uploaded to any server",
         text: "There is no server involved. Templates, fonts, colors, your uploaded logo, and the QR code are all processed locally in your browser using the HTML5 Canvas API. Close the tab and everything disappears — nothing is stored, tracked, or shared. That means you can design a private business card for a personal project, an internal team card, or a pre-launch brand without worrying about anyone else seeing it.",
       },
     ],
@@ -104,7 +104,7 @@ export const visitingCardContent = {
       {
         question: "Do my files get uploaded to a server?",
         answer:
-          "No. Every render happens inside your browser using the HTML5 Canvas API. Your logo, text, and design never leave your device. Close the tab and everything is gone — nothing is stored anywhere.",
+          "No. Every render happens inside your browser using the HTML5 Canvas API. Your logo, text, and design are not uploaded to any server. Closing the tab clears everything from memory.",
       },
       {
         question: "Is this a single-side or double-side tool?",

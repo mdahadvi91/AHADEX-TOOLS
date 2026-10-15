@@ -10,7 +10,7 @@ export const svgToPngContent = {
       { value: "Free", label: "Forever" },
     ],
     introHighlights: [
-      { emoji: "🔒", title: "100% private", text: "SVG never leaves your device." },
+      { emoji: "🔒", title: "100% private", text: "SVG is not uploaded to any server." },
       { emoji: "🎨", title: "Up to 8× scale", text: "Retina-sharp PNG output." },
       { emoji: "🫥", title: "Transparent bg", text: "Or white/black — your choice." },
       { emoji: "⚡", title: "Instant", text: "Renders in milliseconds." },
@@ -42,7 +42,7 @@ export const svgToPngContent = {
     faqTitle: "Questions people ask",
     faq: [
       { question: "Is this really free?", answer: "Yes — completely. No account, no watermark, no hidden limits." },
-      { question: "Is my SVG uploaded?", answer: "No. Everything happens inside your browser using the Canvas API. Your file never leaves your device." },
+      { question: "Is my SVG uploaded?", answer: "No. Everything happens inside your browser using the Canvas API. Your file is not uploaded to any server." },
       { question: "What scale should I choose?", answer: "1× for icons at their natural size, 2× for retina displays, 4× for print thumbnails, and 8× for high-DPI print (up to 4096px)." },
       { question: "Will transparency be preserved?", answer: "Yes — by default the background is transparent, matching the SVG. You can switch to white or black if you need a solid background." },
       { question: "Why does the SVG look different from the original?", answer: "Some SVGs use external fonts, embedded images, or CSS classes that need extra files. This tool renders only what's inside the SVG itself — inline everything before converting for best results." },

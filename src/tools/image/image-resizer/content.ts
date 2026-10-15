@@ -10,7 +10,7 @@ export const imageResizerContent = {
       { value: "Free", label: "Forever" },
     ],
     introHighlights: [
-      { emoji: "🔒", title: "100% private", text: "Files never leave your device." },
+      { emoji: "🔒", title: "100% private", text: "Files are not uploaded to any server." },
       { emoji: "⚡", title: "Instant resize", text: "Runs in your browser." },
       { emoji: "📐", title: "Any dimension", text: "Set exact width and height." },
       { emoji: "🔗", title: "Lock aspect", text: "Preserve proportions automatically." },
@@ -42,7 +42,7 @@ export const imageResizerContent = {
     faqTitle: "Questions people ask",
     faq: [
       { question: "Is this really free?", answer: "Yes — completely. No account, no watermark, no hidden size limit." },
-      { question: "Do my files get uploaded to a server?", answer: "No. Everything happens inside your browser. Your files never leave your device." },
+      { question: "Do my files get uploaded to a server?", answer: "No. Everything happens inside your browser. Your files are not uploaded to any server." },
       { question: "Will resizing stretch my image?", answer: "Only if you turn off Lock Aspect Ratio. With it on, the tool preserves the original proportions and adjusts the other dimension automatically." },
       { question: "What image formats are supported?", answer: "JPG, JPEG, PNG, and WebP. Output stays in the same format (PNG stays PNG, JPG stays JPG, WebP stays WebP)." },
       { question: "Can I upscale as well as downscale?", answer: "Yes — type any width and height. Upscaling works, though very large upscales may look soft because the browser cannot invent detail that isn't there." },

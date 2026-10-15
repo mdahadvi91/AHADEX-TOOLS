@@ -10,7 +10,7 @@ export const imageToCartoonContent = {
       { value: "Free", label: "Forever" },
     ],
     introHighlights: [
-      { emoji: "🔒", title: "100% private", text: "Photos never leave your device." },
+      { emoji: "🔒", title: "100% private", text: "Photos are not uploaded to any server." },
       { emoji: "🎨", title: "Cel-shaded look", text: "Posterize + Sobel outline algorithm." },
       { emoji: "🎚️", title: "3 live sliders", text: "Levels, edge strength, smoothness." },
       { emoji: "⚡", title: "Instant", text: "Renders in under a second." },
@@ -42,7 +42,7 @@ export const imageToCartoonContent = {
     faqTitle: "Questions people ask",
     faq: [
       { question: "Is this really free?", answer: "Yes — completely. No account, no watermark, no hidden limits." },
-      { question: "Is my photo uploaded?", answer: "No. Everything happens in your browser using the Canvas API. Your photo never leaves your device." },
+      { question: "Is my photo uploaded?", answer: "No. Everything happens in your browser using the Canvas API. Your photo is not uploaded to any server." },
       { question: "What does the Levels slider do?", answer: "It controls how many color bands each channel is quantized into. Lower levels (4–6) give a flat, poster-like cartoon. Higher levels (12–16) preserve more detail but look less cartoon-like." },
       { question: "What does the Edge strength slider do?", answer: "It controls how dark the outlines are. 0 = no outlines (just flat colors), 2 = very bold, comic-book style contours." },
       { question: "What does the Smoothness slider do?", answer: "It controls the blur applied before posterization. Higher values remove noise and give cleaner flat regions, but can blur away fine detail like freckles or eye highlights." },

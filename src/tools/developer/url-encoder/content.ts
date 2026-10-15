@@ -10,7 +10,7 @@ export const urlEncoderContent = {
       { value: "Free", label: "Forever" },
     ],
     introHighlights: [
-      { emoji: "🔒", title: "100% private", text: "URLs never leave your device." },
+      { emoji: "🔒", title: "100% private", text: "URLs are not uploaded to any server." },
       { emoji: "🔄", title: "Encode & decode", text: "Both directions, one click." },
       { emoji: "🎯", title: "Two scopes", text: "Component or full URI." },
       { emoji: "🌐", title: "Unicode safe", text: "Bangla, emoji, CJK — all handled." },
@@ -50,7 +50,7 @@ export const urlEncoderContent = {
       { question: "Can I decode URLs with Bangla characters?", answer: "Yes — decodeURIComponent reconstructs multi-byte UTF-8 correctly, so Bangla, Arabic, and any other script comes out readable." },
       { question: "Does it work on mobile?", answer: "Yes. The tool is fully responsive and works on iOS Safari and Android Chrome." },
     ],
-    privacyNote: "Your URLs are processed entirely inside your browser using native JavaScript APIs. Nothing is uploaded, tracked, or stored on any server. Close the tab and everything disappears.",
+    privacyNote: "Your URLs are processed entirely inside your browser using native JavaScript APIs. Your input is not uploaded to any server, and no content data is stored or tracked. Close the tab and everything disappears.",
     relatedTitle: "Other tools you may like",
   },
   bn: {

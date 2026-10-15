@@ -37,7 +37,7 @@ export const uuidGeneratorContent = {
       { emoji: "📦", title: "Batch up to 1000", description: "Generate thousands per session without slowdown." },
       { emoji: "🔤", title: "Format control", description: "Uppercase, hyphens on/off — copy exactly what you need." },
       { emoji: "📋", title: "Copy or download", description: "One-click clipboard or export as .txt." },
-      { emoji: "🔒", title: "Zero uploads", description: "Works offline. Nothing leaves your device." },
+      { emoji: "🔒", title: "Zero uploads", description: "Works offline. Your input is not uploaded to any server." },
     ],
     faqTitle: "Questions people ask",
     faq: [
@@ -50,7 +50,7 @@ export const uuidGeneratorContent = {
       { question: "Can I remove the hyphens?", answer: "Yes — toggle hyphens off to get a 32-character hex string (often used for short IDs or URL slugs)." },
       { question: "Does it work on mobile?", answer: "Yes. The tool is fully responsive and works on iOS Safari and Android Chrome." },
     ],
-    privacyNote: "UUIDs are generated entirely inside your browser using the Web Crypto API. Nothing is uploaded, tracked, or stored on any server. Close the tab and everything disappears.",
+    privacyNote: "UUIDs are generated entirely inside your browser using the Web Crypto API. Your input is not uploaded to any server, and no content data is stored or tracked. Close the tab and everything disappears.",
     relatedTitle: "Other tools you may like",
   },
   bn: {

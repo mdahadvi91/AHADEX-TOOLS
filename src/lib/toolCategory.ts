@@ -53,7 +53,7 @@ export const CATEGORY_PRIVACY: Record<ToolCategory, CategoryPrivacy> = {
   image: {
     specific:
       "For image tools: your photo is decoded on an off-screen canvas inside your browser, processed pixel by pixel, and re-encoded locally. The original file and the output both live only in your tab's memory.",
-    why: "Images often carry EXIF metadata with GPS coordinates and device details. Because nothing is uploaded, that metadata never leaves your device — and does not end up in anyone else's logs.",
+    why: "Images often carry EXIF metadata with GPS coordinates and device details. Because nothing is uploaded, that metadata is never transmitted off your device — and does not end up in anyone else's logs.",
   },
   pdf: {
     specific:

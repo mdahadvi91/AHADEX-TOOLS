@@ -326,7 +326,7 @@ export const trustContent: Record<
           heading: "2. Cookies we use",
           bullets: [
             "Essential: None. AHADEX Tools does not require cookies to function — we use localStorage instead.",
-            "Preferences: Stored in localStorage (theme, language, favourites, sound setting). These never leave your browser.",
+            "Preferences: Stored in localStorage (theme, language, favourites, sound setting). These are stored only in your browser.",
             "Analytics: Google Analytics 4 may set cookies to measure anonymous usage. You can block these without affecting the tools.",
             "Advertising: Google AdSense may set cookies to serve relevant ads. You can opt out via your Google Ads Settings.",
           ],

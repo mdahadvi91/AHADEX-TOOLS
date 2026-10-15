@@ -10,7 +10,7 @@ export const imageToSketchContent = {
       { value: "Free", label: "Forever" },
     ],
     introHighlights: [
-      { emoji: "🔒", title: "100% private", text: "Photos never leave your device." },
+      { emoji: "🔒", title: "100% private", text: "Photos are not uploaded to any server." },
       { emoji: "✏️", title: "Real pencil look", text: "Classic color-dodge sketch algorithm." },
       { emoji: "🎚️", title: "Live sliders", text: "Adjust intensity & detail in real time." },
       { emoji: "⚡", title: "Instant", text: "Renders in under a second." },
@@ -42,7 +42,7 @@ export const imageToSketchContent = {
     faqTitle: "Questions people ask",
     faq: [
       { question: "Is this really free?", answer: "Yes — completely. No account, no watermark, no hidden limits." },
-      { question: "Is my photo uploaded?", answer: "No. Everything happens in your browser using the Canvas API. Your photo never leaves your device." },
+      { question: "Is my photo uploaded?", answer: "No. Everything happens in your browser using the Canvas API. Your photo is not uploaded to any server." },
       { question: "What does the Intensity slider do?", answer: "It controls how dark the pencil strokes are. Lower values produce a light, subtle sketch; higher values produce dark, bold lines." },
       { question: "What does the Detail slider do?", answer: "It controls the blur radius of the inverted layer, which determines line thickness. Lower values give fine, thin lines; higher values give thicker, softer strokes." },
       { question: "Why does my photo look less like a sketch?", answer: "Photos with strong contrast, clear subjects, and simple backgrounds work best. Very busy scenes can produce a noisy result — try adjusting Detail to smooth it out." },

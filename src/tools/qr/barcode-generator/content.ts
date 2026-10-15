@@ -10,7 +10,7 @@ export const barcodeContent = {
       { value: "Free", label: "Forever" },
     ],
     introHighlights: [
-      { emoji: "🔒", title: "100% private", text: "Data never leaves your device." },
+      { emoji: "🔒", title: "100% private", text: "Data is not uploaded to any server." },
       { emoji: "🏷️", title: "9 barcode formats", text: "CODE128, EAN, UPC, and more." },
       { emoji: "🎨", title: "Custom colors", text: "Line color and background picker." },
       { emoji: "📐", title: "Pixel control", text: "Bar width, height, font size, margin." },

@@ -10,7 +10,7 @@ export const pdfToImageContent = {
       { value: "Free", label: "Forever" },
     ],
     introHighlights: [
-      { emoji: "🔒", title: "100% private", text: "PDF never leaves your device." },
+      { emoji: "🔒", title: "100% private", text: "PDF is not uploaded to any server." },
       { emoji: "🎨", title: "Up to 300 DPI", text: "Sharp, print-ready PNGs." },
       { emoji: "📄", title: "Any PDF", text: "Multiple pages in one batch." },
       { emoji: "🎯", title: "Page ranges", text: "Pick exactly which pages to export." },
@@ -42,7 +42,7 @@ export const pdfToImageContent = {
     faqTitle: "Questions people ask",
     faq: [
       { question: "Is this really free?", answer: "Yes — completely. No account, no watermark, no hidden limits." },
-      { question: "Is my PDF uploaded?", answer: "No. Everything happens inside your browser using pdf.js. Your file never leaves your device." },
+      { question: "Is my PDF uploaded?", answer: "No. Everything happens inside your browser using pdf.js. Your file is not uploaded to any server." },
       { question: "What does DPI mean here?", answer: "DPI controls the output resolution. 72 DPI is 1:1 with PDF points (screen size), 150 DPI is 2x for web, and 300 DPI is 4x — the standard for print." },
       { question: "How big will the PNGs be?", answer: "At 300 DPI, an A4 page is roughly 2480×3508 pixels. File sizes vary by content — text-heavy pages compress well, photo-heavy pages are larger." },
       { question: "Can I convert just a few pages?", answer: "Yes. Enter ranges like 1-3, 5, 7-9 in the page field, or leave it empty to convert every page." },

@@ -10,7 +10,7 @@ export const splitPdfContent = {
       { value: "Free", label: "Forever" },
     ],
     introHighlights: [
-      { emoji: "🔒", title: "100% private", text: "Files never leave your device." },
+      { emoji: "🔒", title: "100% private", text: "Files are not uploaded to any server." },
       { emoji: "⚡", title: "Instant split", text: "Runs in your browser." },
       { emoji: "📄", title: "Custom ranges", text: "Enter 1-3, 5, 7-9 — anything you want." },
       { emoji: "🔀", title: "Two modes", text: "Extract selected pages, or split every page." },
@@ -42,7 +42,7 @@ export const splitPdfContent = {
     faqTitle: "Questions people ask",
     faq: [
       { question: "Is this really free?", answer: "Yes — completely. No account, no watermark, no hidden size limit." },
-      { question: "Do my PDFs get uploaded to a server?", answer: "No. Everything happens inside your browser using pdf-lib. Your files never leave your device." },
+      { question: "Do my PDFs get uploaded to a server?", answer: "No. Everything happens inside your browser using pdf-lib. Your files are not uploaded to any server." },
       { question: "What syntax do I use for page ranges?", answer: "Use commas to separate items and dashes for ranges. '1-3, 5, 7-9' extracts pages 1, 2, 3, 5, 7, 8, 9 (in that order)." },
       { question: "Can I split every page into separate files?", answer: "Yes. Choose 'Split every page' and each page downloads as its own PDF, numbered sequentially." },
       { question: "Can I extract non-contiguous pages?", answer: "Yes. Just list them: '1, 5, 10, 15' extracts exactly those four pages." },

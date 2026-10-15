@@ -10,7 +10,7 @@ export const pdfRotatorContent = {
       { value: "Free", label: "Forever" },
     ],
     introHighlights: [
-      { emoji: "🔒", title: "100% private", text: "PDF never leaves your device." },
+      { emoji: "🔒", title: "100% private", text: "PDF is not uploaded to any server." },
       { emoji: "🔄", title: "90° / 180°", text: "All common rotations supported." },
       { emoji: "🎯", title: "Selective pages", text: "Rotate only the pages you need." },
       { emoji: "👀", title: "Live preview", text: "See the rotation as you apply it." },
@@ -42,7 +42,7 @@ export const pdfRotatorContent = {
     faqTitle: "Questions people ask",
     faq: [
       { question: "Is this really free?", answer: "Yes — completely. No account, no watermark, no hidden limits." },
-      { question: "Is my PDF uploaded?", answer: "No. Everything happens inside your browser using pdf-lib. Your file never leaves your device." },
+      { question: "Is my PDF uploaded?", answer: "No. Everything happens inside your browser using pdf-lib. Your file is not uploaded to any server." },
       { question: "What's the difference between 90° left and 90° right?", answer: "90° left = counter-clockwise rotation (text moves from top to left). 90° right = clockwise rotation (text moves from top to right). Pick whichever makes your content upright." },
       { question: "Does rotating hurt quality?", answer: "No. Only the rotation metadata changes — the actual content bytes are untouched. File size stays nearly identical and nothing is re-compressed or re-rendered." },
       { question: "Can I rotate just one page?", answer: "Yes. Enter the page number (e.g. 3) or a range (e.g. 1-2, 5) in the page field, then choose a rotation." },

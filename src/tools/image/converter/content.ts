@@ -15,7 +15,7 @@ export const imageConverterContent = {
     ],
 
     introHighlights: [
-      { emoji: "🔒", title: "100% private", text: "Files never leave your device. Zero uploads." },
+      { emoji: "🔒", title: "100% private", text: "Files are not uploaded to any server. Zero uploads." },
       { emoji: "⚡", title: "Instant conversion", text: "Runs in your browser — no server wait." },
       { emoji: "📦", title: "Batch support", text: "Convert multiple JPGs at once." },
       { emoji: "🎨", title: "Lossless quality", text: "Every pixel preserved exactly." },
@@ -71,7 +71,7 @@ export const imageConverterContent = {
     faqTitle: "Questions people ask",
     faq: [
       { question: "Is this really free?", answer: "Yes — completely. No account, no watermark, no hidden size limit. The tool is supported by ads shown outside the workspace." },
-      { question: "Do my files get uploaded to a server?", answer: "No. Everything — decoding, canvas rendering, and PNG encoding — happens inside your browser. Your files never leave your device." },
+      { question: "Do my files get uploaded to a server?", answer: "No. Everything — decoding, canvas rendering, and PNG encoding — happens inside your browser. Your files are not uploaded to any server." },
       { question: "Does the image quality drop?", answer: "No. PNG is a lossless format, so every pixel is preserved exactly. The converted PNG has the same visual quality as the original JPG, just in a different file format." },
       { question: "Will the PNG be bigger than the JPG?", answer: "Usually yes — PNG uses lossless compression, which is less efficient for photographs than JPG's lossy compression. A 2 MB JPG might become a 5 MB PNG. This is expected and means no quality was lost." },
       { question: "Can I convert multiple files at once?", answer: "Yes. Drop as many JPGs as you want into the upload area and they will all be converted. Use Download All to save every converted file in one click." },

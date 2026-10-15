@@ -47,7 +47,7 @@ export const newTools: Tool[] = [
       {
         title: "Zero uploads, ever",
         description:
-          "Every conversion runs inside your browser using the HTML5 Canvas API and the browser's native encoder. Your files never leave your device, never touch a server, and never travel over the network.",
+          "Every conversion runs inside your browser using the HTML5 Canvas API and the browser's native encoder. Your files are not uploaded to any server and do not travel over the network.",
       },
       {
         title: "Batch by design",
@@ -319,7 +319,7 @@ export const newTools: Tool[] = [
     description:
       "Convert PDF pages to high-resolution PNG or JPG images in your browser. Up to 300 DPI, page ranges, no uploads.",
     longDescription:
-      "PDF to Image renders every page of your PDF as a standalone image — either PNG (lossless, sharp text) or JPG (universal, smaller). Choose 72, 150, or 300 DPI for anything from screen previews to print-ready output. Extract a single page, a range like 1-3, 5, 7-9, or the entire document. Everything runs inside your browser using pdf.js — Mozilla's battle-tested PDF renderer — and the Canvas API. Your PDF never leaves your device, never touches a server, and never ends up in anyone's logs. A 300 DPI A4 page renders at roughly 2480 × 3508 pixels, which is the professional print standard.",
+      "PDF to Image renders every page of your PDF as a standalone image — either PNG (lossless, sharp text) or JPG (universal, smaller). Choose 72, 150, or 300 DPI for anything from screen previews to print-ready output. Extract a single page, a range like 1-3, 5, 7-9, or the entire document. Everything runs inside your browser using pdf.js — Mozilla's battle-tested PDF renderer — and the Canvas API. Your PDF is not uploaded to any server and does not travel over the network. A 300 DPI A4 page renders at roughly 2480 × 3508 pixels, which is the professional print standard.",
     keywords: [
       "pdf to image",
       "pdf to png",
@@ -349,7 +349,7 @@ export const newTools: Tool[] = [
       {
         title: "Zero uploads",
         description:
-          "PDF parsing, rendering, and encoding all happen inside your browser using pdf.js and the Canvas API. Your file never leaves your device.",
+          "PDF parsing, rendering, and encoding all happen inside your browser using pdf.js and the Canvas API. Your file is not uploaded to any server.",
       },
       {
         title: "Web Worker rendering",
@@ -627,7 +627,7 @@ export const newTools: Tool[] = [
       {
         title: "Fully private",
         description:
-          "The whole pipeline — reading images, decoding, compositing, and building the PDF — runs inside your browser using pdf-lib. Your files never leave your device.",
+          "The whole pipeline — reading images, decoding, compositing, and building the PDF — runs inside your browser using pdf-lib. Your files are not uploaded to any server.",
       },
     ],
     howTo: [
@@ -836,7 +836,7 @@ export const newTools: Tool[] = [
     description:
       "Extract pages from any PDF in custom order, with duplicates, or split every page into separate files. Runs in your browser.",
     longDescription:
-      "Split PDF extracts pages from any PDF in the exact order you type — including duplicates. Type '3, 1, 3, 5' and get a four-page PDF with page 3 appearing twice. Or switch to 'Split every page' mode and each page becomes its own file, downloaded in a batch. Every page is copied byte-for-byte using pdf-lib, so nothing is re-rendered and nothing loses quality. Custom order lets you reverse documents, extract a signature page twice, or assemble a new PDF from any subset of an existing one. Separate mode is the fastest way to turn a 200-page report into 200 standalone pages for review, annotation, or distribution. Everything runs inside your browser — your file never leaves your device.",
+      "Split PDF extracts pages from any PDF in the exact order you type — including duplicates. Type '3, 1, 3, 5' and get a four-page PDF with page 3 appearing twice. Or switch to 'Split every page' mode and each page becomes its own file, downloaded in a batch. Every page is copied byte-for-byte using pdf-lib, so nothing is re-rendered and nothing loses quality. Custom order lets you reverse documents, extract a signature page twice, or assemble a new PDF from any subset of an existing one. Separate mode is the fastest way to turn a 200-page report into 200 standalone pages for review, annotation, or distribution. Everything runs inside your browser — your file is not uploaded to any server.",
     keywords: [
       "split pdf",
       "extract pdf pages",
@@ -887,7 +887,7 @@ export const newTools: Tool[] = [
       {
         title: "Fully private",
         description:
-          "PDF parsing, page copying, and output generation all run inside your browser using pdf-lib. Your document never leaves your device.",
+          "PDF parsing, page copying, and output generation all run inside your browser using pdf-lib. Your document is not uploaded to any server.",
       },
     ],
     howTo: [

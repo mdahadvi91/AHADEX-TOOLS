@@ -114,7 +114,7 @@ export function PrivacyPromise() {
             >
               {bn
                 ? "অন্য অনেকে আপনার ফাইল তাদের সার্ভারে আপলোড করে। আমরা তা করি না। প্রতিটি AHADEX টুল আপনার ব্রাউজারেই আধুনিক Web API ব্যবহার করে কাজ করে। আপনার ফাইল কখনো ডিভাইস ছাড়ে না।"
-                : "Most tool sites upload your files to their servers. We don't. Every AHADEX tool processes data right inside your browser using modern web APIs. Your files never leave your device."}
+                : "Most tool sites upload your files to their servers. We don't. Every AHADEX tool processes data right inside your browser using modern web APIs. Your files are not uploaded to any server."}
             </motion.p>
 
             <motion.div

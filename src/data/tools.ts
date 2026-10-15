@@ -49,7 +49,7 @@ const legacyTools: Tool[] = [
       { question: "Does the photo quality drop when I add the QR? 🖼️", answer: "No. When you click download, the photo is first drawn at its original resolution on an off-screen canvas, and then the QR badge is drawn on top at native pixel quality. The output is a PNG file that has exactly the same pixel dimensions as your original image — there is no compression, no downsampling, and no re-encoding loss. 💎" },
       { question: "Which file formats are supported? 📁", answer: "You can upload JPG, PNG, and WebP images. The upload is limited to 50 MB per file, which covers almost every photo taken by any modern phone or camera. The output is always a PNG file — we choose PNG because it is lossless and keeps both your original photo and the QR code perfectly sharp. ✨" },
       { question: "Can I use the result for commercial purposes? 💼", answer: "Yes. The output image is entirely yours — you can use it on business cards, product packaging, restaurant menus, coffee shop tables, event posters, delivery flyers, wedding invitations, and any other printed or digital material without attribution, royalties, or restrictions. 🎉" },
-      { question: "Is my photo uploaded to a server? ☁️", answer: "Never. ❌ Photo QR Code is a fully client-side tool. Everything — reading the file, decoding the image, generating the QR, drawing the badge, and exporting the final PNG — happens inside your browser using the Canvas API and pure JavaScript. Your photo never leaves your device and never travels over the network. 🌍" },
+      { question: "Is my photo uploaded to a server? ☁️", answer: "Never. ❌ Photo QR Code is a fully client-side tool. Everything — reading the file, decoding the image, generating the QR, drawing the badge, and exporting the final PNG — happens inside your browser using the Canvas API and pure JavaScript. Your photo is not uploaded to any server and does not travel over the network. 🌍" },
       { question: "Does it work on mobile phones and tablets? 📱", answer: "Yes. The tool is fully responsive and tested on iOS Safari, Android Chrome, Firefox for Android, and Samsung Internet. The interface rearranges itself so that on a phone you get a compact two-column layout with settings on the left and the preview on the right. 🎯" },
       { question: "What happens if the QR code is too small on the final image? 🔍", answer: "You can make the QR bigger using the Size slider — it goes from 10% to 35% of the smaller side of your photo. As a rule of thumb, the QR should be at least 2 cm wide when printed if it will be scanned from 20 cm away, and at least 4 cm wide if it will be scanned from 1 metre away. 📏" },
     ],
@@ -99,7 +99,7 @@ const legacyTools: Tool[] = [
     ],
     faq: [
       { question: "Is the Visiting Card Maker really free?", answer: "Yes — completely. All 20 templates, all export formats, and all DPI options are available without an account, watermark, or hidden limit. The tool is supported by ads shown outside the editor." },
-      { question: "Do my files get uploaded to a server?", answer: "No. Every render happens inside your browser using the HTML5 Canvas API. Your logo, text, and design never leave your device. Close the tab and everything is gone — nothing is stored anywhere." },
+      { question: "Do my files get uploaded to a server?", answer: "No. Every render happens inside your browser using the HTML5 Canvas API. Your logo, text, and design are not uploaded to any server. Closing the tab clears everything from memory." },
       { question: "Is this a single-side or double-side tool?", answer: "It's both. Every template has a matching front and back side. The front usually carries the brand identity, the back carries contact details and the QR code. Both sides are fully editable and export as separate files." },
       { question: "Can I upload my own logo?", answer: "Yes. The editor accepts PNG, JPG, WebP, and SVG files up to 5 MB. Uploaded logos render with transparent backgrounds where supported, and they scale proportionally to preserve aspect ratio." },
       { question: "What export formats and DPI options are supported?", answer: "PNG, JPG, and PDF formats are all supported. You can export at 150 DPI for a quick preview, 300 DPI for standard professional printing, or 600 DPI for premium finishes. The exported file uses the exact print millimetres of the card size you selected." },
@@ -190,7 +190,7 @@ const legacyTools: Tool[] = [
     ],
     faq: [
       { question: "Is this really free?", answer: "Yes — completely. No account, no watermark, no hidden size limit." },
-      { question: "Do my files get uploaded to a server?", answer: "No. Everything happens inside your browser. Your files never leave your device." },
+      { question: "Do my files get uploaded to a server?", answer: "No. Everything happens inside your browser. Your files are not uploaded to any server." },
       { question: "How much smaller will the file be?", answer: "At quality 80 with max width 1920, most photos shrink by 60-80%. PNGs and WebPs compress less dramatically but still save 30-60%." },
       { question: "What quality should I use?", answer: "For web uploads, 75-85% is a good default. For previews and thumbnails, 50-65% is fine. For archival, 90-95%." },
       { question: "Will transparency be preserved?", answer: "PNG and WebP keep transparency. JPG does not — transparent areas become white." },
@@ -228,7 +228,7 @@ const legacyTools: Tool[] = [
     ],
     faq: [
       { question: "Is this really free?", answer: "Yes — completely. No account, no watermark, no hidden size limit." },
-      { question: "Do my files get uploaded to a server?", answer: "No. Everything happens inside your browser. Your files never leave your device." },
+      { question: "Do my files get uploaded to a server?", answer: "No. Everything happens inside your browser. Your files are not uploaded to any server." },
       { question: "Will resizing stretch my image?", answer: "Only if you turn off Lock Aspect Ratio. With it on, the tool preserves the original proportions and adjusts the other dimension automatically." },
       { question: "What image formats are supported?", answer: "JPG, JPEG, PNG, and WebP. Output stays in the same format (PNG stays PNG, JPG stays JPG, WebP stays WebP)." },
       { question: "Can I upscale as well as downscale?", answer: "Yes — type any width and height. Upscaling works, though very large upscales may look soft because the browser cannot invent detail that isn't there." },
@@ -266,7 +266,7 @@ const legacyTools: Tool[] = [
     ],
     faq: [
       { question: "Is this really free?", answer: "Yes — completely. No account, no watermark, no hidden size limit." },
-      { question: "Do my files get uploaded to a server?", answer: "No. Everything happens inside your browser using the Canvas API. Your files never leave your device." },
+      { question: "Do my files get uploaded to a server?", answer: "No. Everything happens inside your browser using the Canvas API. Your files are not uploaded to any server." },
       { question: "Can I crop multiple images at once?", answer: "Not in this version. The cropper works on one image at a time — but you can crop as many images as you want by re-running the tool." },
       { question: "What aspect ratios are available?", answer: "Free, 1:1 Square, 4:3, 3:4, 16:9, 9:16 Story, 3:2, and 2:3. You can also type any custom crop rectangle." },
       { question: "Will the quality drop?", answer: "No. The crop is a pure pixel copy — every pixel in the new image comes from the original at full resolution, with no re-sampling." },
@@ -304,7 +304,7 @@ const legacyTools: Tool[] = [
     ],
     faq: [
       { question: "Is this really free?", answer: "Yes — completely. No account, no watermark, no hidden size limit." },
-      { question: "Do my PDFs get uploaded to a server?", answer: "No. Everything happens inside your browser using pdf-lib. Your files never leave your device." },
+      { question: "Do my PDFs get uploaded to a server?", answer: "No. Everything happens inside your browser using pdf-lib. Your files are not uploaded to any server." },
       { question: "How many PDFs can I merge?", answer: "Up to 20 files at once. Each file can be up to 100 MB." },
       { question: "Is there a page-count limit?", answer: "No. As long as the total file size and count stay within the limits, you can merge as many pages as you want." },
       { question: "Will the PDF quality drop?", answer: "No. Page content is copied without re-rendering — text stays selectable, embedded fonts and images keep their original encoding, and every page opens identically to the source." },
@@ -370,7 +370,7 @@ const legacyTools: Tool[] = [
       { title: "Full EXIF", description: "Camera, lens, exposure, ISO, focal length, flash, and more." },
       { title: "GPS with map", description: "Decimal coordinates plus a one-click map link." },
       { title: "Timestamps", description: "Date taken, created, modified — with timezone when present." },
-      { title: "Zero uploads", description: "All parsing happens in your browser. Nothing leaves your device." },
+      { title: "Zero uploads", description: "All parsing happens in your browser. Your files are not uploaded to any server." },
       { title: "Multi-format", description: "JPG, PNG, WebP, HEIC, and TIFF are all supported." },
       { title: "No size limits", description: "Up to 50 MB per file. No signup, no quota, no watermark." },
     ],
@@ -382,7 +382,7 @@ const legacyTools: Tool[] = [
     ],
     faq: [
       { question: "Is this really free?", answer: "Yes — completely. No account, no watermark, no hidden limits." },
-      { question: "Are my photos uploaded?", answer: "No. Everything runs inside your browser using the File API and exifr. Your files never leave your device." },
+      { question: "Are my photos uploaded?", answer: "No. Everything runs inside your browser using the File API and exifr. Your files are not uploaded to any server." },
       { question: "What metadata can I see?", answer: "Camera make and model, lens, exposure time, aperture, ISO, focal length, flash, white balance, metering mode, timestamps, GPS coordinates, altitude, orientation, and more — whatever the file contains." },
       { question: "Why does my image show no EXIF data?", answer: "Many sources strip metadata — screenshots, images saved from social media, and many PNGs have no EXIF at all. If your file has none, only basic file info will be shown." },
       { question: "Does it work with HEIC files?", answer: "Yes, on browsers that can decode HEIC (mostly Safari). Other browsers may fail to preview the image but still read its metadata." },
@@ -426,7 +426,7 @@ const legacyTools: Tool[] = [
     ],
     faq: [
       { question: "Is this really free?", answer: "Yes — completely. No account, no watermark, no hidden limits." },
-      { question: "Is my PDF uploaded?", answer: "No. Everything happens inside your browser using pdf.js. Your file never leaves your device." },
+      { question: "Is my PDF uploaded?", answer: "No. Everything happens inside your browser using pdf.js. Your file is not uploaded to any server." },
       { question: "Why is the extracted text empty?", answer: "Your PDF is probably a scan — images of pages with no text layer. Use OCR software for that. This tool only extracts existing text." },
       { question: "What is 'preserve line breaks'?", answer: "When ON, the tool keeps the PDF's original line breaks (useful for poems, code, structured documents). When OFF, it collapses everything into flowing paragraphs." },
       { question: "What does 'page separators' do?", answer: "When ON, each page's text is preceded by a '--- Page N ---' marker, so you can see where pages begin. Useful for large documents." },
@@ -470,7 +470,7 @@ const legacyTools: Tool[] = [
     ],
     faq: [
       { question: "Is this really free?", answer: "Yes — completely. No account, no watermark, no hidden limits." },
-      { question: "Is my PDF uploaded?", answer: "No. Everything happens inside your browser using pdf-lib. Your file never leaves your device." },
+      { question: "Is my PDF uploaded?", answer: "No. Everything happens inside your browser using pdf-lib. Your file is not uploaded to any server." },
       { question: "What's the difference between 90° left and 90° right?", answer: "90° left = counter-clockwise rotation (text moves from top to left). 90° right = clockwise rotation (text moves from top to right). Pick whichever makes your content upright." },
       { question: "Does rotating hurt quality?", answer: "No. Only the rotation metadata changes — the actual content bytes are untouched. File size stays nearly identical and nothing is re-compressed or re-rendered." },
       { question: "Can I rotate just one page?", answer: "Yes. Enter the page number (e.g. 3) or a range (e.g. 1-2, 5) in the page field, then choose a rotation." },
@@ -514,7 +514,7 @@ const legacyTools: Tool[] = [
     ],
     faq: [
       { question: "Is this really free?", answer: "Yes — completely. No account, no watermark, no hidden limits." },
-      { question: "Is my SVG uploaded?", answer: "No. Everything happens inside your browser using the Canvas API. Your file never leaves your device." },
+      { question: "Is my SVG uploaded?", answer: "No. Everything happens inside your browser using the Canvas API. Your file is not uploaded to any server." },
       { question: "What scale should I choose?", answer: "1× for icons at their natural size, 2× for retina displays, 4× for print thumbnails, and 8× for high-DPI print (up to 4096px)." },
       { question: "Will transparency be preserved?", answer: "Yes — by default the background is transparent, matching the SVG. You can switch to white or black if you need a solid background." },
       { question: "Why does the SVG look different from the original?", answer: "Some SVGs use external fonts, embedded images, or CSS classes that need extra files. This tool renders only what's inside the SVG itself — inline everything before converting for best results." },
@@ -636,7 +636,7 @@ const legacyTools: Tool[] = [
       { title: "Batch up to 1000", description: "Generate thousands per session without slowdown." },
       { title: "Format control", description: "Uppercase, hyphens on/off — copy exactly what you need." },
       { title: "Copy or download", description: "One-click clipboard or export as .txt." },
-      { title: "Zero uploads", description: "Works offline. Nothing leaves your device." },
+      { title: "Zero uploads", description: "Works offline. Your input is not uploaded to any server." },
     ],
     howTo: [
       { step: 1, title: "Pick a version", description: "v4 for pure random, v7 for time-ordered." },
@@ -734,7 +734,7 @@ const legacyTools: Tool[] = [
     ],
     faq: [
       { question: "Is this really free?", answer: "Yes — completely. No account, no watermark, no hidden limits." },
-      { question: "Is my photo uploaded?", answer: "No. Everything happens in your browser using the Canvas API. Your photo never leaves your device." },
+      { question: "Is my photo uploaded?", answer: "No. Everything happens in your browser using the Canvas API. Your photo is not uploaded to any server." },
       { question: "What does the Intensity slider do?", answer: "It controls how dark the pencil strokes are. Lower values produce a light, subtle sketch; higher values produce dark, bold lines." },
       { question: "What does the Detail slider do?", answer: "It controls the blur radius of the inverted layer, which determines line thickness. Lower values give fine, thin lines; higher values give thicker, softer strokes." },
       { question: "Why does my photo look less like a sketch?", answer: "Photos with strong contrast, clear subjects, and simple backgrounds work best. Very busy scenes can produce a noisy result — try adjusting Detail to smooth it out." },
@@ -778,7 +778,7 @@ const legacyTools: Tool[] = [
     ],
     faq: [
       { question: "Is this really free?", answer: "Yes — completely. No account, no watermark, no hidden limits." },
-      { question: "Is my photo uploaded?", answer: "No. Everything happens in your browser using the Canvas API. Your photo never leaves your device." },
+      { question: "Is my photo uploaded?", answer: "No. Everything happens in your browser using the Canvas API. Your photo is not uploaded to any server." },
       { question: "What does the Levels slider do?", answer: "It controls how many color bands each channel is quantized into. Lower levels (4–6) give a flat, poster-like cartoon. Higher levels (12–16) preserve more detail but look less cartoon-like." },
       { question: "What does the Edge strength slider do?", answer: "It controls how dark the outlines are. 0 = no outlines (just flat colors), 2 = very bold, comic-book style contours." },
       { question: "What does the Smoothness slider do?", answer: "It controls the blur applied before posterization. Higher values remove noise and give cleaner flat regions, but can blur away fine detail like freckles or eye highlights." },
@@ -812,7 +812,7 @@ const legacyTools: Tool[] = [
       { title: "Image preview", description: "Decoded images display inline with download button." },
       { title: "URL-safe mode", description: "RFC 4648 base64url for JWT and URLs." },
       { title: "Live output", description: "Result updates as you type — no button required." },
-      { title: "Zero uploads", description: "Nothing leaves your browser." },
+      { title: "Zero uploads", description: "Your input is not uploaded to any server." },
     ],
     howTo: [
       { step: 1, title: "Choose mode", description: "Encode (to Base64) or Decode (from Base64)." },
@@ -998,7 +998,7 @@ const legacyTools: Tool[] = [
     ],
     faq: [
       { question: "Is this really free?", answer: "Yes — completely. No account, no watermark, no limits." },
-      { question: "Is my image uploaded?", answer: "No. Everything happens in your browser using the Canvas API. Your image never leaves your device." },
+      { question: "Is my image uploaded?", answer: "No. Everything happens in your browser using the Canvas API. Your image is not uploaded to any server." },
       { question: "What files do I get?", answer: "favicon.ico (16/32/48 multi-size), favicon-16x16.png through favicon-512x512.png at standard sizes, apple-touch-icon.png (180×180), and site.webmanifest." },
       { question: "Where do I put these files?", answer: "Upload all PNGs and the .ico to your website's root directory (or /public in Vite/Next.js). Reference them in your HTML head with <link rel=\\" },
       { question: "How do I add them to my HTML?", answer: "Add: <link rel=\\" },

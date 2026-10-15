@@ -46,7 +46,7 @@ export const about: AboutContent = {
       icon: "shield",
       title: "Privacy first",
       description:
-        "Your files never leave your device. We don't track them, store them, or analyse them. Ever.",
+        "Your files are not uploaded to any server. We do not track their content, store them, or analyse them. Ever.",
     },
     {
       icon: "zap",

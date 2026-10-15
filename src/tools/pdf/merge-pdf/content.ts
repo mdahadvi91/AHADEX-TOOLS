@@ -10,7 +10,7 @@ export const mergePdfContent = {
       { value: "Free", label: "Forever" },
     ],
     introHighlights: [
-      { emoji: "🔒", title: "100% private", text: "Files never leave your device." },
+      { emoji: "🔒", title: "100% private", text: "Files are not uploaded to any server." },
       { emoji: "⚡", title: "Instant merge", text: "Runs in your browser." },
       { emoji: "🔀", title: "Reorder files", text: "Change the order before merging." },
       { emoji: "📄", title: "Preserves quality", text: "Pages copied exactly as-is." },
@@ -42,7 +42,7 @@ export const mergePdfContent = {
     faqTitle: "Questions people ask",
     faq: [
       { question: "Is this really free?", answer: "Yes — completely. No account, no watermark, no hidden size limit." },
-      { question: "Do my PDFs get uploaded to a server?", answer: "No. Everything happens inside your browser using pdf-lib. Your files never leave your device." },
+      { question: "Do my PDFs get uploaded to a server?", answer: "No. Everything happens inside your browser using pdf-lib. Your files are not uploaded to any server." },
       { question: "How many PDFs can I merge?", answer: "Up to 20 files at once. Each file can be up to 100 MB." },
       { question: "Is there a page-count limit?", answer: "No. As long as the total file size and count stay within the limits, you can merge as many pages as you want." },
       { question: "Will the PDF quality drop?", answer: "No. Pages are copied byte-for-byte without re-rendering — the merged PDF is identical to the originals." },

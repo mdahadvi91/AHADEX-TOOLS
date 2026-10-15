@@ -85,7 +85,7 @@ export const en = {
     whyTitle1: "Built the way tools",
     whyTitle2: "should be",
     whyPrivateTitle: "100% private",
-    whyPrivateDesc: "Files never leave your device. No uploads, no tracking, ever.",
+    whyPrivateDesc: "Files are not uploaded to any server. No uploads, no tracking, ever.",
     whyFastTitle: "Lightning fast",
     whyFastDesc: "Everything runs in your browser. No server round trips.",
     whySimpleTitle: "Beautifully simple",
@@ -124,7 +124,7 @@ export const en = {
     valuesTitle: "The principles",
     valuesTitle2: "behind every tool.",
     values: [
-      { title: "Privacy first", description: "Your files never leave your device. We don't track them, store them, or analyse them. Ever." },
+      { title: "Privacy first", description: "Your files are not uploaded to any server. We don't track them, store them, or analyse them. Ever." },
       { title: "Speed matters", description: "Client-side processing means instant results — no waiting for uploads or server round-trips." },
       { title: "Built with care", description: "Small touches matter. Every button, animation, and keyboard shortcut is designed to feel right." },
       { title: "Free forever", description: "No paywalls. No premium tiers for basic features. The tools are supported by ads only." },

@@ -10,7 +10,7 @@ export const faviconGeneratorContent = {
       { value: "Free", label: "Forever" },
     ],
     introHighlights: [
-      { emoji: "🔒", title: "100% private", text: "Image never leaves your device." },
+      { emoji: "🔒", title: "100% private", text: "Image is not uploaded to any server." },
       { emoji: "🎨", title: "Live preview", text: "See every size as you tune." },
       { emoji: "📦", title: "8 files at once", text: "PNG + ICO + manifest." },
       { emoji: "🎯", title: "Auto background", text: "Detects image background color." },
@@ -42,7 +42,7 @@ export const faviconGeneratorContent = {
     faqTitle: "Questions people ask",
     faq: [
       { question: "Is this really free?", answer: "Yes — completely. No account, no watermark, no limits." },
-      { question: "Is my image uploaded?", answer: "No. Everything happens in your browser using the Canvas API. Your image never leaves your device." },
+      { question: "Is my image uploaded?", answer: "No. Everything happens in your browser using the Canvas API. Your image is not uploaded to any server." },
       { question: "What files do I get?", answer: "favicon.ico (16/32/48 multi-size), favicon-16x16.png through favicon-512x512.png at standard sizes, apple-touch-icon.png (180×180), and site.webmanifest." },
       { question: "Where do I put these files?", answer: "Upload all PNGs and the .ico to your website's root directory (or /public in Vite/Next.js). Reference them in your HTML head with <link rel=\"icon\"> tags. The manifest goes at /site.webmanifest." },
       { question: "How do I add them to my HTML?", answer: "Add: <link rel=\"icon\" href=\"/favicon.ico\" sizes=\"any\" />, <link rel=\"icon\" type=\"image/png\" sizes=\"32x32\" href=\"/favicon-32x32.png\" />, <link rel=\"apple-touch-icon\" href=\"/apple-touch-icon.png\" />, <link rel=\"manifest\" href=\"/site.webmanifest\" />." },

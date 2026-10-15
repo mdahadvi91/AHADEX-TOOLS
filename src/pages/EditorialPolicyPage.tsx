@@ -27,8 +27,8 @@ export default function EditorialPolicyPage() {
             p: "প্রকাশের পর নিয়মিত রিভিউ করা হয়। নতুন তথ্য, বদলে যাওয়া প্রযুক্তি বা পাঠকের ফিডব্যাক অনুযায়ী আপডেট করা হয়। প্রতিটি পেজে 'সর্বশেষ আপডেট' তারিখ উল্লেখ থাকে যাতে পাঠক জানতে পারেন কনটেন্ট কতটা সাম্প্রতিক।",
           },
           {
-            h: "আমাদের এডিটোরিয়াল টিম",
-            p: "AHADEX Tools-এর কনটেন্ট টিমে অভিজ্ঞ ডেভেলপার, ডিজাইনার ও লেখক আছেন। প্রত্যেকে যে বিষয়ে লেখেন সেখানে বাস্তব অভিজ্ঞতা রয়েছে — আমরা এমন কোনো বিষয়ে লিখি না যা আমরা নিজে ব্যবহার করি না বা বুঝি না।",
+            h: "কে কনটেন্ট লেখেন",
+            p: "AHADEX Tools একটি স্বাধীনভাবে তৈরি প্রকল্প। এই সাইটের প্রতিটি আর্টিকেল সাইটের ডেভেলপার মোহাম্মদ আহাদ নিজে রিসার্চ, লেখা, সম্পাদনা ও রিভিউ করেন। আলাদা কোনো এডিটোরিয়াল টিম নেই, এবং কোনো বেনামী লেখকের নামে কনটেন্ট প্রকাশিত হয় না। রিসার্চ বা প্রথম খসড়ার জন্য AI-সহায়ক টুল ব্যবহার করা হতে পারে, তবে প্রকাশের আগে প্রতিটি দাবি নিজের টেস্ট রানের মাধ্যমে ম্যানুয়ালি যাচাই করা হয়।",
           },
           {
             h: "বিজ্ঞাপন ও স্পন্সরশিপ",
@@ -64,8 +64,8 @@ export default function EditorialPolicyPage() {
             p: "Content is reviewed regularly after publication. It is updated based on new information, technology changes, and reader feedback. Every page shows a 'last updated' date so readers know how current it is.",
           },
           {
-            h: "Our editorial team",
-            p: "AHADEX Tools' content team includes experienced developers, designers, and writers. Every author has real-world experience in the topics they write about — we do not write about things we have not used or do not understand.",
+            h: "Who writes the content",
+            p: "AHADEX Tools is an independently developed project. Every article on this site is researched, written, edited, and reviewed by the site's developer, Mohammad Ahad. There is no separate editorial team or anonymous author pool. AI-assisted tools may be used for research or first-draft support, but every claim is manually verified against our own test runs before publication.",
           },
           {
             h: "Advertising and sponsorship",
@@ -73,7 +73,7 @@ export default function EditorialPolicyPage() {
           },
           {
             h: "AI-assisted content",
-            p: "We use modern tools to assist with content creation, but every article goes through human editing, verification, and final approval. AI never publishes autonomously — every published word is a human's responsibility.",
+            p: "AI-assisted tools may be used for research or first-draft support, but every article is manually edited, fact-checked against our own test runs, and finalised by the site's developer before publication. AI never publishes content autonomously, and no claim goes live without being verified.",
           },
           {
             h: "Report an error",

@@ -10,7 +10,7 @@ export const passwordGenContent = {
       { value: "Free", label: "Forever" },
     ],
     introHighlights: [
-      { emoji: "🔒", title: "100% private", text: "Passwords never leave your device." },
+      { emoji: "🔒", title: "100% private", text: "Passwords are not uploaded to any server." },
       { emoji: "🎲", title: "Crypto-random", text: "Web Crypto API, not Math.random." },
       { emoji: "🎚️", title: "Full control", text: "Length, sets, ambiguity, batch." },
       { emoji: "💪", title: "Live strength", text: "Entropy + crack-time estimate." },
@@ -50,7 +50,7 @@ export const passwordGenContent = {
       { question: "What does 'require each' do?", answer: "Guarantees at least one character from every enabled set. Some services require this explicitly; others don't care." },
       { question: "Does it work on mobile?", answer: "Yes. The tool is fully responsive and works on iOS Safari and Android Chrome." },
     ],
-    privacyNote: "Passwords are generated entirely inside your browser using the Web Crypto API. Nothing is uploaded, tracked, or stored on any server. Close the tab and everything disappears.",
+    privacyNote: "Passwords are generated entirely inside your browser using the Web Crypto API. Your input is not uploaded to any server, and no content data is stored or tracked. Close the tab and everything disappears.",
     relatedTitle: "Other tools you may like",
   },
   bn: {

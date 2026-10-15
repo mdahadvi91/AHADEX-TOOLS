@@ -10,7 +10,7 @@ export const imageCompressorContent = {
       { value: "Free", label: "Forever" },
     ],
     introHighlights: [
-      { emoji: "🔒", title: "100% private", text: "Files never leave your device." },
+      { emoji: "🔒", title: "100% private", text: "Files are not uploaded to any server." },
       { emoji: "⚡", title: "Instant compression", text: "Runs in your browser." },
       { emoji: "🎚️", title: "Quality slider", text: "Control the tradeoff." },
       { emoji: "📐", title: "Max width limit", text: "Downscale large photos." },
@@ -42,7 +42,7 @@ export const imageCompressorContent = {
     faqTitle: "Questions people ask",
     faq: [
       { question: "Is this really free?", answer: "Yes — completely. No account, no watermark, no hidden size limit." },
-      { question: "Do my files get uploaded to a server?", answer: "No. Everything happens inside your browser. Your files never leave your device." },
+      { question: "Do my files get uploaded to a server?", answer: "No. Everything happens inside your browser. Your files are not uploaded to any server." },
       { question: "How much smaller will the file be?", answer: "At quality 80 with max width 1920, most photos shrink by 60-80%. PNGs and WebPs compress less dramatically but still save 30-60%." },
       { question: "What quality should I use?", answer: "For web uploads, 75-85% is a good default. For previews and thumbnails, 50-65% is fine. For archival, 90-95%." },
       { question: "Will transparency be preserved?", answer: "PNG and WebP keep transparency. JPG does not — transparent areas become white." },

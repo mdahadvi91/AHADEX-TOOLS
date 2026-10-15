@@ -10,7 +10,7 @@ export const jsonFormatterContent = {
       { value: "Free", label: "Forever" },
     ],
     introHighlights: [
-      { emoji: "🔒", title: "100% private", text: "JSON never leaves your device." },
+      { emoji: "🔒", title: "100% private", text: "JSON is not uploaded to any server." },
       { emoji: "✅", title: "Live validation", text: "Errors shown with line/column." },
       { emoji: "🎨", title: "Pretty print", text: "2/4-space or tab indent." },
       { emoji: "📦", title: "Minify", text: "One-click compact output." },
@@ -50,7 +50,7 @@ export const jsonFormatterContent = {
       { question: "Can I paste JSON with a BOM or Windows line endings?", answer: "Yes — BOM and CRLF are handled. If you see unexpected errors, try retyping the first character (BOM can be invisible)." },
       { question: "Does it work on mobile?", answer: "Yes. The tool is fully responsive and works on iOS Safari and Android Chrome." },
     ],
-    privacyNote: "Your JSON is parsed and formatted entirely inside your browser using native JavaScript APIs. Nothing is uploaded, tracked, or stored on any server. Close the tab and everything disappears.",
+    privacyNote: "Your JSON is parsed and formatted entirely inside your browser using native JavaScript APIs. Your input is not uploaded to any server, and no content data is stored or tracked. Close the tab and everything disappears.",
     relatedTitle: "Other tools you may like",
   },
   bn: {

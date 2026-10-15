@@ -58,7 +58,7 @@ export const photoQrContent = {
         emoji: "🔐",
         icon: "lock",
         title: "Your privacy",
-        text: "Everything runs locally in your browser using the Canvas API. Your photo never leaves your device 🌍, is never uploaded ☁️, and is never stored on any server. Close the tab and it's gone. 🫧",
+        text: "Everything runs locally in your browser using the Canvas API. Your photo is not uploaded to any server and is not stored anywhere outside your browser. Close the tab and it's gone. 🫧",
       },
     ],
     howTo: [
@@ -155,7 +155,7 @@ export const photoQrContent = {
       {
         question: "Is my photo uploaded to a server? ☁️",
         answer:
-          "Never. ❌ Photo QR Code is a fully client-side tool. Everything — reading the file, decoding the image, generating the QR, drawing the badge, and exporting the final PNG — happens inside your browser using the Canvas API and pure JavaScript. Your photo never leaves your device and never travels over the network. 🌍",
+          "Never. ❌ Photo QR Code is a fully client-side tool. Everything — reading the file, decoding the image, generating the QR, drawing the badge, and exporting the final PNG — happens inside your browser using the Canvas API and pure JavaScript. Your photo is not uploaded to any server and does not travel over the network. 🌍",
       },
       {
         question: "Does it work on mobile phones and tablets? 📱",

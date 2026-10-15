@@ -10,7 +10,7 @@ export const imageCropperContent = {
       { value: "Free", label: "Forever" },
     ],
     introHighlights: [
-      { emoji: "🔒", title: "100% private", text: "Files never leave your device." },
+      { emoji: "🔒", title: "100% private", text: "Files are not uploaded to any server." },
       { emoji: "⚡", title: "Live crop preview", text: "See exactly what you'll get." },
       { emoji: "📐", title: "8 aspect presets", text: "Square, story, cover, thumbnail, and more." },
       { emoji: "🎯", title: "Pixel-precise", text: "Type exact crop coordinates if you want." },
@@ -42,7 +42,7 @@ export const imageCropperContent = {
     faqTitle: "Questions people ask",
     faq: [
       { question: "Is this really free?", answer: "Yes — completely. No account, no watermark, no hidden size limit." },
-      { question: "Do my files get uploaded to a server?", answer: "No. Everything happens inside your browser using the Canvas API. Your files never leave your device." },
+      { question: "Do my files get uploaded to a server?", answer: "No. Everything happens inside your browser using the Canvas API. Your files are not uploaded to any server." },
       { question: "Can I crop multiple images at once?", answer: "Not in this version. The cropper works on one image at a time — but you can crop as many images as you want by re-running the tool." },
       { question: "What aspect ratios are available?", answer: "Free, 1:1 Square, 4:3, 3:4, 16:9, 9:16 Story, 3:2, and 2:3. You can also type any custom crop rectangle." },
       { question: "Will the quality drop?", answer: "No. The crop is a pure pixel copy — every pixel in the new image comes from the original at full resolution, with no re-sampling." },

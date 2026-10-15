@@ -10,7 +10,7 @@ export const textCaseContent = {
       { value: "Free", label: "Forever" },
     ],
     introHighlights: [
-      { emoji: "🔒", title: "100% private", text: "Text never leaves your device." },
+      { emoji: "🔒", title: "100% private", text: "Text is not uploaded to any server." },
       { emoji: "🎨", title: "12 case styles", text: "UPPER, lower, Title, camel, snake, and more." },
       { emoji: "⚡", title: "Live preview", text: "Output updates as you type." },
       { emoji: "📋", title: "One-click copy", text: "Copy the result instantly." },

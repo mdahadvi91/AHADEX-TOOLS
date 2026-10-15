@@ -10,7 +10,7 @@ export const imageToPdfContent = {
       { value: "Free", label: "Forever" },
     ],
     introHighlights: [
-      { emoji: "🔒", title: "100% private", text: "Files never leave your device." },
+      { emoji: "🔒", title: "100% private", text: "Files are not uploaded to any server." },
       { emoji: "🖼️", title: "Mixed formats", text: "JPG, PNG, and WebP — all in one PDF." },
       { emoji: "📄", title: "Multi-page", text: "Combine dozens of images into one PDF." },
       { emoji: "🔀", title: "Reorder pages", text: "Move pages up or down before export." },
@@ -42,7 +42,7 @@ export const imageToPdfContent = {
     faqTitle: "Questions people ask",
     faq: [
       { question: "Is this really free?", answer: "Yes — completely. No account, no watermark, no hidden size limit." },
-      { question: "Do my files get uploaded to a server?", answer: "No. Everything happens inside your browser using pdf-lib. Your files never leave your device." },
+      { question: "Do my files get uploaded to a server?", answer: "No. Everything happens inside your browser using pdf-lib. Your files are not uploaded to any server." },
       { question: "Which image formats are supported?", answer: "JPG, JPEG, PNG, and WebP. You can mix them freely in the same batch." },
       { question: "What page sizes are supported?", answer: "Auto (matches each image's own size), A4 (210×297 mm), and US Letter (216×279 mm). Orientation can be portrait, landscape, or auto-detect." },
       { question: "How many pages can I combine?", answer: "Up to 50 pages per PDF. If you need more, run the tool again." },

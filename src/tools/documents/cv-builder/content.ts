@@ -21,7 +21,7 @@ export const cvBuilderContent = {
       { emoji: "🖨️", title: "True A4 PDF", text: "Selectable text, correct page breaks." },
       { emoji: "💾", title: "Auto-save", text: "Draft recovery if the browser closes." },
       { emoji: "🌐", title: "EN + BN", text: "Bilingual interface and content." },
-      { emoji: "🔒", title: "100% private", text: "Nothing leaves your browser. Ever." },
+      { emoji: "🔒", title: "100% private", text: "Your files are not uploaded to any server." },
     ],
 
     introBlocks: [
@@ -83,7 +83,7 @@ export const cvBuilderContent = {
     ],
 
     privacyNote:
-      "Your CV data — name, contact info, experience, education, everything — is processed entirely inside your browser. Nothing is uploaded, tracked, or stored on any server. The only place your CV exists is in your local browser storage and in the files you explicitly download.",
+      "Your CV data — name, contact info, experience, education, everything — is processed entirely inside your browser. Your input is not uploaded to any server, and no content data is stored or tracked. The only place your CV exists is in your local browser storage and in the files you explicitly download.",
 
     relatedTitle: "Other tools you may like",
   },

@@ -21,7 +21,7 @@ export const staticPageContents: StaticPageContent[] = [
     path: "/",
     html: `<article>
   <h1>AHADEX Tools — Free browser tools that never upload your files</h1>
-  <p><strong>AHADEX Tools is a collection of ${tools.length} free utilities for everyday digital work — image conversion, PDF handling, text processing, developer helpers, and QR code generation. Every tool runs entirely inside your browser. Nothing is uploaded, nothing is stored, nothing is shared.</strong></p>
+  <p><strong>AHADEX Tools is a collection of ${tools.length} free utilities for everyday digital work — image conversion, PDF handling, text processing, developer helpers, and QR code generation. Every tool runs entirely inside your browser. Your files and tool input are processed locally and are not uploaded to our servers or stored anywhere. (Anonymous analytics and advertising scripts load separately — see the Privacy Policy for details.)</strong></p>
 
   <h2>What AHADEX Tools does</h2>
   <p>AHADEX Tools is a single-page collection of independent utilities, each solving one specific problem without signup, watermark, or file-size limit. The tools fall into six categories:</p>
@@ -253,7 +253,7 @@ export const staticPageContents: StaticPageContent[] = [
   <p><strong>AHADEX Tools publishes guides, tool documentation, and reference content. This page explains how that content is written, reviewed, and updated, and what standards it must meet before publication.</strong></p>
 
   <h2>Who writes the content</h2>
-  <p>All articles on this site are written by <a href="/about/author/mohammad-ahad">Mohammad Ahad</a>, the founder and developer of AHADEX Tools. There is no freelance or AI-generated content published under an anonymous byline.</p>
+  <p>AHADEX Tools is an independently developed project. Every article on this site is researched, written, edited, and reviewed by <a href="/about/author/mohammad-ahad">Mohammad Ahad</a>, the founder and sole developer of AHADEX Tools. There is no separate editorial team, no freelance writer pool, and no anonymous byline. AI-assisted tools may be used for research or first-draft support, but every claim is manually verified against our own test runs before publication.</p>
 
   <h2>How content is researched</h2>
   <p>Every guide is based on work with the actual tools on this site. When an article makes a quantitative claim — a file-size reduction, a timing, a percentage — the number comes from a test run we performed ourselves. Each article includes a "From our own testing" section documenting the setup and the results. Where an external source is used (for example, a specification from the W3C or a policy page from Google), it is linked inline.</p>

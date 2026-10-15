@@ -10,7 +10,7 @@ export const base64Content = {
       { value: "Free", label: "Forever" },
     ],
     introHighlights: [
-      { emoji: "🔒", title: "100% private", text: "Data never leaves your device." },
+      { emoji: "🔒", title: "100% private", text: "Data is not uploaded to any server." },
       { emoji: "🔄", title: "Encode & decode", text: "Both directions, live output." },
       { emoji: "📄", title: "Text + files", text: "Anything — from text to images." },
       { emoji: "🌐", title: "Unicode safe", text: "Bangla, emoji, CJK — all handled." },
@@ -37,7 +37,7 @@ export const base64Content = {
       { emoji: "🖼️", title: "Image preview", description: "Decoded images display inline with download button." },
       { emoji: "🔗", title: "URL-safe mode", description: "RFC 4648 base64url for JWT and URLs." },
       { emoji: "⚡", title: "Live output", description: "Result updates as you type — no button required." },
-      { emoji: "🔒", title: "Zero uploads", description: "Nothing leaves your browser." },
+      { emoji: "🔒", title: "Zero uploads", description: "Your input is not uploaded to any server." },
     ],
     faqTitle: "Questions people ask",
     faq: [
@@ -50,7 +50,7 @@ export const base64Content = {
       { question: "Can I decode a data URL?", answer: "Yes — the decoder accepts full data URLs (data:image/png;base64,...) or just the Base64 payload." },
       { question: "Does it work on mobile?", answer: "Yes. The tool is fully responsive and works on iOS Safari and Android Chrome." },
     ],
-    privacyNote: "Your data is processed entirely inside your browser using native JavaScript APIs. Nothing is uploaded, tracked, or stored on any server. Close the tab and everything disappears.",
+    privacyNote: "Your data is processed entirely inside your browser using native JavaScript APIs. Your input is not uploaded to any server, and no content data is stored or tracked. Close the tab and everything disappears.",
     relatedTitle: "Other tools you may like",
   },
   bn: {

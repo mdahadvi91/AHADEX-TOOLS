@@ -98,7 +98,7 @@ export const blogPosts: BlogPost[] = [
       ]},
       { type: "h2", content: "How to compress images privately in your browser" },
       { type: "p", content: "Most online image compressors upload your files to their servers. This is a privacy and security risk — especially for personal photos, ID documents, or confidential business images." },
-      { type: "p", content: "AHADEX Image Compressor runs entirely inside your browser using the HTML5 Canvas API and WebCodecs. Your files never leave your device. There is no upload, no server storage, and no tracking. You can even use it offline after the page loads." },
+      { type: "p", content: "AHADEX Image Compressor runs entirely inside your browser using the HTML5 Canvas API and WebCodecs. Your files are not uploaded to any server, no file content is stored, and no analytics track what you process. You can even use it offline after the page loads." },
       { type: "cta", toolId: "image-compressor", content: "Try the free browser-based Image Compressor" },
       { type: "h2", content: "Common mistakes to avoid" },
       { type: "ul", items: [
@@ -149,7 +149,7 @@ export const blogPosts: BlogPost[] = [
       { type: "h2", content: "The privacy problem with most PDF mergers" },
       { type: "p", content: "Almost every online PDF merger uploads your files to their servers. Your contracts, invoices, and signed documents travel across the internet and sit on someone else's computer for minutes or hours." },
       { type: "p", content: "For confidential business documents, medical records, or legal paperwork, this is unacceptable. Even services that claim to 'delete after processing' have already seen your files." },
-      { type: "tip", content: "Browser-based tools process files locally using JavaScript. Your PDF never leaves your device — not even your Wi-Fi network. This is the safest way to merge sensitive documents." },
+      { type: "tip", content: "Browser-based tools process files locally using JavaScript. Your PDF is not uploaded to any server and does not travel over the network. This is the safest way to merge sensitive documents." },
       { type: "h2", content: "Step-by-step: merging PDFs in your browser" },
       { type: "ol", items: [
         "Open the AHADEX Merge PDF tool in your browser",
@@ -176,7 +176,7 @@ export const blogPosts: BlogPost[] = [
         "Remove unnecessary pages before merging",
       ]},
       { type: "h2", content: "Final thoughts" },
-      { type: "p", content: "Merging PDFs is a daily task for freelancers, accountants, lawyers, and students. Doing it in a browser-based tool means your files never leave your device — the best of both worlds: convenience and privacy." },
+      { type: "p", content: "Merging PDFs is a daily task for freelancers, accountants, lawyers, and students. Doing it in a browser-based tool means your files are not uploaded to any server — the best of both worlds: convenience and privacy." },
     ],
   },
   {
@@ -475,7 +475,7 @@ export const blogPosts: BlogPost[] = [
       { type: "p", content: "JPG or PNG. Do not use WebP — many email clients cannot display it." },
       { type: "h2", content: "How to convert between formats" },
       { type: "p", content: "Modern browsers can convert between formats using the Canvas API. You can convert JPG to PNG, PNG to WebP, or WebP to JPG entirely in the browser — no upload required." },
-      { type: "p", content: "The advantage of browser-based conversion is privacy: your images never leave your device. This matters for personal photos, ID documents, and confidential business graphics." },
+      { type: "p", content: "The advantage of browser-based conversion is privacy: your images are not uploaded to any server. This matters for personal photos, ID documents, and confidential business graphics." },
       { type: "h2", content: "Final recommendations" },
       { type: "ol", items: [
         "Use WebP for everything on the web unless you have a specific reason not to",
@@ -518,7 +518,7 @@ export const blogPosts: BlogPost[] = [
       ]},
       { type: "h2", content: "The critical privacy question" },
       { type: "p", content: "Most JPG-to-PDF converters upload your images to their servers. Your ID scans, medical documents, contracts, and personal photos travel across the internet and sit on someone else's computer." },
-      { type: "p", content: "For passport photos, Emirates ID copies, medical records, or tax documents, this is unacceptable. Browser-based tools process files locally using JavaScript and the Canvas API — your images never leave your device." },
+      { type: "p", content: "For passport photos, Emirates ID copies, medical records, or tax documents, this is unacceptable. Browser-based tools process files locally using JavaScript and the Canvas API — your images are not uploaded to any server." },
       { type: "tip", content: "If a tool shows an upload progress bar, your files are being transmitted. Look for tools that say 'runs in your browser' or 'no upload'." },
       { type: "cta", toolId: "jpg-to-pdf", content: "Convert JPG to PDF privately in your browser" },
       { type: "h2", content: "Page size and orientation" },
@@ -758,7 +758,7 @@ export const blogPosts: BlogPost[] = [
       ]},
       { type: "h2", content: "The privacy advantage of browser-based QR tools" },
       { type: "p", content: "Many QR generators upload your image (for photo-QR codes) or your URL to their servers. This creates two problems: the tool sees your data, and if the tool shuts down, your QR codes stop working." },
-      { type: "p", content: "Browser-based tools generate QR codes locally using the Canvas API and a QR encoding library. Your images and URLs never leave your device. If you switch phones or browsers, your QR codes still work because they are static images." },
+      { type: "p", content: "Browser-based tools generate QR codes locally using the Canvas API and a QR encoding library. Your images and URLs are not uploaded to any server. If you switch phones or browsers, your QR codes still work because they are static images." },
       { type: "h2", content: "Common mistakes" },
       { type: "ul", items: [
         "Making the code too small to scan from a normal distance",
@@ -1023,7 +1023,7 @@ export const blogPosts: BlogPost[] = [
         "Set quality to 85-90% for photos, 100% for graphics",
         "Download the resized image — done in seconds",
       ]},
-      { type: "p", content: "The privacy advantage: your images never leave your device. This matters when resizing personal photos, ID scans, or business graphics." },
+      { type: "p", content: "The privacy advantage: your images are not uploaded to any server. This matters when resizing personal photos, ID scans, or business graphics." },
       { type: "h2", content: "Final recommendations" },
       { type: "ol", items: [
         "Bookmark this guide — you will need it every time you post",
@@ -1085,7 +1085,7 @@ export const blogPosts: BlogPost[] = [
       { type: "cta", toolId: "pdf-to-jpg", content: "Convert PDF to JPG privately in your browser" },
       { type: "h2", content: "The privacy problem" },
       { type: "p", content: "Most online PDF-to-JPG converters upload your PDF to their servers. This is a serious privacy issue when the PDF contains contracts, invoices, medical records, or personal identification." },
-      { type: "p", content: "Browser-based tools use PDF.js (Mozilla's PDF renderer) and the HTML5 Canvas API to render pages locally. Your PDF never leaves your device — not even your Wi-Fi network." },
+      { type: "p", content: "Browser-based tools use PDF.js (Mozilla's PDF renderer) and the HTML5 Canvas API to render pages locally. Your PDF is not uploaded to any server and does not travel over the network." },
       { type: "h2", content: "Step-by-step: PDF to JPG in your browser" },
       { type: "ol", items: [
         "Open the PDF to JPG tool in your browser",
@@ -1316,7 +1316,7 @@ export const blogPosts: BlogPost[] = [
         "Cloudflare users: purge cache after deploying",
       ]},
       { type: "h2", content: "The privacy advantage of browser-based favicon generators" },
-      { type: "p", content: "Most online favicon generators upload your logo image to their servers. If your logo is proprietary or unreleased, this is a brand security risk. Browser-based tools use Canvas to resize and encode locally — your logo never leaves your device." },
+      { type: "p", content: "Most online favicon generators upload your logo image to their servers. If your logo is proprietary or unreleased, this is a brand security risk. Browser-based tools use Canvas to resize and encode locally — your logo is not uploaded to any server." },
       { type: "h2", content: "Final recommendations" },
       { type: "ol", items: [
         "Design a simple, bold 512×512 source image",
@@ -2149,7 +2149,7 @@ export const blogPosts: BlogPost[] = [
         "Scanned documents contain student ID photos",
         "Research data may be confidential",
       ]},
-      { type: "tip", content: "Always check whether a tool uploads your file. If it does, use a browser-based alternative. AHADEX Tools processes everything locally — your files never leave your device." },
+      { type: "tip", content: "Always check whether a tool uploads your file. If it does, use a browser-based alternative. AHADEX Tools processes everything locally — your files are not uploaded to any server." },
       { type: "h2", content: "A student's daily workflow" },
       { type: "h3", content: "Sunday night" },
       { type: "p", content: "Assignment due tomorrow. Combine 3 PDFs into one submission: merge tool. Convert hand-written photos to PDF: image-to-PDF. Compress to under 10 MB: image compressor." },
@@ -3551,7 +3551,7 @@ export const blogPosts: BlogPost[] = [
         "Preview the result",
         "Download the watermarked image",
       ]},
-      { type: "p", content: "Because it runs locally in Canvas, your original photo never leaves your device. Important for unreleased or confidential work." },
+      { type: "p", content: "Because it runs locally in Canvas, your original photo is not uploaded to any server. Important for unreleased or confidential work." },
       { type: "h2", content: "Batch watermarking" },
       { type: "p", content: "For photographers with dozens of images, batch watermarking saves hours. Look for tools that:" },
       { type: "ul", items: [

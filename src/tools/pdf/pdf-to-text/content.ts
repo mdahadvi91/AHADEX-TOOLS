@@ -10,7 +10,7 @@ export const pdfToTextContent = {
       { value: "Free", label: "Forever" },
     ],
     introHighlights: [
-      { emoji: "🔒", title: "100% private", text: "PDF never leaves your device." },
+      { emoji: "🔒", title: "100% private", text: "PDF is not uploaded to any server." },
       { emoji: "📝", title: "Clean text", text: "Paragraph and line breaks preserved." },
       { emoji: "🎯", title: "Page ranges", text: "Extract only the pages you need." },
       { emoji: "📋", title: "Copy or download", text: "Get .txt file or clipboard." },
@@ -42,7 +42,7 @@ export const pdfToTextContent = {
     faqTitle: "Questions people ask",
     faq: [
       { question: "Is this really free?", answer: "Yes — completely. No account, no watermark, no hidden limits." },
-      { question: "Is my PDF uploaded?", answer: "No. Everything happens inside your browser using pdf.js. Your file never leaves your device." },
+      { question: "Is my PDF uploaded?", answer: "No. Everything happens inside your browser using pdf.js. Your file is not uploaded to any server." },
       { question: "Why is the extracted text empty?", answer: "Your PDF is probably a scan — images of pages with no text layer. Use OCR software for that. This tool only extracts existing text." },
       { question: "What is 'preserve line breaks'?", answer: "When ON, the tool keeps the PDF's original line breaks (useful for poems, code, structured documents). When OFF, it collapses everything into flowing paragraphs." },
       { question: "What does 'page separators' do?", answer: "When ON, each page's text is preceded by a '--- Page N ---' marker, so you can see where pages begin. Useful for large documents." },

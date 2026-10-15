@@ -102,7 +102,7 @@ export const SSR_SCHEMA: Record<string, object> = {
             "name": "Is my photo uploaded to a server? ☁️",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "Never. ❌ Photo QR Code is a fully client-side tool. Everything — reading the file, decoding the image, generating the QR, drawing the badge, and exporting the final PNG — happens inside your browser using the Canvas API and pure JavaScript. Your photo never leaves your device and never travels over the network. 🌍"
+              "text": "Never. ❌ Photo QR Code is a fully client-side tool. Everything — reading the file, decoding the image, generating the QR, drawing the badge, and exporting the final PNG — happens inside your browser using the Canvas API and pure JavaScript. Your photo is not uploaded to any server and does not travel over the network. 🌍"
             }
           },
           {
@@ -236,7 +236,7 @@ export const SSR_SCHEMA: Record<string, object> = {
             "name": "Do my files get uploaded to a server?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "No. Every render happens inside your browser using the HTML5 Canvas API. Your logo, text, and design never leave your device. Close the tab and everything is gone — nothing is stored anywhere."
+              "text": "No. Every render happens inside your browser using the HTML5 Canvas API. Your logo, text, and design are not uploaded to any server. Closing the tab clears everything from memory."
             }
           },
           {
@@ -568,7 +568,7 @@ export const SSR_SCHEMA: Record<string, object> = {
             "name": "Do my files get uploaded to a server?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "No. Everything happens inside your browser. Your files never leave your device."
+              "text": "No. Everything happens inside your browser. Your files are not uploaded to any server."
             }
           },
           {
@@ -728,7 +728,7 @@ export const SSR_SCHEMA: Record<string, object> = {
             "name": "Do my files get uploaded to a server?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "No. Everything happens inside your browser. Your files never leave your device."
+              "text": "No. Everything happens inside your browser. Your files are not uploaded to any server."
             }
           },
           {
@@ -888,7 +888,7 @@ export const SSR_SCHEMA: Record<string, object> = {
             "name": "Do my files get uploaded to a server?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "No. Everything happens inside your browser using the Canvas API. Your files never leave your device."
+              "text": "No. Everything happens inside your browser using the Canvas API. Your files are not uploaded to any server."
             }
           },
           {
@@ -1048,7 +1048,7 @@ export const SSR_SCHEMA: Record<string, object> = {
             "name": "Do my PDFs get uploaded to a server?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "No. Everything happens inside your browser using pdf-lib. Your files never leave your device."
+              "text": "No. Everything happens inside your browser using pdf-lib. Your files are not uploaded to any server."
             }
           },
           {
@@ -1368,7 +1368,7 @@ export const SSR_SCHEMA: Record<string, object> = {
             "name": "Are my photos uploaded?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "No. Everything runs inside your browser using the File API and exifr. Your files never leave your device."
+              "text": "No. Everything runs inside your browser using the File API and exifr. Your files are not uploaded to any server."
             }
           },
           {
@@ -1528,7 +1528,7 @@ export const SSR_SCHEMA: Record<string, object> = {
             "name": "Is my PDF uploaded?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "No. Everything happens inside your browser using pdf.js. Your file never leaves your device."
+              "text": "No. Everything happens inside your browser using pdf.js. Your file is not uploaded to any server."
             }
           },
           {
@@ -1688,7 +1688,7 @@ export const SSR_SCHEMA: Record<string, object> = {
             "name": "Is my PDF uploaded?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "No. Everything happens inside your browser using pdf-lib. Your file never leaves your device."
+              "text": "No. Everything happens inside your browser using pdf-lib. Your file is not uploaded to any server."
             }
           },
           {
@@ -1848,7 +1848,7 @@ export const SSR_SCHEMA: Record<string, object> = {
             "name": "Is my SVG uploaded?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "No. Everything happens inside your browser using the Canvas API. Your file never leaves your device."
+              "text": "No. Everything happens inside your browser using the Canvas API. Your file is not uploaded to any server."
             }
           },
           {
@@ -2648,7 +2648,7 @@ export const SSR_SCHEMA: Record<string, object> = {
             "name": "Is my photo uploaded?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "No. Everything happens in your browser using the Canvas API. Your photo never leaves your device."
+              "text": "No. Everything happens in your browser using the Canvas API. Your photo is not uploaded to any server."
             }
           },
           {
@@ -2808,7 +2808,7 @@ export const SSR_SCHEMA: Record<string, object> = {
             "name": "Is my photo uploaded?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "No. Everything happens in your browser using the Canvas API. Your photo never leaves your device."
+              "text": "No. Everything happens in your browser using the Canvas API. Your photo is not uploaded to any server."
             }
           },
           {
@@ -3608,7 +3608,7 @@ export const SSR_SCHEMA: Record<string, object> = {
             "name": "Is my image uploaded?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "No. Everything happens in your browser using the Canvas API. Your image never leaves your device."
+              "text": "No. Everything happens in your browser using the Canvas API. Your image is not uploaded to any server."
             }
           },
           {
