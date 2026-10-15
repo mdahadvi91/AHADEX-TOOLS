@@ -113,7 +113,8 @@ const staticEntries = Object.entries(staticPages)
 const blogEntries = blogPosts
   .map((p) => {
     const path = `/blog/${p.slug}`;
-    return `  ${JSON.stringify(p.slug)}: { path: ${JSON.stringify(path)}, title: ${JSON.stringify(p.title)}, description: ${JSON.stringify(p.excerpt)}, ogImage: "/images/og/home-og.png" },`;
+    const ogImage = `/images/og/blog/${p.slug}-og.png`;
+    return `  ${JSON.stringify(p.slug)}: { path: ${JSON.stringify(path)}, title: ${JSON.stringify(p.title)}, description: ${JSON.stringify(p.excerpt)}, ogImage: ${JSON.stringify(ogImage)} },`;
   })
   .join("\n");
 

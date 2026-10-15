@@ -100,24 +100,21 @@ const toolRoutes: SitemapEntry[] = tools.map((t) => {
   };
 });
 
-/* ── Blog routes (each ships its OG image when present) ── */
+/* ── Blog routes (each ships its unique OG image) ── */
 const blogRoutes: SitemapEntry[] = blogPosts.map((p) => {
-  const og = (p as unknown as { ogImage?: string }).ogImage;
-  const images: SitemapImage[] = og
-    ? [
-        {
-          loc: og.startsWith("http") ? og : `${SITE_URL}${og}`,
-          title: p.title,
-          caption: p.excerpt,
-        },
-      ]
-    : [];
+  const og = `/images/og/blog/${p.slug}-og.png`;
   return {
     loc: `/blog/${p.slug}`,
     changefreq: "monthly" as const,
     priority: 0.6,
     lastmod: p.publishedAt || BLOG_LASTMOD,
-    images,
+    images: [
+      {
+        loc: `${SITE_URL}${og}`,
+        title: p.title,
+        caption: p.excerpt,
+      },
+    ],
   };
 });
 
