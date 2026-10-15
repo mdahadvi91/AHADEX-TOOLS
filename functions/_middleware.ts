@@ -98,9 +98,16 @@ function injectSSRContent(html: string, pathname: string): string {
   //
   // The [data-ssr] attribute is the contract between this middleware and
   // src/main.tsx. Do not remove it without updating both files.
-  const marker = '<div id="root">';
-  if (html.includes(marker)) {
-    return html.replace(marker, marker + `<div data-ssr="true">${content}</div>`);
+  // Match <div id="root"...> with or without additional attributes
+  // (e.g. suppressHydrationWarning) and inject the SSR fallback as the
+  // first child. Uses a regex so attribute changes to index.html do not
+  // silently break SSR injection.
+  const rootPattern = /<div id="root"[^>]*>/;
+  if (rootPattern.test(html)) {
+    return html.replace(
+      rootPattern,
+      (match) => `${match}<div data-ssr="true">${content}</div>`
+    );
   }
   return html;
 }
