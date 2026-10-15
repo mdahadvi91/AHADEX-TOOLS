@@ -33,16 +33,15 @@
     <!-- Emoji decoration (top right) -->
     <text x="1080" y="130" text-anchor="middle" font-family="'Noto Color Emoji','Noto Sans',sans-serif" font-size="72" opacity="0.85">🔤</text>
 
-    <!-- Title (line 1) -->
-    <text x="100" y="230" font-family="'Noto Sans','Droid Sans',system-ui,sans-serif" font-size="56" font-weight="800" fill="#F8F6F1" letter-spacing="-2">Base64 Encoding Explained:</text>
-    <!-- Title (line 2) -->
-    <text x="100" y="298" font-family="'Noto Sans','Droid Sans',system-ui,sans-serif" font-size="56" font-weight="800" fill="#F8F6F1" letter-spacing="-2">A Practical Guide</text>
+    <!-- Title -->
+    <text x="100" y="230" font-family="'Noto Sans','Droid Sans',system-ui,sans-serif" font-size="64" font-weight="800" fill="#F8F6F1" letter-spacing="-2">Base64 Encoding Explained: A</text>
+    <text x="100" y="299" font-family="'Noto Sans','Droid Sans',system-ui,sans-serif" font-size="64" font-weight="800" fill="#F8F6F1" letter-spacing="-2">Practical Guide</text>
 
     <!-- Excerpt -->
-    <text x="100" y="450" font-family="'Noto Sans','Droid Sans',system-ui,sans-serif" font-size="24" font-weight="400" fill="#C4A89E" letter-spacing="-0.3">Base64 is everywhere — in emails, data URLs, JWTs, and APIs. Learn what it actually is, when to use it, when…</text>
+    <text x="100" y="428" font-family="'Noto Sans','Droid Sans',system-ui,sans-serif" font-size="24" font-weight="400" fill="#C4A89E" letter-spacing="-0.3">Base64 is everywhere — in emails, data URLs, JWTs, and APIs. Learn what it actually is, when to use it, when…</text>
 
     <!-- Meta pills -->
-    <g transform="translate(100, 520)">
+    <g transform="translate(100, 545)">
       <rect x="0" y="0" width="220" height="52" rx="26" fill="#FFFFFF" opacity="0.06" stroke="#D88B9A" stroke-width="1.5"/>
       <circle cx="28" cy="26" r="5" fill="#D88B9A"/>
       <text x="46" y="34" font-family="'Noto Sans','Droid Sans',sans-serif" font-size="18" font-weight="500" fill="#F8F6F1">5 min read</text>

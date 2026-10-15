@@ -188,3 +188,96 @@ html[lang="ar"] .live-text > span {
   animation: none !important;
   display: inline !important;
 }
+
+/* ------------------------------------------------------------
+ * SSR-only fallback styles
+ * ------------------------------------------------------------
+ * Cloudflare middleware injects a small amount of HTML into the
+ * initial response so crawlers and JS-disabled users see content.
+ * These rules give that fallback minimal typography and spacing
+ * so it is readable even before React hydrates (or if React never
+ * hydrates at all). Once React mounts, the fallback is replaced.
+ * ------------------------------------------------------------ */
+[data-ssr="true"] {
+  max-width: 780px;
+  margin: 4rem auto;
+  padding: 0 1.5rem;
+  color: var(--color-text-secondary, #4a4a4a);
+  line-height: 1.7;
+  font-family: system-ui, -apple-system, sans-serif;
+}
+
+[data-ssr="true"] h1 {
+  font-size: 2rem;
+  font-weight: 800;
+  margin-bottom: 1.5rem;
+  color: var(--color-text-primary, #1a1a1a);
+}
+
+[data-ssr="true"] h2 {
+  font-size: 1.35rem;
+  font-weight: 700;
+  margin: 2.5rem 0 1rem;
+  color: var(--color-text-primary, #1a1a1a);
+}
+
+[data-ssr="true"] h3 {
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin: 1.5rem 0 0.5rem;
+  color: var(--color-text-primary, #1a1a1a);
+}
+
+[data-ssr="true"] p,
+[data-ssr="true"] li {
+  font-size: 1rem;
+  margin-bottom: 0.85rem;
+}
+
+[data-ssr="true"] ul,
+[data-ssr="true"] ol {
+  padding-left: 1.5rem;
+  margin-bottom: 1.25rem;
+}
+
+[data-ssr="true"] table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1.25rem 0;
+  font-size: 0.9rem;
+}
+
+[data-ssr="true"] th,
+[data-ssr="true"] td {
+  border: 1px solid rgba(139, 58, 79, 0.2);
+  padding: 0.6rem 0.8rem;
+  text-align: left;
+}
+
+[data-ssr="true"] th {
+  background: rgba(216, 139, 154, 0.08);
+  font-weight: 600;
+}
+
+[data-ssr="true"] a {
+  color: #8B3A4F;
+  text-decoration: underline;
+}
+
+[data-ssr="true"] section[lang="bn"] {
+  margin-top: 3rem;
+  padding-top: 2rem;
+  border-top: 1px solid rgba(139, 58, 79, 0.15);
+}
+
+[data-ssr="true"] .tool-field-note {
+  margin: 2.5rem 0;
+  padding: 1.5rem;
+  background: rgba(216, 139, 154, 0.05);
+  border-left: 4px solid #8B3A4F;
+  border-radius: 8px;
+}
+
+[data-ssr="true"] .tool-field-note h2 {
+  margin-top: 0;
+}

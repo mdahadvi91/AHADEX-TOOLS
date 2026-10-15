@@ -33,16 +33,15 @@
     <!-- Emoji decoration (top right) -->
     <text x="1080" y="130" text-anchor="middle" font-family="'Noto Color Emoji','Noto Sans',sans-serif" font-size="72" opacity="0.85">✂️</text>
 
-    <!-- Title (line 1) -->
-    <text x="100" y="230" font-family="'Noto Sans','Droid Sans',system-ui,sans-serif" font-size="46" font-weight="800" fill="#F8F6F1" letter-spacing="-2">How to Remove Background</text>
-    <!-- Title (line 2) -->
-    <text x="100" y="288" font-family="'Noto Sans','Droid Sans',system-ui,sans-serif" font-size="46" font-weight="800" fill="#F8F6F1" letter-spacing="-2">from Photos (Free Methods)</text>
+    <!-- Title -->
+    <text x="100" y="230" font-family="'Noto Sans','Droid Sans',system-ui,sans-serif" font-size="56" font-weight="800" fill="#F8F6F1" letter-spacing="-2">How to Remove Background from</text>
+    <text x="100" y="290" font-family="'Noto Sans','Droid Sans',system-ui,sans-serif" font-size="56" font-weight="800" fill="#F8F6F1" letter-spacing="-2">Photos (Free Methods)</text>
 
     <!-- Excerpt -->
-    <text x="100" y="450" font-family="'Noto Sans','Droid Sans',system-ui,sans-serif" font-size="24" font-weight="400" fill="#C4A89E" letter-spacing="-0.3">Background removal used to require Photoshop skills. Now free browser tools do it in 3 seconds. Here is how i…</text>
+    <text x="100" y="410" font-family="'Noto Sans','Droid Sans',system-ui,sans-serif" font-size="24" font-weight="400" fill="#C4A89E" letter-spacing="-0.3">Background removal used to require Photoshop skills. Now free browser tools do it in 3 seconds. Here is how i…</text>
 
     <!-- Meta pills -->
-    <g transform="translate(100, 520)">
+    <g transform="translate(100, 545)">
       <rect x="0" y="0" width="220" height="52" rx="26" fill="#FFFFFF" opacity="0.06" stroke="#D88B9A" stroke-width="1.5"/>
       <circle cx="28" cy="26" r="5" fill="#D88B9A"/>
       <text x="46" y="34" font-family="'Noto Sans','Droid Sans',sans-serif" font-size="18" font-weight="500" fill="#F8F6F1">6 min read</text>

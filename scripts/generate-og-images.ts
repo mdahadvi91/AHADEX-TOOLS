@@ -170,20 +170,77 @@ function buildSvg(tool: Tool): string {
 `;
 }
 
+/* ── Split a title into balanced lines by character count ── */
+function splitTitle(title: string, maxCharsPerLine = 32): string[] {
+  const words = title.split(" ");
+  const lines: string[] = [];
+  let current = "";
+
+  for (const word of words) {
+    const candidate = current ? `${current} ${word}` : word;
+    if (candidate.length > maxCharsPerLine && current) {
+      lines.push(current);
+      current = word;
+    } else {
+      current = candidate;
+    }
+  }
+  if (current) lines.push(current);
+
+  // Cap at 3 lines — if we have more, redistribute more evenly
+  if (lines.length > 3) {
+    const merged = lines.join(" ");
+    const target = Math.ceil(merged.length / 3);
+    return splitTitle(merged, target);
+  }
+  return lines;
+}
+
+/* ── Pick font size from line count and longest line width ── */
+function pickTitleSize(lines: string[]): number {
+  const longest = Math.max(...lines.map((l) => l.length));
+  const count = lines.length;
+
+  // The image is 1200 wide with 100px margins each side = 1000 usable.
+  // Empirically: at font size N, average char width ≈ 0.55 * N.
+  // Max chars per line at font N: floor(1000 / (0.55 * N)) = floor(1818 / N).
+  // Pick the largest size where longest line still fits.
+  const candidates = [72, 64, 56, 48, 42, 36, 32, 28];
+
+  for (const size of candidates) {
+    const maxChars = Math.floor(1818 / size);
+    // Reduce for extra lines (they compete for vertical space)
+    const verticalFactor = count >= 3 ? 0.85 : 1;
+    if (longest <= maxChars * verticalFactor) {
+      return size;
+    }
+  }
+  return 28;
+}
+
 /* ── Build SVG for a single blog post ── */
 function buildBlogSvg(post: typeof blogPosts[0]): string {
-  const titleSize = post.title.length <= 30 ? 68 : post.title.length <= 50 ? 56 : post.title.length <= 70 ? 46 : 38;
-  const title = post.title.length > 90 ? post.title.slice(0, 89).trimEnd() + "…" : post.title;
+  const rawTitle = post.title.length > 110 ? post.title.slice(0, 109).trimEnd() + "…" : post.title;
+  const titleLines = splitTitle(rawTitle);
+  const titleSize = pickTitleSize(titleLines);
+
   const excerpt = post.excerpt.length > 110 ? post.excerpt.slice(0, 109).trimEnd() + "…" : post.excerpt;
   const category = post.category.toUpperCase();
   const emoji = post.emoji || "📄";
   const readTime = `${post.readTime} min read`;
 
-  // Split long titles into 2 lines for better readability
-  const words = title.split(" ");
-  const mid = Math.ceil(words.length / 2);
-  const line1 = words.slice(0, mid).join(" ");
-  const line2 = words.slice(mid).join(" ");
+  // Build title <text> elements with proper vertical spacing
+  const lineHeight = Math.round(titleSize * 1.08);
+  const titleStartY = 230;
+  const titleSvg = titleLines
+    .map(
+      (line, i) =>
+        `<text x="100" y="${titleStartY + i * lineHeight}" font-family="'Noto Sans','Droid Sans',system-ui,sans-serif" font-size="${titleSize}" font-weight="800" fill="#F8F6F1" letter-spacing="-2">${esc(line)}</text>`
+    )
+    .join("\n    ");
+
+  // Excerpt y position depends on where the title ends
+  const excerptY = titleStartY + titleLines.length * lineHeight + 60;
 
   // Badge width depends on category length
   const badgeW = 8 + category.length * 15;
@@ -223,16 +280,14 @@ function buildBlogSvg(post: typeof blogPosts[0]): string {
     <!-- Emoji decoration (top right) -->
     <text x="1080" y="130" text-anchor="middle" font-family="'Noto Color Emoji','Noto Sans',sans-serif" font-size="72" opacity="0.85">${emoji}</text>
 
-    <!-- Title (line 1) -->
-    <text x="100" y="230" font-family="'Noto Sans','Droid Sans',system-ui,sans-serif" font-size="${titleSize}" font-weight="800" fill="#F8F6F1" letter-spacing="-2">${esc(line1)}</text>
-    <!-- Title (line 2) -->
-    <text x="100" y="${230 + titleSize + 12}" font-family="'Noto Sans','Droid Sans',system-ui,sans-serif" font-size="${titleSize}" font-weight="800" fill="#F8F6F1" letter-spacing="-2">${esc(line2)}</text>
+    <!-- Title -->
+    ${titleSvg}
 
     <!-- Excerpt -->
-    <text x="100" y="450" font-family="'Noto Sans','Droid Sans',system-ui,sans-serif" font-size="24" font-weight="400" fill="#C4A89E" letter-spacing="-0.3">${esc(excerpt)}</text>
+    <text x="100" y="${excerptY}" font-family="'Noto Sans','Droid Sans',system-ui,sans-serif" font-size="24" font-weight="400" fill="#C4A89E" letter-spacing="-0.3">${esc(excerpt)}</text>
 
     <!-- Meta pills -->
-    <g transform="translate(100, 520)">
+    <g transform="translate(100, 545)">
       <rect x="0" y="0" width="220" height="52" rx="26" fill="#FFFFFF" opacity="0.06" stroke="#D88B9A" stroke-width="1.5"/>
       <circle cx="28" cy="26" r="5" fill="#D88B9A"/>
       <text x="46" y="34" font-family="'Noto Sans','Droid Sans',sans-serif" font-size="18" font-weight="500" fill="#F8F6F1">${esc(readTime)}</text>
