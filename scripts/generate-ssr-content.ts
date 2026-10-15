@@ -15,6 +15,7 @@ import { writeFileSync } from "node:fs";
 import { resolve } from "node:path";
 import { trustContent } from "../src/data/trustContent";
 import { tools } from "../src/data/tools";
+import { toolTranslationsBn } from "../src/i18n/toolTranslations";
 import { blogPosts } from "../src/data/blog";
 
 const OUT_FILE = resolve(process.cwd(), "functions/_ssr-content.ts");
@@ -112,7 +113,27 @@ function buildToolPage(tool: typeof tools[0]): string {
     ${faq}
     ${deepDiveBlock}
     ${relatedBlock}
+    ${buildBengaliSection(tool)}
   </article>`;
+}
+
+/* ── Build the Bengali summary section ────────────────────────
+ * Emits a small <section lang="bn"> at the end of each tool page
+ * with the Bengali tool name and a short description. This gives
+ * Google and Bengali-reading users a genuine, visible Bengali
+ * block on the same URL as the English content. hreflang tags in
+ * the middleware declare the language alternates, so there is no
+ * duplicate-content ambiguity.
+ * ─────────────────────────────────────────────────────────── */
+function buildBengaliSection(tool: typeof tools[0]): string {
+  const bn = toolTranslationsBn[tool.id];
+  if (!bn) return "";
+
+  return `<section lang="bn" dir="ltr">
+    <h2>${esc(bn.name)}</h2>
+    <p>${esc(bn.description)}</p>
+    <p>এই টুলটি সম্পূর্ণভাবে আপনার ব্রাউজারে চলে — কোনো ফাইল বা ডেটা কোথাও আপলোড হয় না। আপনার ছবি, PDF বা লেখা আপনার ডিভাইসেই থাকে।</p>
+  </section>`;
 }
 
 /* ── Build blog post HTML (basic) ── */

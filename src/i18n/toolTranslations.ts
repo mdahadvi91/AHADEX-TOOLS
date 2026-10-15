@@ -19,35 +19,6 @@ export const toolTranslationsBn: Record<string, ToolTranslation> = {
     description:
       "মিনিটেই পেশাদার CV তৈরি করুন। আসল A4 টেমপ্লেট, লাইভ প্রিভিউ, selectable-text PDF এক্সপোর্ট, অটো-সেভ ও সম্পূর্ণ ব্রাউজার-প্রাইভেসি।",
   },
-  "jpg-to-png": {
-    name: "JPG থেকে PNG",
-    description:
-      "JPG ছবি PNG ফরম্যাটে সাথে সাথে রূপান্তর করুন — সম্পূর্ণ আপনার ব্রাউজারেই, কোনো আপলোড নেই।",
-  },
-  "png-to-jpg": {
-    name: "PNG থেকে JPG",
-    description:
-      "PNG ছবি JPG ফরম্যাটে সাথে সাথে রূপান্তর করুন — সম্পূর্ণ আপনার ব্রাউজারেই, ছোট ফাইল, শূন্য আপলোড।",
-  },
-  "jpg-to-webp": {
-    name: "JPG থেকে WebP",
-    description:
-      "JPG ছবি আধুনিক WebP ফরম্যাটে রূপান্তর করুন — ২৫-৩৫% ছোট ফাইল, সম্পূর্ণ ব্রাউজারেই।",
-  },
-  "png-to-webp": {
-    name: "PNG থেকে WebP",
-    description:
-      "PNG ছবি আধুনিক WebP ফরম্যাটে রূপান্তর করুন — ৩০-৫০% ছোট ফাইল, স্বচ্ছতা সংরক্ষিত, সম্পূর্ণ ব্রাউজারেই।",
-  },
-  "webp-to-jpg": {
-    name: "WebP থেকে JPG",
-    description:
-      "WebP ছবি JPG ফরম্যাটে রূপান্তর করুন — সার্বজনীন সাপোর্ট, সম্পূর্ণ ব্রাউজারেই।",
-  },
-  "webp-to-png": {
-    name: "WebP থেকে PNG",
-    description: "WebP ছবি PNG ফরম্যাটে রূপান্তর করুন — lossless, স্বচ্ছতা সংরক্ষিত, সম্পূর্ণ ব্রাউজারেই।",
-  },
   "image-compressor": {
     name: "ইমেজ কমপ্রেসর",
     description: "JPG, PNG, WebP ছবি কমপ্রেস করুন — সমন্বয়যোগ্য কোয়ালিটি, সম্পূর্ণ ব্রাউজারেই।",
@@ -55,14 +26,6 @@ export const toolTranslationsBn: Record<string, ToolTranslation> = {
   "image-resizer": {
     name: "ইমেজ রিসাইজার",
     description: "JPG, PNG, WebP ছবি যেকোনো মাপে রিসাইজ করুন — aspect lock, সম্পূর্ণ ব্রাউজারেই।",
-  },
-  "jpg-to-pdf": {
-    name: "JPG থেকে PDF",
-    description: "JPG ছবি এক multi-page PDF-এ যুক্ত করুন — reorder, A4/Letter, সম্পূর্ণ ব্রাউজারেই।",
-  },
-  "png-to-pdf": {
-    name: "PNG থেকে PDF",
-    description: "PNG ছবি এক multi-page PDF-এ যুক্ত করুন — reorder, A4/Letter, সাদা ব্যাকগ্রাউন্ড, সম্পূর্ণ ব্রাউজারেই।",
   },
   "image-cropper": {
     name: "ইমেজ ক্রপার",
@@ -88,14 +51,6 @@ export const toolTranslationsBn: Record<string, ToolTranslation> = {
     name: "ইমেজ মেটাডেটা",
     description: "ছবির EXIF, GPS ও ক্যামেরার তথ্য দেখুন — সম্পূর্ণ ব্রাউজারেই, ১০০% প্রাইভেট।",
   },
-  "pdf-to-png": {
-    name: "PDF থেকে PNG",
-    description: "PDF-এর প্রতিটি পেজ PNG ছবিতে রূপান্তর করুন — সম্পূর্ণ ব্রাউজারেই, ৩০০ DPI পর্যন্ত।",
-  },
-  "pdf-to-jpg": {
-    name: "PDF থেকে JPG",
-    description: "PDF-এর প্রতিটি পেজ JPG ছবিতে রূপান্তর করুন — সম্পূর্ণ ব্রাউজারেই, ৩০০ DPI পর্যন্ত।",
-  },
   "pdf-to-text": {
     name: "PDF থেকে টেক্সট",
     description: "PDF থেকে প্লেন টেক্সট বের করুন — পেজ রেঞ্জ, লাইন ব্রেক অপশন, কপি বা .txt ডাউনলোড।",
@@ -104,9 +59,15 @@ export const toolTranslationsBn: Record<string, ToolTranslation> = {
     name: "PDF রোটেটর",
     description: "PDF পেজ 90°/180° ঘোরান — সব পেজ বা নির্দিষ্ট রেঞ্জ, lossless, সম্পূর্ণ ব্রাউজারেই।",
   },
-  "pdf-page-extractor": {
-    name: "PDF পেজ এক্সট্রাক্টর",
-    description: "PDF থেকে পেজ বের করুন — নিজের ক্রমে, duplicate সহ। Combined PDF বা আলাদা ফাইল।",
+  "image-converter": {
+    name: "ইমেজ কনভার্টার",
+    description:
+      "JPG, PNG ও WebP-এর মধ্যে যেকোনো দিকে ছবি রূপান্তর করুন — lossless, ব্যাচ সাপোর্ট, সম্পূর্ণ আপনার ব্রাউজারেই। কোনো আপলোড নেই।",
+  },
+  "pdf-to-image": {
+    name: "PDF থেকে ইমেজ",
+    description:
+      "PDF-এর প্রতিটি পেজ PNG বা JPG ছবিতে রূপান্তর করুন — ৩০০ DPI পর্যন্ত, পেজ রেঞ্জ, সম্পূর্ণ আপনার ব্রাউজারেই।",
   },
   "svg-to-png": {
     name: "SVG থেকে PNG",
