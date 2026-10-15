@@ -199,7 +199,7 @@ html[lang="ar"] .live-text > span {
  * hydrates at all). Once React mounts, the fallback is replaced.
  * ------------------------------------------------------------ */
 [data-ssr="true"] {
-  max-width: 780px;
+  max-width: 1200px;
   margin: 4rem auto;
   padding: 0 1.5rem;
   color: var(--color-text-secondary, #4a4a4a);
