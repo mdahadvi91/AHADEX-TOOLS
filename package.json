@@ -17,7 +17,7 @@
   },
   "scripts": {
     "dev": "vite",
-    "build": "npm run sitemap && npm run rss && npm run og:images && npm run tool:meta && npm run ssr:content && npm run schema && npm run verify:count && tsc --noEmit && vite build",
+    "build": "npm run sitemap && npm run rss && npm run og:images && npm run tool:meta && npm run verify:ssr && npm run schema && npm run verify:count && tsc --noEmit && vite build",
     "preview": "vite preview --port 4173",
     "lint": "tsc --noEmit",
     "type-check": "tsc --noEmit",
@@ -28,7 +28,8 @@
     "rss": "tsx scripts/generate-rss.ts",
     "ssr:content": "tsx scripts/generate-ssr-content.ts",
     "schema": "tsx scripts/generate-schema.ts",
-    "verify:count": "tsx scripts/verify-count-consistency.ts"
+    "verify:count": "tsx scripts/verify-count-consistency.ts",
+    "verify:ssr": "tsx scripts/verify-ssr-idempotent.ts"
   },
   "dependencies": {
     "browser-image-compression": "^2.0.2",
