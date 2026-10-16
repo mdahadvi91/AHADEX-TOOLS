@@ -47,7 +47,7 @@ function gitLastMod(filePath: string): string {
 const TOOLS_LASTMOD = gitLastMod("src/data/tools.ts");
 const TRUST_LASTMOD = gitLastMod("src/data/trustContent.ts");
 const BLOG_LASTMOD = gitLastMod("src/data/blog.ts");
-const HOME_LASTMOD = gitLastMod("src/pages/ToolsIndexPage.tsx");
+const HOME_LASTMOD = gitLastMod("src/pages/HomePage.tsx");
 
 interface SitemapImage {
   loc: string;
@@ -108,7 +108,7 @@ const blogRoutes: SitemapEntry[] = blogPosts.map((p) => {
     loc: `/blog/${p.slug}`,
     changefreq: "monthly" as const,
     priority: 0.6,
-    lastmod: p.publishedAt || BLOG_LASTMOD,
+    lastmod: p.updatedAt ?? p.publishedAt ?? BLOG_LASTMOD,
     images: [
       {
         loc: `${SITE_URL}${og}`,
