@@ -18,6 +18,7 @@ import { tools } from "../src/data/tools";
 import { toolTranslationsBn } from "../src/i18n/toolTranslations";
 import { toolFieldNotes } from "../src/data/tool-field-notes";
 import { staticPageContents } from "../src/data/static-ssr-content";
+import { authors, type Author } from "../src/data/authors";
 import { blogPosts } from "../src/data/blog";
 import { getToolCategory, CATEGORY_PRIVACY } from "../src/lib/toolCategory";
 
@@ -169,6 +170,61 @@ function buildBengaliSection(tool: typeof tools[0]): string {
   </section>`;
 }
 
+/* ── Build an author profile page HTML ──────────────────────
+ * Reads the author record from src/data/authors.ts and lists every
+ * blog post they wrote. Adding a new author or a new post updates
+ * the SSR content automatically on the next build.
+ * ─────────────────────────────────────────────────────────── */
+function buildAuthorPage(
+  author: Author,
+  posts: typeof blogPosts
+): string {
+  const authorPosts = posts.filter((p) => p.authorId === author.id);
+  const contactParts: string[] = [];
+
+  if (author.email) {
+    contactParts.push(
+      `<a href="mailto:${esc(author.email)}">${esc(author.email)}</a>`
+    );
+  }
+  if (author.sameAs && author.sameAs.length > 0) {
+    contactParts.push(
+      author.sameAs
+        .map(
+          (url) =>
+            `<a href="${esc(url)}" rel="me noopener noreferrer">${esc(
+              url.replace(/^https?:\/\//, "")
+            )}</a>`
+        )
+        .join(", ")
+    );
+  }
+
+  const postsList = authorPosts
+    .map(
+      (p) =>
+        `<li><a href="/blog/${esc(p.slug)}">${esc(p.title)}</a> — ${esc(
+          p.excerpt
+        )}</li>`
+    )
+    .join("\n    ");
+
+  return `<article>
+    <h1>${esc(author.name)}</h1>
+    <p><strong>${esc(author.role)}</strong></p>
+    <p>${esc(author.bio)}</p>
+    ${author.location ? `<p><strong>Based in:</strong> ${esc(author.location)}</p>` : ""}
+    ${contactParts.length ? `<p><strong>Contact:</strong> ${contactParts.join(" · ")}</p>` : ""}
+    <h2>Articles by ${esc(author.name)}</h2>
+    <p>${authorPosts.length} articles written and reviewed by ${esc(
+      author.name
+    )} across image tools, PDF workflows, developer utilities, and privacy topics.</p>
+    <ul>
+    ${postsList}
+    </ul>
+  </article>`;
+}
+
 /* ── Build blog post HTML (basic) ── */
 function buildBlogPost(post: typeof blogPosts[0]): string {
   const blocks = post.blocks
@@ -222,6 +278,11 @@ for (const tool of tools) {
 // Blog posts
 for (const post of blogPosts) {
   SSR_CONTENT[`/blog/${post.slug}`] = buildBlogPost(post);
+}
+
+// Author profile pages — one per author in the registry
+for (const author of Object.values(authors)) {
+  SSR_CONTENT[`/about/author/${author.id}`] = buildAuthorPage(author, blogPosts);
 }
 
 /* ── Write file ── */
