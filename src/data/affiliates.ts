@@ -6,6 +6,14 @@
  * with Amazon Associates / Impact / ShareASale / etc.
  * ============================================================ */
 
+/**
+ * Content completeness status for an affiliate product.
+ *   pending → placeholder content; must NOT be shown to users
+ *   draft   → real content, under review
+ *   ready   → fully reviewed; safe to render when the flag is on
+ */
+export type AffiliateContentStatus = "pending" | "draft" | "ready";
+
 export interface AffiliateProduct {
   id: string;
   name: string;
@@ -16,6 +24,35 @@ export interface AffiliateProduct {
   emoji: string;
   badge?: { en: string; bn: string };
   network: "amazon" | "impact" | "sharesale" | "direct" | "cj";
+
+  /* ── Rich content required before this product can be shown ──
+   * The AdSense guidance treats affiliate cards without added
+   * value as spam. Every product that ships to users must include
+   * the fields below, filled with honest, specific information.
+   * The build refuses to enable the affiliate flag unless every
+   * referenced product is marked 'ready'. */
+
+  /** Overall content completeness. */
+  contentStatus: AffiliateContentStatus;
+
+  /** Was this product personally used or tested by the author? */
+  tested: boolean;
+
+  /** One paragraph explaining why this product is the right pick
+   *  for the specific tool it is attached to. */
+  whyThisProduct?: { en: string; bn: string };
+
+  /** Concrete, honest strengths — 3 to 5 bullets. */
+  advantages?: { en: string[]; bn: string[] };
+
+  /** Concrete limitations — 2 to 4 bullets. Every product has some. */
+  limitations?: { en: string[]; bn: string[] };
+
+  /** Short comparison context vs the main alternatives. */
+  alternatives?: { en: string; bn: string };
+
+  /** A specific scenario where this product is the wrong choice. */
+  notRecommendedWhen?: { en: string; bn: string };
 }
 
 /** Map: toolId → product IDs */
@@ -71,6 +108,8 @@ export const AFFILIATE_PRODUCTS: Record<string, AffiliateProduct> = {
     url: "https://amzn.eu/d/02wsy6pl?tag=ahadextools2-21",
     emoji: "🛒",
     network: "amazon",
+    contentStatus: "pending",
+    tested: false,
   },
 
   "amazon-split-pdf": {
@@ -85,6 +124,8 @@ export const AFFILIATE_PRODUCTS: Record<string, AffiliateProduct> = {
     url: "https://amzn.eu/d/0gcVRom5?tag=ahadextools2-21",
     emoji: "🛒",
     network: "amazon",
+    contentStatus: "pending",
+    tested: false,
   },
 
   "amazon-merge-pdf": {
@@ -99,6 +140,8 @@ export const AFFILIATE_PRODUCTS: Record<string, AffiliateProduct> = {
     url: "https://amzn.eu/d/0iTTgf1m?tag=ahadextools2-21",
     emoji: "🛒",
     network: "amazon",
+    contentStatus: "pending",
+    tested: false,
   },
 
   "amazon-image-to-sketch": {
@@ -113,6 +156,8 @@ export const AFFILIATE_PRODUCTS: Record<string, AffiliateProduct> = {
     url: "https://amzn.eu/d/022ta3Zb?tag=ahadextools2-21",
     emoji: "🛒",
     network: "amazon",
+    contentStatus: "pending",
+    tested: false,
   },
 
   "amazon-image-to-cartoon": {
@@ -127,6 +172,8 @@ export const AFFILIATE_PRODUCTS: Record<string, AffiliateProduct> = {
     url: "https://amzn.eu/d/0iypCag0?tag=ahadextools2-21",
     emoji: "🛒",
     network: "amazon",
+    contentStatus: "pending",
+    tested: false,
   },
 
   "amazon-svg-to-png": {
@@ -141,6 +188,8 @@ export const AFFILIATE_PRODUCTS: Record<string, AffiliateProduct> = {
     url: "https://amzn.eu/d/03mixrQ4?tag=ahadextools2-21",
     emoji: "🛒",
     network: "amazon",
+    contentStatus: "pending",
+    tested: false,
   },
 
   "amazon-favicon-generator": {
@@ -155,6 +204,8 @@ export const AFFILIATE_PRODUCTS: Record<string, AffiliateProduct> = {
     url: "https://amzn.eu/d/0bJfGriN?tag=ahadextools2-21",
     emoji: "🛒",
     network: "amazon",
+    contentStatus: "pending",
+    tested: false,
   },
 
   "amazon-image-metadata-viewer": {
@@ -169,6 +220,8 @@ export const AFFILIATE_PRODUCTS: Record<string, AffiliateProduct> = {
     url: "https://amzn.eu/d/00eZ2xbg?tag=ahadextools2-21",
     emoji: "🛒",
     network: "amazon",
+    contentStatus: "pending",
+    tested: false,
   },
 
   "amazon-image-to-pdf": {
@@ -183,6 +236,8 @@ export const AFFILIATE_PRODUCTS: Record<string, AffiliateProduct> = {
     url: "https://amzn.eu/d/03bvJJfF?tag=ahadextools2-21",
     emoji: "🛒",
     network: "amazon",
+    contentStatus: "pending",
+    tested: false,
   },
 
   "amazon-png-to-pdf": {
@@ -197,6 +252,8 @@ export const AFFILIATE_PRODUCTS: Record<string, AffiliateProduct> = {
     url: "https://amzn.eu/d/02csgLcM?tag=ahadextools2-21",
     emoji: "🛒",
     network: "amazon",
+    contentStatus: "pending",
+    tested: false,
   },
 
   "amazon-jpg-to-pdf": {
@@ -211,6 +268,8 @@ export const AFFILIATE_PRODUCTS: Record<string, AffiliateProduct> = {
     url: "https://amzn.eu/d/0gMlXGQ7?tag=ahadextools2-21",
     emoji: "🛒",
     network: "amazon",
+    contentStatus: "pending",
+    tested: false,
   },
 
   "amazon-webp-to-png": {
@@ -225,6 +284,8 @@ export const AFFILIATE_PRODUCTS: Record<string, AffiliateProduct> = {
     url: "https://amzn.eu/d/0ifx0Gdh?tag=ahadextools2-21",
     emoji: "🛒",
     network: "amazon",
+    contentStatus: "pending",
+    tested: false,
   },
 
   "amazon-webp-to-jpg": {
@@ -239,6 +300,8 @@ export const AFFILIATE_PRODUCTS: Record<string, AffiliateProduct> = {
     url: "https://amzn.eu/d/049HTWq6?tag=ahadextools2-21",
     emoji: "🛒",
     network: "amazon",
+    contentStatus: "pending",
+    tested: false,
   },
 
   "amazon-png-to-webp": {
@@ -253,6 +316,8 @@ export const AFFILIATE_PRODUCTS: Record<string, AffiliateProduct> = {
     url: "https://amzn.eu/d/08CWiAHG?tag=ahadextools2-21",
     emoji: "🛒",
     network: "amazon",
+    contentStatus: "pending",
+    tested: false,
   },
 
   "amazon-jpg-to-webp": {
@@ -267,6 +332,8 @@ export const AFFILIATE_PRODUCTS: Record<string, AffiliateProduct> = {
     url: "https://amzn.eu/d/0aAhURkF?tag=ahadextools2-21",
     emoji: "🛒",
     network: "amazon",
+    contentStatus: "pending",
+    tested: false,
   },
 
   "amazon-png-to-jpg": {
@@ -281,6 +348,8 @@ export const AFFILIATE_PRODUCTS: Record<string, AffiliateProduct> = {
     url: "https://amzn.eu/d/01o0z9xQ?tag=ahadextools2-21",
     emoji: "🛒",
     network: "amazon",
+    contentStatus: "pending",
+    tested: false,
   },
 
   "amazon-jpg-to-png": {
@@ -295,6 +364,8 @@ export const AFFILIATE_PRODUCTS: Record<string, AffiliateProduct> = {
     url: "https://amzn.eu/d/0aWJss7s?tag=ahadextools2-21",
     emoji: "🛒",
     network: "amazon",
+    contentStatus: "pending",
+    tested: false,
   },
 
   "amazon-image-cropper": {
@@ -309,6 +380,8 @@ export const AFFILIATE_PRODUCTS: Record<string, AffiliateProduct> = {
     url: "https://amzn.eu/d/0hYOVVid?tag=ahadextools2-21",
     emoji: "🛒",
     network: "amazon",
+    contentStatus: "pending",
+    tested: false,
   },
 
   "adobe-cc": {
@@ -324,6 +397,8 @@ export const AFFILIATE_PRODUCTS: Record<string, AffiliateProduct> = {
     emoji: "🎨",
     badge: { en: "Pro choice", bn: "প্রফেশনাল" },
     network: "direct",
+    contentStatus: "pending",
+    tested: false,
   },
   "canva-pro": {
     id: "canva-pro",
@@ -338,6 +413,8 @@ export const AFFILIATE_PRODUCTS: Record<string, AffiliateProduct> = {
     emoji: "✨",
     badge: { en: "Popular", bn: "জনপ্রিয়" },
     network: "direct",
+    contentStatus: "pending",
+    tested: false,
   },
   "figma-pro": {
     id: "figma-pro",
@@ -351,6 +428,8 @@ export const AFFILIATE_PRODUCTS: Record<string, AffiliateProduct> = {
     url: "https://www.figma.com/pricing/",
     emoji: "🖌️",
     network: "direct",
+    contentStatus: "pending",
+    tested: false,
   },
   "cloudinary": {
     id: "cloudinary",
@@ -364,6 +443,8 @@ export const AFFILIATE_PRODUCTS: Record<string, AffiliateProduct> = {
     url: "https://cloudinary.com/",
     emoji: "☁️",
     network: "impact",
+    contentStatus: "pending",
+    tested: false,
   },
   "adobe-acrobat": {
     id: "adobe-acrobat",
@@ -377,6 +458,8 @@ export const AFFILIATE_PRODUCTS: Record<string, AffiliateProduct> = {
     url: "https://www.adobe.com/acrobat.html",
     emoji: "📄",
     network: "direct",
+    contentStatus: "pending",
+    tested: false,
   },
   "smallpdf-pro": {
     id: "smallpdf-pro",
@@ -390,6 +473,8 @@ export const AFFILIATE_PRODUCTS: Record<string, AffiliateProduct> = {
     url: "https://smallpdf.com/",
     emoji: "📑",
     network: "direct",
+    contentStatus: "pending",
+    tested: false,
   },
   "1password": {
     id: "1password",
@@ -404,6 +489,8 @@ export const AFFILIATE_PRODUCTS: Record<string, AffiliateProduct> = {
     emoji: "🔐",
     badge: { en: "Editor's pick", bn: "সম্পাদকের পছন্দ" },
     network: "impact",
+    contentStatus: "pending",
+    tested: false,
   },
   "nordvpn": {
     id: "nordvpn",
@@ -417,6 +504,8 @@ export const AFFILIATE_PRODUCTS: Record<string, AffiliateProduct> = {
     url: "https://nordvpn.com/",
     emoji: "🛡️",
     network: "impact",
+    contentStatus: "pending",
+    tested: false,
   },
   "bitwarden-premium": {
     id: "bitwarden-premium",
@@ -430,6 +519,8 @@ export const AFFILIATE_PRODUCTS: Record<string, AffiliateProduct> = {
     url: "https://bitwarden.com/pricing/",
     emoji: "🔑",
     network: "direct",
+    contentStatus: "pending",
+    tested: false,
   },
   "digitalocean": {
     id: "digitalocean",
@@ -444,6 +535,8 @@ export const AFFILIATE_PRODUCTS: Record<string, AffiliateProduct> = {
     emoji: "🌊",
     badge: { en: "Free credits", bn: "ফ্রি ক্রেডিট" },
     network: "impact",
+    contentStatus: "pending",
+    tested: false,
   },
   "jetbrains": {
     id: "jetbrains",
@@ -457,6 +550,8 @@ export const AFFILIATE_PRODUCTS: Record<string, AffiliateProduct> = {
     url: "https://www.jetbrains.com/",
     emoji: "🧠",
     network: "direct",
+    contentStatus: "pending",
+    tested: false,
   },
   "postman-pro": {
     id: "postman-pro",
@@ -470,6 +565,8 @@ export const AFFILIATE_PRODUCTS: Record<string, AffiliateProduct> = {
     url: "https://www.postman.com/pricing/",
     emoji: "📮",
     network: "direct",
+    contentStatus: "pending",
+    tested: false,
   },
   "resume-io": {
     id: "resume-io",
@@ -483,6 +580,8 @@ export const AFFILIATE_PRODUCTS: Record<string, AffiliateProduct> = {
     url: "https://resume.io/",
     emoji: "📝",
     network: "impact",
+    contentStatus: "pending",
+    tested: false,
   },
   "zety": {
     id: "zety",
@@ -496,6 +595,8 @@ export const AFFILIATE_PRODUCTS: Record<string, AffiliateProduct> = {
     url: "https://zety.com/",
     emoji: "💼",
     network: "impact",
+    contentStatus: "pending",
+    tested: false,
   },
   "vistaprint": {
     id: "vistaprint",
@@ -509,6 +610,8 @@ export const AFFILIATE_PRODUCTS: Record<string, AffiliateProduct> = {
     url: "https://www.vistaprint.com/",
     emoji: "🎴",
     network: "impact",
+    contentStatus: "pending",
+    tested: false,
   },
   "moo": {
     id: "moo",
@@ -522,6 +625,8 @@ export const AFFILIATE_PRODUCTS: Record<string, AffiliateProduct> = {
     url: "https://www.moo.com/",
     emoji: "💎",
     network: "impact",
+    contentStatus: "pending",
+    tested: false,
   },
   "exiftool-pro": {
     id: "exiftool-pro",
@@ -535,6 +640,8 @@ export const AFFILIATE_PRODUCTS: Record<string, AffiliateProduct> = {
     url: "https://exiftool.org/",
     emoji: "🔍",
     network: "direct",
+    contentStatus: "pending",
+    tested: false,
   },
 };
 
