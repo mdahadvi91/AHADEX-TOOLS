@@ -101,15 +101,23 @@ function injectSchema(html: string, pathname: string): string {
   return cleaned;
 }
 
-/* ── Inject hreflang tags for bilingual SEO ── */
+/* ── Inject hreflang tags ──
+ * The site serves one URL per page with English as the primary content
+ * language (the Bengali translation is a user-toggleable UI state on
+ * the same page, not a separate URL). Declaring hreflang="bn" pointed
+ * at the same URL is invalid per Google's multilingual guidance —
+ * hreflang must reference distinct alternate URLs.
+ *
+ * We therefore declare only:
+ *   - hreflang="en"        the primary content language
+ *   - hreflang="x-default" the fallback for unmatched locales
+ *
+ * If the site later adds /bn/ prefixed routes, the bn alternate should
+ * be reintroduced with a distinct URL.
+ * ─────────────────────────────────────────────────────────────── */
 function injectHreflang(html: string, canonical: string): string {
-  // Both en and bn serve the same URL (no /bn/ prefix), so hreflang
-  // points both language variants at the canonical URL. This tells
-  // Google that bn and en are alternatives of the same page, not
-  // duplicates.
   const tags = `
     <link rel="alternate" hreflang="en" href="${canonical}" />
-    <link rel="alternate" hreflang="bn" href="${canonical}" />
     <link rel="alternate" hreflang="x-default" href="${canonical}" />`;
 
   if (html.includes("</head>")) {
