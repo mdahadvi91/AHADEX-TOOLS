@@ -20,7 +20,7 @@ export const trustContent: Record<
       eyebrow: "Privacy Policy",
       title: "Your privacy, protected.",
       subtitle:
-        "This page explains what we collect (almost nothing) and what we never touch (almost everything).",
+        "This page explains exactly what data we handle — and the answer is very little. We never upload or store the files you process with our tools, and we never run analytics on your file content. Anonymous usage analytics (Google Analytics) and advertising (Google AdSense) may process limited technical information such as page views, cookie identifiers, and approximate location, subject to your consent choices.",
       lastUpdated: UPDATED_EN,
       contactEmail: CONTACT,
       sections: [
@@ -359,7 +359,7 @@ export const trustContent: Record<
       eyebrow: "প্রাইভেসি পলিসি",
       title: "আপনার প্রাইভেসি, সুরক্ষিত।",
       subtitle:
-        "এই পেজে ব্যাখ্যা করা হয়েছে আমরা কী সংগ্রহ করি (প্রায় কিছুই না) এবং কী স্পর্শ করি না (প্রায় সবকিছু)।",
+        "এই পেজে ব্যাখ্যা করা হয়েছে আমরা ঠিক কী ডেটা হ্যান্ডেল করি — এবং উত্তর হলো খুব সামান্য। আপনার টুলে প্রসেস করা ফাইল আমরা কখনো আপলোড বা সংরক্ষণ করি না, এবং আপনার ফাইল কনটেন্টে কখনো অ্যানালিটিক্স চালাই না। Anonymous usage analytics (Google Analytics) এবং বিজ্ঞাপন (Google AdSense) সীমিত প্রযুক্তিগত তথ্য প্রসেস করতে পারে — যেমন পেজ ভিউ, cookie identifier, এবং আনুমানিক অবস্থান — যা আপনার সম্মতির পছন্দের উপর নির্ভরশীল।",
       lastUpdated: UPDATED_BN,
       contactEmail: CONTACT,
       sections: [

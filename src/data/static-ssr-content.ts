@@ -230,7 +230,7 @@ export const staticPageContents: StaticPageContent[] = [
     <li><strong>Bug reports</strong> — a tool not working correctly, a file type that fails to convert, a browser where something breaks. Please include the browser name and version and, if possible, the file type you used.</li>
     <li><strong>Feature requests</strong> — a new tool, a missing option, or an improvement to an existing one.</li>
     <li><strong>Accessibility issues</strong> — any barrier you encounter using a screen reader, keyboard navigation, or assistive technology. Accessibility reports are treated as priority.</li>
-    <li><strong>Privacy questions</strong> — anything about how the site handles data (the short answer: it does not collect any).</li>
+    <li><strong>Privacy questions</strong> — anything about how the site handles data. The short answer: we do not upload or store the files you process with our tools, and we do not run analytics on your file content. Anonymous analytics and advertising services (Google Analytics and AdSense) may process limited information such as page views and cookie identifiers, according to their policies and your consent choices.</li>
     <li><strong>Partnerships and press</strong> — reach out if you have a proposal or press enquiry.</li>
   </ul>
 
