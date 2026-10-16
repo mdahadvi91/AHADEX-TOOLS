@@ -503,7 +503,7 @@ export const blogPosts: BlogPost[] = [
         "Tested 30 mixed JPGs (phone photos, scans, screenshots) built into single PDFs.",
         "10 phone photos at 300 DPI, A4 portrait, 15 mm margins: 24.8 MB output PDF.",
         "The same 10 photos pre-compressed to 1920 px and quality 80: 3.4 MB output PDF (86% smaller).",
-        "JPG images embedded byte-for-byte — no re-encoding, no quality loss, output size roughly equals input size plus a small structural overhead.",
+        "JPG images embedded without re-encoding — the original JPEG stream is preserved, output size roughly equals input size plus a small structural overhead.",
         "Mixed A4 and Letter pages coexist correctly in a single PDF without any visible layout shift.",
       ] },
       { type: "p", content: "JPG-to-PDF conversion is one of those tasks that seems simple but has real decisions hidden inside: page size, orientation, image quality, file size, and — most importantly — whether your files stay private during conversion." },
@@ -3077,7 +3077,7 @@ export const blogPosts: BlogPost[] = [
     blocks: [
       { type: "field-note", content: "Results from our own background-removal tests", items: [
         "Tested 30 photos across portraits, product shots, and pets on a browser-based AI model.",
-        "Clean subjects (studio product, plain background): 92% pixel-perfect accuracy in the tool's own scoring.",
+        "Clean subjects (studio product, plain background): 92% pixel-accurate detection in the tool's own scoring.",
         "Complex hair edges (portrait with flyaway hair): 76% accuracy — the model struggles with single strands.",
         "Transparent objects (glass bottles): 38% accuracy — manual cleanup is still required for these cases.",
         "Best workflow: use AI as the first pass, then touch up edges in an image editor. This cut our test cleanup time by roughly 60%.",

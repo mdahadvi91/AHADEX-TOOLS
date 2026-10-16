@@ -22,9 +22,9 @@ export const newTools: Tool[] = [
     path: "/tools/image-converter",
     searchVolume: 5000000,
     description:
-      "Convert between JPG, PNG, and WebP instantly in your browser. Lossless, batch, no uploads — 100% free and private.",
+      "Convert between JPG, PNG, and WebP instantly in your browser. Lossless output for PNG targets; JPEG output uses quality 92. Batch-capable, no uploads — free and private.",
     longDescription:
-      "Image Converter re-encodes your images between the three formats that matter on the modern web: JPG, PNG, and WebP. Upload one or hundreds of files, choose the output format, and download every converted image in a single session. Everything runs inside your browser using the HTML5 Canvas API and the browser's native codec — no uploads, no servers, no accounts. JPG stays JPG unless you ask otherwise, PNG keeps its transparency, WebP stays WebP. You can mix formats in a single batch and the tool figures out the rest. WebP conversion alone typically saves 25-35% of file size at the same visual quality; JPG to PNG conversion is lossless so every pixel survives; PNG to JPG with the transparent-background composite rule gives you 5-10x smaller files. No watermarks, no quotas, no email sign-up.",
+      "Image Converter re-encodes your images between the three formats that matter on the modern web: JPG, PNG, and WebP. Upload one or hundreds of files, choose the output format, and download every converted image in a single session. Everything runs inside your browser using the HTML5 Canvas API and the browser's native codec — no uploads, no servers, no accounts. JPG stays JPG unless you ask otherwise, PNG keeps its transparency, WebP stays WebP. You can mix formats in a single batch and the tool figures out the rest. WebP conversion alone typically saves 25-35% of file size at comparable visual quality; conversions to PNG preserve every pixel because PNG uses lossless encoding; conversions to JPEG use quality 92 and composite any transparency onto white, typically producing files that are 5-10x smaller than the PNG source. No watermarks, no quotas, no email sign-up.",
     keywords: [
       "image converter",
       "jpg to png",
@@ -45,7 +45,7 @@ export const newTools: Tool[] = [
           "JPG → PNG, PNG → JPG, JPG → WebP, PNG → WebP, WebP → JPG, WebP → PNG. All six combinations handled by the same interface — pick your output format and drop your files.",
       },
       {
-        title: "Zero uploads, ever",
+        title: "Zero uploads",
         description:
           "Every conversion runs inside your browser using the HTML5 Canvas API and the browser's native encoder. Your files are not uploaded to any server and do not travel over the network.",
       },
@@ -103,7 +103,7 @@ export const newTools: Tool[] = [
         step: 4,
         title: "Review the before/after",
         description:
-          "Every converted file appears in the list with its original name, original size, new size, and a preview thumbnail. The difference is often dramatic — a 3 MB PNG might become a 400 KB JPG, or a 2 MB JPG might become a 1.3 MB WebP with no visible quality change.",
+          "Every converted file appears in the list with its original name, original size, new size, and a preview thumbnail. The difference is often dramatic — a 3 MB PNG might become a 400 KB JPG, or a 2 MB JPG might become a 1.3 MB WebP with no obvious quality change at normal viewing sizes.",
       },
       {
         step: 5,
@@ -127,7 +127,7 @@ export const newTools: Tool[] = [
       {
         question: "Will the quality drop when I convert?",
         answer:
-          "It depends on the direction. Converting to PNG is lossless — every pixel survives exactly. Converting to JPG uses 92% quality, which is visually very close to the source at normal viewing distance. Converting to WebP uses 85% quality, which also looks identical at normal sizes and saves the most bytes. Only when you go from PNG → JPG or WebP → JPG do you risk losing transparency (JPG has no alpha channel; transparent areas become white).",
+          "It depends on the direction. Converting to PNG is lossless — every pixel survives exactly. Converting to JPG uses 92% quality, which is visually very close to the source at normal viewing distance. Converting to WebP uses 85% quality, which is visually very close to the source at normal sizes and saves the most bytes. Only when you go from PNG → JPG or WebP → JPG do you risk losing transparency (JPG has no alpha channel; transparent areas become white).",
       },
       {
         question: "Does the image size change when I convert?",
@@ -162,7 +162,7 @@ export const newTools: Tool[] = [
       {
         question: "Does converting to WebP affect how the image looks on screen?",
         answer:
-          "No. At the quality setting this tool uses (85%), WebP is visually very close to the source for photographs, screenshots, and graphics. Every browser since 2020 renders WebP natively, so images display identically across Chrome, Firefox, Safari, and Edge. The only visible difference is the smaller file size and faster page load.",
+          "No. At the quality setting this tool uses (85%), WebP is visually very close to the source for photographs, screenshots, and graphics. Every browser since 2020 renders WebP natively, so images display the same across Chrome, Firefox, Safari, and Edge. The only visible difference is the smaller file size and faster page load.",
       },
       {
         question: "Can I use the output for commercial purposes?",
@@ -356,7 +356,7 @@ export const newTools: Tool[] = [
     seo: {
       title: "Image Converter — JPG, PNG, WebP Free & Private | AHADEX Tools",
       description:
-        "Convert between JPG, PNG, and WebP in your browser. Lossless output, batch conversion, no uploads — 100% free and private.",
+        "Convert between JPG, PNG, and WebP in your browser. Lossless PNG output, quality-92 JPEG output, batch conversion, no uploads — free and private.",
       ogImage: "/images/og/tools/image-converter-og.png",
     },
   },
@@ -548,7 +548,7 @@ export const newTools: Tool[] = [
             <tbody>
               <tr><td>Text-heavy documents (contracts, reports)</td><td>PNG</td><td>Lossless — text stays crisp at every zoom level</td></tr>
               <tr><td>Charts, diagrams, line art</td><td>PNG</td><td>Sharp edges survive without JPEG artifacts</td></tr>
-              <tr><td>Photo-heavy pages (brochures, magazines)</td><td>JPG</td><td>5–10× smaller than PNG with no visible quality loss</td></tr>
+              <tr><td>Photo-heavy pages (brochures, magazines)</td><td>JPG</td><td>5–10× smaller than PNG; JPEG uses lossy compression at quality 92</td></tr>
               <tr><td>Scanned pages with pencil or pen marks</td><td>PNG at 150 DPI</td><td>Preserves subtle details without ballooning file size</td></tr>
               <tr><td>Screenshots embedded in a report</td><td>PNG</td><td>UI text stays readable</td></tr>
               <tr><td>Presentation slides</td><td>JPG at 150 DPI</td><td>Slides are mostly flat color — JPG compresses better than expected</td></tr>
@@ -578,7 +578,7 @@ export const newTools: Tool[] = [
         heading: "What happens to PDF fonts and vectors",
         body: `
           <p>A PDF page can contain two fundamentally different things: raster images (photographs, scans) and vector content (text, lines, curves, embedded fonts).</p>
-          <p>Raster images render 1:1 — the tool draws the same pixels onto the output canvas without re-sampling, so there is no quality loss beyond what the DPI setting implies.</p>
+          <p>Raster images render 1:1 — the tool draws the same pixels onto the output canvas without re-sampling. For PNG output there is no additional loss beyond the chosen DPI; for JPG output the browser's encoder applies lossy compression at quality 92.</p>
           <p>Vector content — every character, every rule, every shape — is re-rasterized at your chosen DPI. At 72 DPI, small text can look slightly soft. At 150 DPI, it is crisp on screen. At 300 DPI, it is indistinguishable from the source PDF.</p>
           <p>If you need true vector output (infinite zoom without pixelation), the correct format is SVG, which requires a dedicated PDF-to-SVG tool. Image formats cannot represent vectors — they are fundamentally pixel-based.</p>
         `,
@@ -1002,7 +1002,7 @@ export const newTools: Tool[] = [
       {
         question: "Does the PDF quality drop?",
         answer:
-          "No. Every page is copied byte-for-byte from the source PDF into the output PDF. The tool does not re-render, re-compress, or resample anything — it copies page objects exactly as they exist in the source file. Embedded images, fonts, vector graphics, and annotations all survive identically.",
+          "No. Every page's content is copied from the source PDF into the output PDF without re-rendering, re-compressing, or resampling. Embedded images keep their original encoding, fonts stay embedded, and vector graphics remain vector. The outer PDF structure is rebuilt by pdf-lib, but the page content itself is preserved exactly.",
       },
       {
         question: "Is my PDF uploaded to a server?",
@@ -1091,7 +1091,7 @@ export const newTools: Tool[] = [
         `,
       },
       {
-        heading: "How the copy works — byte-for-byte, lossless",
+        heading: "How the copy works — page content preserved exactly",
         body: `
           <p>This tool does not re-render pages. It does not decode and re-encode images. It does not re-embed fonts. It copies the page objects directly from the source PDF into a new PDF document using pdf-lib, a widely-used JavaScript PDF library.</p>
           <p>What that means practically:</p>

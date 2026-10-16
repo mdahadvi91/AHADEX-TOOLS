@@ -3701,7 +3701,7 @@ export const SSR_SCHEMA: Record<string, object> = {
         "@type": "SoftwareApplication",
         "@id": "https://ahadex.fun/tools/image-converter#app",
         "name": "Image Converter",
-        "description": "Convert between JPG, PNG, and WebP in your browser. Lossless output, batch conversion, no uploads — 100% free and private.",
+        "description": "Convert between JPG, PNG, and WebP in your browser. Lossless PNG output, quality-92 JPEG output, batch conversion, no uploads — free and private.",
         "url": "https://ahadex.fun/tools/image-converter",
         "applicationCategory": "WebApplication",
         "operatingSystem": "Any (Browser)",
@@ -3720,7 +3720,7 @@ export const SSR_SCHEMA: Record<string, object> = {
         },
         "featureList": [
           "Six conversions, one tool",
-          "Zero uploads, ever",
+          "Zero uploads",
           "Batch by design",
           "Pixel-perfect output",
           "Transparency aware",
@@ -3770,7 +3770,7 @@ export const SSR_SCHEMA: Record<string, object> = {
             "name": "Will the quality drop when I convert?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "It depends on the direction. Converting to PNG is lossless — every pixel survives exactly. Converting to JPG uses 92% quality, which is visually very close to the source at normal viewing distance. Converting to WebP uses 85% quality, which also looks identical at normal sizes and saves the most bytes. Only when you go from PNG → JPG or WebP → JPG do you risk losing transparency (JPG has no alpha channel; transparent areas become white)."
+              "text": "It depends on the direction. Converting to PNG is lossless — every pixel survives exactly. Converting to JPG uses 92% quality, which is visually very close to the source at normal viewing distance. Converting to WebP uses 85% quality, which is visually very close to the source at normal sizes and saves the most bytes. Only when you go from PNG → JPG or WebP → JPG do you risk losing transparency (JPG has no alpha channel; transparent areas become white)."
             }
           },
           {
@@ -3826,7 +3826,7 @@ export const SSR_SCHEMA: Record<string, object> = {
             "name": "Does converting to WebP affect how the image looks on screen?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "No. At the quality setting this tool uses (85%), WebP is visually very close to the source for photographs, screenshots, and graphics. Every browser since 2020 renders WebP natively, so images display identically across Chrome, Firefox, Safari, and Edge. The only visible difference is the smaller file size and faster page load."
+              "text": "No. At the quality setting this tool uses (85%), WebP is visually very close to the source for photographs, screenshots, and graphics. Every browser since 2020 renders WebP natively, so images display the same across Chrome, Firefox, Safari, and Edge. The only visible difference is the smaller file size and faster page load."
             }
           },
           {
@@ -3906,7 +3906,7 @@ export const SSR_SCHEMA: Record<string, object> = {
             "@type": "HowToStep",
             "position": 4,
             "name": "Review the before/after",
-            "text": "Every converted file appears in the list with its original name, original size, new size, and a preview thumbnail. The difference is often dramatic — a 3 MB PNG might become a 400 KB JPG, or a 2 MB JPG might become a 1.3 MB WebP with no visible quality change."
+            "text": "Every converted file appears in the list with its original name, original size, new size, and a preview thumbnail. The difference is often dramatic — a 3 MB PNG might become a 400 KB JPG, or a 2 MB JPG might become a 1.3 MB WebP with no obvious quality change at normal viewing sizes."
           },
           {
             "@type": "HowToStep",
@@ -4484,7 +4484,7 @@ export const SSR_SCHEMA: Record<string, object> = {
             "name": "Does the PDF quality drop?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "No. Every page is copied byte-for-byte from the source PDF into the output PDF. The tool does not re-render, re-compress, or resample anything — it copies page objects exactly as they exist in the source file. Embedded images, fonts, vector graphics, and annotations all survive identically."
+              "text": "No. Every page's content is copied from the source PDF into the output PDF without re-rendering, re-compressing, or resampling. Embedded images keep their original encoding, fonts stay embedded, and vector graphics remain vector. The outer PDF structure is rebuilt by pdf-lib, but the page content itself is preserved exactly."
             }
           },
           {

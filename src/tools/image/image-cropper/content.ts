@@ -35,7 +35,7 @@ export const imageCropperContent = {
       { emoji: "🔒", title: "Zero uploads", description: "The image is read and processed entirely in your browser. Nothing travels over the network." },
       { emoji: "⚡", title: "Live preview", description: "Every drag or typed coordinate updates the crop rectangle in real time." },
       { emoji: "📐", title: "8 aspect presets", description: "Square, 4:3, 3:4, 16:9, 9:16 Story, 3:2, 2:3, and Free." },
-      { emoji: "🎯", title: "Type exact values", description: "For pixel-perfect control, type X, Y, W, and H directly into the number fields." },
+      { emoji: "🎯", title: "Type exact values", description: "For pixel-accurate control, type X, Y, W, and H directly into the number fields." },
       { emoji: "🎨", title: "Format preserved", description: "JPG stays JPG, PNG stays PNG, WebP stays WebP — with transparency preserved." },
       { emoji: "💾", title: "No size limits", description: "Files up to 50 MB each. No signup, no watermark, no daily quota." },
     ],
