@@ -15,6 +15,7 @@ import { ToolSkeleton } from "@components/common/ToolSkeleton";
 /* ------------------------------------------------------------------
  * Pages
  * ------------------------------------------------------------------ */
+const HomePage = lazy(() => import("@pages/HomePage"));
 const ToolsIndexPage = lazy(() => import("@pages/ToolsIndexPage"));
 const AboutPage = lazy(() => import("@pages/AboutPage"));
 const AuthorPage = lazy(() => import("@pages/AuthorPage"));
@@ -124,7 +125,7 @@ export default function App() {
                   index
                   element={
                     <PageSuspense>
-                      <ToolsIndexPage />
+                      <HomePage />
                     </PageSuspense>
                   }
                 />
