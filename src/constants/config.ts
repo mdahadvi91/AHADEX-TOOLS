@@ -27,6 +27,17 @@ export const DEFAULT_LANGUAGE = "en" as const;
 export const FEATURE_FLAGS = {
   enableAnalytics: import.meta.env.VITE_ENABLE_ANALYTICS === "true",
   enableAdSense: import.meta.env.VITE_ENABLE_ADSENSE === "true",
+
+  /**
+   * Affiliate product recommendations.
+   * Disabled by default pending AdSense approval. AdSense review
+   * guidance treats affiliate placements as monetization noise when
+   * they are not tightly matched to the page purpose. Once the site
+   * is approved, set VITE_ENABLE_AFFILIATE_RECOMMENDATIONS=true in
+   * the production environment to re-enable them.
+   */
+  enableAffiliateRecommendations:
+    import.meta.env.VITE_ENABLE_AFFILIATE_RECOMMENDATIONS === "true",
 } as const;
 
 export const ANALYTICS_CONFIG = {

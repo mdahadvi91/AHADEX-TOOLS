@@ -3,6 +3,7 @@ import { ExternalLink, Star, ShoppingBag, Sparkles } from "lucide-react";
 import { Link } from "react-router-dom";
 import { useLanguage } from "@contexts/LanguageContext";
 import { getAffiliatesForTool } from "@data/affiliates";
+import { FEATURE_FLAGS } from "@constants/config";
 
 interface Props {
   toolId: string;
@@ -12,6 +13,12 @@ interface Props {
 export function RecommendedProducts({ toolId, max = 3 }: Props) {
   const { language } = useLanguage();
   const bn = language === "bn";
+  /* Affiliate recommendations are disabled pending AdSense approval.
+   The flag lives in src/constants/config.ts. When off, this component
+   renders nothing on any tool page — no markup, no network request,
+   no attribution link. */
+  if (!FEATURE_FLAGS.enableAffiliateRecommendations) return null;
+
   const products = getAffiliatesForTool(toolId, max);
 
   if (products.length === 0) return null;
