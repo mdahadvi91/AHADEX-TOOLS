@@ -1,7 +1,7 @@
 import { useParams, Link, Navigate } from "react-router-dom";
 import { useEffect } from "react";
 import { motion } from "framer-motion";
-import { ArrowLeft, Clock, Calendar, User, ArrowRight } from "lucide-react";
+import { ArrowLeft, Clock, Calendar, User, ArrowRight, RefreshCw } from "lucide-react";
 import { useLanguage } from "@contexts/LanguageContext";
 import { AdSenseSlot } from "@components/ads/AdSenseSlot";
 import { getPostBySlug, blogPosts } from "@data/blog";
@@ -37,6 +37,12 @@ export default function BlogPostPage() {
     bn ? "bn-BD" : "en-US",
     { year: "numeric", month: "long", day: "numeric" }
   );
+  const updatedDate = post.updatedAt
+    ? new Date(post.updatedAt).toLocaleDateString(
+        bn ? "bn-BD" : "en-US",
+        { year: "numeric", month: "short", day: "numeric" }
+      )
+    : null;
 
   const relatedTool = tools.find((t) => t.id === post.relatedTool);
   const relatedTranslated = relatedTool
@@ -95,6 +101,11 @@ export default function BlogPostPage() {
           <span className="inline-flex items-center gap-1.5">
             <Calendar className="w-3.5 h-3.5" /> {date}
           </span>
+            {updatedDate && (
+              <span className="inline-flex items-center gap-1.5">
+                <RefreshCw className="w-3.5 h-3.5" /> {bn ? "আপডেট" : "Updated"} {updatedDate}
+              </span>
+            )}
           <span className="inline-flex items-center gap-1.5">
             <Clock className="w-3.5 h-3.5" /> {post.readTime} {bn ? "মিনিট পড়া" : "min read"}
           </span>
@@ -284,7 +295,6 @@ export default function BlogPostPage() {
       <AdSenseSlot slot="IN_ARTICLE" label="Advertisement" />
 
       {/* Ad — after article body */}
-      <AdSenseSlot slot="FOOTER" label="Advertisement" />
 
       {/* Related tool bottom CTA */}
       {relatedTool && relatedTranslated && (

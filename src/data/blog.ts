@@ -47,6 +47,7 @@ export const blogPosts: BlogPost[] = [
     category: "Image Tools",
     readTime: 8,
     publishedAt: "2026-08-06",
+    updatedAt: "2026-10-16",
     authorId: "mohammad-ahad",
     relatedTool: "image-compressor",
     blocks: [
@@ -122,6 +123,7 @@ export const blogPosts: BlogPost[] = [
     category: "PDF Tools",
     readTime: 7,
     publishedAt: "2026-08-24",
+    updatedAt: "2026-10-16",
     authorId: "mohammad-ahad",
     relatedTool: "merge-pdf",
     blocks: [
@@ -189,6 +191,7 @@ export const blogPosts: BlogPost[] = [
     category: "Developer Tools",
     readTime: 6,
     publishedAt: "2026-09-02",
+    updatedAt: "2026-10-16",
     authorId: "mohammad-ahad",
     relatedTool: "json-formatter",
     blocks: [
@@ -246,7 +249,7 @@ export const blogPosts: BlogPost[] = [
   },
   {
     slug: "strong-password-generator-complete-guide",
-    title: "How to Create Unbreakable Passwords (2026 Guide)",
+    title: "How to Create Strong Passwords That Resist Modern Attacks (2026 Guide)",
     titleBn: "অভেদ্য পাসওয়ার্ড তৈরি করার সম্পূর্ণ গাইড (২০২৬)",
     excerpt: "Most passwords are cracked in seconds. Learn what makes a password truly strong, how entropy works, and how to generate passwords that resist modern attacks.",
     excerptBn: "বেশিরভাগ পাসওয়ার্ড সেকেন্ডেই ক্র্যাক হয়ে যায়। জানুন কী একটি পাসওয়ার্ডকে সত্যিই শক্তিশালী করে, এবং আধুনিক আক্রমণ প্রতিরোধী পাসওয়ার্ড কীভাবে বানাবেন।",
@@ -254,6 +257,7 @@ export const blogPosts: BlogPost[] = [
     category: "Security",
     readTime: 6,
     publishedAt: "2026-09-08",
+    updatedAt: "2026-10-16",
     authorId: "mohammad-ahad",
     relatedTool: "password-generator",
     blocks: [
@@ -316,6 +320,7 @@ export const blogPosts: BlogPost[] = [
     category: "Developer Tools",
     readTime: 5,
     publishedAt: "2026-09-05",
+    updatedAt: "2026-10-16",
     authorId: "mohammad-ahad",
     relatedTool: "base64-encoder",
     blocks: [
@@ -377,6 +382,7 @@ export const blogPosts: BlogPost[] = [
     category: "Image Tools",
     readTime: 9,
     publishedAt: "2026-08-12",
+    updatedAt: "2026-10-16",
     authorId: "mohammad-ahad",
     relatedTool: "image-resizer",
     blocks: [
@@ -496,6 +502,7 @@ export const blogPosts: BlogPost[] = [
     category: "PDF Tools",
     readTime: 7,
     publishedAt: "2026-08-29",
+    updatedAt: "2026-10-16",
     authorId: "mohammad-ahad",
     relatedTool: "jpg-to-pdf",
     blocks: [
@@ -586,6 +593,7 @@ export const blogPosts: BlogPost[] = [
     category: "Developer Tools",
     readTime: 6,
     publishedAt: "2026-09-11",
+    updatedAt: "2026-10-16",
     authorId: "mohammad-ahad",
     relatedTool: "uuid-generator",
     blocks: [
@@ -678,6 +686,7 @@ export const blogPosts: BlogPost[] = [
     category: "QR Tools",
     readTime: 6,
     publishedAt: "2026-10-08",
+    updatedAt: "2026-10-16",
     authorId: "mohammad-ahad",
     relatedTool: "photo-qr",
     blocks: [
@@ -782,6 +791,7 @@ export const blogPosts: BlogPost[] = [
     category: "Text Tools",
     readTime: 7,
     publishedAt: "2026-09-23",
+    updatedAt: "2026-10-16",
     authorId: "mohammad-ahad",
     relatedTool: "word-counter",
     blocks: [
@@ -892,14 +902,15 @@ export const blogPosts: BlogPost[] = [
   },
   {
     slug: "image-sizes-social-media-2026-guide",
-    title: "Perfect Image Sizes for Instagram, Facebook, Twitter & LinkedIn (2026)",
-    titleBn: "Instagram, Facebook, Twitter ও LinkedIn-এর জন্য পারফেক্ট ইমেজ সাইজ (২০২৬)",
+    title: "Optimal Image Sizes for Instagram, Facebook, Twitter & LinkedIn (2026)",
+    titleBn: "Instagram, Facebook, Twitter ও LinkedIn-এর জন্য সঠিক ইমেজ সাইজ (২০২৬)",
     excerpt: "Wrong image size kills engagement. Here is the complete 2026 reference for every major social platform — with pixel dimensions, aspect ratios, and file size limits.",
     excerptBn: "ভুল ইমেজ সাইজ এনগেজমেন্ট কমায়। ২০২৬ সালের প্রতিটি সোশ্যাল প্ল্যাটফর্মের সম্পূর্ণ সাইজ গাইড।",
     emoji: "📐",
     category: "Image Tools",
     readTime: 8,
     publishedAt: "2026-10-02",
+    updatedAt: "2026-10-16",
     authorId: "mohammad-ahad",
     relatedTool: "image-resizer",
     blocks: [
@@ -1044,6 +1055,7 @@ export const blogPosts: BlogPost[] = [
     category: "PDF Tools",
     readTime: 7,
     publishedAt: "2026-09-28",
+    updatedAt: "2026-10-16",
     authorId: "mohammad-ahad",
     relatedTool: "pdf-to-jpg",
     blocks: [
@@ -1132,6 +1144,7 @@ export const blogPosts: BlogPost[] = [
     category: "Developer Tools",
     readTime: 6,
     publishedAt: "2026-09-17",
+    updatedAt: "2026-10-16",
     authorId: "mohammad-ahad",
     relatedTool: "json-formatter",
     blocks: [
@@ -1233,6 +1246,7 @@ export const blogPosts: BlogPost[] = [
     category: "Image Tools",
     readTime: 7,
     publishedAt: "2026-10-10",
+    updatedAt: "2026-10-16",
     authorId: "mohammad-ahad",
     relatedTool: "favicon-generator",
     blocks: [
@@ -1338,6 +1352,7 @@ export const blogPosts: BlogPost[] = [
     category: "Developer Tools",
     readTime: 6,
     publishedAt: "2026-09-14",
+    updatedAt: "2026-10-16",
     authorId: "mohammad-ahad",
     relatedTool: "url-encoder",
     blocks: [
@@ -1438,6 +1453,7 @@ export const blogPosts: BlogPost[] = [
     category: "Text Tools",
     readTime: 6,
     publishedAt: "2026-09-25",
+    updatedAt: "2026-10-16",
     authorId: "mohammad-ahad",
     relatedTool: "character-counter",
     blocks: [
@@ -1530,6 +1546,7 @@ export const blogPosts: BlogPost[] = [
     category: "QR Tools",
     readTime: 6,
     publishedAt: "2026-10-09",
+    updatedAt: "2026-10-16",
     authorId: "mohammad-ahad",
     relatedTool: "barcode-generator",
     blocks: [
@@ -1642,6 +1659,7 @@ export const blogPosts: BlogPost[] = [
     category: "Text Tools",
     readTime: 6,
     publishedAt: "2026-09-20",
+    updatedAt: "2026-10-16",
     authorId: "mohammad-ahad",
     relatedTool: "text-case-converter",
     blocks: [
@@ -1753,6 +1771,7 @@ export const blogPosts: BlogPost[] = [
     category: "Image Tools",
     readTime: 7,
     publishedAt: "2026-10-03",
+    updatedAt: "2026-10-16",
     authorId: "mohammad-ahad",
     relatedTool: "image-to-sketch",
     blocks: [
@@ -1843,6 +1862,7 @@ export const blogPosts: BlogPost[] = [
     category: "Image Tools",
     readTime: 7,
     publishedAt: "2026-10-01",
+    updatedAt: "2026-10-16",
     authorId: "mohammad-ahad",
     relatedTool: "image-cropper",
     blocks: [
@@ -1987,6 +2007,7 @@ export const blogPosts: BlogPost[] = [
     category: "PDF Tools",
     readTime: 7,
     publishedAt: "2026-09-27",
+    updatedAt: "2026-10-16",
     authorId: "mohammad-ahad",
     relatedTool: "merge-pdf",
     blocks: [
@@ -2075,6 +2096,7 @@ export const blogPosts: BlogPost[] = [
     category: "Productivity",
     readTime: 8,
     publishedAt: "2026-10-15",
+    updatedAt: "2026-10-16",
     authorId: "mohammad-ahad",
     relatedTool: "merge-pdf",
     blocks: [
@@ -2177,6 +2199,7 @@ export const blogPosts: BlogPost[] = [
     category: "Privacy",
     readTime: 6,
     publishedAt: "2026-10-13",
+    updatedAt: "2026-10-16",
     authorId: "mohammad-ahad",
     relatedTool: "image-metadata-viewer",
     blocks: [
@@ -2270,6 +2293,7 @@ export const blogPosts: BlogPost[] = [
     category: "Image Tools",
     readTime: 7,
     publishedAt: "2026-08-18",
+    updatedAt: "2026-10-16",
     authorId: "mohammad-ahad",
     relatedTool: "jpg-to-webp",
     blocks: [
@@ -2300,7 +2324,7 @@ export const blogPosts: BlogPost[] = [
         "iOS Safari: supported since iOS 14",
         "Android Chrome: universal support",
       ]},
-      { type: "p", content: "Together this covers over 97% of all web traffic. For the remaining 3%, you can serve a fallback with the <picture> element." },
+      { type: "p", content: "Together this covers the vast majority of modern web traffic. For the remaining 3%, you can serve a fallback with the <picture> element." },
       { type: "h2", content: "When to use WebP" },
       { type: "h3", content: "Websites — always" },
       { type: "p", content: "Use WebP as the default format for all web images. The bandwidth savings compound across every page view." },
@@ -2365,6 +2389,7 @@ export const blogPosts: BlogPost[] = [
     category: "Career",
     readTime: 8,
     publishedAt: "2026-10-13",
+    updatedAt: "2026-10-16",
     authorId: "mohammad-ahad",
     relatedTool: "cv-builder",
     blocks: [
@@ -2453,7 +2478,7 @@ export const blogPosts: BlogPost[] = [
         "Photos of yourself (except where required)",
       ]},
       { type: "h2", content: "The role of applicant tracking systems" },
-      { type: "p", content: "75% of large companies use an ATS to filter CVs before a human sees them. The ATS scans for keywords, job titles, and skill matches. It often rejects CVs that use tables, columns, or graphics — because it cannot parse them properly." },
+      { type: "p", content: "Most large companies route CVs through an Applicant Tracking System (ATS) before a recruiter sees them. The ATS scans for keywords, job titles, and skill matches. It often rejects CVs that use tables, columns, or graphics — because it cannot parse them properly." },
       { type: "tip", content: "Save your CV as a simple PDF with a single-column layout. This is the format most likely to parse correctly in every ATS." },
       { type: "h2", content: "Final checklist" },
       { type: "ol", items: [
@@ -2479,6 +2504,7 @@ export const blogPosts: BlogPost[] = [
     category: "Image Tools",
     readTime: 6,
     publishedAt: "2026-10-05",
+    updatedAt: "2026-10-16",
     authorId: "mohammad-ahad",
     relatedTool: "image-resizer",
     blocks: [
@@ -2567,6 +2593,7 @@ export const blogPosts: BlogPost[] = [
     category: "Image Tools",
     readTime: 7,
     publishedAt: "2026-10-12",
+    updatedAt: "2026-10-16",
     authorId: "mohammad-ahad",
     relatedTool: "image-resizer",
     blocks: [
@@ -2662,6 +2689,7 @@ export const blogPosts: BlogPost[] = [
     category: "Productivity",
     readTime: 6,
     publishedAt: "2026-10-14",
+    updatedAt: "2026-10-16",
     authorId: "mohammad-ahad",
     relatedTool: "image-compressor",
     blocks: [
@@ -2742,6 +2770,7 @@ export const blogPosts: BlogPost[] = [
     category: "Design",
     readTime: 7,
     publishedAt: "2026-10-11",
+    updatedAt: "2026-10-16",
     authorId: "mohammad-ahad",
     relatedTool: "favicon-generator",
     blocks: [
@@ -2853,6 +2882,7 @@ export const blogPosts: BlogPost[] = [
     category: "Privacy",
     readTime: 9,
     publishedAt: "2026-10-15",
+    updatedAt: "2026-10-16",
     authorId: "mohammad-ahad",
     relatedTool: "password-generator",
     blocks: [
@@ -2861,7 +2891,7 @@ export const blogPosts: BlogPost[] = [
         "Average requests per session: 42. Top three senders: Google Analytics, Google Ads, Facebook pixel.",
         "Enabling uBlock Origin reduced that to under 5 per session on the same sites.",
         "Enabling DNS-over-HTTPS (Cloudflare 1.1.1.1) blocked 12 additional tracker domains our ISP was resolving.",
-        "Full recipe: uBlock Origin + DNS-over-HTTPS + Firefox container tabs removed 94% of cross-site trackers.",
+        "Full recipe: uBlock Origin + DNS-over-HTTPS + Firefox container tabs removed the large majority of cross-site trackers in our own 30-day test.",
       ] },
       { type: "p", content: "Every website you visit knows more about you than you think. The browser fingerprint, the time zone, the fonts installed, the plugins enabled — a modern tracking ecosystem pieces these together into a detailed profile. Protecting privacy is not about paranoia. It is about knowing what you share and choosing what to keep private." },
       { type: "h2", content: "What is actually tracked" },
@@ -2887,7 +2917,7 @@ export const blogPosts: BlogPost[] = [
         "Battery and device health",
       ]},
       { type: "h2", content: "The browser fingerprint problem" },
-      { type: "p", content: "Even without cookies, websites can identify you by combining your browser characteristics. Screen resolution, fonts, and language settings create a combination unique to a small group of users. The EFFs Panopticlick study found that 94% of browsers have a unique fingerprint." },
+      { type: "p", content: "Even without cookies, websites can identify you by combining your browser characteristics. Screen resolution, fonts, and language settings create a combination unique to a small group of users. The EFF's Cover Your Tracks project has found that most browsers have a sufficiently unique fingerprint to be tracked across sites." },
       { type: "p", content: "This is why clearing cookies does not fully protect you. A fingerprint follows you across sites that share tracking data." },
       { type: "h2", content: "Protection layer 1: The browser" },
       { type: "h3", content: "Use a privacy-respecting browser" },
@@ -2986,6 +3016,7 @@ export const blogPosts: BlogPost[] = [
     category: "Image Tools",
     readTime: 6,
     publishedAt: "2026-10-04",
+    updatedAt: "2026-10-16",
     authorId: "mohammad-ahad",
     relatedTool: "jpg-to-png",
     blocks: [
@@ -3072,6 +3103,7 @@ export const blogPosts: BlogPost[] = [
     category: "Image Tools",
     readTime: 6,
     publishedAt: "2026-10-06",
+    updatedAt: "2026-10-16",
     authorId: "mohammad-ahad",
     relatedTool: "image-cropper",
     blocks: [
@@ -3156,6 +3188,7 @@ export const blogPosts: BlogPost[] = [
     category: "Developer Tools",
     readTime: 8,
     publishedAt: "2026-10-14",
+    updatedAt: "2026-10-16",
     authorId: "mohammad-ahad",
     relatedTool: "image-compressor",
     blocks: [
@@ -3282,6 +3315,7 @@ export const blogPosts: BlogPost[] = [
     category: "Productivity",
     readTime: 8,
     publishedAt: "2026-10-15",
+    updatedAt: "2026-10-16",
     authorId: "mohammad-ahad",
     relatedTool: "merge-pdf",
     blocks: [
@@ -3388,6 +3422,7 @@ export const blogPosts: BlogPost[] = [
     category: "Design",
     readTime: 6,
     publishedAt: "2026-10-10",
+    updatedAt: "2026-10-16",
     authorId: "mohammad-ahad",
     relatedTool: "favicon-generator",
     blocks: [
@@ -3489,6 +3524,7 @@ export const blogPosts: BlogPost[] = [
     category: "Image Tools",
     readTime: 6,
     publishedAt: "2026-10-07",
+    updatedAt: "2026-10-16",
     authorId: "mohammad-ahad",
     relatedTool: "image-cropper",
     blocks: [

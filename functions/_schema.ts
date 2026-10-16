@@ -1644,5 +1644,833 @@ export const SSR_SCHEMA: Record<string, object> = {
         }
       }
     ]
+  },
+  "/blog/how-to-compress-images-without-losing-quality": {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "BlogPosting",
+        "@id": "https://ahadex.fun/blog/how-to-compress-images-without-losing-quality#article",
+        "mainEntityOfPage": "https://ahadex.fun/blog/how-to-compress-images-without-losing-quality",
+        "headline": "How to Compress Images Without Losing Quality (2026 Guide)",
+        "description": "Learn how to reduce image file sizes by 70-90% while keeping them looking sharp. A complete guide to image compression for web, email, and social media.",
+        "image": "https://ahadex.fun/images/og/blog/how-to-compress-images-without-losing-quality-og.png",
+        "datePublished": "2026-08-06",
+        "dateModified": "2026-10-16",
+        "author": {
+          "@id": "https://ahadex.fun/about/author/mohammad-ahad#person"
+        },
+        "publisher": {
+          "@id": "https://ahadex.fun#organization"
+        },
+        "inLanguage": "en",
+        "keywords": "Why image compression matters in 2026, The three main types of image compression, The optimal compression workflow, Choosing the right format, How to compress images privately in your browser"
+      }
+    ]
+  },
+  "/blog/merge-pdf-files-online-complete-guide": {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "BlogPosting",
+        "@id": "https://ahadex.fun/blog/merge-pdf-files-online-complete-guide#article",
+        "mainEntityOfPage": "https://ahadex.fun/blog/merge-pdf-files-online-complete-guide",
+        "headline": "Merge PDF Files Online: The Complete 2026 Guide",
+        "description": "Learn how to combine multiple PDF files into one document. Covers ordering, security, file size optimization, and why browser-based merging is safer than cloud tools.",
+        "image": "https://ahadex.fun/images/og/blog/merge-pdf-files-online-complete-guide-og.png",
+        "datePublished": "2026-08-24",
+        "dateModified": "2026-10-16",
+        "author": {
+          "@id": "https://ahadex.fun/about/author/mohammad-ahad#person"
+        },
+        "publisher": {
+          "@id": "https://ahadex.fun#organization"
+        },
+        "inLanguage": "en",
+        "keywords": "Why merge PDFs?, How PDF merging actually works, The privacy problem with most PDF mergers, Step-by-step: merging PDFs in your browser, Handling edge cases"
+      }
+    ]
+  },
+  "/blog/json-formatter-complete-developer-guide": {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "BlogPosting",
+        "@id": "https://ahadex.fun/blog/json-formatter-complete-developer-guide#article",
+        "mainEntityOfPage": "https://ahadex.fun/blog/json-formatter-complete-developer-guide",
+        "headline": "JSON Formatter: Why Every Developer Needs One (2026)",
+        "description": "JSON is the lingua franca of modern APIs. Learn how to format, validate, minify, and debug JSON quickly — with a free browser-based tool that never sends your data anywhere.",
+        "image": "https://ahadex.fun/images/og/blog/json-formatter-complete-developer-guide-og.png",
+        "datePublished": "2026-09-02",
+        "dateModified": "2026-10-16",
+        "author": {
+          "@id": "https://ahadex.fun/about/author/mohammad-ahad#person"
+        },
+        "publisher": {
+          "@id": "https://ahadex.fun#organization"
+        },
+        "inLanguage": "en",
+        "keywords": "What a JSON formatter does, When you actually need one, The privacy angle, Common JSON mistakes, Best practices"
+      }
+    ]
+  },
+  "/blog/strong-password-generator-complete-guide": {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "BlogPosting",
+        "@id": "https://ahadex.fun/blog/strong-password-generator-complete-guide#article",
+        "mainEntityOfPage": "https://ahadex.fun/blog/strong-password-generator-complete-guide",
+        "headline": "How to Create Strong Passwords That Resist Modern Attacks (2026 Guide)",
+        "description": "Most passwords are cracked in seconds. Learn what makes a password truly strong, how entropy works, and how to generate passwords that resist modern attacks.",
+        "image": "https://ahadex.fun/images/og/blog/strong-password-generator-complete-guide-og.png",
+        "datePublished": "2026-09-08",
+        "dateModified": "2026-10-16",
+        "author": {
+          "@id": "https://ahadex.fun/about/author/mohammad-ahad#person"
+        },
+        "publisher": {
+          "@id": "https://ahadex.fun#organization"
+        },
+        "inLanguage": "en",
+        "keywords": "What makes a password strong?, How passwords get cracked, Rules for a strong password, Why you should not create passwords in your head, Managing many strong passwords"
+      }
+    ]
+  },
+  "/blog/base64-encoding-explained-beginner-guide": {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "BlogPosting",
+        "@id": "https://ahadex.fun/blog/base64-encoding-explained-beginner-guide#article",
+        "mainEntityOfPage": "https://ahadex.fun/blog/base64-encoding-explained-beginner-guide",
+        "headline": "Base64 Encoding Explained: A Practical Guide",
+        "description": "Base64 is everywhere — in emails, data URLs, JWTs, and APIs. Learn what it actually is, when to use it, when not to use it, and how to encode safely in your browser.",
+        "image": "https://ahadex.fun/images/og/blog/base64-encoding-explained-beginner-guide-og.png",
+        "datePublished": "2026-09-05",
+        "dateModified": "2026-10-16",
+        "author": {
+          "@id": "https://ahadex.fun/about/author/mohammad-ahad#person"
+        },
+        "publisher": {
+          "@id": "https://ahadex.fun#organization"
+        },
+        "inLanguage": "en",
+        "keywords": "What is Base64?, Where Base64 is used, What Base64 is NOT, Encoding vs decoding, URL-safe Base64"
+      }
+    ]
+  },
+  "/blog/jpg-vs-png-vs-webp-which-format": {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "BlogPosting",
+        "@id": "https://ahadex.fun/blog/jpg-vs-png-vs-webp-which-format#article",
+        "mainEntityOfPage": "https://ahadex.fun/blog/jpg-vs-png-vs-webp-which-format",
+        "headline": "JPG vs PNG vs WebP: Which Format Should You Use in 2026?",
+        "description": "Choosing the wrong image format costs you bandwidth, quality, and SEO. This guide compares JPG, PNG, WebP, and AVIF with real-world examples and decision rules.",
+        "image": "https://ahadex.fun/images/og/blog/jpg-vs-png-vs-webp-which-format-og.png",
+        "datePublished": "2026-08-12",
+        "dateModified": "2026-10-16",
+        "author": {
+          "@id": "https://ahadex.fun/about/author/mohammad-ahad#person"
+        },
+        "publisher": {
+          "@id": "https://ahadex.fun#organization"
+        },
+        "inLanguage": "en",
+        "keywords": "The quick decision rule, JPG: The universal photo format, PNG: The precision format, WebP: The modern default, AVIF: The future"
+      }
+    ]
+  },
+  "/blog/convert-jpg-to-pdf-complete-guide": {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "BlogPosting",
+        "@id": "https://ahadex.fun/blog/convert-jpg-to-pdf-complete-guide#article",
+        "mainEntityOfPage": "https://ahadex.fun/blog/convert-jpg-to-pdf-complete-guide",
+        "headline": "How to Convert JPG to PDF: The Complete 2026 Guide",
+        "description": "Convert photos and scans into professional PDF documents. Covers quality settings, multi-page workflows, file size optimization, and privacy-safe browser-based conversion.",
+        "image": "https://ahadex.fun/images/og/blog/convert-jpg-to-pdf-complete-guide-og.png",
+        "datePublished": "2026-08-29",
+        "dateModified": "2026-10-16",
+        "author": {
+          "@id": "https://ahadex.fun/about/author/mohammad-ahad#person"
+        },
+        "publisher": {
+          "@id": "https://ahadex.fun#organization"
+        },
+        "inLanguage": "en",
+        "keywords": "Why convert JPG to PDF?, The critical privacy question, Page size and orientation, Image quality in the final PDF, Step-by-step: JPG to PDF in your browser"
+      }
+    ]
+  },
+  "/blog/uuid-v4-vs-v7-when-to-use-each": {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "BlogPosting",
+        "@id": "https://ahadex.fun/blog/uuid-v4-vs-v7-when-to-use-each#article",
+        "mainEntityOfPage": "https://ahadex.fun/blog/uuid-v4-vs-v7-when-to-use-each",
+        "headline": "UUID v4 vs v7: When to Use Each (Developer Guide)",
+        "description": "UUIDs are not all equal. Learn the difference between random v4, time-ordered v7, and when each one is the right choice for databases, APIs, and distributed systems.",
+        "image": "https://ahadex.fun/images/og/blog/uuid-v4-vs-v7-when-to-use-each-og.png",
+        "datePublished": "2026-09-11",
+        "dateModified": "2026-10-16",
+        "author": {
+          "@id": "https://ahadex.fun/about/author/mohammad-ahad#person"
+        },
+        "publisher": {
+          "@id": "https://ahadex.fun#organization"
+        },
+        "inLanguage": "en",
+        "keywords": "The format is the same, UUID v4: Pure randomness, UUID v7: Time-ordered randomness, Why v7 matters for databases, The entropy trade-off"
+      }
+    ]
+  },
+  "/blog/qr-codes-business-cards-marketing": {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "BlogPosting",
+        "@id": "https://ahadex.fun/blog/qr-codes-business-cards-marketing#article",
+        "mainEntityOfPage": "https://ahadex.fun/blog/qr-codes-business-cards-marketing",
+        "headline": "QR Codes for Business Cards and Marketing: Best Practices",
+        "description": "QR codes are back. Learn how to use them effectively on business cards, product packaging, and marketing materials — with real design and placement rules.",
+        "image": "https://ahadex.fun/images/og/blog/qr-codes-business-cards-marketing-og.png",
+        "datePublished": "2026-10-08",
+        "dateModified": "2026-10-16",
+        "author": {
+          "@id": "https://ahadex.fun/about/author/mohammad-ahad#person"
+        },
+        "publisher": {
+          "@id": "https://ahadex.fun#organization"
+        },
+        "inLanguage": "en",
+        "keywords": "Why QR codes work again, What to encode in your QR code, Design rules for scannable QR codes, Placement on business cards, Test, always test"
+      }
+    ]
+  },
+  "/blog/word-count-guide-writing-content": {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "BlogPosting",
+        "@id": "https://ahadex.fun/blog/word-count-guide-writing-content#article",
+        "mainEntityOfPage": "https://ahadex.fun/blog/word-count-guide-writing-content",
+        "headline": "Word Count Guide: How Many Words Should Your Content Be?",
+        "description": "Blog posts, product descriptions, meta descriptions, emails — each format has an optimal word count. Here is the data-backed breakdown for 2026.",
+        "image": "https://ahadex.fun/images/og/blog/word-count-guide-writing-content-og.png",
+        "datePublished": "2026-09-23",
+        "dateModified": "2026-10-16",
+        "author": {
+          "@id": "https://ahadex.fun/about/author/mohammad-ahad#person"
+        },
+        "publisher": {
+          "@id": "https://ahadex.fun#organization"
+        },
+        "inLanguage": "en",
+        "keywords": "Why word count matters, The word count by content type, How to check your word count, Reading time vs word count, The myth of the perfect word count"
+      }
+    ]
+  },
+  "/blog/image-sizes-social-media-2026-guide": {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "BlogPosting",
+        "@id": "https://ahadex.fun/blog/image-sizes-social-media-2026-guide#article",
+        "mainEntityOfPage": "https://ahadex.fun/blog/image-sizes-social-media-2026-guide",
+        "headline": "Optimal Image Sizes for Instagram, Facebook, Twitter & LinkedIn (2026)",
+        "description": "Wrong image size kills engagement. Here is the complete 2026 reference for every major social platform — with pixel dimensions, aspect ratios, and file size limits.",
+        "image": "https://ahadex.fun/images/og/blog/image-sizes-social-media-2026-guide-og.png",
+        "datePublished": "2026-10-02",
+        "dateModified": "2026-10-16",
+        "author": {
+          "@id": "https://ahadex.fun/about/author/mohammad-ahad#person"
+        },
+        "publisher": {
+          "@id": "https://ahadex.fun#organization"
+        },
+        "inLanguage": "en",
+        "keywords": "Instagram image sizes, Facebook image sizes, Twitter / X image sizes, LinkedIn image sizes, YouTube thumbnail"
+      }
+    ]
+  },
+  "/blog/pdf-to-jpg-when-and-why": {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "BlogPosting",
+        "@id": "https://ahadex.fun/blog/pdf-to-jpg-when-and-why#article",
+        "mainEntityOfPage": "https://ahadex.fun/blog/pdf-to-jpg-when-and-why",
+        "headline": "PDF to JPG: When, Why, and How to Convert (Complete Guide)",
+        "description": "PDF is perfect for documents, JPG is perfect for images. Learn when to convert between them, how to preserve quality, and how to do it privately in your browser.",
+        "image": "https://ahadex.fun/images/og/blog/pdf-to-jpg-when-and-why-og.png",
+        "datePublished": "2026-09-28",
+        "dateModified": "2026-10-16",
+        "author": {
+          "@id": "https://ahadex.fun/about/author/mohammad-ahad#person"
+        },
+        "publisher": {
+          "@id": "https://ahadex.fun#organization"
+        },
+        "inLanguage": "en",
+        "keywords": "When to convert PDF to JPG, When NOT to convert, Understanding DPI and resolution, The privacy problem, Step-by-step: PDF to JPG in your browser"
+      }
+    ]
+  },
+  "/blog/json-vs-xml-complete-comparison": {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "BlogPosting",
+        "@id": "https://ahadex.fun/blog/json-vs-xml-complete-comparison#article",
+        "mainEntityOfPage": "https://ahadex.fun/blog/json-vs-xml-complete-comparison",
+        "headline": "JSON vs XML: Which Should You Use in 2026?",
+        "description": "Two data formats, one war that has already been decided. Learn when XML still wins, why JSON dominates APIs, and how to choose for your project.",
+        "image": "https://ahadex.fun/images/og/blog/json-vs-xml-complete-comparison-og.png",
+        "datePublished": "2026-09-17",
+        "dateModified": "2026-10-16",
+        "author": {
+          "@id": "https://ahadex.fun/about/author/mohammad-ahad#person"
+        },
+        "publisher": {
+          "@id": "https://ahadex.fun#organization"
+        },
+        "inLanguage": "en",
+        "keywords": "JSON in one sentence, XML in one sentence, Side-by-side comparison, The honest comparison, When JSON wins"
+      }
+    ]
+  },
+  "/blog/favicon-complete-guide-website-icons": {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "BlogPosting",
+        "@id": "https://ahadex.fun/blog/favicon-complete-guide-website-icons#article",
+        "mainEntityOfPage": "https://ahadex.fun/blog/favicon-complete-guide-website-icons",
+        "headline": "Favicon Complete Guide: Create Website Icons That Convert",
+        "description": "Your favicon is the smallest brand asset with the biggest impact. Learn how to design, generate, and install favicons for modern browsers, Apple devices, and PWAs.",
+        "image": "https://ahadex.fun/images/og/blog/favicon-complete-guide-website-icons-og.png",
+        "datePublished": "2026-10-10",
+        "dateModified": "2026-10-16",
+        "author": {
+          "@id": "https://ahadex.fun/about/author/mohammad-ahad#person"
+        },
+        "publisher": {
+          "@id": "https://ahadex.fun#organization"
+        },
+        "inLanguage": "en",
+        "keywords": "What a favicon does, The favicon file sizes you actually need, Designing a favicon that works at 16×16, Common favicon mistakes, The HTML you need"
+      }
+    ]
+  },
+  "/blog/url-encoding-explained-special-characters": {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "BlogPosting",
+        "@id": "https://ahadex.fun/blog/url-encoding-explained-special-characters#article",
+        "mainEntityOfPage": "https://ahadex.fun/blog/url-encoding-explained-special-characters",
+        "headline": "URL Encoding Explained: Special Characters & Best Practices",
+        "description": "Every %20 you have ever typed into a URL came from URL encoding. Learn what needs encoding, why, and how to handle it correctly in every language.",
+        "image": "https://ahadex.fun/images/og/blog/url-encoding-explained-special-characters-og.png",
+        "datePublished": "2026-09-14",
+        "dateModified": "2026-10-16",
+        "author": {
+          "@id": "https://ahadex.fun/about/author/mohammad-ahad#person"
+        },
+        "publisher": {
+          "@id": "https://ahadex.fun#organization"
+        },
+        "inLanguage": "en",
+        "keywords": "What is URL encoding?, Why URL encoding exists, The reserved character problem, encodeURIComponent vs encodeURI, URL encoding in every language"
+      }
+    ]
+  },
+  "/blog/twitter-character-limit-guide-2026": {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "BlogPosting",
+        "@id": "https://ahadex.fun/blog/twitter-character-limit-guide-2026#article",
+        "mainEntityOfPage": "https://ahadex.fun/blog/twitter-character-limit-guide-2026",
+        "headline": "Twitter/X Character Limit Guide 2026: How Many Characters Can You Post?",
+        "description": "Twitter/X has different limits for tweets, bios, DMs, and display names. Here is the complete 2026 reference — plus tips for staying under the limit.",
+        "image": "https://ahadex.fun/images/og/blog/twitter-character-limit-guide-2026-og.png",
+        "datePublished": "2026-09-25",
+        "dateModified": "2026-10-16",
+        "author": {
+          "@id": "https://ahadex.fun/about/author/mohammad-ahad#person"
+        },
+        "publisher": {
+          "@id": "https://ahadex.fun#organization"
+        },
+        "inLanguage": "en",
+        "keywords": "The complete character limits, How Twitter counts characters, The URL shortening rule, Emoji and character counting, Staying under the limit"
+      }
+    ]
+  },
+  "/blog/barcode-vs-qr-code-when-to-use": {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "BlogPosting",
+        "@id": "https://ahadex.fun/blog/barcode-vs-qr-code-when-to-use#article",
+        "mainEntityOfPage": "https://ahadex.fun/blog/barcode-vs-qr-code-when-to-use",
+        "headline": "Barcode vs QR Code: Which One Should You Use?",
+        "description": "Barcodes and QR codes look similar but serve different purposes. Learn when to use 1D barcodes, when to use QR codes, and how to generate both for free.",
+        "image": "https://ahadex.fun/images/og/blog/barcode-vs-qr-code-when-to-use-og.png",
+        "datePublished": "2026-10-09",
+        "dateModified": "2026-10-16",
+        "author": {
+          "@id": "https://ahadex.fun/about/author/mohammad-ahad#person"
+        },
+        "publisher": {
+          "@id": "https://ahadex.fun#organization"
+        },
+        "inLanguage": "en",
+        "keywords": "The 30-second answer, How 1D barcodes work, How QR codes work, Scanning equipment, When to use 1D barcodes"
+      }
+    ]
+  },
+  "/blog/title-case-vs-sentence-case-writing-guide": {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "BlogPosting",
+        "@id": "https://ahadex.fun/blog/title-case-vs-sentence-case-writing-guide#article",
+        "mainEntityOfPage": "https://ahadex.fun/blog/title-case-vs-sentence-case-writing-guide",
+        "headline": "Title Case vs Sentence Case: A Complete Writing Guide",
+        "description": "Not sure whether to capitalize 'the' or 'of' in your title? This guide covers every rule of title case, sentence case, and when each one is correct.",
+        "image": "https://ahadex.fun/images/og/blog/title-case-vs-sentence-case-writing-guide-og.png",
+        "datePublished": "2026-09-20",
+        "dateModified": "2026-10-16",
+        "author": {
+          "@id": "https://ahadex.fun/about/author/mohammad-ahad#person"
+        },
+        "publisher": {
+          "@id": "https://ahadex.fun#organization"
+        },
+        "inLanguage": "en",
+        "keywords": "The three main case styles, The complete title case rules, When to use title case, When to use sentence case, SEO impact: does case matter?"
+      }
+    ]
+  },
+  "/blog/image-to-sketch-cartoon-how-it-works": {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "BlogPosting",
+        "@id": "https://ahadex.fun/blog/image-to-sketch-cartoon-how-it-works#article",
+        "mainEntityOfPage": "https://ahadex.fun/blog/image-to-sketch-cartoon-how-it-works",
+        "headline": "How to Convert Photos to Sketches and Cartoons (Complete Guide)",
+        "description": "Turn any photo into a pencil sketch or cartoon illustration in seconds. Learn how the algorithms work, what makes a good source photo, and how to do it privately.",
+        "image": "https://ahadex.fun/images/og/blog/image-to-sketch-cartoon-how-it-works-og.png",
+        "datePublished": "2026-10-03",
+        "dateModified": "2026-10-16",
+        "author": {
+          "@id": "https://ahadex.fun/about/author/mohammad-ahad#person"
+        },
+        "publisher": {
+          "@id": "https://ahadex.fun#organization"
+        },
+        "inLanguage": "en",
+        "keywords": "How photo-to-sketch algorithms work, How cartoon conversion works, What makes a good source photo, The privacy problem with online converters, Step-by-step: photo to sketch in your browser"
+      }
+    ]
+  },
+  "/blog/image-cropping-guide-aspect-ratios": {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "BlogPosting",
+        "@id": "https://ahadex.fun/blog/image-cropping-guide-aspect-ratios#article",
+        "mainEntityOfPage": "https://ahadex.fun/blog/image-cropping-guide-aspect-ratios",
+        "headline": "Image Cropping Guide: Aspect Ratios for Every Platform (2026)",
+        "description": "Cropping is the difference between a photo that fits and one that looks stretched. Learn every common aspect ratio and when to use each one.",
+        "image": "https://ahadex.fun/images/og/blog/image-cropping-guide-aspect-ratios-og.png",
+        "datePublished": "2026-10-01",
+        "dateModified": "2026-10-16",
+        "author": {
+          "@id": "https://ahadex.fun/about/author/mohammad-ahad#person"
+        },
+        "publisher": {
+          "@id": "https://ahadex.fun#organization"
+        },
+        "inLanguage": "en",
+        "keywords": "What is an aspect ratio?, The complete list of aspect ratios, Aspect ratio by platform (2026 reference), The rule of thirds for better crops, Headroom and lead room"
+      }
+    ]
+  },
+  "/blog/how-to-reduce-pdf-file-size": {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "BlogPosting",
+        "@id": "https://ahadex.fun/blog/how-to-reduce-pdf-file-size#article",
+        "mainEntityOfPage": "https://ahadex.fun/blog/how-to-reduce-pdf-file-size",
+        "headline": "How to Reduce PDF File Size Without Losing Quality",
+        "description": "Large PDFs are difficult to email, upload, and archive. Learn every legitimate way to shrink a PDF — from image compression to font subsetting — without ruining readability.",
+        "image": "https://ahadex.fun/images/og/blog/how-to-reduce-pdf-file-size-og.png",
+        "datePublished": "2026-09-27",
+        "dateModified": "2026-10-16",
+        "author": {
+          "@id": "https://ahadex.fun/about/author/mohammad-ahad#person"
+        },
+        "publisher": {
+          "@id": "https://ahadex.fun#organization"
+        },
+        "inLanguage": "en",
+        "keywords": "Why PDFs get so large, Method 1: Compress embedded images, Method 2: Downsample resolution, Method 3: Convert to grayscale, Method 4: Remove unused objects"
+      }
+    ]
+  },
+  "/blog/best-free-tools-for-students-2026": {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "BlogPosting",
+        "@id": "https://ahadex.fun/blog/best-free-tools-for-students-2026#article",
+        "mainEntityOfPage": "https://ahadex.fun/blog/best-free-tools-for-students-2026",
+        "headline": "Best Free Online Tools Every Student Needs in 2026",
+        "description": "From PDF merging to CV building, here are the free online tools that save students hours every week — all browser-based, no signup, no uploads.",
+        "image": "https://ahadex.fun/images/og/blog/best-free-tools-for-students-2026-og.png",
+        "datePublished": "2026-10-15",
+        "dateModified": "2026-10-16",
+        "author": {
+          "@id": "https://ahadex.fun/about/author/mohammad-ahad#person"
+        },
+        "publisher": {
+          "@id": "https://ahadex.fun#organization"
+        },
+        "inLanguage": "en",
+        "keywords": "1. PDF tools for assignments, 2. Image tools for projects, 3. Resume and CV builder, 4. Text and writing tools, 5. QR codes for campus life"
+      }
+    ]
+  },
+  "/blog/what-is-exif-metadata-privacy-guide": {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "BlogPosting",
+        "@id": "https://ahadex.fun/blog/what-is-exif-metadata-privacy-guide#article",
+        "mainEntityOfPage": "https://ahadex.fun/blog/what-is-exif-metadata-privacy-guide",
+        "headline": "What Is EXIF Metadata? (And Why It Can Leak Your Privacy)",
+        "description": "Every photo you take contains hidden data — location, camera, timestamp, and more. Learn what EXIF is, what it reveals, and how to remove it before sharing.",
+        "image": "https://ahadex.fun/images/og/blog/what-is-exif-metadata-privacy-guide-og.png",
+        "datePublished": "2026-10-13",
+        "dateModified": "2026-10-16",
+        "author": {
+          "@id": "https://ahadex.fun/about/author/mohammad-ahad#person"
+        },
+        "publisher": {
+          "@id": "https://ahadex.fun#organization"
+        },
+        "inLanguage": "en",
+        "keywords": "What EXIF metadata contains, Real risks of leaking EXIF, Where EXIF survives, Where EXIF is usually stripped, How to remove EXIF metadata"
+      }
+    ]
+  },
+  "/blog/webp-image-format-complete-guide": {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "BlogPosting",
+        "@id": "https://ahadex.fun/blog/webp-image-format-complete-guide#article",
+        "mainEntityOfPage": "https://ahadex.fun/blog/webp-image-format-complete-guide",
+        "headline": "WebP Image Format: The Complete 2026 Guide",
+        "description": "WebP is 25-35% smaller than JPG at the same quality. Learn why it matters, when to use it, and how to convert your existing images — all in your browser.",
+        "image": "https://ahadex.fun/images/og/blog/webp-image-format-complete-guide-og.png",
+        "datePublished": "2026-08-18",
+        "dateModified": "2026-10-16",
+        "author": {
+          "@id": "https://ahadex.fun/about/author/mohammad-ahad#person"
+        },
+        "publisher": {
+          "@id": "https://ahadex.fun#organization"
+        },
+        "inLanguage": "en",
+        "keywords": "What makes WebP better, Browser support in 2026, When to use WebP, When NOT to use WebP, How to convert JPG/PNG to WebP"
+      }
+    ]
+  },
+  "/blog/professional-cv-writing-tips-2026": {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "BlogPosting",
+        "@id": "https://ahadex.fun/blog/professional-cv-writing-tips-2026#article",
+        "mainEntityOfPage": "https://ahadex.fun/blog/professional-cv-writing-tips-2026",
+        "headline": "How to Write a Professional CV That Gets Interviews (2026)",
+        "description": "A great CV gets you interviews. A great interview gets you the job. Learn the structure, formatting rules, and content that actually works in 2026.",
+        "image": "https://ahadex.fun/images/og/blog/professional-cv-writing-tips-2026-og.png",
+        "datePublished": "2026-10-13",
+        "dateModified": "2026-10-16",
+        "author": {
+          "@id": "https://ahadex.fun/about/author/mohammad-ahad#person"
+        },
+        "publisher": {
+          "@id": "https://ahadex.fun#organization"
+        },
+        "inLanguage": "en",
+        "keywords": "The one-page rule, The standard CV structure, Write impact, not responsibilities, Formatting rules, Tailoring for each application"
+      }
+    ]
+  },
+  "/blog/how-to-merge-images-into-one": {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "BlogPosting",
+        "@id": "https://ahadex.fun/blog/how-to-merge-images-into-one#article",
+        "mainEntityOfPage": "https://ahadex.fun/blog/how-to-merge-images-into-one",
+        "headline": "How to Merge Multiple Images Into One (2026 Guide)",
+        "description": "Combine multiple photos into a single image for collages, comparison shots, or social media. Complete guide with aspect ratio rules and quality tips.",
+        "image": "https://ahadex.fun/images/og/blog/how-to-merge-images-into-one-og.png",
+        "datePublished": "2026-10-05",
+        "dateModified": "2026-10-16",
+        "author": {
+          "@id": "https://ahadex.fun/about/author/mohammad-ahad#person"
+        },
+        "publisher": {
+          "@id": "https://ahadex.fun#organization"
+        },
+        "inLanguage": "en",
+        "keywords": "Common use cases, Method 1: Side-by-side (horizontal merge), Method 2: Stacked (vertical merge), Method 3: Grid (2×2 or 3×3), Avoiding the most common mistakes"
+      }
+    ]
+  },
+  "/blog/youtube-thumbnail-design-guide": {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "BlogPosting",
+        "@id": "https://ahadex.fun/blog/youtube-thumbnail-design-guide#article",
+        "mainEntityOfPage": "https://ahadex.fun/blog/youtube-thumbnail-design-guide",
+        "headline": "YouTube Thumbnail Design: The Complete 2026 Guide",
+        "description": "Your thumbnail is the single biggest factor in click-through rate. Learn the dimensions, design rules, and psychology behind thumbnails that get clicks.",
+        "image": "https://ahadex.fun/images/og/blog/youtube-thumbnail-design-guide-og.png",
+        "datePublished": "2026-10-12",
+        "dateModified": "2026-10-16",
+        "author": {
+          "@id": "https://ahadex.fun/about/author/mohammad-ahad#person"
+        },
+        "publisher": {
+          "@id": "https://ahadex.fun#organization"
+        },
+        "inLanguage": "en",
+        "keywords": "The technical specs, Design principles that work, Color psychology, Common thumbnail mistakes, Where the duration badge covers"
+      }
+    ]
+  },
+  "/blog/email-attachment-size-limits-guide": {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "BlogPosting",
+        "@id": "https://ahadex.fun/blog/email-attachment-size-limits-guide#article",
+        "mainEntityOfPage": "https://ahadex.fun/blog/email-attachment-size-limits-guide",
+        "headline": "Email Attachment Size Limits: Every Provider Compared (2026)",
+        "description": "Gmail, Outlook, Yahoo, and Apple Mail all have different attachment limits. Learn every size limit and how to send large files without a bounce-back.",
+        "image": "https://ahadex.fun/images/og/blog/email-attachment-size-limits-guide-og.png",
+        "datePublished": "2026-10-14",
+        "dateModified": "2026-10-16",
+        "author": {
+          "@id": "https://ahadex.fun/about/author/mohammad-ahad#person"
+        },
+        "publisher": {
+          "@id": "https://ahadex.fun#organization"
+        },
+        "inLanguage": "en",
+        "keywords": "The complete size limit table, Why the limits are so low, What 25 MB actually means, How to send large files, Email attachment size by file type"
+      }
+    ]
+  },
+  "/blog/color-picker-guide-web-design": {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "BlogPosting",
+        "@id": "https://ahadex.fun/blog/color-picker-guide-web-design#article",
+        "mainEntityOfPage": "https://ahadex.fun/blog/color-picker-guide-web-design",
+        "headline": "Color Picker Guide for Web Designers (2026)",
+        "description": "Picking the right colors is 80% of what makes a website feel professional. Learn hex codes, RGB, HSL, and the color theory behind great interfaces.",
+        "image": "https://ahadex.fun/images/og/blog/color-picker-guide-web-design-og.png",
+        "datePublished": "2026-10-11",
+        "dateModified": "2026-10-16",
+        "author": {
+          "@id": "https://ahadex.fun/about/author/mohammad-ahad#person"
+        },
+        "publisher": {
+          "@id": "https://ahadex.fun#organization"
+        },
+        "inLanguage": "en",
+        "keywords": "Color formats you need to know, Color theory basics, The 60-30-10 rule, Accessibility and contrast, Building a design system palette"
+      }
+    ]
+  },
+  "/blog/how-to-protect-online-privacy-2026": {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "BlogPosting",
+        "@id": "https://ahadex.fun/blog/how-to-protect-online-privacy-2026#article",
+        "mainEntityOfPage": "https://ahadex.fun/blog/how-to-protect-online-privacy-2026",
+        "headline": "How to Protect Your Online Privacy in 2026 (Complete Guide)",
+        "description": "Every website you visit, every app you use, every click you make is tracked. Here is a practical guide to protecting your privacy without giving up modern conveniences.",
+        "image": "https://ahadex.fun/images/og/blog/how-to-protect-online-privacy-2026-og.png",
+        "datePublished": "2026-10-15",
+        "dateModified": "2026-10-16",
+        "author": {
+          "@id": "https://ahadex.fun/about/author/mohammad-ahad#person"
+        },
+        "publisher": {
+          "@id": "https://ahadex.fun#organization"
+        },
+        "inLanguage": "en",
+        "keywords": "What is actually tracked, The browser fingerprint problem, Protection layer 1: The browser, Protection layer 2: Extensions, Protection layer 3: Network"
+      }
+    ]
+  },
+  "/blog/how-to-convert-heic-to-jpg": {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "BlogPosting",
+        "@id": "https://ahadex.fun/blog/how-to-convert-heic-to-jpg#article",
+        "mainEntityOfPage": "https://ahadex.fun/blog/how-to-convert-heic-to-jpg",
+        "headline": "How to Convert HEIC to JPG (iPhone Photos Explained)",
+        "description": "iPhone photos are saved as HEIC by default — a format Windows and older software often cannot open. Here is how to convert them and why it matters.",
+        "image": "https://ahadex.fun/images/og/blog/how-to-convert-heic-to-jpg-og.png",
+        "datePublished": "2026-10-04",
+        "dateModified": "2026-10-16",
+        "author": {
+          "@id": "https://ahadex.fun/about/author/mohammad-ahad#person"
+        },
+        "publisher": {
+          "@id": "https://ahadex.fun#organization"
+        },
+        "inLanguage": "en",
+        "keywords": "Why Apple switched to HEIC, Where HEIC causes problems, Option 1: Change iPhone camera settings, Option 2: Convert existing HEIC photos, Step-by-step: browser-based conversion"
+      }
+    ]
+  },
+  "/blog/how-to-remove-background-from-photos": {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "BlogPosting",
+        "@id": "https://ahadex.fun/blog/how-to-remove-background-from-photos#article",
+        "mainEntityOfPage": "https://ahadex.fun/blog/how-to-remove-background-from-photos",
+        "headline": "How to Remove Background from Photos (Free Methods)",
+        "description": "Background removal used to require Photoshop skills. Now free browser tools do it in 3 seconds. Here is how it works and when to use it.",
+        "image": "https://ahadex.fun/images/og/blog/how-to-remove-background-from-photos-og.png",
+        "datePublished": "2026-10-06",
+        "dateModified": "2026-10-16",
+        "author": {
+          "@id": "https://ahadex.fun/about/author/mohammad-ahad#person"
+        },
+        "publisher": {
+          "@id": "https://ahadex.fun#organization"
+        },
+        "inLanguage": "en",
+        "keywords": "What background removal is used for, Three main approaches, Tips for best results, Privacy concerns, After removal: what to do with the result"
+      }
+    ]
+  },
+  "/blog/website-speed-optimization-guide": {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "BlogPosting",
+        "@id": "https://ahadex.fun/blog/website-speed-optimization-guide#article",
+        "mainEntityOfPage": "https://ahadex.fun/blog/website-speed-optimization-guide",
+        "headline": "Website Speed Optimization: The Complete 2026 Guide",
+        "description": "Every second of load time costs you conversions and ranking. Learn the exact techniques that take a slow site to fast — with real measurements and priorities.",
+        "image": "https://ahadex.fun/images/og/blog/website-speed-optimization-guide-og.png",
+        "datePublished": "2026-10-14",
+        "dateModified": "2026-10-16",
+        "author": {
+          "@id": "https://ahadex.fun/about/author/mohammad-ahad#person"
+        },
+        "publisher": {
+          "@id": "https://ahadex.fun#organization"
+        },
+        "inLanguage": "en",
+        "keywords": "Measure first, The 5 Core Web Vitals that matter, Priority 1: Image optimization (biggest win), Priority 2: JavaScript optimization, Priority 3: Font optimization"
+      }
+    ]
+  },
+  "/blog/free-tools-for-freelancers-2026": {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "BlogPosting",
+        "@id": "https://ahadex.fun/blog/free-tools-for-freelancers-2026#article",
+        "mainEntityOfPage": "https://ahadex.fun/blog/free-tools-for-freelancers-2026",
+        "headline": "Best Free Online Tools for Freelancers in 2026",
+        "description": "Freelancers waste hours on admin work. These free browser-based tools handle invoicing, client files, portfolios, and everything in between.",
+        "image": "https://ahadex.fun/images/og/blog/free-tools-for-freelancers-2026-og.png",
+        "datePublished": "2026-10-15",
+        "dateModified": "2026-10-16",
+        "author": {
+          "@id": "https://ahadex.fun/about/author/mohammad-ahad#person"
+        },
+        "publisher": {
+          "@id": "https://ahadex.fun#organization"
+        },
+        "inLanguage": "en",
+        "keywords": "Client file management, Image preparation for clients, Portfolio and CV tools, Text and content tools, QR codes for business"
+      }
+    ]
+  },
+  "/blog/how-to-create-favicon-from-logo": {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "BlogPosting",
+        "@id": "https://ahadex.fun/blog/how-to-create-favicon-from-logo#article",
+        "mainEntityOfPage": "https://ahadex.fun/blog/how-to-create-favicon-from-logo",
+        "headline": "How to Create a Favicon From Your Logo (Step-by-Step)",
+        "description": "Your favicon is your logo at 16 pixels. Most logos do not survive at that size. Learn how to design a favicon that stays recognizable at the smallest scale.",
+        "image": "https://ahadex.fun/images/og/blog/how-to-create-favicon-from-logo-og.png",
+        "datePublished": "2026-10-10",
+        "dateModified": "2026-10-16",
+        "author": {
+          "@id": "https://ahadex.fun/about/author/mohammad-ahad#person"
+        },
+        "publisher": {
+          "@id": "https://ahadex.fun#organization"
+        },
+        "inLanguage": "en",
+        "keywords": "Why favicons need their own design, The favicon design rules, The conversion process, Common favicon mistakes, Designing in a browser"
+      }
+    ]
+  },
+  "/blog/how-to-add-watermark-to-photos": {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "BlogPosting",
+        "@id": "https://ahadex.fun/blog/how-to-add-watermark-to-photos#article",
+        "mainEntityOfPage": "https://ahadex.fun/blog/how-to-add-watermark-to-photos",
+        "headline": "How to Add a Watermark to Photos (Free Methods)",
+        "description": "Watermarks protect your images from theft — but a bad watermark ruins the photo. Learn the placement, opacity, and design rules that actually work.",
+        "image": "https://ahadex.fun/images/og/blog/how-to-add-watermark-to-photos-og.png",
+        "datePublished": "2026-10-07",
+        "dateModified": "2026-10-16",
+        "author": {
+          "@id": "https://ahadex.fun/about/author/mohammad-ahad#person"
+        },
+        "publisher": {
+          "@id": "https://ahadex.fun#organization"
+        },
+        "inLanguage": "en",
+        "keywords": "Who needs watermarks, Types of watermarks, Design rules, What to put in a watermark, Adding watermarks in the browser"
+      }
+    ]
   }
 };

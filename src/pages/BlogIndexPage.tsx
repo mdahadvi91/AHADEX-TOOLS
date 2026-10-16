@@ -3,7 +3,6 @@ import { motion } from "framer-motion";
 import { Sparkles, BookOpen } from "lucide-react";
 import { useLanguage } from "@contexts/LanguageContext";
 import { blogPosts, blogCategories } from "@data/blog";
-import { AdSenseSlot } from "@components/ads/AdSenseSlot";
 import { BlogCard } from "@components/blog/BlogCard";
 import { cn } from "@lib/cn";
 
@@ -70,8 +69,6 @@ export default function BlogIndexPage() {
       </div>
 
       {/* Ad after filters */}
-      <AdSenseSlot slot="HEADER" label="Advertisement" />
-      <AdSenseSlot slot="FOOTER" label="Advertisement" />
 
       {/* Grid */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">

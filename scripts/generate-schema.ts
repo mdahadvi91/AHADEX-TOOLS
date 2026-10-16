@@ -18,6 +18,7 @@ import { writeFileSync } from "node:fs";
 import { resolve } from "node:path";
 import { tools } from "../src/data/tools";
 import { authors } from "../src/data/authors";
+import { blogPosts } from "../src/data/blog";
 
 const SITE_URL = "https://ahadex.fun";
 const SITE_NAME = "AHADEX Tools";
@@ -138,6 +139,44 @@ for (const author of Object.values(authors)) {
   ];
 
   schemas[`/about/author/${author.id}`] = {
+    "@context": "https://schema.org",
+    "@graph": graph,
+  };
+}
+
+/* ── Blog post schemas (BlogPosting) ──
+ * Each blog post ships a BlogPosting entity so search engines and
+ * social crawlers can link the article to its author, its published
+ * and modified dates, and its primary image. Person and Organization
+ * are referenced by @id so they resolve to the entries already
+ * emitted elsewhere in the graph. */
+for (const post of blogPosts) {
+  const canonical = `${SITE_URL}/blog/${post.slug}`;
+  const ogImage = `${SITE_URL}/images/og/blog/${post.slug}-og.png`;
+  const authorId = `${SITE_URL}/about/author/${post.authorId}#person`;
+
+  const graph: Record<string, unknown>[] = [
+    {
+      "@type": "BlogPosting",
+      "@id": `${canonical}#article`,
+      mainEntityOfPage: canonical,
+      headline: post.title,
+      description: post.excerpt,
+      image: ogImage,
+      datePublished: post.publishedAt,
+      dateModified: post.updatedAt ?? post.publishedAt,
+      author: { "@id": authorId },
+      publisher: { "@id": `${SITE_URL}#organization` },
+      inLanguage: "en",
+      keywords: post.blocks
+        .filter((b) => b.type === "h2" && b.content)
+        .slice(0, 5)
+        .map((b) => b.content as string)
+        .join(", "),
+    },
+  ];
+
+  schemas[`/blog/${post.slug}`] = {
     "@context": "https://schema.org",
     "@graph": graph,
   };
