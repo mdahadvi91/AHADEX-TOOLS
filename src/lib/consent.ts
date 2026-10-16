@@ -1,10 +1,25 @@
 /* ============================================================
- * Cookie Consent State
+ * Consent state — single source of truth
  * ------------------------------------------------------------
- * Stores user's cookie/consent choices in localStorage.
- * Fires Google Consent Mode v2 signals when choice changes.
- * Also exposes window.__ahadex_ad_consent__ so AdSenseSlot
- * can decide whether to render ad units.
+ * Stores the user's cookie/consent choices in localStorage and
+ * broadcasts changes to any React component that subscribes.
+ *
+ * This module is the ONLY place that:
+ *   - Persists the choice
+ *   - Fires the Google Consent Mode v2 'update' signal
+ *   - Notifies subscribers (ad slots, analytics, UI)
+ *
+ * It does NOT rely on a global window flag. Components subscribe
+ * via subscribeToConsent() and receive the current state on mount
+ * and on every change.
+ *
+ * NOTE on EEA/UK/Switzerland traffic:
+ *   Google requires a Google-certified CMP (IAB TCF v2.3) for
+ *   personalized ads in the EEA, UK, and Switzerland. This module
+ *   implements the techincal fallback and correctly forwards the
+ *   choice to Consent Mode v2. The certified CMP (Google Privacy
+ *   & Messaging) is configured separately in the AdSense dashboard.
+ *   See docs/CONSENT.md.
  * ============================================================ */
 
 export interface ConsentChoice {
@@ -24,16 +39,41 @@ const CONSENT_VERSION = 1;
 declare global {
   interface Window {
     gtag?: (...args: unknown[]) => void;
-    __ahadex_ad_consent__?: boolean;
+    dataLayer?: unknown[];
   }
 }
 
-/** Sync the global ad-consent flag used by AdSenseSlot */
-function syncAdConsentFlag(granted: boolean): void {
-  if (typeof window === "undefined") return;
+type Subscriber = (state: ConsentState | null) => void;
+const subscribers = new Set<Subscriber>();
 
-  window.__ahadex_ad_consent__ = granted;
-  window.dispatchEvent(new Event("ahadex:consent-change"));
+/** Notify every subscriber with the current stored state. */
+function notify(): void {
+  const state = getStoredConsent();
+  for (const fn of subscribers) {
+    try {
+      fn(state);
+    } catch {
+      /* ignore subscriber errors */
+    }
+  }
+}
+
+/**
+ * Subscribe to consent changes.
+ * Fires immediately with the current state, then on every save/clear.
+ * Returns an unsubscribe function.
+ */
+export function subscribeToConsent(fn: Subscriber): () => void {
+  subscribers.add(fn);
+  // Fire immediately with current state
+  try {
+    fn(getStoredConsent());
+  } catch {
+    /* ignore */
+  }
+  return () => {
+    subscribers.delete(fn);
+  };
 }
 
 export function getStoredConsent(): ConsentState | null {
@@ -57,14 +97,17 @@ export function saveConsent(choice: ConsentChoice): ConsentState {
     version: CONSENT_VERSION,
     timestamp: Date.now(),
   };
+
   if (typeof window !== "undefined") {
     try {
       localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
     } catch {
-      /* ignore */
+      /* ignore quota errors */
     }
-    syncAdConsentFlag(choice.ads);
   }
+
+  applyConsentToGtag(choice);
+  notify();
   return state;
 }
 
@@ -75,12 +118,14 @@ export function clearConsent(): void {
   } catch {
     /* ignore */
   }
-  syncAdConsentFlag(false);
+  applyConsentToGtag({ analytics: false, ads: false });
+  notify();
 }
 
 /**
- * Fires Google Consent Mode v2 'update' with the user's choice.
- * Safe to call even if gtag.js hasn't loaded — signal is queued.
+ * Fire Google Consent Mode v2 update.
+ * Safe to call even if gtag.js has not loaded yet — the signal
+ * is queued by the inline dataLayer stub in index.html.
  */
 export function applyConsentToGtag(choice: ConsentChoice): void {
   if (typeof window === "undefined" || typeof window.gtag !== "function") return;
@@ -94,18 +139,16 @@ export function applyConsentToGtag(choice: ConsentChoice): void {
 }
 
 /**
- * Reads stored consent (if any) and:
- *   1. Updates the global ad-consent flag
- *   2. Fires gtag consent update
+ * Re-apply the stored consent (if any) to gtag.
+ * Called by ConsentModeInit on app start and by the GA loader
+ * after gtag.js finishes loading.
  */
 export function applyStoredConsent(): void {
   const stored = getStoredConsent();
   if (stored) {
-    syncAdConsentFlag(stored.ads);
     applyConsentToGtag({ analytics: stored.analytics, ads: stored.ads });
   } else {
-    // No choice yet → ads denied by default
-    syncAdConsentFlag(false);
+    applyConsentToGtag({ analytics: false, ads: false });
   }
 }
 

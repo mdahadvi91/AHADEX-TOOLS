@@ -9,6 +9,7 @@
  * ============================================================ */
 
 import { useEffect, useRef } from "react";
+import { subscribeToConsent, type ConsentState } from "@lib/consent";
 
 type AdFormat = "auto" | "fluid" | "rectangle";
 
@@ -41,13 +42,9 @@ function getSlotId(name: SlotName): string {
   return (map[name] ?? "").trim();
 }
 
-/** Check global consent flag (set by Consent Mode v2) */
-function isAdConsentGranted(): boolean {
-  if (typeof window === "undefined") return false;
-  const w = window as unknown as { __ahadex_ad_consent__?: boolean };
-  // If consent framework hasn't run yet, default to false (denied)
-  return w.__ahadex_ad_consent__ === true;
-}
+/* Consent is now consumed via lib/consent.ts subscription.
+   The component stores the latest state locally and re-evaluates
+   the ad render whenever consent changes. */
 
 export function AdSenseSlot({
   slot,
@@ -70,6 +67,7 @@ export function AdSenseSlot({
 
     const node = insRef.current;
     let observer: IntersectionObserver | null = null;
+    let adsGranted = false;
 
     const stopObserving = () => {
       observer?.disconnect();
@@ -77,7 +75,7 @@ export function AdSenseSlot({
     };
 
     const startObserving = () => {
-      if (!isAdConsentGranted() || pushedRef.current || observer) return;
+      if (!adsGranted || pushedRef.current || observer) return;
       if (typeof IntersectionObserver === "undefined") return;
 
       observer = new IntersectionObserver(
@@ -107,19 +105,17 @@ export function AdSenseSlot({
       observer.observe(node);
     };
 
-    const handleConsentChange = () => {
-      if (isAdConsentGranted()) {
+    const unsubscribe = subscribeToConsent((state: ConsentState | null) => {
+      adsGranted = state?.ads === true;
+      if (adsGranted) {
         startObserving();
       } else {
         stopObserving();
       }
-    };
-
-    window.addEventListener("ahadex:consent-change", handleConsentChange);
-    handleConsentChange();
+    });
 
     return () => {
-      window.removeEventListener("ahadex:consent-change", handleConsentChange);
+      unsubscribe();
       stopObserving();
     };
   }, [enabled, clientId, finalSlotId]);
