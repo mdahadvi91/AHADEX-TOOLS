@@ -16,6 +16,14 @@ export function ToolSchema({ toolId }: ToolSchemaProps) {
   useEffect(() => {
     if (typeof document === "undefined") return;
 
+    /* SSR-first: Cloudflare middleware already injects the canonical
+       schema for this path as <script data-ssr-schema="true">.
+       Rendering a second schema block from the client would create
+       duplicate structured data — Google treats that as ambiguous.
+       Only inject client-side when no SSR schema is present (i.e.
+       during dev where middleware is not running). */
+    if (document.querySelector('[data-ssr-schema="true"]')) return;
+
     const tool = tools.find((t) => t.id === toolId);
     if (!tool) return;
 

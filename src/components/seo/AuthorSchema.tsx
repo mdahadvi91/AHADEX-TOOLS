@@ -18,6 +18,9 @@ export function AuthorSchema({ author }: AuthorSchemaProps) {
   useEffect(() => {
     if (typeof document === "undefined") return;
 
+    /* SSR-first guard — see ToolSchema.tsx for the rationale. */
+    if (document.querySelector('[data-ssr-schema="true"]')) return;
+
     const id = "ahadex-author-schema";
     document.getElementById(id)?.remove();
 

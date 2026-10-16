@@ -89,37 +89,6 @@ for (const tool of tools) {
     ],
   });
 
-  // ── FAQPage ──
-  if (tool.faq && tool.faq.length > 0) {
-    graph.push({
-      "@type": "FAQPage",
-      "@id": `${canonical}#faq`,
-      mainEntity: tool.faq.map((f) => ({
-        "@type": "Question",
-        name: f.question,
-        acceptedAnswer: {
-          "@type": "Answer",
-          text: f.answer,
-        },
-      })),
-    });
-  }
-
-  // ── HowTo ──
-  if (tool.howTo && tool.howTo.length > 0) {
-    graph.push({
-      "@type": "HowTo",
-      "@id": `${canonical}#howto`,
-      name: `How to use ${tool.name}`,
-      step: tool.howTo.map((s) => ({
-        "@type": "HowToStep",
-        position: s.step,
-        name: s.title,
-        text: s.description,
-      })),
-    });
-  }
-
   schemas[tool.path] = {
     "@context": "https://schema.org",
     "@graph": graph,

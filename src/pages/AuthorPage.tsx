@@ -19,6 +19,9 @@ export default function AuthorPage() {
   useEffect(() => {
     if (!author || typeof document === "undefined") return;
 
+    /* SSR-first guard — middleware already injects canonical schema. */
+    if (document.querySelector('[data-ssr-schema="true"]')) return;
+
     const schemaId = "ahadex-author-page-schema";
     document.getElementById(schemaId)?.remove();
 

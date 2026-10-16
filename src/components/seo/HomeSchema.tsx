@@ -6,6 +6,9 @@ export function HomeSchema() {
   useEffect(() => {
     if (typeof document === "undefined") return;
 
+    /* SSR-first guard — see ToolSchema.tsx for the rationale. */
+    if (document.querySelector('[data-ssr-schema="true"]')) return;
+
     const existing = document.getElementById("ahadex-home-schema");
     if (existing) existing.remove();
 
