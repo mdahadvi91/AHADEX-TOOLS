@@ -17,6 +17,7 @@
 import { writeFileSync } from "node:fs";
 import { resolve } from "node:path";
 import { tools } from "../src/data/tools";
+import { authors } from "../src/data/authors";
 
 const SITE_URL = "https://ahadex.fun";
 const SITE_NAME = "AHADEX Tools";
@@ -120,6 +121,54 @@ for (const tool of tools) {
   }
 
   schemas[tool.path] = {
+    "@context": "https://schema.org",
+    "@graph": graph,
+  };
+}
+
+/* ── Author profile schemas (ProfilePage + Person) ── */
+for (const author of Object.values(authors)) {
+  const canonical = `${SITE_URL}/about/author/${author.id}`;
+
+  const graph: Record<string, unknown>[] = [
+    {
+      "@type": "ProfilePage",
+      "@id": `${canonical}#profile`,
+      url: canonical,
+      name: `${author.name} — ${author.role}`,
+      description: author.bio,
+      mainEntity: {
+        "@type": "Person",
+        "@id": `${canonical}#person`,
+        name: author.name,
+        jobTitle: author.role,
+        description: author.bio,
+        url: canonical,
+        ...(author.location && {
+          address: {
+            "@type": "PostalAddress",
+            addressLocality: author.location,
+          },
+        }),
+        ...(author.email && { email: author.email }),
+        ...(author.sameAs && { sameAs: author.sameAs }),
+        worksFor: {
+          "@type": "Organization",
+          name: SITE_NAME,
+          url: SITE_URL,
+        },
+        knowsAbout: [
+          "Browser-based image processing",
+          "PDF manipulation in the browser",
+          "Client-side privacy tools",
+          "JavaScript and TypeScript",
+          "Web performance optimization",
+        ],
+      },
+    },
+  ];
+
+  schemas[`/about/author/${author.id}`] = {
     "@context": "https://schema.org",
     "@graph": graph,
   };

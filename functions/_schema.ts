@@ -4613,5 +4613,45 @@ export const SSR_SCHEMA: Record<string, object> = {
         ]
       }
     ]
+  },
+  "/about/author/mohammad-ahad": {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "ProfilePage",
+        "@id": "https://ahadex.fun/about/author/mohammad-ahad#profile",
+        "url": "https://ahadex.fun/about/author/mohammad-ahad",
+        "name": "Mohammad Ahad — Founder & Developer",
+        "description": "Mohammad Ahad is the founder of AHADEX Tools and the developer behind every browser-based utility on this site. He builds free, private, client-side tools for everyday digital work — image conversion, PDF handling, developer helpers — and writes the technical guides that accompany them. Based in Dubai, UAE.",
+        "mainEntity": {
+          "@type": "Person",
+          "@id": "https://ahadex.fun/about/author/mohammad-ahad#person",
+          "name": "Mohammad Ahad",
+          "jobTitle": "Founder & Developer",
+          "description": "Mohammad Ahad is the founder of AHADEX Tools and the developer behind every browser-based utility on this site. He builds free, private, client-side tools for everyday digital work — image conversion, PDF handling, developer helpers — and writes the technical guides that accompany them. Based in Dubai, UAE.",
+          "url": "https://ahadex.fun/about/author/mohammad-ahad",
+          "address": {
+            "@type": "PostalAddress",
+            "addressLocality": "Dubai, United Arab Emirates"
+          },
+          "email": "mdahadvi91@gmail.com",
+          "sameAs": [
+            "https://github.com/mdahadvi91"
+          ],
+          "worksFor": {
+            "@type": "Organization",
+            "name": "AHADEX Tools",
+            "url": "https://ahadex.fun"
+          },
+          "knowsAbout": [
+            "Browser-based image processing",
+            "PDF manipulation in the browser",
+            "Client-side privacy tools",
+            "JavaScript and TypeScript",
+            "Web performance optimization"
+          ]
+        }
+      }
+    ]
   }
 };

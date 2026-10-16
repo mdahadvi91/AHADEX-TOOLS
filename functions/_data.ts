@@ -70,6 +70,7 @@ export const STATIC_META: Record<string, StaticMeta> = {
   "/sitemap": { title: "Sitemap | AHADEX Tools", description: "All pages and tools on AHADEX Tools.", ogImage: "/images/og/home-og.png" },
   "/blog": { title: "Blog — Guides & Tutorials | AHADEX Tools", description: "In-depth guides on image optimization, PDF workflows, developer tips, and digital security.", ogImage: "/images/og/home-og.png" },
   "/404": { title: "Page Not Found | AHADEX Tools", description: "The page you were looking for could not be found.", ogImage: "/images/og/home-og.png" },
+  "/about/author/mohammad-ahad": { title: "Mohammad Ahad — Founder & Developer | AHADEX Tools", description: "Profile of Mohammad Ahad, founder & developer at AHADEX Tools. Author of the technical guides on this site.", ogImage: "/images/og/home-og.png" },
 };
 
 export const BLOG_META: Record<string, BlogMeta> = {

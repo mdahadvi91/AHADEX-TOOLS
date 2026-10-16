@@ -11,6 +11,7 @@ import { existsSync, mkdirSync, writeFileSync } from "node:fs";
 import { resolve } from "node:path";
 import { tools } from "../src/data/tools";
 import { blogPosts } from "../src/data/blog";
+import { authors } from "../src/data/authors";
 
 const OUT_DIR = resolve(process.cwd(), "functions");
 const OUT_FILE = resolve(OUT_DIR, "_data.ts");
@@ -101,6 +102,15 @@ const staticPages: Record<string, { title: string; description: string; ogImage:
     ogImage: "/images/og/home-og.png",
   },
 };
+
+/* ── Author profile pages (added dynamically from authors registry) ── */
+for (const author of Object.values(authors)) {
+  staticPages[`/about/author/${author.id}`] = {
+    title: `${author.name} — ${author.role} | AHADEX Tools`,
+    description: `Profile of ${author.name}, ${author.role.toLowerCase()} at AHADEX Tools. Author of the technical guides on this site.`,
+    ogImage: "/images/og/home-og.png",
+  };
+}
 
 const staticEntries = Object.entries(staticPages)
   .map(
