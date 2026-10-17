@@ -25,6 +25,7 @@ import { resolve } from "node:path";
 import { tools } from "../src/data/tools";
 import { blogPosts } from "../src/data/blog";
 import { authors } from "../src/data/authors";
+import { guides } from "../src/data/guides";
 
 const SITEMAP = resolve(process.cwd(), "public/sitemap.xml");
 const SSR_FILE = resolve(process.cwd(), "functions/_ssr-content.ts");
@@ -46,7 +47,7 @@ const staticPaths = [
   "/", "/tools", "/blog", "/about", "/contact",
   "/privacy", "/terms", "/disclaimer", "/accessibility",
   "/cookie-policy", "/editorial-policy", "/affiliate-disclosure",
-  "/sitemap",
+  "/sitemap", "/guides",
 ];
 for (const p of staticPaths) expected.add(`${SITE}${p}`);
 
@@ -59,6 +60,11 @@ for (const p of blogPosts) expected.add(`${SITE}/blog/${p.slug}`);
 // Authors
 for (const a of Object.values(authors)) {
   expected.add(`${SITE}/about/author/${a.id}`);
+}
+
+// Guides
+for (const g of guides) {
+  expected.add(`${SITE}/guides/${g.slug}`);
 }
 
 // Check every sitemap URL is expected
@@ -89,6 +95,9 @@ for (const loc of locs) {
     }
     continue;
   }
+  // Guides index is a directory page — SSR content lives on the
+  // individual guide pages, not on the index.
+  if (path === "/guides") continue;
   if (!ssrContent.includes(`"${path}":`)) {
     issues.push(`  • ${loc} — no SSR content for path ${path}`);
   }

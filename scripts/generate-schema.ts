@@ -19,6 +19,7 @@ import { resolve } from "node:path";
 import { tools } from "../src/data/tools";
 import { authors } from "../src/data/authors";
 import { blogPosts } from "../src/data/blog";
+import { guides } from "../src/data/guides";
 
 const SITE_URL = "https://ahadex.fun";
 const SITE_NAME = "AHADEX Tools";
@@ -177,6 +178,36 @@ for (const post of blogPosts) {
   ];
 
   schemas[`/blog/${post.slug}`] = {
+    "@context": "https://schema.org",
+    "@graph": graph,
+  };
+}
+
+/* ── Guide schemas (Article) ──
+ * Guides are workflow documentation, emitted as Article schema
+ * with author + publisher references so they're eligible for
+ * Article-rich results (not just WebPage).
+ */
+for (const guide of guides) {
+  const canonical = `${SITE_URL}/guides/${guide.slug}`;
+  const authorId = `${SITE_URL}/about/author/${guide.authorId}#person`;
+
+  const graph: Record<string, unknown>[] = [
+    {
+      "@type": "Article",
+      "@id": `${canonical}#article`,
+      mainEntityOfPage: canonical,
+      headline: guide.title,
+      description: guide.excerpt,
+      datePublished: guide.publishedAt,
+      dateModified: guide.updatedAt ?? guide.publishedAt,
+      author: { "@id": authorId },
+      publisher: { "@id": `${SITE_URL}#organization` },
+      inLanguage: "en",
+    },
+  ];
+
+  schemas[`/guides/${guide.slug}`] = {
     "@context": "https://schema.org",
     "@graph": graph,
   };
