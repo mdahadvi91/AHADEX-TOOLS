@@ -93,7 +93,7 @@ export const staticPageContents: StaticPageContent[] = [
   {
     path: "/tools",
     html: `<article>
-  <h1>All Tools — 27 free browser-based utilities</h1>
+  <h1>All Tools — ${tools.length} free browser-based utilities</h1>
   <p><strong>AHADEX Tools currently offers ${tools.length} browser-based tools for image work, PDF handling, text processing, developer tasks, QR and barcode generation, and design documents. Every tool runs entirely in your browser — no uploads, no accounts, no watermarks.</strong></p>
 
   <h2>Image tools (7)</h2>

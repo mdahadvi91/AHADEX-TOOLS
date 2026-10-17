@@ -14,7 +14,7 @@ Every tool runs entirely in your browser. Nothing is uploaded. Nothing is stored
 
 ## ✨ What is AHADEX?
 
-AHADEX Tools is a growing collection of **35+ free online utilities** — QR codes, PDF tools, image converters, text helpers, and developer utilities — that all run **entirely inside your browser**.
+AHADEX Tools is a collection of **free, browser-based utilities** — QR codes, PDF tools, image converters, text helpers, and developer utilities — that all run **entirely inside your browser**. The authoritative tool count lives in `src/data/tools.ts` (`TOOL_COUNT`); do not hard-code it in marketing copy.
 
 No uploads to a server. No accounts. No watermarks. No daily quotas. Nothing leaves your device.
 
