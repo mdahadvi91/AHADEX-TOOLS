@@ -82,6 +82,47 @@ const legacyTools: Tool[] = [
     ],
     popular: true,
     newTool: true,
+        editorialContent: [
+      {
+        heading: "Business card printing — the specs that matter",
+        body: `
+          <p>Most people design a card on screen, print it, and discover too late that the colors look dull, the text is cut off, or the edges look soft. These are not design problems — they are specification problems. Here is what a print shop actually needs.</p>
+          <h3>The three dimensions of a business card</h3>
+          <ul>
+            <li><strong>Trim size</strong> — the finished size after cutting. The industry standard in Europe and Asia is 85 × 55 mm. In the US it is 88.9 × 50.8 mm (3.5 × 2.0 inches).</li>
+            <li><strong>Bleed</strong> — 3 mm (0.125") added on every side so the background color extends past the trim line. Without bleed, a tiny cutting error leaves a white border.</li>
+            <li><strong>Safe margin</strong> — 4 mm (0.16") inside every edge where no text or important elements should sit. Cutting is never perfect to the millimetre.</li>
+          </ul>
+          <h3>300 DPI is the print minimum</h3>
+          <p>Screen previews look fine at 72 DPI. Print shops need 300 DPI at the final trim size. A 85 × 55 mm card at 300 DPI is 1004 × 650 pixels. At 600 DPI it is 2008 × 1300. This tool exports at whatever DPI you choose, matching the exact print size in millimetres.</p>
+        `,
+      },
+      {
+        heading: "RGB vs CMYK — the colour trap",
+        body: `
+          <p>Your screen displays colour in RGB. Most professional print shops print in CMYK. These are fundamentally different color spaces, and some RGB colors simply cannot be reproduced in CMYK.</p>
+          <ul>
+            <li><strong>Very saturated blues and greens</strong> (like a bright neon blue) will look noticeably duller in print.</li>
+            <li><strong>RGB blacks</strong> printed as CMYK often look slightly grey or brown unless the print shop uses a rich-black recipe.</li>
+            <li><strong>Gradients</strong> in RGB can band in CMYK if the print resolution is low.</li>
+          </ul>
+          <p><strong>The safe workflow:</strong> pick colors that already look muted on screen. Pure red (#FF0000) becomes a muddy red in CMYK. A deep maroon (#8B3A4F) prints beautifully. When in doubt, ask your print shop to send you their CMYK conversion of your chosen colors before you place a bulk order.</p>
+        `,
+      },
+      {
+        heading: "Paper stock — the physical dimension",
+        body: `
+          <p>A digital file can only do so much. The paper stock has a bigger impact on how a card feels than any design choice. The three options worth knowing:</p>
+          <ul>
+            <li><strong>350-400 gsm matte:</strong> The industry standard. Feels substantial in the hand, holds fine detail well, and works for almost any design. The safest choice.</li>
+            <li><strong>300 gsm textured or linen:</strong> Adds tactile interest. Text can look slightly softer because the paper has surface texture. Best for creative professionals.</li>
+            <li><strong>600 gsm cotton or duplex:</strong> Thick and luxurious. Significantly more expensive. Usually chosen for premium or invitation-style cards.</li>
+          </ul>
+          <p>If you are unsure, ask your print shop for a sample pack. Feeling three paper stocks in person will settle the choice immediately.</p>
+        `,
+      },
+    ],
+
     features: [
       { title: "20 unique templates", description: "Every template is hand-designed — no algorithmic variation. Each has its own front and back layout, palette, and typography." },
       { title: "Real-time preview", description: "Fonts, colors, positions, and your logo all reflect instantly. You always know exactly what you'll get." },
@@ -129,6 +170,59 @@ const legacyTools: Tool[] = [
     keywords: ["cv", "resume", "cv builder", "resume builder", "pdf cv", "ats resume", "cv template"],
     popular: true,
     newTool: true,
+        editorialContent: [
+      {
+        heading: "What ATS software actually does to your CV",
+        body: `
+          <p>Most large companies filter CVs through an Applicant Tracking System (ATS) before a human sees them. Understanding what the ATS does — and does not do — changes how you should format your CV.</p>
+          <h3>What the ATS extracts</h3>
+          <ul>
+            <li><strong>Plain text</strong> from the PDF. It does not "see" the design.</li>
+            <li><strong>Section headings</strong> that match standard labels (Experience, Education, Skills).</li>
+            <li><strong>Dates</strong> in consistent formats (Jan 2020 – Mar 2023).</li>
+            <li><strong>Job titles</strong> and company names in recognisable patterns.</li>
+            <li><strong>Keywords</strong> matched against the job description.</li>
+          </ul>
+          <h3>What breaks the ATS</h3>
+          <ul>
+            <li><strong>Two-column layouts</strong> — text from the left and right columns gets interleaved in the wrong order.</li>
+            <li><strong>Tables</strong> — the parser reads cells as separate lines and loses the structure.</li>
+            <li><strong>Icons</strong> — a phone icon renders but the phone number inside the icon's SVG is invisible to the parser.</li>
+            <li><strong>Photos</strong> — treated as graphics and ignored.</li>
+            <li><strong>Creative section headings</strong> like "My Journey" instead of "Experience".</li>
+          </ul>
+        `,
+      },
+      {
+        heading: "The impact rule — why 'responsible for' loses interviews",
+        body: `
+          <p>The single biggest difference between a CV that gets interviews and one that gets ignored is not formatting. It is whether each bullet describes a <em>responsibility</em> or an <em>impact</em>.</p>
+          <table>
+            <thead><tr><th>Weak (responsibility)</th><th>Strong (impact)</th></tr></thead>
+            <tbody>
+              <tr><td>Managed social media accounts</td><td>Grew Instagram following from 2K to 45K in 8 months via content strategy</td></tr>
+              <tr><td>Handled customer support</td><td>Reduced average ticket resolution from 4 hours to 45 minutes</td></tr>
+              <tr><td>Worked on the company website</td><td>Redesigned checkout flow, increasing conversion by 23%</td></tr>
+            </tbody>
+          </table>
+          <p>The impact version always uses numbers: percentages, dollar amounts, time saved, users reached. Numbers are what recruiters remember. When you have no exact numbers, use approximations ("roughly doubled", "cut by half") — the pattern still works.</p>
+        `,
+      },
+      {
+        heading: "Length, structure, and the one-page rule",
+        body: `
+          <p>The one-page rule is not absolute. It is a heuristic that reflects the typical recruiter's attention budget: 7-15 seconds per CV on the first pass. Here is the current practical standard:</p>
+          <ul>
+            <li><strong>0-5 years of experience:</strong> 1 page. No exceptions.</li>
+            <li><strong>5-10 years:</strong> 1 page strongly preferred; 2 pages only if the second page is dense with specific projects.</li>
+            <li><strong>10+ years or senior IC:</strong> 2 pages.</li>
+            <li><strong>Academic CVs:</strong> 4-20 pages (publications, grants, teaching).</li>
+          </ul>
+          <p>Never pad. A dense, well-organised one-page CV beats a padded two-page CV every time. If you cannot fit everything on one page, cut the least relevant entries — not the depth of the relevant ones.</p>
+        `,
+      },
+    ],
+
     features: [
       { title: "Real templates", description: "Hand-designed A4 layouts. Every visual element is code, not an image." },
       { title: "Live preview", description: "Type into a form and the CV updates instantly on the page beside it." },
@@ -354,6 +448,40 @@ const legacyTools: Tool[] = [
     keywords: ["merge pdf", "combine pdf", "join pdf", "pdf merger"],
     popular: true,
     newTool: true,
+        editorialContent: [
+      {
+        heading: "What actually happens when two PDFs merge",
+        body: `
+          <p>A PDF is not a single file — it is a structured container. It holds page objects, font data, embedded images, bookmarks, and metadata, each stored as separate pieces with cross-references between them. Merging two PDFs is not "concatenating" the files. It is creating a new container, copying page objects from both sources, and rebuilding the cross-reference tables.</p>
+          <h3>What survives the merge</h3>
+          <ul>
+            <li><strong>Text and layout:</strong> preserved byte-for-byte. Text remains selectable and searchable.</li>
+            <li><strong>Embedded fonts:</strong> each document keeps its own fonts. No font substitution.</li>
+            <li><strong>Embedded images:</strong> no re-compression. The original image bytes are preserved.</li>
+            <li><strong>Vector graphics:</strong> stay vector. Sharp at any zoom level.</li>
+          </ul>
+          <h3>What breaks</h3>
+          <ul>
+            <li><strong>Digital signatures:</strong> any change invalidates the cryptographic signature. If you need signed merged output, sign after merging.</li>
+            <li><strong>Internal cross-references:</strong> a hyperlink that points to page 3 of document A no longer points to the same content if the page order changed during the merge.</li>
+            <li><strong>PDF/A compliance:</strong> if either source was PDF/A certified, the merged file is no longer PDF/A compliant.</li>
+          </ul>
+        `,
+      },
+      {
+        heading: "Why the merged file is not simply the sum of the inputs",
+        body: `
+          <p>File sizes can surprise you when merging. Two 5 MB PDFs do not always become a 10 MB PDF — the merged file is usually slightly larger or slightly smaller than the sum. Here is why:</p>
+          <ul>
+            <li><strong>Shared fonts:</strong> if both PDFs embed the same font file, pdf-lib can deduplicate it. Output file becomes smaller than the sum.</li>
+            <li><strong>Rebuilt cross-reference tables:</strong> the merged file has a new structure with its own page index, bookmark tree, and metadata. Usually adds 5-50 KB.</li>
+            <li><strong>Metadata:</strong> only the first document's metadata typically survives. The second document's metadata is dropped.</li>
+          </ul>
+          <p><strong>Real measurement:</strong> a 200-page technical manual (18 MB) merged with a 4-page contract (320 KB) produced an 18.3 MB file. The structural overhead was under 100 KB.</p>
+        `,
+      },
+    ],
+
     features: [
       { title: "Zero uploads", description: "Files are read and merged entirely in your browser." },
       { title: "Up to 20 PDFs", description: "Combine up to 20 files into one document — no page-count limit." },
@@ -916,6 +1044,59 @@ const legacyTools: Tool[] = [
     keywords: ["password generator", "strong password", "random password", "secure password", "crypto password"],
     popular: true,
     newTool: true,
+        editorialContent: [
+      {
+        heading: "Entropy — the only metric that matters",
+        body: `
+          <p>Password strength is not about "uppercase plus a symbol plus a number." It is about one measurable quantity: entropy. Measured in bits, entropy is the base-2 logarithm of the number of possible passwords of a given structure.</p>
+          <p><strong>Formula:</strong> entropy = length × log₂(pool size)</p>
+          <table>
+            <thead><tr><th>Structure</th><th>Pool size</th><th>Entropy (bits)</th></tr></thead>
+            <tbody>
+              <tr><td>8 characters, lowercase only</td><td>26</td><td>37.6</td></tr>
+              <tr><td>12 characters, lowercase only</td><td>26</td><td>56.4</td></tr>
+              <tr><td>12 characters, mixed (a-z, A-Z, 0-9)</td><td>62</td><td>71.5</td></tr>
+              <tr><td>16 characters, mixed + symbols</td><td>94</td><td>105.1</td></tr>
+              <tr><td>20 characters, mixed + symbols</td><td>94</td><td>131.4</td></tr>
+            </tbody>
+          </table>
+          <p>The practical threshold: 80 bits is safe for anything non-critical. 100 bits is safe for accounts that matter. 120+ bits is effectively overkill but costs nothing.</p>
+        `,
+      },
+      {
+        heading: "The math of 'hacking' a password",
+        body: `
+          <p>When people say "passwords are cracked in seconds," they mean specific, quantified attacks against hashes on consumer GPUs. Here is the real arithmetic:</p>
+          <ul>
+            <li><strong>MD5 hashing on a modern GPU:</strong> roughly 10 billion guesses per second per GPU.</li>
+            <li><strong>bcrypt / Argon2:</strong> deliberately 1,000× slower — 10 million guesses per second per GPU. This is why these algorithms matter.</li>
+          </ul>
+          <p><strong>Time to crack on a single GPU:</strong></p>
+          <table>
+            <thead><tr><th>Entropy</th><th>MD5</th><th>bcrypt</th></tr></thead>
+            <tbody>
+              <tr><td>40 bits</td><td>Seconds</td><td>Minutes</td></tr>
+              <tr><td>60 bits</td><td>Hours</td><td>Years</td></tr>
+              <tr><td>80 bits</td><td>Centuries</td><td>Billions of years</td></tr>
+              <tr><td>100+ bits</td><td>Longer than the universe</td><td>Longer than the universe</td></tr>
+            </tbody>
+          </table>
+          <p>The takeaway: use a password manager that generates 20+ character passwords, and enable 2FA on every account. Together, they make the arithmetic meaningless.</p>
+        `,
+      },
+      {
+        heading: "Why 'exclude ambiguous characters' matters",
+        body: `
+          <p>When you must type a password by hand, certain character pairs cause real problems because they look identical in many fonts:</p>
+          <ul>
+            <li><strong>0</strong> (zero) vs <strong>O</strong> (uppercase letter O)</li>
+            <li><strong>1</strong> (one) vs <strong>l</strong> (lowercase letter L) vs <strong>I</strong> (uppercase letter i)</li>
+          </ul>
+          <p>Excluding these characters reduces the pool size by roughly 4 characters. The entropy cost is about 5-6%, but the accuracy gain when typing or transcribing is dramatic. For passwords stored only in a manager and auto-filled, keep the ambiguous characters. For passwords you will ever need to type manually, exclude them.</p>
+        `,
+      },
+    ],
+
     features: [
       { title: "Cryptographically secure", description: "Uses Web Crypto API with rejection sampling — no modulo bias." },
       { title: "Full control", description: "Length, character sets, ambiguous exclusion, require-each rule." },

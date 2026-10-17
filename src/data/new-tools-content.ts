@@ -38,6 +38,45 @@ export const newTools: Tool[] = [
     ],
     popular: true,
     newTool: true,
+        editorialContent: [
+      {
+        heading: "JPG vs PNG vs WebP — the real tradeoffs",
+        body: `
+          <p>All three formats do the same thing: store pixels. But they use fundamentally different compression strategies, and picking the wrong one costs you bandwidth, quality, or both.</p>
+          <table>
+            <thead><tr><th>Property</th><th>JPG</th><th>PNG</th><th>WebP</th></tr></thead>
+            <tbody>
+              <tr><td>Compression</td><td>Lossy</td><td>Lossless</td><td>Both</td></tr>
+              <tr><td>Transparency</td><td>No</td><td>Yes</td><td>Yes</td></tr>
+              <tr><td>Typical photo size</td><td>Smallest</td><td>3-10× larger</td><td>25-35% smaller than JPG</td></tr>
+              <tr><td>Best for</td><td>Photos, email</td><td>Logos, screenshots</td><td>Web images</td></tr>
+            </tbody>
+          </table>
+          <h3>Why converting JPG to PNG makes the file 3-5× larger</h3>
+          <p>PNG is lossless — it must store every pixel exactly. For photographs, the byte patterns are effectively random, and lossless compression cannot compress random data. The output is always much larger than the JPG source. There is no quality gain because the JPG has already discarded data that PNG cannot invent back.</p>
+        `,
+      },
+      {
+        heading: "What happens to metadata during browser conversion",
+        body: `
+          <p>When a photo is converted through the browser Canvas API, the pipeline is: decode image → draw onto canvas → re-encode. The Canvas API handles pixel data only. It does not preserve EXIF, GPS coordinates, camera information, IPTC, or XMP metadata. Every converted file ships with zero metadata.</p>
+          <p><strong>This is usually a privacy win.</strong> A photo taken at home does not leak its GPS coordinates when you share the converted output. It is also why converted images cannot be used in workflows that depend on EXIF — archival photography, forensic analysis, and specific legal contexts require the original file, not a converted copy.</p>
+        `,
+      },
+      {
+        heading: "Colour profiles — why colours can shift after conversion",
+        body: `
+          <p>Images carry a colour profile — the instructions a renderer uses to interpret pixel values. The three you will encounter most often:</p>
+          <ul>
+            <li><strong>sRGB</strong> — the web standard. Every browser renders it correctly.</li>
+            <li><strong>Display P3</strong> — the wide-gamut profile used by iPhones and iPad Pro. Covers about 25% more visible colour than sRGB.</li>
+            <li><strong>Untagged</strong> — no profile. The browser assumes sRGB. Common for screenshots.</li>
+          </ul>
+          <p>During Canvas conversion, the source profile is read and the pixel values are converted to the canvas's native colour space (usually sRGB). The output file is written as sRGB or untagged. <strong>For most uses this is invisible.</strong> For colour-critical work — brand-accurate graphics, professional print, packaging design — converting a Display P3 photo to sRGB may slightly desaturate very saturated colours. Work with the original in a colour-managed editor for those cases.</p>
+        `,
+      },
+    ],
+
     features: [
       {
         title: "Six conversions, one tool",
