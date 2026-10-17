@@ -33,7 +33,7 @@ const toolEntries = tools
 const staticPages: Record<string, { title: string; description: string; ogImage: string }> = {
   "/": {
     title: "AHADEX Tools — Free, Fast, Private Online Tools",
-    description: "Free, fast and private online tools for everyday digital tasks. Everything runs in your browser.",
+    description: `Free, fast and private online tools for everyday digital tasks. ${tools.length} browser-based utilities that run entirely in your browser.`,
     ogImage: "/images/og/home-og.png",
   },
   "/tools": {

@@ -56,7 +56,7 @@ export const TOOL_META: Record<string, ToolMeta> = {
 };
 
 export const STATIC_META: Record<string, StaticMeta> = {
-  "/": { title: "AHADEX Tools — Free, Fast, Private Online Tools", description: "Free, fast and private online tools for everyday digital tasks. Everything runs in your browser.", ogImage: "/images/og/home-og.png" },
+  "/": { title: "AHADEX Tools — Free, Fast, Private Online Tools", description: "Free, fast and private online tools for everyday digital tasks. 27 browser-based utilities that run entirely in your browser.", ogImage: "/images/og/home-og.png" },
   "/tools": { title: "All Tools — Free Online Utilities | AHADEX Tools", description: "Browse 27 free browser-based tools for images, PDFs, text, and developer tasks.", ogImage: "/images/og/home-og.png" },
   "/about": { title: "About | AHADEX Tools", description: "Learn about AHADEX Tools — a collection of free, privacy-first browser utilities.", ogImage: "/images/og/home-og.png" },
   "/contact": { title: "Contact Us | AHADEX Tools", description: "Get in touch with the AHADEX Tools team.", ogImage: "/images/og/home-og.png" },

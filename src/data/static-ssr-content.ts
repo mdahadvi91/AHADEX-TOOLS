@@ -9,6 +9,18 @@
  * ============================================================ */
 
 import { tools } from "./tools";
+import { getToolCategory } from "../lib/toolCategory";
+
+
+/* ── Dynamic category counts ── */
+const categoryCounts = {
+  image: tools.filter((t) => getToolCategory(t.id, t.path) === "image").length,
+  pdf: tools.filter((t) => getToolCategory(t.id, t.path) === "pdf").length,
+  developer: tools.filter((t) => getToolCategory(t.id, t.path) === "developer").length,
+  text: tools.filter((t) => getToolCategory(t.id, t.path) === "text").length,
+  qr: tools.filter((t) => getToolCategory(t.id, t.path) === "qr").length,
+  design: tools.filter((t) => getToolCategory(t.id, t.path) === "design").length,
+};
 
 export interface StaticPageContent {
   path: string;
@@ -96,7 +108,7 @@ export const staticPageContents: StaticPageContent[] = [
   <h1>All Tools — ${tools.length} free browser-based utilities</h1>
   <p><strong>AHADEX Tools currently offers ${tools.length} browser-based tools for image work, PDF handling, text processing, developer tasks, QR and barcode generation, and design documents. Every tool runs entirely in your browser — no uploads, no accounts, no watermarks.</strong></p>
 
-  <h2>Image tools (7)</h2>
+  <h2>Image tools (${categoryCounts.image})</h2>
   <ul>
     <li><a href="/tools/image-converter">Image Converter</a> — convert between JPG, PNG, and WebP in either direction; batch-capable; keeps transparency where the format supports it.</li>
     <li><a href="/tools/image-compressor">Image Compressor</a> — reduce file size with an adjustable quality slider and max-width cap; typically 60-90% smaller.</li>
@@ -107,7 +119,7 @@ export const staticPageContents: StaticPageContent[] = [
     <li><a href="/tools/image-to-cartoon">Image to Cartoon</a> — cel-shaded illustration effect with live sliders for levels, edge, and smoothness.</li>
   </ul>
 
-  <h2>PDF tools (6)</h2>
+  <h2>PDF tools (${categoryCounts.pdf})</h2>
   <ul>
     <li><a href="/tools/image-to-pdf">Image to PDF</a> — combine JPG, PNG, and WebP images into one multi-page PDF; A4, US Letter, or auto size; custom margins.</li>
     <li><a href="/tools/merge-pdf">Merge PDF</a> — combine up to 20 PDF files into one document, with full reordering.</li>
@@ -117,7 +129,7 @@ export const staticPageContents: StaticPageContent[] = [
     <li><a href="/tools/pdf-rotator">PDF Rotator</a> — rotate pages 90° left, 90° right, or 180° without re-rendering; lossless.</li>
   </ul>
 
-  <h2>Developer tools (6)</h2>
+  <h2>Developer tools (${categoryCounts.developer})</h2>
   <ul>
     <li><a href="/tools/json-formatter">JSON Formatter</a> — validate, format with 2/4 spaces or tab, sort keys, and minify; live error locations.</li>
     <li><a href="/tools/base64-encoder">Base64 Encoder / Decoder</a> — text and files; Unicode-safe; URL-safe mode for JWT.</li>
@@ -127,20 +139,20 @@ export const staticPageContents: StaticPageContent[] = [
     <li><a href="/tools/svg-to-png">SVG to PNG</a> — rasterize SVG at 1×, 2×, 4×, or 8× with transparent, white, or black background.</li>
   </ul>
 
-  <h2>Text tools (3)</h2>
+  <h2>Text tools (${categoryCounts.text})</h2>
   <ul>
     <li><a href="/tools/word-counter">Word Counter</a> — words, characters, sentences, paragraphs, reading time, and keyword density.</li>
     <li><a href="/tools/character-counter">Character Counter</a> — live counts against X, Instagram, LinkedIn, Facebook, YouTube, SMS, and SEO limits.</li>
     <li><a href="/tools/text-case-converter">Text Case Converter</a> — 12 case styles including Title, camelCase, snake_case, and kebab-case.</li>
   </ul>
 
-  <h2>QR and barcode tools (2)</h2>
+  <h2>QR and barcode tools (${categoryCounts.qr})</h2>
   <ul>
     <li><a href="/tools/photo-qr">Photo QR Code</a> — add a scannable QR badge to any photo for WhatsApp, Facebook, WiFi, or contact cards.</li>
     <li><a href="/tools/barcode-generator">Barcode Generator</a> — 9 formats including CODE128, EAN-13, UPC-A, and ITF-14; PNG or SVG output.</li>
   </ul>
 
-  <h2>Design and document tools (3)</h2>
+  <h2>Design and document tools (${categoryCounts.design})</h2>
   <ul>
     <li><a href="/tools/visiting-card">Visiting Card Maker</a> — 20 hand-designed templates, front and back, with export at 150/300/600 DPI.</li>
     <li><a href="/tools/cv-builder">CV Builder</a> — build a professional CV and export a selectable-text PDF that ATS software can parse.</li>
