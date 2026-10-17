@@ -29,3 +29,7 @@
 
 # ── PDF page extraction (1 page → split-pdf) ──
 /tools/pdf-page-extractor  /tools/split-pdf        301
+
+# ── Editor catch-all (serves pre-built noindex HTML) ──
+/tools/cv-builder/edit/*     /tools/cv-builder/edit/index.html     200
+/tools/visiting-card/edit/*  /tools/visiting-card/edit/index.html  200

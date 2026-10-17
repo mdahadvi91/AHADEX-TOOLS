@@ -218,6 +218,31 @@ for (const route of routes) {
   count++;
 }
 
+// Generate editor catch-all HTML files with noindex + canonical.
+// Cloudflare _redirects rewrites /tools/*/edit/* to these files,
+// keeping the browser URL intact so React Router resolves the route.
+// This avoids needing to intercept editor routes in the middleware,
+// which caused a Wrangler compile issue.
+for (const parentSlug of ["cv-builder", "visiting-card"]) {
+  const editorMeta: RouteMeta = {
+    path: `/tools/${parentSlug}/edit`,
+    title: `${parentSlug === "cv-builder" ? "CV" : "Card"} Editor | AHADEX Tools`,
+    description: "Interactive editor — not indexed by search engines.",
+    canonical: `${SITE_URL}/tools/${parentSlug}`,
+    ogImage: "/images/og/home-og.png",
+    ogType: "website",
+  };
+  const editorBase = stripGenericMeta(baseHtml);
+  const editorHtml = editorBase.replace(
+    "</head>",
+    `    ${buildMetaBlock(editorMeta)}\n    <meta name="robots" content="noindex, follow" />\n  </head>`
+  );
+  const editorPath = resolve(DIST, "tools", parentSlug, "edit", "index.html");
+  mkdirSync(dirname(editorPath), { recursive: true });
+  writeFileSync(editorPath, editorHtml, "utf-8");
+  count++;
+}
+
 // Generate dist/404.html — Cloudflare Pages serves it with 404 status
 const notFoundRoute: RouteMeta = {
   path: "/404",

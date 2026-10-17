@@ -1,27 +1,26 @@
 /* ============================================================
- * Cloudflare Pages Middleware — minimal, explicit asset serving
+ * Cloudflare Pages Middleware — minimal, asset-serving only
  * ------------------------------------------------------------
  * Every SEO-critical route has its own pre-built HTML file at
  * dist/<path>/index.html (produced by scripts/build-route-html.ts).
  *
- * This middleware:
- *   1. Redirects www → non-www
- *   2. Redirects trailing slash → no trailing slash
- *   3. Serves dist/<path>/index.html explicitly for known routes
- *   4. Serves index.html for the root path
- *   5. Serves 404.html for unknown paths
- *   6. Editor routes (/tools/*/edit/*) get noindex + parent canonical
+ * Editor routes (/tools/cv-builder/edit/* and /tools/visiting-
+ * card/edit/*) are handled by _redirects, which rewrites them to
+ * pre-built catch-all HTML files with noindex + canonical meta
+ * already baked in.
  *
- * We fetch assets explicitly rather than calling context.next()
- * because Cloudflare Pages' next() does not resolve directory
- * index files for nested paths like /tools/image-compressor.
+ * This middleware therefore does only three things:
+ *   1. Redirect www → non-www
+ *   2. Redirect trailing slash → no trailing slash
+ *   3. Serve dist/<path>/index.html (or 404.html)
+ *
+ * Nothing else. No meta injection, no editor logic, no SSR
+ * injection — those are all deterministic at build time now.
  * ============================================================ */
 
 interface Env {
   ASSETS: { fetch: (req: Request) => Promise<Response> };
 }
-
-const SITE_URL = "https://ahadex.fun";
 
 async function fetchAsset(
   env: Env,
@@ -37,8 +36,7 @@ async function fetchAsset(
         headers: req.headers,
       })
     );
-    if (resp.ok) return resp;
-    return null;
+    return resp.ok ? resp : null;
   } catch {
     return null;
   }
@@ -61,33 +59,7 @@ export const onRequest: PagesFunction<Env> = async (context) => {
     return Response.redirect(newUrl.toString(), 301);
   }
 
-  // 3. Editor routes: noindex + parent canonical, serve SPA shell
-  const editorMatch = url.pathname.match(
-    /^\/tools\/(cv-builder|visiting-card)\/edit\//
-  );
-  if (editorMatch) {
-    const parentSlug = editorMatch[1];
-    const canonical = `${SITE_URL}/tools/${parentSlug}`;
-    const shell =
-      (await fetchAsset(context.env, url.origin, "/index.html", context.request)) ??
-      null;
-    if (!shell) return context.next();
-    const html = await shell.text();
-    const injected = html.replace(
-      "</head>",
-      `<meta name="robots" content="noindex, follow" /><link rel="canonical" href="${canonical}" /></head>`
-    );
-    return new Response(injected, {
-      status: 200,
-      headers: {
-        "content-type": "text/html; charset=utf-8",
-        "cache-control": "public, max-age=300, must-revalidate",
-        "x-robots-tag": "noindex, follow",
-      },
-    });
-  }
-
-  // 4. Root path → dist/index.html
+  // 3. Root → dist/index.html
   if (url.pathname === "/") {
     const root = await fetchAsset(
       context.env,
@@ -98,8 +70,7 @@ export const onRequest: PagesFunction<Env> = async (context) => {
     if (root) return root;
   }
 
-  // 5. Try explicit directory index: /<path>/index.html
-  //    This is what Cloudflare's next() does not do automatically.
+  // 4. /<path> → dist/<path>/index.html
   if (!url.pathname.endsWith(".html")) {
     const dirIndex = url.pathname.endsWith("/")
       ? `${url.pathname}index.html`
@@ -113,7 +84,7 @@ export const onRequest: PagesFunction<Env> = async (context) => {
     if (page) return page;
   }
 
-  // 6. Try the path as a direct file (e.g. /sitemap.xml, /ads.txt)
+  // 5. Direct file (e.g. /sitemap.xml, /ads.txt)
   const direct = await fetchAsset(
     context.env,
     url.origin,
@@ -122,7 +93,7 @@ export const onRequest: PagesFunction<Env> = async (context) => {
   );
   if (direct) return direct;
 
-  // 7. Fallback to 404.html with 404 status
+  // 6. 404 fallback
   const notFound = await fetchAsset(
     context.env,
     url.origin,
