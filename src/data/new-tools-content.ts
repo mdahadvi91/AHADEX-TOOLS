@@ -419,6 +419,36 @@ export const newTools: Tool[] = [
     ],
     popular: true,
     newTool: true,
+        editorialContent: [
+      {
+        heading: "DPI — the single decision that determines output quality",
+        body: `
+          <p>DPI controls how many pixels represent each inch of the PDF page. It is the only setting that meaningfully changes file size and sharpness.</p>
+          <table>
+            <thead><tr><th>DPI</th><th>A4 output</th><th>Typical use</th></tr></thead>
+            <tbody>
+              <tr><td>72 DPI</td><td>595 × 842 px</td><td>Fast previews, thumbnails</td></tr>
+              <tr><td>150 DPI</td><td>1240 × 1754 px</td><td>Web publishing, social sharing</td></tr>
+              <tr><td>300 DPI</td><td>2480 × 3508 px</td><td>Print-quality output</td></tr>
+            </tbody>
+          </table>
+          <p>Doubling DPI quadruples pixel count. Going from 72 to 300 DPI produces roughly 17× more pixels per page. Most users only need 150 DPI — reserve 300 DPI for actual print.</p>
+        `,
+      },
+      {
+        heading: "What happens to text and fonts during rendering",
+        body: `
+          <p>PDFs contain both raster content (photographs, scans) and vector content (text, lines, curves). Rendering converts everything to pixels — text becomes raster at the chosen DPI.</p>
+          <ul>
+            <li><strong>At 72 DPI:</strong> small text may look slightly soft. Fine print becomes harder to read.</li>
+            <li><strong>At 150 DPI:</strong> text looks crisp on screen. Good balance of quality and file size.</li>
+            <li><strong>At 300 DPI:</strong> text is indistinguishable from the source PDF at any zoom level.</li>
+          </ul>
+          <p>Vector PDFs (modern exported documents) convert very cleanly. Scanned PDFs contain only raster images — quality depends on the scan resolution, not the DPI setting.</p>
+        `,
+      },
+    ],
+
     features: [
       {
         title: "PNG or JPG output",
@@ -677,6 +707,36 @@ export const newTools: Tool[] = [
     ],
     popular: true,
     newTool: true,
+        editorialContent: [
+      {
+        heading: "What actually happens when images become a PDF",
+        body: `
+          <p>JPG, PNG, and WebP images are handled differently when they are embedded into a PDF. Understanding the difference matters when file size or print quality are critical:</p>
+          <ul>
+            <li><strong>JPG images:</strong> embedded byte-for-byte. The PDF contains the original JPEG stream exactly. No quality loss, no re-encoding, no file size change.</li>
+            <li><strong>PNG images:</strong> composited onto a white background (PDF has no transparency) and re-encoded at 95% JPEG quality. Visually close for most graphics, but not byte-identical to the source.</li>
+            <li><strong>WebP images:</strong> treated the same as PNG — decoded, composited onto white, re-encoded at 95% JPEG quality.</li>
+          </ul>
+          <p>If you need byte-exact preservation, use JPG as the input format. If you need transparency preservation in the final PDF, that is not possible — PDF pages cannot represent transparency.</p>
+        `,
+      },
+      {
+        heading: "Page size math — A4, US Letter, and auto",
+        body: `
+          <p>Three page-size modes are available, and each produces a different visual result for the same source images:</p>
+          <table>
+            <thead><tr><th>Mode</th><th>Page dimensions</th><th>Effect on images</th></tr></thead>
+            <tbody>
+              <tr><td>A4</td><td>210 × 297 mm</td><td>Images scaled to fit, whitespace added</td></tr>
+              <tr><td>US Letter</td><td>216 × 279 mm</td><td>Images scaled to fit, whitespace added</td></tr>
+              <tr><td>Auto</td><td>Matches each image</td><td>Each page has different dimensions</td></tr>
+            </tbody>
+          </table>
+          <p>For mixed image sizes where each should display at its natural aspect ratio, use Auto. For a uniform, professional document, use A4 with 15-20 mm margins. Zero margins with Auto page size is the standard for photo albums.</p>
+        `,
+      },
+    ],
+
     features: [
       {
         title: "Mixed image formats",
@@ -937,6 +997,38 @@ export const newTools: Tool[] = [
     ],
     popular: true,
     newTool: true,
+        editorialContent: [
+      {
+        heading: "Combined vs separate mode — when to use each",
+        body: `
+          <p>The tool offers two distinct modes, and the right choice depends on what you plan to do with the output:</p>
+          <table>
+            <thead><tr><th>Mode</th><th>Output</th><th>Best for</th></tr></thead>
+            <tbody>
+              <tr><td>Combined</td><td>One PDF containing selected pages</td><td>Sending an extract, deleting pages, reordering content</td></tr>
+              <tr><td>Separate</td><td>One PDF per page</td><td>Distributing pages individually, annotation workflows</td></tr>
+            </tbody>
+          </table>
+          <p>Combined mode with a page list like "1-3, 5, 7-9" gives you precisely those pages in one file. Separate mode extracts every page into its own PDF, downloaded as a batch.</p>
+        `,
+      },
+      {
+        heading: "Page-range syntax — every form accepted",
+        body: `
+          <p>The page field supports every standard range syntax:</p>
+          <ul>
+            <li><code>3</code> — page 3 only</li>
+            <li><code>1-5</code> — pages 1 through 5</li>
+            <li><code>1, 5, 9</code> — pages 1, 5, and 9 in that order</li>
+            <li><code>1-3, 5, 7-9</code> — mixed ranges</li>
+            <li><code>5, 1, 3</code> — custom order</li>
+            <li><code>3, 3</code> — page 3 twice</li>
+          </ul>
+          <p>Ranges must be ascending (<code>1-5</code>, not <code>5-1</code>). To reverse, list pages individually.</p>
+        `,
+      },
+    ],
+
     features: [
       {
         title: "Custom page order",

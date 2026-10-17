@@ -600,6 +600,34 @@ const legacyTools: Tool[] = [
     keywords: ["word counter", "character counter", "word count", "reading time"],
     popular: true,
     newTool: true,
+        editorialContent: [
+      {
+        heading: "How words are actually counted (and why it varies by platform)",
+        body: `
+          <p>"Word count" is not a single definition. Different editors count differently:</p>
+          <ul>
+            <li><strong>Microsoft Word:</strong> splits on spaces and some punctuation. "don't" is one word, "state-of-the-art" is four.</li>
+            <li><strong>Google Docs:</strong> similar to Word but counts hyphenated words as one.</li>
+            <li><strong>Our counter:</strong> counts any sequence of Unicode letters, numbers, apostrophes, and hyphens as one word. "don't" is one, "state-of-the-art" is one.</li>
+          </ul>
+          <p>The differences rarely matter for essay word counts, but they can for technical writing where hyphenated compound terms are common. Always check the target platform's rules if it matters.</p>
+        `,
+      },
+      {
+        heading: "Reading time — the exact formula",
+        body: `
+          <p>Reading time is calculated as <code>words / 225</code> minutes. The 225 wpm figure comes from academic studies on silent adult reading speed. Speaking time uses <code>words / 150</code> — the typical pace of conversation or presentation.</p>
+          <p>For reference:</p>
+          <ul>
+            <li>500 words = ~2 minutes reading, ~3.5 minutes speaking</li>
+            <li>1000 words = ~4.5 minutes reading, ~6.5 minutes speaking</li>
+            <li>2000 words = ~9 minutes reading, ~13 minutes speaking</li>
+          </ul>
+          <p>These figures are what Medium, Substack, and most "N min read" indicators use — they are not arbitrary.</p>
+        `,
+      },
+    ],
+
     features: [
       { title: "Zero uploads", description: "Text is read and analyzed entirely in your browser." },
       { title: "Live updating", description: "Every keystroke recalculates all counters with no perceptible delay." },
@@ -719,6 +747,32 @@ const legacyTools: Tool[] = [
     keywords: ["pdf to text", "extract text from pdf", "pdf text extractor", "convert pdf to text", "pdf to txt"],
     popular: true,
     newTool: true,
+        editorialContent: [
+      {
+        heading: "When text extraction works — and when it silently fails",
+        body: `
+          <p>PDFs come in two fundamentally different kinds, and only one of them contains extractable text:</p>
+          <ul>
+            <li><strong>Digital PDFs</strong> — exported from Word, Google Docs, InDesign, or a print-to-PDF dialog. They contain a real text layer with character-level positioning data.</li>
+            <li><strong>Scanned PDFs</strong> — photographs or scans of paper pages. There is no text layer; only images of text. Extraction returns nothing.</li>
+          </ul>
+          <p>If your extraction returns empty, the PDF is a scan. OCR (Optical Character Recognition) is the only way to extract text from scans — this tool does not do OCR.</p>
+        `,
+      },
+      {
+        heading: "Reading order, line breaks, and why PDFs are not text files",
+        body: `
+          <p>PDFs store text as isolated fragments with exact x/y coordinates — they do not store paragraphs. Reconstructing readable text requires heuristics:</p>
+          <ul>
+            <li><strong>Line grouping:</strong> text at the same y-coordinate is treated as one line.</li>
+            <li><strong>Paragraph detection:</strong> extra vertical spacing between lines indicates a new paragraph.</li>
+            <li><strong>Column detection:</strong> text in separate x-ranges is treated as separate columns.</li>
+          </ul>
+          <p>Simple PDFs (single-column text) reconstruct perfectly. Complex layouts (multi-column magazines, tables, forms) may scramble. If the output looks wrong, use a desktop tool with better layout awareness.</p>
+        `,
+      },
+    ],
+
     features: [
       { title: "Structure aware", description: "Paragraphs and line breaks preserved when you want them." },
       { title: "Zero uploads", description: "PDF parsing happens entirely in your browser." },
@@ -763,6 +817,29 @@ const legacyTools: Tool[] = [
     keywords: ["pdf rotator", "rotate pdf", "rotate pdf pages", "pdf rotation", "turn pdf pages", "free pdf rotator"],
     popular: true,
     newTool: true,
+        editorialContent: [
+      {
+        heading: "What rotation actually changes (and what it does not)",
+        body: `
+          <p>Every PDF page carries a rotation value in its metadata: 0°, 90°, 180°, or 270°. When a PDF reader displays the page, it applies that rotation. This tool changes only the rotation value — it does not re-render, re-encode, or re-compress anything.</p>
+          <p>Consequences of this approach:</p>
+          <ul>
+            <li><strong>File size stays identical</strong> — no bytes change beyond a few metadata fields.</li>
+            <li><strong>Text stays selectable</strong> — the text layer is untouched.</li>
+            <li><strong>Embedded images stay original</strong> — no re-encoding.</li>
+            <li><strong>Vector content stays vector</strong> — sharp at any zoom level.</li>
+          </ul>
+        `,
+      },
+      {
+        heading: "Why some readers show the same PDF differently",
+        body: `
+          <p>If a sideways-scanned PDF opens upright in one reader but sideways in another, the two readers are disagreeing about whether to respect the rotation metadata. Some readers (Chrome's PDF viewer, Preview on macOS) apply the rotation value. Others (some legacy apps, some mobile readers) ignore it.</p>
+          <p>Changing the rotation value through this tool physically updates the metadata so every compliant reader agrees. Readers that ignore the metadata will continue to show the pages unchanged — but those readers were always the problem.</p>
+        `,
+      },
+    ],
+
     features: [
       { title: "All common rotations", description: "90° left, 90° right, and 180° — the three you actually need." },
       { title: "Selective pages", description: "Rotate all pages, or target specific ranges like 1-3, 5, 7-9." },
@@ -807,6 +884,25 @@ const legacyTools: Tool[] = [
     keywords: ["svg to png", "svg converter", "convert svg to png", "svg to image", "free svg converter"],
     popular: true,
     newTool: true,
+        editorialContent: [
+      {
+        heading: "Why SVG to PNG requires a scale factor",
+        body: `
+          <p>SVG is a vector format — it defines shapes mathematically and can scale to any size without losing quality. PNG is a raster format — it stores a fixed grid of pixels. Conversion from vector to raster requires choosing how many pixels the vector should be rendered into.</p>
+          <p>The scale factor multiplies the SVG's native dimensions. A 200×200 SVG at 1× becomes a 200×200 PNG. At 4× it becomes 800×800. At 8× it becomes 1600×1600. The larger the scale, the sharper the output — but the larger the file.</p>
+          <p>The browser's canvas renders SVG through the same rendering pipeline that displays it on screen, so what you see in the preview is exactly what the PNG will contain.</p>
+        `,
+      },
+      {
+        heading: "Why some SVGs fail to render correctly",
+        body: `
+          <p>Some SVG files reference external resources: fonts loaded from Google Fonts, embedded images linked by URL, or CSS classes defined in an external stylesheet. Browsers do not fetch these when rendering SVG through the Canvas API.</p>
+          <p>The result: text that was supposed to be in a specific font renders in the fallback, images disappear, and styling from external CSS is lost.</p>
+          <p><strong>The fix:</strong> before conversion, open the SVG in a text editor and inline every external resource. Convert fonts to path outlines. Inline images as data: URIs. Move CSS into a &lt;style&gt; block inside the SVG itself.</p>
+        `,
+      },
+    ],
+
     features: [
       { title: "Up to 8× scale", description: "Retina-ready and print-quality output — up to 4096×4096 px." },
       { title: "Transparent output", description: "Preserves SVG transparency by default — perfect for logos and icons." },
@@ -851,6 +947,31 @@ const legacyTools: Tool[] = [
     keywords: ["json formatter", "json validator", "json beautifier", "json minifier", "format json online"],
     popular: true,
     newTool: true,
+        editorialContent: [
+      {
+        heading: "The strictness trap — why 'looks like JSON' is not JSON",
+        body: `
+          <p>JSON is a subset of JavaScript syntax, but it is much stricter. Many "obvious" JSON snippets are actually invalid. The five most common mistakes:</p>
+          <ul>
+            <li><strong>Single quotes:</strong> '{"key": "value"}' is invalid. JSON requires double quotes for both keys and strings.</li>
+            <li><strong>Trailing commas:</strong> {"a": 1, "b": 2,} is invalid. The last item must not have a comma after it.</li>
+            <li><strong>Comments:</strong> // and /* */ are not permitted in JSON. Period.</li>
+            <li><strong>Unquoted keys:</strong> {key: "value"} is JavaScript, not JSON.</li>
+            <li><strong>NaN and Infinity:</strong> JSON has no representation for these. Use null or a string.</li>
+          </ul>
+          <p>Our formatter flags the exact line and column of the first error it encounters, so you can fix one mistake at a time.</p>
+        `,
+      },
+      {
+        heading: "Sort keys, diff-friendly output, and determinism",
+        body: `
+          <p>When two JSON payloads describe the same data but their keys are in different orders, a textual diff shows dozens of changes that are not real changes. Sorting keys alphabetically eliminates this noise.</p>
+          <p>The "sort keys" option re-serialises every object with keys in alphabetical order. Arrays keep their original order (the order is meaningful for arrays). The result is deterministic: the same data always produces the same bytes.</p>
+          <p>This is the standard approach for config files in version control, API responses in tests, and any case where you diff JSON across versions.</p>
+        `,
+      },
+    ],
+
     features: [
       { title: "Live validation", description: "Errors appear as you type with line and column numbers." },
       { title: "3 indent styles", description: "2 spaces, 4 spaces, or a real tab — your choice." },
@@ -895,6 +1016,36 @@ const legacyTools: Tool[] = [
     keywords: ["url encoder", "url decoder", "uri encoder", "percent encoding", "url encode online"],
     popular: true,
     newTool: true,
+        editorialContent: [
+      {
+        heading: "encodeURI vs encodeURIComponent — the difference matters",
+        body: `
+          <p>JavaScript exposes two URL encoding functions, and choosing the wrong one is the single most common cause of broken URLs in modern web apps.</p>
+          <ul>
+            <li><strong>encodeURI()</strong> — encodes a full URL, preserving : / ? & = # and other structural characters. Use for complete URLs that are already well-formed.</li>
+            <li><strong>encodeURIComponent()</strong> — encodes everything except A-Z a-z 0-9 - _ . ! ~ * ' ( ). Use for individual values that will be inserted into a URL — query parameters, path segments, fragment values.</li>
+          </ul>
+          <p>The classic bug: encoding a query parameter with encodeURI(). The & and = inside the value stay literal and break the URL into multiple parameters. The fix is always encodeURIComponent() on the value before concatenation.</p>
+        `,
+      },
+      {
+        heading: "Percent-encoding by the byte, not the character",
+        body: `
+          <p>Percent-encoding operates on bytes, not characters. For ASCII characters that is straightforward: a space is byte 0x20, so it becomes %20. For non-ASCII characters, the process is more involved:</p>
+          <ol>
+            <li>The character is first encoded to UTF-8, producing one to four bytes.</li>
+            <li>Each byte is then percent-encoded individually.</li>
+          </ol>
+          <p>Examples:</p>
+          <ul>
+            <li><strong>é</strong> — UTF-8 is 0xC3 0xA9 → <code>%C3%A9</code></li>
+            <li><strong>বাংলা</strong> — multiple UTF-8 bytes → very long percent sequence</li>
+            <li><strong>😀</strong> — UTF-8 is F0 9F 98 80 → <code>%F0%9F%98%80</code></li>
+          </ul>
+        `,
+      },
+    ],
+
     features: [
       { title: "Both directions", description: "Encode and decode in one panel — no toggling pages." },
       { title: "Two scopes", description: "Component (aggressive) or full URI (structure-preserving)." },
@@ -939,6 +1090,38 @@ const legacyTools: Tool[] = [
     keywords: ["uuid generator", "uuid v4", "uuid v7", "guid generator", "random uuid"],
     popular: true,
     newTool: true,
+        editorialContent: [
+      {
+        heading: "UUID v4 vs v7 — a database performance decision",
+        body: `
+          <p>Both v4 and v7 are 128-bit identifiers with effectively zero collision probability. The difference is structural: v4 is pure random, v7 embeds a timestamp in the first 48 bits.</p>
+          <p>This matters because most databases store rows in primary key order using a B-tree index. Random v4 IDs insert into random positions in the tree, forcing page splits on every insert. Time-ordered v7 IDs insert near the end of the tree, avoiding the splits.</p>
+          <table>
+            <thead><tr><th>Metric</th><th>v4 (random)</th><th>v7 (time-ordered)</th></tr></thead>
+            <tbody>
+              <tr><td>Insert throughput (100K rows)</td><td>Baseline</td><td>3-10× faster</td></tr>
+              <tr><td>Index size</td><td>Baseline</td><td>30-50% smaller</td></tr>
+              <tr><td>Leaks creation time</td><td>No</td><td>Yes (millisecond precision)</td></tr>
+              <tr><td>Best for</td><td>Tokens, public IDs</td><td>Database primary keys</td></tr>
+            </tbody>
+          </table>
+        `,
+      },
+      {
+        heading: "How v7 actually works",
+        body: `
+          <p>The RFC 9562 layout for UUID v7 is:</p>
+          <ul>
+            <li><strong>Bits 0-47:</strong> Unix timestamp in milliseconds (48 bits — good until year 10889).</li>
+            <li><strong>Bits 48-51:</strong> version marker (0111 = 7).</li>
+            <li><strong>Bits 52-63:</strong> 12 bits of random data (variant + rand_a).</li>
+            <li><strong>Bits 64-127:</strong> 62 bits of random data (rand_b).</li>
+          </ul>
+          <p>Because the timestamp comes first, sorting the UUIDs lexicographically produces a list in creation-time order. Two v7 IDs generated in the same millisecond are ordered by their random bits — still deterministic, still unique.</p>
+        `,
+      },
+    ],
+
     features: [
       { title: "Crypto-random", description: "Uses Web Crypto API — the same source TLS uses." },
       { title: "v4 & v7 support", description: "Random (v4) or sortable by time (v7) — RFC compliant." },
@@ -983,6 +1166,30 @@ const legacyTools: Tool[] = [
     keywords: ["text case converter", "title case", "camel case", "snake case", "kebab case", "upper case"],
     popular: true,
     newTool: true,
+        editorialContent: [
+      {
+        heading: "Title Case — the rules that actually matter",
+        body: `
+          <p>Title case is not "capitalise every word." Three style guides (AP, Chicago, APA) disagree on the details, but they all agree on the core rules:</p>
+          <p><strong>Always capitalise:</strong> nouns, pronouns, verbs, adjectives, adverbs, and any word after a colon.</p>
+          <p><strong>Never capitalise (unless first or last word):</strong> articles (a, an, the), coordinating conjunctions (and, but, or, nor, for, so, yet), and short prepositions (at, by, for, in, of, on, to, up, with).</p>
+          <p><strong>The subtle case:</strong> "to" in an infinitive ("How to Bake Bread") stays lowercase in Chicago style, capitalised in some other styles. Our converter follows Chicago, which is the most widely used standard for publishing.</p>
+        `,
+      },
+      {
+        heading: "camelCase, snake_case, kebab-case — why these exist",
+        body: `
+          <p>Three casing conventions dominate programming for historical and practical reasons:</p>
+          <ul>
+            <li><strong>camelCase</strong> — variables in JavaScript, Java, Swift. Shorter than snake_case, readable without underscores.</li>
+            <li><strong>snake_case</strong> — variables in Python, Ruby, database columns. Standard because most SQL keywords are case-insensitive but identifiers are often lowercased.</li>
+            <li><strong>kebab-case</strong> — URLs, CSS class names, HTML attributes. Chosen because underscores are hard to see when underlined in links, and case sensitivity would break URL typing.</li>
+          </ul>
+          <p>Our converter detects the source convention (camelCase, PascalCase, snake_case, kebab-case, or space-separated) and re-joins the words into whatever output you choose.</p>
+        `,
+      },
+    ],
+
     features: [
       { title: "12+ case styles", description: "UPPER, lower, Title, Sentence, camel, Pascal, snake, kebab, CONSTANT, dot, alternating, inverse." },
       { title: "Live preview", description: "Output recalculates as you type — no button required." },
@@ -1027,6 +1234,34 @@ const legacyTools: Tool[] = [
     keywords: ["image to sketch", "photo to sketch", "pencil sketch effect", "photo to drawing", "sketch filter"],
     popular: true,
     newTool: true,
+        editorialContent: [
+      {
+        heading: "How the color-dodge sketch algorithm actually works",
+        body: `
+          <p>The pencil-sketch effect you see is not a neural network. It is a five-line image processing recipe called color-dodge blending, first popularised in Photoshop tutorials in the 2000s. Here is the exact pipeline this tool runs:</p>
+          <ol>
+            <li><strong>Grayscale conversion</strong> — each RGB pixel becomes a single luminance value (0.299R + 0.587G + 0.114B).</li>
+            <li><strong>Invert</strong> — flip the grayscale value (255 − v).</li>
+            <li><strong>Gaussian blur</strong> — apply a blur to the inverted layer. The radius controls how thick the pencil strokes become.</li>
+            <li><strong>Color-dodge blend</strong> — combine grayscale with the blurred-inverted using <code>result = base / (1 − blur / 255)</code>. This creates the pencil-on-white-paper look.</li>
+          </ol>
+          <p>The blur radius is the "Detail" slider. A small radius produces fine graphite lines. A larger radius produces charcoal-stick thickness. The "Intensity" slider adjusts a contrast curve before the blend, controlling how dark the strokes appear.</p>
+        `,
+      },
+      {
+        heading: "What photos produce the best sketches",
+        body: `
+          <p>Color-dodge is simple and fast, but it is sensitive to source photo characteristics. Photos that work well: portraits with clean backgrounds, single-subject shots, architectural details with strong lines. Photos that work poorly:</p>
+          <ul>
+            <li><strong>Busy backgrounds</strong> — every texture becomes a squiggle.</li>
+            <li><strong>Low-contrast scenes</strong> — the sketch turns into a faint ghost.</li>
+            <li><strong>Fine patterns</strong> — text, fabric weaves, and foliage over-blur.</li>
+          </ul>
+          <p>The practical fix is often pre-processing: raise contrast by 10-20% in an image editor before running it through the sketch tool. Higher contrast means crisper lines.</p>
+        `,
+      },
+    ],
+
     features: [
       { title: "Authentic pencil look", description: "Color-dodge algorithm produces soft graphite strokes, not hard edges." },
       { title: "Live sliders", description: "Intensity and detail adjust in real time — see the result as you tune." },
@@ -1071,6 +1306,32 @@ const legacyTools: Tool[] = [
     keywords: ["image to cartoon", "photo to cartoon", "cartoon effect", "cel shading", "anime filter", "cartoon maker"],
     popular: true,
     newTool: true,
+        editorialContent: [
+      {
+        heading: "Cel shading — the cartoon pipeline",
+        body: `
+          <p>The cartoon effect uses a three-step pipeline that mimics cel-shaded animation:</p>
+          <ol>
+            <li><strong>Posterization</strong> — each RGB channel is quantized to 4-16 discrete levels. Smooth gradients become flat color regions. This is what gives the effect its cartoon feel.</li>
+            <li><strong>Sobel edge detection</strong> — a 3×3 convolution finds pixels where brightness changes rapidly. Edges are drawn as dark lines.</li>
+            <li><strong>Edge blending</strong> — the detected edges are multiplied over the posterized color.</li>
+          </ol>
+          <p>The "Levels" slider controls posterization (4 = very flat, 16 = more detail). "Edge strength" controls outline darkness. "Smoothness" is a pre-blur that reduces noise in flat regions — the equivalent of the bilateral filter used in professional cel-shading tools.</p>
+        `,
+      },
+      {
+        heading: "Cartoon vs sketch — which effect to use when",
+        body: `
+          <p>Both effects are simple image-processing tricks, not AI-generated art. They are best for specific use cases:</p>
+          <ul>
+            <li><strong>Cartoon effect:</strong> profile photos, social media avatars, product previews. Retains colour, so it feels playful rather than artistic.</li>
+            <li><strong>Sketch effect:</strong> gifts, wall art, print illustration, tattoo design references. Monochrome makes it feel timeless.</li>
+          </ul>
+          <p>For photos with strong colour identity (food, products, brand shots), the cartoon effect is more useful. For portraits and architecture, the sketch effect is usually stronger.</p>
+        `,
+      },
+    ],
+
     features: [
       { title: "Cel-shaded look", description: "Posterization + Sobel outlines produce the anime/cartoon aesthetic." },
       { title: "3 live sliders", description: "Levels, edge strength, and smoothness adjust in real time." },
@@ -1115,6 +1376,30 @@ const legacyTools: Tool[] = [
     keywords: ["base64 encoder", "base64 decoder", "encode base64", "decode base64", "image to base64", "url-safe base64"],
     popular: true,
     newTool: true,
+        editorialContent: [
+      {
+        heading: "Why Base64 makes files 33% larger",
+        body: `
+          <p>Base64 encoding is a bytes-to-text conversion. Every three bytes of binary data become four ASCII characters. This is a 4/3 ratio — a 33% increase in size. The trade-off is deliberate: Base64 turns arbitrary binary into text that can travel through text-only channels without corruption.</p>
+          <p>Concrete examples from our own tests:</p>
+          <ul>
+            <li>A 10 MB PNG becomes a 13.4 MB Base64 string — exactly the 33% inflation the math predicts.</li>
+            <li>A 1 KB plain-text password becomes 1.33 KB of Base64.</li>
+            <li>A JWT header of 40 bytes becomes 56 bytes of Base64url.</li>
+          </ul>
+          <p>This is why Base64 is used for transport, not for storage. Never assume Base64 makes data smaller — it always makes it larger.</p>
+        `,
+      },
+      {
+        heading: "Base64 vs Base64url — a critical distinction",
+        body: `
+          <p>Standard Base64 uses two characters that are reserved in URLs: + and /. A Base64 string containing either will break a URL, a JWT, or a filename.</p>
+          <p>The URL-safe variant (RFC 4648 §5) replaces + with - and / with _. It also drops the padding equals signs (=). The result is a string that can be embedded in a URL, a query parameter, or a JWT without any escaping.</p>
+          <p>Every JWT on the web uses Base64url, not standard Base64. If you are debugging a token and see - or _ inside, you are looking at Base64url — decode with the URL-safe decoder, not the standard one.</p>
+        `,
+      },
+    ],
+
     features: [
       { title: "Unicode-safe", description: "Bangla, emoji, Arabic, CJK — encoded correctly via TextEncoder." },
       { title: "Files up to 10 MB", description: "Images, PDFs, videos — anything you drop." },
@@ -1256,6 +1541,33 @@ const legacyTools: Tool[] = [
     keywords: ["barcode generator", "free barcode", "code128", "ean13", "upc", "code39", "itf14", "barcode maker"],
     popular: true,
     newTool: true,
+        editorialContent: [
+      {
+        heading: "Which barcode format should you actually use?",
+        body: `
+          <p>Nine barcode formats exist for good reasons. Each solves a specific industry's requirement:</p>
+          <table>
+            <thead><tr><th>Format</th><th>Use case</th><th>Why not another</th></tr></thead>
+            <tbody>
+              <tr><td>EAN-13</td><td>International retail</td><td>Required by GS1 for products sold internationally</td></tr>
+              <tr><td>UPC-A</td><td>US / Canada retail</td><td>Required by GS1 US for products sold in North America</td></tr>
+              <tr><td>CODE128</td><td>Logistics, internal</td><td>Holds any ASCII text, not just digits</td></tr>
+              <tr><td>ITF-14</td><td>Shipping cartons</td><td>Required for outer packaging in retail supply chains</td></tr>
+            </tbody>
+          </table>
+          <p>If you are unsure: EAN-13 for products sold at retail, CODE128 for internal inventory or shipping labels.</p>
+        `,
+      },
+      {
+        heading: "The check digit — why your barcode does not scan",
+        body: `
+          <p>EAN-13, UPC-A, and ITF-14 include a check digit as the final character. The check digit is computed from a modulo-10 algorithm over the preceding digits. Without it, most retail scanners will refuse to read the barcode.</p>
+          <p>This tool computes the check digit automatically. Enter the payload (12 digits for EAN-13, 11 for UPC-A, 13 for ITF-14) and the correct check digit is appended. If you have a valid 13-digit EAN-13 already, you can enter all 13 and the tool will verify the check digit is correct.</p>
+          <p>The most common "my barcode will not scan" issue is a mis-computed check digit. If your barcode fails, verify the check digit first.</p>
+        `,
+      },
+    ],
+
     features: [
       { title: "9 formats", description: "CODE128, CODE39, EAN-13, EAN-8, UPC-A, ITF-14, MSI, Pharmacode, Codabar." },
       { title: "Custom colors", description: "Line color and background pickers, plus hex input." },
@@ -1300,6 +1612,38 @@ const legacyTools: Tool[] = [
     keywords: ["character counter", "twitter character count", "instagram caption counter", "sms counter", "meta description length", "character count"],
     popular: true,
     newTool: true,
+        editorialContent: [
+      {
+        heading: "How each platform actually counts characters",
+        body: `
+          <p>Every platform has its own counting rules. Getting them wrong means a post gets truncated without warning.</p>
+          <ul>
+            <li><strong>X (Twitter):</strong> weighted grapheme counting. Latin letters = 1. Simple emoji = 2. Complex emoji = 4-10. URLs = 23 characters regardless of length.</li>
+            <li><strong>Instagram:</strong> codepoints. A simple emoji is 1 codepoint. A family emoji with zero-width joiners is 5 codepoints.</li>
+            <li><strong>LinkedIn:</strong> simple character count. No emoji weighting.</li>
+            <li><strong>SMS:</strong> 160 characters in GSM-7 (Latin only), 70 characters in UCS-2 (Bengali, Arabic, emoji).</li>
+          </ul>
+          <p>Our counter uses codepoint counting, matching the strictest platforms. If your post fits here, it fits everywhere.</p>
+        `,
+      },
+      {
+        heading: "Why emoji counts surprise people",
+        body: `
+          <p>A single visible emoji looks like one character on screen. But emoji are encoded as multi-codepoint sequences. Some examples:</p>
+          <table>
+            <thead><tr><th>Emoji</th><th>Codepoints</th><th>X counter</th></tr></thead>
+            <tbody>
+              <tr><td>😀</td><td>1</td><td>2</td></tr>
+              <tr><td>👍</td><td>1</td><td>2</td></tr>
+              <tr><td>🇧🇩 (flag)</td><td>2</td><td>4</td></tr>
+              <tr><td>👨‍👩‍👧 (family)</td><td>5</td><td>10</td></tr>
+            </tbody>
+          </table>
+          <p>If you are drafting a tweet that is exactly at 280 characters, swapping one emoji for another can push it over the limit. Test the exact emoji you will use before posting.</p>
+        `,
+      },
+    ],
+
     features: [
       { title: "8 platform limits", description: "X, Instagram, LinkedIn, Facebook, YouTube, SMS, SEO title, meta description." },
       { title: "Live updating", description: "Every keystroke recalculates all counters with no perceptible delay." },
@@ -1344,6 +1688,40 @@ const legacyTools: Tool[] = [
     keywords: ["favicon generator", "favicon maker", "apple touch icon", "pwa icons", "website icon", "favicon.ico"],
     popular: true,
     newTool: true,
+        editorialContent: [
+      {
+        heading: "Why your logo fails as a favicon (and how to fix it)",
+        body: `
+          <p>A full logo — with text, gradients, and detail — works at 200px. At 16px, it becomes illegible mush. This is the single most common favicon mistake.</p>
+          <p>The rules for favicon design:</p>
+          <ul>
+            <li><strong>Single letter or symbol</strong> — not the full wordmark.</li>
+            <li><strong>Bold shapes</strong> — at least 3-4 pixels thick at the smallest size.</li>
+            <li><strong>High contrast</strong> — dark on light or light on dark.</li>
+            <li><strong>Solid background</strong> — square or circle, not transparency (which blends with browser chrome).</li>
+          </ul>
+          <p>The trick: design a separate simplified mark for the favicon. Facebook uses "f", Amazon uses the smile, Google uses "G". None of them use their full logo at 16px.</p>
+        `,
+      },
+      {
+        heading: "The complete favicon file set (and what each does)",
+        body: `
+          <p>Modern browsers, iOS, and Android each need different file sizes. A complete favicon set is eight files, not one:</p>
+          <ul>
+            <li><strong>favicon.ico</strong> — multi-size (16, 32, 48) — legacy support, bookmarks bar</li>
+            <li><strong>favicon-16x16.png</strong> — browser tab</li>
+            <li><strong>favicon-32x32.png</strong> — retina browser tab</li>
+            <li><strong>favicon-96x96.png</strong> — Google TV</li>
+            <li><strong>apple-touch-icon.png</strong> (180×180) — iOS home screen</li>
+            <li><strong>android-chrome-192x192.png</strong> — Android home screen</li>
+            <li><strong>android-chrome-512x512.png</strong> — PWA splash screen</li>
+            <li><strong>site.webmanifest</strong> — PWA metadata</li>
+          </ul>
+          <p>All eight must be placed in the site root (or /public folder) with the matching &lt;link&gt; tags in the HTML head. Missing any of them causes a fallback to a gray square on that specific platform.</p>
+        `,
+      },
+    ],
+
     features: [
       { title: "Complete set", description: "16, 32, 48, 96, 180, 192, 512 PNGs + favicon.ico + manifest." },
       { title: "Auto background", description: "Detects the dominant color at the image corner and uses it as the favicon background." },
