@@ -118,10 +118,21 @@ function buildToolPage(tool: typeof tools[0]): string {
     )
     .join("\n    ");
 
+  // Editorial content — unique article sections that break the
+  // template pattern. Rendered before Features so the reader meets
+  // tool-specific editorial first, not the fixed structure.
+  const editorialBlock = (tool.editorialContent || [])
+    .map(
+      (section) =>
+        `<section><h2>${esc(section.heading)}</h2>${section.body}</section>`
+    )
+    .join("\n    ");
+
   return `<article>
     <h1>${esc(tool.name)}</h1>
     <p><strong>${esc(tool.description)}</strong></p>
     <p>${esc(tool.longDescription || tool.description)}</p>
+    ${editorialBlock}
     <h2>Features</h2>
     <ul>${features}</ul>
     <h2>How to use</h2>

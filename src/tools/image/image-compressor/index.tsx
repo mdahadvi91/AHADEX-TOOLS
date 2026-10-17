@@ -13,6 +13,7 @@ import { RelatedArticles } from "@components/blog/RelatedArticles";
 import { ToolBreadcrumb } from "@components/tools/ToolBreadcrumb";
 import { ToolSchema } from "@components/seo/ToolSchema";
 import { ToolFieldNote } from "@components/tools/ToolFieldNote";
+import { ToolEditorial } from "@components/tools/ToolEditorial";
 
 export default function ImageCompressorTool() {
   useToolAnalytics("image-compressor");
@@ -23,6 +24,7 @@ export default function ImageCompressorTool() {
         <ToolBreadcrumb toolName="Image Compressor" category="Image Tools" />
       <div className="mx-auto max-w-[1200px] px-4 sm:px-6 lg:px-8">
         <Hero />
+        <ToolEditorial toolId="image-compressor" />
         <Workspace />
         <RecommendedProducts toolId="image-compressor" />
         <Intro />

@@ -40,6 +40,20 @@ export interface ToolDeepDive {
   body: string;
 }
 
+/**
+ * A single editorial section. Unlike features/howTo/FAQ which follow
+ * a fixed template, editorial sections are free-form article content
+ * written specifically for one tool. Used to break template uniformity
+ * and make each page an independently useful resource.
+ *
+ * Rendered in the React page right after the hero, before features,
+ * so the reader encounters unique editorial content first.
+ */
+export interface ToolEditorialSection {
+  heading: string;
+  body: string;
+}
+
 export interface Tool {
   id: string;
   slug: string;
@@ -56,6 +70,8 @@ export interface Tool {
   popular?: boolean;
   newTool?: boolean;
   features: ToolFeature[];
+  /** Unique editorial sections written specifically for this tool. */
+  editorialContent?: ToolEditorialSection[];
   howTo: ToolHowToStep[];
   faq: ToolFAQ[];
   /** Optional deep-dive sections rendered after the FAQ in SSR and on the page. */
