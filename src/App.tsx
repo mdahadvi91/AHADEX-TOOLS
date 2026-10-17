@@ -28,6 +28,8 @@ const CookiePolicyPage = lazy(() => import("@pages/CookiePolicyPage"));
 const AffiliateDisclosurePage = lazy(() => import("@pages/AffiliateDisclosurePage"));
 const EditorialPolicyPage = lazy(() => import("@pages/EditorialPolicyPage"));
 const HtmlSitemapPage = lazy(() => import("@pages/HtmlSitemapPage"));
+const GuidesIndexPage = lazy(() => import("@pages/GuidesIndexPage"));
+const GuidePage = lazy(() => import("@pages/GuidePage"));
 const BlogIndexPage = lazy(() => import("@pages/BlogIndexPage"));
 const BlogPostPage = lazy(() => import("@pages/BlogPostPage"));
 const NotFoundPage = lazy(() => import("@pages/NotFoundPage"));
@@ -185,6 +187,10 @@ export default function App() {
                 <Route path="sitemap" element={<PageSuspense><HtmlSitemapPage /></PageSuspense>} />
                 <Route path="blog" element={<PageSuspense><BlogIndexPage /></PageSuspense>} />
                 <Route path="blog/:slug" element={<PageSuspense><BlogPostPage /></PageSuspense>} />
+
+                {/* Guides */}
+                <Route path="guides" element={<PageSuspense><GuidesIndexPage /></PageSuspense>} />
+                <Route path="guides/:slug" element={<PageSuspense><GuidePage /></PageSuspense>} />
 
                 {/* Fallback */}
                 <Route path="404" element={<PageSuspense><NotFoundPage /></PageSuspense>} />

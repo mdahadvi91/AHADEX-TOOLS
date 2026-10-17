@@ -18,6 +18,7 @@ import {
   TOOL_META,
   STATIC_META,
   BLOG_META,
+  GUIDE_META,
   type ToolMeta,
   type StaticMeta,
   type BlogMeta,
@@ -50,6 +51,12 @@ function extractToolSlug(pathname: string): string | null {
 /* ── Extract slug from /blog/xyz ── */
 function extractBlogSlug(pathname: string): string | null {
   const m = pathname.match(/^\/blog\/([^/?#]+)\/?$/);
+  return m ? m[1] : null;
+}
+
+/* ── Extract slug from /guides/xyz ── */
+function extractGuideSlug(pathname: string): string | null {
+  const m = pathname.match(/^\/guides\/([^/?#]+)\/?$/);
   return m ? m[1] : null;
 }
 
@@ -303,7 +310,24 @@ export const onRequest: PagesFunction<Env> = async (context) => {
     }
   }
 
-  /* 3. Static / index pages */
+  /* 3. Guide pages: /guides/:slug */
+  if (!meta) {
+    const guideSlug = extractGuideSlug(pathname);
+    if (guideSlug) {
+      const guide = GUIDE_META[guideSlug];
+      if (guide) {
+        meta = {
+          title: guide.title,
+          description: guide.description,
+          canonical: `${SITE_URL}${guide.path}`,
+          ogImage: guide.ogImage,
+          ogType: "article",
+        };
+      }
+    }
+  }
+
+  /* 4. Static / index pages */
   if (!meta) {
     const staticMeta: StaticMeta | undefined = STATIC_META[pathname];
     if (staticMeta) {

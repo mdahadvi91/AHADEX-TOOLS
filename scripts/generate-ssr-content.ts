@@ -20,6 +20,7 @@ import { toolFieldNotes } from "../src/data/tool-field-notes";
 import { staticPageContents } from "../src/data/static-ssr-content";
 import { authors, type Author } from "../src/data/authors";
 import { blogPosts } from "../src/data/blog";
+import { guides } from "../src/data/guides";
 import { getToolCategory, CATEGORY_PRIVACY } from "../src/lib/toolCategory";
 
 const OUT_FILE = resolve(process.cwd(), "functions/_ssr-content.ts");
@@ -237,6 +238,39 @@ function buildAuthorPage(
   </article>`;
 }
 
+/* ── Build guide page HTML ── */
+function buildGuidePage(guide: typeof guides[0]): string {
+  const sections = guide.sections
+    .map(
+      (s) => `<section><h2>${esc(s.heading)}</h2>${s.body}</section>`
+    )
+    .join("\n    ");
+
+  const faq = guide.faq
+    .map(
+      (f) => `<div><h3>${esc(f.question)}</h3><p>${esc(f.answer)}</p></div>`
+    )
+    .join("\n    ");
+
+  const relatedLinks = guide.relatedTools
+    .map((id) => tools.find((t) => t.id === id))
+    .filter((t): t is NonNullable<typeof t> => Boolean(t))
+    .map(
+      (t) =>
+        `<li><a href="${t.path}">${esc(t.name)}</a> — ${esc(t.description)}</li>`
+    )
+    .join("\n    ");
+
+  return `<article>
+    <h1>${esc(guide.title)}</h1>
+    <p><strong>${esc(guide.excerpt)}</strong></p>
+    ${sections}
+    ${relatedLinks ? `<h2>Tools used in this guide</h2><ul>${relatedLinks}</ul>` : ""}
+    <h2>Frequently asked questions</h2>
+    ${faq}
+  </article>`;
+}
+
 /* ── Build blog post HTML (basic) ── */
 function buildBlogPost(post: typeof blogPosts[0]): string {
   const blocks = post.blocks
@@ -290,6 +324,11 @@ for (const tool of tools) {
 // Blog posts
 for (const post of blogPosts) {
   SSR_CONTENT[`/blog/${post.slug}`] = buildBlogPost(post);
+}
+
+// Guides
+for (const guide of guides) {
+  SSR_CONTENT[`/guides/${guide.slug}`] = buildGuidePage(guide);
 }
 
 // Author profile pages — one per author in the registry

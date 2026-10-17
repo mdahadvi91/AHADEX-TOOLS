@@ -16,6 +16,13 @@ export const footerNav: NavSection[] = [
     ],
   },
   {
+    title: "Learn",
+    items: [
+      { label: "Blog", to: "/blog" },
+      { label: "Guides", to: "/guides" },
+    ],
+  },
+  {
     title: "Company",
     items: [
       { label: "About", to: "/about" },

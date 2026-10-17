@@ -20,6 +20,12 @@
     <priority>0.7</priority>
   </url>
   <url>
+    <loc>https://ahadex.fun/guides</loc>
+    <lastmod>2026-10-16</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://ahadex.fun/about</loc>
     <lastmod>2026-10-16</lastmod>
     <changefreq>monthly</changefreq>
@@ -777,5 +783,29 @@
       <image:title>How to Add a Watermark to Photos (Free Methods)</image:title>
       <image:caption>Watermarks protect your images from theft — but a bad watermark ruins the photo. Learn the placement, opacity, and design rules that actually work.</image:caption>
     </image:image>
+  </url>
+  <url>
+    <loc>https://ahadex.fun/guides/compress-images-for-website</loc>
+    <lastmod>2026-10-16</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://ahadex.fun/guides/reduce-pdf-size-for-email</loc>
+    <lastmod>2026-10-16</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://ahadex.fun/guides/create-print-ready-business-card</loc>
+    <lastmod>2026-10-16</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://ahadex.fun/guides/create-ats-friendly-cv</loc>
+    <lastmod>2026-10-16</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
   </url>
 </urlset>

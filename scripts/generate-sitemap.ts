@@ -19,6 +19,7 @@ import { resolve } from "node:path";
 import { execSync } from "node:child_process";
 import { tools } from "../src/data/tools";
 import { blogPosts } from "../src/data/blog";
+import { guides } from "../src/data/guides";
 
 const SITE_URL = "https://ahadex.fun";
 
@@ -68,6 +69,7 @@ const staticRoutes: SitemapEntry[] = [
   { loc: "/", changefreq: "weekly", priority: 1.0, lastmod: HOME_LASTMOD },
   { loc: "/tools", changefreq: "weekly", priority: 0.9, lastmod: TOOLS_LASTMOD },
   { loc: "/blog", changefreq: "weekly", priority: 0.7, lastmod: BLOG_LASTMOD },
+  { loc: "/guides", changefreq: "weekly", priority: 0.8, lastmod: BLOG_LASTMOD },
   { loc: "/about", changefreq: "monthly", priority: 0.6, lastmod: TRUST_LASTMOD },
   { loc: "/about/author/mohammad-ahad", changefreq: "monthly", priority: 0.6, lastmod: TRUST_LASTMOD },
   { loc: "/contact", changefreq: "monthly", priority: 0.6, lastmod: TRUST_LASTMOD },
@@ -119,8 +121,16 @@ const blogRoutes: SitemapEntry[] = blogPosts.map((p) => {
   };
 });
 
+/* ── Guide routes ── */
+const guideRoutes: SitemapEntry[] = guides.map((g) => ({
+  loc: `/guides/${g.slug}`,
+  changefreq: "monthly" as const,
+  priority: 0.7,
+  lastmod: g.updatedAt ?? g.publishedAt,
+}));
+
 /* ── Dedupe by loc (safety) ── */
-const allEntries = [...staticRoutes, ...toolRoutes, ...blogRoutes];
+const allEntries = [...staticRoutes, ...toolRoutes, ...blogRoutes, ...guideRoutes];
 const seen = new Set<string>();
 const allRoutes: SitemapEntry[] = [];
 for (const e of allEntries) {
@@ -196,6 +206,6 @@ const imageCount = validRoutes.reduce(
 );
 console.log(`✅ Sitemap generated: ${outPath}`);
 console.log(
-  `   ${validRoutes.length} URLs (${tools.length} tools + ${staticRoutes.length} static + ${blogRoutes.length} blog)`
+  `   ${validRoutes.length} URLs (${tools.length} tools + ${staticRoutes.length} static + ${blogRoutes.length} blog + ${guideRoutes.length} guides)`
 );
 console.log(`   ${imageCount} image entries`);

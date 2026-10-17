@@ -68,10 +68,18 @@ export const STATIC_META: Record<string, StaticMeta> = {
   "/editorial-policy": { title: "Editorial Policy | AHADEX Tools", description: "Our editorial standards and content review process.", ogImage: "/images/og/home-og.png" },
   "/affiliate-disclosure": { title: "Affiliate Disclosure | AHADEX Tools", description: "How we earn from affiliate links at no cost to you.", ogImage: "/images/og/home-og.png" },
   "/sitemap": { title: "Sitemap | AHADEX Tools", description: "All pages and tools on AHADEX Tools.", ogImage: "/images/og/home-og.png" },
+  "/guides": { title: "Guides — Complete Workflows for Real Tasks | AHADEX Tools", description: "Step-by-step workflows that chain the 27 browser-based tools into repeatable processes. Target file sizes, verification, and honest limitations.", ogImage: "/images/og/home-og.png" },
   "/blog": { title: "Blog — Guides & Tutorials | AHADEX Tools", description: "In-depth guides on image optimization, PDF workflows, developer tips, and digital security.", ogImage: "/images/og/home-og.png" },
   "/404": { title: "Page Not Found | AHADEX Tools", description: "The page you were looking for could not be found.", ogImage: "/images/og/home-og.png" },
   "/about/author/mohammad-ahad": { title: "Mohammad Ahad — Founder & Developer | AHADEX Tools", description: "Profile of Mohammad Ahad, founder & developer at AHADEX Tools. Author of the technical guides on this site.", ogImage: "/images/og/home-og.png" },
 };
+
+export interface GuideMeta {
+  path: string;
+  title: string;
+  description: string;
+  ogImage: string;
+}
 
 export const BLOG_META: Record<string, BlogMeta> = {
   "how-to-compress-images-without-losing-quality": { path: "/blog/how-to-compress-images-without-losing-quality", title: "How to Compress Images Without Losing Quality (2026 Guide)", description: "Learn how to reduce image file sizes by 70-90% while keeping them looking sharp. A complete guide to image compression for web, email, and social media.", ogImage: "/images/og/blog/how-to-compress-images-without-losing-quality-og.png" },
@@ -110,4 +118,11 @@ export const BLOG_META: Record<string, BlogMeta> = {
   "free-tools-for-freelancers-2026": { path: "/blog/free-tools-for-freelancers-2026", title: "Best Free Online Tools for Freelancers in 2026", description: "Freelancers waste hours on admin work. These free browser-based tools handle invoicing, client files, portfolios, and everything in between.", ogImage: "/images/og/blog/free-tools-for-freelancers-2026-og.png" },
   "how-to-create-favicon-from-logo": { path: "/blog/how-to-create-favicon-from-logo", title: "How to Create a Favicon From Your Logo (Step-by-Step)", description: "Your favicon is your logo at 16 pixels. Most logos do not survive at that size. Learn how to design a favicon that stays recognizable at the smallest scale.", ogImage: "/images/og/blog/how-to-create-favicon-from-logo-og.png" },
   "how-to-add-watermark-to-photos": { path: "/blog/how-to-add-watermark-to-photos", title: "How to Add a Watermark to Photos (Free Methods)", description: "Watermarks protect your images from theft — but a bad watermark ruins the photo. Learn the placement, opacity, and design rules that actually work.", ogImage: "/images/og/blog/how-to-add-watermark-to-photos-og.png" },
+};
+
+export const GUIDE_META: Record<string, GuideMeta> = {
+  "compress-images-for-website": { path: "/guides/compress-images-for-website", title: "Compress images for your website — a workflow that actually works", description: "Reduce image weight by 70-90% without visible quality loss. A practical workflow with target file sizes, format decisions, and verification steps.", ogImage: "/images/og/guides/compress-images-for-website-og.png" },
+  "reduce-pdf-size-for-email": { path: "/guides/reduce-pdf-size-for-email", title: "Reduce PDF size for email — a practical workflow", description: "Get any PDF under 20 MB without ruining readability. Covers image compression, DPI reduction, splitting, and when to use a cloud link instead.", ogImage: "/images/og/guides/reduce-pdf-size-for-email-og.png" },
+  "create-print-ready-business-card": { path: "/guides/create-print-ready-business-card", title: "Create a print-ready business card — specs and workflow", description: "The exact file specifications a print shop expects: trim size, bleed, safe margin, DPI, colour space, and paper stock.", ogImage: "/images/og/guides/create-print-ready-business-card-og.png" },
+  "create-ats-friendly-cv": { path: "/guides/create-ats-friendly-cv", title: "Create an ATS-friendly CV — the technical checklist", description: "Most CVs are rejected by software before a human sees them. Here is exactly what the ATS parses, what breaks it, and how to format for both humans and machines.", ogImage: "/images/og/guides/create-ats-friendly-cv-og.png" },
 };
