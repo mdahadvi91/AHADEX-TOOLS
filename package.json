@@ -17,7 +17,7 @@
   },
   "scripts": {
     "dev": "vite",
-    "build": "npm run generate:content && npm run verify && tsc --noEmit && vite build",
+    "build": "npm run generate:content && npm run verify && tsc --noEmit && vite build && npm run build:route-html",
     "preview": "vite preview --port 4173",
     "lint": "tsc --noEmit",
     "type-check": "tsc --noEmit",
@@ -33,7 +33,8 @@
     "verify:affiliate": "tsx scripts/verify-affiliate-content.ts",
     "verify:sitemap": "tsx scripts/verify-sitemap.ts",
     "generate:content": "npm run sitemap && npm run rss && npm run og:images && npm run tool:meta && npm run ssr:content && npm run schema",
-    "verify": "npm run verify:affiliate && npm run verify:ssr && npm run verify:sitemap && npm run verify:count"
+    "verify": "npm run verify:affiliate && npm run verify:ssr && npm run verify:sitemap && npm run verify:count",
+    "build:route-html": "tsx scripts/build-route-html.ts"
   },
   "dependencies": {
     "browser-image-compression": "^2.0.2",
