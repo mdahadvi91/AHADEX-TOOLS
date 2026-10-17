@@ -64,16 +64,17 @@ function buildTrustPage(content: typeof trustContent.en.privacy): string {
  * reduces the "template smell" AdSense reviewers look for while
  * keeping the core message (nothing is uploaded) intact.
  */
-function buildPrivacySection(tool: typeof tools[0]): string {
+/* ── Compact privacy notice ──
+ * AdSense reviewers treat an H2 heading + 3 paragraphs of repeated
+ * privacy boilerplate (identical across 27 tool pages) as template
+ * padding, not editorial content. This emits a single sentence with
+ * a category-specific hook and a link to the full policy.
+ * ─────────────────────────────────────────────────────────── */
+function buildPrivacyNotice(tool: typeof tools[0]): string {
   const category = getToolCategory(tool.id, tool.path);
-  const { specific, why } = CATEGORY_PRIVACY[category];
+  const { specific } = CATEGORY_PRIVACY[category];
 
-  return `
-    <h2>Privacy — why your file never leaves your device</h2>
-    <p>${esc(specific)}</p>
-    <p>${esc(why)}</p>
-    <p>No account is required, no analytics are collected on the content you process, and no file or fragment of your data is written to any server. Close the tab and everything you used is gone from memory.</p>
-  `;
+  return `<p class="privacy-notice"><strong>Privacy:</strong> ${esc(specific)} <a href="/privacy">Full policy</a></p>`;
 }
 
 /* ── Build tool page HTML ── */
@@ -132,12 +133,12 @@ function buildToolPage(tool: typeof tools[0]): string {
     <h1>${esc(tool.name)}</h1>
     <p><strong>${esc(tool.description)}</strong></p>
     <p>${esc(tool.longDescription || tool.description)}</p>
+    ${buildPrivacyNotice(tool)}
     ${editorialBlock}
     <h2>Features</h2>
     <ul>${features}</ul>
     <h2>How to use</h2>
     <ol>${howTo}</ol>
-    ${buildPrivacySection(tool)}
     <h2>Frequently asked questions</h2>
     ${faq}
     ${deepDiveBlock}
