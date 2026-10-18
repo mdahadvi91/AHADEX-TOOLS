@@ -11,7 +11,6 @@ import {
 } from "lucide-react";
 import { useLanguage } from "@contexts/LanguageContext";
 import { cn } from "@lib/cn";
-import { AdSenseSlot } from "@components/ads/AdSenseSlot";
 
 const VALUE_ICONS = [Shield, Zap, Heart, Wand2];
 
@@ -402,7 +401,6 @@ export default function AboutPage() {
           </div>
         </motion.div>
       </section>
-          <AdSenseSlot slot="IN_ARTICLE" label="Advertisement" />
-    </div>
+          </div>
   );
 }

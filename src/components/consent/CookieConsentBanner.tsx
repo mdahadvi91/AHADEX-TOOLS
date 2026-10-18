@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
-import { Cookie, Shield, ChevronDown, Check } from "lucide-react";
 import { useLanguage } from "@contexts/LanguageContext";
+import { Shield, Check, ChevronDown } from "lucide-react";
 import { cn } from "@lib/cn";
 import {
   hasUserChosen, saveConsent, applyConsentToGtag, type ConsentChoice,
@@ -99,8 +99,7 @@ export function CookieConsentBanner() {
               {/* Header */}
               <div className="flex items-start gap-3">
                 <span className="shrink-0 w-9 h-9 rounded-xl bg-silk-rose/15 border border-silk-rose/30 flex items-center justify-center">
-                  <Cookie className="w-4 h-4 text-silk-rose" />
-                </span>
+                  </span>
                 <div className="flex-1 min-w-0">
                   <h3 className="font-display font-bold text-[14px] sm:text-[15px] text-light-text dark:text-dark-text leading-tight">
                     {t.title}

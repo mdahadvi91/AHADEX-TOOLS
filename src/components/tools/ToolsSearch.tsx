@@ -2,7 +2,6 @@ import { useEffect, useRef, useState } from "react";
 import { Search, X } from "lucide-react";
 import { useLanguage } from "@contexts/LanguageContext";
 import { cn } from "@lib/cn";
-import { analytics } from "@lib/analytics";
 
 interface ToolsSearchProps {
   value: string;
@@ -29,7 +28,7 @@ export function ToolsSearch({ value, onChange }: ToolsSearchProps) {
 
     timeoutRef.current = window.setTimeout(() => {
       if (trimmed !== lastFiredRef.current) {
-        analytics.search(trimmed, 0);
+        
         lastFiredRef.current = trimmed;
       }
     }, 800);

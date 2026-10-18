@@ -3,7 +3,6 @@ import { useEffect } from "react";
 import { motion } from "framer-motion";
 import { ArrowLeft, Clock, Calendar, User, ArrowRight, RefreshCw } from "lucide-react";
 import { useLanguage } from "@contexts/LanguageContext";
-import { AdSenseSlot } from "@components/ads/AdSenseSlot";
 import { getPostBySlug, blogPosts } from "@data/blog";
 import { getAuthor } from "@data/authors";
 import { AuthorSchema } from "@components/seo/AuthorSchema";
@@ -291,8 +290,6 @@ export default function BlogPostPage() {
           return null;
         })}
       </div>
-
-      <AdSenseSlot slot="IN_ARTICLE" label="Advertisement" />
 
       {/* Ad — after article body */}
 

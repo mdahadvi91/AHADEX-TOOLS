@@ -12,7 +12,6 @@ import {
 } from "lucide-react";
 import { useLanguage } from "@contexts/LanguageContext";
 import { cn } from "@lib/cn";
-import { AdSenseSlot } from "@components/ads/AdSenseSlot";
 
 interface FormState {
   name: string;
@@ -480,8 +479,7 @@ function Field({
           {error}
         </p>
       )}
-          <AdSenseSlot slot="IN_ARTICLE" label="Advertisement" />
-    </div>
+          </div>
   );
 }
 

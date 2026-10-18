@@ -1,4 +1,3 @@
-import { AdSenseSlot } from "@components/ads/AdSenseSlot";
 import { ToolsShowcase } from "@components/tools/ToolsShowcase";
 import { HowItWorks } from "@components/home/HowItWorks";
 import { motion } from "framer-motion";
@@ -64,8 +63,7 @@ export default function ToolsIndexPage() {
 
       {/* Ad after content */}
       <div className="max-w-5xl mx-auto px-4 mb-8">
-        <AdSenseSlot slot="HEADER" label="Advertisement" />
-      </div>
+        </div>
 
       {/* How to choose guide */}
       <div className="mx-auto max-w-[1400px] px-4 sm:px-6 lg:px-8 py-12 sm:py-16">
