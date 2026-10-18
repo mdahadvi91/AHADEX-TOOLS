@@ -1,3 +1,4 @@
+import { ToolDataSections } from "@components/tools/ToolDataSections";
 import { useToolAnalytics } from "@hooks/useToolAnalytics";
 import { ImageMetadataSEO } from "./SEO";
 import { Hero } from "./components/Hero";
@@ -30,6 +31,7 @@ export default function ImageMetadataViewerTool() {
         <PrivacyNote />
         <FAQ />
         <RelatedArticles toolId="image-metadata-viewer" />
+        <ToolDataSections toolId="image-metadata-viewer" />
         <RelatedTools />
       </div>
     </>

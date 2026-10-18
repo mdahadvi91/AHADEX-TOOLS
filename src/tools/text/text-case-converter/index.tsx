@@ -1,3 +1,4 @@
+import { ToolDataSections } from "@components/tools/ToolDataSections";
 import { useToolAnalytics } from "@hooks/useToolAnalytics";
 import { TextCaseSEO } from "./SEO";
 import { Hero } from "./components/Hero";
@@ -30,6 +31,7 @@ export default function TextCaseConverterTool() {
         <PrivacyNote />
         <FAQ />
         <RelatedArticles toolId="text-case-converter" />
+        <ToolDataSections toolId="text-case-converter" />
         <RelatedTools />
       </div>
     </>

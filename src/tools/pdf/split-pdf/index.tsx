@@ -1,3 +1,4 @@
+import { ToolDataSections } from "@components/tools/ToolDataSections";
 import { useToolAnalytics } from "@hooks/useToolAnalytics";
 import { SplitPdfSEO } from "./SEO";
 import { Hero } from "./components/Hero";
@@ -32,6 +33,7 @@ export default function SplitPdfTool() {
         <FAQ />
           <ToolFieldNote toolId="split-pdf" />
         <RelatedArticles toolId="split-pdf" />
+        <ToolDataSections toolId="split-pdf" />
         <RelatedTools />
       </div>
     </>

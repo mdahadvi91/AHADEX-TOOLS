@@ -1,3 +1,4 @@
+import { ToolDataSections } from "@components/tools/ToolDataSections";
 import { useToolAnalytics } from "@hooks/useToolAnalytics";
 import { ImageCropperSEO } from "./SEO";
 import { Hero } from "./components/Hero";
@@ -30,6 +31,7 @@ export default function ImageCropperTool() {
         <PrivacyNote />
         <FAQ />
         <RelatedArticles toolId="image-cropper" />
+        <ToolDataSections toolId="image-cropper" />
         <RelatedTools />
       </div>
     </>

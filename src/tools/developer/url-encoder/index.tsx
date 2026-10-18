@@ -1,3 +1,4 @@
+import { ToolDataSections } from "@components/tools/ToolDataSections";
 import { useToolAnalytics } from "@hooks/useToolAnalytics";
 import { UrlEncoderSEO } from "./SEO";
 import { Hero } from "./components/Hero";
@@ -30,6 +31,7 @@ export default function UrlEncoderTool() {
         <PrivacyNote />
         <FAQ />
         <RelatedArticles toolId="url-encoder" />
+        <ToolDataSections toolId="url-encoder" />
         <RelatedTools />
       </div>
     </>

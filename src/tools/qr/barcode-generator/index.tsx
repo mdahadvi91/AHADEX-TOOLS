@@ -1,3 +1,4 @@
+import { ToolDataSections } from "@components/tools/ToolDataSections";
 import { useToolAnalytics } from "@hooks/useToolAnalytics";
 import { BarcodeGeneratorSEO } from "./SEO";
 import { Hero } from "./components/Hero";
@@ -30,6 +31,7 @@ export default function BarcodeGeneratorTool() {
         <PrivacyNote />
         <FAQ />
         <RelatedArticles toolId="barcode-generator" />
+        <ToolDataSections toolId="barcode-generator" />
         <RelatedTools />
       </div>
     </>

@@ -8,6 +8,7 @@ import { PrivacyNote } from "./components/PrivacyNote";
 import { FAQ } from "./components/FAQ";
 import { RecommendedProducts } from "@components/affiliate/RecommendedProducts";
 import { RelatedTools } from "./components/RelatedTools";
+import { ToolDataSections } from "@components/tools/ToolDataSections";
 import { useToolAnalytics } from "@hooks/useToolAnalytics";
 import { RelatedArticles } from "@components/blog/RelatedArticles";
 import { ToolBreadcrumb } from "@components/tools/ToolBreadcrumb";
@@ -30,6 +31,7 @@ export default function FaviconGeneratorTool() {
         <PrivacyNote />
         <FAQ />
         <RelatedArticles toolId="favicon-generator" />
+        <ToolDataSections toolId="favicon-generator" />
         <RelatedTools />
       </div>
     </>

@@ -1,3 +1,4 @@
+import { ToolDataSections } from "@components/tools/ToolDataSections";
 import { useToolAnalytics } from "@hooks/useToolAnalytics";
 import { PasswordGeneratorSEO } from "./SEO";
 import { Hero } from "./components/Hero";
@@ -32,6 +33,7 @@ export default function PasswordGeneratorTool() {
         <FAQ />
           <ToolFieldNote toolId="password-generator" />
         <RelatedArticles toolId="password-generator" />
+        <ToolDataSections toolId="password-generator" />
         <RelatedTools />
       </div>
     </>

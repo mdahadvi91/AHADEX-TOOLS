@@ -1,3 +1,4 @@
+import { ToolDataSections } from "@components/tools/ToolDataSections";
 import { useToolAnalytics } from "@hooks/useToolAnalytics";
 import { SvgToPngSEO } from "./SEO";
 import { Hero } from "./components/Hero";
@@ -30,6 +31,7 @@ export default function SvgToPngTool() {
         <PrivacyNote />
         <FAQ />
         <RelatedArticles toolId="svg-to-png" />
+        <ToolDataSections toolId="svg-to-png" />
         <RelatedTools />
       </div>
     </>

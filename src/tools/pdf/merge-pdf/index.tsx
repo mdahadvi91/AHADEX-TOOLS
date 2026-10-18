@@ -1,3 +1,4 @@
+import { ToolDataSections } from "@components/tools/ToolDataSections";
 import { useToolAnalytics } from "@hooks/useToolAnalytics";
 import { MergePdfSEO } from "./SEO";
 import { Hero } from "./components/Hero";
@@ -30,6 +31,7 @@ export default function MergePdfTool() {
         <PrivacyNote />
         <FAQ />
         <RelatedArticles toolId="merge-pdf" />
+        <ToolDataSections toolId="merge-pdf" />
         <RelatedTools />
       </div>
     </>

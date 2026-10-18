@@ -1,3 +1,4 @@
+import { ToolDataSections } from "@components/tools/ToolDataSections";
 import { useToolAnalytics } from "@hooks/useToolAnalytics";
 import { ImageConverterSEO } from "./SEO";
 import { Hero } from "./components/Hero";
@@ -32,6 +33,7 @@ export default function ImageConverterTool() {
         <FAQ />
           <ToolFieldNote toolId="image-converter" />
         <RelatedArticles toolId="image-converter" />
+        <ToolDataSections toolId="image-converter" />
         <RelatedTools />
       </div>
     </>

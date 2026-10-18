@@ -1,3 +1,4 @@
+import { ToolDataSections } from "@components/tools/ToolDataSections";
 import { useToolAnalytics } from "@hooks/useToolAnalytics";
 import { ImageToCartoonSEO } from "./SEO";
 import { Hero } from "./components/Hero";
@@ -30,6 +31,7 @@ export default function ImageToCartoonTool() {
         <PrivacyNote />
         <FAQ />
         <RelatedArticles toolId="image-to-cartoon" />
+        <ToolDataSections toolId="image-to-cartoon" />
         <RelatedTools />
       </div>
     </>

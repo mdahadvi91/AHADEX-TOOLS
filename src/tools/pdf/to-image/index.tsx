@@ -1,3 +1,4 @@
+import { ToolDataSections } from "@components/tools/ToolDataSections";
 import { useToolAnalytics } from "@hooks/useToolAnalytics";
 import { PdfToImageSEO } from "./SEO";
 import { Hero } from "./components/Hero";
@@ -32,6 +33,7 @@ export default function PdfToImageTool() {
         <FAQ />
           <ToolFieldNote toolId="pdf-to-image" />
         <RelatedArticles toolId="pdf-to-image" />
+        <ToolDataSections toolId="pdf-to-image" />
         <RelatedTools />
       </div>
     </>

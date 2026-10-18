@@ -1,3 +1,4 @@
+import { ToolDataSections } from "@components/tools/ToolDataSections";
 import { useToolAnalytics } from "@hooks/useToolAnalytics";
 import { JsonFormatterSEO } from "./SEO";
 import { Hero } from "./components/Hero";
@@ -32,6 +33,7 @@ export default function JsonFormatterTool() {
         <FAQ />
           <ToolFieldNote toolId="json-formatter" />
         <RelatedArticles toolId="json-formatter" />
+        <ToolDataSections toolId="json-formatter" />
         <RelatedTools />
       </div>
     </>

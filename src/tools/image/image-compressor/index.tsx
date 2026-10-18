@@ -14,6 +14,7 @@ import { ToolBreadcrumb } from "@components/tools/ToolBreadcrumb";
 import { ToolSchema } from "@components/seo/ToolSchema";
 import { ToolFieldNote } from "@components/tools/ToolFieldNote";
 import { ToolEditorial } from "@components/tools/ToolEditorial";
+import { ToolDataSections } from "@components/tools/ToolDataSections";
 
 export default function ImageCompressorTool() {
   useToolAnalytics("image-compressor");
@@ -34,6 +35,7 @@ export default function ImageCompressorTool() {
         <FAQ />
           <ToolFieldNote toolId="image-compressor" />
         <RelatedArticles toolId="image-compressor" />
+        <ToolDataSections toolId="image-compressor" />
         <RelatedTools />
       </div>
     </>
