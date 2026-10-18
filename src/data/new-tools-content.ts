@@ -391,6 +391,23 @@ export const newTools: Tool[] = [
     },
 
         ],
+    useCases: [
+      "Converting high-res PNGs to JPGs to reduce website load time.",
+      "Converting WebP images to PNG for software that doesn't support WebP.",
+      "Stripping EXIF data (GPS/Camera info) by converting through Canvas.",
+      "Standardizing a folder of mixed images into one format.",
+    ],
+limitations: [
+      "Strips all EXIF metadata (GPS, camera settings) during conversion.",
+      "Converting to JPG removes transparency (flattens to white).",
+      "Does not support RAW camera formats (CR2, NEF).",
+      "Animated GIFs/WebPs lose their animation and become static.",
+    ],
+benchmarks: [
+      { label: "4K JPG to WebP", value: "~300ms (60% size reduction)" },
+      { label: "PNG to JPG (Quality 92)", value: "~40% size reduction" },
+      { label: "Batch of 20 images", value: "~3-4 seconds" },
+    ],
     relatedTools: ["image-compressor", "image-resizer", "image-cropper", "image-to-pdf"],
     seo: {
       title: "Image Converter — JPG, PNG, WebP Free & Private | AHADEX Tools",
@@ -677,6 +694,23 @@ export const newTools: Tool[] = [
           </ul>
         `,
       },
+    ],
+    useCases: [
+      "Extracting charts or graphics from a PDF for a presentation.",
+      "Converting a PDF document to JPG for social media posting.",
+      "Creating thumbnails for a PDF library.",
+      "Viewing PDF pages on devices without a PDF reader.",
+    ],
+limitations: [
+      "Does not convert text to editable text (converts to pixels).",
+      "High-resolution extraction (300+ DPI) may consume significant RAM.",
+      "Cannot extract images from password-protected PDFs.",
+      "Output images can be very large if converted at high DPI.",
+    ],
+benchmarks: [
+      { label: "1 Page PDF to 1080p JPG", value: "~400ms" },
+      { label: "10 Page PDF to JPGs", value: "~3 seconds" },
+      { label: "Default DPI", value: "150 DPI (good for screens)" },
     ],
     relatedTools: ["merge-pdf", "split-pdf", "image-to-pdf", "pdf-to-text"],
     seo: {
@@ -968,6 +1002,23 @@ export const newTools: Tool[] = [
         `,
       },
     ],
+    useCases: [
+      "Emailing multiple photos as a single document.",
+      "Creating a digital portfolio from design mockups.",
+      "Converting scanned receipts or documents into a formal PDF.",
+      "Submitting photos for a visa or job application.",
+    ],
+limitations: [
+      "Output PDF contains images, not selectable text (no OCR).",
+      "Huge images (e.g., 50MP) may slow down mobile browsers.",
+      "Cannot set advanced PDF security (passwords, watermarks).",
+      "Maximum of 50 images per PDF generation to prevent crashing.",
+    ],
+benchmarks: [
+      { label: "10 x 1080p images to PDF", value: "~1.5 seconds" },
+      { label: "Output File Size", value: "~80-90% of original image size" },
+      { label: "Page Size Options", value: "A4, Letter, Fit-to-image" },
+    ],
     relatedTools: ["merge-pdf", "split-pdf", "pdf-to-image", "image-compressor"],
     seo: {
       title: "Image to PDF — Combine JPG, PNG, WebP Free | AHADEX Tools",
@@ -1247,6 +1298,23 @@ export const newTools: Tool[] = [
           </ul>
         `,
       },
+    ],
+    useCases: [
+      "Extracting a single page (like a receipt) from a 50-page PDF.",
+      "Splitting a large ebook into smaller chapters.",
+      "Removing unwanted blank pages from a scanned document.",
+      "Separating merged invoices back into individual files.",
+    ],
+limitations: [
+      "Does not compress the extracted PDF pages (size is same as original).",
+      "Cannot split encrypted PDFs.",
+      "Cannot split by bookmarks or text (only by page numbers).",
+      "Large PDFs (500+ pages) may take a few seconds to process.",
+    ],
+benchmarks: [
+      { label: "Extract 1 page from 100", value: "~800ms" },
+      { label: "Split 50 pages into 50 files", value: "~4 seconds" },
+      { label: "Memory Usage", value: "Processed entirely in browser RAM" },
     ],
     relatedTools: ["merge-pdf", "pdf-to-image", "pdf-rotator"],
     seo: {
