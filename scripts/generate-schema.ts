@@ -263,23 +263,37 @@ schemas["/"] = {
 // /tools: CollectionPage + ItemList
 schemas["/tools"] = {
   "@context": "https://schema.org",
-  "@type": "CollectionPage",
-  "@id": `${SITE_URL}/tools#collection`,
-  name: "All Tools — Free Online Utilities",
-  url: `${SITE_URL}/tools`,
-  description: `Browse all ${tools.length} free browser-based tools for images, PDFs, text, and QR codes.`,
-  inLanguage: "en",
-  isPartOf: { "@id": `${SITE_URL}/#website` },
-  mainEntity: {
-    "@type": "ItemList",
-    numberOfItems: tools.length,
-    itemListElement: tools.map((t, i) => ({
-      "@type": "ListItem",
-      position: i + 1,
-      url: `${SITE_URL}${t.path}`,
-      name: t.name,
-    })),
-  },
+  "@graph": [
+    {
+      "@type": "CollectionPage",
+      "@id": `${SITE_URL}/tools#collection`,
+      name: "All Tools — Free Online Utilities",
+      url: `${SITE_URL}/tools`,
+      description: `Browse all ${tools.length} free browser-based tools for images, PDFs, text, and QR codes.`,
+      inLanguage: "en",
+      isPartOf: { "@id": `${SITE_URL}/#website` },
+      mainEntity: {
+        "@type": "ItemList",
+        numberOfItems: tools.length,
+        itemListElement: tools.map((t, i) => ({
+          "@type": "ListItem",
+          position: i + 1,
+          url: `${SITE_URL}${t.path}`,
+          name: t.name,
+        })),
+      },
+    },
+    {
+      "@type": "FAQPage",
+      "@id": `${SITE_URL}/tools#faq`,
+      mainEntity: [
+        { "@type": "Question", name: "Are all these tools free to use?", acceptedAnswer: { "@type": "Answer", text: "Yes, every single tool on AHADEX is 100% free. There are no hidden fees, no premium tiers, and no watermarks." } },
+        { "@type": "Question", name: "Do I need to create an account?", acceptedAnswer: { "@type": "Answer", text: "No. You can use any tool instantly without creating an account, providing an email, or signing up." } },
+        { "@type": "Question", name: "Is my data safe when I upload a file?", acceptedAnswer: { "@type": "Answer", text: "Absolutely. We do not upload your files to a server. All processing happens entirely inside your web browser." } },
+        { "@type": "Question", name: "Can I use these tools on my mobile phone?", acceptedAnswer: { "@type": "Answer", text: "Yes. The entire site is fully responsive and designed to work flawlessly on iOS (Safari) and Android (Chrome) devices." } }
+      ]
+    }
+  ]
 };
 
 // /blog: CollectionPage + ItemList

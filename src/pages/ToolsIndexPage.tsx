@@ -108,9 +108,77 @@ export default function ToolsIndexPage() {
         </motion.section>
       </div>
 
+
+      {/* Category Breakdown */}
+      <div className="mx-auto max-w-[1400px] px-4 sm:px-6 lg:px-8 py-12 sm:py-16 border-t border-silk-rose/10">
+        <motion.section 
+          initial={{ opacity: 0, y: 12 }} 
+          whileInView={{ opacity: 1, y: 0 }} 
+          viewport={{ once: true }} 
+          transition={{ duration: 0.5 }} 
+          className="max-w-3xl"
+        >
+          <h2 className="font-serif font-black text-2xl sm:text-3xl text-light-text dark:text-dark-text mb-6">
+            {bn ? "ক্যাটাগরি অনুযায়ী ব্রাউজ করুন" : "Browse by category"}
+          </h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 text-[14px] sm:text-[15px] text-light-textSecondary dark:text-dark-textSecondary leading-relaxed">
+            <div>
+              <h3 className="font-bold text-light-text dark:text-dark-text mb-2">🖼️ Image Tools</h3>
+              <p>Compress, resize, crop, and convert images (JPG, PNG, WebP) without losing quality. All image processing happens locally in your browser.</p>
+            </div>
+            <div>
+              <h3 className="font-bold text-light-text dark:text-dark-text mb-2">📄 PDF Tools</h3>
+              <p>Merge, split, rotate, and convert PDFs to text or images. Our PDF tools are 100% free, privacy-first, and require no signup.</p>
+            </div>
+            <div>
+              <h3 className="font-bold text-light-text dark:text-dark-text mb-2">💻 Developer Tools</h3>
+              <p>Format JSON, encode Base64, generate UUIDs, and URLs. Essential utilities for developers that run entirely client-side.</p>
+            </div>
+            <div>
+              <h3 className="font-bold text-light-text dark:text-dark-text mb-2">✍️ Text & Design</h3>
+              <p>Count words, convert text case, generate QR codes, and design visiting cards. Fast, lightweight, and private.</p>
+            </div>
+          </div>
+        </motion.section>
+      </div>
+
+      {/* Tools Page FAQ */}
+      <div className="mx-auto max-w-[1400px] px-4 sm:px-6 lg:px-8 py-12 sm:py-16 border-t border-silk-rose/10">
+        <motion.section 
+          initial={{ opacity: 0, y: 12 }} 
+          whileInView={{ opacity: 1, y: 0 }} 
+          viewport={{ once: true }} 
+          transition={{ duration: 0.5 }} 
+          className="max-w-3xl"
+        >
+          <h2 className="font-serif font-black text-2xl sm:text-3xl text-light-text dark:text-dark-text mb-6">
+            {bn ? "সাধারণ জিজ্ঞাসা" : "Frequently Asked Questions"}
+          </h2>
+          <div className="space-y-6">
+            <div>
+              <h3 className="font-bold text-[16px] text-light-text dark:text-dark-text mb-2">Are all these tools free to use?</h3>
+              <p className="text-[14px] sm:text-[15px] text-light-textSecondary dark:text-dark-textSecondary leading-relaxed">Yes, every single tool on AHADEX is 100% free. There are no hidden fees, no premium tiers, and no watermarks on your output files.</p>
+            </div>
+            <div>
+              <h3 className="font-bold text-[16px] text-light-text dark:text-dark-text mb-2">Do I need to create an account?</h3>
+              <p className="text-[14px] sm:text-[15px] text-lightTextSecondary dark:text-dark-textSecondary leading-relaxed">No. You can use any tool instantly without creating an account, providing an email, or signing up. Just open the tool and start working.</p>
+            </div>
+            <div>
+              <h3 className="font-bold text-[16px] text-light-text dark:text-dark-text mb-2">Is my data safe when I upload a file?</h3>
+              <p className="text-[14px] sm:text-[15px] text-light-textSecondary dark:text-dark-textSecondary leading-relaxed">Absolutely. Unlike other websites, we do not upload your files to a server. All processing happens entirely inside your web browser using modern web APIs.</p>
+            </div>
+            <div>
+              <h3 className="font-bold text-[16px] text-light-text dark:text-dark-text mb-2">Can I use these tools on my mobile phone?</h3>
+              <p className="text-[14px] sm:text-[15px] text-light-textSecondary dark:text-dark-textSecondary leading-relaxed">Yes. The entire site is fully responsive and designed to work flawlessly on iOS (Safari) and Android (Chrome) devices.</p>
+            </div>
+          </div>
+        </motion.section>
+      </div>
+
       <div className="mx-auto max-w-[1400px] px-4 sm:px-6 lg:px-8">
         <HowItWorks />
       </div>
+
     </>
   );
 }
