@@ -2572,6 +2572,134 @@ export const SSR_SCHEMA: Record<string, object> = {
         "inLanguage": "en"
       },
       {
+        "@type": "ItemList",
+        "@id": "https://ahadex.fun/#toollist",
+        "name": "AHADEX Tools — Free Online Utilities",
+        "numberOfItems": 27,
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "url": "https://ahadex.fun/tools/photo-qr",
+            "name": "Photo QR Code"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "url": "https://ahadex.fun/tools/visiting-card",
+            "name": "Visiting Card Maker"
+          },
+          {
+            "@type": "ListItem",
+            "position": 3,
+            "url": "https://ahadex.fun/tools/cv-builder",
+            "name": "CV Builder"
+          },
+          {
+            "@type": "ListItem",
+            "position": 4,
+            "url": "https://ahadex.fun/tools/image-compressor",
+            "name": "Image Compressor"
+          },
+          {
+            "@type": "ListItem",
+            "position": 5,
+            "url": "https://ahadex.fun/tools/image-resizer",
+            "name": "Image Resizer"
+          },
+          {
+            "@type": "ListItem",
+            "position": 6,
+            "url": "https://ahadex.fun/tools/image-cropper",
+            "name": "Image Cropper"
+          },
+          {
+            "@type": "ListItem",
+            "position": 7,
+            "url": "https://ahadex.fun/tools/merge-pdf",
+            "name": "Merge PDF"
+          },
+          {
+            "@type": "ListItem",
+            "position": 8,
+            "url": "https://ahadex.fun/tools/word-counter",
+            "name": "Word Counter"
+          },
+          {
+            "@type": "ListItem",
+            "position": 9,
+            "url": "https://ahadex.fun/tools/image-metadata-viewer",
+            "name": "Image Metadata Viewer"
+          },
+          {
+            "@type": "ListItem",
+            "position": 10,
+            "url": "https://ahadex.fun/tools/pdf-to-text",
+            "name": "PDF to Text"
+          },
+          {
+            "@type": "ListItem",
+            "position": 11,
+            "url": "https://ahadex.fun/tools/pdf-rotator",
+            "name": "PDF Rotator"
+          },
+          {
+            "@type": "ListItem",
+            "position": 12,
+            "url": "https://ahadex.fun/tools/svg-to-png",
+            "name": "SVG to PNG"
+          },
+          {
+            "@type": "ListItem",
+            "position": 13,
+            "url": "https://ahadex.fun/tools/json-formatter",
+            "name": "JSON Formatter"
+          },
+          {
+            "@type": "ListItem",
+            "position": 14,
+            "url": "https://ahadex.fun/tools/url-encoder",
+            "name": "URL Encoder / Decoder"
+          },
+          {
+            "@type": "ListItem",
+            "position": 15,
+            "url": "https://ahadex.fun/tools/uuid-generator",
+            "name": "UUID Generator"
+          },
+          {
+            "@type": "ListItem",
+            "position": 16,
+            "url": "https://ahadex.fun/tools/text-case-converter",
+            "name": "Text Case Converter"
+          },
+          {
+            "@type": "ListItem",
+            "position": 17,
+            "url": "https://ahadex.fun/tools/image-to-sketch",
+            "name": "Image to Sketch"
+          },
+          {
+            "@type": "ListItem",
+            "position": 18,
+            "url": "https://ahadex.fun/tools/image-to-cartoon",
+            "name": "Image to Cartoon"
+          },
+          {
+            "@type": "ListItem",
+            "position": 19,
+            "url": "https://ahadex.fun/tools/base64-encoder",
+            "name": "Base64 Encoder / Decoder"
+          },
+          {
+            "@type": "ListItem",
+            "position": 20,
+            "url": "https://ahadex.fun/tools/password-generator",
+            "name": "Password Generator"
+          }
+        ]
+      },
+      {
         "@type": "Organization",
         "@id": "https://ahadex.fun/#organization",
         "name": "AHADEX Tools",

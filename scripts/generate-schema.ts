@@ -233,6 +233,19 @@ schemas["/"] = {
       inLanguage: "en",
     },
     {
+      "@type": "ItemList",
+      "@id": `${SITE_URL}/#toollist`,
+      name: "AHADEX Tools — Free Online Utilities",
+      numberOfItems: tools.length,
+      itemListElement: tools.slice(0, 20).map((tool, i) => ({
+        "@type": "ListItem",
+        position: i + 1,
+        url: `${SITE_URL}${tool.path}`,
+        name: tool.name,
+      })),
+    },
+
+    {
       "@type": "Organization",
       "@id": `${SITE_URL}/#organization`,
       name: SITE_NAME,

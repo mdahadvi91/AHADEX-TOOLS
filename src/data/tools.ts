@@ -389,6 +389,25 @@ const legacyTools: Tool[] = [
       { question: "Is there a file size limit?", answer: "Each file can be up to 50 MB. No limit on the number of files." },
       { question: "What output format is used?", answer: "JPG stays JPG, WebP stays WebP. PNG is re-encoded as WebP (which supports transparency and compresses better)." },
     ],
+    useCases: [
+      "Optimizing images for faster website loading (Core Web Vitals).",
+      "Sending high-resolution photos via email without hitting attachment limits.",
+      "Saving storage space on mobile devices and cloud backups.",
+      "Preparing images for social media uploads (Instagram, Facebook) where file sizes are capped."
+    ],
+    limitations: [
+      "Cannot recover original quality if compressed too much.",
+      "Maximum file size per image is limited by browser memory (typically around 50MB).",
+      "Does not support RAW formats (CR2, NEF, ARW) — only standard web formats.",
+      "Transparency is preserved in PNG/WebP, but JPG output will flatten it to a white background."
+    ],
+    benchmarks: [
+      { label: "4K Photo (Original JPG)", value: "4.8 MB" },
+      { label: "4K Photo (Quality 90)", value: "2.1 MB (56% saved)" },
+      { label: "4K Photo (Quality 75)", value: "1.2 MB (75% saved)" },
+      { label: "1080p Screenshot (Original PNG)", value: "850 KB" },
+      { label: "1080p Screenshot (WebP Quality 80)", value: "180 KB (78% saved)" }
+    ],
     relatedTools: ["image-resizer", "image-cropper", "image-converter"],
     seo: { title: "Image Compressor — Free, Fast & Private | AHADEX Tools", description: "Compress JPG, PNG, and WebP images in your browser. Adjustable quality slider, batch processing, max-width control, no uploads — 100% free.", ogImage: "/images/og/tools/image-compressor-og.png" },
   },

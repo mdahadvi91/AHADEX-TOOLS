@@ -76,6 +76,9 @@ export interface Tool {
   faq: ToolFAQ[];
   /** Optional deep-dive sections rendered after the FAQ in SSR and on the page. */
   deepDive?: ToolDeepDive[];
+  useCases?: string[];
+  limitations?: string[];
+  benchmarks?: { label: string; value: string }[];
   relatedTools: string[];
   seo: ToolSEO;
 }

@@ -130,7 +130,24 @@ function buildToolPage(tool: typeof tools[0]): string {
     )
     .join("\n    ");
 
-  return `<article>
+  
+  const useCasesBlock = (tool.useCases && tool.useCases.length > 0)
+    ? `<h2>Real-world use cases</h2><ul>${tool.useCases.map(u => `<li>${esc(u)}</li>`).join('')}</ul>`
+    : "";
+
+  const limitationsBlock = (tool.limitations && tool.limitations.length > 0)
+    ? `<h2>Limitations</h2><ul>${tool.limitations.map(l => `<li>${esc(l)}</li>`).join('')}</ul>`
+    : "";
+
+  const benchmarksBlock = (tool.benchmarks && tool.benchmarks.length > 0)
+    ? `<h2>Performance Benchmarks</h2>
+       <table class="benchmarks-table">
+         <thead><tr><th>Test Case</th><th>Result</th></tr></thead>
+         <tbody>${tool.benchmarks.map(b => `<tr><td>${esc(b.label)}</td><td>${esc(b.value)}</td></tr>`).join('')}</tbody>
+       </table>`
+    : "";
+
+return `<article>
     <h1>${esc(tool.name)}</h1>
     <p><strong>${esc(tool.description)}</strong></p>
     <p>${esc(tool.longDescription || tool.description)}</p>
@@ -142,6 +159,9 @@ function buildToolPage(tool: typeof tools[0]): string {
     <ol>${howTo}</ol>
     <h2>Frequently asked questions</h2>
     ${faq}
+    ${benchmarksBlock}
+    ${useCasesBlock}
+    ${limitationsBlock}
     ${deepDiveBlock}
     ${relatedBlock}
     ${buildFieldNoteSection(tool)}
