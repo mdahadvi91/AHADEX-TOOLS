@@ -68,6 +68,7 @@ for (const tool of tools) {
   // ── BreadcrumbList ──
   graph.push({
     "@type": "BreadcrumbList",
+      name: "Breadcrumb",
     "@id": `${canonical}#breadcrumb`,
     itemListElement: [
       {

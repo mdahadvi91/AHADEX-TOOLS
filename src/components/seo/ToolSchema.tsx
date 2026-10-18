@@ -66,6 +66,7 @@ export function ToolSchema({ toolId }: ToolSchemaProps) {
       // BreadcrumbList
       {
         "@type": "BreadcrumbList",
+        name: "Breadcrumb",
         "@id": `${canonical}#breadcrumb`,
         itemListElement: [
           {
