@@ -47,7 +47,6 @@ function getSlotId(name: SlotName): string {
    the ad render whenever consent changes. */
 
 export function AdSenseSlot({
-  return null; // Temporarily disabled until AdSense approval
   slot,
   slotId,
   format = "auto",
