@@ -3,6 +3,8 @@ import type { NavItem, NavSection } from "@/types/common";
 export const primaryNav: NavItem[] = [
   { label: "Home", to: "/" },
   { label: "All Tools", to: "/tools" },
+  { label: "Blog", to: "/blog" },
+  { label: "Guides", to: "/guides" },
   { label: "About", to: "/about" },
   { label: "Contact", to: "/contact" },
 ];
