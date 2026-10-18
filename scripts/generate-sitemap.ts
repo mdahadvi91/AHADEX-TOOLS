@@ -105,7 +105,7 @@ const toolRoutes: SitemapEntry[] = tools.map((t) => {
 
 /* ── Blog routes (each ships its unique OG image) ── */
 const blogRoutes: SitemapEntry[] = blogPosts.map((p) => {
-  const og = `/images/og/blog/${p.slug}-og.png`;
+  const og = `/images/og/blog/${p.slug}-og.jpg`;
   return {
     loc: `/blog/${p.slug}`,
     changefreq: "monthly" as const,

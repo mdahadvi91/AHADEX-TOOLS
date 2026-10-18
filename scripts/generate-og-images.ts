@@ -11,6 +11,7 @@
  * ============================================================ */
 
 import { Resvg } from "@resvg/resvg-js";
+import sharp from "sharp";
 import { readFileSync } from "node:fs";
 import { existsSync, mkdirSync, writeFileSync } from "node:fs";
 import { resolve } from "node:path";
@@ -304,7 +305,7 @@ function buildBlogSvg(post: typeof blogPosts[0]): string {
 }
 
 /* ── Main ── */
-function main(): void {
+async function main(): Promise<void> {
   if (!existsSync(OUT_DIR)) mkdirSync(OUT_DIR, { recursive: true });
 
   const allTools = tools as unknown as Tool[];
@@ -321,9 +322,11 @@ function main(): void {
       const renderer = new Resvg(svg, {
         fitTo: { mode: "width", value: W },
       });
-      writeFileSync(pngPath, renderer.render().asPng());
+      const pngBuffer = renderer.render().asPng();
+      const jpgPath = pngPath.replace(/\.png$/, ".jpg");
+      await sharp(pngBuffer).jpeg({ quality: 85 }).toFile(jpgPath);
       okCount += 1;
-      console.log(`✅ ${tool.id}-og.png`);
+      console.log(`✅ ${tool.id}-og.jpg`);
     } catch (e) {
       failCount += 1;
       console.error(`❌ ${tool.id}:`, e instanceof Error ? e.message : e);
@@ -350,7 +353,9 @@ function main(): void {
       const renderer = new Resvg(svg, {
         fitTo: { mode: "width", value: W },
       });
-      writeFileSync(pngPath, renderer.render().asPng());
+      const pngBuffer = renderer.render().asPng();
+      const jpgPath = pngPath.replace(/\.png$/, ".jpg");
+      await sharp(pngBuffer).jpeg({ quality: 85 }).toFile(jpgPath);
       blogOk += 1;
     } catch (e) {
       blogFail += 1;
@@ -363,10 +368,10 @@ function main(): void {
   console.log(`📁 Blog output: ${BLOG_OUT_DIR}`);
 }
 
-main();
+main().catch(console.error);
 
 /* ── Home & default OG ── */
-function generateRootOg(): void {
+async function generateRootOg(): Promise<void> {
   const root = resolve(process.cwd(), "public/images/og");
   const files = ["home-og", "default-og"];
   for (const f of files) {
@@ -381,8 +386,10 @@ function generateRootOg(): void {
       const renderer = new Resvg(rootSvg, {
         fitTo: { mode: "width", value: W },
       });
-      writeFileSync(png, renderer.render().asPng());
-      console.log(`✅ ${f}.png`);
+      const pngBuffer = renderer.render().asPng();
+      const jpg = png.replace(/\.png$/, ".jpg");
+      await sharp(pngBuffer).jpeg({ quality: 85 }).toFile(jpg);
+      console.log(`✅ ${f}.jpg`);
     } catch {
       console.log(`❌ Failed: ${f}.png`);
     }
@@ -391,5 +398,5 @@ function generateRootOg(): void {
 
 // Run at end of script (after tools loop)
 if (typeof require !== "undefined" && require.main === module) {
-  generateRootOg();
+  generateRootOg().catch(console.error);
 }

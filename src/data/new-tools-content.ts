@@ -346,7 +346,7 @@ benchmarks: [
       title: "Image Converter — JPG, PNG, WebP Free & Private | AHADEX Tools",
       description:
         "Convert between JPG, PNG, and WebP in your browser. Lossless PNG output, quality-92 JPEG output, batch conversion, no uploads — free and private.",
-      ogImage: "/images/og/tools/image-converter-og.png",
+      ogImage: "/images/og/tools/image-converter-og.jpg",
     },
   },
   {
@@ -583,7 +583,7 @@ benchmarks: [
       title: "PDF to Image — Convert PDF to PNG/JPG Free | AHADEX Tools",
       description:
         "Convert PDF pages to high-quality PNG or JPG images in your browser. Up to 300 DPI, page ranges, no uploads.",
-      ogImage: "/images/og/tools/pdf-to-image-og.png",
+      ogImage: "/images/og/tools/pdf-to-image-og.jpg",
     },
   },
   {
@@ -823,7 +823,7 @@ benchmarks: [
       title: "Image to PDF — Combine JPG, PNG, WebP Free | AHADEX Tools",
       description:
         "Combine JPG, PNG, and WebP images into one PDF in your browser. Multi-page, reorderable, A4/Letter, no uploads.",
-      ogImage: "/images/og/tools/image-to-pdf-og.png",
+      ogImage: "/images/og/tools/image-to-pdf-og.jpg",
     },
   },
   {
@@ -1053,7 +1053,7 @@ benchmarks: [
       title: "Split PDF — Extract Pages, Custom Order Free | AHADEX Tools",
       description:
         "Extract pages from any PDF in custom order, with duplicates, or split every page into separate files. Runs in your browser.",
-      ogImage: "/images/og/tools/split-pdf-og.png",
+      ogImage: "/images/og/tools/split-pdf-og.jpg",
     },
   },
 ];

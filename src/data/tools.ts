@@ -108,7 +108,7 @@ benchmarks: [
       title: "Photo QR Code — Add QR to Photos Free | AHADEX Tools",
       description:
         "Add a real, scannable QR code to any photo. WhatsApp, Facebook, Instagram, WiFi, and more. Free, private, no uploads.",
-      ogImage: "/images/og/tools/photo-qr-og.png",
+      ogImage: "/images/og/tools/photo-qr-og.jpg",
     },
   },
   {
@@ -221,7 +221,7 @@ benchmarks: [
         "Visiting Card Maker — Free Business Card Designer | AHADEX Tools",
       description:
         "Design print-ready visiting cards with live preview. 20 premium templates. Free, private, PNG/JPG export.",
-      ogImage: "/images/og/tools/visiting-card-og.png",
+      ogImage: "/images/og/tools/visiting-card-og.jpg",
     },
   },
   {
@@ -344,7 +344,7 @@ benchmarks: [
         "Free CV Builder — Create & Download Professional Resumes | AHADEX Tools",
       description:
         "Build a professional CV in minutes. Real A4 templates, selectable-text PDF export, auto-save, full privacy.",
-      ogImage: "/images/og/tools/cv-builder-og.png",
+      ogImage: "/images/og/tools/cv-builder-og.jpg",
     },
   },
   {
@@ -468,7 +468,7 @@ benchmarks: [
       externalService: false,
     },
     relatedTools: ["image-resizer", "image-cropper", "image-converter"],
-    seo: { title: "Image Compressor — Free, Fast & Private | AHADEX Tools", description: "Compress JPG, PNG, and WebP images in your browser. Adjustable quality slider, batch processing, max-width control, no uploads — 100% free.", ogImage: "/images/og/tools/image-compressor-og.png" },
+    seo: { title: "Image Compressor — Free, Fast & Private | AHADEX Tools", description: "Compress JPG, PNG, and WebP images in your browser. Adjustable quality slider, batch processing, max-width control, no uploads — 100% free.", ogImage: "/images/og/tools/image-compressor-og.jpg" },
   },
   {
     id: "image-resizer",
@@ -549,7 +549,7 @@ benchmarks: [
       externalService: false,
     },
     relatedTools: ["image-compressor", "image-cropper", "image-converter"],
-    seo: { title: "Image Resizer — Free, Fast & Private | AHADEX Tools", description: "Resize JPG, PNG, and WebP images to any dimension in your browser. Lock aspect ratio, exact width/height, batch support, no uploads — free.", ogImage: "/images/og/tools/image-resizer-og.png" },
+    seo: { title: "Image Resizer — Free, Fast & Private | AHADEX Tools", description: "Resize JPG, PNG, and WebP images to any dimension in your browser. Lock aspect ratio, exact width/height, batch support, no uploads — free.", ogImage: "/images/og/tools/image-resizer-og.jpg" },
   },
   {
     id: "image-cropper",
@@ -627,7 +627,7 @@ benchmarks: [
       externalService: false,
     },
     relatedTools: ["image-compressor", "image-resizer", "image-converter"],
-    seo: { title: "Image Cropper — Free, Fast & Private | AHADEX Tools", description: "Crop JPG, PNG, and WebP images in your browser. 8 aspect presets, live preview, pixel-precise fields, no uploads — fast, free, private.", ogImage: "/images/og/tools/image-cropper-og.png" },
+    seo: { title: "Image Cropper — Free, Fast & Private | AHADEX Tools", description: "Crop JPG, PNG, and WebP images in your browser. 8 aspect presets, live preview, pixel-precise fields, no uploads — fast, free, private.", ogImage: "/images/og/tools/image-cropper-og.jpg" },
   },
   {
     id: "merge-pdf",
@@ -716,7 +716,7 @@ benchmarks: [
       externalService: false,
     },
     relatedTools: ["photo-qr", "visiting-card", "cv-builder", "image-converter"],
-    seo: { title: "Merge PDF — Combine PDFs Free, Fast & Private | AHADEX Tools", description: "Combine multiple PDF files into one document in your browser. Reorder pages, verify page count, no uploads, no servers — private and free.", ogImage: "/images/og/tools/merge-pdf-og.png" },
+    seo: { title: "Merge PDF — Combine PDFs Free, Fast & Private | AHADEX Tools", description: "Combine multiple PDF files into one document in your browser. Reorder pages, verify page count, no uploads, no servers — private and free.", ogImage: "/images/og/tools/merge-pdf-og.jpg" },
   },
   {
     id: "word-counter",
@@ -799,7 +799,7 @@ benchmarks: [
       externalService: false,
     },
     relatedTools: ["character-counter", "photo-qr", "visiting-card", "cv-builder"],
-    seo: { title: "Word Counter — Live Word, Character & Reading Time | AHADEX Tools", description: "Count words, characters, sentences, and paragraphs in real time. Reading time, speaking time, keyword density — all in your browser.", ogImage: "/images/og/tools/word-counter-og.png" },
+    seo: { title: "Word Counter — Live Word, Character & Reading Time | AHADEX Tools", description: "Count words, characters, sentences, and paragraphs in real time. Reading time, speaking time, keyword density — all in your browser.", ogImage: "/images/og/tools/word-counter-og.jpg" },
   },
   {
     id: "image-metadata-viewer",
@@ -892,7 +892,7 @@ benchmarks: [
     seo: {
       title: "Image Metadata Viewer — EXIF, GPS & Camera Data Free | AHADEX Tools",
       description: "View EXIF, GPS, camera, and file metadata hidden inside your photos — in your browser.",
-      ogImage: "/images/og/tools/image-metadata-viewer-og.png",
+      ogImage: "/images/og/tools/image-metadata-viewer-og.jpg",
     },
   },
   {
@@ -979,7 +979,7 @@ benchmarks: [
     seo: {
       title: "PDF to Text — Extract Plain Text from PDF Free | AHADEX Tools",
       description: "Extract plain text from any PDF in your browser. Page ranges, line-break options, copy or .txt download.",
-      ogImage: "/images/og/tools/pdf-to-text-og.png",
+      ogImage: "/images/og/tools/pdf-to-text-og.jpg",
     },
   },
   {
@@ -1061,7 +1061,7 @@ benchmarks: [
     seo: {
       title: "PDF Rotator — Rotate PDF Pages Free & Private | AHADEX Tools",
       description: "Rotate pages in any PDF 90°/180° in your browser. All pages or specific ranges, lossless.",
-      ogImage: "/images/og/tools/pdf-rotator-og.png",
+      ogImage: "/images/og/tools/pdf-rotator-og.jpg",
     },
   },
   {
@@ -1139,7 +1139,7 @@ benchmarks: [
     seo: {
       title: "SVG to PNG — Convert SVG to PNG Up to 8× Free | AHADEX Tools",
       description: "Convert SVG vector files to high-resolution PNG in your browser. Up to 8× scale, transparent background.",
-      ogImage: "/images/og/tools/svg-to-png-og.png",
+      ogImage: "/images/og/tools/svg-to-png-og.jpg",
     },
   },
   {
@@ -1223,7 +1223,7 @@ benchmarks: [
     seo: {
       title: "JSON Formatter — Validate, Format & Minify Free | AHADEX Tools",
       description: "Format, validate, and minify JSON in your browser. Live errors with line/column.",
-      ogImage: "/images/og/tools/json-formatter-og.png",
+      ogImage: "/images/og/tools/json-formatter-og.jpg",
     },
   },
   {
@@ -1311,7 +1311,7 @@ benchmarks: [
     seo: {
       title: "URL Encoder / Decoder — Free & Private | AHADEX Tools",
       description: "Encode or decode URLs in your browser. Unicode, emoji, two scopes.",
-      ogImage: "/images/og/tools/url-encoder-og.png",
+      ogImage: "/images/og/tools/url-encoder-og.jpg",
     },
   },
   {
@@ -1401,7 +1401,7 @@ benchmarks: [
     seo: {
       title: "UUID Generator — v4 & v7 Crypto-Random Free | AHADEX Tools",
       description: "Generate UUID v4 and v7 identifiers in your browser. Batch up to 1000, uppercase, hyphens on/off.",
-      ogImage: "/images/og/tools/uuid-generator-og.png",
+      ogImage: "/images/og/tools/uuid-generator-og.jpg",
     },
   },
   {
@@ -1483,7 +1483,7 @@ benchmarks: [
     seo: {
       title: "Text Case Converter — 12 Case Styles Free | AHADEX Tools",
       description: "Convert text between 12 case styles — UPPER, lower, Title, camelCase, snake_case, kebab-case.",
-      ogImage: "/images/og/tools/text-case-converter-og.png",
+      ogImage: "/images/og/tools/text-case-converter-og.jpg",
     },
   },
   {
@@ -1569,7 +1569,7 @@ benchmarks: [
     seo: {
       title: "Image to Sketch — Pencil Drawing Effect Free | AHADEX Tools",
       description: "Turn any photo into a hand-drawn pencil sketch in your browser. Live sliders, PNG export.",
-      ogImage: "/images/og/tools/image-to-sketch-og.png",
+      ogImage: "/images/og/tools/image-to-sketch-og.jpg",
     },
   },
   {
@@ -1653,7 +1653,7 @@ benchmarks: [
     seo: {
       title: "Image to Cartoon — Cel-Shaded Effect Free | AHADEX Tools",
       description: "Turn any photo into a cel-shaded cartoon in your browser. Live sliders, PNG export.",
-      ogImage: "/images/og/tools/image-to-cartoon-og.png",
+      ogImage: "/images/og/tools/image-to-cartoon-og.jpg",
     },
   },
   {
@@ -1735,7 +1735,7 @@ benchmarks: [
     seo: {
       title: "Base64 Encoder / Decoder — Text & Files Free | AHADEX Tools",
       description: "Encode or decode Base64 for text and files. Unicode-safe, URL-safe, image preview.",
-      ogImage: "/images/og/tools/base64-encoder-og.png",
+      ogImage: "/images/og/tools/base64-encoder-og.jpg",
     },
   },
   {
@@ -1846,7 +1846,7 @@ benchmarks: [
     seo: {
       title: "Password Generator — Strong & Crypto-Random Free | AHADEX Tools",
       description: "Generate strong, cryptographically random passwords in your browser. Length, sets, live strength.",
-      ogImage: "/images/og/tools/password-generator-og.png",
+      ogImage: "/images/og/tools/password-generator-og.jpg",
     },
   },
   {
@@ -1931,7 +1931,7 @@ benchmarks: [
     seo: {
       title: "Barcode Generator — 9 Formats, PNG & SVG Free | AHADEX Tools",
       description: "Generate 1D barcodes in 9 formats — CODE128, CODE39, EAN-13, UPC-A, and more. PNG or SVG export.",
-      ogImage: "/images/og/tools/barcode-generator-og.png",
+      ogImage: "/images/og/tools/barcode-generator-og.jpg",
     },
   },
   {
@@ -2021,7 +2021,7 @@ benchmarks: [
     seo: {
       title: "Character Counter — Twitter, Instagram, SMS Limits | AHADEX Tools",
       description: "Count characters against X (Twitter), Instagram, LinkedIn, SMS, SEO meta limits in real time.",
-      ogImage: "/images/og/tools/character-counter-og.png",
+      ogImage: "/images/og/tools/character-counter-og.jpg",
     },
   },
   {
@@ -2113,7 +2113,7 @@ benchmarks: [
     seo: {
       title: "Favicon Generator — Complete Set Free | AHADEX Tools",
       description: "Turn any image into a complete favicon set — 16 to 512px PNGs, favicon.ico, and web manifest.",
-      ogImage: "/images/og/tools/favicon-generator-og.png",
+      ogImage: "/images/og/tools/favicon-generator-og.jpg",
     },
   },
 ];
