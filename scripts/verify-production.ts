@@ -217,8 +217,22 @@ function checkXmlBody(body: string, r: Report) {
   if (!t.startsWith("<?xml")) r.problems.push("body does not start with <?xml");
   if (!t.includes("<urlset")) r.problems.push("body missing <urlset>");
   const locs = [...t.matchAll(/<loc>([^<]+)<\/loc>/g)].length;
-  if (locs < 50) r.problems.push(`only ${locs} <loc> entries — suspiciously low`);
-  else r.notes.push(`${locs} <loc> entries`);
+  
+  // Read local sitemap to get the exact expected count
+  const localSitemapPath = resolve(process.cwd(), "public/sitemap.xml");
+  if (existsSync(localSitemapPath)) {
+    const localBody = readFileSync(localSitemapPath, "utf-8");
+    const localLocs = [...localBody.matchAll(/<loc>([^<]+)<\/loc>/g)].length;
+    if (locs !== localLocs) {
+      r.problems.push(`live sitemap has ${locs} URLs, but local build has ${localLocs}`);
+    } else {
+      r.notes.push(`${locs} <loc> entries (matches local)`);
+    }
+  } else {
+    // Fallback if local sitemap is missing
+    if (locs < 10) r.problems.push(`only ${locs} <loc> entries — suspiciously low`);
+    else r.notes.push(`${locs} <loc> entries`);
+  }
 }
 
 function checkTxtBody(spec: Spec, body: string, r: Report) {

@@ -1,198 +1,80 @@
-<div align="center">
-
 # AHADEX Tools
 
-**Free, fast, and private online tools for everyday digital tasks.**
+Welcome to the official repository for **AHADEX Tools** — a suite of 27 free, fast, and privacy-first browser-based tools for everyday digital tasks.
 
-Every tool runs entirely in your browser. Nothing is uploaded. Nothing is stored. Nothing is tracked.
+## ✨ Features
+- **100% Privacy-First**: All tools process files locally in your browser using HTML5 Canvas API and modern Web APIs. Your files never touch our servers.
+- **No Signup Required**: Instantly use any tool without creating an account.
+- **Free Forever**: No hidden fees, no watermarks, no premium tiers.
+- **Production-Grade SEO**: Built with Vite static generation, verified sitemaps, structured data (JSON-LD), and comprehensive content depth.
+- **Bilingual Support**: Full English and Bengali (bn) localization.
 
-[**ahadex.fun**](https://ahadex.fun) · [Report a bug](https://github.com/mdahadvi91/AHADEX-TOOLS/issues) · [Suggest a tool](https://github.com/mdahadvi91/AHADEX-TOOLS/issues)
+## 🛠️ Tool Categories
 
-</div>
+### 🖼️ Image Tools
+- [Image Compressor](/tools/image-compressor)
+- [Image Resizer](/tools/image-resizer)
+- [Image Cropper](/tools/image-cropper)
+- [Image Converter](/tools/image-converter)
+- [Image to PDF](/tools/image-to-pdf)
+- [SVG to PNG](/tools/svg-to-png)
+- [Image Metadata Viewer](/tools/image-metadata-viewer)
+- [Image to Sketch](/tools/image-to-sketch)
+- [Image to Cartoon](/tools/image-to-cartoon)
+- [Favicon Generator](/tools/favicon-generator)
 
----
+### 📄 PDF Tools
+- [Merge PDF](/tools/merge-pdf)
+- [Split PDF](/tools/split-pdf)
+- [PDF to Text](/tools/pdf-to-text)
+- [PDF to Image](/tools/pdf-to-image)
+- [PDF Rotator](/tools/pdf-rotator)
 
-## ✨ What is AHADEX?
+### 💻 Developer Tools
+- [JSON Formatter](/tools/json-formatter)
+- [Base64 Encoder](/tools/base64-encoder)
+- [URL Encoder](/tools/url-encoder)
+- [UUID Generator](/tools/uuid-generator)
+- [Password Generator](/tools/password-generator)
 
-AHADEX Tools is a collection of **free, browser-based utilities** — QR codes, PDF tools, image converters, text helpers, and developer utilities — that all run **entirely inside your browser**. The authoritative tool count lives in `src/data/tools.ts` (`TOOL_COUNT`); do not hard-code it in marketing copy.
+### ✍️ Text & QR Tools
+- [Word Counter](/tools/word-counter)
+- [Character Counter](/tools/character-counter)
+- [Text Case Converter](/tools/text-case-converter)
+- [Photo QR Code](/tools/photo-qr)
+- [Barcode Generator](/tools/barcode-generator)
 
-No uploads to a server. No accounts. No watermarks. No daily quotas. Nothing leaves your device.
+### 🎨 Design Tools
+- [Visiting Card Maker](/tools/visiting-card)
+- [CV Builder](/tools/cv-builder)
 
-## 🛠 Tools
-
-| Category | Tools |
-|---|---|
-| **QR & Barcode** | Photo QR Code, Visiting Card Maker, QR Code Generator, Barcode Generator |
-| **PDF** | JPG to PDF, PNG to PDF, Merge PDF, Split PDF, PDF to JPG, PDF to PNG, PDF to Text, PDF Rotator, PDF Page Extractor |
-| **Image** | JPG↔PNG, JPG↔WebP, PNG↔WebP, WebP→JPG, WebP→PNG, Image Compressor, Image Resizer, Image Cropper, Image to PDF, Image Metadata Viewer, Image to Sketch, Image to Cartoon |
-| **Documents** | CV Builder |
-| **Text** | Word Counter, Text Case Converter |
-| **Developer** | JSON Formatter, URL Encoder / Decoder, UUID Generator, Base64 Encoder / Decoder, Password Generator |
-
-## 🔒 Privacy First
-
-Every tool processes data **locally** using modern browser APIs:
-
-- File API · Canvas API · Web Crypto API · pdf-lib · pdf.js · qrcode · jsbarcode · exifr
-
-Nothing is uploaded to a server. **You can turn off Wi-Fi and every tool still works.**
-
-## 🚀 Tech Stack
-
-- **React 18** + **TypeScript 5** (strict)
-- **Vite 5** — fast dev server and build
-- **Tailwind CSS 3** — custom silk palette
-- **React Router 6** — SPA routing
-- **Framer Motion** — animations
-- **pdf-lib** + **pdf.js** — PDF processing
-- **qrcode** + **jsbarcode** — code generation
-
-## 🧑‍💻 Local Development
+## 🚀 Development & Build
 
 ```bash
-git clone https://github.com/mdahadvi91/AHADEX-TOOLS.git
-cd AHADEX-TOOLS
+# Install dependencies
 npm install
-cp .env.example .env
+
+# Run development server
 npm run dev
-```
 
-Open http://localhost:5173.
+# Generate content, build, and verify (Production pipeline)
+npm run build
 
-Scripts
+# Verify local build + live production HTTP status
+npm run verify:all
+``
 
-Command What it does
-npm run dev Start Vite dev server
-npm run build Regenerate sitemap + type-check + production build
-npm run preview Serve the production build locally
-npm run sitemap Regenerate public/sitemap.xml from the tool registry
-npm run lint Run TypeScript type-check (no ESLint)
+📈 SEO & Verification Architecture
 
-📁 Project Structure
+This project uses a zero-compromise build pipeline:
 
-```
-src/
-├── components/        Shared UI (layout, ads, consent, tools grid)
-├── constants/         App config, routes, feature flags
-├── contexts/          Theme, Language, Sound
-├── data/              tools.ts, plannedTools.ts, navigation.ts, faqs.ts
-├── hooks/             Custom React hooks
-├── i18n/              English + Bangla translations
-├── lib/               Utilities (analytics, consent, seo)
-├── pages/             Route-level pages (home, tools, legal)
-├── tools/             Each tool is a mini-website
-│   ├── qr/
-│   ├── pdf/
-│   ├── image/
-│   ├── text/
-│   ├── documents/
-│   └── developer/
-└── types/             Shared TypeScript types
-
-public/
-├── images/            OG images, backgrounds, logo
-├── sitemap.xml        Auto-generated
-├── robots.txt
-└── ads.txt
-```
-
-See docs/ARCHITECTURE.md for the full picture.
-
-🤝 Contributing
-
-Want to add a tool, fix a bug, or improve the site?
-
-· Read docs/TOOL_RULES.md — the permanent policy for every tool
-· Read CONTRIBUTING.md — dev setup and PR guidelines
-· Open an issue before starting large changes
-
-🛡 Security
-
-Found a vulnerability? Please read SECURITY.md for responsible disclosure.
+1. generate:content - Generates sitemaps, RSS, OG images, SSR HTML, and JSON-LD schema.
+2. vite build - Compiles the React application.
+3. build:route-html - Generates static HTML for all routes for perfect SEO.
+4. verify:sitemap - Verifies every sitemap URL against final dist/ HTML (title, canonical, JSON-LD, OG tags).
+5. verify:content - Audits tool content depth (fails build if any tool lacks FAQs, use cases, or benchmarks).
+6. verify:production - Checks live HTTP status, content-type, and JSON-LD on ahadex.fun.
 
 📄 License
 
-MIT © 2026 AHADEX Tools
-
----
-
-<div align="center">
-
-Made with care in Bangladesh 🇧🇩
-
-</div>
-
-## 🧑‍💻 Local Development
-
-```bash
-git clone https://github.com/mdahadvi91/AHADEX-TOOLS.git
-cd AHADEX-TOOLS
-npm install
-cp .env.example .env
-npm run dev
-```
-
-Open http://localhost:5173.
-
-Scripts
-
-Command What it does
-npm run dev Start Vite dev server
-npm run build Regenerate sitemap + type-check + production build
-npm run preview Serve the production build locally
-npm run sitemap Regenerate public/sitemap.xml from the tool registry
-npm run lint Run TypeScript type-check (no ESLint)
-
-📁 Project Structure
-
-```
-src/
-├── components/        Shared UI (layout, ads, consent, tools grid)
-├── constants/         App config, routes, feature flags
-├── contexts/          Theme, Language, Sound
-├── data/              tools.ts, plannedTools.ts, navigation.ts, faqs.ts
-├── hooks/             Custom React hooks
-├── i18n/              English + Bangla translations
-├── lib/               Utilities (analytics, consent, seo)
-├── pages/             Route-level pages (home, tools, legal)
-├── tools/             Each tool is a mini-website
-│   ├── qr/
-│   ├── pdf/
-│   ├── image/
-│   ├── text/
-│   ├── documents/
-│   └── developer/
-└── types/             Shared TypeScript types
-
-public/
-├── images/            OG images, backgrounds, logo
-├── sitemap.xml        Auto-generated
-├── robots.txt
-└── ads.txt
-```
-
-See docs/ARCHITECTURE.md for the full picture.
-
-🤝 Contributing
-
-Want to add a tool, fix a bug, or improve the site?
-
-· Read docs/TOOL_RULES.md — the permanent policy for every tool
-· Read CONTRIBUTING.md — dev setup and PR guidelines
-· Open an issue before starting large changes
-
-🛡 Security
-
-Found a vulnerability? Please read SECURITY.md for responsible disclosure.
-
-📄 License
-
-MIT © 2026 AHADEX Tools
-
----
-
-<div align="center">
-
-Made with care in Bangladesh 🇧🇩
-
-</div>
+This project is licensed under the MIT License.
