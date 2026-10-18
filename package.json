@@ -32,6 +32,7 @@
     "verify:ssr": "tsx scripts/verify-ssr-idempotent.ts",
     "verify:affiliate": "tsx scripts/verify-affiliate-content.ts",
     "verify:sitemap": "tsx scripts/verify-sitemap.ts",
+    "verify:production": "tsx scripts/verify-production.ts",
     "generate:content": "npm run sitemap && npm run rss && npm run og:images && npm run tool:meta && npm run ssr:content && npm run schema",
     "verify": "npm run verify:affiliate && npm run verify:ssr && npm run verify:count",
     "build:route-html": "tsx scripts/build-route-html.ts"
