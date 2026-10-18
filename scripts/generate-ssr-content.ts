@@ -377,6 +377,12 @@ for (const author of Object.values(authors)) {
   SSR_CONTENT[`/about/author/${author.id}`] = buildAuthorPage(author, blogPosts);
 }
 
+// Guides Index Page SSR (Fixes missing <h1>)
+SSR_CONTENT["/guides"] = `<article>
+  <h1>Guides — Complete Workflows for Real Tasks</h1>
+  <p>Step-by-step workflows combining multiple tools for real-world tasks.</p>
+</article>`;
+
 /* ── Write file ── */
 const file = `/* ============================================================
  * AUTO-GENERATED — do not edit by hand

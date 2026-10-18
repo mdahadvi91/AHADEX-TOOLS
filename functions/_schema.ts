@@ -39,6 +39,7 @@ export const SSR_SCHEMA: Record<string, object> = {
       },
       {
         "@type": "BreadcrumbList",
+        "name": "Breadcrumb",
         "@id": "https://ahadex.fun/tools/photo-qr#breadcrumb",
         "itemListElement": [
           {
@@ -98,6 +99,7 @@ export const SSR_SCHEMA: Record<string, object> = {
       },
       {
         "@type": "BreadcrumbList",
+        "name": "Breadcrumb",
         "@id": "https://ahadex.fun/tools/visiting-card#breadcrumb",
         "itemListElement": [
           {
@@ -157,6 +159,7 @@ export const SSR_SCHEMA: Record<string, object> = {
       },
       {
         "@type": "BreadcrumbList",
+        "name": "Breadcrumb",
         "@id": "https://ahadex.fun/tools/cv-builder#breadcrumb",
         "itemListElement": [
           {
@@ -216,6 +219,7 @@ export const SSR_SCHEMA: Record<string, object> = {
       },
       {
         "@type": "BreadcrumbList",
+        "name": "Breadcrumb",
         "@id": "https://ahadex.fun/tools/image-compressor#breadcrumb",
         "itemListElement": [
           {
@@ -275,6 +279,7 @@ export const SSR_SCHEMA: Record<string, object> = {
       },
       {
         "@type": "BreadcrumbList",
+        "name": "Breadcrumb",
         "@id": "https://ahadex.fun/tools/image-resizer#breadcrumb",
         "itemListElement": [
           {
@@ -334,6 +339,7 @@ export const SSR_SCHEMA: Record<string, object> = {
       },
       {
         "@type": "BreadcrumbList",
+        "name": "Breadcrumb",
         "@id": "https://ahadex.fun/tools/image-cropper#breadcrumb",
         "itemListElement": [
           {
@@ -393,6 +399,7 @@ export const SSR_SCHEMA: Record<string, object> = {
       },
       {
         "@type": "BreadcrumbList",
+        "name": "Breadcrumb",
         "@id": "https://ahadex.fun/tools/merge-pdf#breadcrumb",
         "itemListElement": [
           {
@@ -452,6 +459,7 @@ export const SSR_SCHEMA: Record<string, object> = {
       },
       {
         "@type": "BreadcrumbList",
+        "name": "Breadcrumb",
         "@id": "https://ahadex.fun/tools/word-counter#breadcrumb",
         "itemListElement": [
           {
@@ -511,6 +519,7 @@ export const SSR_SCHEMA: Record<string, object> = {
       },
       {
         "@type": "BreadcrumbList",
+        "name": "Breadcrumb",
         "@id": "https://ahadex.fun/tools/image-metadata-viewer#breadcrumb",
         "itemListElement": [
           {
@@ -570,6 +579,7 @@ export const SSR_SCHEMA: Record<string, object> = {
       },
       {
         "@type": "BreadcrumbList",
+        "name": "Breadcrumb",
         "@id": "https://ahadex.fun/tools/pdf-to-text#breadcrumb",
         "itemListElement": [
           {
@@ -629,6 +639,7 @@ export const SSR_SCHEMA: Record<string, object> = {
       },
       {
         "@type": "BreadcrumbList",
+        "name": "Breadcrumb",
         "@id": "https://ahadex.fun/tools/pdf-rotator#breadcrumb",
         "itemListElement": [
           {
@@ -688,6 +699,7 @@ export const SSR_SCHEMA: Record<string, object> = {
       },
       {
         "@type": "BreadcrumbList",
+        "name": "Breadcrumb",
         "@id": "https://ahadex.fun/tools/svg-to-png#breadcrumb",
         "itemListElement": [
           {
@@ -747,6 +759,7 @@ export const SSR_SCHEMA: Record<string, object> = {
       },
       {
         "@type": "BreadcrumbList",
+        "name": "Breadcrumb",
         "@id": "https://ahadex.fun/tools/json-formatter#breadcrumb",
         "itemListElement": [
           {
@@ -806,6 +819,7 @@ export const SSR_SCHEMA: Record<string, object> = {
       },
       {
         "@type": "BreadcrumbList",
+        "name": "Breadcrumb",
         "@id": "https://ahadex.fun/tools/url-encoder#breadcrumb",
         "itemListElement": [
           {
@@ -865,6 +879,7 @@ export const SSR_SCHEMA: Record<string, object> = {
       },
       {
         "@type": "BreadcrumbList",
+        "name": "Breadcrumb",
         "@id": "https://ahadex.fun/tools/uuid-generator#breadcrumb",
         "itemListElement": [
           {
@@ -924,6 +939,7 @@ export const SSR_SCHEMA: Record<string, object> = {
       },
       {
         "@type": "BreadcrumbList",
+        "name": "Breadcrumb",
         "@id": "https://ahadex.fun/tools/text-case-converter#breadcrumb",
         "itemListElement": [
           {
@@ -983,6 +999,7 @@ export const SSR_SCHEMA: Record<string, object> = {
       },
       {
         "@type": "BreadcrumbList",
+        "name": "Breadcrumb",
         "@id": "https://ahadex.fun/tools/image-to-sketch#breadcrumb",
         "itemListElement": [
           {
@@ -1042,6 +1059,7 @@ export const SSR_SCHEMA: Record<string, object> = {
       },
       {
         "@type": "BreadcrumbList",
+        "name": "Breadcrumb",
         "@id": "https://ahadex.fun/tools/image-to-cartoon#breadcrumb",
         "itemListElement": [
           {
@@ -1101,6 +1119,7 @@ export const SSR_SCHEMA: Record<string, object> = {
       },
       {
         "@type": "BreadcrumbList",
+        "name": "Breadcrumb",
         "@id": "https://ahadex.fun/tools/base64-encoder#breadcrumb",
         "itemListElement": [
           {
@@ -1160,6 +1179,7 @@ export const SSR_SCHEMA: Record<string, object> = {
       },
       {
         "@type": "BreadcrumbList",
+        "name": "Breadcrumb",
         "@id": "https://ahadex.fun/tools/password-generator#breadcrumb",
         "itemListElement": [
           {
@@ -1219,6 +1239,7 @@ export const SSR_SCHEMA: Record<string, object> = {
       },
       {
         "@type": "BreadcrumbList",
+        "name": "Breadcrumb",
         "@id": "https://ahadex.fun/tools/barcode-generator#breadcrumb",
         "itemListElement": [
           {
@@ -1278,6 +1299,7 @@ export const SSR_SCHEMA: Record<string, object> = {
       },
       {
         "@type": "BreadcrumbList",
+        "name": "Breadcrumb",
         "@id": "https://ahadex.fun/tools/character-counter#breadcrumb",
         "itemListElement": [
           {
@@ -1337,6 +1359,7 @@ export const SSR_SCHEMA: Record<string, object> = {
       },
       {
         "@type": "BreadcrumbList",
+        "name": "Breadcrumb",
         "@id": "https://ahadex.fun/tools/favicon-generator#breadcrumb",
         "itemListElement": [
           {
@@ -1398,6 +1421,7 @@ export const SSR_SCHEMA: Record<string, object> = {
       },
       {
         "@type": "BreadcrumbList",
+        "name": "Breadcrumb",
         "@id": "https://ahadex.fun/tools/image-converter#breadcrumb",
         "itemListElement": [
           {
@@ -1459,6 +1483,7 @@ export const SSR_SCHEMA: Record<string, object> = {
       },
       {
         "@type": "BreadcrumbList",
+        "name": "Breadcrumb",
         "@id": "https://ahadex.fun/tools/pdf-to-image#breadcrumb",
         "itemListElement": [
           {
@@ -1520,6 +1545,7 @@ export const SSR_SCHEMA: Record<string, object> = {
       },
       {
         "@type": "BreadcrumbList",
+        "name": "Breadcrumb",
         "@id": "https://ahadex.fun/tools/image-to-pdf#breadcrumb",
         "itemListElement": [
           {
@@ -1581,6 +1607,7 @@ export const SSR_SCHEMA: Record<string, object> = {
       },
       {
         "@type": "BreadcrumbList",
+        "name": "Breadcrumb",
         "@id": "https://ahadex.fun/tools/split-pdf#breadcrumb",
         "itemListElement": [
           {

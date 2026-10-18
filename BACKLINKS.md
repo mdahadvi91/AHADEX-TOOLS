@@ -11,7 +11,7 @@
 | 5 | Reddit r/SideProject | https://reddit.com/r/SideProject | Post launch |
 | 6 | Reddit r/webdev | https://reddit.com/r/webdev | Showoff Saturday |
 | 7 | Reddit r/InternetIsBeautiful | https://reddit.com/r/InternetIsBeautiful | Post one tool |
-| 8 | Dev.to | https://dev.to/new | Write: "How I built 35 browser tools" |
+| 8 | Dev.to | https://dev.to/new | Write: "How I built 27 browser tools" |
 | 9 | Hashnode | https://hashnode.com | Same blog post |
 | 10 | Medium | https://medium.com/new-story | Same blog post |
 | 11 | GitHub Topics | https://github.com/mdahadvi91/AHADEX-TOOLS | Add topics: webdev, tools, react, vite |
@@ -46,13 +46,13 @@
 Free browser-based tools. No uploads. 100% private.
 
 **Medium description (160 chars):**
-AHADEX Tools offers 35+ free browser-based utilities for images, PDFs, text, and developers. Everything runs locally — no uploads, no signup, fully private.
+AHADEX Tools offers 27 free browser-based utilities for images, PDFs, text, and developers. Everything runs locally — no uploads, no signup, fully private.
 
 **Long description (500 chars):**
-AHADEX Tools is a collection of 35+ free online utilities that run entirely in your browser. Image compression, PDF merging, JSON formatting, password generation, QR codes, CV building — all without uploading files to any server. Built with React + Vite + TypeScript. Features include: browser-based image compression, PDF manipulation, developer tools (JSON, Base64, UUID, URL encoding), text utilities, QR/barcode generation, and CV/visiting card builders. Supports English and Bengali. Completely free, no signup required, works offline after the first load.
+AHADEX Tools is a collection of 27 free online utilities that run entirely in your browser. Image compression, PDF merging, JSON formatting, password generation, QR codes, CV building — all without uploading files to any server. Built with React + Vite + TypeScript. Features include: browser-based image compression, PDF manipulation, developer tools (JSON, Base64, UUID, URL encoding), text utilities, QR/barcode generation, and CV/visiting card builders. Supports English and Bengali. Completely free, no signup required, works offline after the first load.
 
 **Tagline:**
-35+ free browser tools that never upload your files.
+27 free browser tools that never upload your files.
 
 **Categories:**
 - Productivity
@@ -72,7 +72,7 @@ Hi [Name],
 
 I came across your article "[Their article title]" while researching [topic]. Really useful — I learned [specific thing].
 
-I recently built AHADEX Tools (ahadex.fun) — 35+ free browser-based utilities that never upload user files. I think it could be a good fit for your readers who are looking for [specific use case].
+I recently built AHADEX Tools (ahadex.fun) — 27 free browser-based utilities that never upload user files. I think it could be a good fit for your readers who are looking for [specific use case].
 
 Would you consider mentioning it in a future post? Happy to give you a custom shoutout on our socials in return.
 
