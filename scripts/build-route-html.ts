@@ -174,8 +174,6 @@ function buildMetaBlock(meta: RouteMeta): string {
     `<meta name="twitter:title" content="${esc(meta.title)}" />`,
     `<meta name="twitter:description" content="${esc(meta.description)}" />`,
     `<meta name="twitter:image" content="${ogImage}" />`,
-    `<link rel="alternate" hreflang="en" href="${meta.canonical}" />`,
-    `<link rel="alternate" hreflang="x-default" href="${meta.canonical}" />`,
   ].join("\n    ");
 }
 

@@ -168,9 +168,13 @@ function buildFieldNoteSection(tool: typeof tools[0]): string {
  * Emits a small <section lang="bn"> at the end of each tool page
  * with the Bengali tool name and a short description. This gives
  * Google and Bengali-reading users a genuine, visible Bengali
- * block on the same URL as the English content. hreflang tags in
- * the middleware declare the language alternates, so there is no
- * duplicate-content ambiguity.
+ * block on the same URL as the English content.
+ *
+ * NOTE: hreflang is intentionally NOT emitted. There is no
+ * separate /bn/ URL, so there is no alternate to declare —
+ * self-referential hreflang would be a no-op. The <section lang="bn">
+ * is legitimate on-page multilingual content, not an hreflang target.
+ * Future: /bn/ subpath migration with proper en/bn/x-default cluster.
  * ─────────────────────────────────────────────────────────── */
 function buildBengaliSection(tool: typeof tools[0]): string {
   const bn = toolTranslationsBn[tool.id];
