@@ -1,7 +1,6 @@
 import { Shield } from "lucide-react";
 import { useLanguage } from "@contexts/LanguageContext";
 import { faviconGeneratorContent } from "../content";
-import { SpeakButton } from "@components/common/SpeakButton";
 export function PrivacyNote() {
   const { language } = useLanguage();
   const c = faviconGeneratorContent[language];
@@ -11,8 +10,7 @@ export function PrivacyNote() {
       <div className="flex-1 min-w-0">
         <p className="text-[12px] sm:text-[13px] text-lightTextSecondary dark:text-dark-textSecondary leading-relaxed">{c.privacyNote}</p>
         <div className="mt-2">
-          <SpeakButton text={c.privacyNote} />
-        </div>
+                  </div>
       </div>
     </div>
   );
