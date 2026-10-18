@@ -43,11 +43,13 @@ export function DropZone({
     <>
       <input
         ref={inputRef}
+        id="file-upload-input"
         type="file"
         accept={accept}
         multiple={multiple}
         onChange={(e) => onFiles(e.target.files)}
         className="hidden"
+        aria-label={bn ? "ফাইল আপলোড করুন" : "Upload file"}
       />
 
       <motion.div
@@ -63,6 +65,7 @@ export function DropZone({
         onClick={() => inputRef.current?.click()}
         role="button"
         tabIndex={0}
+        aria-label={bn ? "ফাইল আপলোড করতে ক্লিক করুন বা ফাইল ড্র্যাগ করুন" : "Click to upload or drag and drop files"}
         onKeyDown={(e) => {
           if (e.key === "Enter" || e.key === " ") inputRef.current?.click();
         }}
