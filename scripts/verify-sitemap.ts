@@ -71,6 +71,23 @@ function distFileFor(loc: string): string {
 }
 
 // ── HTML helpers ──────────────────────────────────────────────
+
+function getOgMeta(html: string, property: string): string | null {
+  const tagRegex = new RegExp(`<meta[^>]+property=["']${property}["'][^>]*>`, "i");
+  const tagMatch = html.match(tagRegex);
+  if (!tagMatch) return null;
+  const contentMatch = tagMatch[0].match(/content=["']([^"']+)["']/);
+  return contentMatch ? contentMatch[1].trim() : null;
+}
+
+function getTwitterMeta(html: string, name: string): string | null {
+  const tagRegex = new RegExp(`<meta[^>]+name=["']${name}["'][^>]*>`, "i");
+  const tagMatch = html.match(tagRegex);
+  if (!tagMatch) return null;
+  const contentMatch = tagMatch[0].match(/content=["']([^"']+)["']/);
+  return contentMatch ? contentMatch[1].trim() : null;
+}
+
 function getTitle(html: string): string | null {
   const m = html.match(/<title\b[^>]*>([\s\S]*?)<\/title>/i);
   return m ? m[1].trim() : null;
@@ -136,6 +153,12 @@ function checkHtml(loc: string, html: string): string[] {
   } else if (canonical.replace(/\/$/, "") !== loc.replace(/\/$/, "")) {
     problems.push(`canonical mismatch (got "${canonical}", expected "${loc}")`);
   }
+
+  if (!getOgMeta(html, "og:title")) problems.push('missing og:title');
+  if (!getOgMeta(html, "og:description")) problems.push('missing og:description');
+  if (!getOgMeta(html, "og:image")) problems.push('missing og:image');
+  if (!getTwitterMeta(html, "twitter:card")) problems.push('missing twitter:card');
+
 
   const robots = getMetaContent(html, "robots");
   if (robots && /noindex/i.test(robots)) {
