@@ -40,18 +40,38 @@ export function Workspace() {
 
   const handleFiles = async (files: FileList | null) => {
     if (!files || files.length === 0) return;
+    
+    // Security & Validation Layer
+    const validFiles = Array.from(files).filter((file) => {
+      // 1. MIME Type check
+      if (!file.type.startsWith("image/")) {
+        setError(bn ? "শুধুমাত্র ছবি ফাইল আপলোড করুন।" : "Please upload image files only.");
+        return false;
+      }
+      // 2. File Size limit (50MB)
+      if (file.size > 50 * 1024 * 1024) {
+        setError(bn ? "ফাইলের সাইজ ৫০ MB এর কম হতে হবে।" : "File size must be less than 50MB.");
+        return false;
+      }
+      return true;
+    });
+
+    if (validFiles.length === 0) return;
+
     setBusy(true);
     setError(null);
     const newItems: CompressedFile[] = [];
-    for (let i = 0; i < files.length; i++) {
+    
+    for (let i = 0; i < validFiles.length; i++) {
       const item = await compressImage(
-        files[i],
+        validFiles[i],
         quality / 100,
         maxWidth,
         setError
       );
       if (item) newItems.push(item);
     }
+    
     setItems((prev) => [...prev, ...newItems]);
     setBusy(false);
     if (inputRef.current) inputRef.current.value = "";
