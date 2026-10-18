@@ -26,6 +26,8 @@ import {
 } from "../logic";
 import type { CompressedFile } from "../types";
 
+const MAX_FILE_SIZE_MB = 50; // Centralized limit
+
 export function Workspace() {
   const { language } = useLanguage();
   const bn = language === "bn";
@@ -49,8 +51,8 @@ export function Workspace() {
         return false;
       }
       // 2. File Size limit (50MB)
-      if (file.size > 50 * 1024 * 1024) {
-        setError(bn ? "ফাইলের সাইজ ৫০ MB এর কম হতে হবে।" : "File size must be less than 50MB.");
+      if (file.size > MAX_FILE_SIZE_MB * 1024 * 1024) {
+        setError(bn ? `ফাইলের সাইজ ${MAX_FILE_SIZE_MB} MB এর কম হতে হবে।` : `File size must be less than ${MAX_FILE_SIZE_MB}MB.`);
         return false;
       }
       return true;

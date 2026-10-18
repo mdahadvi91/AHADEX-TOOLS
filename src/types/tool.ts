@@ -62,9 +62,12 @@ export interface Tool {
   longDescription: string;
   keywords: string[];
   path: string;
-  /** Monthly Google searches (rough, used for grid ordering).
-   *  Higher = shown earlier in the tools grid.
-   *  New tools MUST declare this — see docs/TOOL_RULES.md. */
+  /** 
+   * INTERNAL PRIORITIZATION METADATA ONLY. 
+   * This is NOT an SEO ranking factor. It is used solely to sort the tools grid
+   * (higher volume = shown earlier) and for discovery. 
+   * New tools MUST declare this — see docs/TOOL_RULES.md. 
+   */
   searchVolume?: number;
   icon?: string;
   popular?: boolean;

@@ -22,7 +22,7 @@ export const SSR_SCHEMA: Record<string, object> = {
           "price": "0",
           "priceCurrency": "USD"
         },
-        "image": "https://ahadex.fun/images/og/tools/photo-qr-og.png",
+        "image": "https://ahadex.fun/images/og/tools/photo-qr-og.jpg",
         "publisher": {
           "@type": "Organization",
           "name": "AHADEX Tools",
@@ -81,7 +81,7 @@ export const SSR_SCHEMA: Record<string, object> = {
           "price": "0",
           "priceCurrency": "USD"
         },
-        "image": "https://ahadex.fun/images/og/tools/visiting-card-og.png",
+        "image": "https://ahadex.fun/images/og/tools/visiting-card-og.jpg",
         "publisher": {
           "@type": "Organization",
           "name": "AHADEX Tools",
@@ -140,7 +140,7 @@ export const SSR_SCHEMA: Record<string, object> = {
           "price": "0",
           "priceCurrency": "USD"
         },
-        "image": "https://ahadex.fun/images/og/tools/cv-builder-og.png",
+        "image": "https://ahadex.fun/images/og/tools/cv-builder-og.jpg",
         "publisher": {
           "@type": "Organization",
           "name": "AHADEX Tools",
@@ -199,7 +199,7 @@ export const SSR_SCHEMA: Record<string, object> = {
           "price": "0",
           "priceCurrency": "USD"
         },
-        "image": "https://ahadex.fun/images/og/tools/image-compressor-og.png",
+        "image": "https://ahadex.fun/images/og/tools/image-compressor-og.jpg",
         "publisher": {
           "@type": "Organization",
           "name": "AHADEX Tools",
@@ -258,7 +258,7 @@ export const SSR_SCHEMA: Record<string, object> = {
           "price": "0",
           "priceCurrency": "USD"
         },
-        "image": "https://ahadex.fun/images/og/tools/image-resizer-og.png",
+        "image": "https://ahadex.fun/images/og/tools/image-resizer-og.jpg",
         "publisher": {
           "@type": "Organization",
           "name": "AHADEX Tools",
@@ -317,7 +317,7 @@ export const SSR_SCHEMA: Record<string, object> = {
           "price": "0",
           "priceCurrency": "USD"
         },
-        "image": "https://ahadex.fun/images/og/tools/image-cropper-og.png",
+        "image": "https://ahadex.fun/images/og/tools/image-cropper-og.jpg",
         "publisher": {
           "@type": "Organization",
           "name": "AHADEX Tools",
@@ -376,7 +376,7 @@ export const SSR_SCHEMA: Record<string, object> = {
           "price": "0",
           "priceCurrency": "USD"
         },
-        "image": "https://ahadex.fun/images/og/tools/merge-pdf-og.png",
+        "image": "https://ahadex.fun/images/og/tools/merge-pdf-og.jpg",
         "publisher": {
           "@type": "Organization",
           "name": "AHADEX Tools",
@@ -435,7 +435,7 @@ export const SSR_SCHEMA: Record<string, object> = {
           "price": "0",
           "priceCurrency": "USD"
         },
-        "image": "https://ahadex.fun/images/og/tools/word-counter-og.png",
+        "image": "https://ahadex.fun/images/og/tools/word-counter-og.jpg",
         "publisher": {
           "@type": "Organization",
           "name": "AHADEX Tools",
@@ -494,7 +494,7 @@ export const SSR_SCHEMA: Record<string, object> = {
           "price": "0",
           "priceCurrency": "USD"
         },
-        "image": "https://ahadex.fun/images/og/tools/image-metadata-viewer-og.png",
+        "image": "https://ahadex.fun/images/og/tools/image-metadata-viewer-og.jpg",
         "publisher": {
           "@type": "Organization",
           "name": "AHADEX Tools",
@@ -553,7 +553,7 @@ export const SSR_SCHEMA: Record<string, object> = {
           "price": "0",
           "priceCurrency": "USD"
         },
-        "image": "https://ahadex.fun/images/og/tools/pdf-to-text-og.png",
+        "image": "https://ahadex.fun/images/og/tools/pdf-to-text-og.jpg",
         "publisher": {
           "@type": "Organization",
           "name": "AHADEX Tools",
@@ -612,7 +612,7 @@ export const SSR_SCHEMA: Record<string, object> = {
           "price": "0",
           "priceCurrency": "USD"
         },
-        "image": "https://ahadex.fun/images/og/tools/pdf-rotator-og.png",
+        "image": "https://ahadex.fun/images/og/tools/pdf-rotator-og.jpg",
         "publisher": {
           "@type": "Organization",
           "name": "AHADEX Tools",
@@ -671,7 +671,7 @@ export const SSR_SCHEMA: Record<string, object> = {
           "price": "0",
           "priceCurrency": "USD"
         },
-        "image": "https://ahadex.fun/images/og/tools/svg-to-png-og.png",
+        "image": "https://ahadex.fun/images/og/tools/svg-to-png-og.jpg",
         "publisher": {
           "@type": "Organization",
           "name": "AHADEX Tools",
@@ -730,7 +730,7 @@ export const SSR_SCHEMA: Record<string, object> = {
           "price": "0",
           "priceCurrency": "USD"
         },
-        "image": "https://ahadex.fun/images/og/tools/json-formatter-og.png",
+        "image": "https://ahadex.fun/images/og/tools/json-formatter-og.jpg",
         "publisher": {
           "@type": "Organization",
           "name": "AHADEX Tools",
@@ -789,7 +789,7 @@ export const SSR_SCHEMA: Record<string, object> = {
           "price": "0",
           "priceCurrency": "USD"
         },
-        "image": "https://ahadex.fun/images/og/tools/url-encoder-og.png",
+        "image": "https://ahadex.fun/images/og/tools/url-encoder-og.jpg",
         "publisher": {
           "@type": "Organization",
           "name": "AHADEX Tools",
@@ -848,7 +848,7 @@ export const SSR_SCHEMA: Record<string, object> = {
           "price": "0",
           "priceCurrency": "USD"
         },
-        "image": "https://ahadex.fun/images/og/tools/uuid-generator-og.png",
+        "image": "https://ahadex.fun/images/og/tools/uuid-generator-og.jpg",
         "publisher": {
           "@type": "Organization",
           "name": "AHADEX Tools",
@@ -907,7 +907,7 @@ export const SSR_SCHEMA: Record<string, object> = {
           "price": "0",
           "priceCurrency": "USD"
         },
-        "image": "https://ahadex.fun/images/og/tools/text-case-converter-og.png",
+        "image": "https://ahadex.fun/images/og/tools/text-case-converter-og.jpg",
         "publisher": {
           "@type": "Organization",
           "name": "AHADEX Tools",
@@ -966,7 +966,7 @@ export const SSR_SCHEMA: Record<string, object> = {
           "price": "0",
           "priceCurrency": "USD"
         },
-        "image": "https://ahadex.fun/images/og/tools/image-to-sketch-og.png",
+        "image": "https://ahadex.fun/images/og/tools/image-to-sketch-og.jpg",
         "publisher": {
           "@type": "Organization",
           "name": "AHADEX Tools",
@@ -1025,7 +1025,7 @@ export const SSR_SCHEMA: Record<string, object> = {
           "price": "0",
           "priceCurrency": "USD"
         },
-        "image": "https://ahadex.fun/images/og/tools/image-to-cartoon-og.png",
+        "image": "https://ahadex.fun/images/og/tools/image-to-cartoon-og.jpg",
         "publisher": {
           "@type": "Organization",
           "name": "AHADEX Tools",
@@ -1084,7 +1084,7 @@ export const SSR_SCHEMA: Record<string, object> = {
           "price": "0",
           "priceCurrency": "USD"
         },
-        "image": "https://ahadex.fun/images/og/tools/base64-encoder-og.png",
+        "image": "https://ahadex.fun/images/og/tools/base64-encoder-og.jpg",
         "publisher": {
           "@type": "Organization",
           "name": "AHADEX Tools",
@@ -1143,7 +1143,7 @@ export const SSR_SCHEMA: Record<string, object> = {
           "price": "0",
           "priceCurrency": "USD"
         },
-        "image": "https://ahadex.fun/images/og/tools/password-generator-og.png",
+        "image": "https://ahadex.fun/images/og/tools/password-generator-og.jpg",
         "publisher": {
           "@type": "Organization",
           "name": "AHADEX Tools",
@@ -1202,7 +1202,7 @@ export const SSR_SCHEMA: Record<string, object> = {
           "price": "0",
           "priceCurrency": "USD"
         },
-        "image": "https://ahadex.fun/images/og/tools/barcode-generator-og.png",
+        "image": "https://ahadex.fun/images/og/tools/barcode-generator-og.jpg",
         "publisher": {
           "@type": "Organization",
           "name": "AHADEX Tools",
@@ -1261,7 +1261,7 @@ export const SSR_SCHEMA: Record<string, object> = {
           "price": "0",
           "priceCurrency": "USD"
         },
-        "image": "https://ahadex.fun/images/og/tools/character-counter-og.png",
+        "image": "https://ahadex.fun/images/og/tools/character-counter-og.jpg",
         "publisher": {
           "@type": "Organization",
           "name": "AHADEX Tools",
@@ -1320,7 +1320,7 @@ export const SSR_SCHEMA: Record<string, object> = {
           "price": "0",
           "priceCurrency": "USD"
         },
-        "image": "https://ahadex.fun/images/og/tools/favicon-generator-og.png",
+        "image": "https://ahadex.fun/images/og/tools/favicon-generator-og.jpg",
         "publisher": {
           "@type": "Organization",
           "name": "AHADEX Tools",
@@ -1379,7 +1379,7 @@ export const SSR_SCHEMA: Record<string, object> = {
           "price": "0",
           "priceCurrency": "USD"
         },
-        "image": "https://ahadex.fun/images/og/tools/image-converter-og.png",
+        "image": "https://ahadex.fun/images/og/tools/image-converter-og.jpg",
         "publisher": {
           "@type": "Organization",
           "name": "AHADEX Tools",
@@ -1440,7 +1440,7 @@ export const SSR_SCHEMA: Record<string, object> = {
           "price": "0",
           "priceCurrency": "USD"
         },
-        "image": "https://ahadex.fun/images/og/tools/pdf-to-image-og.png",
+        "image": "https://ahadex.fun/images/og/tools/pdf-to-image-og.jpg",
         "publisher": {
           "@type": "Organization",
           "name": "AHADEX Tools",
@@ -1501,7 +1501,7 @@ export const SSR_SCHEMA: Record<string, object> = {
           "price": "0",
           "priceCurrency": "USD"
         },
-        "image": "https://ahadex.fun/images/og/tools/image-to-pdf-og.png",
+        "image": "https://ahadex.fun/images/og/tools/image-to-pdf-og.jpg",
         "publisher": {
           "@type": "Organization",
           "name": "AHADEX Tools",
@@ -1562,7 +1562,7 @@ export const SSR_SCHEMA: Record<string, object> = {
           "price": "0",
           "priceCurrency": "USD"
         },
-        "image": "https://ahadex.fun/images/og/tools/split-pdf-og.png",
+        "image": "https://ahadex.fun/images/og/tools/split-pdf-og.jpg",
         "publisher": {
           "@type": "Organization",
           "name": "AHADEX Tools",
@@ -2715,183 +2715,225 @@ export const SSR_SCHEMA: Record<string, object> = {
   },
   "/tools": {
     "@context": "https://schema.org",
-    "@type": "CollectionPage",
-    "@id": "https://ahadex.fun/tools#collection",
-    "name": "All Tools — Free Online Utilities",
-    "url": "https://ahadex.fun/tools",
-    "description": "Browse all 27 free browser-based tools for images, PDFs, text, and QR codes.",
-    "inLanguage": "en",
-    "isPartOf": {
-      "@id": "https://ahadex.fun/#website"
-    },
-    "mainEntity": {
-      "@type": "ItemList",
-      "numberOfItems": 27,
-      "itemListElement": [
-        {
-          "@type": "ListItem",
-          "position": 1,
-          "url": "https://ahadex.fun/tools/photo-qr",
-          "name": "Photo QR Code"
+    "@graph": [
+      {
+        "@type": "CollectionPage",
+        "@id": "https://ahadex.fun/tools#collection",
+        "name": "All Tools — Free Online Utilities",
+        "url": "https://ahadex.fun/tools",
+        "description": "Browse all 27 free browser-based tools for images, PDFs, text, and QR codes.",
+        "inLanguage": "en",
+        "isPartOf": {
+          "@id": "https://ahadex.fun/#website"
         },
-        {
-          "@type": "ListItem",
-          "position": 2,
-          "url": "https://ahadex.fun/tools/visiting-card",
-          "name": "Visiting Card Maker"
-        },
-        {
-          "@type": "ListItem",
-          "position": 3,
-          "url": "https://ahadex.fun/tools/cv-builder",
-          "name": "CV Builder"
-        },
-        {
-          "@type": "ListItem",
-          "position": 4,
-          "url": "https://ahadex.fun/tools/image-compressor",
-          "name": "Image Compressor"
-        },
-        {
-          "@type": "ListItem",
-          "position": 5,
-          "url": "https://ahadex.fun/tools/image-resizer",
-          "name": "Image Resizer"
-        },
-        {
-          "@type": "ListItem",
-          "position": 6,
-          "url": "https://ahadex.fun/tools/image-cropper",
-          "name": "Image Cropper"
-        },
-        {
-          "@type": "ListItem",
-          "position": 7,
-          "url": "https://ahadex.fun/tools/merge-pdf",
-          "name": "Merge PDF"
-        },
-        {
-          "@type": "ListItem",
-          "position": 8,
-          "url": "https://ahadex.fun/tools/word-counter",
-          "name": "Word Counter"
-        },
-        {
-          "@type": "ListItem",
-          "position": 9,
-          "url": "https://ahadex.fun/tools/image-metadata-viewer",
-          "name": "Image Metadata Viewer"
-        },
-        {
-          "@type": "ListItem",
-          "position": 10,
-          "url": "https://ahadex.fun/tools/pdf-to-text",
-          "name": "PDF to Text"
-        },
-        {
-          "@type": "ListItem",
-          "position": 11,
-          "url": "https://ahadex.fun/tools/pdf-rotator",
-          "name": "PDF Rotator"
-        },
-        {
-          "@type": "ListItem",
-          "position": 12,
-          "url": "https://ahadex.fun/tools/svg-to-png",
-          "name": "SVG to PNG"
-        },
-        {
-          "@type": "ListItem",
-          "position": 13,
-          "url": "https://ahadex.fun/tools/json-formatter",
-          "name": "JSON Formatter"
-        },
-        {
-          "@type": "ListItem",
-          "position": 14,
-          "url": "https://ahadex.fun/tools/url-encoder",
-          "name": "URL Encoder / Decoder"
-        },
-        {
-          "@type": "ListItem",
-          "position": 15,
-          "url": "https://ahadex.fun/tools/uuid-generator",
-          "name": "UUID Generator"
-        },
-        {
-          "@type": "ListItem",
-          "position": 16,
-          "url": "https://ahadex.fun/tools/text-case-converter",
-          "name": "Text Case Converter"
-        },
-        {
-          "@type": "ListItem",
-          "position": 17,
-          "url": "https://ahadex.fun/tools/image-to-sketch",
-          "name": "Image to Sketch"
-        },
-        {
-          "@type": "ListItem",
-          "position": 18,
-          "url": "https://ahadex.fun/tools/image-to-cartoon",
-          "name": "Image to Cartoon"
-        },
-        {
-          "@type": "ListItem",
-          "position": 19,
-          "url": "https://ahadex.fun/tools/base64-encoder",
-          "name": "Base64 Encoder / Decoder"
-        },
-        {
-          "@type": "ListItem",
-          "position": 20,
-          "url": "https://ahadex.fun/tools/password-generator",
-          "name": "Password Generator"
-        },
-        {
-          "@type": "ListItem",
-          "position": 21,
-          "url": "https://ahadex.fun/tools/barcode-generator",
-          "name": "Barcode Generator"
-        },
-        {
-          "@type": "ListItem",
-          "position": 22,
-          "url": "https://ahadex.fun/tools/character-counter",
-          "name": "Character Counter"
-        },
-        {
-          "@type": "ListItem",
-          "position": 23,
-          "url": "https://ahadex.fun/tools/favicon-generator",
-          "name": "Favicon Generator"
-        },
-        {
-          "@type": "ListItem",
-          "position": 24,
-          "url": "https://ahadex.fun/tools/image-converter",
-          "name": "Image Converter"
-        },
-        {
-          "@type": "ListItem",
-          "position": 25,
-          "url": "https://ahadex.fun/tools/pdf-to-image",
-          "name": "PDF to Image"
-        },
-        {
-          "@type": "ListItem",
-          "position": 26,
-          "url": "https://ahadex.fun/tools/image-to-pdf",
-          "name": "Image to PDF"
-        },
-        {
-          "@type": "ListItem",
-          "position": 27,
-          "url": "https://ahadex.fun/tools/split-pdf",
-          "name": "Split PDF"
+        "mainEntity": {
+          "@type": "ItemList",
+          "numberOfItems": 27,
+          "itemListElement": [
+            {
+              "@type": "ListItem",
+              "position": 1,
+              "url": "https://ahadex.fun/tools/photo-qr",
+              "name": "Photo QR Code"
+            },
+            {
+              "@type": "ListItem",
+              "position": 2,
+              "url": "https://ahadex.fun/tools/visiting-card",
+              "name": "Visiting Card Maker"
+            },
+            {
+              "@type": "ListItem",
+              "position": 3,
+              "url": "https://ahadex.fun/tools/cv-builder",
+              "name": "CV Builder"
+            },
+            {
+              "@type": "ListItem",
+              "position": 4,
+              "url": "https://ahadex.fun/tools/image-compressor",
+              "name": "Image Compressor"
+            },
+            {
+              "@type": "ListItem",
+              "position": 5,
+              "url": "https://ahadex.fun/tools/image-resizer",
+              "name": "Image Resizer"
+            },
+            {
+              "@type": "ListItem",
+              "position": 6,
+              "url": "https://ahadex.fun/tools/image-cropper",
+              "name": "Image Cropper"
+            },
+            {
+              "@type": "ListItem",
+              "position": 7,
+              "url": "https://ahadex.fun/tools/merge-pdf",
+              "name": "Merge PDF"
+            },
+            {
+              "@type": "ListItem",
+              "position": 8,
+              "url": "https://ahadex.fun/tools/word-counter",
+              "name": "Word Counter"
+            },
+            {
+              "@type": "ListItem",
+              "position": 9,
+              "url": "https://ahadex.fun/tools/image-metadata-viewer",
+              "name": "Image Metadata Viewer"
+            },
+            {
+              "@type": "ListItem",
+              "position": 10,
+              "url": "https://ahadex.fun/tools/pdf-to-text",
+              "name": "PDF to Text"
+            },
+            {
+              "@type": "ListItem",
+              "position": 11,
+              "url": "https://ahadex.fun/tools/pdf-rotator",
+              "name": "PDF Rotator"
+            },
+            {
+              "@type": "ListItem",
+              "position": 12,
+              "url": "https://ahadex.fun/tools/svg-to-png",
+              "name": "SVG to PNG"
+            },
+            {
+              "@type": "ListItem",
+              "position": 13,
+              "url": "https://ahadex.fun/tools/json-formatter",
+              "name": "JSON Formatter"
+            },
+            {
+              "@type": "ListItem",
+              "position": 14,
+              "url": "https://ahadex.fun/tools/url-encoder",
+              "name": "URL Encoder / Decoder"
+            },
+            {
+              "@type": "ListItem",
+              "position": 15,
+              "url": "https://ahadex.fun/tools/uuid-generator",
+              "name": "UUID Generator"
+            },
+            {
+              "@type": "ListItem",
+              "position": 16,
+              "url": "https://ahadex.fun/tools/text-case-converter",
+              "name": "Text Case Converter"
+            },
+            {
+              "@type": "ListItem",
+              "position": 17,
+              "url": "https://ahadex.fun/tools/image-to-sketch",
+              "name": "Image to Sketch"
+            },
+            {
+              "@type": "ListItem",
+              "position": 18,
+              "url": "https://ahadex.fun/tools/image-to-cartoon",
+              "name": "Image to Cartoon"
+            },
+            {
+              "@type": "ListItem",
+              "position": 19,
+              "url": "https://ahadex.fun/tools/base64-encoder",
+              "name": "Base64 Encoder / Decoder"
+            },
+            {
+              "@type": "ListItem",
+              "position": 20,
+              "url": "https://ahadex.fun/tools/password-generator",
+              "name": "Password Generator"
+            },
+            {
+              "@type": "ListItem",
+              "position": 21,
+              "url": "https://ahadex.fun/tools/barcode-generator",
+              "name": "Barcode Generator"
+            },
+            {
+              "@type": "ListItem",
+              "position": 22,
+              "url": "https://ahadex.fun/tools/character-counter",
+              "name": "Character Counter"
+            },
+            {
+              "@type": "ListItem",
+              "position": 23,
+              "url": "https://ahadex.fun/tools/favicon-generator",
+              "name": "Favicon Generator"
+            },
+            {
+              "@type": "ListItem",
+              "position": 24,
+              "url": "https://ahadex.fun/tools/image-converter",
+              "name": "Image Converter"
+            },
+            {
+              "@type": "ListItem",
+              "position": 25,
+              "url": "https://ahadex.fun/tools/pdf-to-image",
+              "name": "PDF to Image"
+            },
+            {
+              "@type": "ListItem",
+              "position": 26,
+              "url": "https://ahadex.fun/tools/image-to-pdf",
+              "name": "Image to PDF"
+            },
+            {
+              "@type": "ListItem",
+              "position": 27,
+              "url": "https://ahadex.fun/tools/split-pdf",
+              "name": "Split PDF"
+            }
+          ]
         }
-      ]
-    }
+      },
+      {
+        "@type": "FAQPage",
+        "@id": "https://ahadex.fun/tools#faq",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "Are all these tools free to use?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Yes, every single tool on AHADEX is 100% free. There are no hidden fees, no premium tiers, and no watermarks."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Do I need to create an account?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "No. You can use any tool instantly without creating an account, providing an email, or signing up."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Is my data safe when I upload a file?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Absolutely. We do not upload your files to a server. All processing happens entirely inside your web browser."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Can I use these tools on my mobile phone?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Yes. The entire site is fully responsive and designed to work flawlessly on iOS (Safari) and Android (Chrome) devices."
+            }
+          }
+        ]
+      }
+    ]
   },
   "/blog": {
     "@context": "https://schema.org",
