@@ -160,6 +160,8 @@ export const newTools: Tool[] = [
     faq: [
       { question: "Does converting an image strip its EXIF data?", answer: "Yes. Converting an image through the browser Canvas API re-encodes it, which automatically removes all EXIF metadata (like GPS location)." },
       { question: "Why did my PNG file get bigger when converted to JPG?", answer: "This is rare. It usually happens if the original PNG was highly optimized for flat colors, and the JPG quality setting is set very high." },
+      { question: "Does converting an image strip its EXIF data?", answer: "Yes. Converting an image through the browser Canvas API re-encodes it, which automatically removes all EXIF metadata (like GPS location)." },
+      { question: "Why did my PNG file get bigger when converted to JPG?", answer: "This is rare. It usually happens if the original PNG was highly optimized for flat colors, and the JPG quality setting is set very high." },
     ],
     deepDive: [
       {
@@ -482,6 +484,8 @@ benchmarks: [
     faq: [
       { question: "Does this tool convert the text in my PDF to editable text?", answer: "No. It converts the PDF pages into flat images (JPG/PNG). You cannot select or edit the text in the resulting images." },
       { question: "Can I convert a password-protected PDF?", answer: "No. You must remove the password using a PDF reader first, as the tool needs to read the file directly." },
+      { question: "Does this tool convert the text in my PDF to editable text?", answer: "No. It converts the PDF pages into flat images (JPG/PNG). You cannot select or edit the text in the resulting images." },
+      { question: "Can I convert a password-protected PDF?", answer: "No. You must remove the password using a PDF reader first, as the tool needs to read the file directly." },
     ],
     deepDive: [
       {
@@ -719,6 +723,8 @@ benchmarks: [
     ],
     faq: [
       { question: "Are my images compressed when converting to PDF?", answer: "No. The images are embedded into the PDF at their original resolution. However, you can choose to use our Image Compressor first if you want a smaller PDF." },
+      { question: "Can I reorder the images before creating the PDF?", answer: "Yes. Once uploaded, you can drag and drop the thumbnails to set the exact page order you want." },
+      { question: "Are my images compressed when converting to PDF?", answer: "No. The images are embedded into the PDF at their original resolution. However, you can use our Image Compressor first if you want a smaller PDF." },
       { question: "Can I reorder the images before creating the PDF?", answer: "Yes. Once uploaded, you can drag and drop the thumbnails to set the exact page order you want." },
     ],
     deepDive: [
@@ -960,6 +966,8 @@ benchmarks: [
       },
     ],
     faq: [
+      { question: "Can I extract just one specific page?", answer: "Yes. You can enter a single page number (e.g., '5') or a range (e.g., '1-3, 7'). Only those pages will be saved to the new PDF." },
+      { question: "How does splitting affect the PDF file size?", answer: "The split pages retain their original quality. A single page extracted from a 50MB PDF will be a tiny file containing only that page's data." },
       { question: "Can I extract just one specific page?", answer: "Yes. You can enter a single page number (e.g., '5') or a range (e.g., '1-3, 7'). Only those pages will be saved to the new PDF." },
       { question: "How does splitting affect the PDF file size?", answer: "The split pages retain their original quality. A single page extracted from a 50MB PDF will be a tiny file containing only that page's data." },
     ],

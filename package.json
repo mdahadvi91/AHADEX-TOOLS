@@ -17,7 +17,7 @@
   },
   "scripts": {
     "dev": "vite",
-    "build": "npm run generate:content && npm run verify:affiliate && npm run verify:ssr && npm run verify:count && tsc --noEmit && vite build && npm run build:route-html && npm run verify:sitemap",
+    "build": "npm run generate:content && tsc --noEmit && vite build && npm run build:route-html && npm run verify",
     "preview": "vite preview --port 4173",
     "lint": "tsc --noEmit",
     "type-check": "tsc --noEmit",
@@ -34,11 +34,13 @@
     "verify:sitemap": "tsx scripts/verify-sitemap.ts",
     "verify:production": "tsx scripts/verify-production.ts",
     "generate:content": "npm run sitemap && npm run rss && npm run og:images && npm run tool:meta && npm run ssr:content && npm run schema",
-    "verify": "npm run verify:affiliate && npm run verify:ssr && npm run verify:count",
+    "verify": "npm run verify:affiliate && npm run verify:ssr && npm run verify:sitemap && npm run verify:count && npm run verify:content",
     "build:route-html": "tsx scripts/build-route-html.ts",
-    "verify:all": "npm run build && npm run verify:production"
+    "verify:all": "npm run build && npm run verify:production",
+    "verify:content": "tsx scripts/verify-content-depth.ts"
   },
   "dependencies": {
+    "@img/sharp-wasm32": "^0.35.5",
     "browser-image-compression": "^2.0.2",
     "clsx": "^2.1.1",
     "exifr": "^7.1.3",
@@ -62,6 +64,7 @@
     "react-icons": "^5.7.0",
     "react-image-crop": "^11.0.7",
     "react-router-dom": "^6.26.1",
+    "sharp": "^0.35.5",
     "tailwind-merge": "^2.5.2"
   },
   "devDependencies": {

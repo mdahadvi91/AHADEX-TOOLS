@@ -78,6 +78,8 @@ const legacyTools: Tool[] = [
     faq: [
       { question: "Will the QR code still scan if I add a logo?", answer: "Yes. We use error-correction level H, which allows up to 30% of the QR surface to be covered by a logo without breaking the scan." },
       { question: "What platforms can I generate QR codes for?", answer: "WhatsApp, Facebook, Instagram, Telegram, WiFi, phone numbers, email, and plain text are all supported." },
+      { question: "Does this tool support dynamic QR codes?", answer: "No. We generate static QR codes. Once you download the image, the destination URL or text cannot be changed." },
+      { question: "Can I embed a logo in the QR code?", answer: "Yes. The tool automatically places the platform's official logo in the center of the QR code." },
     ],
     useCases: [
       "Adding a WhatsApp or Instagram link to printed business cards.",
@@ -191,6 +193,8 @@ benchmarks: [
     faq: [
       { question: "Can I print this card at a professional print shop?", answer: "Yes. Our templates export at 300 DPI (print resolution). However, note that this uses RGB colors, so very bright colors might look slightly different on CMYK printers." },
       { question: "Does it include a QR code?", answer: "You can add a QR code using our Photo QR tool first, then upload it as the logo on your visiting card!" },
+      { question: "Are the exported cards print-ready?", answer: "Yes. The templates are designed at 300 DPI with proper bleed and safe margins, ready to be handed to any print shop." },
+      { question: "Can I use my own custom logo?", answer: "Yes. You can upload your own logo in the Logo panel to replace the default placeholder." },
     ],
     useCases: [
       "Freelancers creating a quick digital portfolio card.",
@@ -314,6 +318,8 @@ benchmarks: [
       { question: "Can I have multiple CVs?", answer: "Yes. Saved CVs appear in the Save tab. You can create, duplicate, rename, and delete as many as you want. All stored locally in your browser." },
       { question: "What happens if I close the browser?", answer: "Your current work is auto-saved as a draft. When you return, a banner offers to recover it. Nothing is lost unless you explicitly discard it." },
       { question: "Can I export my CV as JSON?", answer: "Yes. The Save tab has JSON export and import. Useful for backups or moving between devices." },
+      { question: "Can I save my CV and edit it later?", answer: "Yes. Your progress is automatically saved in your browser's local storage, so you can close the tab and come back later." },
+      { question: "Is the exported PDF ATS-friendly?", answer: "Yes. All our templates use clean, semantic text and standard fonts, ensuring your CV passes Applicant Tracking Systems." },
     ],
     useCases: [
       "Applying for jobs with an ATS-friendly resume.",
@@ -441,6 +447,8 @@ benchmarks: [
     faq: [
       { question: "How much can I compress an image without losing quality?", answer: "Quality 75-80 is the sweet spot for web images, often saving 60-75% of file size with no visible difference on screens. For print, stick to 90+." },
       { question: "Does compressing an image remove EXIF GPS data?", answer: "Yes. Because this tool re-encodes the image through the browser Canvas API, all hidden metadata (GPS, camera model) is stripped automatically — a built-in privacy win." },
+      { question: "What is the best quality setting for web images?", answer: "A quality setting of 75-80% is usually the sweet spot, offering significant file size reduction with no visible quality loss on screens." },
+      { question: "Can I compress multiple images at once?", answer: "Yes, our tool supports batch processing. You can drag and drop multiple files to compress them all simultaneously." },
     ],
     useCases: [
       "Optimizing images for faster website loading (Core Web Vitals).",
@@ -524,6 +532,8 @@ benchmarks: [
     faq: [
       { question: "Will resizing stretch my image?", answer: "Only if you unlock the aspect ratio. We strongly recommend keeping it locked so the image scales proportionally without distortion." },
       { question: "Why does my resized image look blurry?", answer: "If you upscale (make the image larger than its original resolution), the browser has to invent new pixels, causing blur. Downscaling (making it smaller) always stays sharp." },
+      { question: "Will resizing stretch my image?", answer: "Only if you unlock the aspect ratio. With 'Lock Aspect Ratio' enabled, the image will scale proportionally without distortion." },
+      { question: "What is the maximum image size I can resize?", answer: "You can resize images up to 50 MB. However, extremely large images may take a moment to process depending on your device." },
     ],
     useCases: [
       "Resizing photos to exactly 1080x1080 for Instagram.",
@@ -602,6 +612,8 @@ benchmarks: [
     faq: [
       { question: "Does cropping an image reduce its quality?", answer: "No. Cropping simply trims the edges of the image without re-compressing the remaining pixels, so the quality stays intact." },
       { question: "Can I crop an image into a perfect circle?", answer: "Yes. Select the circular crop overlay and adjust the radius. The output will be a PNG with a transparent background outside the circle." },
+      { question: "Does cropping an image reduce its quality?", answer: "No. Cropping simply trims the edges of the image without re-compressing the remaining pixels, preserving the original quality." },
+      { question: "Can I crop an image into a perfect circle?", answer: "Yes. Select the circular crop overlay and adjust the radius. The output will be a PNG with a transparent background." },
     ],
     useCases: [
       "Cropping a photo for a circular profile picture (WhatsApp/Facebook).",
@@ -691,6 +703,8 @@ benchmarks: [
     faq: [
       { question: "Can I merge PDFs that are password-protected?", answer: "No. You must remove the password in your PDF reader first. Our tool cannot decrypt restricted files." },
       { question: "Does merging PDFs reduce their quality?", answer: "Never. We use lossless merging — the text, fonts, and images inside your original PDFs remain byte-for-byte identical." },
+      { question: "Can I reorder the PDFs after uploading?", answer: "Yes. Simply drag and drop the uploaded PDF thumbnails to rearrange their order before merging." },
+      { question: "Is there a limit on the number of files I can merge?", answer: "You can merge up to 50 PDFs at once. The total combined file size should be under 100 MB for optimal performance." },
     ],
     useCases: [
       "Combining multiple scanned documents into a single PDF for email.",
@@ -774,6 +788,8 @@ benchmarks: [
     faq: [
       { question: "How do you calculate reading time?", answer: "We assume an average reading speed of 200 words per minute. This is the standard used by most publishing platforms like Medium." },
       { question: "Does it count characters with or without spaces?", answer: "Both. You will see a breakdown of characters with spaces, characters without spaces, and total word count." },
+      { question: "Does it count characters with spaces?", answer: "Yes, the tool provides both character count with spaces and character count without spaces." },
+      { question: "How is the reading time calculated?", answer: "Reading time is calculated based on an average reading speed of 200 words per minute, which is standard for most online content." },
     ],
     useCases: [
       "Checking if an essay meets a minimum word requirement.",
@@ -866,6 +882,8 @@ benchmarks: [
     faq: [
       { question: "Does this tool upload my photos to read EXIF data?", answer: "Never. The EXIF data is parsed entirely in your browser using JavaScript. Your photos remain on your device." },
       { question: "Can I remove the metadata using this tool?", answer: "No, this is a viewer only. To remove metadata, you can use our Image Converter or Image Compressor, which strip EXIF data automatically." },
+      { question: "Does this tool upload my photos to read EXIF data?", answer: "Never. The EXIF data is parsed entirely in your browser using JavaScript. Your photos remain 100% private on your device." },
+      { question: "Can I remove metadata using this tool?", answer: "No, this is a viewer only. To remove metadata, you can use our Image Converter or Image Compressor, which strip EXIF data automatically." },
     ],
     useCases: [
       "Checking if a photo has hidden GPS location data before sharing.",
@@ -951,6 +969,8 @@ benchmarks: [
     faq: [
       { question: "Why does the extracted text look scrambled?", answer: "PDFs store text as floating coordinates, not paragraphs. Complex multi-column layouts (like magazines) may scramble. Simple text documents extract perfectly." },
       { question: "Does it work on scanned PDFs?", answer: "No. Scanned PDFs are just pictures of text. This tool extracts the hidden digital text layer, not the pixels. You need an OCR tool for scans." },
+      { question: "Why does the extracted text look scrambled?", answer: "PDFs store text as floating coordinates. Complex multi-column layouts (like magazines) may scramble. Simple text documents extract perfectly." },
+      { question: "Does it work on scanned PDFs?", answer: "No. Scanned PDFs are just pictures of text. This tool extracts the hidden digital text layer, not the pixels." },
     ],
     useCases: [
       "Extracting text from a PDF for translation.",
@@ -1035,6 +1055,8 @@ benchmarks: [
     faq: [
       { question: "Does rotating a PDF reduce its quality?", answer: "No. The rotation is applied to the page's orientation matrix, leaving the underlying text and image data completely untouched." },
       { question: "Can I rotate only specific pages?", answer: "Currently, the tool rotates the entire document. If you need to rotate one page, use our Split PDF tool first, rotate the page, and merge it back." },
+      { question: "Does rotating a PDF reduce its quality?", answer: "No. The rotation is applied to the page's orientation matrix, leaving the underlying text and image data completely untouched." },
+      { question: "Can I rotate only specific pages?", answer: "Currently, the tool rotates the entire document. If you need to rotate one page, use our Split PDF tool first." },
     ],
     useCases: [
       "Fixing upside-down pages in a scanned PDF.",
@@ -1111,6 +1133,8 @@ benchmarks: [
       { step: 4, title: "Download PNG", description: "Click Convert. Your PNG is generated and downloaded instantly." },
     ],
     faq: [
+      { question: "Can I choose the resolution of the PNG?", answer: "Yes. You can set the exact width and height in pixels, or scale the SVG up to 8000px for high-resolution printing." },
+      { question: "Will the transparency be preserved?", answer: "Yes. The output PNG will maintain all transparent areas from the original SVG file." },
       { question: "Can I choose the resolution of the PNG?", answer: "Yes. You can set the exact width and height in pixels, or scale the SVG up to 8000px for high-resolution printing." },
       { question: "Will the transparency be preserved?", answer: "Yes. The output PNG will maintain all transparent areas from the original SVG file." },
     ],
@@ -1197,6 +1221,8 @@ benchmarks: [
     faq: [
       { question: "What happens if my JSON has a syntax error?", answer: "The tool will show you the exact line and error message (e.g., 'Unexpected token }'). This makes debugging minified API responses much faster." },
       { question: "Is there a file size limit for JSON?", answer: "Because processing happens in your browser's memory, files up to 50MB work smoothly. Larger files may slow down or crash older mobile devices." },
+      { question: "Does it validate JSON syntax?", answer: "Yes. If your JSON has an error, the tool will highlight the exact line and character position of the syntax error." },
+      { question: "Is my JSON data uploaded to a server?", answer: "No. All parsing, formatting, and minifying happens locally in your browser. Your data never leaves your computer." },
     ],
     useCases: [
       "Debugging minified API responses.",
@@ -1284,6 +1310,8 @@ benchmarks: [
       { step: 4, title: "Copy the result", description: "Click copy — the output is ready to paste anywhere." },
     ],
     faq: [
+      { question: "What is the difference between Encode and Decode?", answer: "Encoding converts special characters (like spaces) into safe percent-encoded strings (like %20). Decoding reverses this process." },
+      { question: "Should I use encodeURI or encodeURIComponent?", answer: "encodeURI is for full URLs, while encodeURIComponent is for individual query parameters. Our tool uses standard URI encoding." },
       { question: "What is the difference between Encode and Decode?", answer: "Encoding converts special characters (like spaces) into safe percent-encoded strings (like %20). Decoding reverses this process." },
       { question: "Should I use encodeURI or encodeURIComponent?", answer: "encodeURI is for full URLs, while encodeURIComponent is for individual query parameters. Our tool uses standard URI encoding." },
     ],
@@ -1376,6 +1404,8 @@ benchmarks: [
     faq: [
       { question: "Are these UUIDs guaranteed to be unique?", answer: "Yes. We generate UUID v4 (Random) with 122 bits of entropy. The probability of a collision is so astronomically low it's considered mathematically impossible." },
       { question: "Can I generate UUIDs in bulk?", answer: "Yes. You can generate up to 1,000 UUIDs at once and download them as a .txt file for database insertion or testing." },
+      { question: "Are these UUIDs guaranteed to be unique?", answer: "Yes. We generate UUID v4 (Random) with 122 bits of entropy. The probability of a collision is mathematically negligible." },
+      { question: "Can I generate UUIDs in bulk?", answer: "Yes. You can generate up to 1,000 UUIDs at once and download them as a .txt file for database insertion or testing." },
     ],
     useCases: [
       "Generating unique IDs for database primary keys.",
@@ -1457,6 +1487,8 @@ benchmarks: [
     ],
     faq: [
       { question: "Can I convert a whole paragraph to Title Case?", answer: "Yes. Our Title Case algorithm intelligently ignores small words like 'and', 'or', 'the', and 'in' unless they are at the beginning or end." },
+      { question: "Does it fix typos?", answer: "No. This tool only changes the capitalization of letters, it does not perform spell-checking." },
+      { question: "Can I convert a whole paragraph to Title Case?", answer: "Yes. Our Title Case algorithm intelligently ignores small words like 'and' or 'the' unless they are at the beginning or end." },
       { question: "Does it fix typos?", answer: "No. This tool only changes the capitalization of letters, it does not perform spell-checking." },
     ],
     useCases: [
@@ -1544,6 +1576,8 @@ benchmarks: [
     faq: [
       { question: "What algorithm is used for the sketch effect?", answer: "We use edge detection combined with a grayscale filter to simulate a graphite pencil drawing on paper." },
       { question: "Can I adjust the intensity of the sketch?", answer: "Yes, there is a slider to adjust the edge thickness and contrast before downloading the final image." },
+      { question: "What algorithm is used for the sketch effect?", answer: "We use edge detection combined with a grayscale filter to simulate a graphite pencil drawing on paper." },
+      { question: "Can I adjust the intensity of the sketch?", answer: "Yes, there is a slider to adjust the edge thickness and contrast before downloading the final image." },
     ],
     useCases: [
       "Creating artistic profile pictures.",
@@ -1628,6 +1662,8 @@ benchmarks: [
     faq: [
       { question: "How does the cartoon effect work?", answer: "The tool applies a bilateral filter to smooth colors and a color quantization step to flatten the image into cartoon-like regions." },
       { question: "Is it better to use AI for cartoons?", answer: "AI gives a stylized artistic look, but our algorithm is much faster, works offline, and keeps your photos 100% private." },
+      { question: "How does the cartoon effect work?", answer: "The tool applies a bilateral filter to smooth colors and a color quantization step to flatten the image into cartoon-like regions." },
+      { question: "Is it better to use AI for cartoons?", answer: "AI gives a stylized artistic look, but our algorithm is much faster, works offline, and keeps your photos 100% private." },
     ],
     useCases: [
       "Creating fun avatars for WhatsApp or Discord.",
@@ -1710,6 +1746,8 @@ benchmarks: [
     faq: [
       { question: "Is Base64 a form of encryption?", answer: "No. Base64 is an encoding scheme, not encryption. It is easily reversible by anyone. Never use Base64 to hide passwords or sensitive data." },
       { question: "Why does the file size increase?", answer: "Base64 encodes 3 bytes of binary data into 4 ASCII characters. This guarantees a ~33% increase in size compared to the original binary file." },
+      { question: "Is Base64 a form of encryption?", answer: "No. Base64 is an encoding scheme, not encryption. It is easily reversible by anyone. Never use Base64 to hide sensitive data." },
+      { question: "Why does the file size increase?", answer: "Base64 encodes 3 bytes of binary data into 4 ASCII characters. This guarantees a ~33% increase in size compared to the original file." },
     ],
     useCases: [
       "Embedding small images directly into CSS or HTML.",
@@ -1821,6 +1859,8 @@ benchmarks: [
     faq: [
       { question: "Are these passwords stored anywhere?", answer: "Absolutely not. The generation happens entirely in your browser using crypto.getRandomValues(). Once you close the tab, the password is gone forever." },
       { question: "Is 16 characters long enough to be secure?", answer: "Yes. A 16-character random password with numbers and symbols would take modern computers billions of years to brute-force." },
+      { question: "Are these passwords stored anywhere?", answer: "Absolutely not. The generation happens entirely in your browser. Once you close the tab, the password is gone forever." },
+      { question: "Is 16 characters long enough to be secure?", answer: "Yes. A 16-character random password with numbers and symbols would take modern computers billions of years to brute-force." },
     ],
     useCases: [
       "Creating strong passwords for new accounts.",
@@ -1906,6 +1946,8 @@ benchmarks: [
     faq: [
       { question: "Which barcode formats are supported?", answer: "We support standard 1D barcodes including Code 128, EAN-13, UPC-A, and Code 39. We do not currently support 2D Data Matrix codes." },
       { question: "Can I print these barcodes?", answer: "Yes. The generated barcodes are vector-based and can be downloaded as SVG for crisp, high-resolution printing." },
+      { question: "Which barcode formats are supported?", answer: "We support standard 1D barcodes including Code 128, EAN-13, UPC-A, and Code 39." },
+      { question: "Can I print these barcodes?", answer: "Yes. The generated barcodes can be downloaded as SVG for crisp, high-resolution printing on any label printer." },
     ],
     useCases: [
       "Creating barcodes for retail products.",
@@ -1995,6 +2037,8 @@ benchmarks: [
     ],
     faq: [
       { question: "Does it count emojis?", answer: "Yes, but depending on the platform, an emoji might count as 1 or 2 characters. The tool displays the raw string length." },
+      { question: "Why is there a character limit on Twitter?", answer: "Twitter (X) has a strict 280-character limit for standard accounts. Our tool helps you stay within that limit." },
+      { question: "Does it count emojis?", answer: "Yes. However, depending on the platform, an emoji might count as 1 or 2 characters. The tool displays the raw string length." },
       { question: "Why is there a character limit on Twitter?", answer: "Twitter (X) has a strict 280-character limit for standard accounts. Our tool helps you stay within that limit." },
     ],
     useCases: [
@@ -2086,6 +2130,8 @@ benchmarks: [
       { step: 4, title: "Download all", description: "Get the full set — PNG icons, favicon.ico, and site.webmanifest — with one click." },
     ],
     faq: [
+      { question: "What sizes of favicons does this tool generate?", answer: "We generate all standard sizes, including 16x16, 32x32, 48x48, 180x180 (Apple Touch), and 512x512 (Android)." },
+      { question: "Will the favicon look good in dark mode?", answer: "Yes, as long as your source image has a transparent background or a design that works on both light and dark browser tabs." },
       { question: "What sizes of favicons does this tool generate?", answer: "We generate all standard sizes, including 16x16, 32x32, 48x48, 180x180 (Apple Touch), and 512x512 (Android)." },
       { question: "Will the favicon look good in dark mode?", answer: "Yes, as long as your source image has a transparent background or a design that works on both light and dark browser tabs." },
     ],

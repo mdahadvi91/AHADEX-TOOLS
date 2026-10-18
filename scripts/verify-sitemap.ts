@@ -169,6 +169,12 @@ function checkHtml(loc: string, html: string): string[] {
     problems.push("missing non-empty <h1>");
   }
 
+  if (!html.match(/<html[^>]+lang=["']([^"']+)["']/i)) problems.push('missing html lang');
+  if (!html.includes('name="viewport"')) problems.push('missing viewport meta');
+  if (!getOgMeta(html, "og:url")) problems.push('missing og:url');
+  if (!getOgMeta(html, "og:type")) problems.push('missing og:type');
+
+
   checkJsonLd(html, problems);
 
   return problems;
