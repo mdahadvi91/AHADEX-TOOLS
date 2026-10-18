@@ -2556,5 +2556,489 @@ export const SSR_SCHEMA: Record<string, object> = {
         "inLanguage": "en"
       }
     ]
+  },
+  "/": {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebSite",
+        "@id": "https://ahadex.fun/#website",
+        "name": "AHADEX Tools",
+        "url": "https://ahadex.fun/",
+        "description": "27 free browser-based tools for images, PDFs, text, and QR codes. No uploads, no signup, 100% private.",
+        "publisher": {
+          "@id": "https://ahadex.fun/#organization"
+        },
+        "inLanguage": "en"
+      },
+      {
+        "@type": "Organization",
+        "@id": "https://ahadex.fun/#organization",
+        "name": "AHADEX Tools",
+        "url": "https://ahadex.fun/",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://ahadex.fun/android-chrome-512x512.png",
+          "width": 512,
+          "height": 512
+        }
+      }
+    ]
+  },
+  "/tools": {
+    "@context": "https://schema.org",
+    "@type": "CollectionPage",
+    "@id": "https://ahadex.fun/tools#collection",
+    "name": "All Tools — Free Online Utilities",
+    "url": "https://ahadex.fun/tools",
+    "description": "Browse all 27 free browser-based tools for images, PDFs, text, and QR codes.",
+    "inLanguage": "en",
+    "isPartOf": {
+      "@id": "https://ahadex.fun/#website"
+    },
+    "mainEntity": {
+      "@type": "ItemList",
+      "numberOfItems": 27,
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "url": "https://ahadex.fun/tools/photo-qr",
+          "name": "Photo QR Code"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "url": "https://ahadex.fun/tools/visiting-card",
+          "name": "Visiting Card Maker"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "url": "https://ahadex.fun/tools/cv-builder",
+          "name": "CV Builder"
+        },
+        {
+          "@type": "ListItem",
+          "position": 4,
+          "url": "https://ahadex.fun/tools/image-compressor",
+          "name": "Image Compressor"
+        },
+        {
+          "@type": "ListItem",
+          "position": 5,
+          "url": "https://ahadex.fun/tools/image-resizer",
+          "name": "Image Resizer"
+        },
+        {
+          "@type": "ListItem",
+          "position": 6,
+          "url": "https://ahadex.fun/tools/image-cropper",
+          "name": "Image Cropper"
+        },
+        {
+          "@type": "ListItem",
+          "position": 7,
+          "url": "https://ahadex.fun/tools/merge-pdf",
+          "name": "Merge PDF"
+        },
+        {
+          "@type": "ListItem",
+          "position": 8,
+          "url": "https://ahadex.fun/tools/word-counter",
+          "name": "Word Counter"
+        },
+        {
+          "@type": "ListItem",
+          "position": 9,
+          "url": "https://ahadex.fun/tools/image-metadata-viewer",
+          "name": "Image Metadata Viewer"
+        },
+        {
+          "@type": "ListItem",
+          "position": 10,
+          "url": "https://ahadex.fun/tools/pdf-to-text",
+          "name": "PDF to Text"
+        },
+        {
+          "@type": "ListItem",
+          "position": 11,
+          "url": "https://ahadex.fun/tools/pdf-rotator",
+          "name": "PDF Rotator"
+        },
+        {
+          "@type": "ListItem",
+          "position": 12,
+          "url": "https://ahadex.fun/tools/svg-to-png",
+          "name": "SVG to PNG"
+        },
+        {
+          "@type": "ListItem",
+          "position": 13,
+          "url": "https://ahadex.fun/tools/json-formatter",
+          "name": "JSON Formatter"
+        },
+        {
+          "@type": "ListItem",
+          "position": 14,
+          "url": "https://ahadex.fun/tools/url-encoder",
+          "name": "URL Encoder / Decoder"
+        },
+        {
+          "@type": "ListItem",
+          "position": 15,
+          "url": "https://ahadex.fun/tools/uuid-generator",
+          "name": "UUID Generator"
+        },
+        {
+          "@type": "ListItem",
+          "position": 16,
+          "url": "https://ahadex.fun/tools/text-case-converter",
+          "name": "Text Case Converter"
+        },
+        {
+          "@type": "ListItem",
+          "position": 17,
+          "url": "https://ahadex.fun/tools/image-to-sketch",
+          "name": "Image to Sketch"
+        },
+        {
+          "@type": "ListItem",
+          "position": 18,
+          "url": "https://ahadex.fun/tools/image-to-cartoon",
+          "name": "Image to Cartoon"
+        },
+        {
+          "@type": "ListItem",
+          "position": 19,
+          "url": "https://ahadex.fun/tools/base64-encoder",
+          "name": "Base64 Encoder / Decoder"
+        },
+        {
+          "@type": "ListItem",
+          "position": 20,
+          "url": "https://ahadex.fun/tools/password-generator",
+          "name": "Password Generator"
+        },
+        {
+          "@type": "ListItem",
+          "position": 21,
+          "url": "https://ahadex.fun/tools/barcode-generator",
+          "name": "Barcode Generator"
+        },
+        {
+          "@type": "ListItem",
+          "position": 22,
+          "url": "https://ahadex.fun/tools/character-counter",
+          "name": "Character Counter"
+        },
+        {
+          "@type": "ListItem",
+          "position": 23,
+          "url": "https://ahadex.fun/tools/favicon-generator",
+          "name": "Favicon Generator"
+        },
+        {
+          "@type": "ListItem",
+          "position": 24,
+          "url": "https://ahadex.fun/tools/image-converter",
+          "name": "Image Converter"
+        },
+        {
+          "@type": "ListItem",
+          "position": 25,
+          "url": "https://ahadex.fun/tools/pdf-to-image",
+          "name": "PDF to Image"
+        },
+        {
+          "@type": "ListItem",
+          "position": 26,
+          "url": "https://ahadex.fun/tools/image-to-pdf",
+          "name": "Image to PDF"
+        },
+        {
+          "@type": "ListItem",
+          "position": 27,
+          "url": "https://ahadex.fun/tools/split-pdf",
+          "name": "Split PDF"
+        }
+      ]
+    }
+  },
+  "/blog": {
+    "@context": "https://schema.org",
+    "@type": "CollectionPage",
+    "@id": "https://ahadex.fun/blog#collection",
+    "name": "Blog — Guides & Tutorials",
+    "url": "https://ahadex.fun/blog",
+    "description": "In-depth guides and tutorials on image, PDF, text, and QR tools.",
+    "inLanguage": "en",
+    "isPartOf": {
+      "@id": "https://ahadex.fun/#website"
+    },
+    "mainEntity": {
+      "@type": "ItemList",
+      "numberOfItems": 36,
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "url": "https://ahadex.fun/blog/how-to-compress-images-without-losing-quality",
+          "name": "How to Compress Images Without Losing Quality (2026 Guide)"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "url": "https://ahadex.fun/blog/merge-pdf-files-online-complete-guide",
+          "name": "Merge PDF Files Online: The Complete 2026 Guide"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "url": "https://ahadex.fun/blog/json-formatter-complete-developer-guide",
+          "name": "JSON Formatter: Why Every Developer Needs One (2026)"
+        },
+        {
+          "@type": "ListItem",
+          "position": 4,
+          "url": "https://ahadex.fun/blog/strong-password-generator-complete-guide",
+          "name": "How to Create Strong Passwords That Resist Modern Attacks (2026 Guide)"
+        },
+        {
+          "@type": "ListItem",
+          "position": 5,
+          "url": "https://ahadex.fun/blog/base64-encoding-explained-beginner-guide",
+          "name": "Base64 Encoding Explained: A Practical Guide"
+        },
+        {
+          "@type": "ListItem",
+          "position": 6,
+          "url": "https://ahadex.fun/blog/jpg-vs-png-vs-webp-which-format",
+          "name": "JPG vs PNG vs WebP: Which Format Should You Use in 2026?"
+        },
+        {
+          "@type": "ListItem",
+          "position": 7,
+          "url": "https://ahadex.fun/blog/convert-jpg-to-pdf-complete-guide",
+          "name": "How to Convert JPG to PDF: The Complete 2026 Guide"
+        },
+        {
+          "@type": "ListItem",
+          "position": 8,
+          "url": "https://ahadex.fun/blog/uuid-v4-vs-v7-when-to-use-each",
+          "name": "UUID v4 vs v7: When to Use Each (Developer Guide)"
+        },
+        {
+          "@type": "ListItem",
+          "position": 9,
+          "url": "https://ahadex.fun/blog/qr-codes-business-cards-marketing",
+          "name": "QR Codes for Business Cards and Marketing: Best Practices"
+        },
+        {
+          "@type": "ListItem",
+          "position": 10,
+          "url": "https://ahadex.fun/blog/word-count-guide-writing-content",
+          "name": "Word Count Guide: How Many Words Should Your Content Be?"
+        },
+        {
+          "@type": "ListItem",
+          "position": 11,
+          "url": "https://ahadex.fun/blog/image-sizes-social-media-2026-guide",
+          "name": "Optimal Image Sizes for Instagram, Facebook, Twitter & LinkedIn (2026)"
+        },
+        {
+          "@type": "ListItem",
+          "position": 12,
+          "url": "https://ahadex.fun/blog/pdf-to-jpg-when-and-why",
+          "name": "PDF to JPG: When, Why, and How to Convert (Complete Guide)"
+        },
+        {
+          "@type": "ListItem",
+          "position": 13,
+          "url": "https://ahadex.fun/blog/json-vs-xml-complete-comparison",
+          "name": "JSON vs XML: Which Should You Use in 2026?"
+        },
+        {
+          "@type": "ListItem",
+          "position": 14,
+          "url": "https://ahadex.fun/blog/favicon-complete-guide-website-icons",
+          "name": "Favicon Complete Guide: Create Website Icons That Convert"
+        },
+        {
+          "@type": "ListItem",
+          "position": 15,
+          "url": "https://ahadex.fun/blog/url-encoding-explained-special-characters",
+          "name": "URL Encoding Explained: Special Characters & Best Practices"
+        },
+        {
+          "@type": "ListItem",
+          "position": 16,
+          "url": "https://ahadex.fun/blog/twitter-character-limit-guide-2026",
+          "name": "Twitter/X Character Limit Guide 2026: How Many Characters Can You Post?"
+        },
+        {
+          "@type": "ListItem",
+          "position": 17,
+          "url": "https://ahadex.fun/blog/barcode-vs-qr-code-when-to-use",
+          "name": "Barcode vs QR Code: Which One Should You Use?"
+        },
+        {
+          "@type": "ListItem",
+          "position": 18,
+          "url": "https://ahadex.fun/blog/title-case-vs-sentence-case-writing-guide",
+          "name": "Title Case vs Sentence Case: A Complete Writing Guide"
+        },
+        {
+          "@type": "ListItem",
+          "position": 19,
+          "url": "https://ahadex.fun/blog/image-to-sketch-cartoon-how-it-works",
+          "name": "How to Convert Photos to Sketches and Cartoons (Complete Guide)"
+        },
+        {
+          "@type": "ListItem",
+          "position": 20,
+          "url": "https://ahadex.fun/blog/image-cropping-guide-aspect-ratios",
+          "name": "Image Cropping Guide: Aspect Ratios for Every Platform (2026)"
+        },
+        {
+          "@type": "ListItem",
+          "position": 21,
+          "url": "https://ahadex.fun/blog/how-to-reduce-pdf-file-size",
+          "name": "How to Reduce PDF File Size Without Losing Quality"
+        },
+        {
+          "@type": "ListItem",
+          "position": 22,
+          "url": "https://ahadex.fun/blog/best-free-tools-for-students-2026",
+          "name": "Best Free Online Tools Every Student Needs in 2026"
+        },
+        {
+          "@type": "ListItem",
+          "position": 23,
+          "url": "https://ahadex.fun/blog/what-is-exif-metadata-privacy-guide",
+          "name": "What Is EXIF Metadata? (And Why It Can Leak Your Privacy)"
+        },
+        {
+          "@type": "ListItem",
+          "position": 24,
+          "url": "https://ahadex.fun/blog/webp-image-format-complete-guide",
+          "name": "WebP Image Format: The Complete 2026 Guide"
+        },
+        {
+          "@type": "ListItem",
+          "position": 25,
+          "url": "https://ahadex.fun/blog/professional-cv-writing-tips-2026",
+          "name": "How to Write a Professional CV That Gets Interviews (2026)"
+        },
+        {
+          "@type": "ListItem",
+          "position": 26,
+          "url": "https://ahadex.fun/blog/how-to-merge-images-into-one",
+          "name": "How to Merge Multiple Images Into One (2026 Guide)"
+        },
+        {
+          "@type": "ListItem",
+          "position": 27,
+          "url": "https://ahadex.fun/blog/youtube-thumbnail-design-guide",
+          "name": "YouTube Thumbnail Design: The Complete 2026 Guide"
+        },
+        {
+          "@type": "ListItem",
+          "position": 28,
+          "url": "https://ahadex.fun/blog/email-attachment-size-limits-guide",
+          "name": "Email Attachment Size Limits: Every Provider Compared (2026)"
+        },
+        {
+          "@type": "ListItem",
+          "position": 29,
+          "url": "https://ahadex.fun/blog/color-picker-guide-web-design",
+          "name": "Color Picker Guide for Web Designers (2026)"
+        },
+        {
+          "@type": "ListItem",
+          "position": 30,
+          "url": "https://ahadex.fun/blog/how-to-protect-online-privacy-2026",
+          "name": "How to Protect Your Online Privacy in 2026 (Complete Guide)"
+        },
+        {
+          "@type": "ListItem",
+          "position": 31,
+          "url": "https://ahadex.fun/blog/how-to-convert-heic-to-jpg",
+          "name": "How to Convert HEIC to JPG (iPhone Photos Explained)"
+        },
+        {
+          "@type": "ListItem",
+          "position": 32,
+          "url": "https://ahadex.fun/blog/how-to-remove-background-from-photos",
+          "name": "How to Remove Background from Photos (Free Methods)"
+        },
+        {
+          "@type": "ListItem",
+          "position": 33,
+          "url": "https://ahadex.fun/blog/website-speed-optimization-guide",
+          "name": "Website Speed Optimization: The Complete 2026 Guide"
+        },
+        {
+          "@type": "ListItem",
+          "position": 34,
+          "url": "https://ahadex.fun/blog/free-tools-for-freelancers-2026",
+          "name": "Best Free Online Tools for Freelancers in 2026"
+        },
+        {
+          "@type": "ListItem",
+          "position": 35,
+          "url": "https://ahadex.fun/blog/how-to-create-favicon-from-logo",
+          "name": "How to Create a Favicon From Your Logo (Step-by-Step)"
+        },
+        {
+          "@type": "ListItem",
+          "position": 36,
+          "url": "https://ahadex.fun/blog/how-to-add-watermark-to-photos",
+          "name": "How to Add a Watermark to Photos (Free Methods)"
+        }
+      ]
+    }
+  },
+  "/guides": {
+    "@context": "https://schema.org",
+    "@type": "CollectionPage",
+    "@id": "https://ahadex.fun/guides#collection",
+    "name": "Guides — Complete Workflows for Real Tasks",
+    "url": "https://ahadex.fun/guides",
+    "description": "Step-by-step workflows combining multiple tools for real tasks.",
+    "inLanguage": "en",
+    "isPartOf": {
+      "@id": "https://ahadex.fun/#website"
+    },
+    "mainEntity": {
+      "@type": "ItemList",
+      "numberOfItems": 4,
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "url": "https://ahadex.fun/guides/compress-images-for-website",
+          "name": "Compress images for your website — a workflow that actually works"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "url": "https://ahadex.fun/guides/reduce-pdf-size-for-email",
+          "name": "Reduce PDF size for email — a practical workflow"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "url": "https://ahadex.fun/guides/create-print-ready-business-card",
+          "name": "Create a print-ready business card — specs and workflow"
+        },
+        {
+          "@type": "ListItem",
+          "position": 4,
+          "url": "https://ahadex.fun/guides/create-ats-friendly-cv",
+          "name": "Create an ATS-friendly CV — the technical checklist"
+        }
+      ]
+    }
   }
 };

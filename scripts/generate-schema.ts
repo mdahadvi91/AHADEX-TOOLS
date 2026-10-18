@@ -213,6 +213,106 @@ for (const guide of guides) {
   };
 }
 
+/* ── Index page schemas ──
+ * Homepage: WebSite + Organization (site-level search + brand).
+ * Listing pages: CollectionPage + ItemList so Google understands
+ * these are hubs, not thin pages.
+ */
+
+// Homepage: WebSite + Organization
+schemas["/"] = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebSite",
+      "@id": `${SITE_URL}/#website`,
+      name: SITE_NAME,
+      url: `${SITE_URL}/`,
+      description: `${tools.length} free browser-based tools for images, PDFs, text, and QR codes. No uploads, no signup, 100% private.`,
+      publisher: { "@id": `${SITE_URL}/#organization` },
+      inLanguage: "en",
+    },
+    {
+      "@type": "Organization",
+      "@id": `${SITE_URL}/#organization`,
+      name: SITE_NAME,
+      url: `${SITE_URL}/`,
+      logo: {
+        "@type": "ImageObject",
+        url: `${SITE_URL}/android-chrome-512x512.png`,
+        width: 512,
+        height: 512,
+      },
+    },
+  ],
+};
+
+// /tools: CollectionPage + ItemList
+schemas["/tools"] = {
+  "@context": "https://schema.org",
+  "@type": "CollectionPage",
+  "@id": `${SITE_URL}/tools#collection`,
+  name: "All Tools — Free Online Utilities",
+  url: `${SITE_URL}/tools`,
+  description: `Browse all ${tools.length} free browser-based tools for images, PDFs, text, and QR codes.`,
+  inLanguage: "en",
+  isPartOf: { "@id": `${SITE_URL}/#website` },
+  mainEntity: {
+    "@type": "ItemList",
+    numberOfItems: tools.length,
+    itemListElement: tools.map((t, i) => ({
+      "@type": "ListItem",
+      position: i + 1,
+      url: `${SITE_URL}${t.path}`,
+      name: t.name,
+    })),
+  },
+};
+
+// /blog: CollectionPage + ItemList
+schemas["/blog"] = {
+  "@context": "https://schema.org",
+  "@type": "CollectionPage",
+  "@id": `${SITE_URL}/blog#collection`,
+  name: "Blog — Guides & Tutorials",
+  url: `${SITE_URL}/blog`,
+  description: `In-depth guides and tutorials on image, PDF, text, and QR tools.`,
+  inLanguage: "en",
+  isPartOf: { "@id": `${SITE_URL}/#website` },
+  mainEntity: {
+    "@type": "ItemList",
+    numberOfItems: blogPosts.length,
+    itemListElement: blogPosts.map((p, i) => ({
+      "@type": "ListItem",
+      position: i + 1,
+      url: `${SITE_URL}/blog/${p.slug}`,
+      name: p.title,
+    })),
+  },
+};
+
+// /guides: CollectionPage + ItemList
+schemas["/guides"] = {
+  "@context": "https://schema.org",
+  "@type": "CollectionPage",
+  "@id": `${SITE_URL}/guides#collection`,
+  name: "Guides — Complete Workflows for Real Tasks",
+  url: `${SITE_URL}/guides`,
+  description: `Step-by-step workflows combining multiple tools for real tasks.`,
+  inLanguage: "en",
+  isPartOf: { "@id": `${SITE_URL}/#website` },
+  mainEntity: {
+    "@type": "ItemList",
+    numberOfItems: guides.length,
+    itemListElement: guides.map((g, i) => ({
+      "@type": "ListItem",
+      position: i + 1,
+      url: `${SITE_URL}/guides/${g.slug}`,
+      name: g.title,
+    })),
+  },
+};
+
 /* ── Write file ── */
 const file = `/* ============================================================
  * AUTO-GENERATED — do not edit by hand
@@ -228,4 +328,4 @@ export const SSR_SCHEMA: Record<string, object> = ${JSON.stringify(
 
 writeFileSync(OUT_FILE, file, "utf-8");
 console.log(`✅ Generated schema → ${OUT_FILE}`);
-console.log(`   ${Object.keys(schemas).length} tool schemas`);
+console.log(`   ${Object.keys(schemas).length} schemas (tools + blog + guides + index pages)`);
