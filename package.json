@@ -35,7 +35,8 @@
     "verify:production": "tsx scripts/verify-production.ts",
     "generate:content": "npm run sitemap && npm run rss && npm run og:images && npm run tool:meta && npm run ssr:content && npm run schema",
     "verify": "npm run verify:affiliate && npm run verify:ssr && npm run verify:count",
-    "build:route-html": "tsx scripts/build-route-html.ts"
+    "build:route-html": "tsx scripts/build-route-html.ts",
+    "verify:all": "npm run build && npm run verify:production"
   },
   "dependencies": {
     "browser-image-compression": "^2.0.2",
