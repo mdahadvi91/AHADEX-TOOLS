@@ -1,3 +1,4 @@
+import { ToolRelatedGuides } from "@components/tools/ToolRelatedGuides";
 import { ToolDataSections } from "@components/tools/ToolDataSections";
 import { useToolAnalytics } from "@hooks/useToolAnalytics";
 import { JsonFormatterSEO } from "./SEO";
@@ -32,6 +33,7 @@ export default function JsonFormatterTool() {
         <PrivacyNote />
         <FAQ />
           <ToolFieldNote toolId="json-formatter" />
+        <ToolRelatedGuides toolId="json-formatter" />
         <RelatedArticles toolId="json-formatter" />
         <ToolDataSections toolId="json-formatter" />
         <RelatedTools />

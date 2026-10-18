@@ -1,3 +1,4 @@
+import { ToolRelatedGuides } from "@components/tools/ToolRelatedGuides";
 import { ToolDataSections } from "@components/tools/ToolDataSections";
 import { useToolAnalytics } from "@hooks/useToolAnalytics";
 import { CVBuilderSEO } from "./SEO";
@@ -35,6 +36,7 @@ export default function CVBuilderTool() {
         </div>
         <div className="mx-auto max-w-[1200px] px-4 sm:px-6 lg:px-8">
           <ToolDataSections toolId="cv-builder" />
+        <ToolRelatedGuides toolId="cv-builder" />
         <RelatedArticles toolId="cv-builder" />
         </div>
       </div>

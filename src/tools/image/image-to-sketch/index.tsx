@@ -1,3 +1,4 @@
+import { ToolRelatedGuides } from "@components/tools/ToolRelatedGuides";
 import { ToolDataSections } from "@components/tools/ToolDataSections";
 import { useToolAnalytics } from "@hooks/useToolAnalytics";
 import { ImageToSketchSEO } from "./SEO";
@@ -30,6 +31,7 @@ export default function ImageToSketchTool() {
         <HowTo />
         <PrivacyNote />
         <FAQ />
+        <ToolRelatedGuides toolId="image-to-sketch" />
         <RelatedArticles toolId="image-to-sketch" />
         <ToolDataSections toolId="image-to-sketch" />
         <RelatedTools />

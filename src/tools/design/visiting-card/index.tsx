@@ -1,5 +1,6 @@
 import { RecommendedProducts } from "@components/affiliate/RecommendedProducts";
 import { RelatedArticles } from "@components/blog/RelatedArticles";
+import { ToolRelatedGuides } from "@components/tools/ToolRelatedGuides";
 import { ToolDataSections } from "@components/tools/ToolDataSections";
 import { ToolSchema } from "@components/seo/ToolSchema";
 import { ToolBreadcrumb } from "@components/tools/ToolBreadcrumb";
@@ -20,7 +21,8 @@ export default function VisitingCardTool() {
         <RelatedToolsBlock currentToolId="visiting-card" count={3} />
         <div className="mx-auto max-w-[1200px] px-4 sm:px-6 lg:px-8">
           <ToolDataSections toolId="visiting-card" />
-          <RelatedArticles toolId="visiting-card" />
+          <ToolRelatedGuides toolId="visiting-card" />
+        <RelatedArticles toolId="visiting-card" />
         </div>
       </div>
     </>

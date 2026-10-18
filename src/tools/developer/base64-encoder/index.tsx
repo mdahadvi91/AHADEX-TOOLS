@@ -1,3 +1,4 @@
+import { ToolRelatedGuides } from "@components/tools/ToolRelatedGuides";
 import { ToolDataSections } from "@components/tools/ToolDataSections";
 import { useToolAnalytics } from "@hooks/useToolAnalytics";
 import { ToolSchema } from "@components/seo/ToolSchema";
@@ -31,6 +32,7 @@ export default function Base64EncoderTool() {
         <HowTo />
         <PrivacyNote />
         <FAQ />
+        <ToolRelatedGuides toolId="base64-encoder" />
         <RelatedArticles toolId="base64-encoder" />
         <ToolDataSections toolId="base64-encoder" />
         <RelatedTools />

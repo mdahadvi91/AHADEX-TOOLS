@@ -1,3 +1,4 @@
+import { ToolRelatedGuides } from "@components/tools/ToolRelatedGuides";
 import { ToolDataSections } from "@components/tools/ToolDataSections";
 import { useToolAnalytics } from "@hooks/useToolAnalytics";
 import { MergePdfSEO } from "./SEO";
@@ -30,6 +31,7 @@ export default function MergePdfTool() {
         <HowTo />
         <PrivacyNote />
         <FAQ />
+        <ToolRelatedGuides toolId="merge-pdf" />
         <RelatedArticles toolId="merge-pdf" />
         <ToolDataSections toolId="merge-pdf" />
         <RelatedTools />

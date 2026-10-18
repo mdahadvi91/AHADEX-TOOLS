@@ -1,3 +1,4 @@
+import { ToolRelatedGuides } from "@components/tools/ToolRelatedGuides";
 import { ToolDataSections } from "@components/tools/ToolDataSections";
 import { useToolAnalytics } from "@hooks/useToolAnalytics";
 import { useEffect, useMemo, useRef, useState } from "react";
@@ -196,6 +197,7 @@ export default function PhotoQrTool() {
       <ToolFieldNote toolId="photo-qr" />
 
       <ToolDataSections toolId="photo-qr" />
+        <ToolRelatedGuides toolId="photo-qr" />
         <RelatedArticles toolId="photo-qr" />
         <RelatedTools toolIds={photoQrData.relatedTools} />
     </div>

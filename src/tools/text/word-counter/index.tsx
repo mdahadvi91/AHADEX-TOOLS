@@ -1,3 +1,4 @@
+import { ToolRelatedGuides } from "@components/tools/ToolRelatedGuides";
 import { ToolDataSections } from "@components/tools/ToolDataSections";
 import { useToolAnalytics } from "@hooks/useToolAnalytics";
 import { WordCounterSEO } from "./SEO";
@@ -30,6 +31,7 @@ export default function WordCounterTool() {
         <HowTo />
         <PrivacyNote />
         <FAQ />
+        <ToolRelatedGuides toolId="word-counter" />
         <RelatedArticles toolId="word-counter" />
         <ToolDataSections toolId="word-counter" />
         <RelatedTools />

@@ -1,3 +1,4 @@
+import { ToolRelatedGuides } from "@components/tools/ToolRelatedGuides";
 import { ToolDataSections } from "@components/tools/ToolDataSections";
 import { useToolAnalytics } from "@hooks/useToolAnalytics";
 import { PdfRotatorSEO } from "./SEO";
@@ -30,6 +31,7 @@ export default function PdfRotatorTool() {
         <HowTo />
         <PrivacyNote />
         <FAQ />
+        <ToolRelatedGuides toolId="pdf-rotator" />
         <RelatedArticles toolId="pdf-rotator" />
         <ToolDataSections toolId="pdf-rotator" />
         <RelatedTools />

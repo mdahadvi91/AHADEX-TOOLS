@@ -1,3 +1,4 @@
+import { ToolRelatedGuides } from "@components/tools/ToolRelatedGuides";
 import { ToolDataSections } from "@components/tools/ToolDataSections";
 import { useToolAnalytics } from "@hooks/useToolAnalytics";
 import { UuidGeneratorSEO } from "./SEO";
@@ -30,6 +31,7 @@ export default function UuidGeneratorTool() {
         <HowTo />
         <PrivacyNote />
         <FAQ />
+        <ToolRelatedGuides toolId="uuid-generator" />
         <RelatedArticles toolId="uuid-generator" />
         <ToolDataSections toolId="uuid-generator" />
         <RelatedTools />

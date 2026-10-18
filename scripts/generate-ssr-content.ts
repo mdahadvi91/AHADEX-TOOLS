@@ -113,6 +113,13 @@ function buildToolPage(tool: typeof tools[0]): string {
     .filter(Boolean)
     .join("");
 
+  
+  // Related Guides
+  const relatedGuides = guides.filter(g => g.relatedTools.includes(tool.id));
+  const relatedGuidesBlock = relatedGuides.length > 0
+    ? `<h2>Related Workflows & Guides</h2><ul>${relatedGuides.map(g => `<li><a href="/guides/${g.slug}">${esc(g.title)}</a> — ${esc(g.excerpt)}</li>`).join('')}</ul>`
+    : "";
+
   const relatedBlock = relatedTools
     ? `<h2>Related tools</h2>
     <ul>${relatedTools}</ul>`
@@ -172,6 +179,7 @@ return `<article>
     ${useCasesBlock}
     ${limitationsBlock}
     ${deepDiveBlock}
+    ${relatedGuidesBlock}
     ${relatedBlock}
     ${buildFieldNoteSection(tool)}
     ${buildBengaliSection(tool)}

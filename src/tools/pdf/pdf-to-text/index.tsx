@@ -1,3 +1,4 @@
+import { ToolRelatedGuides } from "@components/tools/ToolRelatedGuides";
 import { ToolDataSections } from "@components/tools/ToolDataSections";
 import { useToolAnalytics } from "@hooks/useToolAnalytics";
 import { PdfToTextSEO } from "./SEO";
@@ -30,6 +31,7 @@ export default function PdfToTextTool() {
         <HowTo />
         <PrivacyNote />
         <FAQ />
+        <ToolRelatedGuides toolId="pdf-to-text" />
         <RelatedArticles toolId="pdf-to-text" />
         <ToolDataSections toolId="pdf-to-text" />
         <RelatedTools />

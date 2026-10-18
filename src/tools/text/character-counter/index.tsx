@@ -7,6 +7,7 @@ import { HowTo } from "./components/HowTo";
 import { PrivacyNote } from "./components/PrivacyNote";
 import { FAQ } from "./components/FAQ";
 import { RelatedTools } from "./components/RelatedTools";
+import { ToolRelatedGuides } from "@components/tools/ToolRelatedGuides";
 import { ToolDataSections } from "@components/tools/ToolDataSections";
 import { useToolAnalytics } from "@hooks/useToolAnalytics";
 import { RecommendedProducts } from "@components/affiliate/RecommendedProducts";
@@ -30,6 +31,7 @@ export default function CharacterCounterTool() {
         <HowTo />
         <PrivacyNote />
         <FAQ />
+        <ToolRelatedGuides toolId="character-counter" />
         <RelatedArticles toolId="character-counter" />
         <ToolDataSections toolId="character-counter" />
         <RelatedTools />

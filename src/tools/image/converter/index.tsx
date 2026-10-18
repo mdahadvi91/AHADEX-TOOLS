@@ -1,3 +1,4 @@
+import { ToolRelatedGuides } from "@components/tools/ToolRelatedGuides";
 import { ToolDataSections } from "@components/tools/ToolDataSections";
 import { useToolAnalytics } from "@hooks/useToolAnalytics";
 import { ImageConverterSEO } from "./SEO";
@@ -32,6 +33,7 @@ export default function ImageConverterTool() {
         <PrivacyNote />
         <FAQ />
           <ToolFieldNote toolId="image-converter" />
+        <ToolRelatedGuides toolId="image-converter" />
         <RelatedArticles toolId="image-converter" />
         <ToolDataSections toolId="image-converter" />
         <RelatedTools />
