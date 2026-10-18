@@ -48,7 +48,7 @@ export function ModernCardstack({ data }: CVTemplateProps) {
       <div className="cv-mcs">
         <header className="cv-mcs__head">
           {showPhoto ? (
-            <img src={personal.photoDataUrl as string} alt="" className="cv-mcs__avatar" />
+            <img src={personal.photoDataUrl as string} alt="Uploaded image preview" className="cv-mcs__avatar" />
           ) : (
             <div className="cv-mcs__initials">
               {personal.fullName ? personal.fullName.split(" ").map(w => w[0]).slice(0,2).join("") : "CV"}

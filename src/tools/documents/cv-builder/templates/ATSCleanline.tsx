@@ -109,7 +109,7 @@ export function ATSCleanline({ data }: CVTemplateProps) {
             {showPhoto && (
               <img
                 src={personal.photoDataUrl as string}
-                alt=""
+                alt="Uploaded image preview"
                 className="cv-ats__photo"
               />
             )}

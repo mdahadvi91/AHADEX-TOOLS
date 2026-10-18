@@ -45,7 +45,7 @@ export function SplitIdentity({ data }: CVTemplateProps) {
         <div className="cv-si__grid">
           <aside className="cv-si__left">
             {showPhoto ? (
-              <img src={personal.photoDataUrl as string} alt="" className="cv-si__photo" />
+              <img src={personal.photoDataUrl as string} alt="Uploaded image preview" className="cv-si__photo" />
             ) : (
               <div className="cv-si__initials">
                 {personal.fullName ? personal.fullName.split(" ").map(w => w[0]).slice(0,2).join("") : "CV"}

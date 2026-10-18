@@ -43,7 +43,7 @@ export function HumanStory({ data }: CVTemplateProps) {
       <div className="cv-hs">
         <header className="cv-hs__head">
           {showPhoto ? (
-            <img src={personal.photoDataUrl as string} alt="" className="cv-hs__avatar" />
+            <img src={personal.photoDataUrl as string} alt="Uploaded image preview" className="cv-hs__avatar" />
           ) : (
             <div className="cv-hs__initials">
               {personal.fullName ? personal.fullName.split(" ").map(w => w[0]).slice(0,2).join("") : "CV"}

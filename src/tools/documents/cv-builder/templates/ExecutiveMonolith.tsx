@@ -49,7 +49,7 @@ export function ExecutiveMonolith({ data }: CVTemplateProps) {
           {/* LEFT RAIL */}
           <aside className="cv-em__rail">
             {showPhoto ? (
-              <img src={personal.photoDataUrl as string} alt="" className="cv-em__photo" />
+              <img src={personal.photoDataUrl as string} alt="Uploaded image preview" className="cv-em__photo" />
             ) : (
               <div className="cv-em__initials">
                 {personal.fullName ? personal.fullName.split(" ").map(w => w[0]).slice(0,2).join("") : "CV"}
