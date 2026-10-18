@@ -408,6 +408,12 @@ benchmarks: [
       { label: "PNG to JPG (Quality 92)", value: "~40% size reduction" },
       { label: "Batch of 20 images", value: "~3-4 seconds" },
     ],
+    privacy: {
+      processing: "browser",
+      uploadRequired: false,
+      storage: "none",
+      externalService: false,
+    },
     relatedTools: ["image-compressor", "image-resizer", "image-cropper", "image-to-pdf"],
     seo: {
       title: "Image Converter — JPG, PNG, WebP Free & Private | AHADEX Tools",
@@ -712,6 +718,12 @@ benchmarks: [
       { label: "10 Page PDF to JPGs", value: "~3 seconds" },
       { label: "Default DPI", value: "150 DPI (good for screens)" },
     ],
+    privacy: {
+      processing: "browser",
+      uploadRequired: false,
+      storage: "none",
+      externalService: false,
+    },
     relatedTools: ["merge-pdf", "split-pdf", "image-to-pdf", "pdf-to-text"],
     seo: {
       title: "PDF to Image — Convert PDF to PNG/JPG Free | AHADEX Tools",
@@ -1019,6 +1031,12 @@ benchmarks: [
       { label: "Output File Size", value: "~80-90% of original image size" },
       { label: "Page Size Options", value: "A4, Letter, Fit-to-image" },
     ],
+    privacy: {
+      processing: "browser",
+      uploadRequired: false,
+      storage: "none",
+      externalService: false,
+    },
     relatedTools: ["merge-pdf", "split-pdf", "pdf-to-image", "image-compressor"],
     seo: {
       title: "Image to PDF — Combine JPG, PNG, WebP Free | AHADEX Tools",
@@ -1316,6 +1334,12 @@ benchmarks: [
       { label: "Split 50 pages into 50 files", value: "~4 seconds" },
       { label: "Memory Usage", value: "Processed entirely in browser RAM" },
     ],
+    privacy: {
+      processing: "browser",
+      uploadRequired: false,
+      storage: "none",
+      externalService: false,
+    },
     relatedTools: ["merge-pdf", "pdf-to-image", "pdf-rotator"],
     seo: {
       title: "Split PDF — Extract Pages, Custom Order Free | AHADEX Tools",

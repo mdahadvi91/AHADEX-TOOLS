@@ -79,6 +79,12 @@ export interface Tool {
   useCases?: string[];
   limitations?: string[];
   benchmarks?: { label: string; value: string }[];
+  privacy?: {
+    processing: "browser" | "server";
+    uploadRequired: boolean;
+    storage: "none" | "temporary" | "permanent";
+    externalService: boolean;
+  };
   relatedTools: string[];
   seo: ToolSEO;
 }

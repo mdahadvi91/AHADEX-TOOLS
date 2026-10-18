@@ -72,9 +72,18 @@ function buildTrustPage(content: typeof trustContent.en.privacy): string {
  * a category-specific hook and a link to the full policy.
  * ─────────────────────────────────────────────────────────── */
 function buildPrivacyNotice(tool: typeof tools[0]): string {
+  if (tool.privacy) {
+    if (tool.privacy.processing === "browser" && !tool.privacy.uploadRequired) {
+      return `<p class="privacy-notice"><strong>Privacy:</strong> 100% processed locally in your browser. Your files are never uploaded to our servers. <a href="/privacy">Full policy</a></p>`;
+    }
+    if (tool.privacy.processing === "server" && tool.privacy.uploadRequired) {
+      return `<p class="privacy-notice"><strong>Privacy:</strong> Files are temporarily uploaded for processing and immediately deleted. We do not store or share your data. <a href="/privacy">Full policy</a></p>`;
+    }
+  }
+  
+  // Fallback
   const category = getToolCategory(tool.id, tool.path);
   const { specific } = CATEGORY_PRIVACY[category];
-
   return `<p class="privacy-notice"><strong>Privacy:</strong> ${esc(specific)} <a href="/privacy">Full policy</a></p>`;
 }
 

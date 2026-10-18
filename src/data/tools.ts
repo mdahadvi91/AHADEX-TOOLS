@@ -102,6 +102,12 @@ benchmarks: [
       { label: "Scan distance (Storefront window)", value: "3-5 meters" },
       { label: "Error correction level", value: "Level H (30% damage tolerance)" },
     ],
+    privacy: {
+      processing: "browser",
+      uploadRequired: false,
+      storage: "none",
+      externalService: false,
+    },
     relatedTools: ["visiting-card"],
     seo: {
       title: "Photo QR Code — Add QR to Photos Free | AHADEX Tools",
@@ -214,6 +220,12 @@ benchmarks: [
       { label: "Required Print Resolution", value: "300 DPI (1050 x 600 pixels)" },
       { label: "Export Speed", value: "< 1 second for PNG/JPG" },
     ],
+    privacy: {
+      processing: "browser",
+      uploadRequired: false,
+      storage: "none",
+      externalService: false,
+    },
     relatedTools: ["photo-qr"],
     seo: {
       title:
@@ -331,6 +343,12 @@ benchmarks: [
       { label: "PDF Output Type", value: "Selectable Text (ATS Friendly)" },
       { label: "Average PDF File Size", value: "~150 KB (depends on images)" },
     ],
+    privacy: {
+      processing: "browser",
+      uploadRequired: false,
+      storage: "none",
+      externalService: false,
+    },
     relatedTools: ["visiting-card", "photo-qr"],
     seo: {
       title:
@@ -460,6 +478,12 @@ benchmarks: [
       { label: "1080p Screenshot (Original PNG)", value: "850 KB" },
       { label: "1080p Screenshot (WebP Quality 80)", value: "180 KB (78% saved)" }
     ],
+    privacy: {
+      processing: "browser",
+      uploadRequired: false,
+      storage: "none",
+      externalService: false,
+    },
     relatedTools: ["image-resizer", "image-cropper", "image-converter"],
     seo: { title: "Image Compressor — Free, Fast & Private | AHADEX Tools", description: "Compress JPG, PNG, and WebP images in your browser. Adjustable quality slider, batch processing, max-width control, no uploads — 100% free.", ogImage: "/images/og/tools/image-compressor-og.png" },
   },
@@ -541,6 +565,12 @@ benchmarks: [
       { label: "Batch of 10 images", value: "~2 seconds total" },
       { label: "Aspect Ratio Math", value: "Instant real-time preview" },
     ],
+    privacy: {
+      processing: "browser",
+      uploadRequired: false,
+      storage: "none",
+      externalService: false,
+    },
     relatedTools: ["image-compressor", "image-cropper", "image-converter"],
     seo: { title: "Image Resizer — Free, Fast & Private | AHADEX Tools", description: "Resize JPG, PNG, and WebP images to any dimension in your browser. Lock aspect ratio, exact width/height, batch support, no uploads — free.", ogImage: "/images/og/tools/image-resizer-og.png" },
   },
@@ -619,6 +649,12 @@ benchmarks: [
       { label: "File Size Reduction (Average)", value: "~40% smaller after crop" },
       { label: "Max Resolution", value: "Limited only by device memory" },
     ],
+    privacy: {
+      processing: "browser",
+      uploadRequired: false,
+      storage: "none",
+      externalService: false,
+    },
     relatedTools: ["image-compressor", "image-resizer", "image-converter"],
     seo: { title: "Image Cropper — Free, Fast & Private | AHADEX Tools", description: "Crop JPG, PNG, and WebP images in your browser. 8 aspect presets, live preview, pixel-precise fields, no uploads — fast, free, private.", ogImage: "/images/og/tools/image-cropper-og.png" },
   },
@@ -708,6 +744,12 @@ benchmarks: [
       { label: "Merge 100 pages (50MB total)", value: "~3 seconds" },
       { label: "Output File Size", value: "Sum of input files + overhead" },
     ],
+    privacy: {
+      processing: "browser",
+      uploadRequired: false,
+      storage: "none",
+      externalService: false,
+    },
     relatedTools: ["photo-qr", "visiting-card", "cv-builder", "image-converter"],
     seo: { title: "Merge PDF — Combine PDFs Free, Fast & Private | AHADEX Tools", description: "Combine multiple PDF files into one document in your browser. Reorder pages, verify page count, no uploads, no servers — private and free.", ogImage: "/images/og/tools/merge-pdf-og.png" },
   },
@@ -791,6 +833,12 @@ benchmarks: [
       { label: "Reading time (200 WPM)", value: "Instant calculation" },
       { label: "Typing latency", value: "0ms (real-time updates)" },
     ],
+    privacy: {
+      processing: "browser",
+      uploadRequired: false,
+      storage: "none",
+      externalService: false,
+    },
     relatedTools: ["character-counter", "photo-qr", "visiting-card", "cv-builder"],
     seo: { title: "Word Counter — Live Word, Character & Reading Time | AHADEX Tools", description: "Count words, characters, sentences, and paragraphs in real time. Reading time, speaking time, keyword density — all in your browser.", ogImage: "/images/og/tools/word-counter-og.png" },
   },
@@ -881,6 +929,12 @@ benchmarks: [
       { label: "Accuracy", value: "100% native EXIF extraction" },
       { label: "Privacy", value: "Runs 100% locally" },
     ],
+    privacy: {
+      processing: "browser",
+      uploadRequired: false,
+      storage: "none",
+      externalService: false,
+    },
     relatedTools: ["image-to-pdf", "image-compressor"],
     seo: {
       title: "Image Metadata Viewer — EXIF, GPS & Camera Data Free | AHADEX Tools",
@@ -968,6 +1022,12 @@ benchmarks: [
       { label: "Text extraction accuracy", value: "99% (for native digital text)" },
       { label: "Memory usage", value: "Minimal (processes page by page)" },
     ],
+    privacy: {
+      processing: "browser",
+      uploadRequired: false,
+      storage: "none",
+      externalService: false,
+    },
     relatedTools: ["pdf-to-image", "pdf-rotator"],
     seo: {
       title: "PDF to Text — Extract Plain Text from PDF Free | AHADEX Tools",
@@ -1050,6 +1110,12 @@ benchmarks: [
       { label: "File size change", value: "< 1% increase" },
       { label: "Batch limit", value: "Up to 100 MB PDF" },
     ],
+    privacy: {
+      processing: "browser",
+      uploadRequired: false,
+      storage: "none",
+      externalService: false,
+    },
     relatedTools: ["pdf-to-image", "pdf-rotator"],
     seo: {
       title: "PDF Rotator — Rotate PDF Pages Free & Private | AHADEX Tools",
@@ -1128,6 +1194,12 @@ benchmarks: [
       { label: "Transparency", value: "Fully preserved" },
       { label: "Max Resolution", value: "8000x8000 pixels" },
     ],
+    privacy: {
+      processing: "browser",
+      uploadRequired: false,
+      storage: "none",
+      externalService: false,
+    },
     relatedTools: ["image-converter", "favicon-generator"],
     seo: {
       title: "SVG to PNG — Convert SVG to PNG Up to 8× Free | AHADEX Tools",
@@ -1212,6 +1284,12 @@ benchmarks: [
       { label: "Minify speed", value: "~200ms" },
       { label: "Max nesting depth", value: "Limited only by RAM" },
     ],
+    privacy: {
+      processing: "browser",
+      uploadRequired: false,
+      storage: "none",
+      externalService: false,
+    },
     relatedTools: ["svg-to-png", "word-counter"],
     seo: {
       title: "JSON Formatter — Validate, Format & Minify Free | AHADEX Tools",
@@ -1300,6 +1378,12 @@ benchmarks: [
       { label: "Encode 1 million chars", value: "< 50ms" },
       { label: "Component accuracy", value: "Standard RFC 3986" },
     ],
+    privacy: {
+      processing: "browser",
+      uploadRequired: false,
+      storage: "none",
+      externalService: false,
+    },
     relatedTools: ["json-formatter", "svg-to-png"],
     seo: {
       title: "URL Encoder / Decoder — Free & Private | AHADEX Tools",
@@ -1390,6 +1474,12 @@ benchmarks: [
       { label: "Generate 10,000 UUIDs", value: "~15ms" },
       { label: "Standard", value: "RFC 4122 v4" },
     ],
+    privacy: {
+      processing: "browser",
+      uploadRequired: false,
+      storage: "none",
+      externalService: false,
+    },
     relatedTools: ["url-encoder", "json-formatter"],
     seo: {
       title: "UUID Generator — v4 & v7 Crypto-Random Free | AHADEX Tools",
@@ -1472,6 +1562,12 @@ benchmarks: [
       { label: "Convert 10,000 words", value: "< 20ms" },
       { label: "Modes", value: "UPPER, lower, Title, Sentence, camelCase" },
     ],
+    privacy: {
+      processing: "browser",
+      uploadRequired: false,
+      storage: "none",
+      externalService: false,
+    },
     relatedTools: ["word-counter", "json-formatter"],
     seo: {
       title: "Text Case Converter — 12 Case Styles Free | AHADEX Tools",
@@ -1558,6 +1654,12 @@ benchmarks: [
       { label: "1080p Image sketch", value: "~200ms" },
       { label: "Style", value: "Edge-detection pencil sketch" },
     ],
+    privacy: {
+      processing: "browser",
+      uploadRequired: false,
+      storage: "none",
+      externalService: false,
+    },
     relatedTools: ["image-compressor", "image-cropper"],
     seo: {
       title: "Image to Sketch — Pencil Drawing Effect Free | AHADEX Tools",
@@ -1642,6 +1744,12 @@ benchmarks: [
       { label: "1080p Cartoonize", value: "~350ms" },
       { label: "Algorithm", value: "Bilateral filter + Color quantization" },
     ],
+    privacy: {
+      processing: "browser",
+      uploadRequired: false,
+      storage: "none",
+      externalService: false,
+    },
     relatedTools: ["image-to-sketch", "image-compressor"],
     seo: {
       title: "Image to Cartoon — Cel-Shaded Effect Free | AHADEX Tools",
@@ -1724,6 +1832,12 @@ benchmarks: [
       { label: "Encode 1MB text", value: "~30ms" },
       { label: "Size overhead", value: "+33%" },
     ],
+    privacy: {
+      processing: "browser",
+      uploadRequired: false,
+      storage: "none",
+      externalService: false,
+    },
     relatedTools: ["url-encoder", "json-formatter"],
     seo: {
       title: "Base64 Encoder / Decoder — Text & Files Free | AHADEX Tools",
@@ -1835,6 +1949,12 @@ benchmarks: [
       { label: "Generate 100 passwords", value: "< 5ms" },
       { label: "Entropy", value: "Up to 128-bit strength" },
     ],
+    privacy: {
+      processing: "browser",
+      uploadRequired: false,
+      storage: "none",
+      externalService: false,
+    },
     relatedTools: ["uuid-generator", "base64-encoder"],
     seo: {
       title: "Password Generator — Strong & Crypto-Random Free | AHADEX Tools",
@@ -1920,6 +2040,12 @@ benchmarks: [
       { label: "Generate 10 barcodes", value: "~100ms" },
       { label: "Formats", value: "CODE128, EAN-13, UPC-A" },
     ],
+    privacy: {
+      processing: "browser",
+      uploadRequired: false,
+      storage: "none",
+      externalService: false,
+    },
     relatedTools: ["photo-qr", "barcode-generator"],
     seo: {
       title: "Barcode Generator — 9 Formats, PNG & SVG Free | AHADEX Tools",
@@ -2010,6 +2136,12 @@ benchmarks: [
       { label: "Count 10,000 chars", value: "< 5ms" },
       { label: "UI latency", value: "0ms real-time" },
     ],
+    privacy: {
+      processing: "browser",
+      uploadRequired: false,
+      storage: "none",
+      externalService: false,
+    },
     relatedTools: ["word-counter", "text-case-converter"],
     seo: {
       title: "Character Counter — Twitter, Instagram, SMS Limits | AHADEX Tools",
@@ -2102,6 +2234,12 @@ benchmarks: [
       { label: "Generate all sizes", value: "~500ms" },
       { label: "Output", value: "ZIP with 16x16 to 512x512 icons" },
     ],
+    privacy: {
+      processing: "browser",
+      uploadRequired: false,
+      storage: "none",
+      externalService: false,
+    },
     relatedTools: ["image-compressor", "image-resizer"],
     seo: {
       title: "Favicon Generator — Complete Set Free | AHADEX Tools",
