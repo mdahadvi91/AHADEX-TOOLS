@@ -1,3 +1,4 @@
+import { SmartInsights } from "./SmartInsights";
 import { useRef, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import {
@@ -271,6 +272,7 @@ export function Workspace() {
                     accent="emerald"
                   />
                 </div>
+                {results.length > 0 && <SmartInsights totalSize={totalSize} count={results.length} />}
 
                 <div className="rounded-2xl bg-emerald-500/10 border border-emerald-500/30 p-4 space-y-3">
                   <div className="flex items-center justify-between gap-3 flex-wrap">
