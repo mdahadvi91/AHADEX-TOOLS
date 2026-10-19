@@ -4,6 +4,7 @@ import { useLanguage } from "@contexts/LanguageContext";
 import { cn } from "@lib/cn";
 import type { CVData } from "../types";
 import { triggerPrint } from "../logic/print";
+import { SmartInsights } from "./SmartInsights";
 
 interface ExportPanelProps {
   data: CVData;
@@ -71,6 +72,9 @@ export function ExportPanel({ data }: ExportPanelProps) {
           </>
         )}
       </button>
+
+      <SmartInsights photoDataUrl={data.personal?.photoDataUrl} />
+
 
       <div className="flex items-start gap-2 p-3 rounded-xl bg-silk-rose/5 border border-silk-rose/15">
         <Info className="w-3.5 h-3.5 text-silk-rose shrink-0 mt-0.5" />

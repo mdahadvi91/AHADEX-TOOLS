@@ -24,6 +24,7 @@ import { PrintRoot } from "../components/PrintRoot";
 import { ExportPanel } from "../components/ExportPanel";
 import { SavePanel } from "../components/SavePanel";
 import { getCVTemplate, SAMPLE_CV_DATA } from "../data";
+import { PROFESSION_PRESETS } from "../presets";
 import { updatePersonal, updateSummary } from "../logic/stateHelpers";
 import { useDraftAutoSave, loadDraft, clearDraft } from "../logic/draftRecovery";
 import type {
@@ -65,10 +66,29 @@ export function CVEditor() {
     [templateId]
   );
 
-  const [data, setData] = useState<CVData>(() => ({
-    ...SAMPLE_CV_DATA,
-    settings: { ...SAMPLE_CV_DATA.settings, templateId: template.id },
-  }));
+  const [data, setData] = useState<CVData>(() => {
+    // Check if user selected a preset from the gallery
+    const presetKey = sessionStorage.getItem("cv_preset");
+    let baseData = {
+      ...SAMPLE_CV_DATA,
+      settings: { ...SAMPLE_CV_DATA.settings, templateId: template.id },
+    };
+
+    if (presetKey && PROFESSION_PRESETS[presetKey]) {
+      const preset = PROFESSION_PRESETS[presetKey];
+      // Clear session storage so it doesn't override on a refresh
+      sessionStorage.removeItem("cv_preset");
+      
+      return {
+        ...baseData,
+        ...preset,
+        // Ensure settings are always from baseData
+        settings: baseData.settings,
+      };
+    }
+
+    return baseData;
+  });
 
   const [cvId, setCvId] = useState<string | null>(null);
   const [cvName, setCvName] = useState<string>("Untitled CV");

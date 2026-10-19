@@ -1,11 +1,14 @@
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useLanguage } from "@contexts/LanguageContext";
 import { cn } from "@lib/cn";
 import { CV_TEMPLATES, SAMPLE_CV_DATA } from "../data";
 import { TemplatePreview } from "./TemplatePreview";
+import { ProfessionModal } from "./ProfessionModal";
 
 export function TemplateGallery() {
   const navigate = useNavigate();
+  const [selectedTemplate, setSelectedTemplate] = useState<string | null>(null);
   const { language } = useLanguage();
 
   return (
@@ -28,7 +31,7 @@ export function TemplateGallery() {
           <button
             key={tpl.id}
             type="button"
-            onClick={() => navigate(`/tools/cv-builder/edit/${tpl.id}`)}
+            onClick={() => setSelectedTemplate(tpl.id)}
             className={cn(
               "group flex flex-col items-center gap-3 p-4 rounded-2xl text-left",
               "bg-white/70 dark:bg-dark-surface/70 backdrop-blur-xl",
@@ -62,6 +65,19 @@ export function TemplateGallery() {
           ? "আরও টেমপ্লেট শীঘ্রই আসছে।"
           : "More templates coming soon."}
       </p>
-    </section>
+    
+      <ProfessionModal
+        isOpen={selectedTemplate !== null}
+        onClose={() => setSelectedTemplate(null)}
+        onSelect={(prof) => {
+          if (prof) {
+            sessionStorage.setItem("cv_preset", prof);
+          } else {
+            sessionStorage.removeItem("cv_preset");
+          }
+          navigate(`/tools/cv-builder/edit/${selectedTemplate}`);
+        }}
+      />
+</section>
   );
 }
