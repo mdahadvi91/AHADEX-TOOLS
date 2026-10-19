@@ -23,6 +23,7 @@ import type { Position, QrBackground } from "./types";
 import { RecommendedProducts } from "@components/affiliate/RecommendedProducts";
 import { RelatedArticles } from "@components/blog/RelatedArticles";
 import { ToolBreadcrumb } from "@components/tools/ToolBreadcrumb";
+import { SmartInsights } from "./SmartInsights";
 
 export default function PhotoQrTool() {
   useToolAnalytics("photo-qr");
@@ -182,7 +183,9 @@ export default function PhotoQrTool() {
         }
       />
 
-      <RecommendedProducts toolId="photo-qr" />
+      <SmartInsights sizePercent={sizePercent} />
+
+        <RecommendedProducts toolId="photo-qr" />
 
       <PrivacyNote text={content.privacyNote} />
 
