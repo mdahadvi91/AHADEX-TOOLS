@@ -13,6 +13,7 @@ import {
 import { useLanguage } from "@contexts/LanguageContext";
 import { cn } from "@lib/cn";
 import { WorkspacePanel, DropZone, ToolButton, ResultStat } from "@components/workspace";
+import { SmartInsights } from "./SmartInsights";
 import {
   loadPdfFile,
   extractText,
@@ -112,7 +113,12 @@ export function Workspace() {
         .slice(0, 5000)
     : "";
 
-  return (
+  
+  const extractedText = result ? result.pages.map((p) => p.text).join(" ") : "";
+  const extractedTextLength = extractedText.length;
+  const wordCount = extractedText.trim() ? extractedText.trim().split(/\s+/).length : 0;
+
+return (
     <section className="pb-12 space-y-4 sm:space-y-5">
       <input
         ref={inputRef}
@@ -229,6 +235,8 @@ export function Workspace() {
               )}
             </div>
           </WorkspacePanel>
+
+          {result && <SmartInsights textLength={extractedTextLength} wordCount={wordCount} />}
 
           {/* ── Action bar ── */}
           <WorkspacePanel className="p-3.5 sm:p-4" animate={false}>
