@@ -1,3 +1,4 @@
+import { SmartInsights } from "./SmartInsights";
 import { useRef, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import {
@@ -251,6 +252,7 @@ export function Workspace() {
               accent="emerald"
             />
           </div>
+          {result && <SmartInsights resultSize={result.size} />}
 
           {/* ── Action bar ── */}
           <WorkspacePanel className="p-3.5 sm:p-4" animate={false}>
