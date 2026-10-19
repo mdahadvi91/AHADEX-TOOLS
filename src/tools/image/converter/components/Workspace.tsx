@@ -1,3 +1,4 @@
+import { SmartInsights } from "./SmartInsights";
 import { useRef, useState } from "react";
 import { Download, CheckCircle2, Trash2, Plus, FileImage } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
@@ -134,6 +135,7 @@ export function Workspace() {
               accent="emerald"
             />
           </div>
+          {items.length > 0 && <SmartInsights totalConverted={totalConverted} format="image" />}
 
           <WorkspacePanel className="p-3.5 sm:p-4" animate={false}>
             <div className="flex items-center justify-between gap-3 flex-wrap">
