@@ -1,4 +1,5 @@
 import { useRef, useState } from "react";
+import { SmartInsights } from "./SmartInsights";
 import { motion, AnimatePresence } from "framer-motion";
 import {
   Download,
@@ -40,6 +41,8 @@ export function Workspace() {
   const [error, setError] = useState<string | null>(null);
   const [single, setSingle] = useState<SplitResult | null>(null);
   const [multi, setMulti] = useState<SplitResult[]>([]);
+
+  const extractedSize = single ? single.size : multi.reduce((s, r) => s + r.size, 0);
 
   const handleFile = async (file: File) => {
     if (single) {
@@ -265,6 +268,8 @@ export function Workspace() {
               </div>
             </WorkspacePanel>
           )}
+
+          {extractedSize > 0 && <SmartInsights totalSize={extractedSize} />}
 
           {/* Action bar */}
           <WorkspacePanel className="p-3.5 sm:p-4" animate={false}>
