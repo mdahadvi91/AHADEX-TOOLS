@@ -9,6 +9,7 @@ import {
   Eye,
 } from "lucide-react";
 import { useLanguage } from "@contexts/LanguageContext";
+import { SmartInsights } from "./SmartInsights";
 import { cn } from "@lib/cn";
 import { WorkspacePanel, DropZone, ToolButton, ResultStat } from "@components/workspace";
 import { readMetadata, revokeResult, formatBytes } from "../logic";
@@ -100,6 +101,8 @@ export function Workspace() {
           </motion.div>
         )}
       </AnimatePresence>
+
+      {result && <SmartInsights groups={result.groups} />}
 
       {result && (
         <>
