@@ -8,6 +8,7 @@ import {
   Settings2,
 } from "lucide-react";
 import { useLanguage } from "@contexts/LanguageContext";
+import { SmartInsights } from "./SmartInsights";
 import { cn } from "@lib/cn";
 import {
   WorkspacePanel,
@@ -431,6 +432,8 @@ export function Workspace() {
 
           {/* ── Result ── */}
           <AnimatePresence>
+            {result && <SmartInsights size={result.croppedSize} width={result.cropW} height={result.cropH} />}
+
             {result && (
               <motion.div
                 initial={{ opacity: 0, y: 16 }}
