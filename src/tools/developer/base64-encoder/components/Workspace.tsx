@@ -34,6 +34,7 @@ import {
   SAMPLES,
 } from "../logic";
 import type { Mode, InputKind, FileInfo } from "../types";
+import { SmartInsights } from "./SmartInsights";
 
 export function Workspace() {
   const { language } = useLanguage();
@@ -370,19 +371,22 @@ export function Workspace() {
 
       {/* Stats (only if we have output) */}
       {currentOutput && (
-        <div className="grid grid-cols-2 gap-2.5 sm:gap-3">
-          <ResultStat
-            label={bn ? "ইনপুট" : "Input"}
-            value={kind === "text" ? inputBytes : formatBytes(fileInfo?.size ?? 0)}
-            accent="rose"
-          />
-          <ResultStat
-            label={bn ? "আউটপুট" : "Output"}
-            value={outputBytes}
-            accent="emerald"
-          />
-        </div>
-      )}
+            <div className="space-y-3">
+              <div className="grid grid-cols-2 gap-2.5 sm:gap-3">
+                <ResultStat
+                  label={bn ? "ইনপুট" : "Input"}
+                  value={kind === "text" ? inputBytes : formatBytes(fileInfo?.size ?? 0)}
+                  accent="rose"
+                />
+                <ResultStat
+                  label={bn ? "আউটপুট" : "Output"}
+                  value={outputBytes}
+                  accent="emerald"
+                />
+              </div>
+              <SmartInsights mode={mode} inputBytes={kind === "text" ? inputBytes : formatBytes(fileInfo?.size ?? 0)} outputBytes={outputBytes} bn={bn} />
+            </div>
+          )}
 
       {/* Decoded image preview */}
       <AnimatePresence>
