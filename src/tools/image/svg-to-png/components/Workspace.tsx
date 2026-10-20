@@ -13,6 +13,7 @@ import { cn } from "@lib/cn";
 import { WorkspacePanel, DropZone, ToolButton, ResultStat } from "@components/workspace";
 import { loadSvgFile, renderToPng, downloadPng, revokePng, revokeSvg, formatBytes } from "../logic";
 import type { SvgInfo, PngResult, RenderOptions } from "../types";
+import { SmartInsights } from "./SmartInsights";
 
 const SCALES: RenderOptions["scale"][] = [1, 2, 4, 8];
 const BACKGROUNDS: { value: RenderOptions["background"]; label: string }[] = [
@@ -126,6 +127,7 @@ export function Workspace() {
             <ResultStat label={bn ? "স্কেল" : "Scale"} value={`${scale}×`} accent="rose" />
             <ResultStat label={bn ? "ইনপুট" : "Input"} value={formatBytes(svg.size)} accent="emerald" />
           </div>
+              <SmartInsights width={svg.width} height={svg.height} scale={scale} background={background} bn={bn} />
 
           {/* Settings + Preview */}
           <div className="grid grid-cols-1 lg:grid-cols-[1fr_260px] gap-4">
