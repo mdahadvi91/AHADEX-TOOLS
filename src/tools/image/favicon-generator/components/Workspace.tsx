@@ -29,6 +29,7 @@ import {
   DEFAULT_OPTIONS,
 } from "../logic";
 import type { LoadedImage, FaviconOptions, GeneratedFile } from "../types";
+import { SmartInsights } from "./SmartInsights";
 
 export function Workspace() {
   const { language } = useLanguage();
@@ -199,6 +200,7 @@ export function Workspace() {
               accent="emerald"
             />
           </div>
+              <SmartInsights background={opts.background} padding={opts.padding} filesCount={files.length} bn={bn} />
 
           {/* ── Controls ── */}
           <WorkspacePanel className="p-4 sm:p-5 space-y-4">
