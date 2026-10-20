@@ -68,7 +68,7 @@ export function ProfessionModal({ isOpen, onClose, onSelect }: ProfessionModalPr
             </div>
 
             {/* List */}
-            <div className="p-4 overflow-y-auto grid grid-cols-2 gap-2">
+            <div className="p-4 overflow-y-auto grid grid-cols-1 sm:grid-cols-2 gap-2">
               <button
                 onClick={() => onSelect(null)}
                 className="col-span-2 p-3 rounded-xl border border-silk-rose/20 bg-silk-rose/5 hover:bg-silk-rose/10 text-sm font-bold text-silk-rose transition-colors flex items-center justify-center gap-2"

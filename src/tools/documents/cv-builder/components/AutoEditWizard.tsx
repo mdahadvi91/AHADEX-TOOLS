@@ -146,8 +146,8 @@ export function AutoEditWizard({ isOpen, onClose, data, templateId, onFinish }: 
 
         {/* RIGHT: Live Preview Side */}
         <div className="w-full md:w-1/2 bg-silk-rose/5 h-[45vh] md:h-full flex items-center justify-center p-2 sm:p-6 overflow-y-auto relative">
-          <div className="w-full max-w-[280px] sm:max-w-sm shadow-2xl rounded-lg overflow-hidden border border-silk-rose/10 origin-center transition-transform hover:scale-105">
-            <TemplatePreview Template={template.Component} data={draft} scale={1} />
+          <div className="w-full max-w-[280px] sm:max-w-sm shadow-2xl rounded-lg overflow-hidden border border-silk-rose/10 origin-center flex justify-center">
+            <TemplatePreview Template={template.Component} data={draft} scale={0.35} />
           </div>
         </div>
 
