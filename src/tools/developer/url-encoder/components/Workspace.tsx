@@ -10,6 +10,7 @@ import { cn } from "@lib/cn";
 import { TextPanel, ToolButton, WorkspacePanel } from "@components/workspace";
 import { transform, formatBytes, SAMPLES } from "../logic";
 import type { Mode, Scope } from "../types";
+import { SmartInsights } from "./SmartInsights";
 
 export function Workspace() {
   const { language } = useLanguage();
@@ -183,7 +184,8 @@ export function Workspace() {
 
       {/* Output */}
       {result.output && (
-        <TextPanel
+          <>
+            <TextPanel
           label={
             mode === "encode"
               ? bn
@@ -201,7 +203,15 @@ export function Workspace() {
         >
           <pre className="sr-only">{result.output}</pre>
         </TextPanel>
-      )}
+            <SmartInsights 
+              mode={mode} 
+              inputBytes={inputBytes} 
+              outputBytes={outputBytes} 
+              outputLength={result.output.length} 
+              bn={bn} 
+            />
+          </>
+        )}
     </section>
   );
 }
