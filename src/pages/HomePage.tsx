@@ -1,11 +1,11 @@
 import { Link } from "react-router-dom";
+import { HomeContent } from "@components/home/HomeContent";
 import { WhyAhadex } from "@components/home/WhyAhadex";
 import { TrustBar } from "@components/home/TrustBar";
 import { RecentlyUsed } from "@components/home/RecentlyUsed";
 import { ArrowRight, Sparkles, Shield, Zap, Globe } from "lucide-react";
 import { useLanguage } from "@contexts/LanguageContext";
 import { HomeSchema } from "@components/seo/HomeSchema";
-import { PopularTools } from "@components/home/PopularTools";
 import { WhySection } from "@components/home/WhySection";
 import { HowItWorks } from "@components/home/HowItWorks";
 import { PrivacyPromise } from "@components/home/PrivacyPromise";
@@ -138,7 +138,7 @@ export default function HomePage() {
       <RecentlyUsed />
 
         {/* ── Featured tools ── */}
-        <PopularTools />
+        <HomeContent />
 
         {/* ── Why AHADEX ── */}
         <WhySection />

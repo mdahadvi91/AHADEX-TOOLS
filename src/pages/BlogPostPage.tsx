@@ -115,7 +115,26 @@ export default function BlogPostPage() {
       {/* Body */}
       <div className="space-y-5">
         {post.blocks.map((block, i) => {
-          if (block.type === "h2") {
+          
+              if (block.type === "image") {
+                return (
+                  <figure key={i} className="my-8">
+                    <img 
+                      src={block.url} 
+                      alt={block.caption || "Blog illustration"} 
+                      className="w-full rounded-2xl shadow-sm border border-silk-rose/15"
+                      loading="lazy"
+                    />
+                    {block.caption && (
+                      <figcaption className="text-center text-xs text-light-textSecondary dark:text-dark-textSecondary mt-2 italic">
+                        {block.caption}
+                      </figcaption>
+                    )}
+                  </figure>
+                );
+              }
+
+              if (block.type === "h2") {
             return (
               <motion.h2
                 key={i}

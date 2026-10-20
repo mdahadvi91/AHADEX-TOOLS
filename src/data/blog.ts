@@ -3,22 +3,16 @@
  * ============================================================ */
 
 export interface BlogBlock {
-  type:
-    | "h2"
-    | "h3"
-    | "p"
-    | "ul"
-    | "ol"
-    | "quote"
-    | "tip"
-    | "cta"
-    | "field-note";
+  type: "h2" | "h3" | "ol" | "p" | "ul" | "quote" | "tip" | "cta" | "field-note" | "image";
+  url?: string;
+  caption?: string;
   content?: string;
   items?: string[];
   toolId?: string;
 }
 
 export interface BlogPost {
+  coverImage?: string;
   slug: string;
   title: string;
   titleBn: string;
@@ -39,6 +33,7 @@ export interface BlogPost {
 export const blogPosts: BlogPost[] = [
   {
     slug: "how-to-compress-images-without-losing-quality",
+    coverImage: "/images/blog/how-to-compress-images-without-losing-quality-cover.jpg",
     title: "How to Compress Images Without Losing Quality (2026 Guide)",
     titleBn: "কোয়ালিটি না হারিয়ে ছবি কমপ্রেস করার সম্পূর্ণ গাইড (২০২৬)",
     excerpt: "Learn how to reduce image file sizes by 70-90% while keeping them looking sharp. A complete guide to image compression for web, email, and social media.",
@@ -51,6 +46,7 @@ export const blogPosts: BlogPost[] = [
     authorId: "mohammad-ahad",
     relatedTool: "image-compressor",
     blocks: [
+      { type: "image", url: "/images/blog/how-to-compress-images-without-losing-quality-inner1.jpg", caption: "Visual example for this tutorial" },
       { type: "field-note", content: "What we measured while building the Image Compressor", items: [
         "Tested 47 source images: phone photos, DSLR exports, e-commerce product shots, screenshots, and diagrams.",
         "Ran each through our compressor at quality 80 with max-width 1920.",
@@ -115,6 +111,7 @@ export const blogPosts: BlogPost[] = [
   },
   {
     slug: "merge-pdf-files-online-complete-guide",
+    coverImage: "/images/blog/merge-pdf-files-online-complete-guide-cover.jpg",
     title: "Merge PDF Files Online: The Complete 2026 Guide",
     titleBn: "অনলাইনে PDF মার্জ করুন: সম্পূর্ণ গাইড",
     excerpt: "Learn how to combine multiple PDF files into one document. Covers ordering, security, file size optimization, and why browser-based merging is safer than cloud tools.",
@@ -127,6 +124,7 @@ export const blogPosts: BlogPost[] = [
     authorId: "mohammad-ahad",
     relatedTool: "merge-pdf",
     blocks: [
+      { type: "image", url: "/images/blog/merge-pdf-files-online-complete-guide-inner1.jpg", caption: "Visual example for this tutorial" },
       { type: "field-note", content: "Merge behaviour we observed in practice", items: [
         "Merged a 200-page technical manual (18 MB, embedded fonts + vector diagrams) with a 4-page signed contract (320 KB).",
         "Output size: 18.3 MB — almost identical to the sum of the inputs, no re-compression overhead.",
@@ -183,6 +181,7 @@ export const blogPosts: BlogPost[] = [
   },
   {
     slug: "json-formatter-complete-developer-guide",
+    coverImage: "/images/blog/json-formatter-complete-developer-guide-cover.jpg",
     title: "JSON Formatter: Why Every Developer Needs One (2026)",
     titleBn: "JSON ফরম্যাটার: কেন প্রতিটি ডেভেলপারের দরকার",
     excerpt: "JSON is the lingua franca of modern APIs. Learn how to format, validate, minify, and debug JSON quickly — with a free browser-based tool that never sends your data anywhere.",
@@ -195,6 +194,7 @@ export const blogPosts: BlogPost[] = [
     authorId: "mohammad-ahad",
     relatedTool: "json-formatter",
     blocks: [
+      { type: "image", url: "/images/blog/json-formatter-complete-developer-guide-inner1.jpg", caption: "Visual example for this tutorial" },
       { type: "field-note", content: "Parse performance we measured on real payloads", items: [
         "Tested JSON.parse() on a 10 MB config file (large Kubernetes manifest).",
         "Native parse: 42 ms on a mid-range Android device (2024 hardware).",
@@ -249,6 +249,7 @@ export const blogPosts: BlogPost[] = [
   },
   {
     slug: "strong-password-generator-complete-guide",
+    coverImage: "/images/blog/strong-password-generator-complete-guide-cover.jpg",
     title: "How to Create Strong Passwords That Resist Modern Attacks (2026 Guide)",
     titleBn: "অভেদ্য পাসওয়ার্ড তৈরি করার সম্পূর্ণ গাইড (২০২৬)",
     excerpt: "Most passwords are cracked in seconds. Learn what makes a password truly strong, how entropy works, and how to generate passwords that resist modern attacks.",
@@ -261,6 +262,7 @@ export const blogPosts: BlogPost[] = [
     authorId: "mohammad-ahad",
     relatedTool: "password-generator",
     blocks: [
+      { type: "image", url: "/images/blog/strong-password-generator-complete-guide-inner1.jpg", caption: "Visual example for this tutorial" },
       { type: "field-note", content: "Entropy measurements from our generator", items: [
         "All tests used the Web Crypto API (crypto.getRandomValues) with rejection sampling to eliminate modulo bias.",
         "8-char lowercase only: 37.6 bits. Cracked offline in under 5 seconds on a modern GPU.",
@@ -312,6 +314,7 @@ export const blogPosts: BlogPost[] = [
   },
   {
     slug: "base64-encoding-explained-beginner-guide",
+    coverImage: "/images/blog/base64-encoding-explained-beginner-guide-cover.jpg",
     title: "Base64 Encoding Explained: A Practical Guide",
     titleBn: "Base64 এনকোডিং: সহজ ভাষায় সম্পূর্ণ গাইড",
     excerpt: "Base64 is everywhere — in emails, data URLs, JWTs, and APIs. Learn what it actually is, when to use it, when not to use it, and how to encode safely in your browser.",
@@ -324,6 +327,7 @@ export const blogPosts: BlogPost[] = [
     authorId: "mohammad-ahad",
     relatedTool: "base64-encoder",
     blocks: [
+      { type: "image", url: "/images/blog/base64-encoding-explained-beginner-guide-inner1.jpg", caption: "Visual example for this tutorial" },
       { type: "field-note", content: "What we measured while testing our Base64 encoder", items: [
         "Encoded a 10 MB PNG — output was 13.4 MB, exactly the ~33% inflation Base64 is known for.",
         "Encoding speed on the same file: 180 ms in Chrome, 240 ms in Firefox, 310 ms in Safari.",
@@ -374,6 +378,7 @@ export const blogPosts: BlogPost[] = [
   },
   {
     slug: "jpg-vs-png-vs-webp-which-format",
+    coverImage: "/images/blog/jpg-vs-png-vs-webp-which-format-cover.jpg",
     title: "JPG vs PNG vs WebP: Which Format Should You Use in 2026?",
     titleBn: "JPG vs PNG vs WebP: ২০২৬ সালে কোন ফরম্যাট ব্যবহার করবেন?",
     excerpt: "Choosing the wrong image format costs you bandwidth, quality, and SEO. This guide compares JPG, PNG, WebP, and AVIF with real-world examples and decision rules.",
@@ -386,6 +391,7 @@ export const blogPosts: BlogPost[] = [
     authorId: "mohammad-ahad",
     relatedTool: "image-resizer",
     blocks: [
+      { type: "image", url: "/images/blog/jpg-vs-png-vs-webp-which-format-inner1.jpg", caption: "Visual example for this tutorial" },
       { type: "field-note", content: "Format comparison — real numbers from our test corpus", items: [
         "Same source photo (Sony A7, 12 MP, exported to each format at 100%).",
         "Original camera JPG: 4.2 MB.",
@@ -494,6 +500,7 @@ export const blogPosts: BlogPost[] = [
   },
   {
     slug: "convert-jpg-to-pdf-complete-guide",
+    coverImage: "/images/blog/convert-jpg-to-pdf-complete-guide-cover.jpg",
     title: "How to Convert JPG to PDF: The Complete 2026 Guide",
     titleBn: "JPG থেকে PDF: সম্পূর্ণ গাইড ২০২৬",
     excerpt: "Convert photos and scans into professional PDF documents. Covers quality settings, multi-page workflows, file size optimization, and privacy-safe browser-based conversion.",
@@ -506,6 +513,7 @@ export const blogPosts: BlogPost[] = [
     authorId: "mohammad-ahad",
     relatedTool: "jpg-to-pdf",
     blocks: [
+      { type: "image", url: "/images/blog/convert-jpg-to-pdf-complete-guide-inner1.jpg", caption: "Visual example for this tutorial" },
       { type: "field-note", content: "Real file sizes from our test conversions", items: [
         "Tested 30 mixed JPGs (phone photos, scans, screenshots) built into single PDFs.",
         "10 phone photos at 300 DPI, A4 portrait, 15 mm margins: 24.8 MB output PDF.",
@@ -585,6 +593,7 @@ export const blogPosts: BlogPost[] = [
   },
   {
     slug: "uuid-v4-vs-v7-when-to-use-each",
+    coverImage: "/images/blog/uuid-v4-vs-v7-when-to-use-each-cover.jpg",
     title: "UUID v4 vs v7: When to Use Each (Developer Guide)",
     titleBn: "UUID v4 vs v7: কখন কোনটি ব্যবহার করবেন",
     excerpt: "UUIDs are not all equal. Learn the difference between random v4, time-ordered v7, and when each one is the right choice for databases, APIs, and distributed systems.",
@@ -597,6 +606,7 @@ export const blogPosts: BlogPost[] = [
     authorId: "mohammad-ahad",
     relatedTool: "uuid-generator",
     blocks: [
+      { type: "image", url: "/images/blog/uuid-v4-vs-v7-when-to-use-each-inner1.jpg", caption: "Visual example for this tutorial" },
       { type: "field-note", content: "Sorting behaviour we observed in practice", items: [
         "Generated 10,000 v4 UUIDs and 10,000 v7 UUIDs in the browser using Web Crypto.",
         "v4 generation: ~180 ms for the full batch. v7 generation: ~190 ms — effectively identical.",
@@ -678,6 +688,7 @@ export const blogPosts: BlogPost[] = [
   },
   {
     slug: "qr-codes-business-cards-marketing",
+    coverImage: "/images/blog/qr-codes-business-cards-marketing-cover.jpg",
     title: "QR Codes for Business Cards and Marketing: Best Practices",
     titleBn: "বিজনেস কার্ড ও মার্কেটিংয়ে QR কোড: সম্পূর্ণ গাইড",
     excerpt: "QR codes are back. Learn how to use them effectively on business cards, product packaging, and marketing materials — with real design and placement rules.",
@@ -690,6 +701,7 @@ export const blogPosts: BlogPost[] = [
     authorId: "mohammad-ahad",
     relatedTool: "photo-qr",
     blocks: [
+      { type: "image", url: "/images/blog/qr-codes-business-cards-marketing-inner1.jpg", caption: "Visual example for this tutorial" },
       { type: "field-note", content: "Scan reliability we tested across devices", items: [
         "Printed the same QR code (error-correction H, 2 cm on a business card) on matte and glossy stock.",
         "Scanned with iPhone 15 (native camera), Pixel 8 (native camera), Samsung S23 (native camera), Google Lens, and a 5-year-old Samsung A51.",
@@ -783,6 +795,7 @@ export const blogPosts: BlogPost[] = [
   },
   {
     slug: "word-count-guide-writing-content",
+    coverImage: "/images/blog/word-count-guide-writing-content-cover.jpg",
     title: "Word Count Guide: How Many Words Should Your Content Be?",
     titleBn: "ওয়ার্ড কাউন্ট গাইড: আপনার কনটেন্ট কত শব্দের হওয়া উচিত?",
     excerpt: "Blog posts, product descriptions, meta descriptions, emails — each format has an optimal word count. Here is the data-backed breakdown for 2026.",
@@ -795,6 +808,7 @@ export const blogPosts: BlogPost[] = [
     authorId: "mohammad-ahad",
     relatedTool: "word-counter",
     blocks: [
+      { type: "image", url: "/images/blog/word-count-guide-writing-content-inner1.jpg", caption: "Visual example for this tutorial" },
       { type: "field-note", content: "What we measured on real articles", items: [
         "Counted 100 published blog posts across the industry to calibrate word counts.",
         "Median ranking post for competitive keywords: 1,840 words.",
@@ -902,6 +916,7 @@ export const blogPosts: BlogPost[] = [
   },
   {
     slug: "image-sizes-social-media-2026-guide",
+    coverImage: "/images/blog/image-sizes-social-media-2026-guide-cover.jpg",
     title: "Optimal Image Sizes for Instagram, Facebook, Twitter & LinkedIn (2026)",
     titleBn: "Instagram, Facebook, Twitter ও LinkedIn-এর জন্য সঠিক ইমেজ সাইজ (২০২৬)",
     excerpt: "Wrong image size kills engagement. Here is the complete 2026 reference for every major social platform — with pixel dimensions, aspect ratios, and file size limits.",
@@ -914,6 +929,7 @@ export const blogPosts: BlogPost[] = [
     authorId: "mohammad-ahad",
     relatedTool: "image-resizer",
     blocks: [
+      { type: "image", url: "/images/blog/image-sizes-social-media-2026-guide-inner1.jpg", caption: "Visual example for this tutorial" },
       { type: "field-note", content: "Platform crop behaviour we observed", items: [
         "Uploaded the same 1200×1600 photo (3:4 ratio) to Instagram, Facebook, and LinkedIn.",
         "Instagram cropped it to 4:5 in feed — about 8% of the vertical edges disappeared.",
@@ -1047,6 +1063,7 @@ export const blogPosts: BlogPost[] = [
   },
   {
     slug: "pdf-to-jpg-when-and-why",
+    coverImage: "/images/blog/pdf-to-jpg-when-and-why-cover.jpg",
     title: "PDF to JPG: When, Why, and How to Convert (Complete Guide)",
     titleBn: "PDF থেকে JPG: কখন, কেন ও কীভাবে কনভার্ট করবেন",
     excerpt: "PDF is perfect for documents, JPG is perfect for images. Learn when to convert between them, how to preserve quality, and how to do it privately in your browser.",
@@ -1059,6 +1076,7 @@ export const blogPosts: BlogPost[] = [
     authorId: "mohammad-ahad",
     relatedTool: "pdf-to-jpg",
     blocks: [
+      { type: "image", url: "/images/blog/pdf-to-jpg-when-and-why-inner1.jpg", caption: "Visual example for this tutorial" },
       { type: "field-note", content: "Output sizes from our PDF-to-JPG tool", items: [
         "Rendered a 200-page technical PDF (18 MB) to JPG at different DPI settings.",
         "72 DPI: 200 images, total 45 MB — good enough for thumbnails.",
@@ -1136,6 +1154,7 @@ export const blogPosts: BlogPost[] = [
   },
   {
     slug: "json-vs-xml-complete-comparison",
+    coverImage: "/images/blog/json-vs-xml-complete-comparison-cover.jpg",
     title: "JSON vs XML: Which Should You Use in 2026?",
     titleBn: "JSON vs XML: ২০২৬ সালে কোনটি ব্যবহার করবেন?",
     excerpt: "Two data formats, one war that has already been decided. Learn when XML still wins, why JSON dominates APIs, and how to choose for your project.",
@@ -1148,6 +1167,7 @@ export const blogPosts: BlogPost[] = [
     authorId: "mohammad-ahad",
     relatedTool: "json-formatter",
     blocks: [
+      { type: "image", url: "/images/blog/json-vs-xml-complete-comparison-inner1.jpg", caption: "Visual example for this tutorial" },
       { type: "field-note", content: "Parse performance on real API responses", items: [
         "Parsed equivalent 10 KB payloads in both formats on a mid-range laptop.",
         "JSON.parse: 0.4 ms. DOMParser (XML): 3.2 ms. Roughly 8× faster JSON.",
@@ -1238,6 +1258,7 @@ export const blogPosts: BlogPost[] = [
   },
   {
     slug: "favicon-complete-guide-website-icons",
+    coverImage: "/images/blog/favicon-complete-guide-website-icons-cover.jpg",
     title: "Favicon Complete Guide: Create Website Icons That Convert",
     titleBn: "Favicon সম্পূর্ণ গাইড: যে আইকন ব্র্যান্ডিং শক্তিশালী করে",
     excerpt: "Your favicon is the smallest brand asset with the biggest impact. Learn how to design, generate, and install favicons for modern browsers, Apple devices, and PWAs.",
@@ -1250,6 +1271,7 @@ export const blogPosts: BlogPost[] = [
     authorId: "mohammad-ahad",
     relatedTool: "favicon-generator",
     blocks: [
+      { type: "image", url: "/images/blog/favicon-complete-guide-website-icons-inner1.jpg", caption: "Visual example for this tutorial" },
       { type: "field-note", content: "Favicon rendering we observed across browsers", items: [
         "Generated all 8 required favicon files from a single 512×512 PNG.",
         "Chrome uses favicon-32x32.png for tabs. Firefox uses 16x16. Safari on macOS uses the 180×180 apple-touch-icon on the tab bar.",
@@ -1344,6 +1366,7 @@ export const blogPosts: BlogPost[] = [
   },
   {
     slug: "url-encoding-explained-special-characters",
+    coverImage: "/images/blog/url-encoding-explained-special-characters-cover.jpg",
     title: "URL Encoding Explained: Special Characters & Best Practices",
     titleBn: "URL এনকোডিং ব্যাখ্যা: স্পেশাল ক্যারেক্টার ও বেস্ট প্র্যাকটিস",
     excerpt: "Every %20 you have ever typed into a URL came from URL encoding. Learn what needs encoding, why, and how to handle it correctly in every language.",
@@ -1356,6 +1379,7 @@ export const blogPosts: BlogPost[] = [
     authorId: "mohammad-ahad",
     relatedTool: "url-encoder",
     blocks: [
+      { type: "image", url: "/images/blog/url-encoding-explained-special-characters-inner1.jpg", caption: "Visual example for this tutorial" },
       { type: "field-note", content: "Encoding results we tested across scripts", items: [
         "Encoded a Bengali URL query value (100 chars) — output was 320 percent-encoded characters.",
         "Encoded a French string with accents: é becomes %C3%A9, ç becomes %C3%A7 — UTF-8 bytes as expected.",
@@ -1445,6 +1469,7 @@ export const blogPosts: BlogPost[] = [
   },
   {
     slug: "twitter-character-limit-guide-2026",
+    coverImage: "/images/blog/twitter-character-limit-guide-2026-cover.jpg",
     title: "Twitter/X Character Limit Guide 2026: How Many Characters Can You Post?",
     titleBn: "Twitter/X ক্যারেক্টার লিমিট গাইড ২০২৬: কত ক্যারেক্টার পোস্ট করতে পারবেন?",
     excerpt: "Twitter/X has different limits for tweets, bios, DMs, and display names. Here is the complete 2026 reference — plus tips for staying under the limit.",
@@ -1457,6 +1482,7 @@ export const blogPosts: BlogPost[] = [
     authorId: "mohammad-ahad",
     relatedTool: "character-counter",
     blocks: [
+      { type: "image", url: "/images/blog/twitter-character-limit-guide-2026-inner1.jpg", caption: "Visual example for this tutorial" },
       { type: "field-note", content: "Character counting we verified against Twitter", items: [
         "Pasted a 200-character URL into X and watched the counter increment by exactly 23 — t.co always shortens to 23 characters.",
         "Simple emoji 😀 counts as 2 characters on X.",
@@ -1538,6 +1564,7 @@ export const blogPosts: BlogPost[] = [
   },
   {
     slug: "barcode-vs-qr-code-when-to-use",
+    coverImage: "/images/blog/barcode-vs-qr-code-when-to-use-cover.jpg",
     title: "Barcode vs QR Code: Which One Should You Use?",
     titleBn: "বারকোড vs QR কোড: কোনটি কখন ব্যবহার করবেন?",
     excerpt: "Barcodes and QR codes look similar but serve different purposes. Learn when to use 1D barcodes, when to use QR codes, and how to generate both for free.",
@@ -1550,6 +1577,7 @@ export const blogPosts: BlogPost[] = [
     authorId: "mohammad-ahad",
     relatedTool: "barcode-generator",
     blocks: [
+      { type: "image", url: "/images/blog/barcode-vs-qr-code-when-to-use-inner1.jpg", caption: "Visual example for this tutorial" },
       { type: "field-note", content: "Scan rate observations from our barcode generator", items: [
         "Generated EAN-13, UPC-A, CODE128, and ITF-14 barcodes at 3× PNG scale.",
         "All four scanned reliably on a Honeywell 2D imager and a 5-year-old Zebra laser scanner.",
@@ -1651,6 +1679,7 @@ export const blogPosts: BlogPost[] = [
   },
   {
     slug: "title-case-vs-sentence-case-writing-guide",
+    coverImage: "/images/blog/title-case-vs-sentence-case-writing-guide-cover.jpg",
     title: "Title Case vs Sentence Case: A Complete Writing Guide",
     titleBn: "Title Case vs Sentence Case: সম্পূর্ণ রাইটিং গাইড",
     excerpt: "Not sure whether to capitalize 'the' or 'of' in your title? This guide covers every rule of title case, sentence case, and when each one is correct.",
@@ -1663,6 +1692,7 @@ export const blogPosts: BlogPost[] = [
     authorId: "mohammad-ahad",
     relatedTool: "text-case-converter",
     blocks: [
+      { type: "image", url: "/images/blog/title-case-vs-sentence-case-writing-guide-inner1.jpg", caption: "Visual example for this tutorial" },
       { type: "field-note", content: "Consistency checks we ran while building the case converter", items: [
         "Tested 500 mixed-case strings across AP, Chicago, and APA style guides.",
         "Chicago and APA agree on 94% of title-case decisions; AP differs most on short prepositions.",
@@ -1763,6 +1793,7 @@ export const blogPosts: BlogPost[] = [
   },
   {
     slug: "image-to-sketch-cartoon-how-it-works",
+    coverImage: "/images/blog/image-to-sketch-cartoon-how-it-works-cover.jpg",
     title: "How to Convert Photos to Sketches and Cartoons (Complete Guide)",
     titleBn: "ছবি থেকে স্কেচ ও কার্টুন: সম্পূর্ণ গাইড",
     excerpt: "Turn any photo into a pencil sketch or cartoon illustration in seconds. Learn how the algorithms work, what makes a good source photo, and how to do it privately.",
@@ -1775,6 +1806,7 @@ export const blogPosts: BlogPost[] = [
     authorId: "mohammad-ahad",
     relatedTool: "image-to-sketch",
     blocks: [
+      { type: "image", url: "/images/blog/image-to-sketch-cartoon-how-it-works-inner1.jpg", caption: "Visual example for this tutorial" },
       { type: "field-note", content: "Timings and quality from our test corpus", items: [
         "Converted 50 photos (portraits, landscapes, product shots) to both pencil sketch and cel-shaded cartoon.",
         "Sketch conversion: 180-320 ms per 5 MP photo on a mid-range Android device.",
@@ -1854,6 +1886,7 @@ export const blogPosts: BlogPost[] = [
   },
   {
     slug: "image-cropping-guide-aspect-ratios",
+    coverImage: "/images/blog/image-cropping-guide-aspect-ratios-cover.jpg",
     title: "Image Cropping Guide: Aspect Ratios for Every Platform (2026)",
     titleBn: "ইমেজ ক্রপিং গাইড: প্রতিটি প্ল্যাটফর্মের অ্যাসপেক্ট রেশিও (২০২৬)",
     excerpt: "Cropping is the difference between a photo that fits and one that looks stretched. Learn every common aspect ratio and when to use each one.",
@@ -1866,6 +1899,7 @@ export const blogPosts: BlogPost[] = [
     authorId: "mohammad-ahad",
     relatedTool: "image-cropper",
     blocks: [
+      { type: "image", url: "/images/blog/image-cropping-guide-aspect-ratios-inner1.jpg", caption: "Visual example for this tutorial" },
       { type: "field-note", content: "Crop quality we verified on our own tool", items: [
         "Cropped a 4000×3000 photo to 1:1 (3000×3000) at four different aspect presets.",
         "Cropping is a pixel-copy operation — no re-sampling, no blurring, no visible quality change.",
@@ -1999,6 +2033,7 @@ export const blogPosts: BlogPost[] = [
   },
   {
     slug: "how-to-reduce-pdf-file-size",
+    coverImage: "/images/blog/how-to-reduce-pdf-file-size-cover.jpg",
     title: "How to Reduce PDF File Size Without Losing Quality",
     titleBn: "কোয়ালিটি না হারিয়ে PDF ফাইল সাইজ কমানোর উপায়",
     excerpt: "Large PDFs are difficult to email, upload, and archive. Learn every legitimate way to shrink a PDF — from image compression to font subsetting — without ruining readability.",
@@ -2011,6 +2046,7 @@ export const blogPosts: BlogPost[] = [
     authorId: "mohammad-ahad",
     relatedTool: "merge-pdf",
     blocks: [
+      { type: "image", url: "/images/blog/how-to-reduce-pdf-file-size-inner1.jpg", caption: "Visual example for this tutorial" },
       { type: "field-note", content: "Real reductions from our compression tests", items: [
         "Compressed a 45 MB scanned PDF (color, 300 DPI) by converting pages to grayscale at 150 DPI.",
         "Result: 3.2 MB output PDF — 93% smaller, still perfectly readable on screen.",
@@ -2088,6 +2124,7 @@ export const blogPosts: BlogPost[] = [
   },
   {
     slug: "best-free-tools-for-students-2026",
+    coverImage: "/images/blog/best-free-tools-for-students-2026-cover.jpg",
     title: "Best Free Online Tools Every Student Needs in 2026",
     titleBn: "২০২৬ সালে প্রতিটি শিক্ষার্থীর প্রয়োজনীয় ফ্রি অনলাইন টুল",
     excerpt: "From PDF merging to CV building, here are the free online tools that save students hours every week — all browser-based, no signup, no uploads.",
@@ -2100,6 +2137,7 @@ export const blogPosts: BlogPost[] = [
     authorId: "mohammad-ahad",
     relatedTool: "merge-pdf",
     blocks: [
+      { type: "image", url: "/images/blog/best-free-tools-for-students-2026-inner1.jpg", caption: "Visual example for this tutorial" },
       { type: "field-note", content: "Workflow tests on a real student assignment", items: [
         "Recreated a typical university submission workflow: 3 PDFs merged, 12 images compressed, one CV generated.",
         "Total processing time in the browser: 47 seconds across all three tasks.",
@@ -2191,6 +2229,7 @@ export const blogPosts: BlogPost[] = [
   },
   {
     slug: "what-is-exif-metadata-privacy-guide",
+    coverImage: "/images/blog/what-is-exif-metadata-privacy-guide-cover.jpg",
     title: "What Is EXIF Metadata? (And Why It Can Leak Your Privacy)",
     titleBn: "EXIF মেটাডেটা কী? (এবং কেন এটি আপনার প্রাইভেসি লঙ্ঘন করতে পারে)",
     excerpt: "Every photo you take contains hidden data — location, camera, timestamp, and more. Learn what EXIF is, what it reveals, and how to remove it before sharing.",
@@ -2203,6 +2242,7 @@ export const blogPosts: BlogPost[] = [
     authorId: "mohammad-ahad",
     relatedTool: "image-metadata-viewer",
     blocks: [
+      { type: "image", url: "/images/blog/what-is-exif-metadata-privacy-guide-inner1.jpg", caption: "Visual example for this tutorial" },
       { type: "field-note", content: "What we found in 100 random phone photos", items: [
         "Analysed 100 photos taken on iOS and Android phones over the last 12 months.",
         "97% contained GPS coordinates to 5 decimal places — accurate to roughly 1 metre.",
@@ -2285,6 +2325,7 @@ export const blogPosts: BlogPost[] = [
   },
   {
     slug: "webp-image-format-complete-guide",
+    coverImage: "/images/blog/webp-image-format-complete-guide-cover.jpg",
     title: "WebP Image Format: The Complete 2026 Guide",
     titleBn: "WebP ইমেজ ফরম্যাট: সম্পূর্ণ গাইড ২০২৬",
     excerpt: "WebP is 25-35% smaller than JPG at the same quality. Learn why it matters, when to use it, and how to convert your existing images — all in your browser.",
@@ -2297,6 +2338,7 @@ export const blogPosts: BlogPost[] = [
     authorId: "mohammad-ahad",
     relatedTool: "jpg-to-webp",
     blocks: [
+      { type: "image", url: "/images/blog/webp-image-format-complete-guide-inner1.jpg", caption: "Visual example for this tutorial" },
       { type: "field-note", content: "WebP conversion results from our test set", items: [
         "Converted 100 JPG images from a stock photo library to WebP at quality 85.",
         "Average size reduction: 28.4% (range: 19% to 41% depending on image complexity).",
@@ -2381,6 +2423,7 @@ export const blogPosts: BlogPost[] = [
   },
   {
     slug: "professional-cv-writing-tips-2026",
+    coverImage: "/images/blog/professional-cv-writing-tips-2026-cover.jpg",
     title: "How to Write a Professional CV That Gets Interviews (2026)",
     titleBn: "প্রফেশনাল CV লেখার উপায় যা ইন্টারভিউ এনে দেয় (২০২৬)",
     excerpt: "A great CV gets you interviews. A great interview gets you the job. Learn the structure, formatting rules, and content that actually works in 2026.",
@@ -2393,6 +2436,7 @@ export const blogPosts: BlogPost[] = [
     authorId: "mohammad-ahad",
     relatedTool: "cv-builder",
     blocks: [
+      { type: "image", url: "/images/blog/professional-cv-writing-tips-2026-inner1.jpg", caption: "Visual example for this tutorial" },
       { type: "field-note", content: "What we verified against real ATS systems", items: [
         "Ran 20 CVs through three ATS parsers: Greenhouse, Lever, and Workday.",
         "Two-column layouts failed parsing on Workday — job titles and dates ended up scrambled.",
@@ -2496,6 +2540,7 @@ export const blogPosts: BlogPost[] = [
   },
   {
     slug: "how-to-merge-images-into-one",
+    coverImage: "/images/blog/how-to-merge-images-into-one-cover.jpg",
     title: "How to Merge Multiple Images Into One (2026 Guide)",
     titleBn: "একাধিক ছবি একটি ছবিতে মার্জ করার উপায় (২০২৬ গাইড)",
     excerpt: "Combine multiple photos into a single image for collages, comparison shots, or social media. Complete guide with aspect ratio rules and quality tips.",
@@ -2508,6 +2553,7 @@ export const blogPosts: BlogPost[] = [
     authorId: "mohammad-ahad",
     relatedTool: "image-resizer",
     blocks: [
+      { type: "image", url: "/images/blog/how-to-merge-images-into-one-inner1.jpg", caption: "Visual example for this tutorial" },
       { type: "field-note", content: "Output sizes and layout results from our tests", items: [
         "Merged 2, 4, and 8 source photos into side-by-side and grid layouts.",
         "2-photo side-by-side at 1080 px per side: 2.4 MB PNG, 680 KB WebP.",
@@ -2585,6 +2631,7 @@ export const blogPosts: BlogPost[] = [
   },
   {
     slug: "youtube-thumbnail-design-guide",
+    coverImage: "/images/blog/youtube-thumbnail-design-guide-cover.jpg",
     title: "YouTube Thumbnail Design: The Complete 2026 Guide",
     titleBn: "ইউটিউব থাম্বনেইল ডিজাইন: সম্পূর্ণ গাইড ২০২৬",
     excerpt: "Your thumbnail is the single biggest factor in click-through rate. Learn the dimensions, design rules, and psychology behind thumbnails that get clicks.",
@@ -2597,6 +2644,7 @@ export const blogPosts: BlogPost[] = [
     authorId: "mohammad-ahad",
     relatedTool: "image-resizer",
     blocks: [
+      { type: "image", url: "/images/blog/youtube-thumbnail-design-guide-inner1.jpg", caption: "Visual example for this tutorial" },
       { type: "field-note", content: "Thumbnail CTR tests we ran ourselves", items: [
         "A/B tested 6 thumbnail styles against a real YouTube channel over 4 weeks.",
         "Bold 3-word text with a high-contrast face: 8.4% CTR — the strongest performer.",
@@ -2681,6 +2729,7 @@ export const blogPosts: BlogPost[] = [
   },
   {
     slug: "email-attachment-size-limits-guide",
+    coverImage: "/images/blog/email-attachment-size-limits-guide-cover.jpg",
     title: "Email Attachment Size Limits: Every Provider Compared (2026)",
     titleBn: "ইমেইল অ্যাটাচমেন্ট সাইজ লিমিট: প্রতিটি প্রোভাইডারের তুলনা (২০২৬)",
     excerpt: "Gmail, Outlook, Yahoo, and Apple Mail all have different attachment limits. Learn every size limit and how to send large files without a bounce-back.",
@@ -2693,6 +2742,7 @@ export const blogPosts: BlogPost[] = [
     authorId: "mohammad-ahad",
     relatedTool: "image-compressor",
     blocks: [
+      { type: "image", url: "/images/blog/email-attachment-size-limits-guide-inner1.jpg", caption: "Visual example for this tutorial" },
       { type: "field-note", content: "Real send tests across major providers", items: [
         "Sent the same 22 MB PDF attachment from Gmail, Outlook, Yahoo, and Proton.",
         "Gmail: sent successfully (25 MB limit). Outlook: bounce. Yahoo: bounce. Proton: bounce.",
@@ -2762,6 +2812,7 @@ export const blogPosts: BlogPost[] = [
   },
   {
     slug: "color-picker-guide-web-design",
+    coverImage: "/images/blog/color-picker-guide-web-design-cover.jpg",
     title: "Color Picker Guide for Web Designers (2026)",
     titleBn: "ওয়েব ডিজাইনারদের জন্য কালার পিকার গাইড (২০২৬)",
     excerpt: "Picking the right colors is 80% of what makes a website feel professional. Learn hex codes, RGB, HSL, and the color theory behind great interfaces.",
@@ -2774,6 +2825,7 @@ export const blogPosts: BlogPost[] = [
     authorId: "mohammad-ahad",
     relatedTool: "favicon-generator",
     blocks: [
+      { type: "image", url: "/images/blog/color-picker-guide-web-design-inner1.jpg", caption: "Visual example for this tutorial" },
       { type: "field-note", content: "Contrast measurements we ran on real palettes", items: [
         "Analysed 20 popular SaaS websites for body-text contrast against their background.",
         "Average contrast ratio: 12.4:1 — well above WCAG AA's 4.5:1 minimum.",
@@ -2874,6 +2926,7 @@ export const blogPosts: BlogPost[] = [
   },
   {
     slug: "how-to-protect-online-privacy-2026",
+    coverImage: "/images/blog/how-to-protect-online-privacy-2026-cover.jpg",
     title: "How to Protect Your Online Privacy in 2026 (Complete Guide)",
     titleBn: "২০২৬ সালে অনলাইন প্রাইভেসি রক্ষা করার সম্পূর্ণ গাইড",
     excerpt: "Every website you visit, every app you use, every click you make is tracked. Here is a practical guide to protecting your privacy without giving up modern conveniences.",
@@ -2886,6 +2939,7 @@ export const blogPosts: BlogPost[] = [
     authorId: "mohammad-ahad",
     relatedTool: "password-generator",
     blocks: [
+      { type: "image", url: "/images/blog/how-to-protect-online-privacy-2026-inner1.jpg", caption: "Visual example for this tutorial" },
       { type: "field-note", content: "What we tracked on our own devices for 30 days", items: [
         "Logged all third-party network requests to our own browsers over 30 days with uBlock Origin off.",
         "Average requests per session: 42. Top three senders: Google Analytics, Google Ads, Facebook pixel.",
@@ -3008,6 +3062,7 @@ export const blogPosts: BlogPost[] = [
   },
   {
     slug: "how-to-convert-heic-to-jpg",
+    coverImage: "/images/blog/how-to-convert-heic-to-jpg-cover.jpg",
     title: "How to Convert HEIC to JPG (iPhone Photos Explained)",
     titleBn: "HEIC থেকে JPG: iPhone ছবি কনভার্ট করার সম্পূর্ণ গাইড",
     excerpt: "iPhone photos are saved as HEIC by default — a format Windows and older software often cannot open. Here is how to convert them and why it matters.",
@@ -3020,6 +3075,7 @@ export const blogPosts: BlogPost[] = [
     authorId: "mohammad-ahad",
     relatedTool: "jpg-to-png",
     blocks: [
+      { type: "image", url: "/images/blog/how-to-convert-heic-to-jpg-inner1.jpg", caption: "Visual example for this tutorial" },
       { type: "field-note", content: "Conversion results from our own HEIC tests", items: [
         "Converted 40 HEIC photos from an iPhone 15 Pro to JPG at quality 85.",
         "Average size increase: 62% (HEIC files are inherently smaller than JPG at the same quality).",
@@ -3095,6 +3151,7 @@ export const blogPosts: BlogPost[] = [
   },
   {
     slug: "how-to-remove-background-from-photos",
+    coverImage: "/images/blog/how-to-remove-background-from-photos-cover.jpg",
     title: "How to Remove Background from Photos (Free Methods)",
     titleBn: "ছবি থেকে ব্যাকগ্রাউন্ড রিমুভ করার ফ্রি উপায়",
     excerpt: "Background removal used to require Photoshop skills. Now free browser tools do it in 3 seconds. Here is how it works and when to use it.",
@@ -3107,6 +3164,7 @@ export const blogPosts: BlogPost[] = [
     authorId: "mohammad-ahad",
     relatedTool: "image-cropper",
     blocks: [
+      { type: "image", url: "/images/blog/how-to-remove-background-from-photos-inner1.jpg", caption: "Visual example for this tutorial" },
       { type: "field-note", content: "Results from our own background-removal tests", items: [
         "Tested 30 photos across portraits, product shots, and pets on a browser-based AI model.",
         "Clean subjects (studio product, plain background): 92% pixel-accurate detection in the tool's own scoring.",
@@ -3180,6 +3238,7 @@ export const blogPosts: BlogPost[] = [
   },
   {
     slug: "website-speed-optimization-guide",
+    coverImage: "/images/blog/website-speed-optimization-guide-cover.jpg",
     title: "Website Speed Optimization: The Complete 2026 Guide",
     titleBn: "ওয়েবসাইট স্পিড অপটিমাইজেশন: সম্পূর্ণ গাইড ২০২৬",
     excerpt: "Every second of load time costs you conversions and ranking. Learn the exact techniques that take a slow site to fast — with real measurements and priorities.",
@@ -3192,6 +3251,7 @@ export const blogPosts: BlogPost[] = [
     authorId: "mohammad-ahad",
     relatedTool: "image-compressor",
     blocks: [
+      { type: "image", url: "/images/blog/website-speed-optimization-guide-inner1.jpg", caption: "Visual example for this tutorial" },
       { type: "field-note", content: "Real Core Web Vitals improvements we measured", items: [
         "Optimized a real 300 KB page: converted hero image to WebP, deferred analytics, and enabled a CDN.",
         "LCP: 3.9 s → 1.4 s (64% improvement).",
@@ -3307,6 +3367,7 @@ export const blogPosts: BlogPost[] = [
   },
   {
     slug: "free-tools-for-freelancers-2026",
+    coverImage: "/images/blog/free-tools-for-freelancers-2026-cover.jpg",
     title: "Best Free Online Tools for Freelancers in 2026",
     titleBn: "২০২৬ সালে ফ্রিল্যান্সারদের জন্য সেরা ফ্রি অনলাইন টুল",
     excerpt: "Freelancers waste hours on admin work. These free browser-based tools handle invoicing, client files, portfolios, and everything in between.",
@@ -3319,6 +3380,7 @@ export const blogPosts: BlogPost[] = [
     authorId: "mohammad-ahad",
     relatedTool: "merge-pdf",
     blocks: [
+      { type: "image", url: "/images/blog/free-tools-for-freelancers-2026-inner1.jpg", caption: "Visual example for this tutorial" },
       { type: "field-note", content: "Workflow timings from our own freelancer test week", items: [
         "Tracked every file operation over a typical freelance week: invoices, contracts, deliverables, and client previews.",
         "Total operations: 43. Total browser-based processing time: 3 minutes 12 seconds.",
@@ -3414,6 +3476,7 @@ export const blogPosts: BlogPost[] = [
   },
   {
     slug: "how-to-create-favicon-from-logo",
+    coverImage: "/images/blog/how-to-create-favicon-from-logo-cover.jpg",
     title: "How to Create a Favicon From Your Logo (Step-by-Step)",
     titleBn: "লোগো থেকে ফেভিকন তৈরি করার সম্পূর্ণ উপায়",
     excerpt: "Your favicon is your logo at 16 pixels. Most logos do not survive at that size. Learn how to design a favicon that stays recognizable at the smallest scale.",
@@ -3426,6 +3489,7 @@ export const blogPosts: BlogPost[] = [
     authorId: "mohammad-ahad",
     relatedTool: "favicon-generator",
     blocks: [
+      { type: "image", url: "/images/blog/how-to-create-favicon-from-logo-inner1.jpg", caption: "Visual example for this tutorial" },
       { type: "field-note", content: "Legibility tests we ran at 16×16", items: [
         "Generated favicons from 12 real-world logos and viewed them at actual 16×16 size.",
         "Simplified letter-only marks (e.g., 'A', 'G'): 100% readable at 16px.",
@@ -3516,6 +3580,7 @@ export const blogPosts: BlogPost[] = [
   },
   {
     slug: "how-to-add-watermark-to-photos",
+    coverImage: "/images/blog/how-to-add-watermark-to-photos-cover.jpg",
     title: "How to Add a Watermark to Photos (Free Methods)",
     titleBn: "ছবিতে ওয়াটারমার্ক যোগ করার ফ্রি উপায়",
     excerpt: "Watermarks protect your images from theft — but a bad watermark ruins the photo. Learn the placement, opacity, and design rules that actually work.",
@@ -3528,6 +3593,7 @@ export const blogPosts: BlogPost[] = [
     authorId: "mohammad-ahad",
     relatedTool: "image-cropper",
     blocks: [
+      { type: "image", url: "/images/blog/how-to-add-watermark-to-photos-inner1.jpg", caption: "Visual example for this tutorial" },
       { type: "field-note", content: "Visibility tests we ran on real images", items: [
         "Applied the same text watermark at 30%, 50%, 70% opacity on 20 photos.",
         "At 30% opacity: invisible on busy backgrounds — useless as protection.",
