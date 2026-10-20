@@ -1,4 +1,4 @@
-import { useRef, useState } from "react";
+import { useRef, useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import {
   X,
@@ -37,8 +37,21 @@ export function Workspace() {
   const [busy, setBusy] = useState(false);
   const [drag, setDrag] = useState(false);
   const [error, setError] = useState<string | null>(null);
-  const [quality, setQuality] = useState(80);
-  const [maxWidth, setMaxWidth] = useState(1920);
+  const [quality, setQuality] = useState(() => {
+    const saved = localStorage.getItem("ahadex-img-quality");
+    return saved ? parseInt(saved, 10) : 80;
+  });
+  const [maxWidth, setMaxWidth] = useState(() => {
+    const saved = localStorage.getItem("ahadex-img-maxwidth");
+    return saved ? parseInt(saved, 10) : 1920;
+  });
+
+
+  // Save settings to localStorage
+  useEffect(() => {
+    localStorage.setItem("ahadex-img-quality", quality.toString());
+    localStorage.setItem("ahadex-img-maxwidth", maxWidth.toString());
+  }, [quality, maxWidth]);
 
   const handleFiles = async (files: FileList | null) => {
     if (!files || files.length === 0) return;
@@ -78,6 +91,18 @@ export function Workspace() {
     setBusy(false);
     if (inputRef.current) inputRef.current.value = "";
   };
+  // Global Paste (Ctrl+V)
+  useEffect(() => {
+    const handlePaste = (e: ClipboardEvent) => {
+      const files = e.clipboardData?.files;
+      if (files && files.length > 0 && files[0].type.startsWith("image/")) {
+        handleFiles(files);
+      }
+    };
+    window.addEventListener("paste", handlePaste);
+    return () => window.removeEventListener("paste", handlePaste);
+  }, [quality, maxWidth]); // depends on settings
+
 
   const remove = (id: string) => {
     setItems((prev) => {
