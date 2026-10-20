@@ -1,3 +1,21 @@
+/* ============================================================
+ * verify-production.ts
+ * ------------------------------------------------------------
+ * Post-deploy verification of LIVE production URLs.
+ *
+ * Runs AFTER `git push` + Cloudflare deploy. Performs real
+ * HTTP requests for EVERY URL found in the local sitemap.
+ *
+ * Checks per URL:
+ *   - HTTP status (must be 200)
+ *   - Content-Type (must be text/html)
+ *   - Redirect chain (should be empty for canonical URLs)
+ *   - <title>, description, canonical, robots, h1
+ *   - JSON-LD parse
+ *
+ * Exit code 1 on any hard failure.
+ * ============================================================ */
+
 import { readFileSync, existsSync } from "node:fs";
 import { resolve } from "node:path";
 import { request as httpsRequest } from "node:https";
