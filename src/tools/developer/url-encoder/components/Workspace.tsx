@@ -25,6 +25,17 @@ export function Workspace() {
   useEffect(() => {
     localStorage.setItem("ahadex-url-scope", scope);
   }, [scope]);
+
+  // Auto-focus first textarea on load
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      const textarea = document.querySelector('textarea');
+      if (textarea) {
+        textarea.focus();
+      }
+    }, 150);
+    return () => clearTimeout(timer);
+  }, []);
     return (saved === "component" || saved === "fullUri") ? (saved as Scope) : "component";
   });
   const [copied, setCopied] = useState(false);

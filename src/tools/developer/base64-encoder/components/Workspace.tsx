@@ -165,6 +165,17 @@ export function Workspace() {
     localStorage.setItem("ahadex-base64-urlsafe", urlSafe.toString());
   }, [urlSafe]);
 
+  // Auto-focus first textarea on load
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      const textarea = document.querySelector('textarea');
+      if (textarea) {
+        textarea.focus();
+      }
+    }, 150);
+    return () => clearTimeout(timer);
+  }, []);
+
   return (
     <section className="pb-12 space-y-4 sm:space-y-5">
       {/* Controls */}
