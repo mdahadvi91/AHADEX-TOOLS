@@ -20,6 +20,7 @@ import {
   formatBytes,
   parsePageRanges,
 } from "../logic";
+import { SmartInsights } from "./SmartInsights";
 import type {
   LoadedPdf,
   RotateResult,
@@ -196,6 +197,7 @@ export function Workspace() {
               accent="emerald"
             />
           </div>
+              <SmartInsights originalSize={pdf.size} outputSize={result?.size} bn={bn} />
 
           {/* ── Settings ── */}
           <WorkspacePanel className="p-4 sm:p-5 space-y-4">
