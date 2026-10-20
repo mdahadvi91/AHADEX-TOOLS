@@ -1,4 +1,4 @@
-import { useMemo, useState } from "react";
+import {useMemo, useState, useEffect} from "react";
 import { motion } from "framer-motion";
 import {
   ArrowLeftRight,
@@ -18,7 +18,15 @@ export function Workspace() {
 
   const [input, setInput] = useState("");
   const [mode, setMode] = useState<Mode>("encode");
-  const [scope, setScope] = useState<Scope>("component");
+  const [scope, setScope] = useState<Scope>(() => {
+    const saved = localStorage.getItem("ahadex-url-scope");
+
+  // Remember scope setting
+  useEffect(() => {
+    localStorage.setItem("ahadex-url-scope", scope);
+  }, [scope]);
+    return (saved === "component" || saved === "fullUri") ? (saved as Scope) : "component";
+  });
   const [copied, setCopied] = useState(false);
 
   const result = useMemo(

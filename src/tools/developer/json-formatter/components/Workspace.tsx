@@ -1,4 +1,4 @@
-import { useMemo, useState } from "react";
+import {useMemo, useState, useEffect} from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import {
   Download,
@@ -37,7 +37,10 @@ export function Workspace() {
   const bn = language === "bn";
 
   const [input, setInput] = useState("");
-  const [indent, setIndent] = useState<IndentOption>(2);
+  const [indent, setIndent] = useState<IndentOption>(() => {
+    const saved = localStorage.getItem("ahadex-json-indent");
+    return saved ? (parseInt(saved, 10) as IndentOption) : 2;
+  });
   const [sortKeys, setSortKeys] = useState(false);
   const [mode, setMode] = useState<OutputMode>("formatted");
   const [copied, setCopied] = useState(false);
@@ -103,6 +106,26 @@ export function Workspace() {
 
   const inputBytes = input ? formatBytes(new Blob([input]).size) : "0 B";
   const outputBytes = output ? formatBytes(new Blob([output]).size) : "0 B";
+
+  // Auto-focus first textarea on load
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      const textarea = document.querySelector('textarea');
+      if (textarea) {
+        textarea.focus();
+        // Move cursor to end if there's text
+        if (textarea.value) {
+          textarea.setSelectionRange(textarea.value.length, textarea.value.length);
+        }
+      }
+    }, 300);
+    return () => clearTimeout(timer);
+  }, []);
+
+  // Remember indent setting
+  useEffect(() => {
+    localStorage.setItem("ahadex-json-indent", indent.toString());
+  }, [indent]);
 
   return (
     <section className="pb-12 space-y-4 sm:space-y-5">

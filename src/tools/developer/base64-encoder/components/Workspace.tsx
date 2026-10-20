@@ -43,7 +43,10 @@ export function Workspace() {
   const [mode, setMode] = useState<Mode>("encode");
   const [kind, setKind] = useState<InputKind>("text");
   const [textInput, setTextInput] = useState("");
-  const [urlSafe, setUrlSafe] = useState(false);
+  const [urlSafe, setUrlSafe] = useState(() => {
+    const saved = localStorage.getItem("ahadex-base64-urlsafe");
+    return saved === "true";
+  });
   const [fileInfo, setFileInfo] = useState<FileInfo | null>(null);
   const [copied, setCopied] = useState(false);
   const [drag, setDrag] = useState(false);
@@ -156,6 +159,11 @@ export function Workspace() {
   const outputBytes = currentOutput
     ? formatBytes(new Blob([currentOutput]).size)
     : "0 B";
+
+  // Remember URL-safe setting
+  useEffect(() => {
+    localStorage.setItem("ahadex-base64-urlsafe", urlSafe.toString());
+  }, [urlSafe]);
 
   return (
     <section className="pb-12 space-y-4 sm:space-y-5">

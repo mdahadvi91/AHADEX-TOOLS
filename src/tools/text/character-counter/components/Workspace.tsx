@@ -1,4 +1,4 @@
-import { useMemo, useState } from "react";
+import {useMemo, useState, useEffect} from "react";
 import { SmartInsights } from "./SmartInsights";
 import { motion } from "framer-motion";
 import { Copy, ClipboardCheck, Download, Type } from "lucide-react";
@@ -47,6 +47,21 @@ export function Workspace() {
   };
 
   const inputBytes = text ? `${formatNumber(text.length)} chars` : undefined;
+
+  // Auto-focus first textarea on load
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      const textarea = document.querySelector('textarea');
+      if (textarea) {
+        textarea.focus();
+        // Move cursor to end if there's text
+        if (textarea.value) {
+          textarea.setSelectionRange(textarea.value.length, textarea.value.length);
+        }
+      }
+    }, 300);
+    return () => clearTimeout(timer);
+  }, []);
 
   return (
     <section className="pb-12 space-y-4 sm:space-y-5">

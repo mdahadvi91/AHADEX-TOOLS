@@ -1,4 +1,4 @@
-import { useMemo, useState } from "react";
+import {useMemo, useState, useEffect} from "react";
 import { motion } from "framer-motion";
 import { Clock, Mic2, KeyRound, Trash2 } from "lucide-react";
 import { useLanguage } from "@contexts/LanguageContext";
@@ -19,6 +19,21 @@ export function Workspace() {
     setText("");
     
   };
+
+  // Auto-focus first textarea on load
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      const textarea = document.querySelector('textarea');
+      if (textarea) {
+        textarea.focus();
+        // Move cursor to end if there's text
+        if (textarea.value) {
+          textarea.setSelectionRange(textarea.value.length, textarea.value.length);
+        }
+      }
+    }, 300);
+    return () => clearTimeout(timer);
+  }, []);
 
   return (
     <section className="pb-12 grid grid-cols-1 lg:grid-cols-[1fr_340px] gap-4 lg:gap-5 items-start">
