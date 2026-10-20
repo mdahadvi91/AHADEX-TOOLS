@@ -24,6 +24,7 @@ import { RecommendedProducts } from "@components/affiliate/RecommendedProducts";
 import { RelatedArticles } from "@components/blog/RelatedArticles";
 import { ToolBreadcrumb } from "@components/tools/ToolBreadcrumb";
 import { SmartInsights } from "./SmartInsights";
+import { AdSenseSlot } from "@components/ads/AdSenseSlot";
 
 export default function PhotoQrTool() {
   useToolAnalytics("photo-qr");
@@ -194,7 +195,9 @@ export default function PhotoQrTool() {
       <div className="max-w-3xl">
         <HowTo steps={content.howTo} />
         <Features features={content.features} />
-        <FAQ faqs={content.faq} />
+              <AdSenseSlot slot="TOOL_BOTTOM" label="Advertisement" />
+
+<FAQ faqs={content.faq} />
       </div>
 
       <ToolFieldNote toolId="photo-qr" />

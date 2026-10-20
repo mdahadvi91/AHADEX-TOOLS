@@ -14,6 +14,7 @@ import { RelatedTools } from "./components/RelatedTools";
 import { RelatedArticles } from "@components/blog/RelatedArticles";
 import { ToolBreadcrumb } from "@components/tools/ToolBreadcrumb";
 import { ToolSchema } from "@components/seo/ToolSchema";
+import { AdSenseSlot } from "@components/ads/AdSenseSlot";
 
 export default function ImageMetadataViewerTool() {
   useToolAnalytics("image-metadata-viewer");
@@ -30,7 +31,9 @@ export default function ImageMetadataViewerTool() {
         <Features />
         <HowTo />
         <PrivacyNote />
-        <FAQ />
+              <AdSenseSlot slot="TOOL_BOTTOM" label="Advertisement" />
+
+<FAQ />
         <ToolRelatedGuides toolId="image-metadata-viewer" />
         <RelatedArticles toolId="image-metadata-viewer" />
         <ToolDataSections toolId="image-metadata-viewer" />

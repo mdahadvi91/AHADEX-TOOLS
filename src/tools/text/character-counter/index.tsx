@@ -14,6 +14,7 @@ import { RecommendedProducts } from "@components/affiliate/RecommendedProducts";
 import { RelatedArticles } from "@components/blog/RelatedArticles";
 import { ToolBreadcrumb } from "@components/tools/ToolBreadcrumb";
 import { ToolSchema } from "@components/seo/ToolSchema";
+import { AdSenseSlot } from "@components/ads/AdSenseSlot";
 
 export default function CharacterCounterTool() {
   useToolAnalytics("character-counter");
@@ -30,7 +31,9 @@ export default function CharacterCounterTool() {
         <Features />
         <HowTo />
         <PrivacyNote />
-        <FAQ />
+              <AdSenseSlot slot="TOOL_BOTTOM" label="Advertisement" />
+
+<FAQ />
         <ToolRelatedGuides toolId="character-counter" />
         <RelatedArticles toolId="character-counter" />
         <ToolDataSections toolId="character-counter" />

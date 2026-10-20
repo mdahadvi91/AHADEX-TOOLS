@@ -14,6 +14,7 @@ import { RecommendedProducts } from "@components/affiliate/RecommendedProducts";
 import { RelatedArticles } from "@components/blog/RelatedArticles";
 import { ToolBreadcrumb } from "@components/tools/ToolBreadcrumb";
 import { ToolSchema } from "@components/seo/ToolSchema";
+import { AdSenseSlot } from "@components/ads/AdSenseSlot";
 
 export default function WordCounterTool() {
   useToolAnalytics("word-counter");
@@ -30,7 +31,9 @@ export default function WordCounterTool() {
         <Features />
         <HowTo />
         <PrivacyNote />
-        <FAQ />
+              <AdSenseSlot slot="TOOL_BOTTOM" label="Advertisement" />
+
+<FAQ />
         <ToolRelatedGuides toolId="word-counter" />
         <RelatedArticles toolId="word-counter" />
         <ToolDataSections toolId="word-counter" />

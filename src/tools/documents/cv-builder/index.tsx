@@ -14,6 +14,7 @@ import { RecommendedProducts } from "@components/affiliate/RecommendedProducts";
 import { RelatedArticles } from "@components/blog/RelatedArticles";
 import { ToolBreadcrumb } from "@components/tools/ToolBreadcrumb";
 import { ToolSchema } from "@components/seo/ToolSchema";
+import { AdSenseSlot } from "@components/ads/AdSenseSlot";
 
 export default function CVBuilderTool() {
   useToolAnalytics("cv-builder");
@@ -30,7 +31,9 @@ export default function CVBuilderTool() {
         <CVBuilderHowTo />
         <CVBuilderPrivacyNote />
         <RecommendedProducts toolId="cv-builder" />
-        <CVBuilderFAQ />
+              <AdSenseSlot slot="TOOL_BOTTOM" label="Advertisement" />
+
+<CVBuilderFAQ />
         <div className="pb-16">
           <CVBuilderRelatedTools />
         </div>

@@ -14,6 +14,7 @@ import { RelatedTools } from "./components/RelatedTools";
 import { RelatedArticles } from "@components/blog/RelatedArticles";
 import { ToolBreadcrumb } from "@components/tools/ToolBreadcrumb";
 import { ToolSchema } from "@components/seo/ToolSchema";
+import { AdSenseSlot } from "@components/ads/AdSenseSlot";
 
 export default function ImageToSketchTool() {
   useToolAnalytics("image-to-sketch");
@@ -30,7 +31,9 @@ export default function ImageToSketchTool() {
         <Features />
         <HowTo />
         <PrivacyNote />
-        <FAQ />
+              <AdSenseSlot slot="TOOL_BOTTOM" label="Advertisement" />
+
+<FAQ />
         <ToolRelatedGuides toolId="image-to-sketch" />
         <RelatedArticles toolId="image-to-sketch" />
         <ToolDataSections toolId="image-to-sketch" />

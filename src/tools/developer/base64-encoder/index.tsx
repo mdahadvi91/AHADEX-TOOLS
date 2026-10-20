@@ -14,6 +14,7 @@ import { RelatedTools } from "./components/RelatedTools";
 import { RecommendedProducts } from "@components/affiliate/RecommendedProducts";
 import { RelatedArticles } from "@components/blog/RelatedArticles";
 import { ToolBreadcrumb } from "@components/tools/ToolBreadcrumb";
+import { AdSenseSlot } from "@components/ads/AdSenseSlot";
 
 export default function Base64EncoderTool() {
   useToolAnalytics("base64-encoder");
@@ -31,7 +32,9 @@ export default function Base64EncoderTool() {
         <Features />
         <HowTo />
         <PrivacyNote />
-        <FAQ />
+              <AdSenseSlot slot="TOOL_BOTTOM" label="Advertisement" />
+
+<FAQ />
         <ToolRelatedGuides toolId="base64-encoder" />
         <RelatedArticles toolId="base64-encoder" />
         <ToolDataSections toolId="base64-encoder" />

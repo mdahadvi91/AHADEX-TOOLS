@@ -15,6 +15,7 @@ import { RelatedArticles } from "@components/blog/RelatedArticles";
 import { ToolBreadcrumb } from "@components/tools/ToolBreadcrumb";
 import { ToolSchema } from "@components/seo/ToolSchema";
 import { ToolFieldNote } from "@components/tools/ToolFieldNote";
+import { AdSenseSlot } from "@components/ads/AdSenseSlot";
 
 export default function SplitPdfTool() {
   useToolAnalytics("split-pdf");
@@ -31,7 +32,9 @@ export default function SplitPdfTool() {
         <Features />
         <HowTo />
         <PrivacyNote />
-        <FAQ />
+              <AdSenseSlot slot="TOOL_BOTTOM" label="Advertisement" />
+
+<FAQ />
           <ToolFieldNote toolId="split-pdf" />
         <ToolRelatedGuides toolId="split-pdf" />
         <RelatedArticles toolId="split-pdf" />

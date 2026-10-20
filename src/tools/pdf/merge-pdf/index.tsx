@@ -14,6 +14,7 @@ import { RelatedTools } from "./components/RelatedTools";
 import { RelatedArticles } from "@components/blog/RelatedArticles";
 import { ToolBreadcrumb } from "@components/tools/ToolBreadcrumb";
 import { ToolSchema } from "@components/seo/ToolSchema";
+import { AdSenseSlot } from "@components/ads/AdSenseSlot";
 
 export default function MergePdfTool() {
   useToolAnalytics("merge-pdf");
@@ -30,7 +31,9 @@ export default function MergePdfTool() {
         <Features />
         <HowTo />
         <PrivacyNote />
-        <FAQ />
+              <AdSenseSlot slot="TOOL_BOTTOM" label="Advertisement" />
+
+<FAQ />
         <ToolRelatedGuides toolId="merge-pdf" />
         <RelatedArticles toolId="merge-pdf" />
         <ToolDataSections toolId="merge-pdf" />

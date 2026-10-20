@@ -14,6 +14,7 @@ import { RecommendedProducts } from "@components/affiliate/RecommendedProducts";
 import { RelatedArticles } from "@components/blog/RelatedArticles";
 import { ToolBreadcrumb } from "@components/tools/ToolBreadcrumb";
 import { ToolSchema } from "@components/seo/ToolSchema";
+import { AdSenseSlot } from "@components/ads/AdSenseSlot";
 
 export default function TextCaseConverterTool() {
   useToolAnalytics("text-case-converter");
@@ -30,7 +31,9 @@ export default function TextCaseConverterTool() {
         <Features />
         <HowTo />
         <PrivacyNote />
-        <FAQ />
+              <AdSenseSlot slot="TOOL_BOTTOM" label="Advertisement" />
+
+<FAQ />
         <ToolRelatedGuides toolId="text-case-converter" />
         <RelatedArticles toolId="text-case-converter" />
         <ToolDataSections toolId="text-case-converter" />

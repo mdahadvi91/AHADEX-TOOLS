@@ -14,6 +14,7 @@ import { RelatedTools } from "./components/RelatedTools";
 import { RelatedArticles } from "@components/blog/RelatedArticles";
 import { ToolBreadcrumb } from "@components/tools/ToolBreadcrumb";
 import { ToolSchema } from "@components/seo/ToolSchema";
+import { AdSenseSlot } from "@components/ads/AdSenseSlot";
 
 export default function SvgToPngTool() {
   useToolAnalytics("svg-to-png");
@@ -30,7 +31,9 @@ export default function SvgToPngTool() {
         <Features />
         <HowTo />
         <PrivacyNote />
-        <FAQ />
+              <AdSenseSlot slot="TOOL_BOTTOM" label="Advertisement" />
+
+<FAQ />
         <ToolRelatedGuides toolId="svg-to-png" />
         <RelatedArticles toolId="svg-to-png" />
         <ToolDataSections toolId="svg-to-png" />

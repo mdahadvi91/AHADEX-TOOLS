@@ -14,6 +14,7 @@ import { useToolAnalytics } from "@hooks/useToolAnalytics";
 import { RelatedArticles } from "@components/blog/RelatedArticles";
 import { ToolBreadcrumb } from "@components/tools/ToolBreadcrumb";
 import { ToolSchema } from "@components/seo/ToolSchema";
+import { AdSenseSlot } from "@components/ads/AdSenseSlot";
 
 export default function FaviconGeneratorTool() {
   useToolAnalytics("favicon-generator");
@@ -30,7 +31,9 @@ export default function FaviconGeneratorTool() {
         <Features />
         <HowTo />
         <PrivacyNote />
-        <FAQ />
+              <AdSenseSlot slot="TOOL_BOTTOM" label="Advertisement" />
+
+<FAQ />
         <ToolRelatedGuides toolId="favicon-generator" />
         <RelatedArticles toolId="favicon-generator" />
         <ToolDataSections toolId="favicon-generator" />

@@ -16,6 +16,7 @@ import { ToolFieldNote } from "@components/tools/ToolFieldNote";
 import { ToolEditorial } from "@components/tools/ToolEditorial";
 import { ToolRelatedGuides } from "@components/tools/ToolRelatedGuides";
 import { ToolDataSections } from "@components/tools/ToolDataSections";
+import { AdSenseSlot } from "@components/ads/AdSenseSlot";
 
 export default function ImageCompressorTool() {
   useToolAnalytics("image-compressor");
@@ -33,7 +34,9 @@ export default function ImageCompressorTool() {
         <Features />
         <HowTo />
         <PrivacyNote />
-        <FAQ />
+              <AdSenseSlot slot="TOOL_BOTTOM" label="Advertisement" />
+
+<FAQ />
           <ToolFieldNote toolId="image-compressor" />
         <ToolRelatedGuides toolId="image-compressor" />
         <RelatedArticles toolId="image-compressor" />

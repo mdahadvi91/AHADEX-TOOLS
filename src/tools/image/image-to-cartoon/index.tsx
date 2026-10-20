@@ -14,6 +14,7 @@ import { RelatedTools } from "./components/RelatedTools";
 import { RelatedArticles } from "@components/blog/RelatedArticles";
 import { ToolBreadcrumb } from "@components/tools/ToolBreadcrumb";
 import { ToolSchema } from "@components/seo/ToolSchema";
+import { AdSenseSlot } from "@components/ads/AdSenseSlot";
 
 export default function ImageToCartoonTool() {
   useToolAnalytics("image-to-cartoon");
@@ -30,7 +31,9 @@ export default function ImageToCartoonTool() {
         <Features />
         <HowTo />
         <PrivacyNote />
-        <FAQ />
+              <AdSenseSlot slot="TOOL_BOTTOM" label="Advertisement" />
+
+<FAQ />
         <ToolRelatedGuides toolId="image-to-cartoon" />
         <RelatedArticles toolId="image-to-cartoon" />
         <ToolDataSections toolId="image-to-cartoon" />
