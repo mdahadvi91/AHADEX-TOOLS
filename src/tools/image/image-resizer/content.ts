@@ -10,7 +10,7 @@ export const imageResizerContent = {
       { value: "Free", label: "Forever" },
     ],
     introHighlights: [
-      { emoji: "🔒", title: "100% private", text: "Files are not uploaded to any server." },
+      { emoji: "🔒", title: "Files stay on your device", text: "Files are not uploaded to any server." },
       { emoji: "⚡", title: "Instant resize", text: "Runs in your browser." },
       { emoji: "📐", title: "Any dimension", text: "Set exact width and height." },
       { emoji: "🔗", title: "Lock aspect", text: "Preserve proportions automatically." },
@@ -64,7 +64,7 @@ export const imageResizerContent = {
       { value: "ফ্রি", label: "চিরকাল" },
     ],
     introHighlights: [
-      { emoji: "🔒", title: "১০০% প্রাইভেট", text: "ফাইল কখনো ডিভাইস ছাড়ে না।" },
+      { emoji: "🔒", title: "ফাইল আপনার ডিভাইসেই থাকে", text: "ফাইল কখনো ডিভাইস ছাড়ে না।" },
       { emoji: "⚡", title: "তাৎক্ষণিক রিসাইজ", text: "ব্রাউজারেই চলে।" },
       { emoji: "📐", title: "যেকোনো মাপ", text: "সঠিক প্রস্থ ও উচ্চতা দিন।" },
       { emoji: "🔗", title: "Aspect lock", text: "অনুপাত স্বয়ংক্রিয়ভাবে রাখুন।" },

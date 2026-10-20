@@ -10,7 +10,7 @@ export const imageToPdfContent = {
       { value: "Free", label: "Forever" },
     ],
     introHighlights: [
-      { emoji: "🔒", title: "100% private", text: "Files are not uploaded to any server." },
+      { emoji: "🔒", title: "Files stay on your device", text: "Files are not uploaded to any server." },
       { emoji: "🖼️", title: "Mixed formats", text: "JPG, PNG, and WebP — all in one PDF." },
       { emoji: "📄", title: "Multi-page", text: "Combine dozens of images into one PDF." },
       { emoji: "🔀", title: "Reorder pages", text: "Move pages up or down before export." },
@@ -64,7 +64,7 @@ export const imageToPdfContent = {
       { value: "ফ্রি", label: "চিরকাল" },
     ],
     introHighlights: [
-      { emoji: "🔒", title: "১০০% প্রাইভেট", text: "ফাইল কখনো ডিভাইস ছাড়ে না।" },
+      { emoji: "🔒", title: "ফাইল আপনার ডিভাইসেই থাকে", text: "ফাইল কখনো ডিভাইস ছাড়ে না।" },
       { emoji: "🖼️", title: "মিশ্র ফরম্যাট", text: "JPG, PNG ও WebP — সব এক PDF-এ।" },
       { emoji: "📄", title: "মাল্টি-পেজ", text: "একাধিক ছবি এক PDF-এ।" },
       { emoji: "🔀", title: "পেজ সাজান", text: "এক্সপোর্টের আগে ক্রম বদলান।" },

@@ -74,7 +74,7 @@ export function Hero() {
           <span className="inline-flex items-center gap-1.5 sm:gap-2 px-3 sm:px-4 py-1.5 sm:py-2 rounded-full bg-silk-rose/5 border border-silk-rose/15 text-light-textSecondary dark:text-dark-textSecondary text-[10px] sm:text-xs font-medium">
             <Zap className="w-3 h-3 sm:w-3.5 sm:h-3.5" />
             <Scan className="w-3 h-3 sm:w-3.5 sm:h-3.5 hidden sm:inline" />
-            {language === "bn" ? "১০০% প্রাইভেট" : "100% Private"}
+            {language === "bn" ? "ফাইল আপনার ডিভাইসেই থাকে" : "Files stay on your device"}
           </span>
         </motion.div>
 

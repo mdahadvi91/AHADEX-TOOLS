@@ -34,7 +34,7 @@ export const SSR_SCHEMA: Record<string, object> = {
           "11 platforms supported",
           "Full-resolution output",
           "Live preview",
-          "100% private"
+          "Files stay on your device"
         ]
       },
       {

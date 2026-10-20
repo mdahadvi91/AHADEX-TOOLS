@@ -10,7 +10,7 @@ export const imageCropperContent = {
       { value: "Free", label: "Forever" },
     ],
     introHighlights: [
-      { emoji: "🔒", title: "100% private", text: "Files are not uploaded to any server." },
+      { emoji: "🔒", title: "Files stay on your device", text: "Files are not uploaded to any server." },
       { emoji: "⚡", title: "Live crop preview", text: "See exactly what you'll get." },
       { emoji: "📐", title: "8 aspect presets", text: "Square, story, cover, thumbnail, and more." },
       { emoji: "🎯", title: "Pixel-precise", text: "Type exact crop coordinates if you want." },
@@ -64,7 +64,7 @@ export const imageCropperContent = {
       { value: "ফ্রি", label: "চিরকাল" },
     ],
     introHighlights: [
-      { emoji: "🔒", title: "১০০% প্রাইভেট", text: "ফাইল কখনো ডিভাইস ছাড়ে না।" },
+      { emoji: "🔒", title: "ফাইল আপনার ডিভাইসেই থাকে", text: "ফাইল কখনো ডিভাইস ছাড়ে না।" },
       { emoji: "⚡", title: "লাইভ ক্রপ প্রিভিউ", text: "ঠিক কী পাবেন তা দেখুন।" },
       { emoji: "📐", title: "৮টি aspect প্রিসেট", text: "স্কয়ার, স্টোরি, কভার, থাম্বনেইল।" },
       { emoji: "🎯", title: "পিক্সেল-সঠিক", text: "চাইলে সঠিক কোঅর্ডিনেট টাইপ করুন।" },

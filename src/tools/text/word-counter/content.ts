@@ -10,7 +10,7 @@ export const wordCounterContent = {
       { value: "Free", label: "Forever" },
     ],
     introHighlights: [
-      { emoji: "🔒", title: "100% private", text: "Text never leaves your browser." },
+      { emoji: "🔒", title: "Files stay on your device", text: "Text never leaves your browser." },
       { emoji: "⚡", title: "Live counters", text: "Updates with every keystroke." },
       { emoji: "📊", title: "8+ metrics", text: "Words, chars, sentences, paragraphs, and more." },
       { emoji: "⏱️", title: "Reading time", text: "See how long your text takes to read." },
@@ -64,7 +64,7 @@ export const wordCounterContent = {
       { value: "ফ্রি", label: "চিরকাল" },
     ],
     introHighlights: [
-      { emoji: "🔒", title: "১০০% প্রাইভেট", text: "টেক্সট কখনো ব্রাউজার ছাড়ে না।" },
+      { emoji: "🔒", title: "ফাইল আপনার ডিভাইসেই থাকে", text: "টেক্সট কখনো ব্রাউজার ছাড়ে না।" },
       { emoji: "⚡", title: "লাইভ কাউন্টার", text: "প্রতিটি কীস্ট্রোকেই আপডেট।" },
       { emoji: "📊", title: "৮+ মেট্রিক", text: "শব্দ, অক্ষর, বাক্য, অনুচ্ছেদ ইত্যাদি।" },
       { emoji: "⏱️", title: "পড়ার সময়", text: "আপনার টেক্সট পড়তে কত লাগবে।" },

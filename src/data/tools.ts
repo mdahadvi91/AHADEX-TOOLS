@@ -66,7 +66,7 @@ const legacyTools: Tool[] = [
       { title: "11 platforms supported", description: "WhatsApp, Facebook, Instagram, Telegram, phone call, email, WiFi, website, SMS, digital contact card, and plain text — all handled with the right deep-link format." },
       { title: "Full-resolution output", description: "Your original photo is preserved exactly as it was — same width, height, and pixel count. Only the badge is drawn on top, never any compression." },
       { title: "Live preview", description: "Every change updates the preview in real time, so you never have to guess. You see the exact final image before you download it." },
-      { title: "100% private", description: "All processing happens inside your browser using the HTML5 Canvas API. The file is never uploaded, never stored, and never shared — close the tab and it's gone." },
+      { title: "Files stay on your device", description: "All processing happens inside your browser using the HTML5 Canvas API. The file is never uploaded, never stored, and never shared — close the tab and it's gone." },
     ],
     howTo: [
       { step: 1, title: "Upload your photo 📤", description: "Click the upload area or drag an image into it. We support JPG, PNG, and WebP up to 50 MB. Nothing gets uploaded — the file is read locally by your browser. 🔒" },
@@ -824,7 +824,7 @@ benchmarks: [
     path: "/tools/image-metadata-viewer",
     searchVolume: 50000,
     description:
-      "View EXIF, GPS, camera, and file metadata hidden inside your photos — in your browser. No uploads, 100% private.",
+      "View EXIF, GPS, camera, and file metadata hidden inside your photos — in your browser. No uploads, Files stay on your device.",
     longDescription:
       "Image Metadata Viewer reads the EXIF, GPS, and file metadata inside your photos and displays it in clean, grouped sections: camera model and lens, exposure (shutter, aperture, ISO, focal length), timestamps, GPS coordinates with a map link, image details, and author info. Everything runs in your browser using exifr; nothing is uploaded.",
     keywords: ["image metadata", "exif viewer", "gps viewer", "camera metadata", "photo exif", "view exif"],
@@ -882,7 +882,7 @@ benchmarks: [
     faq: [
       { question: "Does this tool upload my photos to read EXIF data?", answer: "Never. The EXIF data is parsed entirely in your browser using JavaScript. Your photos remain on your device." },
       { question: "Can I remove the metadata using this tool?", answer: "No, this is a viewer only. To remove metadata, you can use our Image Converter or Image Compressor, which strip EXIF data automatically." },
-      { question: "Does this tool upload my photos to read EXIF data?", answer: "Never. The EXIF data is parsed entirely in your browser using JavaScript. Your photos remain 100% private on your device." },
+      { question: "Does this tool upload my photos to read EXIF data?", answer: "Never. The EXIF data is parsed entirely in your browser using JavaScript. Your photos remain Files stay on your device on your device." },
       { question: "Can I remove metadata using this tool?", answer: "No, this is a viewer only. To remove metadata, you can use our Image Converter or Image Compressor, which strip EXIF data automatically." },
     ],
     useCases: [
@@ -1661,9 +1661,9 @@ benchmarks: [
     ],
     faq: [
       { question: "How does the cartoon effect work?", answer: "The tool applies a bilateral filter to smooth colors and a color quantization step to flatten the image into cartoon-like regions." },
-      { question: "Is it better to use AI for cartoons?", answer: "AI gives a stylized artistic look, but our algorithm is much faster, works offline, and keeps your photos 100% private." },
+      { question: "Is it better to use AI for cartoons?", answer: "AI gives a stylized artistic look, but our algorithm is much faster, works offline, and keeps your photos Files stay on your device." },
       { question: "How does the cartoon effect work?", answer: "The tool applies a bilateral filter to smooth colors and a color quantization step to flatten the image into cartoon-like regions." },
-      { question: "Is it better to use AI for cartoons?", answer: "AI gives a stylized artistic look, but our algorithm is much faster, works offline, and keeps your photos 100% private." },
+      { question: "Is it better to use AI for cartoons?", answer: "AI gives a stylized artistic look, but our algorithm is much faster, works offline, and keeps your photos Files stay on your device." },
     ],
     useCases: [
       "Creating fun avatars for WhatsApp or Discord.",

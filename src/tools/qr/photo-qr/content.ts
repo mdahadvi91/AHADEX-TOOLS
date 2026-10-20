@@ -31,7 +31,7 @@ export const photoQrContent = {
       },
       {
         emoji: "🔒",
-        title: "100% private",
+        title: "Files stay on your device",
         text: "never uploaded, never stored",
       },
     ],
@@ -126,7 +126,7 @@ export const photoQrContent = {
       },
       {
         emoji: "🔒",
-        title: "100% private",
+        title: "Files stay on your device",
         description:
           "All processing happens inside your browser using the HTML5 Canvas API. The file is never uploaded, never stored, and never shared — close the tab and it's gone.",
       },
@@ -204,7 +204,7 @@ export const photoQrContent = {
       },
       {
         emoji: "🔒",
-        title: "১০০% প্রাইভেট",
+        title: "ফাইল আপনার ডিভাইসেই থাকে",
         text: "কখনো আপলোড হয় না, সংরক্ষণ হয় না",
       },
     ],
@@ -299,7 +299,7 @@ export const photoQrContent = {
       },
       {
         emoji: "🔒",
-        title: "১০০% প্রাইভেট",
+        title: "ফাইল আপনার ডিভাইসেই থাকে",
         description:
           "সব প্রসেসিং আপনার ব্রাউজারেই HTML5 Canvas API দিয়ে। ফাইল কখনো আপলোড হয় না, সংরক্ষণ হয় না — ট্যাব বন্ধ করলেই মুছে যায়।",
       },

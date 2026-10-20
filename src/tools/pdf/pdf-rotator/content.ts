@@ -10,7 +10,7 @@ export const pdfRotatorContent = {
       { value: "Free", label: "Forever" },
     ],
     introHighlights: [
-      { emoji: "🔒", title: "100% private", text: "PDF is not uploaded to any server." },
+      { emoji: "🔒", title: "Files stay on your device", text: "PDF is not uploaded to any server." },
       { emoji: "🔄", title: "90° / 180°", text: "All common rotations supported." },
       { emoji: "🎯", title: "Selective pages", text: "Rotate only the pages you need." },
       { emoji: "👀", title: "Live preview", text: "See the rotation as you apply it." },
@@ -64,7 +64,7 @@ export const pdfRotatorContent = {
       { value: "ফ্রি", label: "চিরকাল" },
     ],
     introHighlights: [
-      { emoji: "🔒", title: "১০০% প্রাইভেট", text: "PDF কখনো ডিভাইস ছাড়ে না।" },
+      { emoji: "🔒", title: "ফাইল আপনার ডিভাইসেই থাকে", text: "PDF কখনো ডিভাইস ছাড়ে না।" },
       { emoji: "🔄", title: "৯০° / ১৮০°", text: "সব সাধারণ রোটেশন সাপোর্টেড।" },
       { emoji: "🎯", title: "নির্দিষ্ট পেজ", text: "শুধু যেসব পেজ দরকার সেগুলো ঘোরান।" },
       { emoji: "👀", title: "লাইভ প্রিভিউ", text: "যেভাবে ঘুরছে সাথে সাথে দেখুন।" },

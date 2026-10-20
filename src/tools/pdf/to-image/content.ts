@@ -10,7 +10,7 @@ export const pdfToImageContent = {
       { value: "Free", label: "Forever" },
     ],
     introHighlights: [
-      { emoji: "🔒", title: "100% private", text: "PDF is not uploaded to any server." },
+      { emoji: "🔒", title: "Files stay on your device", text: "PDF is not uploaded to any server." },
       { emoji: "🎨", title: "Up to 300 DPI", text: "Sharp, print-ready PNGs." },
       { emoji: "📄", title: "Any PDF", text: "Multiple pages in one batch." },
       { emoji: "🎯", title: "Page ranges", text: "Pick exactly which pages to export." },
@@ -64,7 +64,7 @@ export const pdfToImageContent = {
       { value: "ফ্রি", label: "চিরকাল" },
     ],
     introHighlights: [
-      { emoji: "🔒", title: "১০০% প্রাইভেট", text: "PDF কখনো ডিভাইস ছাড়ে না।" },
+      { emoji: "🔒", title: "ফাইল আপনার ডিভাইসেই থাকে", text: "PDF কখনো ডিভাইস ছাড়ে না।" },
       { emoji: "🎨", title: "৩০০ DPI পর্যন্ত", text: "প্রিন্ট-রেডি, শার্প PNG।" },
       { emoji: "📄", title: "যেকোনো PDF", text: "একাধিক পেজ এক ব্যাচে।" },
       { emoji: "🎯", title: "পেজ রেঞ্জ", text: "কোন পেজ লাগবে ঠিক তা বেছে নিন।" },

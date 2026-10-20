@@ -30,7 +30,7 @@ export const bn: TranslationKeys = {
   },
   sidebar: {
     main: "মেনু",
-    private: "১০০% প্রাইভেট।",
+    private: "ফাইল আপনার ডিভাইসেই থাকে।",
     privateDesc: "আপনার ব্রাউজারেই চলে।",
     favourites: "পছন্দের",
   },
@@ -86,7 +86,7 @@ export const bn: TranslationKeys = {
     whyEyebrow: "কেন AHADEX",
     whyTitle1: "যেভাবে টুল হওয়া",
     whyTitle2: "উচিত",
-    whyPrivateTitle: "১০০% প্রাইভেট",
+    whyPrivateTitle: "ফাইল আপনার ডিভাইসেই থাকে",
     whyPrivateDesc: "ফাইল কখনো আপনার ডিভাইস ছাড়ে না। আপলোড নেই, ট্র্যাকিং নেই।",
     whyFastTitle: "বিদ্যুৎ গতি",
     whyFastDesc: "সব আপনার ব্রাউজারেই চলে। সার্ভারে যায় না।",

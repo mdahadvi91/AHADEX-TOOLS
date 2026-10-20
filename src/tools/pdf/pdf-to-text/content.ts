@@ -10,7 +10,7 @@ export const pdfToTextContent = {
       { value: "Free", label: "Forever" },
     ],
     introHighlights: [
-      { emoji: "🔒", title: "100% private", text: "PDF is not uploaded to any server." },
+      { emoji: "🔒", title: "Files stay on your device", text: "PDF is not uploaded to any server." },
       { emoji: "📝", title: "Clean text", text: "Paragraph and line breaks preserved." },
       { emoji: "🎯", title: "Page ranges", text: "Extract only the pages you need." },
       { emoji: "📋", title: "Copy or download", text: "Get .txt file or clipboard." },
@@ -64,7 +64,7 @@ export const pdfToTextContent = {
       { value: "ফ্রি", label: "চিরকাল" },
     ],
     introHighlights: [
-      { emoji: "🔒", title: "১০০% প্রাইভেট", text: "PDF কখনো ডিভাইস ছাড়ে না।" },
+      { emoji: "🔒", title: "ফাইল আপনার ডিভাইসেই থাকে", text: "PDF কখনো ডিভাইস ছাড়ে না।" },
       { emoji: "📝", title: "পরিষ্কার টেক্সট", text: "অনুচ্ছেদ ও লাইন ব্রেক রাখা হয়।" },
       { emoji: "🎯", title: "পেজ রেঞ্জ", text: "যে পেজ দরকার শুধু তা বের করুন।" },
       { emoji: "📋", title: "কপি বা ডাউনলোড", text: ".txt ফাইল বা ক্লিপবোর্ড।" },

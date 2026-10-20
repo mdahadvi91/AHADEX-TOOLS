@@ -15,7 +15,7 @@ export const imageConverterContent = {
     ],
 
     introHighlights: [
-      { emoji: "🔒", title: "100% private", text: "Files are not uploaded to any server. Zero uploads." },
+      { emoji: "🔒", title: "Files stay on your device", text: "Files are not uploaded to any server. Zero uploads." },
       { emoji: "⚡", title: "Instant conversion", text: "Runs in your browser — no server wait." },
       { emoji: "📦", title: "Batch support", text: "Convert multiple JPGs at once." },
       { emoji: "🎨", title: "Lossless quality", text: "Every pixel preserved exactly." },
@@ -98,7 +98,7 @@ export const imageConverterContent = {
     ],
 
     introHighlights: [
-      { emoji: "🔒", title: "১০০% প্রাইভেট", text: "ফাইল কখনো ডিভাইস ছাড়ে না। শূন্য আপলোড।" },
+      { emoji: "🔒", title: "ফাইল আপনার ডিভাইসেই থাকে", text: "ফাইল কখনো ডিভাইস ছাড়ে না। শূন্য আপলোড।" },
       { emoji: "⚡", title: "তাৎক্ষণিক রূপান্তর", text: "ব্রাউজারেই চলে — সার্ভারের অপেক্ষা নেই।" },
       { emoji: "📦", title: "ব্যাচ সাপোর্ট", text: "একাধিক JPG একসাথে রূপান্তর করুন।" },
       { emoji: "🎨", title: "লসলেস কোয়ালিটি", text: "প্রতিটি পিক্সেল হুবহু সংরক্ষিত।" },

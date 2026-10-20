@@ -10,7 +10,7 @@ export const passwordGenContent = {
       { value: "Free", label: "Forever" },
     ],
     introHighlights: [
-      { emoji: "🔒", title: "100% private", text: "Passwords are not uploaded to any server." },
+      { emoji: "🔒", title: "Files stay on your device", text: "Passwords are not uploaded to any server." },
       { emoji: "🎲", title: "Crypto-random", text: "Web Crypto API, not Math.random." },
       { emoji: "🎚️", title: "Full control", text: "Length, sets, ambiguity, batch." },
       { emoji: "💪", title: "Live strength", text: "Entropy + crack-time estimate." },
@@ -64,7 +64,7 @@ export const passwordGenContent = {
       { value: "ফ্রি", label: "চিরকাল" },
     ],
     introHighlights: [
-      { emoji: "🔒", title: "১০০% প্রাইভেট", text: "পাসওয়ার্ড কখনো ডিভাইস ছাড়ে না।" },
+      { emoji: "🔒", title: "ফাইল আপনার ডিভাইসেই থাকে", text: "পাসওয়ার্ড কখনো ডিভাইস ছাড়ে না।" },
       { emoji: "🎲", title: "Crypto-random", text: "Web Crypto API, Math.random নয়।" },
       { emoji: "🎚️", title: "সম্পূর্ণ নিয়ন্ত্রণ", text: "Length, set, ambiguity, batch।" },
       { emoji: "💪", title: "লাইভ strength", text: "Entropy + crack-time estimate।" },

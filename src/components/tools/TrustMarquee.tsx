@@ -4,7 +4,7 @@ const ITEMS = [
   { Icon: Zap, label: "Instant processing" },
   { Icon: Heart, label: "Crafted with care" },
   { Icon: Sparkles, label: "Free forever" },
-  { Icon: Lock, label: "100% private" },
+  { Icon: Lock, label: "Files stay on your device" },
   { Icon: Wand2, label: "Runs in your browser" },
   { Icon: Globe, label: "Works everywhere" },
 ];

@@ -14,7 +14,7 @@ export const imageMetadataContent = {
       { emoji: "⚡", title: "Exposure", text: "Shutter, aperture, ISO, focal length." },
       { emoji: "📍", title: "GPS location", text: "Coordinates with a map link." },
       { emoji: "🕐", title: "Timestamps", text: "When the photo was taken." },
-      { emoji: "🔒", title: "100% private", text: "Files are not uploaded to any server." },
+      { emoji: "🔒", title: "Files stay on your device", text: "Files are not uploaded to any server." },
       { emoji: "🌐", title: "Broad support", text: "JPG, PNG, WebP, HEIC, TIFF." },
     ],
     introBlocks: [
@@ -68,7 +68,7 @@ export const imageMetadataContent = {
       { emoji: "⚡", title: "Exposure", text: "Shutter, aperture, ISO, focal length।" },
       { emoji: "📍", title: "GPS লোকেশন", text: "Coordinate ও map link সহ।" },
       { emoji: "🕐", title: "টাইমস্ট্যাম্প", text: "ছবি কখন তোলা হয়েছে।" },
-      { emoji: "🔒", title: "১০০% প্রাইভেট", text: "ফাইল কখনো ডিভাইস ছাড়ে না।" },
+      { emoji: "🔒", title: "ফাইল আপনার ডিভাইসেই থাকে", text: "ফাইল কখনো ডিভাইস ছাড়ে না।" },
       { emoji: "🌐", title: "ব্রড সাপোর্ট", text: "JPG, PNG, WebP, HEIC, TIFF।" },
     ],
     introBlocks: [

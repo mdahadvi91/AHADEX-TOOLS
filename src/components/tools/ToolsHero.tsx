@@ -33,7 +33,7 @@ export function ToolsHero() {
     },
     {
       icon: Lock,
-      label: bn ? "১০০% প্রাইভেট" : "100% private",
+      label: bn ? "ফাইল আপনার ডিভাইসেই থাকে" : "Files stay on your device",
       color: "emerald",
     },
   ];

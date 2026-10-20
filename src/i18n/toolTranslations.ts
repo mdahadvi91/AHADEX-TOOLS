@@ -49,7 +49,7 @@ export const toolTranslationsBn: Record<string, ToolTranslation> = {
   },
   "image-metadata-viewer": {
     name: "ইমেজ মেটাডেটা",
-    description: "ছবির EXIF, GPS ও ক্যামেরার তথ্য দেখুন — সম্পূর্ণ ব্রাউজারেই, ১০০% প্রাইভেট।",
+    description: "ছবির EXIF, GPS ও ক্যামেরার তথ্য দেখুন — সম্পূর্ণ ব্রাউজারেই, ফাইল আপনার ডিভাইসেই থাকে।",
   },
   "pdf-to-text": {
     name: "PDF থেকে টেক্সট",

@@ -10,7 +10,7 @@ export const base64Content = {
       { value: "Free", label: "Forever" },
     ],
     introHighlights: [
-      { emoji: "🔒", title: "100% private", text: "Data is not uploaded to any server." },
+      { emoji: "🔒", title: "Files stay on your device", text: "Data is not uploaded to any server." },
       { emoji: "🔄", title: "Encode & decode", text: "Both directions, live output." },
       { emoji: "📄", title: "Text + files", text: "Anything — from text to images." },
       { emoji: "🌐", title: "Unicode safe", text: "Bangla, emoji, CJK — all handled." },
@@ -64,7 +64,7 @@ export const base64Content = {
       { value: "ফ্রি", label: "চিরকাল" },
     ],
     introHighlights: [
-      { emoji: "🔒", title: "১০০% প্রাইভেট", text: "ডেটা কখনো ডিভাইস ছাড়ে না।" },
+      { emoji: "🔒", title: "ফাইল আপনার ডিভাইসেই থাকে", text: "ডেটা কখনো ডিভাইস ছাড়ে না।" },
       { emoji: "🔄", title: "Encode ও decode", text: "দুই দিকই, লাইভ output।" },
       { emoji: "📄", title: "টেক্সট + ফাইল", text: "যেকোনো কিছু — টেক্সট থেকে ছবি।" },
       { emoji: "🌐", title: "Unicode নিরাপদ", text: "বাংলা, emoji, CJK — সব handle।" },

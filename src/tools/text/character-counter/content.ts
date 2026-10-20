@@ -10,7 +10,7 @@ export const characterCounterContent = {
       { value: "Free", label: "Forever" },
     ],
     introHighlights: [
-      { emoji: "🔒", title: "100% private", text: "Text never leaves your browser." },
+      { emoji: "🔒", title: "Files stay on your device", text: "Text never leaves your browser." },
       { emoji: "⚡", title: "Live counters", text: "Updates with every keystroke." },
       { emoji: "🎯", title: "8 platform limits", text: "X, Instagram, LinkedIn, SMS, SEO..." },
       { emoji: "📊", title: "Real-time alerts", text: "Over-limit detection with color coding." },
@@ -64,7 +64,7 @@ export const characterCounterContent = {
       { value: "ফ্রি", label: "চিরকাল" },
     ],
     introHighlights: [
-      { emoji: "🔒", title: "১০০% প্রাইভেট", text: "টেক্সট কখনো ব্রাউজার ছাড়ে না।" },
+      { emoji: "🔒", title: "ফাইল আপনার ডিভাইসেই থাকে", text: "টেক্সট কখনো ব্রাউজার ছাড়ে না।" },
       { emoji: "⚡", title: "লাইভ কাউন্টার", text: "প্রতিটি কীস্ট্রোকেই আপডেট।" },
       { emoji: "🎯", title: "৮টি সীমা", text: "X, ইনস্টাগ্রাম, লিংকডইন, SMS..." },
       { emoji: "📊", title: "লাইভ সতর্কতা", text: "সীমা ছাড়ালে রঙে দেখায়।" },

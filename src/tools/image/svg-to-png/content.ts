@@ -10,7 +10,7 @@ export const svgToPngContent = {
       { value: "Free", label: "Forever" },
     ],
     introHighlights: [
-      { emoji: "🔒", title: "100% private", text: "SVG is not uploaded to any server." },
+      { emoji: "🔒", title: "Files stay on your device", text: "SVG is not uploaded to any server." },
       { emoji: "🎨", title: "Up to 8× scale", text: "Retina-sharp PNG output." },
       { emoji: "🫥", title: "Transparent bg", text: "Or white/black — your choice." },
       { emoji: "⚡", title: "Instant", text: "Renders in milliseconds." },
@@ -64,7 +64,7 @@ export const svgToPngContent = {
       { value: "ফ্রি", label: "চিরকাল" },
     ],
     introHighlights: [
-      { emoji: "🔒", title: "১০০% প্রাইভেট", text: "SVG কখনো ডিভাইস ছাড়ে না।" },
+      { emoji: "🔒", title: "ফাইল আপনার ডিভাইসেই থাকে", text: "SVG কখনো ডিভাইস ছাড়ে না।" },
       { emoji: "🎨", title: "৮× পর্যন্ত স্কেল", text: "Retina-শার্প PNG।" },
       { emoji: "🫥", title: "স্বচ্ছ bg", text: "বা সাদা/কালো — আপনার পছন্দ।" },
       { emoji: "⚡", title: "তাৎক্ষণিক", text: "মিলিসেকেন্ডে রেন্ডার।" },

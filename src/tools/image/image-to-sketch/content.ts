@@ -10,7 +10,7 @@ export const imageToSketchContent = {
       { value: "Free", label: "Forever" },
     ],
     introHighlights: [
-      { emoji: "🔒", title: "100% private", text: "Photos are not uploaded to any server." },
+      { emoji: "🔒", title: "Files stay on your device", text: "Photos are not uploaded to any server." },
       { emoji: "✏️", title: "Real pencil look", text: "Classic color-dodge sketch algorithm." },
       { emoji: "🎚️", title: "Live sliders", text: "Adjust intensity & detail in real time." },
       { emoji: "⚡", title: "Instant", text: "Renders in under a second." },
@@ -64,7 +64,7 @@ export const imageToSketchContent = {
       { value: "ফ্রি", label: "চিরকাল" },
     ],
     introHighlights: [
-      { emoji: "🔒", title: "১০০% প্রাইভেট", text: "ছবি কখনো ডিভাইস ছাড়ে না।" },
+      { emoji: "🔒", title: "ফাইল আপনার ডিভাইসেই থাকে", text: "ছবি কখনো ডিভাইস ছাড়ে না।" },
       { emoji: "✏️", title: "প্রকৃত পেন্সিল look", text: "ক্লাসিক color-dodge স্কেচ অ্যালগরিদম।" },
       { emoji: "🎚️", title: "লাইভ স্লাইডার", text: "Intensity ও detail রিয়েল-টাইমে ঠিক করুন।" },
       { emoji: "⚡", title: "তাৎক্ষণিক", text: "সেকেন্ডের কমে render হয়।" },

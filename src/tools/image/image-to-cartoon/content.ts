@@ -10,7 +10,7 @@ export const imageToCartoonContent = {
       { value: "Free", label: "Forever" },
     ],
     introHighlights: [
-      { emoji: "🔒", title: "100% private", text: "Photos are not uploaded to any server." },
+      { emoji: "🔒", title: "Files stay on your device", text: "Photos are not uploaded to any server." },
       { emoji: "🎨", title: "Cel-shaded look", text: "Posterize + Sobel outline algorithm." },
       { emoji: "🎚️", title: "3 live sliders", text: "Levels, edge strength, smoothness." },
       { emoji: "⚡", title: "Instant", text: "Renders in under a second." },
@@ -64,7 +64,7 @@ export const imageToCartoonContent = {
       { value: "ফ্রি", label: "চিরকাল" },
     ],
     introHighlights: [
-      { emoji: "🔒", title: "১০০% প্রাইভেট", text: "ছবি কখনো ডিভাইস ছাড়ে না।" },
+      { emoji: "🔒", title: "ফাইল আপনার ডিভাইসেই থাকে", text: "ছবি কখনো ডিভাইস ছাড়ে না।" },
       { emoji: "🎨", title: "Cel-shaded look", text: "Posterize + Sobel outline অ্যালগরিদম।" },
       { emoji: "🎚️", title: "৩ লাইভ স্লাইডার", text: "Levels, edge strength, smoothness।" },
       { emoji: "⚡", title: "তাৎক্ষণিক", text: "সেকেন্ডের কমে render হয়।" },

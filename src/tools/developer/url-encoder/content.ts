@@ -10,7 +10,7 @@ export const urlEncoderContent = {
       { value: "Free", label: "Forever" },
     ],
     introHighlights: [
-      { emoji: "🔒", title: "100% private", text: "URLs are not uploaded to any server." },
+      { emoji: "🔒", title: "Files stay on your device", text: "URLs are not uploaded to any server." },
       { emoji: "🔄", title: "Encode & decode", text: "Both directions, one click." },
       { emoji: "🎯", title: "Two scopes", text: "Component or full URI." },
       { emoji: "🌐", title: "Unicode safe", text: "Bangla, emoji, CJK — all handled." },
@@ -64,7 +64,7 @@ export const urlEncoderContent = {
       { value: "ফ্রি", label: "চিরকাল" },
     ],
     introHighlights: [
-      { emoji: "🔒", title: "১০০% প্রাইভেট", text: "URL কখনো ডিভাইস ছাড়ে না।" },
+      { emoji: "🔒", title: "ফাইল আপনার ডিভাইসেই থাকে", text: "URL কখনো ডিভাইস ছাড়ে না।" },
       { emoji: "🔄", title: "Encode ও decode", text: "দুই দিকই, এক ক্লিকে।" },
       { emoji: "🎯", title: "দুই scope", text: "Component বা full URI।" },
       { emoji: "🌐", title: "Unicode নিরাপদ", text: "বাংলা, emoji, CJK — সব হ্যান্ডেল।" },

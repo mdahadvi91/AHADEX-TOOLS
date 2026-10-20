@@ -10,7 +10,7 @@ export const barcodeContent = {
       { value: "Free", label: "Forever" },
     ],
     introHighlights: [
-      { emoji: "🔒", title: "100% private", text: "Data is not uploaded to any server." },
+      { emoji: "🔒", title: "Files stay on your device", text: "Data is not uploaded to any server." },
       { emoji: "🏷️", title: "9 barcode formats", text: "CODE128, EAN, UPC, and more." },
       { emoji: "🎨", title: "Custom colors", text: "Line color and background picker." },
       { emoji: "📐", title: "Pixel control", text: "Bar width, height, font size, margin." },
@@ -64,7 +64,7 @@ export const barcodeContent = {
       { value: "ফ্রি", label: "চিরকাল" },
     ],
     introHighlights: [
-      { emoji: "🔒", title: "১০০% প্রাইভেট", text: "ডেটা কখনো ডিভাইস ছাড়ে না।" },
+      { emoji: "🔒", title: "ফাইল আপনার ডিভাইসেই থাকে", text: "ডেটা কখনো ডিভাইস ছাড়ে না।" },
       { emoji: "🏷️", title: "৯টি ফরম্যাট", text: "CODE128, EAN, UPC ইত্যাদি।" },
       { emoji: "🎨", title: "কাস্টম রঙ", text: "Line color ও background picker।" },
       { emoji: "📐", title: "Pixel নিয়ন্ত্রণ", text: "Bar width, height, font, margin।" },

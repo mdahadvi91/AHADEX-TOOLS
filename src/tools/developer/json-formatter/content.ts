@@ -10,7 +10,7 @@ export const jsonFormatterContent = {
       { value: "Free", label: "Forever" },
     ],
     introHighlights: [
-      { emoji: "🔒", title: "100% private", text: "JSON is not uploaded to any server." },
+      { emoji: "🔒", title: "Files stay on your device", text: "JSON is not uploaded to any server." },
       { emoji: "✅", title: "Live validation", text: "Errors shown with line/column." },
       { emoji: "🎨", title: "Pretty print", text: "2/4-space or tab indent." },
       { emoji: "📦", title: "Minify", text: "One-click compact output." },
@@ -64,7 +64,7 @@ export const jsonFormatterContent = {
       { value: "ফ্রি", label: "চিরকাল" },
     ],
     introHighlights: [
-      { emoji: "🔒", title: "১০০% প্রাইভেট", text: "JSON কখনো ডিভাইস ছাড়ে না।" },
+      { emoji: "🔒", title: "ফাইল আপনার ডিভাইসেই থাকে", text: "JSON কখনো ডিভাইস ছাড়ে না।" },
       { emoji: "✅", title: "লাইভ ভ্যালিডেশন", text: "Error line/column সহ দেখায়।" },
       { emoji: "🎨", title: "Pretty print", text: "2/4 space বা tab indent।" },
       { emoji: "📦", title: "Minify", text: "এক ক্লিকে compact output।" },

@@ -95,7 +95,7 @@ export function ToolsShowcase() {
 
               <span className="hidden sm:inline-flex items-center gap-1.5 text-[11px] font-semibold text-silk-rose/70 dark:text-silk-rose-soft/70">
                 <span className="w-1.5 h-1.5 rounded-full bg-silk-rose animate-pulse" />
-                {language === "bn" ? "১০০% প্রাইভেট" : "100% private"}
+                {language === "bn" ? "ফাইল আপনার ডিভাইসেই থাকে" : "Files stay on your device"}
               </span>
             </motion.div>
           )}

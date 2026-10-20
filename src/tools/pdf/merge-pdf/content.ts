@@ -10,7 +10,7 @@ export const mergePdfContent = {
       { value: "Free", label: "Forever" },
     ],
     introHighlights: [
-      { emoji: "🔒", title: "100% private", text: "Files are not uploaded to any server." },
+      { emoji: "🔒", title: "Files stay on your device", text: "Files are not uploaded to any server." },
       { emoji: "⚡", title: "Instant merge", text: "Runs in your browser." },
       { emoji: "🔀", title: "Reorder files", text: "Change the order before merging." },
       { emoji: "📄", title: "Preserves quality", text: "Pages copied exactly as-is." },
@@ -64,7 +64,7 @@ export const mergePdfContent = {
       { value: "ফ্রি", label: "চিরকাল" },
     ],
     introHighlights: [
-      { emoji: "🔒", title: "১০০% প্রাইভেট", text: "ফাইল কখনো ডিভাইস ছাড়ে না।" },
+      { emoji: "🔒", title: "ফাইল আপনার ডিভাইসেই থাকে", text: "ফাইল কখনো ডিভাইস ছাড়ে না।" },
       { emoji: "⚡", title: "তাৎক্ষণিক মার্জ", text: "ব্রাউজারেই চলে।" },
       { emoji: "🔀", title: "ফাইল reorder", text: "মার্জের আগে ক্রম বদলান।" },
       { emoji: "📄", title: "কোয়ালিটি সংরক্ষিত", text: "পেজ হুবহু কপি হয়।" },

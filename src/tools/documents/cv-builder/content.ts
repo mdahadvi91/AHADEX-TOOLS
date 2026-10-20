@@ -21,7 +21,7 @@ export const cvBuilderContent = {
       { emoji: "🖨️", title: "True A4 PDF", text: "Selectable text, correct page breaks." },
       { emoji: "💾", title: "Auto-save", text: "Draft recovery if the browser closes." },
       { emoji: "🌐", title: "EN + BN", text: "Bilingual interface and content." },
-      { emoji: "🔒", title: "100% private", text: "Your files are not uploaded to any server." },
+      { emoji: "🔒", title: "Files stay on your device", text: "Your files are not uploaded to any server." },
     ],
 
     introBlocks: [
@@ -106,7 +106,7 @@ export const cvBuilderContent = {
       { emoji: "🖨️", title: "আসল A4 PDF", text: "Selectable text, সঠিক পেজ ব্রেক।" },
       { emoji: "💾", title: "অটো-সেভ", text: "ব্রাউজার বন্ধ হলে ড্রাফট উদ্ধার।" },
       { emoji: "🌐", title: "EN + BN", text: "দুই ভাষায় ইন্টারফেস ও কনটেন্ট।" },
-      { emoji: "🔒", title: "১০০% প্রাইভেট", text: "কিছুই ব্রাউজার ছাড়ে না। কখনোই না।" },
+      { emoji: "🔒", title: "ফাইল আপনার ডিভাইসেই থাকে", text: "কিছুই ব্রাউজার ছাড়ে না। কখনোই না।" },
     ],
 
     introBlocks: [

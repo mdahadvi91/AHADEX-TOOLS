@@ -10,7 +10,7 @@ export const textCaseContent = {
       { value: "Free", label: "Forever" },
     ],
     introHighlights: [
-      { emoji: "🔒", title: "100% private", text: "Text is not uploaded to any server." },
+      { emoji: "🔒", title: "Files stay on your device", text: "Text is not uploaded to any server." },
       { emoji: "🎨", title: "12 case styles", text: "UPPER, lower, Title, camel, snake, and more." },
       { emoji: "⚡", title: "Live preview", text: "Output updates as you type." },
       { emoji: "📋", title: "One-click copy", text: "Copy the result instantly." },
@@ -64,7 +64,7 @@ export const textCaseContent = {
       { value: "ফ্রি", label: "চিরকাল" },
     ],
     introHighlights: [
-      { emoji: "🔒", title: "১০০% প্রাইভেট", text: "টেক্সট কখনো ডিভাইস ছাড়ে না।" },
+      { emoji: "🔒", title: "ফাইল আপনার ডিভাইসেই থাকে", text: "টেক্সট কখনো ডিভাইস ছাড়ে না।" },
       { emoji: "🎨", title: "১২ case style", text: "UPPER, lower, Title, camel, snake ইত্যাদি।" },
       { emoji: "⚡", title: "লাইভ preview", text: "Typing-এর সাথে output update।" },
       { emoji: "📋", title: "এক ক্লিকে কপি", text: "Result সাথে সাথে কপি।" },

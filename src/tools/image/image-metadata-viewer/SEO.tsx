@@ -14,8 +14,8 @@ export function ImageMetadataSEO() {
         : "Image Metadata Viewer — EXIF, GPS & Camera Data Free | AHADEX Tools";
     const description =
       language === "bn"
-        ? "আপনার ছবির EXIF, GPS, ক্যামেরার তথ্য দেখুন — সম্পূর্ণ ব্রাউজারেই। কোনো আপলোড নেই, ১০০% প্রাইভেট।"
-        : "View EXIF, GPS, camera, and file metadata hidden inside your photos — in your browser. No uploads, 100% private.";
+        ? "আপনার ছবির EXIF, GPS, ক্যামেরার তথ্য দেখুন — সম্পূর্ণ ব্রাউজারেই। কোনো আপলোড নেই, ফাইল আপনার ডিভাইসেই থাকে।"
+        : "View EXIF, GPS, camera, and file metadata hidden inside your photos — in your browser. No uploads, Files stay on your device.";
     const canonical = `${SITE_URL}${TOOL_PATH}`;
     const ogImage = `${SITE_URL}/images/og/tools/image-metadata-viewer-og.png`;
     document.title = title;

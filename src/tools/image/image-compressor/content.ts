@@ -10,7 +10,7 @@ export const imageCompressorContent = {
       { value: "Free", label: "Forever" },
     ],
     introHighlights: [
-      { emoji: "🔒", title: "100% private", text: "Files are not uploaded to any server." },
+      { emoji: "🔒", title: "Files stay on your device", text: "Files are not uploaded to any server." },
       { emoji: "⚡", title: "Instant compression", text: "Runs in your browser." },
       { emoji: "🎚️", title: "Quality slider", text: "Control the tradeoff." },
       { emoji: "📐", title: "Max width limit", text: "Downscale large photos." },
@@ -64,7 +64,7 @@ export const imageCompressorContent = {
       { value: "ফ্রি", label: "চিরকাল" },
     ],
     introHighlights: [
-      { emoji: "🔒", title: "১০০% প্রাইভেট", text: "ফাইল কখনো ডিভাইস ছাড়ে না।" },
+      { emoji: "🔒", title: "ফাইল আপনার ডিভাইসেই থাকে", text: "ফাইল কখনো ডিভাইস ছাড়ে না।" },
       { emoji: "⚡", title: "তাৎক্ষণিক কমপ্রেশন", text: "ব্রাউজারেই চলে।" },
       { emoji: "🎚️", title: "কোয়ালিটি স্লাইডার", text: "ট্রেডঅফ নিয়ন্ত্রণ করুন।" },
       { emoji: "📐", title: "সর্বোচ্চ প্রস্থ", text: "বড় ছবি ছোট করুন।" },

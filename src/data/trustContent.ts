@@ -24,6 +24,18 @@ export const trustContent: Record<
       lastUpdated: UPDATED_EN,
       contactEmail: CONTACT,
       sections: [
+      {
+        heading: "ফাইল প্রসেসিং বনাম ওয়েবসাইট অ্যানালিটিক্স",
+        paragraphs: [
+          "গুরুত্বপূর্ণ পার্থক্য: আমাদের সমস্ত ফাইল প্রসেসিং ১০০% লোকাল এবং কোনো ফাইল কখনোই আপলোড হয় না। তবে ওয়েবসাইটটি ফ্রি রাখার জন্য আমরা বেনামী ওয়েবসাইট অ্যানালিটিক্স এবং (ভবিষ্যতে) বিজ্ঞাপন স্ক্রিপ্ট (যেমন Google AdSense) ব্যবহার করতে পারি। এই স্ক্রিপ্টগুলোর আপনার ফাইলগুলোর কোনো অ্যাক্সেস নেই, তবে তারা ওয়েবসাইট অ্যানালিটিক্স এবং ব্যক্তিগতকৃত বিজ্ঞাপনের জন্য কুকি ব্যবহার করতে পারে। আপনি আপনার ব্রাউজার সেটিংসে কুকি পছন্দ নিয়ন্ত্রণ করতে পারেন।"
+        ]
+      },
+      {
+        heading: "File Processing vs. Website Analytics",
+        paragraphs: [
+          "Important distinction: While all our file processing is 100% local and no files are ever uploaded, our website may use anonymous website analytics and (in the future) advertising scripts (like Google AdSense) to keep the site free. These scripts do not have access to your files, but they may use cookies for website analytics and personalized ads. You can control cookie preferences in your browser settings."
+        ]
+      },
         {
           heading: "1. The short version",
           paragraphs: [

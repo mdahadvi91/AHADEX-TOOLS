@@ -10,7 +10,7 @@ export const uuidGeneratorContent = {
       { value: "Free", label: "Forever" },
     ],
     introHighlights: [
-      { emoji: "🔒", title: "100% private", text: "Generated locally, never uploaded." },
+      { emoji: "🔒", title: "Files stay on your device", text: "Generated locally, never uploaded." },
       { emoji: "🎲", title: "Crypto-random", text: "Web Crypto API, not Math.random." },
       { emoji: "📦", title: "Batch up to 1000", text: "Mass-generate and copy in one go." },
       { emoji: "🕐", title: "v4 & v7", text: "Random or time-ordered, your choice." },
@@ -64,7 +64,7 @@ export const uuidGeneratorContent = {
       { value: "ফ্রি", label: "চিরকাল" },
     ],
     introHighlights: [
-      { emoji: "🔒", title: "১০০% প্রাইভেট", text: "লোকালি তৈরি, কখনো আপলোড হয় না।" },
+      { emoji: "🔒", title: "ফাইল আপনার ডিভাইসেই থাকে", text: "লোকালি তৈরি, কখনো আপলোড হয় না।" },
       { emoji: "🎲", title: "Crypto-random", text: "Web Crypto API, Math.random নয়।" },
       { emoji: "📦", title: "১০০০ পর্যন্ত ব্যাচ", text: "একবারে অনেক তৈরি ও কপি।" },
       { emoji: "🕐", title: "v4 ও v7", text: "Random বা time-ordered — আপনার পছন্দ।" },

@@ -10,7 +10,7 @@ export const splitPdfContent = {
       { value: "Free", label: "Forever" },
     ],
     introHighlights: [
-      { emoji: "🔒", title: "100% private", text: "Files are not uploaded to any server." },
+      { emoji: "🔒", title: "Files stay on your device", text: "Files are not uploaded to any server." },
       { emoji: "⚡", title: "Instant split", text: "Runs in your browser." },
       { emoji: "📄", title: "Custom ranges", text: "Enter 1-3, 5, 7-9 — anything you want." },
       { emoji: "🔀", title: "Two modes", text: "Extract selected pages, or split every page." },
@@ -64,7 +64,7 @@ export const splitPdfContent = {
       { value: "ফ্রি", label: "চিরকাল" },
     ],
     introHighlights: [
-      { emoji: "🔒", title: "১০০% প্রাইভেট", text: "ফাইল কখনো ডিভাইস ছাড়ে না।" },
+      { emoji: "🔒", title: "ফাইল আপনার ডিভাইসেই থাকে", text: "ফাইল কখনো ডিভাইস ছাড়ে না।" },
       { emoji: "⚡", title: "তাৎক্ষণিক স্প্লিট", text: "ব্রাউজারেই চলে।" },
       { emoji: "📄", title: "কাস্টম রেঞ্জ", text: "1-3, 5, 7-9 — যা চান লিখুন।" },
       { emoji: "🔀", title: "দুই মোড", text: "নির্বাচিত পেজ এক্সট্রাক্ট, বা প্রতিটি আলাদা।" },

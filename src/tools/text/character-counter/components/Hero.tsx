@@ -28,7 +28,7 @@ export function Hero() {
           </span>
           <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-silk-rose/5 border border-silk-rose/15 text-light-textSecondary dark:text-dark-textSecondary text-[10px] sm:text-xs font-medium">
             <Shield className="w-3 h-3" />
-            {language === "bn" ? "১০০% প্রাইভেট" : "100% Private"}
+            {language === "bn" ? "ফাইল আপনার ডিভাইসেই থাকে" : "Files stay on your device"}
           </span>
           <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-silk-rose/5 border border-silk-rose/15 text-light-textSecondary dark:text-dark-textSecondary text-[10px] sm:text-xs font-medium">
             <Hash className="w-3 h-3" />

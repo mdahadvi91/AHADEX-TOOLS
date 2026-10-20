@@ -20,7 +20,7 @@ export const visitingCardContent = {
       { emoji: "🖨️", title: "Print-ready export", text: "PNG, JPG, PDF up to 600 DPI, print-accurate." },
       { emoji: "🏷️", title: "Custom logo upload", text: "PNG, JPG, WebP, or SVG up to 5 MB." },
       { emoji: "📱", title: "QR code built-in", text: "Every card auto-generates a scannable QR." },
-      { emoji: "🔒", title: "100% private", text: "Everything runs in your browser. Nothing uploaded." },
+      { emoji: "🔒", title: "Files stay on your device", text: "Everything runs in your browser. Nothing uploaded." },
     ],
 
     introBlocks: [
@@ -159,7 +159,7 @@ export const visitingCardContent = {
       { emoji: "🖨️", title: "প্রিন্ট-রেডি এক্সপোর্ট", text: "PNG, JPG, PDF ৬০০ DPI পর্যন্ত।" },
       { emoji: "🏷️", title: "লোগো আপলোড", text: "PNG, JPG, WebP বা SVG ৫ MB পর্যন্ত।" },
       { emoji: "📱", title: "QR কোড বিল্ট-ইন", text: "প্রতিটি কার্ডে স্বয়ংক্রিয় স্ক্যানযোগ্য QR।" },
-      { emoji: "🔒", title: "১০০% প্রাইভেট", text: "সব আপনার ব্রাউজারেই চলে, কিছু আপলোড হয় না।" },
+      { emoji: "🔒", title: "ফাইল আপনার ডিভাইসেই থাকে", text: "সব আপনার ব্রাউজারেই চলে, কিছু আপলোড হয় না।" },
     ],
 
     introBlocks: [

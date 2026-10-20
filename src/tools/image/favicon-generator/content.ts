@@ -10,7 +10,7 @@ export const faviconGeneratorContent = {
       { value: "Free", label: "Forever" },
     ],
     introHighlights: [
-      { emoji: "🔒", title: "100% private", text: "Image is not uploaded to any server." },
+      { emoji: "🔒", title: "Files stay on your device", text: "Image is not uploaded to any server." },
       { emoji: "🎨", title: "Live preview", text: "See every size as you tune." },
       { emoji: "📦", title: "8 files at once", text: "PNG + ICO + manifest." },
       { emoji: "🎯", title: "Auto background", text: "Detects image background color." },
@@ -64,7 +64,7 @@ export const faviconGeneratorContent = {
       { value: "ফ্রি", label: "চিরকাল" },
     ],
     introHighlights: [
-      { emoji: "🔒", title: "১০০% প্রাইভেট", text: "ছবি কখনো ডিভাইস ছাড়ে না।" },
+      { emoji: "🔒", title: "ফাইল আপনার ডিভাইসেই থাকে", text: "ছবি কখনো ডিভাইস ছাড়ে না।" },
       { emoji: "🎨", title: "লাইভ preview", text: "প্রতিটি সাইজ দেখুন।" },
       { emoji: "📦", title: "৮টি ফাইল", text: "PNG + ICO + manifest।" },
       { emoji: "🎯", title: "Auto background", text: "ছবির রঙ নিজে থেকে ধরে।" },
