@@ -5,6 +5,7 @@ import { useLanguage } from "@contexts/LanguageContext";
 import { cn } from "@lib/cn";
 import { TextPanel, WorkspacePanel } from "@components/workspace";
 import { countStats, formatNumber, MAX_CHARS } from "../logic";
+import { SmartInsights } from "./SmartInsights";
 
 export function Workspace() {
   const { language } = useLanguage();
@@ -83,7 +84,9 @@ export function Workspace() {
           />
         </div>
 
-        {/* Time estimates */}
+        <SmartInsights words={stats.words} readingTimeMin={stats.readingTimeMin} bn={bn} />
+
+          {/* Time estimates */}
         <WorkspacePanel className="p-3.5 space-y-2.5" animate={false}>
           <div className="flex items-center gap-1.5 text-[10px] uppercase tracking-[0.2em] font-bold text-silk-wine/70 dark:text-silk-rose/60">
             <Clock className="w-3 h-3" />
