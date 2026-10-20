@@ -1,4 +1,3 @@
-import { motion } from "framer-motion";
 import { Lock, Zap, Smartphone, Brain, Link2 } from "lucide-react";
 import { useLanguage } from "@contexts/LanguageContext";
 
@@ -71,12 +70,8 @@ export function WhyAhadex() {
         {PILLARS.map((p, i) => {
           const Icon = p.icon;
           return (
-            <motion.div
+            <div
               key={i}
-              initial={{ opacity: 0, y: 12 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, amount: 0.3 }}
-              transition={{ duration: 0.4, delay: i * 0.05 }}
               className="p-5 rounded-2xl bg-white/70 dark:bg-dark-surface/70 backdrop-blur-xl border border-silk-rose/15 hover:border-silk-rose/40 transition-all"
             >
               <div className={`w-10 h-10 rounded-xl ${p.bg} flex items-center justify-center mb-3`}>
@@ -88,7 +83,7 @@ export function WhyAhadex() {
               <p className="text-[12px] text-light-textSecondary dark:text-dark-textSecondary leading-relaxed">
                 {bn ? p.descBn : p.descEn}
               </p>
-            </motion.div>
+            </div>
           );
         })}
       </div>

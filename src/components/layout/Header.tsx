@@ -61,8 +61,8 @@ export function Header({ onLeftMenuClick, onRightMenuClick }: HeaderProps) {
             "relative flex items-center justify-between gap-3 transition-all duration-500 ease-silk",
             "rounded-2xl lg:rounded-[24px]",
             scrolled
-              ? "h-14 lg:h-16 px-3 lg:px-5 bg-silk-cream/85 dark:bg-dark-bg/85 backdrop-blur-2xl border border-silk-rose/25 shadow-[0_8px_30px_-8px_rgba(139,58,79,0.2)]"
-              : "h-16 lg:h-20 px-4 lg:px-6 bg-silk-cream/60 dark:bg-dark-bg/60 backdrop-blur-xl border border-silk-rose/15 shadow-silk-soft"
+              ? "h-14 lg:h-16 px-3 lg:px-5 bg-silk-cream/85 dark:bg-dark-bg/85 bg-white/95 dark:bg-dark-surface/95-2xl border border-silk-rose/25 shadow-[0_8px_30px_-8px_rgba(139,58,79,0.2)]"
+              : "h-16 lg:h-20 px-4 lg:px-6 bg-silk-cream/60 dark:bg-dark-bg/60 bg-white/95 dark:bg-dark-surface/95 border border-silk-rose/15 shadow-silk-soft"
           )}
         >
           {/* Top rose accent line */}
@@ -228,7 +228,7 @@ export function Header({ onLeftMenuClick, onRightMenuClick }: HeaderProps) {
               <div
                 className={cn(
                   "relative rounded-2xl overflow-hidden",
-                  "bg-silk-cream/95 dark:bg-dark-bg/95 backdrop-blur-2xl",
+                  "bg-silk-cream/95 dark:bg-dark-bg/95 bg-white/95 dark:bg-dark-surface/95-2xl",
                   "border border-silk-rose/25 shadow-[0_8px_30px_-8px_rgba(139,58,79,0.25)]"
                 )}
               >

@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { Clock, ArrowRight } from "lucide-react";
-import { motion } from "framer-motion";
 import { getRecentTools, type RecentTool } from "@lib/recentTools";
 import { useLanguage } from "@contexts/LanguageContext";
 
@@ -25,13 +24,10 @@ export function RecentlyUsed() {
         </h2>
       </div>
       <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
-        {recent.map((t, i) => (
-          <motion.div
+        {recent.map((t) => (
+          <div
             key={t.path}
-            initial={{ opacity: 0, y: 8 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.3, delay: i * 0.05 }}
-          >
+            >
             <Link
               to={t.path}
               className="group flex items-center gap-3 p-3.5 rounded-xl border border-silk-rose/20 bg-white/70 dark:bg-dark-surface/70 hover:border-silk-rose/50 hover:shadow-md transition-all"
@@ -44,7 +40,7 @@ export function RecentlyUsed() {
               </div>
               <ArrowRight className="w-3.5 h-3.5 text-silk-rose shrink-0 group-hover:translate-x-0.5 transition-transform" />
             </Link>
-          </motion.div>
+          </div>
         ))}
       </div>
     </section>

@@ -1,5 +1,4 @@
 import { Shield, Zap, CheckCircle2, Sparkles } from "lucide-react";
-import { motion } from "framer-motion";
 
 const TRUST_ITEMS = [
   { icon: Sparkles, label: "27 Free Tools", color: "text-silk-rose" },
@@ -11,10 +10,7 @@ const TRUST_ITEMS = [
 export function TrustBar() {
   return (
     <section className="mx-auto max-w-[1400px] px-4 sm:px-6 lg:px-8 py-6 sm:py-8">
-      <motion.div
-        initial={{ opacity: 0, y: 8 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.4 }}
+      <div
         className="flex flex-wrap items-center justify-center gap-3 sm:gap-4"
       >
         {TRUST_ITEMS.map((item, i) => {
@@ -29,7 +25,7 @@ export function TrustBar() {
             </div>
           );
         })}
-      </motion.div>
+      </div>
     </section>
   );
 }
