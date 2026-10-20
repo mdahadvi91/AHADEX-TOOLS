@@ -2,7 +2,6 @@ import { Link } from "react-router-dom";
 import { WhyAhadex } from "@components/home/WhyAhadex";
 import { TrustBar } from "@components/home/TrustBar";
 import { RecentlyUsed } from "@components/home/RecentlyUsed";
-import { motion } from "framer-motion";
 import { ArrowRight, Sparkles, Shield, Zap, Globe } from "lucide-react";
 import { useLanguage } from "@contexts/LanguageContext";
 import { HomeSchema } from "@components/seo/HomeSchema";
@@ -39,7 +38,7 @@ export default function HomePage() {
               style={{
                 background:
                   "radial-gradient(circle, rgba(216,139,154,0.35) 0%, transparent 65%)",
-                filter: "blur(70px)",
+                filter: "blur(30px)",
               }}
             />
             <div
@@ -47,16 +46,13 @@ export default function HomePage() {
               style={{
                 background:
                   "radial-gradient(circle, rgba(201,150,103,0.35) 0%, transparent 65%)",
-                filter: "blur(70px)",
+                filter: "blur(30px)",
               }}
             />
           </div>
 
           <div className="relative max-w-3xl">
-            <motion.div
-              initial={{ opacity: 1, y: 0 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5 }}
+            <div
               className="flex flex-wrap items-center gap-2 mb-6"
             >
               <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-white/60 dark:bg-dark-surface/60 backdrop-blur-xl border border-silk-rose/25 text-silk-wine dark:text-silk-rose text-[10px] sm:text-xs font-medium tracking-[0.15em] uppercase">
@@ -67,12 +63,9 @@ export default function HomePage() {
                 <Shield className="w-3 h-3" />
                 {bn ? "প্রাইভেসি-ফার্স্ট" : "Privacy-first"}
               </span>
-            </motion.div>
+            </div>
 
-            <motion.h1
-              initial={{ opacity: 1, y: 0 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.1 }}
+            <h1
               className="font-serif font-black text-[2.25rem] leading-[1.05] sm:text-5xl lg:text-6xl tracking-tight text-light-text dark:text-dark-text"
             >
               {bn ? (
@@ -91,23 +84,17 @@ export default function HomePage() {
                   that never upload your files.
                 </>
               )}
-            </motion.h1>
+            </h1>
 
-            <motion.p
-              initial={{ opacity: 1, y: 0 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.25 }}
+            <p
               className="mt-6 text-[15px] sm:text-lg text-light-textSecondary dark:text-dark-textSecondary max-w-2xl leading-relaxed"
             >
               {bn
                 ? "ছবি রূপান্তর, PDF হ্যান্ডলিং, টেক্সট প্রসেসিং, ডেভেলপার হেল্পার এবং QR কোড — সবকিছু আপনার ব্রাউজারেই চলে। ফাইল আপলোড হয় না, অ্যাকাউন্ট লাগে না, ওয়াটারমার্ক নেই।"
                 : "Image conversion, PDF handling, text processing, developer helpers, and QR codes — everything runs inside your browser. No file uploads, no accounts, no watermarks."}
-            </motion.p>
+            </p>
 
-            <motion.div
-              initial={{ opacity: 0, y: 16 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.4 }}
+            <div
               className="mt-8 flex flex-wrap items-center gap-3"
             >
               <Link
@@ -125,13 +112,10 @@ export default function HomePage() {
               >
                 {bn ? "কেন তৈরি করেছি" : "Why we built this"}
               </Link>
-            </motion.div>
+            </div>
 
             {/* Trust indicators */}
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ duration: 0.6, delay: 0.55 }}
+            <div
               className="mt-10 flex flex-wrap items-center gap-x-6 gap-y-3 text-[12px] sm:text-[13px] text-light-textSecondary dark:text-dark-textSecondary"
             >
               <span className="inline-flex items-center gap-1.5">
@@ -146,7 +130,7 @@ export default function HomePage() {
                 <Globe className="w-3.5 h-3.5 text-silk-rose" />
                 {bn ? "অফলাইনে চলে" : "Works offline"}
               </span>
-            </motion.div>
+            </div>
           </div>
         </section>
       <TrustBar />
