@@ -22,6 +22,7 @@ import {
   formatBytes,
   DEFAULT_OPTIONS,
 } from "../logic";
+import { SmartInsights } from "./SmartInsights";
 import type {
   LoadedImage,
   CartoonResult,
@@ -345,6 +346,8 @@ export function Workspace() {
               />
             </div>
           )}
+
+          {result && <SmartInsights width={result.width} height={result.height} bn={bn} />}
 
           {/* ── Action bar ── */}
           <WorkspacePanel className="p-3.5 sm:p-4" animate={false}>
