@@ -1,4 +1,6 @@
+import { useEffect } from "react";
 import { ToolRelatedGuides } from "@components/tools/ToolRelatedGuides";
+import { trackRecentTool } from "@lib/recentTools";
 import { ToolDataSections } from "@components/tools/ToolDataSections";
 import { useToolAnalytics } from "@hooks/useToolAnalytics";
 import { ImageToPdfSEO } from "./SEO";
@@ -18,6 +20,10 @@ import { ToolFieldNote } from "@components/tools/ToolFieldNote";
 import { AdSenseSlot } from "@components/ads/AdSenseSlot";
 
 export default function ImageToPdfTool() {
+
+  useEffect(() => {
+    trackRecentTool({ path: "/tools/image-to-pdf", name: "Image To Pdf", emoji: "🔧" });
+  }, []);
   useToolAnalytics("image-to-pdf");
   return (
     <>

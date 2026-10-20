@@ -1,4 +1,6 @@
+import { useEffect } from "react";
 import { ToolRelatedGuides } from "@components/tools/ToolRelatedGuides";
+import { trackRecentTool } from "@lib/recentTools";
 import { ToolDataSections } from "@components/tools/ToolDataSections";
 import { useToolAnalytics } from "@hooks/useToolAnalytics";
 import { UrlEncoderSEO } from "./SEO";
@@ -17,6 +19,10 @@ import { ToolSchema } from "@components/seo/ToolSchema";
 import { AdSenseSlot } from "@components/ads/AdSenseSlot";
 
 export default function UrlEncoderTool() {
+
+  useEffect(() => {
+    trackRecentTool({ path: "/tools/url-encoder", name: "Url Encoder", emoji: "🔧" });
+  }, []);
   useToolAnalytics("url-encoder");
   return (
     <>

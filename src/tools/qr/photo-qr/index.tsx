@@ -1,4 +1,5 @@
 import { ToolRelatedGuides } from "@components/tools/ToolRelatedGuides";
+import { trackRecentTool } from "@lib/recentTools";
 import { ToolDataSections } from "@components/tools/ToolDataSections";
 import { useToolAnalytics } from "@hooks/useToolAnalytics";
 import { useEffect, useMemo, useRef, useState } from "react";
@@ -27,6 +28,10 @@ import { SmartInsights } from "./SmartInsights";
 import { AdSenseSlot } from "@components/ads/AdSenseSlot";
 
 export default function PhotoQrTool() {
+
+  useEffect(() => {
+    trackRecentTool({ path: "/tools/photo-qr", name: "Photo Qr", emoji: "🔧" });
+  }, []);
   useToolAnalytics("photo-qr");
   const { language } = useLanguage();
   const content = photoQrContent[language];

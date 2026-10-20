@@ -1,4 +1,6 @@
+import { useEffect } from "react";
 import { ToolRelatedGuides } from "@components/tools/ToolRelatedGuides";
+import { trackRecentTool } from "@lib/recentTools";
 import { ToolDataSections } from "@components/tools/ToolDataSections";
 import { useToolAnalytics } from "@hooks/useToolAnalytics";
 import { ToolSchema } from "@components/seo/ToolSchema";
@@ -17,6 +19,10 @@ import { ToolBreadcrumb } from "@components/tools/ToolBreadcrumb";
 import { AdSenseSlot } from "@components/ads/AdSenseSlot";
 
 export default function Base64EncoderTool() {
+
+  useEffect(() => {
+    trackRecentTool({ path: "/tools/base64-encoder", name: "Base64 Encoder", emoji: "🔧" });
+  }, []);
   useToolAnalytics("base64-encoder");
   return (
     <>

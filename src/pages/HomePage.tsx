@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import { RecentlyUsed } from "@components/home/RecentlyUsed";
 import { motion } from "framer-motion";
 import { ArrowRight, Sparkles, Shield, Zap, Globe } from "lucide-react";
 import { useLanguage } from "@contexts/LanguageContext";
@@ -146,6 +147,7 @@ export default function HomePage() {
             </motion.div>
           </div>
         </section>
+      <RecentlyUsed />
 
         {/* ── Featured tools ── */}
         <PopularTools />

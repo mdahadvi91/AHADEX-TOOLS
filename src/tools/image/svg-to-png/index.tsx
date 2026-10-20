@@ -1,4 +1,6 @@
+import { useEffect } from "react";
 import { ToolRelatedGuides } from "@components/tools/ToolRelatedGuides";
+import { trackRecentTool } from "@lib/recentTools";
 import { ToolDataSections } from "@components/tools/ToolDataSections";
 import { useToolAnalytics } from "@hooks/useToolAnalytics";
 import { SvgToPngSEO } from "./SEO";
@@ -17,6 +19,10 @@ import { ToolSchema } from "@components/seo/ToolSchema";
 import { AdSenseSlot } from "@components/ads/AdSenseSlot";
 
 export default function SvgToPngTool() {
+
+  useEffect(() => {
+    trackRecentTool({ path: "/tools/svg-to-png", name: "Svg To Png", emoji: "🔧" });
+  }, []);
   useToolAnalytics("svg-to-png");
   return (
     <>

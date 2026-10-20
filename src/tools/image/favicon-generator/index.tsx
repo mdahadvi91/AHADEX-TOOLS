@@ -1,4 +1,6 @@
+import { useEffect } from "react";
 import { FaviconGeneratorSEO } from "./SEO";
+import { trackRecentTool } from "@lib/recentTools";
 import { Hero } from "./components/Hero";
 import { Workspace } from "./components/Workspace";
 import { Intro } from "./components/Intro";
@@ -17,6 +19,10 @@ import { ToolSchema } from "@components/seo/ToolSchema";
 import { AdSenseSlot } from "@components/ads/AdSenseSlot";
 
 export default function FaviconGeneratorTool() {
+
+  useEffect(() => {
+    trackRecentTool({ path: "/tools/favicon-generator", name: "Favicon Generator", emoji: "🔧" });
+  }, []);
   useToolAnalytics("favicon-generator");
   return (
     <>

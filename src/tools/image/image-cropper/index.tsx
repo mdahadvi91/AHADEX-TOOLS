@@ -1,4 +1,6 @@
+import { useEffect } from "react";
 import { ToolRelatedGuides } from "@components/tools/ToolRelatedGuides";
+import { trackRecentTool } from "@lib/recentTools";
 import { ToolDataSections } from "@components/tools/ToolDataSections";
 import { useToolAnalytics } from "@hooks/useToolAnalytics";
 import { ImageCropperSEO } from "./SEO";
@@ -17,6 +19,10 @@ import { ToolSchema } from "@components/seo/ToolSchema";
 import { AdSenseSlot } from "@components/ads/AdSenseSlot";
 
 export default function ImageCropperTool() {
+
+  useEffect(() => {
+    trackRecentTool({ path: "/tools/image-cropper", name: "Image Cropper", emoji: "🔧" });
+  }, []);
   useToolAnalytics("image-cropper");
   return (
     <>

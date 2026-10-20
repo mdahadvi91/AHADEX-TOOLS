@@ -1,4 +1,6 @@
+import { useEffect } from "react";
 import { useToolAnalytics } from "@hooks/useToolAnalytics";
+import { trackRecentTool } from "@lib/recentTools";
 import { ImageCompressorSEO } from "./SEO";
 import { Hero } from "./components/Hero";
 import { Workspace } from "./components/Workspace";
@@ -19,6 +21,10 @@ import { ToolDataSections } from "@components/tools/ToolDataSections";
 import { AdSenseSlot } from "@components/ads/AdSenseSlot";
 
 export default function ImageCompressorTool() {
+
+  useEffect(() => {
+    trackRecentTool({ path: "/tools/image-compressor", name: "Image Compressor", emoji: "🔧" });
+  }, []);
   useToolAnalytics("image-compressor");
   return (
     <>

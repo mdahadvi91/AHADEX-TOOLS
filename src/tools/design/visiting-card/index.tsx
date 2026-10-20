@@ -1,4 +1,6 @@
+import { useEffect } from "react";
 import { RecommendedProducts } from "@components/affiliate/RecommendedProducts";
+import { trackRecentTool } from "@lib/recentTools";
 import { RelatedArticles } from "@components/blog/RelatedArticles";
 import { ToolRelatedGuides } from "@components/tools/ToolRelatedGuides";
 import { ToolDataSections } from "@components/tools/ToolDataSections";
@@ -8,6 +10,10 @@ import { RelatedToolsBlock } from "@components/tools/RelatedToolsBlock";
 import { Gallery } from "./gallery";
 
 export default function VisitingCardTool() {
+
+  useEffect(() => {
+    trackRecentTool({ path: "/tools/visiting-card", name: "Visiting Card", emoji: "🔧" });
+  }, []);
   return (
     <>
       <ToolSchema toolId="visiting-card" />

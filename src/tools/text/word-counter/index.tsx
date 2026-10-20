@@ -1,4 +1,6 @@
+import { useEffect } from "react";
 import { ToolRelatedGuides } from "@components/tools/ToolRelatedGuides";
+import { trackRecentTool } from "@lib/recentTools";
 import { ToolDataSections } from "@components/tools/ToolDataSections";
 import { useToolAnalytics } from "@hooks/useToolAnalytics";
 import { WordCounterSEO } from "./SEO";
@@ -17,6 +19,10 @@ import { ToolSchema } from "@components/seo/ToolSchema";
 import { AdSenseSlot } from "@components/ads/AdSenseSlot";
 
 export default function WordCounterTool() {
+
+  useEffect(() => {
+    trackRecentTool({ path: "/tools/word-counter", name: "Word Counter", emoji: "🔧" });
+  }, []);
   useToolAnalytics("word-counter");
   return (
     <>
