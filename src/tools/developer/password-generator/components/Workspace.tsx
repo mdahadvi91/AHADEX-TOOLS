@@ -1,3 +1,4 @@
+import { SmartInsights } from "./SmartInsights";
 import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import {
@@ -352,6 +353,15 @@ export function Workspace() {
             />
           </div>
 
+          
+          {passwords.length > 0 && (
+            <SmartInsights 
+              entropy={passwords[0]?.strength?.entropy || 0} 
+              crackTime={(bn ? passwords[0]?.strength?.crackTimeBn : passwords[0]?.strength?.crackTime) || ""} 
+              length={opts.length} 
+              bn={bn} 
+            />
+          )}
           <WorkspacePanel className="overflow-hidden" animate={false}>
             <div className="px-4 py-2.5 border-b border-silk-rose/15 flex items-center justify-between">
               <span className="text-[11px] font-bold uppercase tracking-wider text-light-text dark:text-dark-text">
