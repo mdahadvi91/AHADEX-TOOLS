@@ -24,6 +24,7 @@ import {
   formatNumber,
 } from "../logic";
 import type { IndentOption, OutputMode } from "../types";
+import { SmartInsights } from "./SmartInsights";
 
 const INDENTS: { value: IndentOption; label: string }[] = [
   { value: 2, label: "2 sp" },
@@ -279,6 +280,7 @@ export function Workspace() {
           />
         </div>
       )}
+              {input && <SmartInsights input={input} mode={mode} />}
 
       {/* Output */}
       {analysis.valid && output && (
