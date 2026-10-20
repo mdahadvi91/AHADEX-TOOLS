@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Download, Loader2 } from "lucide-react";
 import { useLanguage } from "@contexts/LanguageContext";
 import { cn } from "@lib/cn";
+import { SmartInsights } from "./SmartInsights";
 import type { ExportFormat, ExportDPI } from "../../types";
 import { getCardSizeFromId } from "../../shared/sizes";
 import type { CardSizeId, Template, UserData } from "../../types";
@@ -118,6 +119,8 @@ export function ExportPanel({
           ))}
         </div>
       </div>
+
+      <SmartInsights dpi={dpi} format={format} bn={language === "bn"} />
 
       <button
         type="button"
