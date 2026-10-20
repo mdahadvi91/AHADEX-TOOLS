@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import { TrustBar } from "@components/home/TrustBar";
 import { RecentlyUsed } from "@components/home/RecentlyUsed";
 import { motion } from "framer-motion";
 import { ArrowRight, Sparkles, Shield, Zap, Globe } from "lucide-react";
@@ -147,6 +148,7 @@ export default function HomePage() {
             </motion.div>
           </div>
         </section>
+      <TrustBar />
       <RecentlyUsed />
 
         {/* ── Featured tools ── */}
