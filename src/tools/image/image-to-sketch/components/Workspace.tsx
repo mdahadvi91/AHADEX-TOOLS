@@ -23,6 +23,7 @@ import {
   DEFAULT_OPTIONS,
 } from "../logic";
 import type { LoadedImage, SketchResult, SketchOptions } from "../types";
+import { SmartInsights } from "./SmartInsights";
 
 export function Workspace() {
   const { language } = useLanguage();
@@ -303,6 +304,7 @@ export function Workspace() {
               />
             </div>
           )}
+          {result && <SmartInsights width={result.width} height={result.height} bn={bn} />}
 
           {/* ── Action bar ── */}
           <WorkspacePanel className="p-3.5 sm:p-4" animate={false}>
