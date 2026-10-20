@@ -1,4 +1,5 @@
 import { useParams, Link, Navigate } from "react-router-dom";
+import { AuthorBio } from "@components/blog/AuthorBio";
 import { useEffect } from "react";
 import { motion } from "framer-motion";
 import { ArrowLeft, Clock, Calendar, User, ArrowRight, RefreshCw } from "lucide-react";
@@ -370,7 +371,13 @@ export default function BlogPostPage() {
           </div>
         </div>
       )}
-    </article>
+    
+        <AuthorBio
+          name={author.name}
+          bio={author.bio || "Full-stack developer and founder of AHADEX Tools. Building privacy-first, browser-based utilities for everyone."}
+          authorId={post.authorId || "mohammad-ahad"}
+        />
+              </article>
       </>
   );
 }
