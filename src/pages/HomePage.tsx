@@ -54,7 +54,7 @@ export default function HomePage() {
 
           <div className="relative max-w-3xl">
             <motion.div
-              initial={{ opacity: 0, y: 12 }}
+              initial={{ opacity: 1, y: 0 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5 }}
               className="flex flex-wrap items-center gap-2 mb-6"
@@ -70,7 +70,7 @@ export default function HomePage() {
             </motion.div>
 
             <motion.h1
-              initial={{ opacity: 0, y: 12 }}
+              initial={{ opacity: 1, y: 0 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.1 }}
               className="font-serif font-black text-[2.25rem] leading-[1.05] sm:text-5xl lg:text-6xl tracking-tight text-light-text dark:text-dark-text"
@@ -94,7 +94,7 @@ export default function HomePage() {
             </motion.h1>
 
             <motion.p
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ opacity: 1, y: 0 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.25 }}
               className="mt-6 text-[15px] sm:text-lg text-light-textSecondary dark:text-dark-textSecondary max-w-2xl leading-relaxed"
