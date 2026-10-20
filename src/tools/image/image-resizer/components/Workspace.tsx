@@ -1,4 +1,4 @@
-import { useRef, useState } from "react";
+import {useRef, useState, useEffect} from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import {
   Download,
@@ -41,6 +41,28 @@ export function Workspace() {
   const bn = language === "bn";
 
   const inputRef = useRef<HTMLInputElement>(null);
+
+  // Global Paste (Ctrl+V)
+  useEffect(() => {
+    const handlePaste = (e: ClipboardEvent) => {
+      const items = e.clipboardData?.items;
+      if (!items || !inputRef.current) return;
+      for (let i = 0; i < items.length; i++) {
+        if (items[i].type.indexOf("image") !== -1) {
+          const file = items[i].getAsFile();
+          if (file) {
+            const dt = new DataTransfer();
+            dt.items.add(file);
+            inputRef.current.files = dt.files;
+            inputRef.current.dispatchEvent(new Event("change", { bubbles: true }));
+          }
+          break;
+        }
+      }
+    };
+    window.addEventListener("paste", handlePaste);
+    return () => window.removeEventListener("paste", handlePaste);
+  }, []);
   const [items, setItems] = useState<ResizedFile[]>([]);
   const [busy, setBusy] = useState(false);
   const [drag, setDrag] = useState(false);
