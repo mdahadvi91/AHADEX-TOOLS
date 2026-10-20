@@ -1,4 +1,5 @@
 import { useMemo, useState } from "react";
+import { SmartInsights } from "./SmartInsights";
 import { motion } from "framer-motion";
 import { Copy, ClipboardCheck, Download, Type } from "lucide-react";
 import { useLanguage } from "@contexts/LanguageContext";
@@ -185,6 +186,8 @@ export function Workspace() {
           </div>
         )}
       </TextPanel>
+
+      <SmartInsights length={text.length} bn={bn} />
 
       {/* Stats */}
       <div className="grid grid-cols-2 sm:grid-cols-5 gap-2.5 sm:gap-3">
