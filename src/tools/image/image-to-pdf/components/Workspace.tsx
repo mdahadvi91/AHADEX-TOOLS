@@ -1,5 +1,5 @@
 import { SmartInsights } from "./SmartInsights";
-import { useRef, useState } from "react";
+import {useRef, useState, useEffect} from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import {
   Download,
@@ -40,7 +40,11 @@ export function Workspace() {
   const [drag, setDrag] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [result, setResult] = useState<PdfResult | null>(null);
-  const [pageSize, setPageSize] = useState<PdfBuildOptions["pageSize"]>("a4");
+  const [pageSize, setPageSize] = useState<PdfBuildOptions["pageSize"]>(() => {
+    const saved = localStorage.getItem("ahadex-img2pdf-pagesize");
+    if (saved !== null) return saved as PdfBuildOptions["pageSize"];
+    return "a4";
+  });
   const [orientation, setOrientation] = useState<PdfBuildOptions["orientation"]>("auto");
   const [margin, setMargin] = useState(10);
 
@@ -108,6 +112,11 @@ export function Workspace() {
   };
 
   const totalOriginal = pages.reduce((s, p) => s + p.originalSize, 0);
+
+  // Remember pageSize
+  useEffect(() => {
+    localStorage.setItem("ahadex-img2pdf-pagesize", String(pageSize));
+  }, [pageSize]);
 
   return (
     <section className="pb-12 space-y-4 sm:space-y-5">

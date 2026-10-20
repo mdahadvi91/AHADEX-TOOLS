@@ -33,7 +33,11 @@ export function Workspace() {
   const { language } = useLanguage();
   const bn = language === "bn";
 
-  const [opts, setOpts] = useState<PasswordOptions>(DEFAULT_OPTIONS);
+  const [opts, setOpts] = useState(() => {
+    const savedLen = localStorage.getItem("ahadex-pwd-length");
+    const base = DEFAULT_OPTIONS || {};
+    return { ...base, length: savedLen ? parseInt(savedLen, 10) : (base as any).length || 16 };
+  });
   const [batch, setBatch] = useState(5);
   const [passwords, setPasswords] = useState<GeneratedPassword[]>([]);
   const [showAll, setShowAll] = useState(true);
@@ -107,6 +111,11 @@ export function Workspace() {
     { key: "numbers", label: "123", labelBn: "123" },
     { key: "symbols", label: "!@#", labelBn: "!@#" },
   ];
+
+  // Remember password length
+  useEffect(() => {
+    localStorage.setItem("ahadex-pwd-length", String(opts.length));
+  }, [opts.length]);
 
   return (
     <section className="pb-12 space-y-4 sm:space-y-5">

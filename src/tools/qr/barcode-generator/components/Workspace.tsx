@@ -34,7 +34,10 @@ export function Workspace() {
 
   const svgRef = useRef<SVGSVGElement>(null);
   const [value, setValue] = useState("AHADEX-2026");
-  const [opts, setOpts] = useState<BarcodeOptions>(DEFAULT_OPTIONS);
+  const [opts, setOpts] = useState<BarcodeOptions>(() => {
+    const savedFormat = localStorage.getItem("ahadex-barcode-format");
+    return savedFormat ? { ...DEFAULT_OPTIONS, format: savedFormat as BarcodeFormat } : DEFAULT_OPTIONS;
+  });
   const [error, setError] = useState<string | null>(null);
   const [copied, setCopied] = useState(false);
   const [busy, setBusy] = useState(false);
@@ -88,6 +91,11 @@ export function Workspace() {
   };
 
   const current = findFormat(opts.format);
+
+  // Remember barcode format
+  useEffect(() => {
+    localStorage.setItem("ahadex-barcode-format", opts.format);
+  }, [opts.format]);
 
   return (
     <section className="pb-12">

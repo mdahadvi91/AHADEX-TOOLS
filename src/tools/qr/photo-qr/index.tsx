@@ -32,7 +32,11 @@ export default function PhotoQrTool() {
   const content = photoQrContent[language];
 
   const [photoFile, setPhotoFile] = useState<File | null>(null);
-  const [platformId, setPlatformId] = useState<string>("whatsapp");
+  const [platformId, setPlatformId] = useState<string>(() => {
+    const saved = localStorage.getItem("ahadex-photoqr-platform");
+    if (saved !== null) return saved as string;
+    return "whatsapp";
+  });
   const [values, setValues] = useState<Record<string, string>>({});
   const [position, setPosition] = useState<Position>("bottom-right");
   const [sizePercent, setSizePercent] = useState(20);
@@ -96,6 +100,11 @@ export default function PhotoQrTool() {
         setGenerating(false);
       }
     }, 250);
+
+  // Remember platformId
+  useEffect(() => {
+    localStorage.setItem("ahadex-photoqr-platform", String(platformId));
+  }, [platformId]);
 
     return () => {
       if (previewTimerRef.current) window.clearTimeout(previewTimerRef.current);

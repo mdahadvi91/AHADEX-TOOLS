@@ -1,4 +1,4 @@
-import { useRef, useState } from "react";
+import {useRef, useState, useEffect} from "react";
 import { SmartInsights } from "./SmartInsights";
 import { motion, AnimatePresence } from "framer-motion";
 import {
@@ -34,7 +34,10 @@ export function Workspace() {
 
   const inputRef = useRef<HTMLInputElement>(null);
   const [pdf, setPdf] = useState<LoadedPdf | null>(null);
-  const [ranges, setRanges] = useState("");
+  const [ranges, setRanges] = useState(() => {
+    const saved = localStorage.getItem("ahadex-splitpdf-ranges");
+    return saved !== null ? saved : "";
+  });
   const [mode, setMode] = useState<Mode>("extract");
   const [busy, setBusy] = useState(false);
   const [drag, setDrag] = useState(false);
@@ -117,6 +120,11 @@ export function Workspace() {
   const parsedCount = pdf
     ? parsePageRanges(ranges, pdf.pageCount).length
     : 0;
+
+  // Remember ranges
+  useEffect(() => {
+    localStorage.setItem("ahadex-splitpdf-ranges", String(ranges));
+  }, [ranges]);
 
   return (
     <section className="pb-12 space-y-4 sm:space-y-5">
