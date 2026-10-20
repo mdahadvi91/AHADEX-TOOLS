@@ -5,10 +5,14 @@ import { cn } from "@lib/cn";
 import { CV_TEMPLATES, SAMPLE_CV_DATA } from "../data";
 import { TemplatePreview } from "./TemplatePreview";
 import { ProfessionModal } from "./ProfessionModal";
+import { AutoEditWizard } from "./AutoEditWizard";
+import { PROFESSION_PRESETS } from "../presets";
 
 export function TemplateGallery() {
   const navigate = useNavigate();
   const [selectedTemplate, setSelectedTemplate] = useState<string | null>(null);
+  const [selectedProfession, setSelectedProfession] = useState<string | null>(null);
+  const [showAutoWizard, setShowAutoWizard] = useState(false);
   const { language } = useLanguage();
 
   return (
@@ -70,14 +74,37 @@ export function TemplateGallery() {
         isOpen={selectedTemplate !== null}
         onClose={() => setSelectedTemplate(null)}
         onSelect={(prof) => {
+          setSelectedProfession(prof);
           if (prof) {
             sessionStorage.setItem("cv_preset", prof);
           } else {
             sessionStorage.removeItem("cv_preset");
           }
-          navigate(`/tools/cv-builder/edit/${selectedTemplate}`);
+          // Directly open the Auto Wizard!
+          setShowAutoWizard(true);
         }}
       />
+
+      
+
+      {/* We need CV data to pass to AutoEditWizard, so we import SAMPLE_CV_DATA and merge preset */}
+      {showAutoWizard && selectedTemplate && (
+        <AutoEditWizard
+          isOpen={showAutoWizard}
+          onClose={() => setShowAutoWizard(false)}
+          templateId={selectedTemplate}
+          data={
+            selectedProfession && PROFESSION_PRESETS[selectedProfession]
+              ? { ...SAMPLE_CV_DATA, ...PROFESSION_PRESETS[selectedProfession] }
+              : SAMPLE_CV_DATA
+          }
+          onFinish={(finalData) => {
+            // Save the edited data to sessionStorage to load in the real editor
+            sessionStorage.setItem("cv_draft_override", JSON.stringify(finalData));
+            navigate(`/tools/cv-builder/edit/${selectedTemplate}`);
+          }}
+        />
+      )}
 </section>
   );
 }
