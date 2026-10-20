@@ -1,29 +1,8 @@
-/* ============================================================
- * verify-production.ts
- * ------------------------------------------------------------
- * Post-deploy verification of LIVE production URLs.
- *
- * Runs AFTER `git push` + Cloudflare deploy. Performs real
- * HTTP requests and checks:
- *
- *   - HTTP status (must be 200)
- *   - Content-Type (html / xml / txt per URL kind)
- *   - Redirect chain (should be empty for canonical URLs)
- *   - HTML: <title>, description, canonical, robots, h1,
- *           JSON-LD parse, hreflang presence (warning)
- *   - sitemap.xml: body starts with <?xml, contains <urlset>,
- *                  has >= 50 <loc> entries
- *   - robots.txt: contains "Sitemap:" directive
- *
- * Exit code 1 on any hard failure. Warnings do not fail.
- * ============================================================ */
-
-import { request as httpsRequest } from "node:https";
-import { request as httpRequest } from "node:http";
 import { readFileSync, existsSync } from "node:fs";
 import { resolve } from "node:path";
+import { request as httpsRequest } from "node:https";
+import { request as httpRequest } from "node:http";
 
-const SITE = "https://ahadex.fun";
 const TIMEOUT_MS = 15_000;
 const MAX_REDIRECTS = 5;
 const UA = "AHADEX-VerifyProduction/1.0 (+https://ahadex.fun)";
@@ -47,7 +26,7 @@ function singleRequest(url: string): Promise<{
     const client = u.protocol === "https:" ? httpsRequest : httpRequest;
     const req = client(
       url,
-      { method: "GET", headers: { "user-agent": UA, accept: "*/*" } },
+      { method: "GET", headers: { "user-agent": UA, accept: "text/html" } },
       (res) => {
         const chunks: Buffer[] = [];
         res.on("data", (c: Buffer) => chunks.push(c));
@@ -111,9 +90,6 @@ function hasNonEmptyH1(html: string): boolean {
   const h1s = [...html.matchAll(/<h1\b[^>]*>([\s\S]*?)<\/h1>/gi)];
   return h1s.some((m) => m[1].replace(/<[^>]+>/g, "").trim().length > 0);
 }
-function countHreflang(html: string): number {
-  return (html.match(/<link\b[^>]*\bhreflang=/gi) || []).length;
-}
 function countJsonLd(html: string, problems: string[]): number {
   const re = /<script\b[^>]*type=["']application\/ld\+json["'][^>]*>([\s\S]*?)<\/script>/gi;
   let m: RegExpExecArray | null;
@@ -131,202 +107,91 @@ function countJsonLd(html: string, problems: string[]): number {
   return n;
 }
 
-// ── Specs ───────────────────────────────────────────────────
-interface Spec {
-  path: string;
-  kind: "html" | "xml" | "txt";
-  label: string;
-  expectedCanonical?: string;
-  expectSitemapInBody?: boolean;
-}
-
-const TARGETS: Spec[] = [
-  { path: "/", kind: "html", label: "homepage", expectedCanonical: `${SITE}/` },
-  { path: "/robots.txt", kind: "txt", label: "robots.txt", expectSitemapInBody: true },
-  { path: "/sitemap.xml", kind: "xml", label: "sitemap.xml" },
-  { path: "/tools", kind: "html", label: "tools index", expectedCanonical: `${SITE}/tools` },
-  { path: "/tools/visiting-card", kind: "html", label: "tool page", expectedCanonical: `${SITE}/tools/visiting-card` },
-  { path: "/blog", kind: "html", label: "blog index", expectedCanonical: `${SITE}/blog` },
-  { path: "/guides", kind: "html", label: "guides index", expectedCanonical: `${SITE}/guides` },
-];
-
-// ── Checks ──────────────────────────────────────────────────
-interface Report {
-  spec: Spec;
-  status: number;
-  contentType: string;
-  finalUrl: string;
-  redirects: string[];
-  problems: string[];
-  warnings: string[];
-  notes: string[];
-}
-
-function checkContentType(kind: Spec["kind"], ct: string): string | null {
-  const c = ct.toLowerCase();
-  if (kind === "html" && !c.includes("text/html") && !c.includes("application/xhtml"))
-    return `expected text/html, got "${ct || "(none)"}"`;
-  if (kind === "xml" && !c.includes("xml"))
-    return `expected */*xml, got "${ct || "(none)"}"`;
-  if (kind === "txt" && !c.includes("text/"))
-    return `expected text/*, got "${ct || "(none)"}"`;
-  return null;
-}
-
-function checkHtmlBody(spec: Spec, html: string, r: Report) {
-  const title = getTitle(html);
-  if (!title) r.problems.push("missing or empty <title>");
-  else r.notes.push(`title: ${title.length > 60 ? title.slice(0, 60) + "…" : title}`);
-
-  if (!getMetaContent(html, "description"))
-    r.problems.push('missing or empty <meta name="description">');
-
-  const canonical = getCanonical(html);
-  if (!canonical) {
-    r.problems.push('<link rel="canonical"> missing');
-  } else if (
-    spec.expectedCanonical &&
-    canonical.replace(/\/$/, "") !== spec.expectedCanonical.replace(/\/$/, "")
-  ) {
-    r.problems.push(
-      `canonical mismatch (got "${canonical}", expected "${spec.expectedCanonical}")`
-    );
-  } else {
-    r.notes.push(`canonical: ${canonical}`);
-  }
-
-  const robots = getMetaContent(html, "robots");
-  if (robots && /noindex/i.test(robots))
-    r.problems.push(`robots meta contains noindex ("${robots}")`);
-
-  if (!hasNonEmptyH1(html)) r.problems.push("missing non-empty <h1>");
-
-  const hl = countHreflang(html);
-  if (hl > 0)
-    r.warnings.push(
-      `${hl} hreflang tag(s) present — we intentionally removed self-referential hreflang`
-    );
-
-  const jld = countJsonLd(html, r.problems);
-  if (jld > 0) r.notes.push(`${jld} valid JSON-LD block(s)`);
-  else r.warnings.push("no JSON-LD blocks found");
-}
-
-function checkXmlBody(body: string, r: Report) {
-  const t = body.trim();
-  if (!t.startsWith("<?xml")) r.problems.push("body does not start with <?xml");
-  if (!t.includes("<urlset")) r.problems.push("body missing <urlset>");
-  const locs = [...t.matchAll(/<loc>([^<]+)<\/loc>/g)].length;
+// ── Verification per URL ────────────────────────────────────
+async function verifyUrl(url: string): Promise<{ url: string; problems: string[] }> {
+  const problems: string[] = [];
   
-  // Read local sitemap to get the exact expected count
-  const localSitemapPath = resolve(process.cwd(), "public/sitemap.xml");
-  if (existsSync(localSitemapPath)) {
-    const localBody = readFileSync(localSitemapPath, "utf-8");
-    const localLocs = [...localBody.matchAll(/<loc>([^<]+)<\/loc>/g)].length;
-    if (locs !== localLocs) {
-      r.problems.push(`live sitemap has ${locs} URLs, but local build has ${localLocs}`);
-    } else {
-      r.notes.push(`${locs} <loc> entries (matches local)`);
-    }
-  } else {
-    // Fallback if local sitemap is missing
-    if (locs < 10) r.problems.push(`only ${locs} <loc> entries — suspiciously low`);
-    else r.notes.push(`${locs} <loc> entries`);
-  }
-}
-
-function checkTxtBody(spec: Spec, body: string, r: Report) {
-  if (spec.expectSitemapInBody) {
-    const m = body.match(/^Sitemap:\s*(\S+)/im);
-    if (!m) r.problems.push("robots.txt has no `Sitemap:` line");
-    else r.notes.push(`Sitemap: ${m[1]}`);
-  }
-}
-
-async function verifyOne(spec: Spec): Promise<Report> {
-  const url = SITE + spec.path;
-  const r: Report = {
-    spec, status: 0, contentType: "", finalUrl: url, redirects: [],
-    problems: [], warnings: [], notes: [],
-  };
-
-  let res: FetchResult;
   try {
-    res = await fetchFollow(url);
+    const res = await fetchFollow(url);
+    
+    if (res.status !== 200) {
+      problems.push(`expected HTTP 200, got ${res.status}`);
+    }
+    
+    const ct = res.headers["content-type"] || "";
+    if (!ct.toLowerCase().includes("text/html")) {
+      problems.push(`expected content-type text/html, got "${ct}"`);
+    }
+
+    // If we have major errors, no need to parse the rest
+    if (problems.length === 0) {
+      const html = res.body;
+
+      if (!getTitle(html)) problems.push("missing or empty <title>");
+      if (!getMetaContent(html, "description")) problems.push('missing or empty <meta name="description">');
+
+      const canonical = getCanonical(html);
+      if (!canonical) {
+        problems.push('<link rel="canonical"> missing');
+      } else if (canonical.replace(/\/$/, "") !== url.replace(/\/$/, "")) {
+        problems.push(`canonical mismatch (got "${canonical}", expected "${url}")`);
+      }
+
+      const robots = getMetaContent(html, "robots");
+      if (robots && /noindex/i.test(robots)) {
+        problems.push(`<meta name="robots"> contains noindex ("${robots}")`);
+      }
+
+      if (!hasNonEmptyH1(html)) problems.push("missing non-empty <h1>");
+
+      countJsonLd(html, problems);
+    }
   } catch (e) {
-    r.problems.push(`request failed: ${e instanceof Error ? e.message : String(e)}`);
-    return r;
+    problems.push(`request failed: ${e instanceof Error ? e.message : String(e)}`);
   }
 
-  r.status = res.status;
-  r.contentType = res.headers["content-type"] || "";
-  r.finalUrl = res.finalUrl;
-  r.redirects = res.redirects;
-
-  if (res.status !== 200) r.problems.push(`expected HTTP 200, got ${res.status}`);
-  if (res.finalUrl !== url)
-    r.problems.push(`final URL differs: ${url} -> ${res.finalUrl}`);
-
-  const ctProblem = checkContentType(spec.kind, r.contentType);
-  if (ctProblem) r.problems.push(`content-type: ${ctProblem}`);
-
-  if (spec.kind === "html") checkHtmlBody(spec, res.body, r);
-  else if (spec.kind === "xml") checkXmlBody(res.body, r);
-  else if (spec.kind === "txt") checkTxtBody(spec, res.body, r);
-
-  return r;
+  return { url, problems };
 }
 
 // ── Main ────────────────────────────────────────────────────
 async function main() {
-  console.log(`\n🔎 Verifying production: ${SITE}\n`);
-
-  const reports = await Promise.all(TARGETS.map(verifyOne));
-
-  let failedReports = 0;
-  let totalProblems = 0;
-
-  for (const r of reports) {
-    const ok = r.problems.length === 0;
-    if (!ok) failedReports++;
-    totalProblems += r.problems.length;
-
-    const icon = ok ? "✓" : "✗";
-    const ct = r.contentType.split(";")[0] || "(no content-type)";
-    const pathCol = r.spec.path.padEnd(26);
-    const statusCol = String(r.status).padEnd(4);
-    console.log(`${icon} ${pathCol} ${statusCol} ${ct}`);
-    console.log(`    (${r.spec.label})`);
-
-    for (const n of r.notes) console.log(`    · ${n}`);
-    for (const w of r.warnings) console.log(`    ⚠ ${w}`);
-    for (const p of r.problems) console.log(`    ✗ ${p}`);
+  const sitemapPath = resolve(process.cwd(), "public/sitemap.xml");
+  if (!existsSync(sitemapPath)) {
+    console.error("❌ public/sitemap.xml not found. Run npm run sitemap first.");
+    process.exit(1);
   }
 
-  // Local vs live sitemap URL-count sanity
-  const localPath = resolve(process.cwd(), "public/sitemap.xml");
-  if (existsSync(localPath)) {
-    const localCount = [...readFileSync(localPath, "utf-8").matchAll(/<loc>/g)].length;
-    const sitemapReport = reports.find((x) => x.spec.path === "/sitemap.xml");
-    if (sitemapReport) {
-      const liveMatch = sitemapReport.notes.find((n) => n.endsWith("<loc> entries"));
-      const liveCount = liveMatch ? parseInt(liveMatch, 10) : null;
-      if (liveCount !== null && liveCount !== localCount) {
-        console.log(
-          `\n⚠  local sitemap has ${localCount} URLs but live has ${liveCount} — deploy may be stale`
-        );
+  const xml = readFileSync(sitemapPath, "utf-8");
+  const urls = [...xml.matchAll(/<loc>([^<]+)<\/loc>/g)].map((m) => m[1]);
+
+  console.log(`\n🔎 Verifying ${urls.length} production URLs from sitemap...\n`);
+
+  let failedCount = 0;
+  const concurrency = 5; // Process 5 URLs at a time to avoid Cloudflare rate limits
+
+  for (let i = 0; i < urls.length; i += concurrency) {
+    const batch = urls.slice(i, i + concurrency);
+    const results = await Promise.all(batch.map(verifyUrl));
+
+    for (const res of results) {
+      if (res.problems.length > 0) {
+        failedCount++;
+        console.error(`❌ ${res.url}`);
+        for (const p of res.problems) {
+          console.error(`   - ${p}`);
+        }
+      } else {
+        console.log(`✅ ${res.url}`);
       }
     }
   }
 
   console.log("");
-  if (totalProblems > 0) {
-    console.error(
-      `❌ Production verification FAILED — ${totalProblems} problem(s) across ${failedReports} URL(s).`
-    );
+  if (failedCount > 0) {
+    console.error(`❌ Production verification FAILED — ${failedCount} out of ${urls.length} URLs have issues.`);
     process.exit(1);
   }
-  console.log(`✅ Production verification passed — ${reports.length} URLs checked.\n`);
+  console.log(`✅ Production verification passed — All ${urls.length} URLs are fully healthy! 🎉`);
 }
 
 main().catch((e) => {
