@@ -17,7 +17,7 @@ export function RecentlyUsed() {
   if (recent.length === 0) return null;
 
   return (
-    <section className="mx-auto max-w-[1400px] px-4 sm:px-6 lg:px-8 py-8 sm:py-10">
+    <section className="mx-auto max-w-[1400px] px-4 sm:px-6 lg:px-8 py-8 sm:py-10 min-h-[180px]">
       <div className="flex items-center gap-2 mb-5">
         <Clock className="w-4 h-4 text-silk-rose" />
         <h2 className="font-serif font-black text-xl sm:text-2xl text-light-text dark:text-dark-text">
