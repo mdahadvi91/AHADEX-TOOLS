@@ -26,6 +26,7 @@ import {
   findFormat,
 } from "../logic";
 import type { BarcodeOptions, BarcodeFormat } from "../types";
+import { SmartInsights } from "./SmartInsights";
 
 export function Workspace() {
   const { language } = useLanguage();
@@ -288,6 +289,8 @@ export function Workspace() {
               <svg ref={svgRef} />
             </div>
           </WorkspacePanel>
+
+          <SmartInsights format={opts.format} height={opts.height} width={opts.width} bn={bn} />
 
           <AnimatePresence>
             {error && (
