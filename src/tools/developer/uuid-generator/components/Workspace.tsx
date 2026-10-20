@@ -25,6 +25,7 @@ import {
   MAX_COUNT,
   DEFAULT_COUNT,
 } from "../logic";
+import { SmartInsights } from "./SmartInsights";
 import type {
   UuidVersion,
   UuidItem,
@@ -285,6 +286,7 @@ export function Workspace() {
               accent="rose"
             />
           </div>
+              <SmartInsights version={version} bn={bn} />
 
           <WorkspacePanel className="overflow-hidden" animate={false}>
             <div className="px-4 py-2.5 border-b border-silk-rose/15 flex items-center justify-between">
