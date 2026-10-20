@@ -10,6 +10,7 @@ import { cn } from "@lib/cn";
 import { TextPanel, WorkspacePanel } from "@components/workspace";
 import { convert, formatNumber, MAX_CHARS } from "../logic";
 import type { CaseType, CaseDefinition } from "../types";
+import { SmartInsights } from "./SmartInsights";
 
 const CASES: CaseDefinition[] = [
   { id: "upper", label: "UPPERCASE", labelBn: "UPPERCASE", example: "HELLO WORLD" },
@@ -164,7 +165,8 @@ export function Workspace() {
 
       {/* ── Output ── */}
       {output && (
-        <TextPanel
+          <>
+            <TextPanel
           label={`${bn ? "আউটপুট" : "Output"} · ${activeCase?.label ?? ""}`}
           value={output}
           readOnly
@@ -173,7 +175,9 @@ export function Workspace() {
           minHeight="min-h-[120px]"
           mono={false}
         />
-      )}
+            <SmartInsights activeCase={active} bn={bn} />
+          </>
+        )}
 
       {/* ── Empty state ── */}
       {!input && (
