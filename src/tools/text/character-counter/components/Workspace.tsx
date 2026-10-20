@@ -60,6 +60,15 @@ export function Workspace() {
         }
       }
     }, 300);
+
+  // Global ESC to clear
+  useEffect(() => {
+    const handleEsc = (e: KeyboardEvent) => {
+      if (e.key === "Escape") setText("");
+    };
+    window.addEventListener("keydown", handleEsc);
+    return () => window.removeEventListener("keydown", handleEsc);
+  }, []);
     return () => clearTimeout(timer);
   }, []);
 

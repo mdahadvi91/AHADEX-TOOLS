@@ -173,6 +173,18 @@ export function Workspace() {
         textarea.focus();
       }
     }, 150);
+
+  // Global ESC to clear
+  useEffect(() => {
+    const handleEsc = (e: KeyboardEvent) => {
+      if (e.key === "Escape") {
+        setTextInput("");
+        setFileInfo(null);
+      }
+    };
+    window.addEventListener("keydown", handleEsc);
+    return () => window.removeEventListener("keydown", handleEsc);
+  }, []);
     return () => clearTimeout(timer);
   }, []);
 
