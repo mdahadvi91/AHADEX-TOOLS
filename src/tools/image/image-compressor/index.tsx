@@ -1,4 +1,5 @@
 import { useEffect } from "react";
+import { WhatNext } from "@components/tools/WhatNext";
 import { useToolAnalytics } from "@hooks/useToolAnalytics";
 import { trackRecentTool } from "@lib/recentTools";
 import { ImageCompressorSEO } from "./SEO";
@@ -35,6 +36,14 @@ export default function ImageCompressorTool() {
         <Hero />
         <ToolEditorial toolId="image-compressor" />
         <Workspace />
+
+      <WhatNext
+        actions={[
+          { emoji: "📱", label: "Use on Website", to: "/tools/image-resizer", action: "Resize for exact dimensions" },
+          { emoji: "📸", label: "Post on Social", to: "/tools/image-converter", action: "Convert to WebP format" },
+          { emoji: "🖼️", label: "Create PDF", to: "/tools/image-to-pdf", action: "Combine into PDF" }
+        ]}
+      />
         <RecommendedProducts toolId="image-compressor" />
         <Intro />
         <Features />

@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import { WhyAhadex } from "@components/home/WhyAhadex";
 import { TrustBar } from "@components/home/TrustBar";
 import { RecentlyUsed } from "@components/home/RecentlyUsed";
 import { motion } from "framer-motion";
@@ -149,6 +150,7 @@ export default function HomePage() {
           </div>
         </section>
       <TrustBar />
+      <WhyAhadex />
       <RecentlyUsed />
 
         {/* ── Featured tools ── */}

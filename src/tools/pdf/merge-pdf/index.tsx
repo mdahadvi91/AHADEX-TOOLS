@@ -1,4 +1,5 @@
 import { useEffect } from "react";
+import { WhatNext } from "@components/tools/WhatNext";
 import { ToolRelatedGuides } from "@components/tools/ToolRelatedGuides";
 import { trackRecentTool } from "@lib/recentTools";
 import { ToolDataSections } from "@components/tools/ToolDataSections";
@@ -32,6 +33,14 @@ export default function MergePdfTool() {
       <div className="mx-auto max-w-[1200px] px-4 sm:px-6 lg:px-8">
         <Hero />
         <Workspace />
+
+      <WhatNext
+        actions={[
+          { emoji: "📧", label: "Send by Email", to: "/tools/split-pdf", action: "Split into smaller files" },
+          { emoji: "🖼️", label: "Convert to Images", to: "/tools/pdf-to-image", action: "Extract as JPGs" },
+          { emoji: "📝", label: "Extract Text", to: "/tools/pdf-to-text", action: "Copy text content" }
+        ]}
+      />
         <RecommendedProducts toolId="merge-pdf" />
         <Intro />
         <Features />
