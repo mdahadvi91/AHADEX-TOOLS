@@ -1,4 +1,5 @@
 import { useEffect, useMemo, useRef, useState } from "react";
+import { showToast } from "@lib/toast";
 import { motion, AnimatePresence } from "framer-motion";
 import {
   Download,
@@ -96,6 +97,7 @@ export function Workspace() {
     if (!out) return;
     try {
       await copyText(out);
+          showToast("Copied to clipboard!", "success");
       setCopied(true);
       
       setTimeout(() => setCopied(false), 1800);

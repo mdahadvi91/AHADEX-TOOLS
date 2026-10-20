@@ -1,4 +1,5 @@
 import {useMemo, useState, useEffect} from "react";
+import { showToast } from "@lib/toast";
 import { motion, AnimatePresence } from "framer-motion";
 import {Download,
   Trash2,
@@ -60,6 +61,7 @@ export function Workspace() {
     if (!output) return;
     try {
       await navigator.clipboard.writeText(output);
+          showToast("Copied to clipboard!", "success");
       setCopied(true);
       
       setTimeout(() => setCopied(false), 2000);

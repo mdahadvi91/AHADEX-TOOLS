@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Outlet, useLocation } from "react-router-dom";
+import { ToastContainer } from "@components/common/ToastContainer";
 import { Header } from "./Header";
 import { Footer } from "./Footer";
 import { LeftSidebar } from "./LeftSidebar";
@@ -11,6 +12,7 @@ import { GoogleAnalyticsLoader } from "@components/analytics/GoogleAnalyticsLoad
 import { usePageTracking } from "@hooks/usePageTracking";
 
 export function MainLayout() {
+
   const [leftOpen, setLeftOpen] = useState(false);
   const [rightOpen, setRightOpen] = useState(false);
   const location = useLocation();
@@ -73,6 +75,7 @@ export function MainLayout() {
         <PageTransition>
           <Outlet />
         </PageTransition>
+            <ToastContainer />
       </main>
 
       {showBottomAd && (
