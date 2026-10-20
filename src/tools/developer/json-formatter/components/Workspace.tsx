@@ -1,13 +1,11 @@
 import {useMemo, useState, useEffect} from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import {
-  Download,
+import {Download,
   Trash2,
   AlertCircle,
   CheckCircle2,
   Wand2,
-  Minimize2,
-} from "lucide-react";
+  Minimize2, Sparkles} from "lucide-react";
 import { useLanguage } from "@contexts/LanguageContext";
 import { cn } from "@lib/cn";
 import {
@@ -126,6 +124,7 @@ export function Workspace() {
       if (e.key === "Escape") setInput("");
     };
     window.addEventListener("keydown", handleEsc);
+
     return () => window.removeEventListener("keydown", handleEsc);
   }, []);
     return () => clearTimeout(timer);
@@ -242,6 +241,29 @@ export function Workspace() {
       </WorkspacePanel>
 
       {/* Input */}
+      {/* Load Example Button */}
+
+      <div className="flex justify-end mb-2">
+
+        <button
+
+          type="button"
+
+          onClick={loadSample}
+
+          className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-silk-rose/10 border border-silk-rose/25 text-silk-rose text-[11px] font-bold hover:bg-silk-rose/20 transition-colors"
+
+        >
+
+          <Sparkles className="w-3.5 h-3.5" />
+
+          Load Example
+
+        </button>
+
+      </div>
+
+
       <TextPanel
         label={bn ? "ইনপুট JSON" : "JSON input"}
         value={input}
