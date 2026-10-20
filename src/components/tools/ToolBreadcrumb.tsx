@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import { FloatingShare } from "@components/common/FloatingShare";
 import { motion } from "framer-motion";
 import { ChevronRight, Home } from "lucide-react";
 import { useLanguage } from "@contexts/LanguageContext";
@@ -33,6 +34,7 @@ export function ToolBreadcrumb({
   items.push({ label: toolName });
 
   return (
+    <>
     <motion.nav
       initial={{ opacity: 0, y: -6 }}
       animate={{ opacity: 1, y: 0 }}
@@ -84,5 +86,7 @@ export function ToolBreadcrumb({
         );
       })}
     </motion.nav>
+    <FloatingShare />
+    </>
   );
 }
