@@ -4,8 +4,9 @@ import { useLanguage } from "@contexts/LanguageContext";
 import { cn } from "@lib/cn";
 import { CV_TEMPLATES, SAMPLE_CV_DATA } from "../data";
 import { TemplatePreview } from "./TemplatePreview";
-import { ProfessionModal } from "./ProfessionModal";
+import { ProfessionModal, PROFESSION_NAMES } from "./ProfessionModal";
 import { AutoEditWizard } from "./AutoEditWizard";
+import { TemplatePreviewModal } from "./TemplatePreviewModal";
 import { PROFESSION_PRESETS } from "../presets";
 
 export function TemplateGallery() {
@@ -13,6 +14,7 @@ export function TemplateGallery() {
   const [selectedTemplate, setSelectedTemplate] = useState<string | null>(null);
   const [selectedProfession, setSelectedProfession] = useState<string | null>(null);
   const [showAutoWizard, setShowAutoWizard] = useState(false);
+  const [previewTemplateId, setPreviewTemplateId] = useState<string | null>(null);
   const { language } = useLanguage();
 
   return (
@@ -35,7 +37,7 @@ export function TemplateGallery() {
           <button
             key={tpl.id}
             type="button"
-            onClick={() => setSelectedTemplate(tpl.id)}
+            onClick={() => setPreviewTemplateId(tpl.id)}
             className={cn(
               "group flex flex-col items-center gap-3 p-4 rounded-2xl text-left",
               "bg-white/70 dark:bg-dark-surface/70 backdrop-blur-xl",
@@ -70,6 +72,17 @@ export function TemplateGallery() {
           : "More templates coming soon."}
       </p>
     
+      
+      <TemplatePreviewModal
+        isOpen={previewTemplateId !== null}
+        templateId={previewTemplateId}
+        onClose={() => setPreviewTemplateId(null)}
+        onUseTemplate={() => {
+          setSelectedTemplate(previewTemplateId);
+          setPreviewTemplateId(null);
+        }}
+      />
+
       <ProfessionModal
         isOpen={selectedTemplate !== null}
         onClose={() => setSelectedTemplate(null)}
@@ -95,12 +108,24 @@ export function TemplateGallery() {
           templateId={selectedTemplate}
           data={
             selectedProfession && PROFESSION_PRESETS[selectedProfession]
-              ? { ...SAMPLE_CV_DATA, ...PROFESSION_PRESETS[selectedProfession] }
+              ? { 
+                  ...SAMPLE_CV_DATA, 
+                  ...PROFESSION_PRESETS[selectedProfession],
+                  personal: {
+                    ...SAMPLE_CV_DATA.personal,
+                    jobTitle: PROFESSION_NAMES[selectedProfession as keyof typeof PROFESSION_NAMES] || "Professional"
+                  }
+                }
               : SAMPLE_CV_DATA
           }
           onFinish={(finalData) => {
-            // Save the edited data to sessionStorage to load in the real editor
-            sessionStorage.setItem("cv_draft_override", JSON.stringify(finalData));
+            sessionStorage.removeItem("cv_draft_override");
+            try {
+              sessionStorage.setItem("cv_draft_override", JSON.stringify(finalData));
+            } catch (e) {
+              console.error("Storage quota exceeded", e);
+              alert("Something went wrong while saving your data. Please try a smaller photo.");
+            }
             navigate(`/tools/cv-builder/edit/${selectedTemplate}`);
           }}
         />

@@ -1,4 +1,6 @@
 import type { CVData, CVTemplateMeta } from "./types";
+import { ExecutiveElite } from "./templates/ExecutiveElite";
+import { CreativeCanvas } from "./templates/CreativeCanvas";
 import { ATSCleanline } from "./templates/ATSCleanline";
 import { ExecutiveMonolith } from "./templates/ExecutiveMonolith";
 import { EditorialColumn } from "./templates/EditorialColumn";
@@ -24,6 +26,26 @@ import {
 } from "./constants";
 
 export const CV_TEMPLATES: CVTemplateMeta[] = [
+
+  {
+    id: "cv-executive-elite",
+    name: "Executive Elite",
+    nameBn: "এক্সিকিউটিভ এলিট",
+    category: "executive",
+    description: "A bold navy sidebar layout perfect for senior management and corporate roles.",
+    descriptionBn: "সিনিয়র ম্যানেজমেন্ট এবং কর্পোরেট ভূমিকার জন্য উপযুক্ত একটি সাহসী নেভি সাইডবার লেআউট।",
+    Component: ExecutiveElite,
+  },
+  {
+    id: "cv-creative-canvas",
+    name: "Creative Canvas",
+    nameBn: "ক্রিয়েটিভ ক্যানভাস",
+    category: "creative",
+    description: "A modern dark and orange layout designed for creatives and designers.",
+    descriptionBn: "ক্রিয়েটিভ এবং ডিজাইনারদের জন্য ডিজাইন করা একটি আধুনিক ডার্ক এবং কমলা লেআউট।",
+    Component: CreativeCanvas,
+  },
+
   { id: "cv-ats-cleanline", name: "ATS Cleanline", nameBn: "ATS ক্লিনলাইন", category: "ats", description: "Extremely clean, single-column, ATS-friendly layout.", descriptionBn: "অত্যন্ত পরিষ্কার, ATS-বান্ধব।", Component: ATSCleanline },
   { id: "cv-executive-monolith", name: "Executive Monolith", nameBn: "এক্সিকিউটিভ মনোলিথ", category: "executive", description: "Premium executive layout with identity rail.", descriptionBn: "প্রিমিয়াম এক্সিকিউটিভ লেআউট।", Component: ExecutiveMonolith },
   { id: "cv-editorial-column", name: "Editorial Column", nameBn: "এডিটোরিয়াল কলাম", category: "editorial", description: "Magazine-inspired asymmetric layout.", descriptionBn: "ম্যাগাজিন-অনুপ্রাণিত।", Component: EditorialColumn },
@@ -53,10 +75,10 @@ export function getCVTemplate(id: string): CVTemplateMeta {
 }
 
 export const SAMPLE_CV_DATA: CVData = {
-  personal: { fullName: "Imran Hossain", jobTitle: "Software Engineer", email: "imran@example.com", phone: "+880 1700 000000", location: "Dhaka, Bangladesh", website: "imranhossain.dev", linkedin: "linkedin.com/in/imranhossain", github: "github.com/imranhossain", photoDataUrl: null },
+  personal: { fullName: "Mohammad Ahad", jobTitle: "Web Developer", email: "mdahadvi91@gmail.com", phone: "+971507975837", location: "Dubai, UAE", website: "ahadex.fun", linkedin: "linkedin.com/in/mohammad-ahad", github: "github.com/mdahadvi91", photoDataUrl: null },
   summary: "Software engineer with 5 years of experience building web applications, internal tools, and API integrations. Focused on shipping reliable, maintainable code and improving developer workflows.",
   experience: [
-    { id: "exp-1", company: "CloudBridge", position: "Software Engineer", location: "Dhaka", startDate: "2021-01", endDate: "", current: true, bullets: ["Developed production web applications using React and TypeScript.", "Improved API response handling and reduced error rate by 30%.", "Mentored two junior developers on code review practices."] },
+    { id: "exp-1", company: "CloudBridge", position: "Web Developer", location: "Dhaka", startDate: "2021-01", endDate: "", current: true, bullets: ["Developed production web applications using React and TypeScript.", "Improved API response handling and reduced error rate by 30%.", "Mentored two junior developers on code review practices."] },
     { id: "exp-2", company: "ByteWorks", position: "Junior Developer", location: "Dhaka", startDate: "2019-06", endDate: "2020-12", current: false, bullets: ["Built internal dashboards for operations teams.", "Wrote integration tests for core payment flows."] },
   ],
   education: [{ id: "edu-1", institution: "Dhaka University", degree: "BSc", field: "Computer Science", location: "Dhaka", startDate: "2015", endDate: "2019", description: "" }],

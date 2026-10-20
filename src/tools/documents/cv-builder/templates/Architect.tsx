@@ -18,7 +18,8 @@ export function Architect({ data }: CVTemplateProps) {
     <>
       <style>{`
         .cv-ar { font-family: ${fontStack}; font-size: ${settings.fontSize}pt; color:#1A1A1A; line-height:1.45; background:#FFF; }
-        .cv-ar__head { display:grid; grid-template-columns: 1fr auto; gap: 5mm; padding-bottom: 4mm; border-bottom: 2px solid ${accent}; margin-bottom: 5mm; }
+        .cv-ar__head { display:grid; gap: 5mm; padding-bottom: 4mm; border-bottom: 2px solid ${accent}; margin-bottom: 5mm; align-items: center; }
+        .cv-ar__photo { width: 24mm; height: 24mm; object-fit: cover; border-radius: 50%; border: 2px solid ${accent}; }
         .cv-ar__name { font-size: 1.9em; font-weight:800; letter-spacing:0.02em; margin:0 0 0.5mm; color:#0F0F0F; text-transform: uppercase; }
         .cv-ar__role { font-size: 0.88em; color:${accent}; font-weight:600; letter-spacing:0.15em; text-transform: uppercase; margin:0; }
         .cv-ar__meta { font-size: 0.76em; color:#6B6B6B; text-align:right; line-height:1.7; font-family: 'JetBrains Mono', monospace; }
@@ -45,9 +46,14 @@ export function Architect({ data }: CVTemplateProps) {
       `}</style>
 
       <div className="cv-ar">
-        <header className="cv-ar__head">
-          <div>
-            <h1 className="cv-ar__name">{personal.fullName || "Your Name"}</h1>
+        <header className="cv-ar__head" style={{ gridTemplateColumns: (personal.photoDataUrl && settings.photoEnabled) ? "auto 1fr auto" : "1fr auto" }}>
+                        {personal.photoDataUrl && settings.photoEnabled && (
+                          <div>
+                            <img src={personal.photoDataUrl} alt={personal.fullName} className="cv-ar__photo" />
+                          </div>
+                        )}
+                        <div>
+                          <h1 className="cv-ar__name">{personal.fullName || "Your Name"}</h1>
             {personal.jobTitle && <p className="cv-ar__role">{personal.jobTitle}</p>}
           </div>
           <div className="cv-ar__meta">

@@ -1,88 +1,55 @@
 import { useEffect, useMemo, useState } from "react";
 import { useParams, Link } from "react-router-dom";
-import {
-  ArrowLeft, User, FileText, Briefcase, GraduationCap,
-  Wrench, FolderKanban, Palette, Award, Languages as LangIcon,
-  Heart, Users, RotateCcw, X, Sparkles,
-} from "lucide-react";
+import { ArrowLeft, RotateCcw, X } from "lucide-react";
 import { useLanguage } from "@contexts/LanguageContext";
 import { cn } from "@lib/cn";
-import { PersonalForm } from "../components/PersonalForm";
-import { SummaryForm } from "../components/SummaryForm";
-import { ExperienceForm } from "../components/ExperienceForm";
-import { EducationForm } from "../components/EducationForm";
-import { SkillsForm } from "../components/SkillsForm";
-import { ProjectsForm } from "../components/ProjectsForm";
-import { CertificationsForm } from "../components/CertificationsForm";
-import { LanguagesForm } from "../components/LanguagesForm";
-import { AwardsForm } from "../components/AwardsForm";
-import { VolunteerForm } from "../components/VolunteerForm";
-import { ReferencesForm } from "../components/ReferencesForm";
-import { DesignPanel } from "../components/DesignPanel";
+
+import { getCVTemplate, SAMPLE_CV_DATA } from "../data";
+import { PROFESSION_PRESETS } from "../presets";
+import { useDraftAutoSave, loadDraft, clearDraft } from "../logic/draftRecovery";
+import type { CVData } from "../types";
+
 import { CVPreview } from "../components/CVPreview";
 import { PrintRoot } from "../components/PrintRoot";
 import { ExportPanel } from "../components/ExportPanel";
-import { SavePanel } from "../components/SavePanel";
-import { getCVTemplate, SAMPLE_CV_DATA } from "../data";
-import { PROFESSION_PRESETS } from "../presets";
-import { updatePersonal, updateSummary } from "../logic/stateHelpers";
-import { useDraftAutoSave, loadDraft, clearDraft } from "../logic/draftRecovery";
-import type {
-  CVData, CVExperience, CVEducation, CVSkill, CVProject,
-  CVCertification, CVLanguage, CVAward, CVVolunteer, CVReference, CVSettings,
-} from "../types";
-
-type SectionId =
-  | "personal" | "summary" | "experience" | "education" | "skills"
-  | "projects" | "certifications" | "languages" | "awards" | "volunteer"
-  | "references" | "design" | "save";
-
-const SECTIONS: {
-  id: SectionId;
-  icon: typeof User;
-  labelEn: string;
-  labelBn: string;
-}[] = [
-  { id: "personal", icon: User, labelEn: "Personal", labelBn: "ব্যক্তিগত" },
-  { id: "summary", icon: FileText, labelEn: "Summary", labelBn: "সারাংশ" },
-  { id: "experience", icon: Briefcase, labelEn: "Experience", labelBn: "অভিজ্ঞতা" },
-  { id: "education", icon: GraduationCap, labelEn: "Education", labelBn: "শিক্ষা" },
-  { id: "skills", icon: Wrench, labelEn: "Skills", labelBn: "স্কিল" },
-  { id: "projects", icon: FolderKanban, labelEn: "Projects", labelBn: "প্রজেক্ট" },
-  { id: "certifications", icon: Award, labelEn: "Certs", labelBn: "সার্টিফিকেট" },
-  { id: "languages", icon: LangIcon, labelEn: "Languages", labelBn: "ভাষা" },
-  { id: "awards", icon: Sparkles, labelEn: "Awards", labelBn: "পুরস্কার" },
-  { id: "volunteer", icon: Heart, labelEn: "Volunteer", labelBn: "স্বেচ্ছাসেবক" },
-  { id: "references", icon: Users, labelEn: "References", labelBn: "রেফারেন্স" },
-  { id: "design", icon: Palette, labelEn: "Design", labelBn: "ডিজাইন" },
-];
 
 export function CVEditor() {
   const { templateId } = useParams<{ templateId: string }>();
   const { language, t } = useLanguage();
+  const template = useMemo(() => getCVTemplate(templateId ?? "cv-ats-cleanline"), [templateId]);
 
-  const template = useMemo(
-    () => getCVTemplate(templateId ?? "cv-ats-cleanline"),
-    [templateId]
-  );
-
+    const draftOverrideStr = sessionStorage.getItem("cv_draft_override");
   const [data, setData] = useState<CVData>(() => {
-    // Check if user selected a preset from the gallery
-    const presetKey = sessionStorage.getItem("cv_preset");
     let baseData = {
       ...SAMPLE_CV_DATA,
       settings: { ...SAMPLE_CV_DATA.settings, templateId: template.id },
     };
 
+    if (draftOverrideStr) {
+      try {
+        const parsed = JSON.parse(draftOverrideStr);
+        return {
+          ...baseData,
+          ...parsed,
+          settings: { 
+            ...baseData.settings, 
+            ...(parsed.settings || {}), 
+            photoEnabled: parsed.personal?.photoDataUrl ? true : baseData.settings.photoEnabled 
+          },
+          personal: { ...baseData.personal, ...(parsed.personal || {}) },
+        };
+      } catch (e) {
+        console.error("Failed to parse wizard data", e);
+      }
+    }
+
+    const presetKey = sessionStorage.getItem("cv_preset");
     if (presetKey && PROFESSION_PRESETS[presetKey]) {
       const preset = PROFESSION_PRESETS[presetKey];
-      // Clear session storage so it doesn't override on a refresh
       sessionStorage.removeItem("cv_preset");
-      
       return {
         ...baseData,
         ...preset,
-        // Ensure settings are always from baseData
         settings: baseData.settings,
       };
     }
@@ -90,9 +57,9 @@ export function CVEditor() {
     return baseData;
   });
 
+  const [isFromWizard] = useState(!!draftOverrideStr);
+
   const [cvId, setCvId] = useState<string | null>(null);
-  const [cvName, setCvName] = useState<string>("Untitled CV");
-  const [activeSection, setActiveSection] = useState<SectionId>("personal");
   const [error, setError] = useState<string | null>(null);
   const [recoveredDraft, setRecoveredDraft] = useState<{
     data: CVData;
@@ -101,39 +68,55 @@ export function CVEditor() {
   } | null>(null);
 
   useEffect(() => {
+    if (isFromWizard) {
+      sessionStorage.removeItem("cv_draft_override");
+      return;
+    }
     const draft = loadDraft();
     if (!draft) return;
     const hasContent =
-      draft.data.personal.fullName ||
+      draft.data.personal?.fullName ||
       draft.data.summary ||
-      draft.data.experience.length > 0 ||
-      draft.data.education.length > 0;
-    if (!hasContent) { clearDraft(); return; }
+      draft.data.experience?.length > 0 ||
+      draft.data.education?.length > 0;
+    if (!hasContent) {
+      clearDraft();
+      return;
+    }
     setRecoveredDraft(draft);
-  }, []);
+  }, [isFromWizard]);
 
   useDraftAutoSave({ data, cvId, enabled: !recoveredDraft });
 
   const acceptRecovery = () => {
     if (!recoveredDraft) return;
-    setData(recoveredDraft.data);
+    setData({
+      ...SAMPLE_CV_DATA,
+      ...recoveredDraft.data,
+      settings: { ...SAMPLE_CV_DATA.settings, ...(recoveredDraft.data.settings || {}), templateId: template.id }
+    });
     setCvId(recoveredDraft.cvId);
     setRecoveredDraft(null);
     clearDraft();
   };
 
-  const dismissRecovery = () => { setRecoveredDraft(null); clearDraft(); };
+  const dismissRecovery = () => {
+    setRecoveredDraft(null);
+    clearDraft();
+  };
 
-  const updateSettings = (patch: Partial<CVSettings>) =>
-    setData((d) => ({ ...d, settings: { ...d.settings, ...patch } }));
-
-  const updatePhoto = (photoDataUrl: string | null) =>
-    setData((d) => ({ ...d, personal: { ...d.personal, photoDataUrl } }));
+  if (!template) {
+    return (
+      <div className="flex items-center justify-center min-h-screen">
+        <p className="text-light-text dark:text-dark-text">Template not found.</p>
+      </div>
+    );
+  }
 
   return (
-    <div className="mx-auto max-w-[1600px] px-3 sm:px-5 lg:px-8 py-4 sm:py-6">
+    <div className="mx-auto max-w-[1200px] px-3 sm:px-5 lg:px-8 py-4 sm:py-8">
       {recoveredDraft && (
-        <div className="mb-4 rounded-2xl bg-gradient-to-r from-silk-rose/15 to-silk-gold/10 border border-silk-rose/30 p-3 sm:p-4 flex items-start gap-3">
+        <div className="mb-6 rounded-2xl bg-gradient-to-r from-silk-rose/15 to-silk-gold/10 border border-silk-rose/30 p-3 sm:p-4 flex items-start gap-3">
           <RotateCcw className="w-4 h-4 text-silk-rose shrink-0 mt-0.5" />
           <div className="flex-1">
             <p className="text-[12px] font-semibold text-light-text dark:text-dark-text mb-0.5">
@@ -154,7 +137,7 @@ export function CVEditor() {
         </div>
       )}
 
-      <div className="flex items-center justify-between gap-3 mb-4 flex-wrap">
+      <div className="flex items-center justify-between gap-3 mb-6 flex-wrap">
         <Link to="/tools/cv-builder" className="inline-flex items-center gap-1.5 text-xs sm:text-sm font-medium text-light-textSecondary dark:text-dark-textSecondary hover:text-silk-rose transition-colors">
           <ArrowLeft className="w-3.5 h-3.5" />
           {t.common.back}
@@ -165,101 +148,25 @@ export function CVEditor() {
         </div>
       </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-[420px_1fr] gap-4 lg:gap-6 items-start">
-        <aside className="rounded-2xl bg-white/70 dark:bg-dark-surface/70 backdrop-blur-xl border border-silk-rose/20 p-4 lg:sticky lg:top-24 lg:max-h-[calc(100vh-8rem)] lg:overflow-y-auto space-y-4">
-          <div className="flex flex-wrap gap-1.5">
-            {SECTIONS.map((s) => {
-              const Icon = s.icon;
-              const active = activeSection === s.id;
-              return (
-                <button
-                  key={s.id}
-                  type="button"
-                  onClick={() => setActiveSection(s.id)}
-                  className={cn(
-                    "inline-flex items-center gap-1.5 px-2.5 py-1.5 rounded-full text-[10px] sm:text-[11px] font-medium transition-all",
-                    active
-                      ? "bg-gradient-to-r from-silk-rose to-silk-wine-deep text-white shadow-silk-soft"
-                      : "bg-silk-rose/8 border border-silk-rose/25 text-light-textSecondary dark:text-dark-textSecondary hover:border-silk-rose/50"
-                  )}
-                >
-                  <Icon className="w-3 h-3" />
-                  {language === "bn" ? s.labelBn : s.labelEn}
-                </button>
-              );
-            })}
-            <button
-              type="button"
-              onClick={() => setActiveSection("save")}
-              className={cn(
-                "inline-flex items-center gap-1.5 px-2.5 py-1.5 rounded-full text-[10px] sm:text-[11px] font-medium transition-all ml-auto",
-                activeSection === "save"
-                  ? "bg-gradient-to-r from-silk-rose to-silk-wine-deep text-white shadow-silk-soft"
-                  : "bg-silk-rose/8 border border-silk-rose/25 text-light-textSecondary dark:text-dark-textSecondary hover:border-silk-rose/50"
-              )}
-            >
-              {language === "bn" ? "সেভ" : "Save"}
-            </button>
+      <div className="flex flex-col items-center gap-6">
+        <div className="w-full rounded-2xl bg-silk-rose/5 border border-silk-rose/15 p-3 sm:p-6 flex flex-col items-center">
+          <div className="w-full mb-3 flex items-center justify-between gap-2">
+            <span className="text-[10px] uppercase tracking-[0.2em] font-semibold text-silk-wine/70 dark:text-silk-rose/60">
+              {language === "bn" ? "চূড়ান্ত প্রিভিউ" : "Final Preview"}
+            </span>
+            <span className="text-[10px] text-light-textSecondary dark:text-dark-textSecondary">
+              {data.settings.pageSize} · {data.settings.fontFamily} · {data.settings.fontSize}pt
+            </span>
           </div>
 
-          <div className="pt-1">
-            {activeSection === "personal" && (
-              <PersonalForm personal={data.personal} onChange={(patch) => setData((d) => updatePersonal(d, patch))} />
-            )}
-            {activeSection === "summary" && (
-              <SummaryForm value={data.summary} onChange={(v) => setData((d) => updateSummary(d, v))} />
-            )}
-            {activeSection === "experience" && (
-              <ExperienceForm items={data.experience} onChange={(next: CVExperience[]) => setData((d) => ({ ...d, experience: next }))} />
-            )}
-            {activeSection === "education" && (
-              <EducationForm items={data.education} onChange={(next: CVEducation[]) => setData((d) => ({ ...d, education: next }))} />
-            )}
-            {activeSection === "skills" && (
-              <SkillsForm items={data.skills} onChange={(next: CVSkill[]) => setData((d) => ({ ...d, skills: next }))} />
-            )}
-            {activeSection === "projects" && (
-              <ProjectsForm items={data.projects} onChange={(next: CVProject[]) => setData((d) => ({ ...d, projects: next }))} />
-            )}
-            {activeSection === "certifications" && (
-              <CertificationsForm items={data.certifications} onChange={(next: CVCertification[]) => setData((d) => ({ ...d, certifications: next }))} />
-            )}
-            {activeSection === "languages" && (
-              <LanguagesForm items={data.languages} onChange={(next: CVLanguage[]) => setData((d) => ({ ...d, languages: next }))} />
-            )}
-            {activeSection === "awards" && (
-              <AwardsForm items={data.awards} onChange={(next: CVAward[]) => setData((d) => ({ ...d, awards: next }))} />
-            )}
-            {activeSection === "volunteer" && (
-              <VolunteerForm items={data.volunteer} onChange={(next: CVVolunteer[]) => setData((d) => ({ ...d, volunteer: next }))} />
-            )}
-            {activeSection === "references" && (
-              <ReferencesForm items={data.references} onChange={(next: CVReference[]) => setData((d) => ({ ...d, references: next }))} />
-            )}
-            {activeSection === "design" && (
-              <DesignPanel data={data} onSettingsChange={updateSettings} onPersonalPhotoChange={updatePhoto} onError={setError} />
-            )}
-            {activeSection === "save" && (
-              <SavePanel data={data} cvId={cvId} cvName={cvName} onChangeName={setCvName} onCvIdChange={setCvId} onDataChange={setData} onError={setError} />
-            )}
+          <div className="w-full overflow-x-auto flex justify-center pb-4">
+             <CVPreview Template={template.Component} data={data} scale={0.85} />
           </div>
-        </aside>
+        </div>
 
-        <main className="space-y-4">
-          <div className="rounded-2xl bg-silk-rose/5 border border-silk-rose/15 p-3 sm:p-6">
-            <div className="mb-3 flex items-center justify-between gap-2">
-              <span className="text-[10px] uppercase tracking-[0.2em] font-semibold text-silk-wine/70 dark:text-silk-rose/60">
-                {language === "bn" ? "লাইভ প্রিভিউ" : "Live preview"}
-              </span>
-              <span className="text-[10px] text-light-textSecondary dark:text-dark-textSecondary">
-                {data.settings.pageSize} · {data.settings.fontFamily} · {data.settings.fontSize}pt
-              </span>
-            </div>
-            <CVPreview Template={template.Component} data={data} scale={0.72} />
-          </div>
-
+        <div className="w-full max-w-md">
           <ExportPanel data={data} />
-        </main>
+        </div>
       </div>
 
       <PrintRoot Template={template.Component} data={data} />
