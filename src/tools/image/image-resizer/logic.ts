@@ -111,7 +111,7 @@ export function downloadFile(item: ResizedFile): void {
   const baseName = item.originalName.replace(/\.[^.]+$/, "");
   const a = document.createElement("a");
   a.href = item.resizedUrl;
-  a.download = `${baseName}-${item.newWidth}x${item.newHeight}.${ext}`;
+  a.download = `${baseName}-${item.newWidth}x${item.newHeight}${ext}`;
   document.body.appendChild(a);
   a.click();
   document.body.removeChild(a);

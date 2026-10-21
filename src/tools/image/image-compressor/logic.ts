@@ -97,7 +97,7 @@ export function downloadFile(item: CompressedFile): void {
   const baseName = item.originalName.replace(/\.[^.]+$/, "");
   const a = document.createElement("a");
   a.href = item.compressedUrl;
-  a.download = `${baseName}-compressed.${ext}`;
+  a.download = `${baseName}-compressed${ext}`;
   document.body.appendChild(a);
   a.click();
   document.body.removeChild(a);

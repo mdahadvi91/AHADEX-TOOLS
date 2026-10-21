@@ -102,7 +102,7 @@ export function downloadFile(item: CroppedFile): void {
   const baseName = item.originalName.replace(/\.[^.]+$/, "");
   const a = document.createElement("a");
   a.href = item.croppedUrl;
-  a.download = `${baseName}-cropped.${ext}`;
+  a.download = `${baseName}-cropped${ext}`;
   document.body.appendChild(a);
   a.click();
   document.body.removeChild(a);
