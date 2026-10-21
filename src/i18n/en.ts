@@ -85,7 +85,7 @@ export const en = {
     whyTitle1: "Built the way tools",
     whyTitle2: "should be",
     whyPrivateTitle: "Files stay on your device",
-    whyPrivateDesc: "Files are not uploaded to any server. No uploads, no tracking, ever.",
+    whyPrivateDesc: "Files are not uploaded to any server. No uploads, files stay on your device, ever.",
     whyFastTitle: "Lightning fast",
     whyFastDesc: "Everything runs in your browser. No server round trips.",
     whySimpleTitle: "Beautifully simple",

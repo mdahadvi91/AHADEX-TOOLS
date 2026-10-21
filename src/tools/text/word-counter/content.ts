@@ -2,7 +2,7 @@ export const wordCounterContent = {
   en: {
     heroTag: "Word Counter",
     heroSubtitle:
-      "Count words, characters, sentences, and paragraphs in real time — right in your browser. See reading time, speaking time, keyword density, and average word length as you type. No accounts, no tracking, nothing uploaded.",
+      "Count words, characters, sentences, and paragraphs in real time — right in your browser. See reading time, speaking time, keyword density, and average word length as you type. No accounts, files stay on your device, nothing uploaded.",
     heroStats: [
       { value: "Live", label: "Update" },
       { value: "100%", label: "Private" },

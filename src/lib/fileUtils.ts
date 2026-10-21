@@ -1,50 +1,21 @@
-export function readFileAsText(file: File): Promise<string> {
-  return new Promise((resolve, reject) => {
-    const reader = new FileReader();
-    reader.onload = () => resolve(String(reader.result ?? ""));
-    reader.onerror = () => reject(reader.error);
-    reader.readAsText(file);
-  });
+export function getExtensionFromMime(mime: string): string {
+  if (mime.includes("jpeg") || mime.includes("jpg")) return ".jpg";
+  if (mime.includes("png")) return ".png";
+  if (mime.includes("webp")) return ".webp";
+  if (mime.includes("gif")) return ".gif";
+  return ".jpg"; // fallback
 }
 
-export function readFileAsDataURL(file: File): Promise<string> {
-  return new Promise((resolve, reject) => {
-    const reader = new FileReader();
-    reader.onload = () => resolve(String(reader.result ?? ""));
-    reader.onerror = () => reject(reader.error);
-    reader.readAsDataURL(file);
-  });
+export function replaceExtension(filename: string, mime: string): string {
+  const base = filename.replace(/\.[^.]+$/, "");
+  return base + getExtensionFromMime(mime);
 }
 
 export function readFileAsArrayBuffer(file: File): Promise<ArrayBuffer> {
   return new Promise((resolve, reject) => {
     const reader = new FileReader();
     reader.onload = () => resolve(reader.result as ArrayBuffer);
-    reader.onerror = () => reject(reader.error);
+    reader.onerror = reject;
     reader.readAsArrayBuffer(file);
   });
-}
-
-export function loadImage(src: string): Promise<HTMLImageElement> {
-  return new Promise((resolve, reject) => {
-    const img = new Image();
-    img.onload = () => resolve(img);
-    img.onerror = () => reject(new Error("Failed to load image"));
-    img.src = src;
-  });
-}
-
-export function getFileExtension(filename: string): string {
-  const parts = filename.split(".");
-  return parts.length > 1 ? parts.pop()!.toLowerCase() : "";
-}
-
-export function getFileNameWithoutExtension(filename: string): string {
-  return filename.replace(/\.[^/.]+$/, "");
-}
-
-export function buildFileName(original: string, suffix: string, newExt: string): string {
-  const base = getFileNameWithoutExtension(original);
-  const ext = newExt.startsWith(".") ? newExt : `.${newExt}`;
-  return `${base}${suffix}${ext}`;
 }
