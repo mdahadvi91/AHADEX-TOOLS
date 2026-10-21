@@ -11,6 +11,8 @@ import { ThemeProvider } from "@contexts/ThemeContext";
 import { LanguageProvider } from "@contexts/LanguageContext";
 import { Loader } from "@components/common/Loader";
 import { ToolSkeleton } from "@components/common/ToolSkeleton";
+import { ConsentModeInit } from "@components/consent/ConsentModeInit";
+import { CookieConsentBanner } from "@components/consent/CookieConsentBanner";
 
 /* ------------------------------------------------------------------
  * Pages
@@ -120,7 +122,10 @@ export default function App() {
       <LanguageProvider>
           <BrowserRouter>
             <ScrollToTop />
-            <Routes>
+            <ConsentModeInit />
+      <CookieConsentBanner />
+      
+      <Routes>
               <Route element={<MainLayout />}>
                 {/* Home */}
                 <Route
