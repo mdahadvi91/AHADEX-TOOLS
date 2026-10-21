@@ -1,3 +1,4 @@
+import { getExtensionFromMime } from "@lib/fileUtils";
 import { announceDownload } from "@lib/speech";
 import type { CroppedFile, CropRect } from "./types";
 
@@ -97,7 +98,7 @@ export async function cropImage(
 }
 
 export function downloadFile(item: CroppedFile): void {
-  const ext = item.originalName.split(".").pop() || "jpg";
+  const ext = getExtensionFromMime(item.croppedBlob.type);
   const baseName = item.originalName.replace(/\.[^.]+$/, "");
   const a = document.createElement("a");
   a.href = item.croppedUrl;

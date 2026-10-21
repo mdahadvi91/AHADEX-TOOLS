@@ -6,11 +6,6 @@ export function getExtensionFromMime(mime: string): string {
   return ".jpg"; // fallback
 }
 
-export function replaceExtension(filename: string, mime: string): string {
-  const base = filename.replace(/\.[^.]+$/, "");
-  return base + getExtensionFromMime(mime);
-}
-
 export function readFileAsArrayBuffer(file: File): Promise<ArrayBuffer> {
   return new Promise((resolve, reject) => {
     const reader = new FileReader();

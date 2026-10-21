@@ -1,3 +1,4 @@
+import { getExtensionFromMime } from "@lib/fileUtils";
 import { announceDownload } from "@lib/speech";
 import type { CompressedFile } from "./types";
 
@@ -92,7 +93,7 @@ export async function compressImage(
 }
 
 export function downloadFile(item: CompressedFile): void {
-  const ext = item.originalName.split(".").pop() || "jpg";
+  const ext = getExtensionFromMime(item.compressedBlob.type);
   const baseName = item.originalName.replace(/\.[^.]+$/, "");
   const a = document.createElement("a");
   a.href = item.compressedUrl;
