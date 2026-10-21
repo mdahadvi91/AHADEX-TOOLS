@@ -8,6 +8,7 @@ import { RightSidebar } from "./RightSidebar";
 import { PageTransition } from "./PageTransition";
 import { CinematicBackground } from "@components/background";
 import { BackButton } from "@components/common/BackButton";
+import { AdSenseSlot } from "@components/ads/AdSenseSlot";
 import { GoogleAnalyticsLoader } from "@components/analytics/GoogleAnalyticsLoader";
 import { usePageTracking } from "@hooks/usePageTracking";
 
@@ -65,7 +66,8 @@ export function MainLayout() {
 
       {showTopAd && (
         <div className="max-w-5xl mx-auto px-4 mb-4">
-          </div>
+          <AdSenseSlot slot="TOP_BANNER" label="Advertisement" />
+        </div>
       )}
 
       <main
@@ -80,7 +82,8 @@ export function MainLayout() {
 
       {showBottomAd && (
         <div className="max-w-5xl mx-auto px-4 mt-8 mb-4">
-          </div>
+          <AdSenseSlot slot="BOTTOM_BANNER" label="Advertisement" />
+        </div>
       )}
 
       <Footer />
