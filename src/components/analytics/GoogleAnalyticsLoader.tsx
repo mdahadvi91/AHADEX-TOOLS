@@ -1,17 +1,5 @@
-import { useEffect } from "react";
-import { applyStoredConsent } from "@lib/consent";
-
-/* ============================================================
- * Google Analytics 4 Loader
- * ------------------------------------------------------------
- * Loads gtag.js when:
- *   1. VITE_GA_MEASUREMENT_ID is set (G-XXXXXXXXXX)
- *   2. VITE_ENABLE_ANALYTICS is "true"
- *
- * Consent Mode v2 defaults are set inline in index.html.
- * After gtag loads, we re-apply any stored user choice.
- * Idempotent — safe to mount multiple times.
- * ============================================================ */
+import { useEffect, useState } from "react";
+import { subscribeToConsent, applyStoredConsent } from "@lib/consent";
 
 declare global {
   interface Window {
@@ -21,15 +9,26 @@ declare global {
 }
 
 export function GoogleAnalyticsLoader() {
+  const [hasAnalyticsConsent, setHasAnalyticsConsent] = useState(false);
+
+  // Subscribe to consent changes
+  useEffect(() => {
+    const unsubscribe = subscribeToConsent((state) => {
+      setHasAnalyticsConsent(!!state?.analytics);
+    });
+    return unsubscribe;
+  }, []);
+
   useEffect(() => {
     const enabled = import.meta.env.VITE_ENABLE_ANALYTICS === "true";
     const measurementId = (
       import.meta.env.VITE_GA_MEASUREMENT_ID as string | undefined
     )?.trim();
 
-    if (!enabled || !measurementId) return;
+    // 1. If not configured, or user hasn't consented to analytics, do NOTHING.
+    if (!enabled || !measurementId || !hasAnalyticsConsent) return;
 
-    // Initialize dataLayer + gtag stub (harmless if already set)
+    // 2. Initialize dataLayer + gtag stub
     window.dataLayer = window.dataLayer || [];
     if (typeof window.gtag !== "function") {
       window.gtag = function gtag(...args: unknown[]) {
@@ -37,7 +36,7 @@ export function GoogleAnalyticsLoader() {
       };
     }
 
-    // Already loaded?
+    // 3. If already loaded, just apply consent again (safety)
     if (
       document.querySelector('script[src*="googletagmanager.com/gtag/js"]')
     ) {
@@ -45,9 +44,10 @@ export function GoogleAnalyticsLoader() {
       return;
     }
 
+    // 4. Load Google Analytics script ONLY NOW (after consent)
     window.gtag("js", new Date());
     window.gtag("config", measurementId, {
-      send_page_view: false, // we send page views manually on route change
+      send_page_view: false,
       anonymize_ip: true,
     });
 
@@ -56,9 +56,10 @@ export function GoogleAnalyticsLoader() {
     script.src = `https://www.googletagmanager.com/gtag/js?id=${measurementId}`;
     document.head.appendChild(script);
 
-    // After gtag.js loads, apply stored consent (if any)
+    // 5. Apply the consent state to gtag
     script.onload = () => applyStoredConsent();
-  }, []);
+
+  }, [hasAnalyticsConsent]);
 
   return null;
 }
