@@ -4,15 +4,6 @@ import { deepDives } from "./deep-dives";
 
 /* ============================================================
  * AHADEX Tools — Working Tools Registry
- * ------------------------------------------------------------
- * Only tools that are IMPLEMENTED and have working routes.
- *
- * Planned but unimplemented tools live in:
- *   src/data/plannedTools.ts
- *
- * DO NOT add tools here until they have:
- *   - A registered route in src/App.tsx
- *   - A working implementation in src/tools/
  * ============================================================ */
 
 const legacyTools: Tool[] = [
@@ -22,14 +13,12 @@ const legacyTools: Tool[] = [
     name: "Photo QR Code",
     path: "/tools/photo-qr",
     searchVolume: 5000000,
-    description:
-      "Add a real, scannable QR badge to any photo — WhatsApp, Facebook, WiFi, and more.",
-    longDescription:
-      "Photo QR Code lets you add a real, scannable QR code to any photo in seconds. Upload a picture, choose a platform (WhatsApp, Facebook, Instagram, Telegram, phone, email, WiFi, website, SMS, or contact card), enter your details, and we'll place a scannable QR badge on a corner of your photo. The photo stays exactly as it was — only the badge is added. Every QR is generated with error-correction level H so it scans perfectly even when printed, and includes the platform's official logo in the center.",
+    description: "Add a real, scannable QR badge to any photo — WhatsApp, Facebook, WiFi, and more.",
+    longDescription: "Photo QR Code lets you add a real, scannable QR code to any photo in seconds. Upload a picture, choose a platform (WhatsApp, Facebook, Instagram, Telegram, phone, email, WiFi, website, SMS, or contact card), enter your details, and we'll place a scannable QR badge on a corner of your photo. The photo stays exactly as it was — only the badge is added. Every QR is generated with error-correction level H so it remains readable even when printed, and includes the platform icon in the center.",
     keywords: ["photo", "qr", "image", "badge", "whatsapp", "facebook"],
     popular: true,
     newTool: false,
-        editorialContent: [
+    editorialContent: [
       {
         heading: "Why error-correction level H matters",
         body: `
@@ -59,27 +48,26 @@ const legacyTools: Tool[] = [
         `,
       },
     ],
-
     features: [
-      { title: "Real scannable QR", description: "Every code is generated with error-correction level H, which allows it to be scanned even if up to 30% of the surface is covered, damaged, or photographed at an angle." },
-      { title: "Platform logo inside", description: "The official brand logo of the chosen platform sits in the centre of the QR — customers instantly know what to expect when they scan." },
+      { title: "Scannable QR", description: "Every code is generated with high error correction. While this helps with minor damage, scan reliability ultimately depends on the QR size, contrast, and the scanning environment." },
+      { title: "Platform icon inside", description: "The chosen platform's icon sits in the centre of the QR — helping users recognize what to expect when they scan." },
       { title: "11 platforms supported", description: "WhatsApp, Facebook, Instagram, Telegram, phone call, email, WiFi, website, SMS, digital contact card, and plain text — all handled with the right deep-link format." },
-      { title: "Full-resolution output", description: "Your original photo is preserved exactly as it was — same width, height, and pixel count. Only the badge is drawn on top, never any compression." },
-      { title: "Live preview", description: "Every change updates the preview in real time, so you never have to guess. You see the exact final image before you download it." },
-      { title: "Files stay on your device", description: "All processing happens inside your browser using the HTML5 Canvas API. The file is never uploaded, never stored, and never shared — close the tab and it's gone." },
+      { title: "Original dimensions", description: "The exported image keeps the original pixel dimensions. The QR overlay is rendered on top, without aggressive re-encoding." },
+      { title: "Live preview", description: "Every change updates the preview in real time, so you can see the result before you download it." },
+      { title: "Browser processing", description: "All processing happens inside your browser using the HTML5 Canvas API. The file is not uploaded to any server." },
     ],
     howTo: [
       { step: 1, title: "Upload your photo 📤", description: "Click the upload area or drag an image into it. We support JPG, PNG, and WebP up to 50 MB. Nothing gets uploaded — the file is read locally by your browser. 🔒" },
-      { step: 2, title: "Choose a platform 🎯", description: "Pick WhatsApp, Facebook, Instagram, Telegram, Phone, Email, WiFi, Website, SMS, Contact, or plain text. The form updates instantly to ask for the right details. ⚡" },
-      { step: 3, title: "Fill in your details ✏️", description: "Type your phone number, social link, WiFi password, or message. The QR code updates live in the preview as you type, so you always see exactly what will be shared. 👀" },
+      { step: 2, title: "Choose a platform 🎯", description: "Pick WhatsApp, Facebook, Instagram, Telegram, Phone, Email, WiFi, Website, SMS, Contact, or plain text. The form updates to ask for the right details. ⚡" },
+      { step: 3, title: "Fill in your details ✏️", description: "Type your phone number, social link, WiFi password, or message. The QR code updates in the preview as you type, so you see exactly what will be shared. 👀" },
       { step: 4, title: "Pick a corner and adjust 🎨", description: "Choose top-left, top-right, bottom-left, or bottom-right. Use the sliders to make the QR bigger or smaller and to control the white padding around it. 🎛️" },
       { step: 5, title: "Download at full resolution ⬇️", description: "Click Download to save a PNG at the original photo resolution. The QR remains sharp and scannable at typical sizes — screen or print. 🖨️" },
     ],
     faq: [
-      { question: "Will the QR code still scan if I add a logo?", answer: "Yes. We use error-correction level H, which allows up to 30% of the QR surface to be covered by a logo without breaking the scan." },
+      { question: "Will the QR code still scan if I add a logo?", answer: "Yes, but scan reliability depends on size, contrast, placement, and the scanning environment. We use a high error-correction level to help the code remain readable, but you should test the final image with your own phone camera before mass printing." },
       { question: "What platforms can I generate QR codes for?", answer: "WhatsApp, Facebook, Instagram, Telegram, WiFi, phone numbers, email, and plain text are all supported." },
       { question: "Does this tool support dynamic QR codes?", answer: "No. We generate static QR codes. Once you download the image, the destination URL or text cannot be changed." },
-      { question: "Can I embed a logo in the QR code?", answer: "Yes. The tool automatically places the platform's official logo in the center of the QR code." },
+      { question: "Can I embed a logo in the QR code?", answer: "Yes. The tool automatically places the platform's icon in the center of the QR code." },
     ],
     useCases: [
       "Adding a WhatsApp or Instagram link to printed business cards.",
@@ -87,14 +75,14 @@ const legacyTools: Tool[] = [
       "Adding a website link to a printed event poster.",
       "Sharing contact details instantly without typing.",
     ],
-limitations: [
+    limitations: [
       "Only generates static QR codes (content cannot be changed after download).",
       "Does not support dynamic tracking (cannot track how many times it was scanned).",
       "Maximum photo size is limited by browser memory (usually 50MB).",
       "If printed too small, older phones may struggle to scan the logo-obscured QR.",
     ],
-benchmarks: [
-      { label: "Scan distance (Business Card size)", value: "10-15 cm (perfect for networking)" },
+    benchmarks: [
+      { label: "Scan distance (Business Card size)", value: "10-15 cm (suitable for networking)" },
       { label: "Scan distance (Poster size)", value: "1-2 meters" },
       { label: "Scan distance (Storefront window)", value: "3-5 meters" },
       { label: "Error correction level", value: "Level H (30% damage tolerance)" },
@@ -108,8 +96,7 @@ benchmarks: [
     relatedTools: ['cv-builder', 'visiting-card'],
     seo: {
       title: "Photo QR Code — Add QR to Photos Free | AHADEX Tools",
-      description:
-        "Add a real, scannable QR code to any photo. WhatsApp, Facebook, Instagram, WiFi, and more. Free, private, no uploads.",
+      description: "Add a real, scannable QR code to any photo. WhatsApp, Facebook, Instagram, WiFi, and more. Free, private, no uploads.",
       ogImage: "/images/og/tools/photo-qr-og.png",
     },
   },
@@ -119,22 +106,12 @@ benchmarks: [
     name: "Visiting Card Maker",
     path: "/tools/visiting-card",
     searchVolume: 200000,
-    description:
-      "Design print-ready visiting cards in seconds. 20 premium templates — front & back. Free, private, exports PNG/JPG.",
-    longDescription:
-      "Visiting Card Maker turns a blank canvas into a professional business card in under a minute. Choose from 20 hand-designed premium templates — each with a matching front and back — fill in your details, pick a logo, and download a print-ready file in PNG or JPG up to 600 DPI. Every card auto-generates a scannable QR code. Everything runs in your browser; nothing is ever uploaded.",
-    keywords: [
-      "visiting card",
-      "business card",
-      "card maker",
-      "design",
-      "print ready",
-      "double side",
-      "single side",
-    ],
+    description: "Design professional visiting cards in seconds. 20 premium templates — front & back. Free, private, exports PNG/JPG.",
+    longDescription: "Visiting Card Maker turns a blank canvas into a professional business card in under a minute. Choose from 20 hand-designed premium templates — each with a matching front and back — fill in your details, pick a logo, and download a high-resolution file in PNG, JPG, or PDF. Every card auto-generates a scannable QR code. Everything runs in your browser; the editing process is fully client-side.",
+    keywords: ["visiting card", "business card", "card maker", "design", "print ready", "double side", "single side"],
     popular: true,
     newTool: true,
-        editorialContent: [
+    editorialContent: [
       {
         heading: "Business card printing — the specs that matter",
         body: `
@@ -174,26 +151,25 @@ benchmarks: [
         `,
       },
     ],
-
     features: [
       { title: "20 unique templates", description: "Every template is hand-designed — no algorithmic variation. Each has its own front and back layout, palette, and typography." },
-      { title: "Real-time preview", description: "Fonts, colors, positions, and your logo all reflect instantly. You always know exactly what you'll get." },
-      { title: "Print-ready exports", description: "Export at 150, 300, or 600 DPI as PNG, JPG, or PDF. Every file matches the standard business card ratio in millimetres." },
+      { title: "Real-time preview", description: "Fonts, colors, positions, and your logo all reflect in real-time. You can see exactly what you'll get." },
+      { title: "High-res exports", description: "Export high-resolution PNG, JPG, or PDF files. Always verify with your specific printer for bleed and color profile requirements." },
       { title: "QR code included", description: "Every card back has a scannable QR code generated from your website URL. Error-correction level H keeps it readable." },
-      { title: "Zero uploads", description: "No server, no accounts, no analytics on your content. Everything runs in your browser via Canvas API." },
+      { title: "No uploads", description: "Your card data is not sent to a server; the editing process runs locally in your browser via the Canvas API." },
       { title: "Standard card sizes", description: "Standard, square, slim, and US sizes are all supported. Every dimension is measured in exact print millimetres." },
     ],
     howTo: [
-      { step: 1, title: "Pick a template", description: "Scroll through 20 hand-designed templates in the gallery. Each card preview shows the front and back side-by-side, so you can judge the whole design before clicking. Filter by category, or just browse the visual collection." },
-      { step: 2, title: "Enter your details", description: "Type your brand name, tagline, full name, job title, phone, email, website, and location into the fields on the left. The canvas updates in real time — there is no save button and nothing to submit. You see exactly what the card will look like as you type." },
-      { step: 3, title: "Upload a logo", description: "Drag and drop a PNG, JPG, WebP, or SVG logo — up to 5 MB. The logo scales proportionally and renders in the correct position on the front of the card. If you don't have a logo yet, the design still looks complete thanks to a placeholder brand mark." },
-      { step: 4, title: "Preview and adjust", description: "Both front and back sides render live in the editor. The QR code is generated automatically from your website URL using error-correction level H, so it stays scannable even when printed at small sizes." },
-      { step: 5, title: "Download your card", description: "Choose PNG, JPG, or PDF. Choose 150 DPI for a quick preview, 300 DPI for standard professional printing, or 600 DPI for premium print. Both sides download as separate files — hand them straight to a printer or print at home." },
+      { step: 1, title: "Pick a template", description: "Scroll through 20 hand-designed templates in the gallery. Each card preview shows the front and back side-by-side, so you can judge the whole design before clicking." },
+      { step: 2, title: "Enter your details", description: "Type your brand name, tagline, full name, job title, phone, email, website, and location into the fields on the left. The canvas updates in real time." },
+      { step: 3, title: "Upload a logo", description: "Drag and drop a PNG, JPG, WebP, or SVG logo — up to 5 MB. The logo scales proportionally and renders in the correct position on the front of the card." },
+      { step: 4, title: "Preview and adjust", description: "Both front and back sides render live in the editor. The QR code is generated automatically from your website URL using error-correction level H." },
+      { step: 5, title: "Download your card", description: "Choose PNG, JPG, or PDF. Exporting at higher resolution settings provides larger image dimensions, suitable for many common printing workflows." },
     ],
     faq: [
-      { question: "Can I print this card at a professional print shop?", answer: "Yes. Our templates export at 300 DPI (print resolution). However, note that this uses RGB colors, so very bright colors might look slightly different on CMYK printers." },
+      { question: "Can I print this card at a professional print shop?", answer: "Yes. Our templates export at high resolution. However, note that this uses RGB colors, so very bright colors might look slightly different on CMYK printers." },
       { question: "Does it include a QR code?", answer: "You can add a QR code using our Photo QR tool first, then upload it as the logo on your visiting card!" },
-      { question: "Are the exported cards print-ready?", answer: "Yes. The templates are designed at 300 DPI with proper bleed and safe margins, ready to be handed to any print shop." },
+      { question: "Are the exported cards print-ready?", answer: "The exported files are high-resolution images or standard PDFs suitable for many home and office printers. However, if you are sending the file to a commercial print shop, they may require specific CMYK color profiles, bleed margins, or trim lines, which you should confirm directly with them." },
       { question: "Can I use my own custom logo?", answer: "Yes. You can upload your own logo in the Logo panel to replace the default placeholder." },
     ],
     useCases: [
@@ -202,13 +178,13 @@ benchmarks: [
       "Event attendees making quick networking cards.",
       "Adding a scannable contact card to a smartphone lock screen.",
     ],
-limitations: [
+    limitations: [
       "Uses RGB color space (screens), not CMYK (professional offset printing).",
       "For physical printing, you must export at a minimum of 300 DPI.",
       "Templates are fixed; advanced custom shapes are not supported.",
-      "Cannot import existing logos with complex vector formats (SVG).",
+      "Professional print may require bleed, trim, and CMYK profiles which are not natively handled by web browsers.",
     ],
-benchmarks: [
+    benchmarks: [
       { label: "Standard Print Size", value: "3.5 x 2.0 inches (89 x 51 mm)" },
       { label: "Required Print Resolution", value: "300 DPI (1050 x 600 pixels)" },
       { label: "Export Speed", value: "< 1 second for PNG/JPG" },
@@ -221,10 +197,8 @@ benchmarks: [
     },
     relatedTools: ['cv-builder', 'photo-qr'],
     seo: {
-      title:
-        "Visiting Card Maker — Free Business Card Designer | AHADEX Tools",
-      description:
-        "Design print-ready visiting cards with live preview. 20 premium templates. Free, private, PNG/JPG export.",
+      title: "Visiting Card Maker — Free Business Card Designer | AHADEX Tools",
+      description: "Design print-ready visiting cards with live preview. 20 premium templates. Free, private, PNG/JPG export.",
       ogImage: "/images/og/tools/visiting-card-og.png",
     },
   },
@@ -234,14 +208,12 @@ benchmarks: [
     name: "CV Builder",
     path: "/tools/cv-builder",
     searchVolume: 1500000,
-    description:
-      "Build a professional CV in minutes. Real A4 templates, live preview, selectable-text PDF export, auto-save and full browser-side privacy.",
-    longDescription:
-      "CV Builder turns a blank page into a professional resume in under ten minutes. Choose a template, fill in your details, and download a print-ready PDF with selectable text, accurate page breaks, and full browser-side privacy. No account, no uploads, no watermarks.",
+    description: "Build a professional CV in minutes. Real A4 templates, live preview, selectable-text PDF export, auto-save and full browser-side privacy.",
+    longDescription: "CV Builder turns a blank page into a professional resume in under ten minutes. Choose a template, fill in your details, and download a print-ready PDF with selectable text, accurate page breaks, and full browser-side privacy. No account, no uploads, no watermarks.",
     keywords: ["cv", "resume", "cv builder", "resume builder", "pdf cv", "ats resume", "cv template"],
     popular: true,
     newTool: true,
-        editorialContent: [
+    editorialContent: [
       {
         heading: "What ATS software actually does to your CV",
         body: `
@@ -293,7 +265,6 @@ benchmarks: [
         `,
       },
     ],
-
     features: [
       { title: "Real templates", description: "Hand-designed A4 layouts. Every visual element is code, not an image." },
       { title: "Live preview", description: "Type into a form and the CV updates instantly on the page beside it." },
@@ -314,12 +285,12 @@ benchmarks: [
       { question: "Do you upload my CV data anywhere?", answer: "No. Everything — forms, preview, PDF export, save/load — runs entirely in your browser. Nothing is sent to any server." },
       { question: "Is the PDF ATS-friendly?", answer: "Yes. The PDF is generated through the browser print pipeline, so text stays selectable. ATS parsers can read your job titles, dates, and skills. The ATS Cleanline template deliberately uses standard headings and no icon-only contact info." },
       { question: "Can I add a photo?", answer: "Yes, in the Design tab. Photos are optional and off by default — most corporate applications prefer no photo." },
-      { question: "What page sizes are supported?", answer: "A4 (210 × 297 mm) and US Letter (216 × 39 mm). The PDF matches the exact print dimensions of your chosen size." },
+      { question: "What page sizes are supported?", answer: "A4 (210 × 297 mm) and US Letter (216 × 279 mm). The PDF matches the exact print dimensions of your chosen size." },
       { question: "Can I have multiple CVs?", answer: "Yes. Saved CVs appear in the Save tab. You can create, duplicate, rename, and delete as many as you want. All stored locally in your browser." },
       { question: "What happens if I close the browser?", answer: "Your current work is auto-saved as a draft. When you return, a banner offers to recover it. Nothing is lost unless you explicitly discard it." },
       { question: "Can I export my CV as JSON?", answer: "Yes. The Save tab has JSON export and import. Useful for backups or moving between devices." },
       { question: "Can I save my CV and edit it later?", answer: "Yes. Your progress is automatically saved in your browser's local storage, so you can close the tab and come back later." },
-      { question: "Is the exported PDF ATS-friendly?", answer: "Yes. All our templates use clean, semantic text and standard fonts, ensuring your CV passes Applicant Tracking Systems." },
+      { question: "Is the exported PDF ATS-friendly?", answer: "Yes. All our templates use clean, semantic text and standard fonts, which helps ensure your CV can be parsed correctly by most modern ATS software. However, specific ATS parsing results may vary depending on the system." },
     ],
     useCases: [
       "Applying for jobs with an ATS-friendly resume.",
@@ -327,13 +298,13 @@ benchmarks: [
       "Creating a clean, single-page CV for a networking event.",
       "Quickly generating a PDF resume on a mobile device.",
     ],
-limitations: [
+    limitations: [
       "Data is saved in your browser's local storage (clearing cache deletes it).",
-      "Limited to standard A4 size (no US Letter format yet).",
+      "While templates are ATS-friendly, complex custom formatting outside the editor is not supported.",
       "Does not auto-import data from LinkedIn or other platforms.",
       "Font choices are limited to standard web-safe fonts for PDF rendering.",
     ],
-benchmarks: [
+    benchmarks: [
       { label: "Standard Page Size", value: "A4 (210 x 297 mm)" },
       { label: "PDF Output Type", value: "Selectable Text (ATS Friendly)" },
       { label: "Average PDF File Size", value: "~150 KB (depends on images)" },
@@ -346,30 +317,16 @@ benchmarks: [
     },
     relatedTools: ['visiting-card', 'photo-qr'],
     seo: {
-      title:
-        "Free CV Builder — Create & Download Professional Resumes | AHADEX Tools",
-      description:
-        "Build a professional CV in minutes. Real A4 templates, selectable-text PDF export, auto-save, full privacy.",
+      title: "Free CV Builder — Create & Download Professional Resumes | AHADEX Tools",
+      description: "Build a professional CV in minutes. Real A4 templates, selectable-text PDF export, auto-save, full privacy.",
       ogImage: "/images/og/tools/cv-builder-og.png",
     },
   }
 ];
-;
-
 
 /* ============================================================
  * Merged registry — legacy tools + new unified tools
- * ------------------------------------------------------------
- * legacyTools: remaining single-purpose tools
- * newTools:    consolidated tools that replace multiple pages
- *              (image-converter, pdf-to-image, image-to-pdf, split-pdf)
  * ============================================================ */
-/* Deep-dive sections are stored in two places:
- *   - Inline in each tool's own definition (new-tools-content.ts)
- *   - Externally in src/data/deep-dives.ts, keyed by tool id
- * Merge both so any tool can carry content from either source. Inline
- * sections come first so they read as the primary explanation; external
- * sections follow as supporting documentation. */
 function withDeepDives(t: Tool): Tool {
   const external = deepDives[t.id];
   if (!external || external.length === 0) return t;
