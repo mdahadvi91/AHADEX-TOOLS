@@ -1,7 +1,7 @@
 /* ============================================================
  * Sitemap Generator
  * ------------------------------------------------------------
- * Reads:  src/data/tools.ts + src/data/blog.ts
+ * Reads:  src/data/tools.ts + src/data/guides.ts
  * Writes: public/sitemap.xml
  * 
  * Rules:
@@ -11,10 +11,9 @@
  *   - No duplicates
  *   - lastmod = most recent known change (not build date)
  *   - Tool pages ship an <image:image> entry for Google Image
- *   - Blog posts ship an <image:image> using their OG image
  * ============================================================ */
 
-import { writeFileSync, existsSync } from "node:fs";
+import { writeFileSync } from "node:fs";
 import { resolve } from "node:path";
 import { execSync } from "node:child_process";
 import { tools } from "../src/data/tools";
@@ -23,16 +22,23 @@ import { guides } from "../src/data/guides";
 const SITE_URL = "https://ahadex.fun";
 
 function gitLastMod(filePath: string): string {
+  const today = new Date().toISOString().slice(0, 10);
+
   try {
-    const date = execSync(`git log -1 --format=%cs -- "${filePath}"`, {
-      encoding: "utf-8",
-      stdio: ["pipe", "pipe", "ignore"],
-    }).trim();
-    if (date) return date;
+    const date = execSync(
+      `git log -1 --format=%cs -- "${filePath}"`,
+      {
+        encoding: "utf-8",
+        stdio: ["pipe", "pipe", "ignore"],
+      }
+    ).trim();
+
+    if (date && date <= today) return date;
   } catch {
-    /* ignore */
+    // Use today's date if Git history is unavailable.
   }
-  const today = new Date().toISOString().slice(0, 10); const gitDate = date || today; return gitDate > today ? today : gitDate;
+
+  return today;
 }
 
 const TOOLS_LASTMOD = gitLastMod("src/data/tools.ts");
@@ -56,7 +62,7 @@ interface SitemapEntry {
 /* ── Static routes ── */
 const staticRoutes: SitemapEntry[] = [
   { loc: "/", changefreq: "weekly", priority: 1.0, lastmod: HOME_LASTMOD },
-  // 🚨 FIX: /tools removed because App.tsx redirects it to /
+  // /tools is intentionally omitted as it redirects to /
   { loc: "/guides", changefreq: "weekly", priority: 0.8, lastmod: TOOLS_LASTMOD },
   { loc: "/about", changefreq: "monthly", priority: 0.6, lastmod: TRUST_LASTMOD },
   { loc: "/about/author/mohammad-ahad", changefreq: "monthly", priority: 0.6, lastmod: TRUST_LASTMOD },
