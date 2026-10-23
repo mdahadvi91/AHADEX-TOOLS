@@ -5,7 +5,7 @@
  *
  * Reads public/sitemap.xml and, for every <loc>, checks:
  *
- *   1. Source-of-truth — URL comes from tools/blog/guides/
+ *   1. Source-of-truth — URL comes from tools/guides/
  *      authors/staticRoutes. (Sanity check.)
  *
  *   2. Production HTML — dist/<route>/index.html exists.
@@ -26,7 +26,6 @@
 import { readFileSync, existsSync } from "node:fs";
 import { resolve } from "node:path";
 import { tools } from "../src/data/tools";
-import { blogPosts } from "../src/data/blog";
 import { authors } from "../src/data/authors";
 import { guides } from "../src/data/guides";
 
@@ -50,7 +49,7 @@ const locs = [...xml.matchAll(/<loc>([^<]+)<\/loc>/g)].map((m) => m[1]);
 const expected = new Set<string>();
 
 const staticPaths = [
-  "/", "/tools", "/blog", "/about", "/contact",
+  "/", "/tools", "/about", "/contact",
   "/privacy", "/terms", "/disclaimer", "/accessibility",
   "/cookie-policy", "/editorial-policy", "/affiliate-disclosure",
   "/sitemap", "/guides",
@@ -58,7 +57,6 @@ const staticPaths = [
 for (const p of staticPaths) expected.add(`${SITE}${p}`);
 
 for (const t of tools) expected.add(`${SITE}${t.path}`);
-for (const p of blogPosts) expected.add(`${SITE}/blog/${p.slug}`);
 for (const a of Object.values(authors)) expected.add(`${SITE}/about/author/${a.id}`);
 for (const g of guides) expected.add(`${SITE}/guides/${g.slug}`);
 

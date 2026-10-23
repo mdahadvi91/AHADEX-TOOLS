@@ -138,37 +138,6 @@ export const staticPageContents: StaticPageContent[] = [
 </article>`,
   },
 
-  /* ── Blog index ────────────────────────────────────────── */
-  {
-    path: "/blog",
-    html: `<article>
-  <h1>Blog — practical guides for images, PDFs, text, and developer work</h1>
-  <p><strong>In-depth, hands-on guides written by the developer who built the tools on this site. Every guide includes measurements from our own test runs — real file sizes, real timings, real numbers.</strong></p>
-
-  <h2>What you will find here</h2>
-  <ul>
-    <li><strong>Image workflows</strong> — compressing without losing quality, choosing between JPG, PNG, and WebP, preparing images for social media, converting HEIC to JPG.</li>
-    <li><strong>PDF workflows</strong> — merging, splitting, reducing file size, converting PDF to images, understanding what survives and what does not.</li>
-    <li><strong>Developer topics</strong> — JSON debugging, Base64 and URL encoding, UUID v4 vs v7, JWT internals.</li>
-    <li><strong>Privacy and security</strong> — what EXIF metadata reveals, how to protect online privacy, why browser-based tools matter.</li>
-    <li><strong>Design and documents</strong> — favicon creation, CV writing, business card design, colour theory.</li>
-  </ul>
-
-  <h2>How the guides are written</h2>
-  <p>Each article is written by <a href="/about/author/mohammad-ahad">Mohammad Ahad</a>, the founder and developer of AHADEX Tools. Every guide includes a "From our own testing" section with specific measurements — file sizes, timings, or observations — taken while building the corresponding tool. We do not publish statistics we cannot verify or claims our own code does not guarantee.</p>
-
-  <h2>Start with these</h2>
-  <ul>
-    <li><a href="/blog/how-to-compress-images-without-losing-quality">How to Compress Images Without Losing Quality (2026 Guide)</a> — 47-image test with specific size reductions.</li>
-    <li><a href="/blog/jpg-vs-png-vs-webp-which-format">JPG vs PNG vs WebP: Which Format Should You Use in 2026?</a> — same 12 MP source compared across all four formats.</li>
-    <li><a href="/blog/json-formatter-complete-developer-guide">JSON Formatter: Why Every Developer Needs One (2026)</a> — parse and minify timings on a 10 MB Kubernetes manifest.</li>
-    <li><a href="/blog/strong-password-generator-complete-guide">How to Create Unbreakable Passwords (2026 Guide)</a> — entropy in bits for 8-, 12-, 16-, and 20-character passwords.</li>
-    <li><a href="/blog/what-is-exif-metadata-privacy-guide">What Is EXIF Metadata? (And Why It Can Leak Your Privacy)</a> — analysis of 100 real phone photos.</li>
-    <li><a href="/blog/website-speed-optimization-guide">Website Speed Optimization: The Complete 2026 Guide</a> — before/after Core Web Vitals from a real site optimisation.</li>
-  </ul>
-</article>`,
-  },
-
   /* ── About ─────────────────────────────────────────────── */
   {
     path: "/about",
@@ -187,7 +156,7 @@ export const staticPageContents: StaticPageContent[] = [
   <p>AHADEX Tools is written and maintained by <a href="/about/author/mohammad-ahad">Mohammad Ahad</a>. Every tool, every article, and every piece of documentation on this site is authored by him. Contact: <a href="mailto:mdahadvi91@gmail.com">mdahadvi91@gmail.com</a>.</p>
 
   <h2>How the site is funded</h2>
-  <p>AHADEX Tools is supported by advertising shown outside the tool workspaces, and by occasional affiliate links in blog posts. Ads never appear inside a tool workspace, on download buttons, or anywhere they could be mistaken for part of the tool.</p>
+  <p>AHADEX Tools is supported by advertising shown outside the tool workspaces, and by occasional affiliate links where relevant. Ads never appear inside a tool workspace, on download buttons, or anywhere they could be mistaken for part of the tool.</p>
 
   <h2>How to contribute or report an issue</h2>
   <p>The source code is available on <a href="https://github.com/mdahadvi91/AHADEX-TOOLS">GitHub</a>. Bug reports, feature requests, and pull requests are welcome.</p>
@@ -272,7 +241,7 @@ export const staticPageContents: StaticPageContent[] = [
 
   <h2>Where affiliate links appear</h2>
   <ul>
-    <li>Blog posts that recommend specific products or services (for example, a password manager, a VPN, or cloud storage).</li>
+    <li>Pages that recommend specific products or services (for example, a password manager, a VPN, or cloud storage).</li>
     <li>A small "Recommended products" section below some tool pages, clearly separated from the tool itself.</li>
   </ul>
   <p>Affiliate links never appear inside a tool workspace, on a download button, or anywhere they could be confused with part of the tool. Advertisements on the site (via Google AdSense) are separate from affiliate links and are labelled as advertisements.</p>
@@ -296,13 +265,12 @@ export const staticPageContents: StaticPageContent[] = [
     path: "/sitemap",
     html: `<article>
   <h1>Sitemap</h1>
-  <p><strong>Every page, tool, and article on AHADEX Tools in one place.</strong></p>
+  <p><strong>Every page and tool on AHADEX Tools in one place.</strong></p>
 
   <h2>Main pages</h2>
   <ul>
     <li><a href="/">Home</a></li>
     <li><a href="/tools">All Tools</a></li>
-    <li><a href="/blog">Blog</a></li>
     <li><a href="/about">About</a></li>
     <li><a href="/contact">Contact</a></li>
   </ul>
@@ -326,12 +294,8 @@ export const staticPageContents: StaticPageContent[] = [
     <li><a href="/tools/cv-builder">CV Builder</a></li>
   </ul>
 
-  <h2>Blog posts (36)</h2>
-  <p>All guides, tutorials, and reference articles are indexed on the <a href="/blog">Blog</a> page.</p>
-
   <h2>Feeds</h2>
   <ul>
-    <li><a href="/rss.xml">RSS feed</a></li>
     <li><a href="/sitemap.xml">XML sitemap</a></li>
   </ul>
 </article>`,

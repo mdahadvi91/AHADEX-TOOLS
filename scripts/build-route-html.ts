@@ -8,7 +8,7 @@
  *
  * Inputs:
  *   dist/index.html          (the Vite SPA shell)
- *   functions/_data.ts       (TOOL_META, STATIC_META, BLOG_META, GUIDE_META)
+ *   functions/_data.ts       (TOOL_META, STATIC_META, GUIDE_META)
  *   functions/_ssr-content.ts (SSR_CONTENT)
  *   functions/_schema.ts     (SSR_SCHEMA)
  *
@@ -25,7 +25,6 @@
 import { readFileSync, writeFileSync, mkdirSync, existsSync } from "node:fs";
 import { resolve, dirname } from "node:path";
 import { tools } from "../src/data/tools";
-import { blogPosts } from "../src/data/blog";
 import { guides } from "../src/data/guides";
 import { authors } from "../src/data/authors";
 import { SSR_CONTENT } from "../functions/_ssr-content";
@@ -33,7 +32,6 @@ import { SSR_SCHEMA } from "../functions/_schema";
 import {
   TOOL_META,
   STATIC_META,
-  BLOG_META,
   GUIDE_META,
 } from "../functions/_data";
 
@@ -80,21 +78,6 @@ for (const tool of tools) {
     canonical: `${SITE_URL}${tool.path}`,
     ogImage: tool.seo.ogImage,
     ogType: "website",
-  });
-}
-
-// Blog posts
-for (const post of blogPosts) {
-  const path = `/blog/${post.slug}`;
-  const meta = BLOG_META[post.slug];
-  if (!meta) continue;
-  routes.push({
-    path,
-    title: meta.title,
-    description: meta.description,
-    canonical: `${SITE_URL}${path}`,
-    ogImage: meta.ogImage,
-    ogType: "article",
   });
 }
 

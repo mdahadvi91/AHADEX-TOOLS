@@ -1,9 +1,8 @@
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
-import { Map, FileText, Wrench, BookOpen, Info } from "lucide-react";
+import { Map, FileText, Wrench, Info } from "lucide-react";
 import { useLanguage } from "@contexts/LanguageContext";
 import { tools } from "@data/tools";
-import { blogPosts } from "@data/blog";
 
 export default function HtmlSitemapPage() {
   const { language } = useLanguage();
@@ -16,7 +15,6 @@ export default function HtmlSitemapPage() {
       links: [
         { to: "/", label: bn ? "হোম" : "Home" },
         { to: "/tools", label: bn ? "সব টুল" : "All Tools" },
-        { to: "/blog", label: bn ? "ব্লগ" : "Blog" },
         { to: "/about", label: bn ? "আমাদের সম্পর্কে" : "About" },
         { to: "/contact", label: bn ? "যোগাযোগ" : "Contact" },
       ],
@@ -54,7 +52,7 @@ export default function HtmlSitemapPage() {
         <p className="text-[14px] sm:text-[15px] text-light-textSecondary dark:text-dark-textSecondary leading-relaxed mb-10 max-w-2xl">
           {bn
             ? "AHADEX Tools-এর সব পেজ এক জায়গায়। টুল, ব্লগ পোস্ট এবং অন্যান্য পেজের পূর্ণ তালিকা।"
-            : "All pages of AHADEX Tools in one place. Complete list of tools, blog posts, and other pages."}
+            : "All pages of AHADEX Tools in one place. Explore our tools, guides, and other pages."}
         </p>
 
         {/* Main + Legal sections */}
@@ -109,34 +107,6 @@ export default function HtmlSitemapPage() {
               </Link>
             ))}
           </div>
-        </div>
-
-        {/* Blog */}
-        <div>
-          <div className="flex items-center gap-2 mb-5">
-            <BookOpen className="w-4 h-4 text-silk-rose" />
-            <h2 className="font-serif font-black text-xl text-light-text dark:text-dark-text">
-              {bn ? "ব্লগ পোস্ট" : "Blog Posts"}{" "}
-              <span className="text-silk-rose/60 text-base font-bold">
-                ({blogPosts.length})
-              </span>
-            </h2>
-          </div>
-          <ul className="space-y-2">
-            {blogPosts.map((p) => (
-              <li key={p.slug}>
-                <Link
-                  to={`/blog/${p.slug}`}
-                  className="flex items-start gap-3 p-3 rounded-xl bg-white/60 dark:bg-dark-surface/60 backdrop-blur-xl border border-silk-rose/15 hover:border-silk-rose/45 transition-all group"
-                >
-                  <span className="text-lg leading-none shrink-0">{p.emoji}</span>
-                  <span className="text-[13px] font-bold text-light-text dark:text-dark-text group-hover:text-silk-wine dark:group-hover:text-silk-rose-soft transition-colors">
-                    {bn ? p.titleBn : p.title}
-                  </span>
-                </Link>
-              </li>
-            ))}
-          </ul>
         </div>
       </motion.div>
       </div>

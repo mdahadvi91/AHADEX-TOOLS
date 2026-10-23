@@ -23,7 +23,6 @@ import { toolTranslationsBn } from "../src/i18n/toolTranslations";
 import { toolFieldNotes } from "../src/data/tool-field-notes";
 import { staticPageContents } from "../src/data/static-ssr-content";
 import { authors, type Author } from "../src/data/authors";
-import { blogPosts } from "../src/data/blog";
 import { guides } from "../src/data/guides";
 import { getToolCategory, CATEGORY_PRIVACY } from "../src/lib/toolCategory";
 
@@ -246,9 +245,7 @@ function buildBengaliSection(tool: typeof tools[0]): string {
  * ─────────────────────────────────────────────────────────── */
 function buildAuthorPage(
   author: Author,
-  posts: typeof blogPosts
 ): string {
-  const authorPosts = posts.filter((p) => p.authorId === author.id);
   const contactParts: string[] = [];
 
   if (author.email) {
@@ -269,28 +266,12 @@ function buildAuthorPage(
     );
   }
 
-  const postsList = authorPosts
-    .map(
-      (p) =>
-        `<li><a href="/blog/${esc(p.slug)}">${esc(p.title)}</a> — ${esc(
-          p.excerpt
-        )}</li>`
-    )
-    .join("\n    ");
-
   return `<article>
     <h1>${esc(author.name)}</h1>
     <p><strong>${esc(author.role)}</strong></p>
     <p>${esc(author.bio)}</p>
     ${author.location ? `<p><strong>Based in:</strong> ${esc(author.location)}</p>` : ""}
     ${contactParts.length ? `<p><strong>Contact:</strong> ${contactParts.join(" · ")}</p>` : ""}
-    <h2>Articles by ${esc(author.name)}</h2>
-    <p>${authorPosts.length} articles written and reviewed by ${esc(
-      author.name
-    )} across image tools, PDF workflows, developer utilities, and privacy topics.</p>
-    <ul>
-    ${postsList}
-    </ul>
   </article>`;
 }
 
@@ -327,34 +308,10 @@ function buildGuidePage(guide: typeof guides[0]): string {
   </article>`;
 }
 
-/* ── Build blog post HTML (basic) ── */
-function buildBlogPost(post: typeof blogPosts[0]): string {
-  const blocks = post.blocks
-    .map((b) => {
-      if (b.type === "h2") return `<h2>${esc(b.content || "")}</h2>`;
-      if (b.type === "h3") return `<h3>${esc(b.content || "")}</h3>`;
-      if (b.type === "p") return `<p>${esc(b.content || "")}</p>`;
-      if (b.type === "quote") return `<blockquote>${esc(b.content || "")}</blockquote>`;
-      if (b.type === "ul" && b.items)
-        return `<ul>${b.items.map((i) => `<li>${esc(i)}</li>`).join("")}</ul>`;
-      if (b.type === "ol" && b.items)
-        return `<ol>${b.items.map((i) => `<li>${esc(i)}</li>`).join("")}</ol>`;
-      if (b.type === "tip") return `<aside><strong>Tip:</strong> ${esc(b.content || "")}</aside>`;
-      return "";
-    })
-    .join("");
-
-  return `<article>
-    <h1>${esc(post.title)}</h1>
-    <p>${esc(post.excerpt)}</p>
-    ${blocks}
-  </article>`;
-}
-
 /* ── Build map ── */
 const SSR_CONTENT: Record<string, string> = {};
 
-// Static pages (home, tools, blog, about, contact, editorial, affiliate, sitemap)
+// Static pages (home, tools, about, contact, editorial, affiliate, sitemap)
 for (const page of staticPageContents) {
   SSR_CONTENT[page.path] = page.html;
 }
@@ -377,11 +334,6 @@ for (const tool of tools) {
   SSR_CONTENT[tool.path] = buildToolPage(tool);
 }
 
-// Blog posts
-for (const post of blogPosts) {
-  SSR_CONTENT[`/blog/${post.slug}`] = buildBlogPost(post);
-}
-
 // Guides
 for (const guide of guides) {
   SSR_CONTENT[`/guides/${guide.slug}`] = buildGuidePage(guide);
@@ -389,7 +341,7 @@ for (const guide of guides) {
 
 // Author profile pages — one per author in the registry
 for (const author of Object.values(authors)) {
-  SSR_CONTENT[`/about/author/${author.id}`] = buildAuthorPage(author, blogPosts);
+  SSR_CONTENT[`/about/author/${author.id}`] = buildAuthorPage(author);
 }
 
 // Guides Index Page SSR (Fixes missing <h1>)

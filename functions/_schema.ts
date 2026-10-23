@@ -22,7 +22,7 @@ export const SSR_SCHEMA: Record<string, object> = {
           "price": "0",
           "priceCurrency": "USD"
         },
-        "image": "https://ahadex.fun/images/og/tools/photo-qr-og.jpg",
+        "image": "https://ahadex.fun/images/og/tools/photo-qr-og.png",
         "publisher": {
           "@type": "Organization",
           "name": "AHADEX Tools",
@@ -82,7 +82,7 @@ export const SSR_SCHEMA: Record<string, object> = {
           "price": "0",
           "priceCurrency": "USD"
         },
-        "image": "https://ahadex.fun/images/og/tools/visiting-card-og.jpg",
+        "image": "https://ahadex.fun/images/og/tools/visiting-card-og.png",
         "publisher": {
           "@type": "Organization",
           "name": "AHADEX Tools",
@@ -142,7 +142,7 @@ export const SSR_SCHEMA: Record<string, object> = {
           "price": "0",
           "priceCurrency": "USD"
         },
-        "image": "https://ahadex.fun/images/og/tools/cv-builder-og.jpg",
+        "image": "https://ahadex.fun/images/og/tools/cv-builder-og.png",
         "publisher": {
           "@type": "Organization",
           "name": "AHADEX Tools",
@@ -439,23 +439,6 @@ export const SSR_SCHEMA: Record<string, object> = {
         ]
       }
     ]
-  },
-  "/blog": {
-    "@context": "https://schema.org",
-    "@type": "CollectionPage",
-    "@id": "https://ahadex.fun/blog#collection",
-    "name": "Blog — Guides & Tutorials",
-    "url": "https://ahadex.fun/blog",
-    "description": "In-depth guides and tutorials on image, PDF, text, and QR tools.",
-    "inLanguage": "en",
-    "isPartOf": {
-      "@id": "https://ahadex.fun/#website"
-    },
-    "mainEntity": {
-      "@type": "ItemList",
-      "numberOfItems": 0,
-      "itemListElement": []
-    }
   },
   "/guides": {
     "@context": "https://schema.org",

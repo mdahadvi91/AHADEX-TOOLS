@@ -3,7 +3,6 @@
 # Run: bash scripts/ping-search-engines.sh
 
 SITEMAP="https://ahadex.fun/sitemap.xml"
-RSS="https://ahadex.fun/rss.xml"
 
 echo "═══════════════════════════════════════════════"
 echo "🔔 Pinging Search Engines"
@@ -41,7 +40,6 @@ URLS_JSON=$(cat << JSONEOF
   "urlList": [
     "https://ahadex.fun/",
     "https://ahadex.fun/tools",
-    "https://ahadex.fun/blog",
     "https://ahadex.fun/about",
     "https://ahadex.fun/contact",
     "https://ahadex.fun/editorial-policy"

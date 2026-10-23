@@ -110,7 +110,7 @@ benchmarks: [
       title: "Photo QR Code — Add QR to Photos Free | AHADEX Tools",
       description:
         "Add a real, scannable QR code to any photo. WhatsApp, Facebook, Instagram, WiFi, and more. Free, private, no uploads.",
-      ogImage: "/images/og/tools/photo-qr-og.jpg",
+      ogImage: "/images/og/tools/photo-qr-og.png",
     },
   },
   {
@@ -225,7 +225,7 @@ benchmarks: [
         "Visiting Card Maker — Free Business Card Designer | AHADEX Tools",
       description:
         "Design print-ready visiting cards with live preview. 20 premium templates. Free, private, PNG/JPG export.",
-      ogImage: "/images/og/tools/visiting-card-og.jpg",
+      ogImage: "/images/og/tools/visiting-card-og.png",
     },
   },
   {
@@ -350,7 +350,7 @@ benchmarks: [
         "Free CV Builder — Create & Download Professional Resumes | AHADEX Tools",
       description:
         "Build a professional CV in minutes. Real A4 templates, selectable-text PDF export, auto-save, full privacy.",
-      ogImage: "/images/og/tools/cv-builder-og.jpg",
+      ogImage: "/images/og/tools/cv-builder-og.png",
     },
   }
 ];

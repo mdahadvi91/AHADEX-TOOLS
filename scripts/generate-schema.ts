@@ -18,7 +18,6 @@ import { writeFileSync } from "node:fs";
 import { resolve } from "node:path";
 import { tools } from "../src/data/tools";
 import { authors } from "../src/data/authors";
-import { blogPosts } from "../src/data/blog";
 import { guides } from "../src/data/guides";
 
 const SITE_URL = "https://ahadex.fun";
@@ -146,44 +145,6 @@ for (const author of Object.values(authors)) {
   };
 }
 
-/* ── Blog post schemas (BlogPosting) ──
- * Each blog post ships a BlogPosting entity so search engines and
- * social crawlers can link the article to its author, its published
- * and modified dates, and its primary image. Person and Organization
- * are referenced by @id so they resolve to the entries already
- * emitted elsewhere in the graph. */
-for (const post of blogPosts) {
-  const canonical = `${SITE_URL}/blog/${post.slug}`;
-  const ogImage = `${SITE_URL}/images/og/blog/${post.slug}-og.png`;
-  const authorId = `${SITE_URL}/about/author/${post.authorId}#person`;
-
-  const graph: Record<string, unknown>[] = [
-    {
-      "@type": "BlogPosting",
-      "@id": `${canonical}#article`,
-      mainEntityOfPage: canonical,
-      headline: post.title,
-      description: post.excerpt,
-      image: ogImage,
-      datePublished: post.publishedAt,
-      dateModified: post.updatedAt ?? post.publishedAt,
-      author: { "@id": authorId },
-      publisher: { "@id": `${SITE_URL}#organization` },
-      inLanguage: "en",
-      keywords: post.blocks
-        .filter((b) => b.type === "h2" && b.content)
-        .slice(0, 5)
-        .map((b) => b.content as string)
-        .join(", "),
-    },
-  ];
-
-  schemas[`/blog/${post.slug}`] = {
-    "@context": "https://schema.org",
-    "@graph": graph,
-  };
-}
-
 /* ── Guide schemas (Article) ──
  * Guides are workflow documentation, emitted as Article schema
  * with author + publisher references so they're eligible for
@@ -297,28 +258,6 @@ schemas["/tools"] = {
   ]
 };
 
-// /blog: CollectionPage + ItemList
-schemas["/blog"] = {
-  "@context": "https://schema.org",
-  "@type": "CollectionPage",
-  "@id": `${SITE_URL}/blog#collection`,
-  name: "Blog — Guides & Tutorials",
-  url: `${SITE_URL}/blog`,
-  description: `In-depth guides and tutorials on image, PDF, text, and QR tools.`,
-  inLanguage: "en",
-  isPartOf: { "@id": `${SITE_URL}/#website` },
-  mainEntity: {
-    "@type": "ItemList",
-    numberOfItems: blogPosts.length,
-    itemListElement: blogPosts.map((p, i) => ({
-      "@type": "ListItem",
-      position: i + 1,
-      url: `${SITE_URL}/blog/${p.slug}`,
-      name: p.title,
-    })),
-  },
-};
-
 // /guides: CollectionPage + ItemList
 schemas["/guides"] = {
   "@context": "https://schema.org",
@@ -356,4 +295,4 @@ export const SSR_SCHEMA: Record<string, object> = ${JSON.stringify(
 
 writeFileSync(OUT_FILE, file, "utf-8");
 console.log(`✅ Generated schema → ${OUT_FILE}`);
-console.log(`   ${Object.keys(schemas).length} schemas (tools + blog + guides + index pages)`);
+console.log(`   ${Object.keys(schemas).length} schemas (tools + guides + index pages)`);

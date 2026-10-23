@@ -8,11 +8,9 @@ interface AuthorSchemaProps {
 }
 
 /**
- * AuthorSchema — injects a JSON-LD Person + BlogPosting graph for a
- * blog post. Runs client-side like the other schema components.
- * For crawler-visible schema see functions/_middleware.ts, which
- * handles tool pages; blog post schema is added here because blog
- * content is author- and post-specific.
+ * AuthorSchema injects the author's JSON-LD Person schema.
+ * Runs client-side like the other schema components.
+ * For crawler-visible schema see functions/_middleware.ts.
  */
 export function AuthorSchema({ author }: AuthorSchemaProps) {
   useEffect(() => {

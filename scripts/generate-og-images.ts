@@ -2,21 +2,17 @@
  * OG Image Generator
  * ------------------------------------------------------------
  * Reads:  src/data/tools.ts (working tools)
- *         src/data/blog.ts  (blog posts)
  * Writes: public/images/og/tools/{id}-og.svg + .png   (1200×630)
- *         public/images/og/blog/{slug}-og.svg + .png  (1200×630)
  *
  * Run:  npx tsx scripts/generate-og-images.ts
  * Auto: runs before `npm run build` (after sitemap)
  * ============================================================ */
 
 import { Resvg } from "@resvg/resvg-js";
-import sharp from "sharp";
 import { readFileSync } from "node:fs";
 import { existsSync, mkdirSync, writeFileSync } from "node:fs";
 import { resolve } from "node:path";
 import { tools } from "../src/data/tools";
-import { blogPosts } from "../src/data/blog";
 
 type Tool = {
   id: string;
@@ -219,91 +215,6 @@ function pickTitleSize(lines: string[]): number {
   return 28;
 }
 
-/* ── Build SVG for a single blog post ── */
-function buildBlogSvg(post: typeof blogPosts[0]): string {
-  const rawTitle = post.title.length > 110 ? post.title.slice(0, 109).trimEnd() + "…" : post.title;
-  const titleLines = splitTitle(rawTitle);
-  const titleSize = pickTitleSize(titleLines);
-
-  const excerpt = post.excerpt.length > 110 ? post.excerpt.slice(0, 109).trimEnd() + "…" : post.excerpt;
-  const category = post.category.toUpperCase();
-  const emoji = post.emoji || "📄";
-  const readTime = `${post.readTime} min read`;
-
-  // Build title <text> elements with proper vertical spacing
-  const lineHeight = Math.round(titleSize * 1.08);
-  const titleStartY = 230;
-  const titleSvg = titleLines
-    .map(
-      (line, i) =>
-        `<text x="100" y="${titleStartY + i * lineHeight}" font-family="'Noto Sans','Droid Sans',system-ui,sans-serif" font-size="${titleSize}" font-weight="800" fill="#F8F6F1" letter-spacing="-2">${esc(line)}</text>`
-    )
-    .join("\n    ");
-
-  // Excerpt y position depends on where the title ends
-  const excerptY = titleStartY + titleLines.length * lineHeight + 60;
-
-  // Badge width depends on category length
-  const badgeW = 8 + category.length * 15;
-
-  return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${W} ${H}" width="${W}" height="${H}" fill="none">
-    <defs>
-      <linearGradient id="bg" x1="0" y1="0" x2="${W}" y2="${H}" gradientUnits="userSpaceOnUse">
-        <stop offset="0%" stop-color="#1A1114"/>
-        <stop offset="100%" stop-color="#32202A"/>
-      </linearGradient>
-      <linearGradient id="accent" x1="0" y1="0" x2="${W}" y2="${H}" gradientUnits="userSpaceOnUse">
-        <stop offset="0%" stop-color="#D88B9A"/>
-        <stop offset="50%" stop-color="#8B3A4F"/>
-        <stop offset="100%" stop-color="#C99667"/>
-      </linearGradient>
-      <radialGradient id="glow1" cx="0.15" cy="0.2" r="0.6">
-        <stop offset="0%" stop-color="#D88B9A" stop-opacity="0.35"/>
-        <stop offset="100%" stop-color="#D88B9A" stop-opacity="0"/>
-      </radialGradient>
-      <radialGradient id="glow2" cx="0.9" cy="0.85" r="0.7">
-        <stop offset="0%" stop-color="#C99667" stop-opacity="0.35"/>
-        <stop offset="100%" stop-color="#C99667" stop-opacity="0"/>
-      </radialGradient>
-    </defs>
-
-    <rect width="${W}" height="${H}" fill="url(#bg)"/>
-    <rect width="${W}" height="${H}" fill="url(#glow1)"/>
-    <rect width="${W}" height="${H}" fill="url(#glow2)"/>
-
-    <rect x="0" y="0" width="${W}" height="6" fill="url(#accent)"/>
-    <rect x="0" y="${H - 6}" width="${W}" height="6" fill="url(#accent)"/>
-
-    <!-- Category badge -->
-    <rect x="100" y="80" width="${badgeW}" height="46" rx="23" fill="#D88B9A" opacity="0.15" stroke="#D88B9A" stroke-width="1.5"/>
-    <text x="${100 + badgeW / 2}" y="110" text-anchor="middle" font-family="'Noto Sans','Droid Sans',system-ui,sans-serif" font-size="20" font-weight="600" fill="#E8B4B8" letter-spacing="0.5">${esc(category)}</text>
-
-    <!-- Emoji decoration (top right) -->
-    <text x="1080" y="130" text-anchor="middle" font-family="'Noto Color Emoji','Noto Sans',sans-serif" font-size="72" opacity="0.85">${emoji}</text>
-
-    <!-- Title -->
-    ${titleSvg}
-
-    <!-- Excerpt -->
-    <text x="100" y="${excerptY}" font-family="'Noto Sans','Droid Sans',system-ui,sans-serif" font-size="24" font-weight="400" fill="#C4A89E" letter-spacing="-0.3">${esc(excerpt)}</text>
-
-    <!-- Meta pills -->
-    <g transform="translate(100, 545)">
-      <rect x="0" y="0" width="220" height="52" rx="26" fill="#FFFFFF" opacity="0.06" stroke="#D88B9A" stroke-width="1.5"/>
-      <circle cx="28" cy="26" r="5" fill="#D88B9A"/>
-      <text x="46" y="34" font-family="'Noto Sans','Droid Sans',sans-serif" font-size="18" font-weight="500" fill="#F8F6F1">${esc(readTime)}</text>
-
-      <rect x="240" y="0" width="260" height="52" rx="26" fill="#FFFFFF" opacity="0.06" stroke="#C99667" stroke-width="1.5"/>
-      <circle cx="268" cy="26" r="5" fill="#C99667"/>
-      <text x="286" y="34" font-family="'Noto Sans','Droid Sans',sans-serif" font-size="18" font-weight="500" fill="#F8F6F1">AHADEX Blog</text>
-    </g>
-
-    <!-- Domain -->
-    <text x="100" y="610" font-family="'Noto Sans Mono','Droid Sans Mono',monospace" font-size="22" font-weight="500" fill="#D88B9A" letter-spacing="0.5" opacity="0.85">ahadex.fun/blog</text>
-  </svg>
-  `;
-}
-
 /* ── Main ── */
 async function main(): Promise<void> {
   if (!existsSync(OUT_DIR)) mkdirSync(OUT_DIR, { recursive: true });
@@ -323,10 +234,9 @@ async function main(): Promise<void> {
         fitTo: { mode: "width", value: W },
       });
       const pngBuffer = renderer.render().asPng();
-      const jpgPath = pngPath.replace(/\.png$/, ".jpg");
-      await sharp(pngBuffer).jpeg({ quality: 85 }).toFile(jpgPath);
+      writeFileSync(pngPath, pngBuffer);
       okCount += 1;
-      console.log(`✅ ${tool.id}-og.jpg`);
+      console.log(`✅ ${tool.id}-og.png`);
     } catch (e) {
       failCount += 1;
       console.error(`❌ ${tool.id}:`, e instanceof Error ? e.message : e);
@@ -335,40 +245,9 @@ async function main(): Promise<void> {
 
   console.log("");
   console.log(`📊 Tools: ${okCount} OK, ${failCount} failed (total ${allTools.length})`);
-
-  /* ── Blog OG images ── */
-  const BLOG_OUT_DIR = resolve(process.cwd(), "public/images/og/blog");
-  if (!existsSync(BLOG_OUT_DIR)) mkdirSync(BLOG_OUT_DIR, { recursive: true });
-
-  let blogOk = 0;
-  let blogFail = 0;
-
-  for (const post of blogPosts) {
-    const svg = buildBlogSvg(post);
-    const svgPath = resolve(BLOG_OUT_DIR, `${post.slug}-og.svg`);
-    const pngPath = resolve(BLOG_OUT_DIR, `${post.slug}-og.png`);
-
-    try {
-      writeFileSync(svgPath, svg, "utf-8");
-      const renderer = new Resvg(svg, {
-        fitTo: { mode: "width", value: W },
-      });
-      const pngBuffer = renderer.render().asPng();
-      const jpgPath = pngPath.replace(/\.png$/, ".jpg");
-      await sharp(pngBuffer).jpeg({ quality: 85 }).toFile(jpgPath);
-      blogOk += 1;
-    } catch (e) {
-      blogFail += 1;
-      console.error(`❌ blog/${post.slug}:`, e instanceof Error ? e.message : e);
-    }
-  }
-
-  console.log(`📰 Blog: ${blogOk} OK, ${blogFail} failed (total ${blogPosts.length})`);
-  console.log(`📁 Tool output: ${OUT_DIR}`);
-  console.log(`📁 Blog output: ${BLOG_OUT_DIR}`);
 }
 
-main().catch(console.error);
+main().then(generateRootOg).catch(console.error);
 
 /* ── Home & default OG ── */
 async function generateRootOg(): Promise<void> {
@@ -387,16 +266,12 @@ async function generateRootOg(): Promise<void> {
         fitTo: { mode: "width", value: W },
       });
       const pngBuffer = renderer.render().asPng();
-      const jpg = png.replace(/\.png$/, ".jpg");
-      await sharp(pngBuffer).jpeg({ quality: 85 }).toFile(jpg);
-      console.log(`✅ ${f}.jpg`);
+      writeFileSync(png, pngBuffer);
+      console.log(`✅ ${f}.png`);
     } catch {
       console.log(`❌ Failed: ${f}.png`);
     }
   }
 }
 
-// Run at end of script (after tools loop)
-if (typeof require !== "undefined" && require.main === module) {
-  generateRootOg().catch(console.error);
-}
+

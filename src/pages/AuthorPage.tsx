@@ -1,10 +1,9 @@
-import { useParams, Link, Navigate } from "react-router-dom";
+import { useParams, Navigate } from "react-router-dom";
 import { useEffect } from "react";
 import { motion } from "framer-motion";
-import { ArrowLeft, MapPin, Mail, Github } from "lucide-react";
+import { MapPin, Mail, Github } from "lucide-react";
 import { useLanguage } from "@contexts/LanguageContext";
 import { authors } from "@data/authors";
-import { blogPosts } from "@data/blog";
 
 const SITE_URL = "https://ahadex.fun";
 
@@ -89,19 +88,8 @@ export default function AuthorPage() {
   if (!author) {
     return <Navigate to="/404" replace />;
   }
-
-  // Posts by this author
-  const authorPosts = blogPosts.filter((p) => p.authorId === author.id);
-
-  return (
+return (
     <article className="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8 py-10 sm:py-14">
-      <Link
-        to="/blog"
-        className="inline-flex items-center gap-2 text-[12px] font-bold text-silk-wine dark:text-silk-rose-soft hover:text-silk-rose transition-colors mb-8"
-      >
-        <ArrowLeft className="w-3.5 h-3.5" />
-        {bn ? "সব পোস্ট" : "All posts"}
-      </Link>
 
       <motion.header
         initial={{ opacity: 0, y: 16 }}
@@ -164,38 +152,6 @@ export default function AuthorPage() {
           ))}
         </div>
       </motion.header>
-
-      <section>
-        <h2 className="font-serif font-black text-2xl text-light-text dark:text-dark-text mb-6">
-          {bn
-            ? `${authorPosts.length}টি পোস্ট`
-            : `Articles by ${author.name.split(" ")[0]}`}
-        </h2>
-        <div className="space-y-3">
-          {authorPosts.map((p) => (
-            <Link
-              key={p.slug}
-              to={`/blog/${p.slug}`}
-              className="group block p-5 rounded-2xl bg-white/70 dark:bg-dark-surface/70 backdrop-blur-xl border border-silk-rose/15 hover:border-silk-rose/45 transition-all"
-            >
-              <div className="flex items-start gap-3">
-                <span className="text-2xl shrink-0">{p.emoji}</span>
-                <div className="flex-1 min-w-0">
-                  <p className="text-[10px] font-black uppercase tracking-[0.15em] text-silk-wine dark:text-silk-rose-soft mb-1">
-                    {p.category}
-                  </p>
-                  <h3 className="font-serif font-black text-base text-light-text dark:text-dark-text group-hover:text-silk-rose transition-colors mb-1">
-                    {bn ? p.titleBn : p.title}
-                  </h3>
-                  <p className="text-[12px] text-light-textSecondary dark:text-dark-textSecondary line-clamp-2 leading-relaxed">
-                    {bn ? p.excerptBn : p.excerpt}
-                  </p>
-                </div>
-              </div>
-            </Link>
-          ))}
-        </div>
-      </section>
     </article>
   );
 }
