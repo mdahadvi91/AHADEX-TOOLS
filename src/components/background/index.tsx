@@ -1,16 +1,8 @@
-import { ParticleField } from "./ParticleField";
-import { FallingPetals } from "./FallingPetals";
-import { RotatingBackground } from "./RotatingBackground";
-import { AuroraBlobs } from "./AuroraBlobs";
-
 export function CinematicBackground() {
-  return (
-    <>
-      <RotatingBackground />
-      <FallingPetals />
-      <ParticleField />
-    </>
-  );
+  return null;
 }
 
-export { AuroraBlobs, ParticleField, FallingPetals, RotatingBackground };
+export function AuroraBlobs() { return null; }
+export function ParticleField() { return null; }
+export function FallingPetals() { return null; }
+export function RotatingBackground() { return null; }

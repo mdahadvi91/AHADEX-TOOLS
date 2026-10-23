@@ -7,7 +7,7 @@
   html {
     -webkit-text-size-adjust: 100%;
     -webkit-tap-highlight-color: transparent;
-    scroll-behavior: smooth;
+    scroll-behavior: auto;
   }
   html.dark { color-scheme: dark; }
   html.light { color-scheme: light; }
@@ -282,13 +282,11 @@ html[lang="ar"] .live-text > span {
   margin-top: 0;
 }
 
-/* =========================================
-   GLOBAL ANIMATION KILL SWITCH
-   (আপনার রিকোয়ারমেন্ট অনুযায়ী সব অ্যানিমেশন বন্ধ করা হলো)
-   ========================================= */
-*, *::before, *::after {
-  animation-duration: 0.01ms !important;
-  animation-iteration-count: 1 !important;
-  transition-duration: 0.01ms !important;
+/* Performance: decorative motion is disabled site-wide. */
+*,
+*::before,
+*::after {
+  animation: none !important;
+  transition: none !important;
   scroll-behavior: auto !important;
 }
