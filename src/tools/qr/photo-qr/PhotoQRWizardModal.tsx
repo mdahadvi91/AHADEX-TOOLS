@@ -1,350 +1,193 @@
-import { useState, useEffect, useRef, useMemo } from "react";
-import { X, ArrowRight, ArrowLeft, CheckCircle, Upload, Download, Loader2 } from "lucide-react";
+import { useEffect, useMemo, useRef, useState } from "react";
+import { ArrowLeft, ArrowRight, Download, Loader2, X } from "lucide-react";
+import { useLanguage } from "@contexts/LanguageContext";
+import { cn } from "@lib/cn";
 import { getPlatform } from "./options";
 import { composePhoto, generatePreview } from "./logic";
 import { photoQrData } from "./data";
+import { SettingsPanel } from "./SettingsPanel";
+import { PreviewPanel } from "./PreviewPanel";
 import type { Position, QrBackground } from "./types";
-import { cn } from "@lib/cn";
 
-const PLATFORM_OPTIONS = [
-  { id: "whatsapp", name: "WhatsApp", emoji: "💬" },
-  { id: "facebook", name: "Facebook", emoji: "📘" },
-  { id: "instagram", name: "Instagram", emoji: "📸" },
-  { id: "url", name: "Website", emoji: "🌐" },
-  { id: "email", name: "Email", emoji: "✉️" },
-  { id: "text", name: "Plain Text", emoji: "📝" },
-];
+interface PhotoQRWizardModalProps {
+  isOpen: boolean;
+  onClose: () => void;
+}
 
-export function PhotoQRWizardModal({ isOpen, onClose }: { isOpen: boolean, onClose: () => void }) {
-  // 🚨 Unused 'language' removed
-  
-  const [step, setStep] = useState(1); 
+export function PhotoQRWizardModal({ isOpen, onClose }: PhotoQRWizardModalProps) {
+  const { language } = useLanguage();
+  const bn = language === "bn";
+  const [step, setStep] = useState<1 | 2>(1);
   const [photoFile, setPhotoFile] = useState<File | null>(null);
-  const [platformId, setPlatformId] = useState<string>("whatsapp");
+  const [platformId, setPlatformId] = useState("whatsapp");
   const [values, setValues] = useState<Record<string, string>>({});
   const [position, setPosition] = useState<Position>("bottom-right");
   const [sizePercent, setSizePercent] = useState(20);
   const [padding, setPadding] = useState(10);
   const [qrBackground, setQrBackground] = useState<QrBackground>("rounded");
-  
   const [preview, setPreview] = useState<string | null>(null);
   const [generating, setGenerating] = useState(false);
   const [error, setError] = useState<string | null>(null);
-  const [isDownloading, setIsDownloading] = useState(false);
+  const [downloading, setDownloading] = useState(false);
+  const timerRef = useRef<number | null>(null);
+  const requestRef = useRef(0);
 
-  const previewTimerRef = useRef<number | null>(null);
-  const previewRequestRef = useRef(0);
-
-  const platform = useMemo(
-    () => getPlatform(platformId) ?? getPlatform("whatsapp")!,
-    [platformId]
-  );
-
+  const platform = useMemo(() => getPlatform(platformId) ?? getPlatform("whatsapp")!, [platformId]);
   const payload = useMemo(() => {
-    try {
-      const p = platform.buildPayload(values);
-      if (p) return p;
-    } catch (e) { /* ignore */ }
-    
-    if (platformId === "whatsapp") return `https://wa.me/${values.phone?.replace(/\D/g, '') || ''}?text=${encodeURIComponent(values.message || '')}`;
-    if (platformId === "url" || platformId === "facebook") return values.url || "";
-    if (platformId === "instagram") return `https://instagram.com/${values.username?.replace('@', '') || ''}`;
-    if (platformId === "email") return `mailto:${values.email || ''}`;
-    if (platformId === "text") return values.text || "";
-    
-    return "";
-  }, [platform, values, platformId]);
-
+    try { return platform.buildPayload(values).trim(); } catch { return ""; }
+  }, [platform, values]);
   const canPreview = Boolean(photoFile && payload);
 
   useEffect(() => {
-    const requestId = ++previewRequestRef.current;
-    if (previewTimerRef.current !== null) window.clearTimeout(previewTimerRef.current);
+    if (isOpen) setStep(1);
+  }, [isOpen]);
 
-    if (!canPreview || !photoFile) {
+  useEffect(() => {
+    const requestId = ++requestRef.current;
+    if (timerRef.current !== null) {
+      window.clearTimeout(timerRef.current);
+      timerRef.current = null;
+    }
+    if (!isOpen || !photoFile || !payload) {
       setPreview(null);
       setGenerating(false);
       return;
     }
-
     setGenerating(true);
-
-    previewTimerRef.current = window.setTimeout(async () => {
-      if (requestId !== previewRequestRef.current) return;
-      
+    timerRef.current = window.setTimeout(async () => {
       try {
-        const url = await generatePreview({ photoFile, platform, values, position, sizePercent, padding, qrBackground });
-        if (requestId === previewRequestRef.current) {
-          setPreview(url);
+        const nextPreview = await generatePreview({ photoFile, platform, values, position, sizePercent, padding, qrBackground });
+        if (requestRef.current === requestId) {
+          setPreview(nextPreview);
           setError(null);
         }
-      } catch (e) {
-        if (requestId === previewRequestRef.current) setError(e instanceof Error ? e.message : "Preview failed");
+      } catch (cause) {
+        if (requestRef.current === requestId) setError(cause instanceof Error ? cause.message : "Preview failed");
       } finally {
-        if (requestId === previewRequestRef.current) setGenerating(false);
+        if (requestRef.current === requestId) setGenerating(false);
       }
-    }, 50);
-
+    }, 180);
     return () => {
-      if (previewTimerRef.current !== null) window.clearTimeout(previewTimerRef.current);
-      if (previewRequestRef.current === requestId) previewRequestRef.current += 1;
+      if (timerRef.current !== null) {
+        window.clearTimeout(timerRef.current);
+        timerRef.current = null;
+      }
+      if (requestRef.current === requestId) requestRef.current += 1;
     };
-  }, [photoFile, platform, values, position, sizePercent, padding, qrBackground, canPreview]);
+  }, [isOpen, photoFile, platform, values, position, sizePercent, padding, qrBackground, payload]);
+
+  useEffect(() => {
+    if (!isOpen) return;
+    const onKeyDown = (event: KeyboardEvent) => {
+      if (event.key === "Escape") {
+        if (step === 2) setStep(1);
+        else onClose();
+      }
+    };
+    window.addEventListener("keydown", onKeyDown);
+    return () => window.removeEventListener("keydown", onKeyDown);
+  }, [isOpen, step, onClose]);
 
   if (!isOpen) return null;
 
-  const handleCloseClick = () => {
-    if (step === 1) onClose();
-    else setStep(1);
-  };
-
   const handleDownload = async () => {
-    if (!photoFile || !payload) return;
-    setIsDownloading(true);
+    if (!photoFile || !payload || downloading) return;
+    setDownloading(true);
+    setError(null);
     try {
       const blob = await composePhoto({ photoFile, platform, values, position, sizePercent, padding, qrBackground });
       const url = URL.createObjectURL(blob);
-      const a = document.createElement("a");
-      a.href = url;
-      a.download = `${photoQrData.slug}-${Date.now()}.png`;
-      document.body.appendChild(a);
-      a.click();
-      document.body.removeChild(a);
+      const anchor = document.createElement("a");
+      anchor.href = url;
+      anchor.download = `${photoQrData.slug}-${Date.now()}.png`;
+      document.body.appendChild(anchor);
+      anchor.click();
+      anchor.remove();
       window.setTimeout(() => URL.revokeObjectURL(url), 1000);
-    } catch (e) {
-      setError(e instanceof Error ? e.message : "Download failed");
+    } catch (cause) {
+      setError(cause instanceof Error ? cause.message : "Download failed");
     } finally {
-      setIsDownloading(false);
+      setDownloading(false);
     }
   };
 
+  const handlePlatformChange = (id: string) => {
+    setPlatformId(id);
+    setValues({});
+    setError(null);
+  };
+
   return (
-    <div className="fixed inset-0 z-[100] flex items-center justify-center bg-black/60 backdrop-blur-sm sm:p-4">
-      <div className="bg-white w-full max-w-5xl h-full sm:h-auto sm:max-h-[95vh] sm:rounded-2xl shadow-2xl flex flex-col overflow-hidden">
-        
-        {/* Header */}
-        <div className="flex items-center justify-between px-4 py-3 border-b border-gray-100 bg-white shrink-0">
-          <h2 className="text-lg font-bold text-gray-900">
-            {step === 1 && "1. Upload Image"}
-            {step === 2 && "2. QR Code Data"}
-            {step === 3 && "3. Design & Position"}
-            {step === 4 && "4. Download"}
-          </h2>
-          <div className="flex items-center gap-3">
-            <span className="text-sm text-gray-400 font-medium hidden sm:block">Step {step}/4</span>
-            <button onClick={handleCloseClick} className="p-2 bg-gray-100 hover:bg-gray-200 rounded-full transition-colors">
-              <X className="w-5 h-5 text-gray-600" />
-            </button>
+    <div className="fixed inset-0 z-[100] flex items-center justify-center bg-black/65 backdrop-blur-sm sm:p-3" role="dialog" aria-modal="true" aria-labelledby="photoqr-wizard-title">
+      <div className="flex h-full w-full flex-col overflow-hidden bg-light-bg dark:bg-dark-bg sm:h-auto sm:max-h-[96vh] sm:max-w-7xl sm:rounded-2xl sm:border sm:border-silk-rose/25 sm:shadow-2xl">
+        <header className="flex shrink-0 items-center justify-between gap-3 border-b border-silk-rose/20 bg-white/90 px-4 py-3 dark:bg-dark-surface/90 sm:px-6">
+          <div className="min-w-0">
+            <p className="text-[10px] font-bold uppercase tracking-[0.18em] text-silk-rose">{bn ? `ধাপ ${step}/2` : `STEP ${step}/2`}</p>
+            <h2 id="photoqr-wizard-title" className="truncate text-base font-bold text-light-text dark:text-dark-text sm:text-lg">
+              {step === 1 ? (bn ? "ছবি ও QR সম্পাদনা" : "Edit Photo QR") : (bn ? "লাইভ প্রিভিউ ও ডাউনলোড" : "Live Preview & Download")}
+            </h2>
           </div>
-        </div>
+          <button type="button" onClick={() => step === 2 ? setStep(1) : onClose()} className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl border border-silk-rose/20 bg-silk-rose/5 text-light-text dark:text-dark-text" aria-label={step === 2 ? (bn ? "সম্পাদনায় ফিরে যান" : "Back to editing") : (bn ? "বন্ধ করুন" : "Close wizard")}>
+            {step === 2 ? <ArrowLeft className="h-5 w-5" /> : <X className="h-5 w-5" />}
+          </button>
+        </header>
 
-        <div className="flex flex-col flex-1 overflow-hidden relative bg-gray-50">
-          
-          {/* Top: Live Preview */}
-          {step > 1 && (
-            <div className="bg-white p-4 border-b border-gray-200 shrink-0 flex justify-center shadow-sm z-10 max-h-[45vh] overflow-hidden pointer-events-none relative">
-              <div className="w-full max-w-[500px] flex items-center justify-center relative">
-                
-                {generating && (
-                  <div className="absolute inset-0 bg-white/80 z-10 flex flex-col items-center justify-center rounded-lg backdrop-blur-sm">
-                    <Loader2 className="w-8 h-8 animate-spin text-red-600 mb-2" />
-                    <span className="text-sm font-medium text-gray-600">Updating...</span>
-                  </div>
-                )}
-
-                {preview ? (
-                  <img 
-                    src={preview} 
-                    alt="Preview" 
-                    className={cn(
-                      "max-h-[38vh] w-auto object-contain rounded-md shadow-md transition-opacity duration-200",
-                      generating ? "opacity-40" : "opacity-100"
-                    )} 
-                  />
-                ) : (
-                  !generating && <div className="text-gray-400 text-sm py-10">Fill the details to see preview</div>
-                )}
+        <div className="min-h-0 flex-1 overflow-y-auto p-3 sm:p-5">
+          {step === 1 ? (
+            <div className="grid grid-cols-1 items-stretch gap-3 md:grid-cols-[minmax(280px,0.85fr)_minmax(0,1.15fr)] sm:gap-5">
+              <SettingsPanel
+                platformId={platformId}
+                onPlatformChange={handlePlatformChange}
+                values={values}
+                onValueChange={(key, value) => setValues(current => ({ ...current, [key]: value }))}
+                position={position}
+                onPositionChange={setPosition}
+                sizePercent={sizePercent}
+                onSizeChange={setSizePercent}
+                padding={padding}
+                onPaddingChange={setPadding}
+                qrBackground={qrBackground}
+                onQrBackgroundChange={setQrBackground}
+                onDownload={handleDownload}
+                canDownload={canPreview}
+                generating={generating || downloading}
+                error={error}
+              />
+              <PreviewPanel
+                photoFile={photoFile}
+                onPhotoChange={file => { setPhotoFile(file); setError(null); }}
+                onPhotoClear={() => { setPhotoFile(null); setPreview(null); setError(null); }}
+                preview={preview}
+                generating={generating}
+                hasPayload={Boolean(payload)}
+                platform={platform}
+                onError={setError}
+              />
+            </div>
+          ) : (
+            <div className="mx-auto flex w-full max-w-4xl flex-col items-center gap-4">
+              <div className={cn("relative flex min-h-[300px] w-full items-center justify-center overflow-hidden rounded-2xl border border-silk-rose/20 p-3 sm:min-h-[55vh] sm:p-6", "bg-[conic-gradient(at_top_left,_rgba(216,139,154,0.12)_25%,_transparent_25%_50%,_rgba(216,139,154,0.12)_50%_75%,_transparent_75%)] bg-[length:20px_20px]")}>
+                {preview ? <img src={preview} alt={bn ? "ছবির QR কোডের লাইভ প্রিভিউ" : "Live preview of photo with QR code"} className={cn("max-h-[62vh] max-w-full object-contain shadow-lg", generating && "opacity-50")} /> : <p className="px-5 text-center text-sm text-light-textSecondary dark:text-dark-textSecondary">{bn ? "প্রিভিউ দেখতে ছবি ও প্রয়োজনীয় তথ্য যোগ করুন।" : "Upload a photo and complete the required details to see the preview."}</p>}
+                {generating && <div className="absolute inset-0 flex items-center justify-center bg-white/55 backdrop-blur-[2px] dark:bg-black/35"><Loader2 className="h-8 w-8 animate-spin text-silk-rose" /></div>}
               </div>
+              {error && <p role="alert" className="w-full rounded-xl border border-red-500/25 bg-red-500/10 p-3 text-sm text-red-600 dark:text-red-400">{error}</p>}
+              <div className="flex w-full flex-col gap-3 sm:flex-row sm:justify-center">
+                <button type="button" onClick={() => setStep(1)} className="inline-flex min-h-12 items-center justify-center gap-2 rounded-xl border border-silk-rose/30 px-5 font-bold text-light-text transition hover:bg-silk-rose/5 dark:text-dark-text"><ArrowLeft className="h-4 w-4" />{bn ? "সম্পাদনায় ফিরে যান" : "Back to editing"}</button>
+                <button type="button" onClick={handleDownload} disabled={!canPreview || generating || downloading} className="inline-flex min-h-12 items-center justify-center gap-2 rounded-xl bg-silk-wine px-6 font-bold text-white shadow-lg transition hover:opacity-90 disabled:cursor-not-allowed disabled:opacity-50">{downloading ? <Loader2 className="h-5 w-5 animate-spin" /> : <Download className="h-5 w-5" />}{downloading ? (bn ? "তৈরি হচ্ছে..." : "Preparing PNG...") : (bn ? "PNG ডাউনলোড" : "Download PNG")}</button>
+              </div>
+              {!canPreview && <p className="text-center text-xs text-light-textSecondary dark:text-dark-textSecondary">{bn ? "আগে ছবি আপলোড করে QR-এর প্রয়োজনীয় তথ্য পূরণ করুন।" : "Upload a photo and fill in the required QR details first."}</p>}
             </div>
           )}
-
-          {/* Bottom: Form */}
-          <div className="flex-1 overflow-y-auto p-4 sm:p-6 pb-24">
-            <div className="max-w-xl mx-auto bg-white p-4 sm:p-6 rounded-xl border border-gray-200 shadow-sm">
-              
-              {/* 🚨 Error Message Display (Fixed TS6133 error) */}
-              {error && (
-                <div className="mb-4 p-3 bg-red-50 border border-red-200 text-red-600 text-sm rounded-lg font-medium">
-                  {error}
-                </div>
-              )}
-
-              {/* Step 1: Upload Image */}
-              {step === 1 && (
-                <div className="space-y-6 text-center">
-                  <h3 className="text-xl font-bold border-b pb-2 mb-4 text-left">Upload Your Photo</h3>
-                  <label className="cursor-pointer inline-flex flex-col items-center justify-center w-full h-48 rounded-xl border-2 border-dashed border-gray-300 hover:border-red-500 bg-gray-50 overflow-hidden relative">
-                    <Upload className="w-10 h-10 text-gray-400 mb-2" />
-                    <span className="text-sm font-medium text-gray-600">
-                      {photoFile ? photoFile.name : "Click to upload image"}
-                    </span>
-                    <input type="file" accept="image/*" className="hidden" onChange={(e) => {
-                      const file = e.target.files?.[0];
-                      if (file) { setPhotoFile(file); setStep(2); }
-                    }} />
-                  </label>
-                </div>
-              )}
-
-              {/* Step 2: Payload Data */}
-              {step === 2 && (
-                <div className="space-y-6">
-                  <h3 className="text-xl font-bold border-b pb-2 mb-4">Select QR Platform</h3>
-                  
-                  <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
-                    {PLATFORM_OPTIONS.map((opt) => (
-                      <button
-                        key={opt.id}
-                        onClick={() => { setPlatformId(opt.id); setValues({}); }}
-                        className={cn(
-                          "flex flex-col items-center justify-center gap-2 p-3 rounded-xl border transition-all",
-                          platformId === opt.id 
-                            ? "bg-red-50 border-red-500 text-red-600 shadow-sm" 
-                            : "bg-white border-gray-200 text-gray-700 hover:bg-gray-50"
-                        )}
-                      >
-                        <span className="text-3xl">{opt.emoji}</span>
-                        <span className="text-xs font-bold">{opt.name}</span>
-                      </button>
-                    ))}
-                  </div>
-
-                  <div className="mt-6 p-4 bg-gray-50 rounded-xl border border-gray-200">
-                    <h4 className="text-sm font-bold text-gray-700 mb-4 capitalize flex items-center gap-2">
-                      {PLATFORM_OPTIONS.find(o => o.id === platformId)?.emoji} {platformId} Details
-                    </h4>
-
-                    {platformId === "whatsapp" && (
-                      <div className="space-y-3">
-                        <div>
-                          <label className="block text-sm font-medium text-gray-700 mb-1">Phone Number</label>
-                          <input type="text" value={values.phone || ""} onChange={(e) => setValues({ ...values, phone: e.target.value })} placeholder="+1234567890" className="w-full px-3 py-2 rounded-lg border border-gray-300 focus:ring-2 focus:ring-red-500 outline-none" />
-                        </div>
-                        <div>
-                          <label className="block text-sm font-medium text-gray-700 mb-1">Default Message (Optional)</label>
-                          <input type="text" value={values.message || ""} onChange={(e) => setValues({ ...values, message: e.target.value })} placeholder="Hello!" className="w-full px-3 py-2 rounded-lg border border-gray-300 focus:ring-2 focus:ring-red-500 outline-none" />
-                        </div>
-                      </div>
-                    )}
-
-                    {(platformId === "url" || platformId === "facebook") && (
-                      <div>
-                        <label className="block text-sm font-medium text-gray-700 mb-1">Website / Profile URL</label>
-                        <input type="url" value={values.url || ""} onChange={(e) => setValues({ ...values, url: e.target.value })} placeholder="https://example.com" className="w-full px-3 py-2 rounded-lg border border-gray-300 focus:ring-2 focus:ring-red-500 outline-none" />
-                      </div>
-                    )}
-
-                    {platformId === "instagram" && (
-                      <div>
-                        <label className="block text-sm font-medium text-gray-700 mb-1">Instagram Username</label>
-                        <input type="text" value={values.username || ""} onChange={(e) => setValues({ ...values, username: e.target.value })} placeholder="@yourusername" className="w-full px-3 py-2 rounded-lg border border-gray-300 focus:ring-2 focus:ring-red-500 outline-none" />
-                      </div>
-                    )}
-
-                    {platformId === "email" && (
-                      <div>
-                        <label className="block text-sm font-medium text-gray-700 mb-1">Email Address</label>
-                        <input type="email" value={values.email || ""} onChange={(e) => setValues({ ...values, email: e.target.value })} placeholder="hello@example.com" className="w-full px-3 py-2 rounded-lg border border-gray-300 focus:ring-2 focus:ring-red-500 outline-none" />
-                      </div>
-                    )}
-
-                    {platformId === "text" && (
-                      <div>
-                        <label className="block text-sm font-medium text-gray-700 mb-1">Plain Text</label>
-                        <textarea value={values.text || ""} onChange={(e) => setValues({ ...values, text: e.target.value })} placeholder="Enter any text here..." rows={3} className="w-full px-3 py-2 rounded-lg border border-gray-300 focus:ring-2 focus:ring-red-500 outline-none" />
-                      </div>
-                    )}
-                  </div>
-                </div>
-              )}
-
-              {/* Step 3: Design & Position */}
-              {step === 3 && (
-                <div className="space-y-6">
-                  <h3 className="text-xl font-bold border-b pb-2 mb-4">Design & Position</h3>
-                  
-                  <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-2">QR Position</label>
-                    <div className="grid grid-cols-3 gap-2">
-                      {["top-left", "top-right", "bottom-left", "bottom-right", "center"].map((pos) => (
-                        <button
-                          key={pos}
-                          onClick={() => setPosition(pos as Position)}
-                          className={cn("py-2 rounded-lg border text-xs font-medium capitalize", position === pos ? "bg-red-50 border-red-500 text-red-600" : "bg-white border-gray-200 text-gray-600 hover:bg-gray-50")}
-                        >
-                          {pos.replace("-", " ")}
-                        </button>
-                      ))}
-                    </div>
-                  </div>
-
-                  <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-1">QR Size ({sizePercent}%)</label>
-                    <input type="range" min="10" max="50" value={sizePercent} onChange={(e) => setSizePercent(Number(e.target.value))} className="w-full accent-red-600" />
-                  </div>
-
-                  <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-1">Padding</label>
-                    <input type="range" min="0" max="30" value={padding} onChange={(e) => setPadding(Number(e.target.value))} className="w-full accent-red-600" />
-                  </div>
-
-                  <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-1">QR Background</label>
-                    <select value={qrBackground} onChange={(e) => setQrBackground(e.target.value as QrBackground)} className="w-full px-3 py-2 rounded-lg border border-gray-300 focus:ring-2 focus:ring-red-500 outline-none">
-                      <option value="rounded">Rounded</option>
-                      <option value="square">Square</option>
-                      <option value="none">None (Transparent)</option>
-                    </select>
-                  </div>
-                </div>
-              )}
-
-              {/* Step 4: Download */}
-              {step === 4 && (
-                <div className="text-center py-6">
-                  <CheckCircle className="w-16 h-16 text-green-500 mx-auto mb-4" />
-                  <h3 className="text-2xl font-bold mb-2">Your Photo QR is Ready!</h3>
-                  <p className="text-gray-500 mb-8">Click below to download the image.</p>
-                  
-                  <button onClick={handleDownload} disabled={isDownloading} className="flex items-center justify-center gap-2 bg-red-600 text-white px-10 py-4 rounded-xl font-bold hover:bg-red-700 transition-colors w-full max-w-sm mx-auto disabled:opacity-50 text-lg shadow-lg shadow-red-200">
-                    {isDownloading ? <><Loader2 className="w-6 h-6 animate-spin" /> Downloading...</> : <><Download className="w-6 h-6" /> Download Image</>}
-                  </button>
-                </div>
-              )}
-            </div>
-          </div>
-
-          {/* Bottom Navigation Bar */}
-          {step > 1 && step < 4 && (
-            <div className="absolute bottom-0 left-0 right-0 bg-white border-t border-gray-200 p-4 flex items-center justify-between z-20">
-              <button onClick={() => setStep(step - 1)} className="px-6 py-2.5 rounded-full font-bold text-gray-600 bg-gray-100 hover:bg-gray-200 transition-colors flex items-center gap-2">
-                <ArrowLeft className="w-4 h-4" /> Back
-              </button>
-              <button onClick={() => setStep(step + 1)} disabled={!canPreview && step === 2} className="px-8 py-2.5 rounded-full font-bold text-white bg-red-600 hover:bg-red-700 transition-colors flex items-center gap-2 shadow-lg shadow-red-200 disabled:opacity-50">
-                Next <ArrowRight className="w-4 h-4" />
-              </button>
-            </div>
-          )}
-          
-          {step === 4 && (
-            <div className="absolute bottom-0 left-0 right-0 bg-white border-t border-gray-200 p-4 flex justify-center z-20">
-              <button onClick={onClose} className="px-8 py-2.5 rounded-full font-bold text-gray-600 bg-gray-100 hover:bg-gray-200 transition-colors">
-                Close Editor
-              </button>
-            </div>
-          )}
-
         </div>
+
+        <footer className="flex shrink-0 items-center justify-between gap-3 border-t border-silk-rose/20 bg-white/90 px-4 py-3 dark:bg-dark-surface/90 sm:px-6">
+          <span className="text-xs text-light-textSecondary dark:text-dark-textSecondary">{step === 1 ? (bn ? "১. সম্পাদনা" : "1. Edit") : (bn ? "২. প্রিভিউ" : "2. Preview")}</span>
+          {step === 1 ? (
+            <button type="button" onClick={() => setStep(2)} disabled={!canPreview} className="inline-flex min-h-11 items-center justify-center gap-2 rounded-xl bg-silk-wine px-5 font-bold text-white transition hover:opacity-90 disabled:cursor-not-allowed disabled:opacity-50">{bn ? "প্রিভিউ দেখুন" : "Review preview"}<ArrowRight className="h-4 w-4" /></button>
+          ) : (
+            <button type="button" onClick={onClose} className="rounded-xl px-4 py-2 font-semibold text-light-textSecondary transition hover:bg-silk-rose/10 dark:text-dark-textSecondary">{bn ? "বন্ধ করুন" : "Close"}</button>
+          )}
+        </footer>
       </div>
     </div>
   );
