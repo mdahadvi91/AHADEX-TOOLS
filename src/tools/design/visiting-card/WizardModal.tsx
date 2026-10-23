@@ -5,6 +5,7 @@ import { renderSide } from "./shared/renderer";
 import { DEFAULT_USER_DATA } from "./types";
 import { getCardSizeFromId } from "./shared/sizes";
 import type { Template, UserData } from "./types";
+import { useLanguage } from "@contexts/LanguageContext";
 
 import { Canvas } from "./editor/Canvas";
 import { LogoPanel } from "./editor/panels/LogoPanel";
@@ -57,8 +58,9 @@ function TemplateCard({ template, onSelect }: { template: Template; onSelect: ()
 
 // --- MAIN WIZARD MODAL ---
 export function WizardModal({ isOpen, onClose }: { isOpen: boolean; onClose: () => void }) {
-  
-  // step 1: Gallery, 2: Preview, 3: Logo, 4: Name, 5: Contact, 6: Address, 7: QR, 8: Download
+  const { language } = useLanguage();
+  const bn = language === "bn";
+
   const [step, setStep] = useState(1); 
   const [selectedTemplateId, setSelectedTemplateId] = useState<string | null>(null);
   const [userData, setUserData] = useState<UserData>(DEFAULT_USER_DATA);
@@ -74,13 +76,9 @@ export function WizardModal({ isOpen, onClose }: { isOpen: boolean; onClose: () 
     setStep(2);
   };
 
-  // 🚨 ক্রস (X) বাটনের নতুন লজিক
   const handleCloseClick = () => {
-    if (step === 1) {
-      onClose(); // গ্যালারিতে থাকলে সরাসরি বন্ধ হবে (ইনডেক্সে যাবে)
-    } else {
-      setStep(1); // অন্য যেকোনো ধাপে থাকলে গ্যালারিতে ফিরে যাবে
-    }
+    if (step === 1) onClose();
+    else setStep(1);
   };
 
   const updateData = (key: keyof UserData, value: string) => {
@@ -107,16 +105,15 @@ export function WizardModal({ isOpen, onClose }: { isOpen: boolean; onClose: () 
         {/* Header */}
         <div className="flex items-center justify-between px-4 py-3 border-b border-gray-100 bg-white shrink-0">
           <h2 className="text-lg font-bold text-gray-900">
-            {step === 1 && "Select Template"}
-            {step === 2 && "Template Preview"}
-            {step === 3 && "Upload Logo"}
-            {step === 4 && "Personal Details"}
-            {step === 5 && "Contact Details"}
-            {step === 6 && "Web & Location"}
-            {step === 7 && "QR Code Options"}
-            {step === 8 && "Download"}
+            {step === 1 && (bn ? "টেমপ্লেট বেছে নিন" : "Select Template")}
+            {step === 2 && (bn ? "টেমপ্লেট প্রিভিউ" : "Template Preview")}
+            {step === 3 && (bn ? "লোগো আপলোড করুন" : "Upload Logo")}
+            {step === 4 && (bn ? "ব্যক্তিগত তথ্য" : "Personal Details")}
+            {step === 5 && (bn ? "যোগাযোগের তথ্য" : "Contact Details")}
+            {step === 6 && (bn ? "ওয়েবসাইট ও ঠিকানা" : "Web & Location")}
+            {step === 7 && (bn ? "কিউআর কোড অপশন" : "QR Code Options")}
+            {step === 8 && (bn ? "ডাউনলোড" : "Download")}
           </h2>
-          {/* 🚨 এখানে handleCloseClick ব্যবহার করা হলো */}
           <button onClick={handleCloseClick} className="p-2 bg-gray-100 hover:bg-gray-200 rounded-full transition-colors">
             <X className="w-5 h-5 text-gray-600" />
           </button>
@@ -139,11 +136,11 @@ export function WizardModal({ isOpen, onClose }: { isOpen: boolean; onClose: () 
             <div className="flex-1 overflow-y-auto p-4 flex flex-col items-center justify-center gap-6">
               <div className="w-full max-w-md space-y-4">
                 <div className="bg-white p-2 rounded-xl shadow-sm">
-                  <p className="text-xs text-center font-bold text-gray-400 uppercase mb-1">Front</p>
+                  <p className="text-xs text-center font-bold text-gray-400 uppercase mb-1">{bn ? "সামনে" : "Front"}</p>
                   <Canvas template={template} side="front" sizeId="standard" userData={userData} />
                 </div>
                 <div className="bg-white p-2 rounded-xl shadow-sm">
-                  <p className="text-xs text-center font-bold text-gray-400 uppercase mb-1">Back</p>
+                  <p className="text-xs text-center font-bold text-gray-400 uppercase mb-1">{bn ? "পিছনে" : "Back"}</p>
                   <Canvas template={template} side="back" sizeId="standard" userData={userData} />
                 </div>
               </div>
@@ -154,7 +151,7 @@ export function WizardModal({ isOpen, onClose }: { isOpen: boolean; onClose: () 
                 onClick={() => setStep(3)} 
                 className="w-full py-4 rounded-xl font-bold text-white bg-red-600 hover:bg-red-700 transition-colors flex items-center justify-center gap-2 shadow-lg shadow-red-200 text-lg"
               >
-                Use this template <ArrowRight className="w-5 h-5" />
+                {bn ? "এই টেমপ্লেট ব্যবহার করুন" : "Use this template"} <ArrowRight className="w-5 h-5" />
               </button>
             </div>
           </div>
@@ -167,11 +164,11 @@ export function WizardModal({ isOpen, onClose }: { isOpen: boolean; onClose: () 
             {/* LIVE PREVIEW (TOP) */}
             <div className="bg-white p-3 border-b border-gray-200 shrink-0 flex justify-center gap-4 shadow-sm z-10">
               <div className="w-1/2 max-w-[200px]">
-                <p className="text-[10px] text-center font-bold text-gray-400 uppercase mb-1">Front</p>
+                <p className="text-[10px] text-center font-bold text-gray-400 uppercase mb-1">{bn ? "সামনে" : "Front"}</p>
                 <Canvas template={template} side="front" sizeId="standard" userData={userData} />
               </div>
               <div className="w-1/2 max-w-[200px]">
-                <p className="text-[10px] text-center font-bold text-gray-400 uppercase mb-1">Back</p>
+                <p className="text-[10px] text-center font-bold text-gray-400 uppercase mb-1">{bn ? "পিছনে" : "Back"}</p>
                 <Canvas template={template} side="back" sizeId="standard" userData={userData} />
               </div>
             </div>
@@ -183,7 +180,7 @@ export function WizardModal({ isOpen, onClose }: { isOpen: boolean; onClose: () 
                 {/* Step 3: Logo */}
                 {step === 3 && (
                   <div className="space-y-4">
-                    <h3 className="text-xl font-bold text-gray-900 border-b pb-2 mb-4">Company Logo</h3>
+                    <h3 className="text-xl font-bold text-gray-900 border-b pb-2 mb-4">{bn ? "কোম্পানি লোগো" : "Company Logo"}</h3>
                     <LogoPanel userData={userData} onChange={setUserData} onError={setError} />
                   </div>
                 )}
@@ -191,36 +188,36 @@ export function WizardModal({ isOpen, onClose }: { isOpen: boolean; onClose: () 
                 {/* Step 4: Brand & Tagline */}
                 {step === 4 && (
                   <div className="space-y-4">
-                    <h3 className="text-xl font-bold text-gray-900 border-b pb-2 mb-4">Brand Details</h3>
-                    {renderInput("Brand Name", "brand", "e.g. AHADEX TOOLS")}
-                    {renderInput("Tagline", "tagline", "e.g. Tools for a Smarter Tomorrow")}
+                    <h3 className="text-xl font-bold text-gray-900 border-b pb-2 mb-4">{bn ? "ব্র্যান্ড তথ্য" : "Brand Details"}</h3>
+                    {renderInput(bn ? "ব্র্যান্ড নেম" : "Brand Name", "brand", bn ? "যেমন: AHADEX TOOLS" : "e.g. AHADEX TOOLS")}
+                    {renderInput(bn ? "ট্যাগলাইন" : "Tagline", "tagline", bn ? "যেমন: Tools for a Smarter Tomorrow" : "e.g. Tools for a Smarter Tomorrow")}
                   </div>
                 )}
 
                 {/* Step 5: Name & Title */}
                 {step === 5 && (
                   <div className="space-y-4">
-                    <h3 className="text-xl font-bold text-gray-900 border-b pb-2 mb-4">Personal Info</h3>
-                    {renderInput("Full Name", "name", "e.g. Mohammad Ahad")}
-                    {renderInput("Job Title", "title", "e.g. Electrician")}
+                    <h3 className="text-xl font-bold text-gray-900 border-b pb-2 mb-4">{bn ? "ব্যক্তিগত তথ্য" : "Personal Info"}</h3>
+                    {renderInput(bn ? "পুরো নাম" : "Full Name", "name", bn ? "যেমন: মোহাম্মদ আহাদ" : "e.g. Mohammad Ahad")}
+                    {renderInput(bn ? "পদবি" : "Job Title", "title", bn ? "যেমন: ইলেকট্রিশিয়ান" : "e.g. Electrician")}
                   </div>
                 )}
 
                 {/* Step 6: Phone & Email */}
                 {step === 6 && (
                   <div className="space-y-4">
-                    <h3 className="text-xl font-bold text-gray-900 border-b pb-2 mb-4">Contact Info</h3>
-                    {renderInput("Phone Number", "phone", "+971 50 123 4567", "tel")}
-                    {renderInput("Email Address", "email", "ahad@example.com", "email")}
+                    <h3 className="text-xl font-bold text-gray-900 border-b pb-2 mb-4">{bn ? "যোগাযোগের তথ্য" : "Contact Info"}</h3>
+                    {renderInput(bn ? "ফোন নম্বর" : "Phone Number", "phone", "+971 50 123 4567", "tel")}
+                    {renderInput(bn ? "ইমেইল ঠিকানা" : "Email Address", "email", "ahad@example.com", "email")}
                   </div>
                 )}
 
                 {/* Step 7: Website & Location */}
                 {step === 7 && (
                   <div className="space-y-4">
-                    <h3 className="text-xl font-bold text-gray-900 border-b pb-2 mb-4">Web & Location</h3>
-                    {renderInput("Website", "website", "www.ahadex.fun", "url")}
-                    {renderInput("Address / Location", "location", "Dubai, UAE")}
+                    <h3 className="text-xl font-bold text-gray-900 border-b pb-2 mb-4">{bn ? "ওয়েবসাইট ও ঠিকানা" : "Web & Location"}</h3>
+                    {renderInput(bn ? "ওয়েবসাইট" : "Website", "website", "www.ahadex.fun", "url")}
+                    {renderInput(bn ? "ঠিকানা" : "Address / Location", "location", bn ? "দুবাই, সংযুক্ত আরব আমিরাত" : "Dubai, UAE")}
                   </div>
                 )}
 
@@ -228,8 +225,8 @@ export function WizardModal({ isOpen, onClose }: { isOpen: boolean; onClose: () 
                 {step === 8 && (
                   <div className="text-center py-6">
                     <CheckCircle className="w-12 h-12 text-green-500 mx-auto mb-4" />
-                    <h3 className="text-2xl font-bold text-gray-900 mb-2">Your Card is Ready!</h3>
-                    <p className="text-gray-500 mb-8">Download your card in high quality.</p>
+                    <h3 className="text-2xl font-bold text-gray-900 mb-2">{bn ? "আপনার কার্ড তৈরি!" : "Your Card is Ready!"}</h3>
+                    <p className="text-gray-500 mb-8">{bn ? "উচ্চ মানে আপনার কার্ড ডাউনলোড করুন।" : "Download your card in high quality."}</p>
                     <ExportPanel template={template} sizeId="standard" userData={userData} />
                   </div>
                 )}
@@ -246,7 +243,7 @@ export function WizardModal({ isOpen, onClose }: { isOpen: boolean; onClose: () 
                 }} 
                 className="px-6 py-2.5 rounded-full font-bold text-gray-600 bg-gray-100 hover:bg-gray-200 transition-colors flex items-center gap-2"
               >
-                <ArrowLeft className="w-4 h-4" /> Back
+                <ArrowLeft className="w-4 h-4" /> {bn ? "পিছনে" : "Back"}
               </button>
 
               <button 
@@ -256,7 +253,7 @@ export function WizardModal({ isOpen, onClose }: { isOpen: boolean; onClose: () 
                 }} 
                 className="px-8 py-2.5 rounded-full font-bold text-white bg-red-600 hover:bg-red-700 transition-colors flex items-center gap-2 shadow-lg shadow-red-200"
               >
-                {step === 8 ? "Close" : "Next"} <ArrowRight className="w-4 h-4" />
+                {step === 8 ? (bn ? "বন্ধ করুন" : "Close") : (bn ? "পরবর্তী" : "Next")} <ArrowRight className="w-4 h-4" />
               </button>
             </div>
 

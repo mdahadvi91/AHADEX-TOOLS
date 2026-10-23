@@ -1,21 +1,20 @@
-import { useState, useRef } from "react";
-import { X, ArrowRight, CheckCircle, ArrowLeft, Upload, Plus, Trash2, Download, Loader2 } from "lucide-react";
+import { useState } from "react";
+import { X, ArrowRight, CheckCircle, ArrowLeft, Upload, Plus, Trash2, Download } from "lucide-react";
 import { SAMPLE_CV_DATA, getCVTemplate, CV_TEMPLATES } from "./data";
-import type { CVData } from "./types";
+import type { CVData, CVExperience, CVEducation, CVSkill, CVLanguage } from "./types";
 import { CVPreview } from "./components/CVPreview";
 import { TemplatePreview } from "./components/TemplatePreview";
 import { PrintRoot } from "./components/PrintRoot";
 import { PROFESSION_PRESETS } from "./presets";
 import { PROFESSION_NAMES } from "./components/ProfessionModal";
-
-// 🚨 আধুনিক লাইব্রেরি
+import { useLanguage } from "@contexts/LanguageContext";
 
 export function CVWizardModal({ isOpen, onClose }: { isOpen: boolean, onClose: () => void }) {
+  const { language } = useLanguage();
+  const bn = language === "bn";
+
   const [step, setStep] = useState(1); 
   const [data, setData] = useState<CVData>(SAMPLE_CV_DATA);
-  const [isDownloading, setIsDownloading] = useState(false);
-
-  const cvContainerRef = useRef<HTMLDivElement>(null);
 
   if (!isOpen) return null;
 
@@ -48,91 +47,12 @@ export function CVWizardModal({ isOpen, onClose }: { isOpen: boolean, onClose: (
     setStep(4);
   };
 
-  // 🚨 ১০০% কাজ করা PDF ডাউনলোড লজিক
-  const handleDownloadPDF = async () => {
-    const element = cvContainerRef.current;
-    if (!element) return;
-
-    setIsDownloading(true);
-
-    try {
-      await document.fonts.ready;
-
-      // Wait for images inside the CV preview to finish loading.
-      const images = Array.from(element.querySelectorAll("img"));
-      await Promise.all(
-        images.map((img) => {
-          if (img.complete) return Promise.resolve();
-
-          return new Promise<void>((resolve) => {
-            img.onload = () => resolve();
-            img.onerror = () => resolve();
-          });
-        })
-      );
-
-      const [{ toPng }, { jsPDF }] = await Promise.all([
-        import("html-to-image"),
-        import("jspdf"),
-      ]);
-
-      const dataUrl = await toPng(element, {
-        pixelRatio: 2,
-        backgroundColor: "#ffffff",
-        skipFonts: false,
-        cacheBust: true,
-      });
-
-      const pageFormat =
-        data.settings.pageSize === "Letter" ? "letter" : "a4";
-
-      const pdf = new jsPDF("p", "mm", pageFormat);
-      const pdfWidth = pdf.internal.pageSize.getWidth();
-      const pageHeight = pdf.internal.pageSize.getHeight();
-      const image = pdf.getImageProperties(dataUrl);
-
-      if (!image.width || !image.height) {
-        throw new Error("Generated CV image has invalid dimensions.");
-      }
-
-      const imageHeight = (image.height * pdfWidth) / image.width;
-
-      if (!Number.isFinite(imageHeight) || imageHeight <= 0) {
-        throw new Error("Generated CV image has invalid height.");
-      }
-
-      // Add the complete image, then shift it up on each new page.
-      // The PDF page viewport clips the image to the current page.
-      let heightLeft = imageHeight;
-      let offsetY = 0;
-
-      pdf.addImage(dataUrl, "PNG", 0, offsetY, pdfWidth, imageHeight);
-      heightLeft -= pageHeight;
-
-      while (heightLeft > 0.5) {
-        offsetY = heightLeft - imageHeight;
-        pdf.addPage();
-        pdf.addImage(dataUrl, "PNG", 0, offsetY, pdfWidth, imageHeight);
-        heightLeft -= pageHeight;
-      }
-
-      const filename = data.personal.fullName
-        ? data.personal.fullName.trim().replace(/[^a-zA-Z0-9_-]+/g, "_")
-        : "My";
-
-      pdf.save(`${filename}_CV.pdf`);
-    } catch (error) {
-      console.error("PDF generation failed:", error);
-      alert("PDF তৈরি করা যায়নি। আবার চেষ্টা করুন।");
-    } finally {
-      setIsDownloading(false);
-    }
-  };
-
+  // --- Array Add/Update/Remove Logic (Updated for Objects) ---
   const handleArrayAdd = (field: string, emptyObj: any) => {
     const currentArray = (data as any)[field] || [];
     updateData({ [field]: [...currentArray, emptyObj] } as any);
   };
+
   const handleArrayUpdate = (field: string, index: number, key: string, value: string) => {
     const currentArray = [...((data as any)[field] || [])];
     if (typeof currentArray[index] === 'string') {
@@ -142,6 +62,7 @@ export function CVWizardModal({ isOpen, onClose }: { isOpen: boolean, onClose: (
     }
     updateData({ [field]: currentArray } as any);
   };
+
   const handleArrayRemove = (field: string, index: number) => {
     const currentArray = [...((data as any)[field] || [])];
     currentArray.splice(index, 1);
@@ -154,34 +75,26 @@ export function CVWizardModal({ isOpen, onClose }: { isOpen: boolean, onClose: (
 
   return (
     <>
-      {isDownloading && (
-        <div className="fixed inset-0 z-[999999] bg-white/95 flex flex-col items-center justify-center">
-          <Loader2 className="w-12 h-12 animate-spin text-red-600 mb-4" />
-          <h3 className="text-xl font-bold text-gray-800">Generating PDF...</h3>
-          <p className="text-sm text-gray-500 mt-2">Please wait a moment...</p>
-        </div>
-      )}
-
-      <div className="fixed inset-0 z-[100] flex items-center justify-center bg-black/60 backdrop-blur-sm sm:p-4">
+      <div className="fixed inset-0 z-[100] flex items-center justify-center bg-black/60 backdrop-blur-sm sm:p-4 print:hidden">
         <div className="bg-white w-full max-w-5xl h-full sm:h-auto sm:max-h-[90vh] sm:rounded-2xl shadow-2xl flex flex-col overflow-hidden">
           
           {/* Header */}
           <div className="flex items-center justify-between px-4 py-3 border-b border-gray-100 bg-white shrink-0">
             <h2 className="text-lg font-bold text-gray-900">
-              {step === 1 && "1. Select Template"}
-              {step === 2 && "2. Template Preview"}
-              {step === 3 && "3. Select Profession"}
-              {step === 4 && "4. Photo"}
-              {step === 5 && "5. Personal Info"}
-              {step === 6 && "6. Summary"}
-              {step === 7 && "7. Experience"}
-              {step === 8 && "8. Education"}
-              {step === 9 && "9. Skills"}
-              {step === 10 && "10. Languages & Hobbies"}
-              {step === 11 && "11. Download"}
+              {step === 1 && (bn ? "১. টেমপ্লেট বেছে নিন" : "1. Select Template")}
+              {step === 2 && (bn ? "২. টেমপ্লেট প্রিভিউ" : "2. Template Preview")}
+              {step === 3 && (bn ? "৩. পেশা নির্বাচন" : "3. Select Profession")}
+              {step === 4 && (bn ? "৪. ছবি" : "4. Photo")}
+              {step === 5 && (bn ? "৫. ব্যক্তিগত তথ্য" : "5. Personal Info")}
+              {step === 6 && (bn ? "৬. সারাংশ" : "6. Summary")}
+              {step === 7 && (bn ? "৭. অভিজ্ঞতা" : "7. Experience")}
+              {step === 8 && (bn ? "৮. শিক্ষা" : "8. Education")}
+              {step === 9 && (bn ? "৯. দক্ষতা" : "9. Skills")}
+              {step === 10 && (bn ? "১০. ভাষা ও শখ" : "10. Languages & Hobbies")}
+              {step === 11 && (bn ? "১১. ডাউনলোড" : "11. Download")}
             </h2>
             <div className="flex items-center gap-3">
-              <span className="text-sm text-gray-400 font-medium hidden sm:block">Step {step}/{totalSteps}</span>
+              <span className="text-sm text-gray-400 font-medium hidden sm:block">{bn ? "ধাপ" : "Step"} {step}/{totalSteps}</span>
               <button onClick={handleCloseClick} className="p-2 bg-gray-100 hover:bg-gray-200 rounded-full transition-colors">
                 <X className="w-5 h-5 text-gray-600" />
               </button>
@@ -200,7 +113,7 @@ export function CVWizardModal({ isOpen, onClose }: { isOpen: boolean, onClose: (
                       <div className="w-full flex justify-center overflow-hidden rounded-md bg-gray-50 border border-gray-100">
                         <TemplatePreview Template={tpl.Component} data={data} scale={0.2} />
                       </div>
-                      <h3 className="font-bold text-xs text-gray-900 truncate w-full text-center">{tpl.name}</h3>
+                      <h3 className="font-bold text-xs text-gray-900 truncate w-full text-center">{bn ? tpl.nameBn : tpl.name}</h3>
                     </button>
                   ))}
                 </div>
@@ -217,7 +130,7 @@ export function CVWizardModal({ isOpen, onClose }: { isOpen: boolean, onClose: (
                 </div>
                 <div className="absolute bottom-0 w-full p-4 bg-white border-t border-gray-200">
                   <button onClick={() => setStep(3)} className="w-full py-4 rounded-xl font-bold text-white bg-red-600 hover:bg-red-700 transition-colors flex justify-center items-center gap-2 text-lg">
-                    Use this template <ArrowRight className="w-5 h-5" />
+                    {bn ? "এই টেমপ্লেট ব্যবহার করুন" : "Use this template"} <ArrowRight className="w-5 h-5" />
                   </button>
                 </div>
               </div>
@@ -226,7 +139,7 @@ export function CVWizardModal({ isOpen, onClose }: { isOpen: boolean, onClose: (
             {/* STEP 3: Profession */}
             {step === 3 && (
               <div className="p-6 overflow-y-auto flex-1">
-                <h3 className="text-xl font-bold text-center mb-6">Select Your Profession</h3>
+                <h3 className="text-xl font-bold text-center mb-6">{bn ? "আপনার পেশা নির্বাচন করুন" : "Select Your Profession"}</h3>
                 <div className="grid grid-cols-2 sm:grid-cols-3 gap-4 max-w-3xl mx-auto">
                   {Object.keys(PROFESSION_PRESETS).map((profKey) => (
                     <button key={profKey} onClick={() => handleProfessionSelect(profKey)} className="p-4 bg-white rounded-xl border border-gray-200 hover:border-red-500 hover:shadow-md transition-all font-semibold text-gray-800">
@@ -255,12 +168,12 @@ export function CVWizardModal({ isOpen, onClose }: { isOpen: boolean, onClose: (
                     {/* Step 4: Photo */}
                     {step === 4 && (
                       <div className="space-y-6 text-center">
-                        <h3 className="text-xl font-bold border-b pb-2 mb-4 text-left">Upload Your Photo</h3>
+                        <h3 className="text-xl font-bold border-b pb-2 mb-4 text-left">{bn ? "আপনার ছবি আপলোড করুন" : "Upload Your Photo"}</h3>
                         <label className="cursor-pointer inline-flex flex-col items-center justify-center w-32 h-32 rounded-full border-2 border-dashed border-gray-300 hover:border-red-500 bg-gray-50 overflow-hidden relative">
                           {data.personal.photoDataUrl ? (
                             <img src={data.personal.photoDataUrl} alt="Profile" className="w-full h-full object-cover" />
                           ) : (
-                            <><Upload className="w-6 h-6 text-gray-400 mb-1" /><span className="text-xs text-gray-500">Upload</span></>
+                            <><Upload className="w-6 h-6 text-gray-400 mb-1" /><span className="text-xs text-gray-500">{bn ? "আপলোড" : "Upload"}</span></>
                           )}
                           <input type="file" accept="image/*" className="hidden" onChange={(e) => {
                             const file = e.target.files?.[0];
@@ -280,12 +193,12 @@ export function CVWizardModal({ isOpen, onClose }: { isOpen: boolean, onClose: (
                     {/* Step 5: Personal */}
                     {step === 5 && (
                       <div className="space-y-4">
-                        <h3 className="text-xl font-bold border-b pb-2 mb-4">Personal Info</h3>
-                        <div><label className="block text-sm mb-1">Full Name</label><input type="text" value={data.personal.fullName || ""} onChange={(e) => updatePersonal("fullName", e.target.value)} className="w-full px-3 py-2 rounded-lg border border-gray-300 focus:ring-2 focus:ring-red-500 outline-none" /></div>
-                        <div><label className="block text-sm mb-1">Job Title</label><input type="text" value={data.personal.jobTitle || ""} onChange={(e) => updatePersonal("jobTitle", e.target.value)} className="w-full px-3 py-2 rounded-lg border border-gray-300 focus:ring-2 focus:ring-red-500 outline-none" /></div>
+                        <h3 className="text-xl font-bold border-b pb-2 mb-4">{bn ? "ব্যক্তিগত তথ্য" : "Personal Info"}</h3>
+                        <div><label className="block text-sm mb-1">{bn ? "পুরো নাম" : "Full Name"}</label><input type="text" value={data.personal.fullName || ""} onChange={(e) => updatePersonal("fullName", e.target.value)} className="w-full px-3 py-2 rounded-lg border border-gray-300 focus:ring-2 focus:ring-red-500 outline-none" /></div>
+                        <div><label className="block text-sm mb-1">{bn ? "পদবি" : "Job Title"}</label><input type="text" value={data.personal.jobTitle || ""} onChange={(e) => updatePersonal("jobTitle", e.target.value)} className="w-full px-3 py-2 rounded-lg border border-gray-300 focus:ring-2 focus:ring-red-500 outline-none" /></div>
                         <div className="grid grid-cols-2 gap-4">
-                          <div><label className="block text-sm mb-1">Email</label><input type="text" value={data.personal.email || ""} onChange={(e) => updatePersonal("email", e.target.value)} className="w-full px-3 py-2 rounded-lg border border-gray-300 focus:ring-2 focus:ring-red-500 outline-none" /></div>
-                          <div><label className="block text-sm mb-1">Phone</label><input type="text" value={data.personal.phone || ""} onChange={(e) => updatePersonal("phone", e.target.value)} className="w-full px-3 py-2 rounded-lg border border-gray-300 focus:ring-2 focus:ring-red-500 outline-none" /></div>
+                          <div><label className="block text-sm mb-1">{bn ? "ইমেইল" : "Email"}</label><input type="text" value={data.personal.email || ""} onChange={(e) => updatePersonal("email", e.target.value)} className="w-full px-3 py-2 rounded-lg border border-gray-300 focus:ring-2 focus:ring-red-500 outline-none" /></div>
+                          <div><label className="block text-sm mb-1">{bn ? "ফোন" : "Phone"}</label><input type="text" value={data.personal.phone || ""} onChange={(e) => updatePersonal("phone", e.target.value)} className="w-full px-3 py-2 rounded-lg border border-gray-300 focus:ring-2 focus:ring-red-500 outline-none" /></div>
                         </div>
                       </div>
                     )}
@@ -293,7 +206,7 @@ export function CVWizardModal({ isOpen, onClose }: { isOpen: boolean, onClose: (
                     {/* Step 6: Summary */}
                     {step === 6 && (
                       <div>
-                        <h3 className="text-xl font-bold border-b pb-2 mb-4">Professional Summary</h3>
+                        <h3 className="text-xl font-bold border-b pb-2 mb-4">{bn ? "প্রফেশনাল সারাংশ" : "Professional Summary"}</h3>
                         <textarea value={data.summary || ""} onChange={(e) => updateData({ summary: e.target.value })} className="w-full px-4 py-3 rounded-xl border border-gray-300 focus:ring-2 focus:ring-red-500 outline-none" rows={6} />
                       </div>
                     )}
@@ -302,17 +215,20 @@ export function CVWizardModal({ isOpen, onClose }: { isOpen: boolean, onClose: (
                     {step === 7 && (
                       <div>
                         <div className="flex items-center justify-between border-b pb-2 mb-4">
-                          <h3 className="text-xl font-bold">Experience</h3>
-                          <button onClick={() => handleArrayAdd('experience', { id: `exp-${Date.now()}`, company: "", position: "", location: "", startDate: "", endDate: "", current: false, bullets: [] })} className="flex items-center gap-1 text-sm font-bold text-red-600 bg-red-50 px-3 py-1.5 rounded-lg hover:bg-red-100"><Plus className="w-4 h-4" /> Add</button>
+                          <h3 className="text-xl font-bold">{bn ? "অভিজ্ঞতা" : "Experience"}</h3>
+                          <button onClick={() => handleArrayAdd('experience', { id: crypto.randomUUID(), company: "", position: "", location: "", startDate: "", endDate: "", current: false, bullets: [] })} className="flex items-center gap-1 text-sm font-bold text-red-600 bg-red-50 px-3 py-1.5 rounded-lg hover:bg-red-100"><Plus className="w-4 h-4" /> {bn ? "যোগ করুন" : "Add"}</button>
                         </div>
                         <div className="space-y-4">
-                          {(data.experience || []).map((exp, idx) => (
-                            <div key={idx} className="p-4 border border-gray-200 rounded-xl relative bg-gray-50">
+                          {(data.experience || []).map((exp: CVExperience, idx) => (
+                            <div key={exp.id || idx} className="p-4 border border-gray-200 rounded-xl relative bg-gray-50">
                               <button onClick={() => handleArrayRemove('experience', idx)} className="absolute top-2 right-2 p-1.5 text-gray-400 hover:text-red-500 bg-white rounded-md shadow-sm"><Trash2 className="w-4 h-4" /></button>
                               <div className="space-y-3 mt-2">
-                                <input type="text" value={exp.position || ""} onChange={(e) => handleArrayUpdate('experience', idx, 'position', e.target.value)} className="w-full px-3 py-2 rounded-lg border border-gray-300 focus:ring-2 focus:ring-red-500 outline-none" placeholder="Position" />
-                                <input type="text" value={exp.company || ""} onChange={(e) => handleArrayUpdate('experience', idx, 'company', e.target.value)} className="w-full px-3 py-2 rounded-lg border border-gray-300 focus:ring-2 focus:ring-red-500 outline-none" placeholder="Company Name" />
-                                <div className="grid grid-cols-2 gap-2"><input type="text" value={exp.startDate || ""} onChange={(e) => handleArrayUpdate('experience', idx, 'startDate', e.target.value)} className="w-full px-3 py-2 rounded-lg border border-gray-300 focus:ring-2 focus:ring-red-500 outline-none" placeholder="Start date" /><input type="text" value={exp.endDate || ""} onChange={(e) => handleArrayUpdate('experience', idx, 'endDate', e.target.value)} className="w-full px-3 py-2 rounded-lg border border-gray-300 focus:ring-2 focus:ring-red-500 outline-none" placeholder="End date" /></div>
+                                <input type="text" value={exp.position || ""} onChange={(e) => handleArrayUpdate('experience', idx, 'position', e.target.value)} className="w-full px-3 py-2 rounded-lg border border-gray-300 focus:ring-2 focus:ring-red-500 outline-none" placeholder={bn ? "পদবি" : "Position"} />
+                                <input type="text" value={exp.company || ""} onChange={(e) => handleArrayUpdate('experience', idx, 'company', e.target.value)} className="w-full px-3 py-2 rounded-lg border border-gray-300 focus:ring-2 focus:ring-red-500 outline-none" placeholder={bn ? "কোম্পানির নাম" : "Company Name"} />
+                                <div className="grid grid-cols-2 gap-2">
+                                  <input type="text" value={exp.startDate || ""} onChange={(e) => handleArrayUpdate('experience', idx, 'startDate', e.target.value)} className="w-full px-3 py-2 rounded-lg border border-gray-300 focus:ring-2 focus:ring-red-500 outline-none" placeholder={bn ? "শুরুর তারিখ" : "Start Date"} />
+                                  <input type="text" value={exp.endDate || ""} onChange={(e) => handleArrayUpdate('experience', idx, 'endDate', e.target.value)} className="w-full px-3 py-2 rounded-lg border border-gray-300 focus:ring-2 focus:ring-red-500 outline-none" placeholder={bn ? "শেষের তারিখ" : "End Date"} />
+                                </div>
                               </div>
                             </div>
                           ))}
@@ -324,17 +240,20 @@ export function CVWizardModal({ isOpen, onClose }: { isOpen: boolean, onClose: (
                     {step === 8 && (
                       <div>
                         <div className="flex items-center justify-between border-b pb-2 mb-4">
-                          <h3 className="text-xl font-bold">Education</h3>
-                          <button onClick={() => handleArrayAdd('education', { id: `edu-${Date.now()}`, institution: "", degree: "", field: "", location: "", startDate: "", endDate: "", description: "" })} className="flex items-center gap-1 text-sm font-bold text-red-600 bg-red-50 px-3 py-1.5 rounded-lg hover:bg-red-100"><Plus className="w-4 h-4" /> Add</button>
+                          <h3 className="text-xl font-bold">{bn ? "শিক্ষা" : "Education"}</h3>
+                          <button onClick={() => handleArrayAdd('education', { id: crypto.randomUUID(), institution: "", degree: "", field: "", location: "", startDate: "", endDate: "", description: "" })} className="flex items-center gap-1 text-sm font-bold text-red-600 bg-red-50 px-3 py-1.5 rounded-lg hover:bg-red-100"><Plus className="w-4 h-4" /> {bn ? "যোগ করুন" : "Add"}</button>
                         </div>
                         <div className="space-y-4">
-                          {(data.education || []).map((edu, idx) => (
-                            <div key={idx} className="p-4 border border-gray-200 rounded-xl relative bg-gray-50">
+                          {(data.education || []).map((edu: CVEducation, idx) => (
+                            <div key={edu.id || idx} className="p-4 border border-gray-200 rounded-xl relative bg-gray-50">
                               <button onClick={() => handleArrayRemove('education', idx)} className="absolute top-2 right-2 p-1.5 text-gray-400 hover:text-red-500 bg-white rounded-md shadow-sm"><Trash2 className="w-4 h-4" /></button>
                               <div className="space-y-3 mt-2">
-                                <input type="text" value={edu.degree || ""} onChange={(e) => handleArrayUpdate('education', idx, 'degree', e.target.value)} className="w-full px-3 py-2 rounded-lg border border-gray-300 focus:ring-2 focus:ring-red-500 outline-none" placeholder="Degree" />
-                                <input type="text" value={edu.institution || ""} onChange={(e) => handleArrayUpdate('education', idx, 'institution', e.target.value)} className="w-full px-3 py-2 rounded-lg border border-gray-300 focus:ring-2 focus:ring-red-500 outline-none" placeholder="Institution" />
-                                <div className="grid grid-cols-2 gap-2"><input type="text" value={edu.startDate || ""} onChange={(e) => handleArrayUpdate('education', idx, 'startDate', e.target.value)} className="w-full px-3 py-2 rounded-lg border border-gray-300 focus:ring-2 focus:ring-red-500 outline-none" placeholder="Start date" /><input type="text" value={edu.endDate || ""} onChange={(e) => handleArrayUpdate('education', idx, 'endDate', e.target.value)} className="w-full px-3 py-2 rounded-lg border border-gray-300 focus:ring-2 focus:ring-red-500 outline-none" placeholder="End date" /></div>
+                                <input type="text" value={edu.degree || ""} onChange={(e) => handleArrayUpdate('education', idx, 'degree', e.target.value)} className="w-full px-3 py-2 rounded-lg border border-gray-300 focus:ring-2 focus:ring-red-500 outline-none" placeholder={bn ? "ডিগ্রি" : "Degree"} />
+                                <input type="text" value={edu.institution || ""} onChange={(e) => handleArrayUpdate('education', idx, 'institution', e.target.value)} className="w-full px-3 py-2 rounded-lg border border-gray-300 focus:ring-2 focus:ring-red-500 outline-none" placeholder={bn ? "প্রতিষ্ঠান" : "Institution"} />
+                                <div className="grid grid-cols-2 gap-2">
+                                  <input type="text" value={edu.startDate || ""} onChange={(e) => handleArrayUpdate('education', idx, 'startDate', e.target.value)} className="w-full px-3 py-2 rounded-lg border border-gray-300 focus:ring-2 focus:ring-red-500 outline-none" placeholder={bn ? "শুরুর বছর" : "Start Year"} />
+                                  <input type="text" value={edu.endDate || ""} onChange={(e) => handleArrayUpdate('education', idx, 'endDate', e.target.value)} className="w-full px-3 py-2 rounded-lg border border-gray-300 focus:ring-2 focus:ring-red-500 outline-none" placeholder={bn ? "শেষের বছর" : "End Year"} />
+                                </div>
                               </div>
                             </div>
                           ))}
@@ -346,13 +265,13 @@ export function CVWizardModal({ isOpen, onClose }: { isOpen: boolean, onClose: (
                     {step === 9 && (
                       <div>
                         <div className="flex items-center justify-between border-b pb-2 mb-4">
-                          <h3 className="text-xl font-bold">Skills</h3>
-                          <button onClick={() => handleArrayAdd("skills", { id: `skill-${Date.now()}`, name: "", level: 0 })} className="flex items-center gap-1 text-sm font-bold text-red-600 bg-red-50 px-3 py-1.5 rounded-lg hover:bg-red-100"><Plus className="w-4 h-4" /> Add</button>
+                          <h3 className="text-xl font-bold">{bn ? "দক্ষতা" : "Skills"}</h3>
+                          <button onClick={() => handleArrayAdd('skills', { id: crypto.randomUUID(), name: "", level: 0 })} className="flex items-center gap-1 text-sm font-bold text-red-600 bg-red-50 px-3 py-1.5 rounded-lg hover:bg-red-100"><Plus className="w-4 h-4" /> {bn ? "যোগ করুন" : "Add"}</button>
                         </div>
                         <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                          {(data.skills || []).map((skill, idx) => (
-                            <div key={idx} className="flex items-center gap-2">
-                              <input type="text" value={skill.name || ""} onChange={(e) => handleArrayUpdate('skills', idx, 'name', e.target.value)} className="flex-1 px-3 py-2 rounded-lg border border-gray-300 focus:ring-2 focus:ring-red-500 outline-none" placeholder="Skill" />
+                          {(data.skills || []).map((skill: CVSkill, idx) => (
+                            <div key={skill.id || idx} className="flex items-center gap-2">
+                              <input type="text" value={skill.name || ""} onChange={(e) => handleArrayUpdate('skills', idx, 'name', e.target.value)} className="flex-1 px-3 py-2 rounded-lg border border-gray-300 focus:ring-2 focus:ring-red-500 outline-none" placeholder={bn ? "দক্ষতা" : "Skill"} />
                               <button onClick={() => handleArrayRemove('skills', idx)} className="p-2 text-gray-400 hover:text-red-500 bg-gray-50 rounded-lg"><Trash2 className="w-4 h-4" /></button>
                             </div>
                           ))}
@@ -365,13 +284,13 @@ export function CVWizardModal({ isOpen, onClose }: { isOpen: boolean, onClose: (
                       <div className="space-y-8">
                         <div>
                           <div className="flex items-center justify-between border-b pb-2 mb-4">
-                            <h3 className="text-xl font-bold">Languages</h3>
-                            <button onClick={() => handleArrayAdd("languages", { id: `lang-${Date.now()}`, name: "", level: "" })} className="flex items-center gap-1 text-sm font-bold text-red-600 bg-red-50 px-3 py-1.5 rounded-lg hover:bg-red-100"><Plus className="w-4 h-4" /> Add</button>
+                            <h3 className="text-xl font-bold">{bn ? "ভাষা" : "Languages"}</h3>
+                            <button onClick={() => handleArrayAdd('languages', { id: crypto.randomUUID(), name: "", level: "" })} className="flex items-center gap-1 text-sm font-bold text-red-600 bg-red-50 px-3 py-1.5 rounded-lg hover:bg-red-100"><Plus className="w-4 h-4" /> {bn ? "যোগ করুন" : "Add"}</button>
                           </div>
                           <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                            {(data.languages || []).map((lang, idx) => (
-                              <div key={idx} className="flex items-center gap-2">
-                                <input type="text" value={lang.name || ""} onChange={(e) => handleArrayUpdate('languages', idx, 'name', e.target.value)} className="flex-1 px-3 py-2 rounded-lg border border-gray-300 focus:ring-2 focus:ring-red-500 outline-none" placeholder="Language" />
+                            {(data.languages || []).map((lang: CVLanguage, idx) => (
+                              <div key={lang.id || idx} className="flex items-center gap-2">
+                                <input type="text" value={lang.name || ""} onChange={(e) => handleArrayUpdate('languages', idx, 'name', e.target.value)} className="flex-1 px-3 py-2 rounded-lg border border-gray-300 focus:ring-2 focus:ring-red-500 outline-none" placeholder={bn ? "ভাষা" : "Language"} />
                                 <button onClick={() => handleArrayRemove('languages', idx)} className="p-2 text-gray-400 hover:text-red-500 bg-gray-50 rounded-lg"><Trash2 className="w-4 h-4" /></button>
                               </div>
                             ))}
@@ -379,13 +298,13 @@ export function CVWizardModal({ isOpen, onClose }: { isOpen: boolean, onClose: (
                         </div>
                         <div>
                           <div className="flex items-center justify-between border-b pb-2 mb-4">
-                            <h3 className="text-xl font-bold">Hobbies</h3>
-                            <button onClick={() => handleArrayAdd('hobbies', "")} className="flex items-center gap-1 text-sm font-bold text-red-600 bg-red-50 px-3 py-1.5 rounded-lg hover:bg-red-100"><Plus className="w-4 h-4" /> Add</button>
+                            <h3 className="text-xl font-bold">{bn ? "শখ" : "Hobbies"}</h3>
+                            <button onClick={() => handleArrayAdd('hobbies', "")} className="flex items-center gap-1 text-sm font-bold text-red-600 bg-red-50 px-3 py-1.5 rounded-lg hover:bg-red-100"><Plus className="w-4 h-4" /> {bn ? "যোগ করুন" : "Add"}</button>
                           </div>
                           <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                            {(data.hobbies || []).map((hobby, idx) => (
+                            {(data.hobbies || []).map((hobby: string, idx) => (
                               <div key={idx} className="flex items-center gap-2">
-                                <input type="text" value={hobby || ""} onChange={(e) => handleArrayUpdate('hobbies', idx, '', e.target.value)} className="flex-1 px-3 py-2 rounded-lg border border-gray-300 focus:ring-2 focus:ring-red-500 outline-none" placeholder="Hobby" />
+                                <input type="text" value={hobby || ""} onChange={(e) => handleArrayUpdate('hobbies', idx, '', e.target.value)} className="flex-1 px-3 py-2 rounded-lg border border-gray-300 focus:ring-2 focus:ring-red-500 outline-none" placeholder={bn ? "শখ" : "Hobby"} />
                                 <button onClick={() => handleArrayRemove('hobbies', idx)} className="p-2 text-gray-400 hover:text-red-500 bg-gray-50 rounded-lg"><Trash2 className="w-4 h-4" /></button>
                               </div>
                             ))}
@@ -398,10 +317,10 @@ export function CVWizardModal({ isOpen, onClose }: { isOpen: boolean, onClose: (
 
                 <div className="absolute bottom-0 left-0 right-0 bg-white border-t border-gray-200 p-4 flex items-center justify-between z-20">
                   <button onClick={() => setStep(step - 1)} className="px-6 py-2.5 rounded-full font-bold text-gray-600 bg-gray-100 hover:bg-gray-200 transition-colors flex items-center gap-2">
-                    <ArrowLeft className="w-4 h-4" /> Back
+                    <ArrowLeft className="w-4 h-4" /> {bn ? "পিছনে" : "Back"}
                   </button>
                   <button onClick={() => setStep(step + 1)} className="px-8 py-2.5 rounded-full font-bold text-white bg-red-600 hover:bg-red-700 transition-colors flex items-center gap-2 shadow-lg shadow-red-200">
-                    Next <ArrowRight className="w-4 h-4" />
+                    {bn ? "পরবর্তী" : "Next"} <ArrowRight className="w-4 h-4" />
                   </button>
                 </div>
               </div>
@@ -411,23 +330,15 @@ export function CVWizardModal({ isOpen, onClose }: { isOpen: boolean, onClose: (
             {step === 11 && (
               <div className="flex flex-col items-center justify-center p-6 text-center h-full">
                 <CheckCircle className="w-16 h-16 text-green-500 mx-auto mb-4" />
-                <h3 className="text-2xl font-bold mb-2">Your CV is Ready!</h3>
-                <p className="text-gray-500 mb-8">Click below to download your CV as a PDF.</p>
+                <h3 className="text-2xl font-bold mb-2">{bn ? "আপনার সিভি তৈরি!" : "Your CV is Ready!"}</h3>
+                <p className="text-gray-500 mb-8">{bn ? "ডাউনলোড করতে নিচের বাটনে ক্লিক করুন।" : "Click the button below to download your CV as a PDF."}</p>
                 
-                <button 
-                  onClick={handleDownloadPDF} 
-                  disabled={isDownloading}
-                  className="flex items-center justify-center gap-2 bg-red-600 text-white px-10 py-4 rounded-xl font-bold hover:bg-red-700 transition-colors w-full max-w-sm disabled:opacity-50 text-lg shadow-lg shadow-red-200"
-                >
-                  {isDownloading ? (
-                    <><Loader2 className="w-6 h-6 animate-spin" /> Generating...</>
-                  ) : (
-                    <><Download className="w-6 h-6" /> Download PDF</>
-                  )}
+                <button onClick={() => window.print()} className="flex items-center justify-center gap-2 bg-red-600 text-white px-10 py-4 rounded-xl font-bold hover:bg-red-700 transition-colors w-full max-w-sm text-lg shadow-lg shadow-red-200">
+                  <Download className="w-6 h-6" /> {bn ? "PDF ডাউনলোড" : "Download PDF"}
                 </button>
                 
                 <button onClick={onClose} className="mt-8 text-sm font-medium text-gray-500 hover:text-gray-800 underline">
-                  Close Editor
+                  {bn ? "এডিটর বন্ধ করুন" : "Close Editor"}
                 </button>
               </div>
             )}
@@ -436,11 +347,11 @@ export function CVWizardModal({ isOpen, onClose }: { isOpen: boolean, onClose: (
         </div>
       </div>
 
-      {/* 🚨 অদৃশ্য প্রিভিউ: পিডিএফ জেনারেট করার জন্য */}
-      <div style={{ position: 'fixed', top: 0, left: 0, zIndex: -9999, opacity: 0.01, pointerEvents: 'none' }}>
+      {/* 🚨 হিডেন প্রিভিউ: PDF জেনারেট করার জন্য (স্ক্রিনে দেখা যাবে না) */}
+      <div style={{ position: 'fixed', left: '-9999px', top: 0 }}>
         {Template && (
-          <div ref={cvContainerRef} style={{ width: '794px', backgroundColor: 'white' }}>
-            <PrintRoot Template={Template} data={data} captureMode />
+          <div style={{ width: '794px', backgroundColor: 'white' }}>
+            <PrintRoot Template={Template} data={data} />
           </div>
         )}
       </div>

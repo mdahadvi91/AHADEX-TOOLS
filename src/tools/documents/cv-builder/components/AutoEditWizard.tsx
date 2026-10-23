@@ -5,6 +5,7 @@ import imageCompression from "browser-image-compression";
 import type { CVData, CVExperience, CVEducation } from "../types";
 import { getCVTemplate } from "../data";
 import { TemplatePreview } from "./TemplatePreview";
+import { useLanguage } from "@contexts/LanguageContext";
 
 interface AutoEditWizardProps {
   isOpen: boolean;
@@ -17,6 +18,9 @@ interface AutoEditWizardProps {
 const DEGREES = ["SSC", "HSC", "Diploma", "B.Sc", "B.A", "M.Sc", "M.A", "MBA", "PhD", "Other"];
 
 export function AutoEditWizard({ isOpen, onClose, data, templateId, onFinish }: AutoEditWizardProps) {
+  const { language } = useLanguage();
+  const bn = language === "bn";
+
   const [step, setStep] = useState(0);
   const [draft, setDraft] = useState<CVData>(data);
   const [isCompressing, setIsCompressing] = useState(false);
@@ -36,9 +40,8 @@ export function AutoEditWizard({ isOpen, onClose, data, templateId, onFinish }: 
 
     try {
       setIsCompressing(true);
-      // Compress the image so it fits in sessionStorage easily
       const options = {
-        maxSizeMB: 0.08, // 80KB
+        maxSizeMB: 0.08,
         maxWidthOrHeight: 300,
         useWebWorker: true,
       };
@@ -55,7 +58,7 @@ export function AutoEditWizard({ isOpen, onClose, data, templateId, onFinish }: 
       reader.readAsDataURL(compressedFile);
     } catch (error) {
       console.error(error);
-      alert("Failed to compress image. Please try a smaller image.");
+      alert(bn ? "ছবি কমপ্রেস করতে ব্যর্থ হয়েছে। ছোট ছবি দিয়ে চেষ্টা করুন।" : "Failed to compress image. Please try a smaller image.");
       setIsCompressing(false);
     }
   };
@@ -106,10 +109,10 @@ export function AutoEditWizard({ isOpen, onClose, data, templateId, onFinish }: 
   };
 
   const steps = [
-    { title: "Profile", icon: User },
-    { title: "Summary", icon: FileText },
-    { title: "Experience", icon: Briefcase },
-    { title: "Education", icon: GraduationCap },
+    { title: bn ? "প্রোফাইল" : "Profile", icon: User },
+    { title: bn ? "সারাংশ" : "Summary", icon: FileText },
+    { title: bn ? "অভিজ্ঞতা" : "Experience", icon: Briefcase },
+    { title: bn ? "শিক্ষা" : "Education", icon: GraduationCap },
   ];
 
   if (!isOpen) return null;
@@ -148,38 +151,38 @@ export function AutoEditWizard({ isOpen, onClose, data, templateId, onFinish }: 
               {/* Step 0: Profile */}
               {step === 0 && (
                 <motion.div key="step0" initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: -20 }} className="space-y-4">
-                  <h2 className="text-xl font-serif font-black text-light-text dark:text-dark-text">Personal Details</h2>
+                  <h2 className="text-xl font-serif font-black text-light-text dark:text-dark-text">{bn ? "ব্যক্তিগত তথ্য" : "Personal Details"}</h2>
                   
                   <div>
-                    <label className="text-xs font-bold text-light-textSecondary dark:text-dark-textSecondary mb-1 block">Photo (Optional)</label>
+                    <label className="text-xs font-bold text-light-textSecondary dark:text-dark-textSecondary mb-1 block">{bn ? "ছবি (ঐচ্ছিক)" : "Photo (Optional)"}</label>
                     <input type="file" accept="image/*" onChange={handlePhotoUpload} className="block w-full text-sm text-silk-rose file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-silk-rose/10 file:text-silk-rose hover:file:bg-silk-rose/20" />
-                    {isCompressing && <p className="text-xs text-silk-rose mt-1">Compressing image...</p>}
+                    {isCompressing && <p className="text-xs text-silk-rose mt-1">{bn ? "ছবি কমপ্রেস হচ্ছে..." : "Compressing image..."}</p>}
                     {draft.personal.photoDataUrl && !isCompressing && (
                       <div className="mt-2 flex items-center gap-2">
                         <img src={draft.personal.photoDataUrl} alt="Preview" className="w-10 h-10 rounded-full object-cover border border-silk-rose/30" />
-                        <span className="text-xs text-emerald-500 font-bold">Photo uploaded successfully!</span>
+                        <span className="text-xs text-emerald-500 font-bold">{bn ? "ছবি সফলভাবে আপলোড হয়েছে!" : "Photo uploaded successfully!"}</span>
                       </div>
                     )}
                   </div>
 
-                  <input type="text" placeholder="Full Name" value={draft.personal.fullName} onChange={(e) => updatePersonal("fullName", e.target.value)} className="w-full p-3 rounded-xl border border-silk-rose/20 bg-transparent text-light-text dark:text-dark-text focus:border-silk-rose outline-none" />
-                  <input type="text" placeholder="Professional Title" value={draft.personal.jobTitle} onChange={(e) => updatePersonal("jobTitle", e.target.value)} className="w-full p-3 rounded-xl border border-silk-rose/20 bg-transparent text-light-text dark:text-dark-text focus:border-silk-rose outline-none" />
-                  <input type="email" placeholder="Email Address" value={draft.personal.email} onChange={(e) => updatePersonal("email", e.target.value)} className="w-full p-3 rounded-xl border border-silk-rose/20 bg-transparent text-light-text dark:text-dark-text focus:border-silk-rose outline-none" />
-                  <input type="tel" placeholder="Phone Number" value={draft.personal.phone} onChange={(e) => updatePersonal("phone", e.target.value)} className="w-full p-3 rounded-xl border border-silk-rose/20 bg-transparent text-light-text dark:text-dark-text focus:border-silk-rose outline-none" />
-                  <input type="text" placeholder="Location (City, Country)" value={draft.personal.location} onChange={(e) => updatePersonal("location", e.target.value)} className="w-full p-3 rounded-xl border border-silk-rose/20 bg-transparent text-light-text dark:text-dark-text focus:border-silk-rose outline-none" />
+                  <input type="text" placeholder={bn ? "পুরো নাম" : "Full Name"} value={draft.personal.fullName} onChange={(e) => updatePersonal("fullName", e.target.value)} className="w-full p-3 rounded-xl border border-silk-rose/20 bg-transparent text-light-text dark:text-dark-text focus:border-silk-rose outline-none" />
+                  <input type="text" placeholder={bn ? "পেশাদার পদবি" : "Professional Title"} value={draft.personal.jobTitle} onChange={(e) => updatePersonal("jobTitle", e.target.value)} className="w-full p-3 rounded-xl border border-silk-rose/20 bg-transparent text-light-text dark:text-dark-text focus:border-silk-rose outline-none" />
+                  <input type="email" placeholder={bn ? "ইমেইল ঠিকানা" : "Email Address"} value={draft.personal.email} onChange={(e) => updatePersonal("email", e.target.value)} className="w-full p-3 rounded-xl border border-silk-rose/20 bg-transparent text-light-text dark:text-dark-text focus:border-silk-rose outline-none" />
+                  <input type="tel" placeholder={bn ? "ফোন নম্বর" : "Phone Number"} value={draft.personal.phone} onChange={(e) => updatePersonal("phone", e.target.value)} className="w-full p-3 rounded-xl border border-silk-rose/20 bg-transparent text-light-text dark:text-dark-text focus:border-silk-rose outline-none" />
+                  <input type="text" placeholder={bn ? "ঠিকানা (শহর, দেশ)" : "Location (City, Country)"} value={draft.personal.location} onChange={(e) => updatePersonal("location", e.target.value)} className="w-full p-3 rounded-xl border border-silk-rose/20 bg-transparent text-light-text dark:text-dark-text focus:border-silk-rose outline-none" />
                 </motion.div>
               )}
 
               {/* Step 1: Summary */}
               {step === 1 && (
                 <motion.div key="step1" initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: -20 }} className="space-y-4">
-                  <h2 className="text-xl font-serif font-black text-light-text dark:text-dark-text">Professional Summary</h2>
-                  <p className="text-sm text-light-textSecondary dark:text-dark-textSecondary">We've generated a summary based on your profession. You can edit it below.</p>
+                  <h2 className="text-xl font-serif font-black text-light-text dark:text-dark-text">{bn ? "প্রফেশনাল সারাংশ" : "Professional Summary"}</h2>
+                  <p className="text-sm text-light-textSecondary dark:text-dark-textSecondary">{bn ? "আপনার পেশার ওপর ভিত্তি করে একটি সারাংশ তৈরি করা হয়েছে। আপনি নিচে এটি এডিট করতে পারেন।" : "We've generated a summary based on your profession. You can edit it below."}</p>
                   <textarea 
                     value={draft.summary} 
-                    onChange={(e) => setDraft({ ...draft, summary: e.target.value })}
-                    rows={6}
-                    className="w-full p-3 rounded-xl border border-silk-rose/20 bg-transparent text-light-text dark:text-dark-text focus:border-silk-rose outline-none resize-none"
+                    onChange={(e) => setDraft({ ...draft, summary: e.target.value })} 
+                    rows={6} 
+                    className="w-full p-3 rounded-xl border border-silk-rose/20 bg-transparent text-light-text dark:text-dark-text focus:border-silk-rose outline-none resize-none" 
                   />
                 </motion.div>
               )}
@@ -187,25 +190,25 @@ export function AutoEditWizard({ isOpen, onClose, data, templateId, onFinish }: 
               {/* Step 2: Experience */}
               {step === 2 && (
                 <motion.div key="step2" initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: -20 }} className="space-y-4">
-                  <h2 className="text-xl font-serif font-black text-light-text dark:text-dark-text">Work Experience</h2>
-                  
+                  <h2 className="text-xl font-serif font-black text-light-text dark:text-dark-text">{bn ? "কর্ম অভিজ্ঞতা" : "Work Experience"}</h2>
+
                   {draft.experience.map((exp, index) => (
                     <div key={exp.id} className="p-4 rounded-xl border border-silk-rose/20 relative space-y-3 bg-silk-rose/5">
                       <button onClick={() => removeExperience(exp.id)} className="absolute top-2 right-2 p-1 text-red-500 hover:bg-red-500/10 rounded">
                         <Trash2 className="w-4 h-4" />
                       </button>
-                      <h3 className="text-xs font-bold text-silk-rose uppercase">Experience {index + 1}</h3>
-                      <input type="text" placeholder="Company Name" value={exp.company} onChange={(e) => updateExperience(exp.id, "company", e.target.value)} className="w-full p-2.5 text-sm rounded-lg border border-silk-rose/20 bg-white dark:bg-dark-surface outline-none" />
-                      <input type="text" placeholder="Job Title" value={exp.position} onChange={(e) => updateExperience(exp.id, "position", e.target.value)} className="w-full p-2.5 text-sm rounded-lg border border-silk-rose/20 bg-white dark:bg-dark-surface outline-none" />
+                      <h3 className="text-xs font-bold text-silk-rose uppercase">{bn ? "অভিজ্ঞতা" : "Experience"} {index + 1}</h3>
+                      <input type="text" placeholder={bn ? "কোম্পানির নাম" : "Company Name"} value={exp.company} onChange={(e) => updateExperience(exp.id, "company", e.target.value)} className="w-full p-2.5 text-sm rounded-lg border border-silk-rose/20 bg-white dark:bg-dark-surface outline-none" />
+                      <input type="text" placeholder={bn ? "পদবি" : "Job Title"} value={exp.position} onChange={(e) => updateExperience(exp.id, "position", e.target.value)} className="w-full p-2.5 text-sm rounded-lg border border-silk-rose/20 bg-white dark:bg-dark-surface outline-none" />
                       <div className="grid grid-cols-2 gap-2">
-                        <input type="text" placeholder="Start (e.g. 2020-01)" value={exp.startDate} onChange={(e) => updateExperience(exp.id, "startDate", e.target.value)} className="w-full p-2.5 text-sm rounded-lg border border-silk-rose/20 bg-white dark:bg-dark-surface outline-none" />
-                        <input type="text" placeholder="End (or empty)" value={exp.endDate} onChange={(e) => updateExperience(exp.id, "endDate", e.target.value)} className="w-full p-2.5 text-sm rounded-lg border border-silk-rose/20 bg-white dark:bg-dark-surface outline-none" />
+                        <input type="text" placeholder={bn ? "শুরু (যেমন ২০২০-০১)" : "Start (e.g. 2020-01)"} value={exp.startDate} onChange={(e) => updateExperience(exp.id, "startDate", e.target.value)} className="w-full p-2.5 text-sm rounded-lg border border-silk-rose/20 bg-white dark:bg-dark-surface outline-none" />
+                        <input type="text" placeholder={bn ? "শেষ (বা ফাঁকা)" : "End (or empty)"} value={exp.endDate} onChange={(e) => updateExperience(exp.id, "endDate", e.target.value)} className="w-full p-2.5 text-sm rounded-lg border border-silk-rose/20 bg-white dark:bg-dark-surface outline-none" />
                       </div>
                     </div>
                   ))}
 
                   <button onClick={addExperience} className="w-full py-3 rounded-xl border-2 border-dashed border-silk-rose/40 text-silk-rose font-bold text-sm hover:bg-silk-rose/5 transition-colors flex items-center justify-center gap-2">
-                    <Plus className="w-4 h-4" /> Add Experience
+                    <Plus className="w-4 h-4" /> {bn ? "অভিজ্ঞতা যোগ করুন" : "Add Experience"}
                   </button>
                 </motion.div>
               )}
@@ -213,30 +216,27 @@ export function AutoEditWizard({ isOpen, onClose, data, templateId, onFinish }: 
               {/* Step 3: Education */}
               {step === 3 && (
                 <motion.div key="step3" initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: -20 }} className="space-y-4">
-                  <h2 className="text-xl font-serif font-black text-light-text dark:text-dark-text">Education</h2>
-                  
+                  <h2 className="text-xl font-serif font-black text-light-text dark:text-dark-text">{bn ? "শিক্ষা" : "Education"}</h2>
+
                   {draft.education.map((edu, index) => (
                     <div key={edu.id} className="p-4 rounded-xl border border-silk-rose/20 relative space-y-3 bg-silk-rose/5">
                       <button onClick={() => removeEducation(edu.id)} className="absolute top-2 right-2 p-1 text-red-500 hover:bg-red-500/10 rounded">
                         <Trash2 className="w-4 h-4" />
                       </button>
-                      <h3 className="text-xs font-bold text-silk-rose uppercase">Education {index + 1}</h3>
-                      
+                      <h3 className="text-xs font-bold text-silk-rose uppercase">{bn ? "শিক্ষা" : "Education"} {index + 1}</h3>
                       <select value={edu.degree} onChange={(e) => updateEducation(edu.id, "degree", e.target.value)} className="w-full p-2.5 text-sm rounded-lg border border-silk-rose/20 bg-white dark:bg-dark-surface outline-none">
                         {DEGREES.map(d => <option key={d} value={d}>{d}</option>)}
                       </select>
-
-                      <input type="text" placeholder="Institution / University Name" value={edu.institution} onChange={(e) => updateEducation(edu.id, "institution", e.target.value)} className="w-full p-2.5 text-sm rounded-lg border border-silk-rose/20 bg-white dark:bg-dark-surface outline-none" />
-                      
+                      <input type="text" placeholder={bn ? "প্রতিষ্ঠান / বিশ্ববিদ্যালয়ের নাম" : "Institution / University Name"} value={edu.institution} onChange={(e) => updateEducation(edu.id, "institution", e.target.value)} className="w-full p-2.5 text-sm rounded-lg border border-silk-rose/20 bg-white dark:bg-dark-surface outline-none" />
                       <div className="grid grid-cols-2 gap-2">
-                        <input type="text" placeholder="Start Year" value={edu.startDate} onChange={(e) => updateEducation(edu.id, "startDate", e.target.value)} className="w-full p-2.5 text-sm rounded-lg border border-silk-rose/20 bg-white dark:bg-dark-surface outline-none" />
-                        <input type="text" placeholder="End Year" value={edu.endDate} onChange={(e) => updateEducation(edu.id, "endDate", e.target.value)} className="w-full p-2.5 text-sm rounded-lg border border-silk-rose/20 bg-white dark:bg-dark-surface outline-none" />
+                        <input type="text" placeholder={bn ? "শুরুর বছর" : "Start Year"} value={edu.startDate} onChange={(e) => updateEducation(edu.id, "startDate", e.target.value)} className="w-full p-2.5 text-sm rounded-lg border border-silk-rose/20 bg-white dark:bg-dark-surface outline-none" />
+                        <input type="text" placeholder={bn ? "শেষের বছর" : "End Year"} value={edu.endDate} onChange={(e) => updateEducation(edu.id, "endDate", e.target.value)} className="w-full p-2.5 text-sm rounded-lg border border-silk-rose/20 bg-white dark:bg-dark-surface outline-none" />
                       </div>
                     </div>
                   ))}
 
                   <button onClick={addEducation} className="w-full py-3 rounded-xl border-2 border-dashed border-silk-rose/40 text-silk-rose font-bold text-sm hover:bg-silk-rose/5 transition-colors flex items-center justify-center gap-2">
-                    <Plus className="w-4 h-4" /> Add Education
+                    <Plus className="w-4 h-4" /> {bn ? "শিক্ষা যোগ করুন" : "Add Education"}
                   </button>
                 </motion.div>
               )}
@@ -246,10 +246,10 @@ export function AutoEditWizard({ isOpen, onClose, data, templateId, onFinish }: 
           {/* Footer Navigation */}
           <div className="p-4 border-t border-silk-rose/10 bg-white/50 dark:bg-dark-surface/50 flex justify-between">
             <button onClick={() => step > 0 ? setStep(step - 1) : onClose()} className="px-4 py-2 text-sm font-bold text-light-textSecondary dark:text-dark-textSecondary hover:text-silk-rose transition-colors">
-              {step === 0 ? "Cancel" : "Back"}
+              {step === 0 ? (bn ? "বাতিল" : "Cancel") : (bn ? "পিছনে" : "Back")}
             </button>
             <button onClick={handleNext} disabled={isCompressing} className="px-6 py-2 rounded-full bg-silk-rose text-white text-sm font-bold shadow-lg hover:bg-silk-wine-deep transition-colors flex items-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed">
-              {step === 3 ? "Finish & Preview" : "Next"} <ArrowRight className="w-4 h-4" />
+              {step === 3 ? (bn ? "সম্পন্ন এবং প্রিভিউ" : "Finish & Preview") : (bn ? "পরবর্তী" : "Next")} <ArrowRight className="w-4 h-4" />
             </button>
           </div>
         </div>

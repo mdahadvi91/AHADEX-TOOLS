@@ -3,6 +3,7 @@ import { Link, NavLink, useLocation } from "react-router-dom";
 import { Menu, Search, Sliders, X, Command } from "lucide-react";
 import { cn } from "@lib/cn";
 import { Logo } from "@components/common/Logo";
+import { useLanguage } from "@contexts/LanguageContext"; // 🚨 ইমপোর্ট যোগ করা হলো
 
 interface HeaderProps {
   onLeftMenuClick: () => void;
@@ -11,12 +12,12 @@ interface HeaderProps {
 
 const NAV_LINKS = [
   { to: "/tools", label: "Tools" },
-  // 🚨 Blog লিংক রিমুভ করা হলো
   { to: "/about", label: "About" },
   { to: "/contact", label: "Contact" },
 ];
 
 export function Header({ onLeftMenuClick, onRightMenuClick }: HeaderProps) {
+  const { language } = useLanguage(); // 🚨 language ভেরিয়েবল ডিক্লেয়ার করা হলো
   const [searchOpen, setSearchOpen] = useState(false);
   const location = useLocation();
 
@@ -110,7 +111,7 @@ export function Header({ onLeftMenuClick, onRightMenuClick }: HeaderProps) {
               )}
             >
               <Search className="w-3.5 h-3.5" />
-              <span className="text-xs font-medium">Search</span>
+              <span className="text-xs font-medium">{language === "bn" ? "সার্চ" : "Search"}</span>
               <kbd className="flex items-center gap-0.5 px-1.5 py-0.5 rounded-md bg-silk-rose/15 text-silk-wine dark:text-silk-rose-soft text-[10px] font-mono border border-silk-rose/20">
                 <Command className="w-2.5 h-2.5" />K
               </kbd>
@@ -175,7 +176,7 @@ export function Header({ onLeftMenuClick, onRightMenuClick }: HeaderProps) {
                 <Search className="w-5 h-5 text-silk-rose shrink-0" />
                 <input
                   type="text"
-                  placeholder="Search tools — try 'JPG', 'PDF merge', 'QR'..."
+                  placeholder={language === "bn" ? "টুল খুঁজুন..." : "Search tools — try 'JPG', 'PDF merge', 'QR'..."}
                   autoFocus
                   className="flex-1 bg-transparent outline-none text-light-text dark:text-dark-text placeholder:text-light-textSecondary/60 dark:placeholder:text-dark-textSecondary/60"
                 />
