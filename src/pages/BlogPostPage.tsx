@@ -2,7 +2,7 @@ import { useParams, Link, Navigate } from "react-router-dom";
 import { AuthorBio } from "@components/blog/AuthorBio";
 import { useEffect } from "react";
 import { motion } from "framer-motion";
-import { ArrowLeft, Clock, Calendar, User, ArrowRight, RefreshCw } from "lucide-react";
+import { ArrowLeft, Clock, Calendar, User, ArrowRight, RefreshCw, CheckCircle2 } from "lucide-react";
 import { useLanguage } from "@contexts/LanguageContext";
 import { getPostBySlug, blogPosts } from "@data/blog";
 import { getAuthor } from "@data/authors";
@@ -134,7 +134,31 @@ export default function BlogPostPage() {
                 );
               }
 
-              if (block.type === "h2") {
+              
+              if ((block.type as string) === "field-note") {
+                return (
+                  <motion.aside key={i} initial={{ opacity: 0, x: -10 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} className="my-8 p-5 rounded-2xl bg-silk-rose/5 border-l-4 border-silk-rose">
+                    <div className="flex items-center gap-2 mb-2">
+                      <User className="w-4 h-4 text-silk-rose" />
+                      <span className="text-[10px] uppercase tracking-widest font-bold text-silk-rose">Author Note</span>
+                    </div>
+                    <p className="text-sm italic text-light-text dark:text-dark-text leading-relaxed mb-3">
+                      {block.content}
+                    </p>
+                    {block.items && (
+                      <div className="flex flex-wrap gap-2">
+                        {block.items.map((item: string, idx: number) => (
+                          <span key={idx} className="inline-flex items-center gap-1 px-2.5 py-1 rounded-md bg-white dark:bg-dark-surface border border-silk-rose/20 text-[10px] font-bold text-light-textSecondary dark:text-dark-textSecondary">
+                            <CheckCircle2 className="w-3 h-3 text-emerald-500" /> {item}
+                          </span>
+                        ))}
+                      </div>
+                    )}
+                  </motion.aside>
+                );
+              }
+
+                            if (block.type === "h2") {
             return (
               <motion.h2
                 key={i}
@@ -212,7 +236,7 @@ export default function BlogPostPage() {
               </blockquote>
             );
           }
-          if (block.type === "field-note") {
+          if ((block.type as string) === "field-note") {
               return (
                 <motion.aside
                   key={i}

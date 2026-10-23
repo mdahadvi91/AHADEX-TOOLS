@@ -2427,7 +2427,7 @@ export const SSR_SCHEMA: Record<string, object> = {
           "@id": "https://ahadex.fun#organization"
         },
         "inLanguage": "en",
-        "keywords": "Measure first, The 5 Core Web Vitals that matter, Priority 1: Image optimization (biggest win), Priority 2: JavaScript optimization, Priority 3: Font optimization"
+        "keywords": "Measure first, The Core Web Vitals that matter (plus supporting metrics), Priority 1: Image optimization (biggest win), Priority 2: JavaScript optimization, Priority 3: Font optimization"
       }
     ]
   },

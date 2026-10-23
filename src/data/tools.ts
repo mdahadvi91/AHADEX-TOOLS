@@ -882,7 +882,7 @@ benchmarks: [
     faq: [
       { question: "Does this tool upload my photos to read EXIF data?", answer: "Never. The EXIF data is parsed entirely in your browser using JavaScript. Your photos remain on your device." },
       { question: "Can I remove the metadata using this tool?", answer: "No, this is a viewer only. To remove metadata, you can use our Image Converter or Image Compressor, which strip EXIF data automatically." },
-      { question: "Does this tool upload my photos to read EXIF data?", answer: "Never. The EXIF data is parsed entirely in your browser using JavaScript. Your photos remain Files stay on your device on your device." },
+      { question: "Does this tool upload my photos to read EXIF data?", answer: "Never. The EXIF data is parsed entirely in your browser using JavaScript. Your photos remain 100% private and stay on your device." },
       { question: "Can I remove metadata using this tool?", answer: "No, this is a viewer only. To remove metadata, you can use our Image Converter or Image Compressor, which strip EXIF data automatically." },
     ],
     useCases: [
