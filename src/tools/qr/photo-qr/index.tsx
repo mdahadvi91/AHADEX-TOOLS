@@ -1,15 +1,11 @@
+import { useEffect, useState } from "react";
+import { ArrowRight } from "lucide-react";
 import { ToolRelatedGuides } from "@components/tools/ToolRelatedGuides";
 import { trackRecentTool } from "@lib/recentTools";
 import { ToolDataSections } from "@components/tools/ToolDataSections";
 import { useToolAnalytics } from "@hooks/useToolAnalytics";
-import { useEffect, useMemo, useRef, useState } from "react";
 import { useLanguage } from "@contexts/LanguageContext";
-import { getPlatform } from "./options";
-import { composePhoto, generatePreview } from "./logic";
 import { Hero } from "./Hero";
-import { Workspace } from "./Workspace";
-import { SettingsPanel } from "./SettingsPanel";
-import { PreviewPanel } from "./PreviewPanel";
 import { PrivacyNote } from "./PrivacyNote";
 import { Intro } from "./Intro";
 import { HowTo } from "./HowTo";
@@ -20,203 +16,61 @@ import { ToolSchema } from "@components/seo/ToolSchema";
 import { ToolFieldNote } from "@components/tools/ToolFieldNote";
 import { photoQrData } from "./data";
 import { photoQrContent } from "./content";
-import type { Position, QrBackground } from "./types";
 import { RelatedArticles } from "@components/blog/RelatedArticles";
 import { ToolBreadcrumb } from "@components/tools/ToolBreadcrumb";
 import { SmartInsights } from "./SmartInsights";
 import { AdSenseSlot } from "@components/ads/AdSenseSlot";
 
+// 🚨 Wizard ইমপোর্ট
+import { PhotoQRWizardModal } from "./PhotoQRWizardModal";
+
 export default function PhotoQrTool() {
+  const [isWizardOpen, setIsWizardOpen] = useState(false);
+  const { language } = useLanguage();
+  const content = photoQrContent[language];
 
   useEffect(() => {
     trackRecentTool({ path: "/tools/photo-qr", name: "Photo Qr", emoji: "🔧" });
   }, []);
   useToolAnalytics("photo-qr");
-  const { language } = useLanguage();
-  const content = photoQrContent[language];
-
-  const [photoFile, setPhotoFile] = useState<File | null>(null);
-  const [platformId, setPlatformId] = useState<string>(() => {
-    const saved = localStorage.getItem("ahadex-photoqr-platform");
-    if (saved !== null) return saved as string;
-    return "whatsapp";
-  });
-  const [values, setValues] = useState<Record<string, string>>({});
-  const [position, setPosition] = useState<Position>("bottom-right");
-  const [sizePercent, setSizePercent] = useState(20);
-  const [padding, setPadding] = useState(10);
-  const [qrBackground, setQrBackground] = useState<QrBackground>("rounded");
-
-  const [preview, setPreview] = useState<string | null>(null);
-  const [generating, setGenerating] = useState(false);
-  const [error, setError] = useState<string | null>(null);
-
-  const previewTimerRef = useRef<number | null>(null);
-
-  const platform = useMemo(
-    () => getPlatform(platformId) ?? getPlatform("whatsapp")!,
-    [platformId]
-  );
-
-  const payload = useMemo(() => {
-    try {
-      return platform.buildPayload(values);
-    } catch {
-      return "";
-    }
-  }, [platform, values]);
-
-  const canPreview = Boolean(photoFile && payload);
-
-  const handlePlatformChange = (id: string) => {
-    setPlatformId(id);
-    setValues({});
-  };
-
-  const handleValueChange = (key: string, value: string) => {
-    setValues((v) => ({ ...v, [key]: value }));
-  };
-
-  useEffect(() => {
-    if (!canPreview || !photoFile) {
-      setPreview(null);
-      return;
-    }
-    if (previewTimerRef.current) window.clearTimeout(previewTimerRef.current);
-
-    previewTimerRef.current = window.setTimeout(async () => {
-      setGenerating(true);
-      try {
-        const url = await generatePreview({
-          photoFile,
-          platform,
-          values,
-          position,
-          sizePercent,
-          padding,
-          qrBackground,
-        });
-        setPreview(url);
-        setError(null);
-      } catch (e) {
-        setError(e instanceof Error ? e.message : "Preview failed");
-      } finally {
-        setGenerating(false);
-      }
-    }, 250);
-
-  // Remember platformId
-  useEffect(() => {
-    localStorage.setItem("ahadex-photoqr-platform", String(platformId));
-  }, [platformId]);
-
-    return () => {
-      if (previewTimerRef.current) window.clearTimeout(previewTimerRef.current);
-    };
-  }, [
-    photoFile,
-    platform,
-    values,
-    position,
-    sizePercent,
-    padding,
-    qrBackground,
-    canPreview,
-  ]);
-
-  const handleDownload = async () => {
-    if (!photoFile || !payload) return;
-    setGenerating(true);
-    try {
-      const blob = await composePhoto({
-        photoFile,
-        platform,
-        values,
-        position,
-        sizePercent,
-        padding,
-        qrBackground,
-      });
-      const url = URL.createObjectURL(blob);
-      const a = document.createElement("a");
-      a.href = url;
-      a.download = `${photoQrData.slug}-${Date.now()}.png`;
-      document.body.appendChild(a);
-      a.click();
-      document.body.removeChild(a);
-      URL.revokeObjectURL(url);
-    } catch (e) {
-      setError(e instanceof Error ? e.message : "Download failed");
-    } finally {
-      setGenerating(false);
-    }
-  };
 
   return (
     <div className="mx-auto max-w-[1400px] px-3 sm:px-6 lg:px-8">
-        <ToolSchema toolId="photo-qr" />
-        <ToolBreadcrumb toolName="Photo QR Code" category="QR Tools" />
-
+      <ToolSchema toolId="photo-qr" />
+      <ToolBreadcrumb toolName="Photo QR Code" category="QR Tools" />
+      
       <Hero />
 
-      <Workspace
-        settingsPanel={
-          <SettingsPanel
-            platformId={platformId}
-            onPlatformChange={handlePlatformChange}
-            values={values}
-            onValueChange={handleValueChange}
-            position={position}
-            onPositionChange={setPosition}
-            sizePercent={sizePercent}
-            onSizeChange={setSizePercent}
-            padding={padding}
-            onPaddingChange={setPadding}
-            qrBackground={qrBackground}
-            onQrBackgroundChange={setQrBackground}
-            onDownload={handleDownload}
-            canDownload={canPreview}
-            generating={generating}
-            error={error}
-          />
-        }
-        previewPanel={
-          <PreviewPanel
-            photoFile={photoFile}
-            onPhotoChange={setPhotoFile}
-            onPhotoClear={() => {
-              setPhotoFile(null);
-              setPreview(null);
-            }}
-            preview={preview}
-            generating={generating}
-            hasPayload={Boolean(payload)}
-            platform={platform}
-            onError={(msg) => setError(msg)}
-          />
-        }
-      />
+      {/* 🚨 Start Button */}
+      <div className="flex justify-center my-8">
+        <button 
+          onClick={() => setIsWizardOpen(true)} 
+          className="inline-flex items-center gap-2 bg-red-600 hover:bg-red-700 text-white px-8 py-4 rounded-xl font-bold text-lg transition-all shadow-lg hover:shadow-xl hover:-translate-y-0.5 cursor-pointer"
+        >
+          Start Creating Now <ArrowRight className="w-5 h-5" />
+        </button>
+      </div>
 
-      <SmartInsights sizePercent={sizePercent} />
-
-        <PrivacyNote text={content.privacyNote} />
-
+      {/* বাকি SEO ও কন্টেন্ট সেকশন */}
+      <SmartInsights sizePercent={20} /> {/* Static value passed for UI */}
+      <PrivacyNote text={content.privacyNote} />
       <Intro />
-
+      
       <div className="max-w-3xl">
         <HowTo steps={content.howTo} />
         <Features features={content.features} />
-              <AdSenseSlot slot="TOOL_BOTTOM" label="Advertisement" />
-
-<FAQ faqs={content.faq} />
+        <AdSenseSlot slot="TOOL_BOTTOM" label="Advertisement" />
+        <FAQ faqs={content.faq} />
       </div>
 
       <ToolFieldNote toolId="photo-qr" />
-
       <ToolDataSections toolId="photo-qr" />
-        <ToolRelatedGuides toolId="photo-qr" />
-        <RelatedArticles toolId="photo-qr" />
-        <RelatedTools toolIds={photoQrData.relatedTools} />
+      <ToolRelatedGuides toolId="photo-qr" />
+      <RelatedArticles toolId="photo-qr" />
+      <RelatedTools toolIds={photoQrData.relatedTools} />
+
+      {/* 🚨 Wizard Modal */}
+      <PhotoQRWizardModal isOpen={isWizardOpen} onClose={() => setIsWizardOpen(false)} />
     </div>
   );
 }

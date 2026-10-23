@@ -106,7 +106,10 @@ export function UploadZone({ onPhotoChange, onError }: UploadZoneProps) {
         ref={inputRef}
         type="file"
         accept={ACCEPT_ATTR}
-        onChange={(e) => handleFiles(e.target.files)}
+        onChange={(e) => {
+          handleFiles(e.currentTarget.files);
+          e.currentTarget.value = "";
+        }}
         className="hidden"
       />
 
