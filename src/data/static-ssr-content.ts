@@ -63,14 +63,8 @@ export const staticPageContents: StaticPageContent[] = [
 
   <h2>Featured tools</h2>
   <ul>
-    <li><a href="/tools/image-converter">Image Converter</a> — convert between JPG, PNG, and WebP; batch-capable; keeps transparency in PNG and WebP.</li>
-    <li><a href="/tools/image-compressor">Image Compressor</a> — reduce file sizes by 60-90% with adjustable quality and max width.</li>
     <li><a href="/tools/cv-builder">CV Builder</a> — build a professional A4 CV and export a selectable-text PDF that ATS software can parse.</li>
-    <li><a href="/tools/image-to-pdf">Image to PDF</a> — combine JPG, PNG, and WebP files into one multi-page PDF, with page reordering and A4/Letter size options.</li>
-    <li><a href="/tools/merge-pdf">Merge PDF</a> — combine up to 20 PDF files into one document without re-compression.</li>
     <li><a href="/tools/photo-qr">Photo QR Code</a> — add a real scannable QR badge to any photo for WhatsApp, WiFi, Instagram, or a vCard.</li>
-    <li><a href="/tools/json-formatter">JSON Formatter</a> — validate, prettify, and minify JSON with precise error locations.</li>
-    <li><a href="/tools/password-generator">Password Generator</a> — create cryptographically random passwords with live entropy scoring.</li>
   </ul>
 
   <h2>Frequently asked questions</h2>
@@ -105,65 +99,38 @@ export const staticPageContents: StaticPageContent[] = [
   {
     path: "/tools",
     html: `<article>
-  <h1>All Tools — ${tools.length} free browser-based utilities</h1>
+  <h1>All Tools — 3 free browser-based utilities</h1>
   <p><strong>AHADEX Tools currently offers ${tools.length} browser-based tools for image work, PDF handling, text processing, developer tasks, QR and barcode generation, and design documents. Every tool runs entirely in your browser — no uploads, no accounts, no watermarks.</strong></p>
 
   <h2>Image tools (${categoryCounts.image})</h2>
   <ul>
-    <li><a href="/tools/image-converter">Image Converter</a> — convert between JPG, PNG, and WebP in either direction; batch-capable; keeps transparency where the format supports it.</li>
-    <li><a href="/tools/image-compressor">Image Compressor</a> — reduce file size with an adjustable quality slider and max-width cap; typically 60-90% smaller.</li>
-    <li><a href="/tools/image-resizer">Image Resizer</a> — set exact dimensions or scale proportionally; batch-capable.</li>
-    <li><a href="/tools/image-cropper">Image Cropper</a> — 8 aspect presets, pixel-precise numeric inputs, live preview.</li>
-    <li><a href="/tools/image-metadata-viewer">Image Metadata Viewer</a> — read EXIF, GPS, camera, and file metadata without uploading.</li>
-    <li><a href="/tools/image-to-sketch">Image to Sketch</a> — turn a photo into a graphite-pencil drawing with adjustable stroke intensity.</li>
-    <li><a href="/tools/image-to-cartoon">Image to Cartoon</a> — cel-shaded illustration effect with live sliders for levels, edge, and smoothness.</li>
   </ul>
 
   <h2>PDF tools (${categoryCounts.pdf})</h2>
   <ul>
-    <li><a href="/tools/image-to-pdf">Image to PDF</a> — combine JPG, PNG, and WebP images into one multi-page PDF; A4, US Letter, or auto size; custom margins.</li>
-    <li><a href="/tools/merge-pdf">Merge PDF</a> — combine up to 20 PDF files into one document, with full reordering.</li>
-    <li><a href="/tools/split-pdf">Split PDF</a> — extract pages in custom order, duplicate pages, or split every page into its own file.</li>
-    <li><a href="/tools/pdf-to-image">PDF to Image</a> — render each PDF page as PNG or JPG at 72, 150, or 300 DPI, with page ranges.</li>
-    <li><a href="/tools/pdf-to-text">PDF to Text</a> — extract the text layer from any PDF as plain UTF-8 text; page ranges and structure options.</li>
-    <li><a href="/tools/pdf-rotator">PDF Rotator</a> — rotate pages 90° left, 90° right, or 180° without re-rendering; lossless.</li>
   </ul>
 
   <h2>Developer tools (${categoryCounts.developer})</h2>
   <ul>
-    <li><a href="/tools/json-formatter">JSON Formatter</a> — validate, format with 2/4 spaces or tab, sort keys, and minify; live error locations.</li>
-    <li><a href="/tools/base64-encoder">Base64 Encoder / Decoder</a> — text and files; Unicode-safe; URL-safe mode for JWT.</li>
-    <li><a href="/tools/url-encoder">URL Encoder / Decoder</a> — component or full-URI scope; Unicode, emoji, and Bengali safe.</li>
-    <li><a href="/tools/uuid-generator">UUID Generator</a> — v4 and v7 with crypto randomness; batch up to 1000.</li>
-    <li><a href="/tools/password-generator">Password Generator</a> — Web Crypto with rejection sampling; live entropy scoring and crack-time estimates.</li>
-    <li><a href="/tools/svg-to-png">SVG to PNG</a> — rasterize SVG at 1×, 2×, 4×, or 8× with transparent, white, or black background.</li>
   </ul>
 
   <h2>Text tools (${categoryCounts.text})</h2>
   <ul>
-    <li><a href="/tools/word-counter">Word Counter</a> — words, characters, sentences, paragraphs, reading time, and keyword density.</li>
-    <li><a href="/tools/character-counter">Character Counter</a> — live counts against X, Instagram, LinkedIn, Facebook, YouTube, SMS, and SEO limits.</li>
-    <li><a href="/tools/text-case-converter">Text Case Converter</a> — 12 case styles including Title, camelCase, snake_case, and kebab-case.</li>
   </ul>
 
   <h2>QR and barcode tools (${categoryCounts.qr})</h2>
   <ul>
     <li><a href="/tools/photo-qr">Photo QR Code</a> — add a scannable QR badge to any photo for WhatsApp, Facebook, WiFi, or contact cards.</li>
-    <li><a href="/tools/barcode-generator">Barcode Generator</a> — 9 formats including CODE128, EAN-13, UPC-A, and ITF-14; PNG or SVG output.</li>
   </ul>
 
   <h2>Design and document tools (${categoryCounts.design})</h2>
   <ul>
     <li><a href="/tools/visiting-card">Visiting Card Maker</a> — 20 hand-designed templates, front and back, with export at 150/300/600 DPI.</li>
     <li><a href="/tools/cv-builder">CV Builder</a> — build a professional CV and export a selectable-text PDF that ATS software can parse.</li>
-    <li><a href="/tools/favicon-generator">Favicon Generator</a> — full favicon set (ICO, PNG, apple-touch, android, webmanifest) from one source image.</li>
   </ul>
 
   <h2>How to choose a tool</h2>
   <ul>
-    <li><strong>Working with images?</strong> Start with <a href="/tools/image-converter">Image Converter</a> if you need a different format, or <a href="/tools/image-compressor">Image Compressor</a> if you need a smaller file.</li>
-    <li><strong>Working with PDFs?</strong> Use <a href="/tools/merge-pdf">Merge PDF</a>, <a href="/tools/split-pdf">Split PDF</a>, or <a href="/tools/image-to-pdf">Image to PDF</a> depending on the operation.</li>
-    <li><strong>Working with text or data?</strong> Try <a href="/tools/word-counter">Word Counter</a>, <a href="/tools/json-formatter">JSON Formatter</a>, or <a href="/tools/base64-encoder">Base64 Encoder</a>.</li>
   </ul>
 
   <h2>Privacy across every tool</h2>
@@ -351,36 +318,12 @@ export const staticPageContents: StaticPageContent[] = [
     <li><a href="/affiliate-disclosure">Affiliate Disclosure</a></li>
   </ul>
 
-  <h2>Tools (27)</h2>
+  <h2>Tools (3)</h2>
   <p>See the full list with descriptions on the <a href="/tools">All Tools</a> page. Direct links:</p>
   <ul>
-    <li><a href="/tools/image-converter">Image Converter</a></li>
-    <li><a href="/tools/image-compressor">Image Compressor</a></li>
-    <li><a href="/tools/image-resizer">Image Resizer</a></li>
-    <li><a href="/tools/image-cropper">Image Cropper</a></li>
-    <li><a href="/tools/image-metadata-viewer">Image Metadata Viewer</a></li>
-    <li><a href="/tools/image-to-sketch">Image to Sketch</a></li>
-    <li><a href="/tools/image-to-cartoon">Image to Cartoon</a></li>
-    <li><a href="/tools/image-to-pdf">Image to PDF</a></li>
-    <li><a href="/tools/merge-pdf">Merge PDF</a></li>
-    <li><a href="/tools/split-pdf">Split PDF</a></li>
-    <li><a href="/tools/pdf-to-image">PDF to Image</a></li>
-    <li><a href="/tools/pdf-to-text">PDF to Text</a></li>
-    <li><a href="/tools/pdf-rotator">PDF Rotator</a></li>
-    <li><a href="/tools/json-formatter">JSON Formatter</a></li>
-    <li><a href="/tools/base64-encoder">Base64 Encoder / Decoder</a></li>
-    <li><a href="/tools/url-encoder">URL Encoder / Decoder</a></li>
-    <li><a href="/tools/uuid-generator">UUID Generator</a></li>
-    <li><a href="/tools/password-generator">Password Generator</a></li>
-    <li><a href="/tools/svg-to-png">SVG to PNG</a></li>
-    <li><a href="/tools/word-counter">Word Counter</a></li>
-    <li><a href="/tools/character-counter">Character Counter</a></li>
-    <li><a href="/tools/text-case-converter">Text Case Converter</a></li>
     <li><a href="/tools/photo-qr">Photo QR Code</a></li>
-    <li><a href="/tools/barcode-generator">Barcode Generator</a></li>
     <li><a href="/tools/visiting-card">Visiting Card Maker</a></li>
     <li><a href="/tools/cv-builder">CV Builder</a></li>
-    <li><a href="/tools/favicon-generator">Favicon Generator</a></li>
   </ul>
 
   <h2>Blog posts (36)</h2>

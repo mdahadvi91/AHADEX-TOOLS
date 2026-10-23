@@ -43,7 +43,7 @@ export function BackButton() {
           // Vertical: below header (header ~64-72px + margin)
           "top-[84px] lg:top-[92px]",
           // Horizontal: 12px on mobile, 16px after sidebar on desktop
-          "left-3 lg:left-[276px]",
+          "left-3 lg:left-[36px]",
           // Shape & style
           "inline-flex items-center justify-center",
           "w-10 h-10 sm:w-11 sm:h-11 rounded-full",

@@ -1,6 +1,6 @@
 # AHADEX Tools
 
-Welcome to the official repository for **AHADEX Tools** — a suite of 27 free, fast, and privacy-first browser-based tools for everyday digital tasks.
+Welcome to the official repository for **AHADEX Tools** — a suite of 3 free, fast, and privacy-first browser-based tools for everyday digital tasks.
 
 ## ✨ Features
 - **100% Privacy-First**: All tools process files locally in your browser using HTML5 Canvas API and modern Web APIs. Your files never touch our servers.

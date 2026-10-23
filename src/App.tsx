@@ -42,30 +42,6 @@ const NotFoundPage = lazy(() => import("@pages/NotFoundPage"));
 const PhotoQrTool = lazy(() => import("@tools/qr/photo-qr"));
 const VisitingCardTool = lazy(() => import("@tools/design/visiting-card"));
 const CVBuilderTool = lazy(() => import("@tools/documents/cv-builder"));
-const ImageConverterTool = lazy(() => import("@tools/image/converter"));
-const PdfToImageTool = lazy(() => import("@tools/pdf/to-image"));
-const ImageCompressorTool = lazy(() => import("@tools/image/image-compressor"));
-const ImageResizerTool = lazy(() => import("@tools/image/image-resizer"));
-const ImageCropperTool = lazy(() => import("@tools/image/image-cropper"));
-const MergePdfTool = lazy(() => import("@tools/pdf/merge-pdf"));
-const SplitPdfTool = lazy(() => import("@tools/pdf/split-pdf"));
-const ImageToPdfTool = lazy(() => import("@tools/image/image-to-pdf"));
-const ImageMetadataViewerTool = lazy(() => import("@tools/image/image-metadata-viewer"));
-const FaviconGeneratorTool = lazy(() => import("@tools/image/favicon-generator"));
-const SvgToPngTool = lazy(() => import("@tools/image/svg-to-png"));
-const JsonFormatterTool = lazy(() => import("@tools/developer/json-formatter"));
-const UrlEncoderTool = lazy(() => import("@tools/developer/url-encoder"));
-const UuidGeneratorTool = lazy(() => import("@tools/developer/uuid-generator"));
-const TextCaseConverterTool = lazy(() => import("@tools/text/text-case-converter"));
-const ImageToSketchTool = lazy(() => import("@tools/image/image-to-sketch"));
-const ImageToCartoonTool = lazy(() => import("@tools/image/image-to-cartoon"));
-const Base64EncoderTool = lazy(() => import("@tools/developer/base64-encoder"));
-const PasswordGeneratorTool = lazy(() => import("@tools/developer/password-generator"));
-const BarcodeGeneratorTool = lazy(() => import("@tools/qr/barcode-generator"));
-const WordCounterTool = lazy(() => import("@tools/text/word-counter"));
-const CharacterCounterTool = lazy(() => import("@tools/text/character-counter"));
-const PdfToTextTool = lazy(() => import("@tools/pdf/pdf-to-text"));
-const PdfRotatorTool = lazy(() => import("@tools/pdf/pdf-rotator"));
 
 const CVBuilderEditor = lazy(() =>
   import("@tools/documents/cv-builder/editor").then((m) => ({
@@ -149,30 +125,6 @@ export default function App() {
                 <Route path="tools/photo-qr" element={<ToolSuspense><PhotoQrTool /></ToolSuspense>} />
                 <Route path="tools/visiting-card" element={<ToolSuspense><VisitingCardTool /></ToolSuspense>} />
                 <Route path="tools/cv-builder" element={<ToolSuspense><CVBuilderTool /></ToolSuspense>} />
-                <Route path="tools/image-converter" element={<ToolSuspense><ImageConverterTool /></ToolSuspense>} />
-                <Route path="tools/pdf-to-image" element={<ToolSuspense><PdfToImageTool /></ToolSuspense>} />
-                <Route path="tools/image-compressor" element={<ToolSuspense><ImageCompressorTool /></ToolSuspense>} />
-                <Route path="tools/image-resizer" element={<ToolSuspense><ImageResizerTool /></ToolSuspense>} />
-                <Route path="tools/image-cropper" element={<ToolSuspense><ImageCropperTool /></ToolSuspense>} />
-                <Route path="tools/merge-pdf" element={<ToolSuspense><MergePdfTool /></ToolSuspense>} />
-                <Route path="tools/split-pdf" element={<ToolSuspense><SplitPdfTool /></ToolSuspense>} />
-                <Route path="tools/image-to-pdf" element={<ToolSuspense><ImageToPdfTool /></ToolSuspense>} />
-                <Route path="tools/image-metadata-viewer" element={<ToolSuspense><ImageMetadataViewerTool /></ToolSuspense>} />
-                <Route path="tools/favicon-generator" element={<ToolSuspense><FaviconGeneratorTool /></ToolSuspense>} />
-                <Route path="tools/svg-to-png" element={<ToolSuspense><SvgToPngTool /></ToolSuspense>} />
-                <Route path="tools/json-formatter" element={<ToolSuspense><JsonFormatterTool /></ToolSuspense>} />
-                <Route path="tools/url-encoder" element={<ToolSuspense><UrlEncoderTool /></ToolSuspense>} />
-                <Route path="tools/uuid-generator" element={<ToolSuspense><UuidGeneratorTool /></ToolSuspense>} />
-                <Route path="tools/text-case-converter" element={<ToolSuspense><TextCaseConverterTool /></ToolSuspense>} />
-                <Route path="tools/image-to-sketch" element={<ToolSuspense><ImageToSketchTool /></ToolSuspense>} />
-                <Route path="tools/image-to-cartoon" element={<ToolSuspense><ImageToCartoonTool /></ToolSuspense>} />
-                <Route path="tools/base64-encoder" element={<ToolSuspense><Base64EncoderTool /></ToolSuspense>} />
-                <Route path="tools/password-generator" element={<ToolSuspense><PasswordGeneratorTool /></ToolSuspense>} />
-                <Route path="tools/barcode-generator" element={<ToolSuspense><BarcodeGeneratorTool /></ToolSuspense>} />
-                <Route path="tools/word-counter" element={<ToolSuspense><WordCounterTool /></ToolSuspense>} />
-                <Route path="tools/character-counter" element={<ToolSuspense><CharacterCounterTool /></ToolSuspense>} />
-                <Route path="tools/pdf-to-text" element={<ToolSuspense><PdfToTextTool /></ToolSuspense>} />
-                <Route path="tools/pdf-rotator" element={<ToolSuspense><PdfRotatorTool /></ToolSuspense>} />
 
                 {/* Tool editors */}
                 <Route path="tools/cv-builder/edit/:templateId" element={<ToolSuspense><CVBuilderEditor /></ToolSuspense>} />

@@ -1,7 +1,7 @@
 import { Shield, Zap, CheckCircle2, Sparkles } from "lucide-react";
 
 const TRUST_ITEMS = [
-  { icon: Sparkles, label: "27 Free Tools", color: "text-silk-rose" },
+  { icon: Sparkles, label: "3 Free Tools", color: "text-silk-rose" },
   { icon: Zap, label: "Instant Processing", color: "text-silk-gold" },
   { icon: CheckCircle2, label: "No Signup Required", color: "text-emerald-500" },
   { icon: Shield, label: "Files Stay on Device", color: "text-blue-500" },

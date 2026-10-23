@@ -54,7 +54,7 @@ export const guides: Guide[] = [
     readTime: 8,
     publishedAt: "2026-10-16",
     authorId: "mohammad-ahad",
-    relatedTools: ["image-compressor", "image-resizer", "image-converter", "image-cropper", "image-to-sketch", "image-to-cartoon", "favicon-generator"],
+    relatedTools: ['cv-builder', 'photo-qr', 'visiting-card'],
     sections: [
       {
         heading: "Why image weight is the number one speed problem",
@@ -178,7 +178,7 @@ export const guides: Guide[] = [
     readTime: 7,
     publishedAt: "2026-10-16",
     authorId: "mohammad-ahad",
-    relatedTools: ["merge-pdf", "split-pdf", "pdf-to-image", "image-to-pdf", "pdf-rotator", "pdf-to-text"],
+    relatedTools: ['cv-builder', 'photo-qr', 'visiting-card'],
     sections: [
       {
         heading: "Why your PDF is 50 MB in the first place",
@@ -293,7 +293,7 @@ export const guides: Guide[] = [
     readTime: 6,
     publishedAt: "2026-10-16",
     authorId: "mohammad-ahad",
-    relatedTools: ["visiting-card", "image-cropper", "photo-qr", "barcode-generator"],
+    relatedTools: ['cv-builder', 'photo-qr', 'visiting-card'],
     sections: [
       {
         heading: "The three dimensions a print shop actually cares about",
@@ -402,7 +402,7 @@ export const guides: Guide[] = [
     readTime: 7,
     publishedAt: "2026-10-16",
     authorId: "mohammad-ahad",
-    relatedTools: ["cv-builder", "image-compressor", "merge-pdf", "word-counter", "image-resizer"],
+    relatedTools: ['cv-builder', 'photo-qr', 'visiting-card'],
     sections: [
       {
         heading: "What ATS software actually does",
