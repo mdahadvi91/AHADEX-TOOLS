@@ -9,8 +9,6 @@ import { PROFESSION_PRESETS } from "./presets";
 import { PROFESSION_NAMES } from "./components/ProfessionModal";
 
 // 🚨 আধুনিক লাইব্রেরি
-import { toPng } from "html-to-image";
-import { jsPDF } from "jspdf";
 
 export function CVWizardModal({ isOpen, onClose }: { isOpen: boolean, onClose: () => void }) {
   const [step, setStep] = useState(1); 
@@ -72,6 +70,11 @@ export function CVWizardModal({ isOpen, onClose }: { isOpen: boolean, onClose: (
           });
         })
       );
+
+      const [{ toPng }, { jsPDF }] = await Promise.all([
+        import("html-to-image"),
+        import("jspdf"),
+      ]);
 
       const dataUrl = await toPng(element, {
         pixelRatio: 2,

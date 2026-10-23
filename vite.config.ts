@@ -1,3 +1,4 @@
+import { visualizer } from "rollup-plugin-visualizer";
 import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react";
 import path from "node:path";
@@ -6,7 +7,20 @@ export default defineConfig(({ mode }) => {
   const isProduction = mode === "production";
 
   return {
-    plugins: [react()],
+    plugins: [
+      react(),
+      ...(process.env.ANALYZE === "1"
+        ? [
+            visualizer({
+              filename: "bundle-stats.html",
+              template: "treemap",
+              gzipSize: true,
+              brotliSize: true,
+              open: false,
+            }),
+          ]
+        : []),
+    ],
 
     resolve: {
       alias: {
@@ -63,8 +77,30 @@ export default defineConfig(({ mode }) => {
             // Router
             if (id.includes("react-router")) return "react-router";
 
-            // Others
-            if (id.includes("framer-motion")) return "motion";
+            // Motion: include its separately published runtime packages
+            if (
+              id.includes("/node_modules/framer-motion/") ||
+              id.includes("/node_modules/motion-dom/") ||
+              id.includes("/node_modules/motion-utils/")
+            ) return "motion";
+
+            // Keep CV export libraries in separate on-demand chunks
+            if (id.includes("/node_modules/html-to-image/")) return "html-to-image";
+            if (id.includes("/node_modules/jspdf/")) return "jspdf";
+            if (id.includes("/node_modules/html2canvas/")) return "html2canvas";
+            if (id.includes("/node_modules/canvg/")) return "canvg";
+            if (id.includes("/node_modules/dompurify/")) return "dompurify";
+            if (id.includes("/node_modules/core-js/")) return "pdf-corejs";
+            if (id.includes("/node_modules/fast-png/")) return "pdf-png";
+            if (id.includes("/node_modules/pako/")) return "pdf-compression";
+            if (id.includes("/node_modules/fflate/")) return "pdf-compression";
+            if (id.includes("/node_modules/iobuffer/")) return "pdf-image-utils";
+            if (id.includes("/node_modules/svg-pathdata/")) return "pdf-image-utils";
+            if (id.includes("/node_modules/stackblur-canvas/")) return "pdf-image-utils";
+            if (id.includes("/node_modules/rgbcolor/")) return "pdf-image-utils";
+            if (id.includes("/node_modules/performance-now/")) return "pdf-image-utils";
+
+            // Other libraries
             if (id.includes("i18next") || id.includes("react-i18next")) return "i18n";
             if (id.includes("lucide-react")) return "icons";
 

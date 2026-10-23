@@ -4,7 +4,7 @@ export const cvBuilderContent = {
     heroSubtitle: "Build a professional, ATS-compatible CV in minutes. Real A4 templates, live preview, and browser-based processing.",
     // 🚨 ফিক্স: 20+ টেমপ্লেটের দাবি বাদ দিয়ে 'Multiple' করা হলো
     heroStats: [
-      { value: "Multiple", label: "Templates" },
+      { value: "20+", label: "Templates" },
       { value: "A4", label: "Format" },
       { value: "PDF", label: "Export" },
       { value: "Local", label: "Processing" },
@@ -69,7 +69,7 @@ export const cvBuilderContent = {
     heroTag: "রেজুমে স্টুডিও",
     heroSubtitle: "মিনিটের মধ্যে একটি পেশাদার, ATS-সামঞ্জস্যপূর্ণ সিভি তৈরি করুন। আসল A4 টেমপ্লেট, লাইভ প্রিভিউ এবং ব্রাউজার-ভিত্তিক প্রসেসিং।",
     heroStats: [
-      { value: "একাধিক", label: "টেমপ্লেট" }, // 🚨 Fixed
+      { value: "২০+", label: "টেমপ্লেট" }, // 🚨 Fixed
       { value: "A4", label: "ফরম্যাট" },
       { value: "PDF", label: "এক্সপোর্ট" },
       { value: "লোকাল", label: "প্রসেসিং" },
