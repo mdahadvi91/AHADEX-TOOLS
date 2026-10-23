@@ -32,7 +32,7 @@ function gitLastMod(filePath: string): string {
   } catch {
     /* ignore */
   }
-  return new Date().toISOString().slice(0, 10);
+  const today = new Date().toISOString().slice(0, 10); const gitDate = date || today; return gitDate > today ? today : gitDate;
 }
 
 const TOOLS_LASTMOD = gitLastMod("src/data/tools.ts");

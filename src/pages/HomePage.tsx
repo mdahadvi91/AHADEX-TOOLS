@@ -7,7 +7,6 @@ export default function HomePage() {
   const { language } = useLanguage();
   const [activeFilter, setActiveFilter] = useState("All");
 
-  // 🚨 টুলের ডাটা এখন ভাষা অনুযায়ী পরিবর্তিত হবে
   const toolsData = [
     { 
       id: 1, 
@@ -44,7 +43,6 @@ export default function HomePage() {
     }
   ];
 
-  // 🚨 ফিল্টার বাটনগুলোও এখন দ্বিভাষিক
   const filters = [
     { id: "All", label: language === "bn" ? "সব" : "All" },
     { id: "documents", label: language === "bn" ? "ডকুমেন্টস" : "Documents" },
@@ -52,14 +50,12 @@ export default function HomePage() {
     { id: "qr", label: language === "bn" ? "কিউআর টুলস" : "QR Tools" },
   ];
 
-  // ফিল্টারিং লজিক
   const filteredTools = activeFilter === "All"
     ? toolsData
     : toolsData.filter(tool => tool.category === activeFilter);
 
   return (
     <div className="home-container">
-      {/* Hero Section */}
       <section className="hero-section">
         <h1>
           {language === "bn" ? "ফ্রি, প্রাইভেট ব্রাউজার-ভিত্তিক টুলস" : "Free, Private Browser-Based Tools"}
@@ -71,7 +67,6 @@ export default function HomePage() {
         </p>
       </section>
 
-      {/* Filter Buttons */}
       <nav className="filter-nav">
         {filters.map((filter) => (
           <button
@@ -84,7 +79,6 @@ export default function HomePage() {
         ))}
       </nav>
 
-      {/* Tools Grid */}
       <section className="tools-grid">
         {filteredTools.map((tool) => (
           <Link to={tool.path} key={tool.id} className="tool-card-link">
