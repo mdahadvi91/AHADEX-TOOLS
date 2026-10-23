@@ -8,6 +8,7 @@ import { useLanguage } from "@contexts/LanguageContext";
 import { Hero } from "./Hero";
 import { PrivacyNote } from "./PrivacyNote";
 import { Intro } from "./Intro";
+import { PhotoQRGuide } from "./PhotoQRGuide";
 import { HowTo } from "./HowTo";
 import { Features } from "./Features";
 import { FAQ } from "./FAQ";
@@ -55,6 +56,7 @@ export default function PhotoQrTool() {
       <SmartInsights sizePercent={20} /> {/* Static value passed for UI */}
       <PrivacyNote text={content.privacyNote} />
       <Intro />
+      <PhotoQRGuide />
       
       <div className="max-w-3xl">
         <HowTo steps={content.howTo} />
