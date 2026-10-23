@@ -39,8 +39,7 @@ export function Footer() {
         { to: "/blog", label: bn ? "ব্লগ" : "Blog" },
         { to: "/about", label: t.nav.about },
         { to: "/contact", label: t.nav.contact },
-        { to: "/affiliate-disclosure", label: bn ? "অ্যাফিলিয়েট" : "Affiliates" },
-        { to: APP_CONFIG.github, label: "GitHub", external: true },
+                { to: APP_CONFIG.github, label: "GitHub", external: true },
       ],
     },
     {

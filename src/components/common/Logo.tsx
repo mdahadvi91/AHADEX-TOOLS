@@ -1,8 +1,6 @@
 import { Link } from "react-router-dom";
-import { motion } from "framer-motion";
 import { cn } from "@lib/cn";
 import { useTheme } from "@contexts/ThemeContext";
-import { useReducedMotion } from "@hooks/useReducedMotion";
 
 interface LogoProps {
   size?: "sm" | "md" | "lg";
@@ -29,8 +27,6 @@ const TEXT = {
   lg: { main: "text-xl sm:text-2xl", sub: "text-xs sm:text-sm" },
 };
 
-// Silk easing (matches your tailwind ease-silk)
-
 export function Logo({
   size = "md",
   showText = true,
@@ -39,7 +35,6 @@ export function Logo({
 }: LogoProps) {
   const { resolvedTheme } = useTheme();
   const isDark = resolvedTheme === "dark";
-  const prefersReduced = useReducedMotion();
 
   const markSrc = isDark
     ? "/images/logo/ahadex-mark-white.png"
@@ -49,12 +44,10 @@ export function Logo({
 
   const inner = (
     <span className={cn("inline-flex items-center gap-2 sm:gap-3 group", className)}>
-      {/* Logo mark — fade in + scale + subtle rotate */}
-      <motion.img
+      {/* Logo mark */}
+      <img
         src={markSrc}
         alt="AHADEX Tools"
-        initial={prefersReduced ? false : { opacity: 0, scale: 0.6, rotate: -8 }}
-        whileHover={prefersReduced ? undefined : { scale: 1.08, rotate: 3 }}
         className={cn(
           "w-auto object-contain shrink-0",
           HEIGHTS[size],
@@ -63,7 +56,7 @@ export function Logo({
         draggable={false}
       />
 
-      {/* Text — letter-by-letter reveal */}
+      {/* Text */}
       {showText && (
         <span className="flex flex-col leading-none">
           <span
@@ -74,25 +67,17 @@ export function Logo({
             )}
           >
             {letters.map((letter, i) => (
-              <motion.span
-                key={`${letter}-${i}`}
-                initial={prefersReduced ? false : { opacity: 0, y: 8, filter: "blur(4px)" }}
-                className="inline-block"
-              >
+              <span key={`${letter}-${i}`} className="inline-block">
                 {letter}
-              </motion.span>
+              </span>
             ))}
           </span>
 
-          {/* Tools line — draw + fade */}
-          <motion.span
-            initial={prefersReduced ? false : { opacity: 0, x: -6 }}
-            className="flex items-center gap-1.5 mt-1"
-          >
-            <motion.span
-              initial={prefersReduced ? false : { width: 0 }}
+          {/* Tools line */}
+          <span className="flex items-center gap-1.5 mt-1">
+            <span
               className={cn(
-                "h-px",
+                "h-px w-4",
                 isDark ? "bg-silk-rose/70" : "bg-silk-wine/60"
               )}
             />
@@ -105,7 +90,7 @@ export function Logo({
             >
               Tools
             </span>
-          </motion.span>
+          </span>
         </span>
       )}
     </span>

@@ -12,7 +12,6 @@ import { CVBuilderHowTo } from "./components/HowTo";
 import { CVBuilderPrivacyNote } from "./components/PrivacyNote";
 import { CVBuilderFAQ } from "./components/FAQ";
 import { CVBuilderRelatedTools } from "./components/RelatedTools";
-import { RecommendedProducts } from "@components/affiliate/RecommendedProducts";
 import { RelatedArticles } from "@components/blog/RelatedArticles";
 import { ToolBreadcrumb } from "@components/tools/ToolBreadcrumb";
 import { ToolSchema } from "@components/seo/ToolSchema";
@@ -36,8 +35,7 @@ export default function CVBuilderTool() {
         <CVBuilderFeatures />
         <CVBuilderHowTo />
         <CVBuilderPrivacyNote />
-        <RecommendedProducts toolId="cv-builder" />
-              <AdSenseSlot slot="TOOL_BOTTOM" label="Advertisement" />
+        <AdSenseSlot slot="TOOL_BOTTOM" label="Advertisement" />
 
 <CVBuilderFAQ />
         <div className="pb-16">

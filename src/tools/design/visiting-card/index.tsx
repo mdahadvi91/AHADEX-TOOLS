@@ -1,5 +1,4 @@
 import { useEffect } from "react";
-import { RecommendedProducts } from "@components/affiliate/RecommendedProducts";
 import { trackRecentTool } from "@lib/recentTools";
 import { RelatedArticles } from "@components/blog/RelatedArticles";
 import { ToolRelatedGuides } from "@components/tools/ToolRelatedGuides";
@@ -23,7 +22,6 @@ export default function VisitingCardTool() {
           toolName="Visiting Card Maker"
           category="Design Tools"
         />
-        <RecommendedProducts toolId="visiting-card" />
         <RelatedToolsBlock currentToolId="visiting-card" count={3} />
         <div className="mx-auto max-w-[1200px] px-4 sm:px-6 lg:px-8">
           <ToolDataSections toolId="visiting-card" />

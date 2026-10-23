@@ -27,7 +27,6 @@ const TermsPage = lazy(() => import("@pages/TermsPage"));
 const DisclaimerPage = lazy(() => import("@pages/DisclaimerPage"));
 const AccessibilityPage = lazy(() => import("@pages/AccessibilityPage"));
 const CookiePolicyPage = lazy(() => import("@pages/CookiePolicyPage"));
-const AffiliateDisclosurePage = lazy(() => import("@pages/AffiliateDisclosurePage"));
 const EditorialPolicyPage = lazy(() => import("@pages/EditorialPolicyPage"));
 const HtmlSitemapPage = lazy(() => import("@pages/HtmlSitemapPage"));
 const GuidesIndexPage = lazy(() => import("@pages/GuidesIndexPage"));
@@ -139,8 +138,7 @@ export default function App() {
                 <Route path="disclaimer" element={<PageSuspense><DisclaimerPage /></PageSuspense>} />
                 <Route path="accessibility" element={<PageSuspense><AccessibilityPage /></PageSuspense>} />
                 <Route path="cookie-policy" element={<PageSuspense><CookiePolicyPage /></PageSuspense>} />
-                <Route path="affiliate-disclosure" element={<PageSuspense><AffiliateDisclosurePage /></PageSuspense>} />
-                <Route path="editorial-policy" element={<PageSuspense><EditorialPolicyPage /></PageSuspense>} />
+                                <Route path="editorial-policy" element={<PageSuspense><EditorialPolicyPage /></PageSuspense>} />
                 <Route path="sitemap" element={<PageSuspense><HtmlSitemapPage /></PageSuspense>} />
                 <Route path="blog" element={<PageSuspense><BlogIndexPage /></PageSuspense>} />
                 <Route path="blog/:slug" element={<PageSuspense><BlogPostPage /></PageSuspense>} />
