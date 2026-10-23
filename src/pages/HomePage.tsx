@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import { ToolsShowcase } from "@components/tools/ToolsShowcase";
 import { HomeContent } from "@components/home/HomeContent";
 import { WhyAhadex } from "@components/home/WhyAhadex";
 import { TrustBar } from "@components/home/TrustBar";
@@ -138,7 +139,8 @@ export default function HomePage() {
       <RecentlyUsed />
 
         {/* ── Featured tools ── */}
-        <HomeContent />
+        <ToolsShowcase />
+      <HomeContent />
 
         {/* ── Why AHADEX ── */}
         <WhySection />

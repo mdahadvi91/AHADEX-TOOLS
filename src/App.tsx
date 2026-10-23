@@ -18,7 +18,6 @@ import { CookieConsentBanner } from "@components/consent/CookieConsentBanner";
  * Pages
  * ------------------------------------------------------------------ */
 const HomePage = lazy(() => import("@pages/HomePage"));
-const ToolsIndexPage = lazy(() => import("@pages/ToolsIndexPage"));
 const AboutPage = lazy(() => import("@pages/AboutPage"));
 const AuthorPage = lazy(() => import("@pages/AuthorPage"));
 const ContactPage = lazy(() => import("@pages/ContactPage"));
@@ -31,8 +30,6 @@ const EditorialPolicyPage = lazy(() => import("@pages/EditorialPolicyPage"));
 const HtmlSitemapPage = lazy(() => import("@pages/HtmlSitemapPage"));
 const GuidesIndexPage = lazy(() => import("@pages/GuidesIndexPage"));
 const GuidePage = lazy(() => import("@pages/GuidePage"));
-const BlogIndexPage = lazy(() => import("@pages/BlogIndexPage"));
-const BlogPostPage = lazy(() => import("@pages/BlogPostPage"));
 const NotFoundPage = lazy(() => import("@pages/NotFoundPage"));
 
 /* ------------------------------------------------------------------
@@ -111,14 +108,7 @@ export default function App() {
                     </PageSuspense>
                   }
                 />
-                <Route
-                  path="tools"
-                  element={
-                    <PageSuspense>
-                      <ToolsIndexPage />
-                    </PageSuspense>
-                  }
-                />
+                <Route path="tools" element={<Navigate to="/" replace />} />
 
                 {/* ── Tools — each wrapped in ToolSuspense for skeleton ── */}
                 <Route path="tools/photo-qr" element={<ToolSuspense><PhotoQrTool /></ToolSuspense>} />
@@ -140,9 +130,7 @@ export default function App() {
                 <Route path="cookie-policy" element={<PageSuspense><CookiePolicyPage /></PageSuspense>} />
                                 <Route path="editorial-policy" element={<PageSuspense><EditorialPolicyPage /></PageSuspense>} />
                 <Route path="sitemap" element={<PageSuspense><HtmlSitemapPage /></PageSuspense>} />
-                <Route path="blog" element={<PageSuspense><BlogIndexPage /></PageSuspense>} />
-                <Route path="blog/:slug" element={<PageSuspense><BlogPostPage /></PageSuspense>} />
-
+                                
                 {/* Guides */}
                 <Route path="guides" element={<PageSuspense><GuidesIndexPage /></PageSuspense>} />
                 <Route path="guides/:slug" element={<PageSuspense><GuidePage /></PageSuspense>} />
