@@ -9,6 +9,7 @@ export function HomeContent() {
   const bn = language === "bn";
   
   // Get latest 3 blog posts
+  if (blogPosts.length === 0) return null;
   const latestBlogs = [...blogPosts]
     .sort((a, b) => new Date(b.publishedAt).getTime() - new Date(a.publishedAt).getTime())
     .slice(0, 3);
