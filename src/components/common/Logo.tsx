@@ -30,7 +30,6 @@ const TEXT = {
 };
 
 // Silk easing (matches your tailwind ease-silk)
-const SILK = [0.22, 1, 0.36, 1] as const;
 
 export function Logo({
   size = "md",
@@ -55,12 +54,6 @@ export function Logo({
         src={markSrc}
         alt="AHADEX Tools"
         initial={prefersReduced ? false : { opacity: 0, scale: 0.6, rotate: -8 }}
-        animate={{ opacity: 1, scale: 1, rotate: 0 }}
-        transition={{
-          duration: prefersReduced ? 0 : 0.7,
-          ease: SILK,
-          delay: 0.05,
-        }}
         whileHover={prefersReduced ? undefined : { scale: 1.08, rotate: 3 }}
         className={cn(
           "w-auto object-contain shrink-0",
@@ -84,12 +77,6 @@ export function Logo({
               <motion.span
                 key={`${letter}-${i}`}
                 initial={prefersReduced ? false : { opacity: 0, y: 8, filter: "blur(4px)" }}
-                animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
-                transition={{
-                  duration: prefersReduced ? 0 : 0.45,
-                  ease: SILK,
-                  delay: 0.35 + i * 0.05,
-                }}
                 className="inline-block"
               >
                 {letter}
@@ -100,22 +87,10 @@ export function Logo({
           {/* Tools line — draw + fade */}
           <motion.span
             initial={prefersReduced ? false : { opacity: 0, x: -6 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{
-              duration: prefersReduced ? 0 : 0.5,
-              ease: SILK,
-              delay: 0.75,
-            }}
             className="flex items-center gap-1.5 mt-1"
           >
             <motion.span
               initial={prefersReduced ? false : { width: 0 }}
-              animate={{ width: "1rem" }}
-              transition={{
-                duration: prefersReduced ? 0 : 0.5,
-                ease: SILK,
-                delay: 0.85,
-              }}
               className={cn(
                 "h-px",
                 isDark ? "bg-silk-rose/70" : "bg-silk-wine/60"

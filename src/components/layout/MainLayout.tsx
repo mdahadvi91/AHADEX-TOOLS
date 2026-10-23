@@ -6,7 +6,6 @@ import { Footer } from "./Footer";
 import { LeftSidebar } from "./LeftSidebar";
 import { RightSidebar } from "./RightSidebar";
 import { PageTransition } from "./PageTransition";
-import { CinematicBackground } from "@components/background";
 import { BackButton } from "@components/common/BackButton";
 import { AdSenseSlot } from "@components/ads/AdSenseSlot";
 import { GoogleAnalyticsLoader } from "@components/analytics/GoogleAnalyticsLoader";
@@ -50,7 +49,7 @@ export function MainLayout() {
   return (
     <>
       <GoogleAnalyticsLoader />
-      <CinematicBackground />
+      
 
       <Header
         onLeftMenuClick={() => setLeftOpen(true)}
