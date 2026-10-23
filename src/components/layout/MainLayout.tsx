@@ -65,7 +65,7 @@ export function MainLayout() {
 
       {showTopAd && (
         <div className="max-w-5xl mx-auto px-4 mb-4">
-          <AdSenseSlot slot="TOP_BANNER" label="Advertisement" />
+          <AdSenseSlot slot="1234567890" label="Advertisement" />
         </div>
       )}
 
@@ -81,7 +81,7 @@ export function MainLayout() {
 
       {showBottomAd && (
         <div className="max-w-5xl mx-auto px-4 mt-8 mb-4">
-          <AdSenseSlot slot="BOTTOM_BANNER" label="Advertisement" />
+          <AdSenseSlot slot="0987654321" label="Advertisement" />
         </div>
       )}
 
