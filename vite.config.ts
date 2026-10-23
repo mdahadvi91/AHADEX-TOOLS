@@ -52,49 +52,21 @@ export default defineConfig(({ mode }) => {
           manualChunks(id) {
             if (!id.includes("node_modules")) return;
 
-            // ── Heavy tool libs (lazy-loaded per tool) ──
-            // Split PDF libraries so PDF writers do not pull in the
-            // heavy pdf.js reader (and vice versa):
-            //   - pdf-lib      (~120 KB): image-to-pdf, merge-pdf,
-            //                             pdf-rotator, split-pdf
-            //   - pdfjs-dist   (~600 KB): pdf-to-text, pdf-to-image
-            //   - jspdf        (optional): reserved for future export features
-            if (id.includes("pdfjs-dist")) return "pdfjs";
-            if (id.includes("pdf-lib")) return "pdf-lib";
-            if (id.includes("jspdf")) return "jspdf";
-            if (id.includes("@imgly/background-removal")) {
-              return "bg-removal";
-            }
-            if (id.includes("browser-image-compression")) {
-              return "img-compress";
-            }
-            if (id.includes("html2canvas")) {
-              return "html2canvas";
-            }
-            if (id.includes("exifr")) {
-              return "exif";
-            }
-            if (id.includes("qrcode") || id.includes("jsbarcode") || id.includes("jsqr")) {
-              return "qr-libs";
-            }
+            // QR Code libs (Used by Photo QR)
+            if (id.includes("qrcode")) return "qr-libs";
 
-            // ── React core (put react-dom + react before react-router) ──
+            // React core
             if (id.includes("node_modules/react-dom")) return "react-core";
             if (id.includes("node_modules/react/")) return "react-core";
             if (id.includes("node_modules/scheduler")) return "react-core";
 
-            // ── Router ──
+            // Router
             if (id.includes("react-router")) return "react-router";
 
-            // ── Other vendors ──
+            // Others
             if (id.includes("framer-motion")) return "motion";
-            if (id.includes("gsap") || id.includes("lenis")) return "anim-extra";
             if (id.includes("i18next") || id.includes("react-i18next")) return "i18n";
             if (id.includes("lucide-react")) return "icons";
-            if (id.includes("react-icons")) return "icons";
-            if (id.includes("file-saver")) return "vendor";
-            if (id.includes("react-dropzone")) return "vendor";
-            if (id.includes("react-image-crop")) return "vendor";
 
             return "vendor";
           },
@@ -126,12 +98,7 @@ export default defineConfig(({ mode }) => {
         "react-router-dom",
         "clsx",
         "tailwind-merge",
-      ],
-      exclude: [
-        "pdfjs-dist",
-        "pdf-lib",
-        "jspdf",
-        "exifr",
+        "qrcode",
       ],
     },
 
