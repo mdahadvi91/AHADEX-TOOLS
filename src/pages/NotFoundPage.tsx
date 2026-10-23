@@ -12,6 +12,14 @@ import { cn } from "@lib/cn";
 const POPULAR_COUNT = 4;
 
 export default function NotFoundPage() {
+  useEffect(() => {
+    const meta = document.createElement("meta");
+    meta.name = "robots";
+    meta.content = "noindex, follow";
+    document.head.appendChild(meta);
+    return () => { document.head.removeChild(meta); };
+  }, []);
+
   const { language } = useLanguage();
   const location = useLocation();
   const navigate = useNavigate();
