@@ -34,7 +34,7 @@
   <text x="100" y="260" font-family="'Noto Sans','Droid Sans',system-ui,sans-serif" font-size="80" font-weight="800" fill="#F8F6F1" letter-spacing="-2">Visiting Card Maker</text>
 
   <!-- Subtitle -->
-  <text x="100" y="335" font-family="'Noto Sans','Droid Sans',system-ui,sans-serif" font-size="26" font-weight="400" fill="#C4A89E" letter-spacing="-0.3">Design print-ready visiting cards in seconds. 20 premium templates — fr…</text>
+  <text x="100" y="335" font-family="'Noto Sans','Droid Sans',system-ui,sans-serif" font-size="26" font-weight="400" fill="#C4A89E" letter-spacing="-0.3">Design professional visiting cards in seconds. 20 premium templates — f…</text>
 
   <!-- Feature pills -->
   <g transform="translate(100, 460)">

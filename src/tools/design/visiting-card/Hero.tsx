@@ -19,7 +19,7 @@ export function Hero({ onStart }: HeroProps) {
             <Sparkles className="w-3.5 h-3.5" /> {content.heroTag}
           </span>
           <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-gray-100 text-gray-700 text-xs font-medium">
-            <Palette className="w-3.5 h-3.5" /> 20 Templates
+            <Palette className="w-3.5 h-3.5" /> {language === "bn" ? "২০টি টেমপ্লেট" : "20 Templates"}
           </span>
           <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-gray-100 text-gray-700 text-xs font-medium">
             <Download className="w-3.5 h-3.5" /> PNG · JPG · PDF

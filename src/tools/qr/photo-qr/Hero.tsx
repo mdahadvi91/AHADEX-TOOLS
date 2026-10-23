@@ -19,16 +19,14 @@ export function Hero() {
         <div
           className="absolute -top-40 -left-40 w-[600px] h-[600px] rounded-full opacity-50"
           style={{
-            background:
-              "radial-gradient(circle, rgba(216,139,154,0.35) 0%, transparent 65%)",
+            background: "radial-gradient(circle, rgba(216,139,154,0.35) 0%, transparent 65%)",
             filter: "blur(70px)",
           }}
         />
         <div
           className="absolute -bottom-40 -right-40 w-[600px] h-[600px] rounded-full opacity-40"
           style={{
-            background:
-              "radial-gradient(circle, rgba(201,150,103,0.35) 0%, transparent 65%)",
+            background: "radial-gradient(circle, rgba(201,150,103,0.35) 0%, transparent 65%)",
             filter: "blur(70px)",
           }}
         />
@@ -67,7 +65,7 @@ export function Hero() {
 
           {photoQrData.newTool && (
             <span className="inline-flex items-center px-2.5 sm:px-3 py-1 sm:py-1.5 rounded-full bg-silk-wine/15 text-silk-wine dark:text-silk-rose-soft text-[9px] sm:text-[10px] font-bold tracking-widest uppercase border border-silk-wine/25">
-              New
+              {language === "bn" ? "নতুন" : "New"}
             </span>
           )}
 

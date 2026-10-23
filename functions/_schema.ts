@@ -29,12 +29,12 @@ export const SSR_SCHEMA: Record<string, object> = {
           "url": "https://ahadex.fun"
         },
         "featureList": [
-          "Real scannable QR",
-          "Platform logo inside",
+          "Scannable QR",
+          "Platform icon inside",
           "11 platforms supported",
-          "Full-resolution output",
+          "Original dimensions",
           "Live preview",
-          "Files stay on your device"
+          "Browser processing"
         ]
       },
       {
@@ -91,9 +91,9 @@ export const SSR_SCHEMA: Record<string, object> = {
         "featureList": [
           "20 unique templates",
           "Real-time preview",
-          "Print-ready exports",
+          "High-res exports",
           "QR code included",
-          "Zero uploads",
+          "No uploads",
           "Standard card sizes"
         ]
       },
