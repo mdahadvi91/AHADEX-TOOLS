@@ -20,7 +20,7 @@ export function HowItWorks() {
     },
     {
       number: "02",
-      title: bn ? "সাথে সাথে ব্যবহার" : "Use it instantly",
+      title: bn ? "সাথে সাথে ব্যবহার" : "Use it directly",
       description: bn
         ? "আপলোড বা টাইপ করুন। সব আপনার ব্রাউজারেই প্রসেস হয়।"
         : "Upload or type. Everything processes right in your browser.",
@@ -30,7 +30,7 @@ export function HowItWorks() {
       title: bn ? "ডাউনলোড করুন" : "Download the result",
       description: bn
         ? "এক ক্লিকে সেভ। আপনার ফাইল কোথাও যায় না।"
-        : "One click to save. Your file never touched a server.",
+        : "One click to save. Your file is processed locally in your browser.",
     },
   ];
 

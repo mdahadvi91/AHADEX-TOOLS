@@ -24,7 +24,7 @@ export function SmartInsights({ sizePercent }: { sizePercent: number }) {
           </p>
           <p className="text-xs text-light-textSecondary dark:text-dark-textSecondary mt-1">
             Your QR code covers {sizePercent}% of the image width. {isGoodSize 
-              ? "This is perfect for printing and scanning from a normal distance." 
+              ? "This is a good size for printing and scanning from a normal distance." 
               : "If you print this, scanners might struggle. Try increasing the size to 15-20% or more for better reliability."}
           </p>
         </div>

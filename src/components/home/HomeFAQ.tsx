@@ -9,12 +9,12 @@ const getFaqsEn = (): { question: string; answer: string }[] => [
   {
     question: "Is AHADEX Tools really free?",
     answer:
-      "Yes — every tool is 100% free with no hidden limits, no sign-ups, and no subscriptions. The site is supported by non-intrusive advertising.",
+      "Yes — every tool is completely free with no hidden limits, no sign-ups, and no subscriptions. The site is supported by non-intrusive advertising.",
   },
   {
     question: "Are my files safe?",
     answer:
-      "Absolutely. All tools run directly in your browser using modern web APIs. Your files are never uploaded to our servers, never stored, and never tracked.",
+      "Absolutely. All tools run directly in your browser using modern web APIs. Your files are processed locally in your browser and not uploaded to our servers..",
   },
   {
     question: "Do I need to create an account?",

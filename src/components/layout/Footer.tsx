@@ -117,7 +117,7 @@ export function Footer() {
 
             <div className="mt-6 inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-silk-rose/8 border border-silk-rose/20">
               <span className="w-1.5 h-1.5 rounded-full bg-silk-rose animate-pulse" />
-              <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-silk-wine dark:text-silk-rose-soft">{bn ? "সম্পূর্ণ ফ্রি" : "100% Free"}</span>
+              <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-silk-wine dark:text-silk-rose-soft">{bn ? "সম্পূর্ণ ফ্রি" : "Completely Free"}</span>
             </div>
           </div>
 

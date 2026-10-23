@@ -32,7 +32,7 @@ export function SmartInsights({ photoDataUrl }: { photoDataUrl?: string | null }
           )}
           <div>
             <p className="text-xs font-bold text-light-text dark:text-dark-text">
-              {isSafe ? "Photo size is perfect" : "Uploaded photo is quite large"}
+              {isSafe ? "Photo size is optimal" : "Uploaded photo is quite large"}
             </p>
             <p className="text-[11px] text-light-textSecondary dark:text-dark-textSecondary mt-0.5">
               {isSafe 
