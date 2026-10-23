@@ -18,6 +18,7 @@ import { CookieConsentBanner } from "@components/consent/CookieConsentBanner";
  * Pages
  * ------------------------------------------------------------------ */
 const HomePage = lazy(() => import("@pages/HomePage"));
+const ToolsIndexPage = lazy(() => import("@pages/ToolsIndexPage")); // 🚨 নতুন ইমপোর্ট
 const AboutPage = lazy(() => import("@pages/AboutPage"));
 const AuthorPage = lazy(() => import("@pages/AuthorPage"));
 const ContactPage = lazy(() => import("@pages/ContactPage"));
@@ -62,10 +63,6 @@ function ScrollToTop() {
   return null;
 }
 
-/**
- * ToolSuspense — fallback for tool routes.
- * Shows a layout-preserving skeleton so the page doesn't flash blank.
- */
 function ToolSuspense({ children }: { children: React.ReactNode }) {
   return (
     <Suspense fallback={<ToolSkeleton />}>
@@ -74,9 +71,6 @@ function ToolSuspense({ children }: { children: React.ReactNode }) {
   );
 }
 
-/**
- * PageSuspense — fallback for top-level pages (full-screen loader).
- */
 function PageSuspense({ children }: { children: React.ReactNode }) {
   return (
     <Suspense fallback={<Loader />}>
@@ -92,55 +86,57 @@ export default function App() {
   return (
     <ThemeProvider>
       <LanguageProvider>
-          <BrowserRouter>
-            <ScrollToTop />
-            <ConsentModeInit />
-      <CookieConsentBanner />
-      
-      <Routes>
-              <Route element={<MainLayout />}>
-                {/* Home */}
-                <Route
-                  index
-                  element={
-                    <PageSuspense>
-                      <HomePage />
-                    </PageSuspense>
-                  }
-                />
-                <Route path="tools" element={<Navigate to="/" replace />} />
+        <BrowserRouter>
+          <ScrollToTop />
+          <ConsentModeInit />
+          <CookieConsentBanner />
 
-                {/* ── Tools — each wrapped in ToolSuspense for skeleton ── */}
-                <Route path="tools/photo-qr" element={<ToolSuspense><PhotoQrTool /></ToolSuspense>} />
-                <Route path="tools/visiting-card" element={<ToolSuspense><VisitingCardTool /></ToolSuspense>} />
-                <Route path="tools/cv-builder" element={<ToolSuspense><CVBuilderTool /></ToolSuspense>} />
+          <Routes>
+            <Route element={<MainLayout />}>
+              {/* Home */}
+              <Route
+                index
+                element={
+                  <PageSuspense>
+                    <HomePage />
+                  </PageSuspense>
+                }
+              />
+              
+              {/* 🚨 /tools route now renders the Tools listing page instead of redirecting */}
+              <Route path="tools" element={<PageSuspense><ToolsIndexPage /></PageSuspense>} />
 
-                {/* Tool editors */}
-                <Route path="tools/cv-builder/edit/:templateId" element={<ToolSuspense><CVBuilderEditor /></ToolSuspense>} />
-                <Route path="tools/visiting-card/edit/:templateId" element={<ToolSuspense><VisitingCardEditor /></ToolSuspense>} />
+              {/* ── Tools ── */}
+              <Route path="tools/photo-qr" element={<ToolSuspense><PhotoQrTool /></ToolSuspense>} />
+              <Route path="tools/visiting-card" element={<ToolSuspense><VisitingCardTool /></ToolSuspense>} />
+              <Route path="tools/cv-builder" element={<ToolSuspense><CVBuilderTool /></ToolSuspense>} />
 
-                {/* Static pages */}
-                <Route path="about" element={<PageSuspense><AboutPage /></PageSuspense>} />
-                <Route path="about/author/:id" element={<PageSuspense><AuthorPage /></PageSuspense>} />
-                <Route path="contact" element={<PageSuspense><ContactPage /></PageSuspense>} />
-                <Route path="privacy" element={<PageSuspense><PrivacyPage /></PageSuspense>} />
-                <Route path="terms" element={<PageSuspense><TermsPage /></PageSuspense>} />
-                <Route path="disclaimer" element={<PageSuspense><DisclaimerPage /></PageSuspense>} />
-                <Route path="accessibility" element={<PageSuspense><AccessibilityPage /></PageSuspense>} />
-                <Route path="cookie-policy" element={<PageSuspense><CookiePolicyPage /></PageSuspense>} />
-                                <Route path="editorial-policy" element={<PageSuspense><EditorialPolicyPage /></PageSuspense>} />
-                <Route path="sitemap" element={<PageSuspense><HtmlSitemapPage /></PageSuspense>} />
-                                
-                {/* Guides */}
-                <Route path="guides" element={<PageSuspense><GuidesIndexPage /></PageSuspense>} />
-                <Route path="guides/:slug" element={<PageSuspense><GuidePage /></PageSuspense>} />
+              {/* Tool editors */}
+              <Route path="tools/cv-builder/edit/:templateId" element={<ToolSuspense><CVBuilderEditor /></ToolSuspense>} />
+              <Route path="tools/visiting-card/edit/:templateId" element={<ToolSuspense><VisitingCardEditor /></ToolSuspense>} />
 
-                {/* Fallback */}
-                <Route path="404" element={<PageSuspense><NotFoundPage /></PageSuspense>} />
-                <Route path="*" element={<Navigate to="/404" replace />} />
-              </Route>
-            </Routes>
-          </BrowserRouter>
+              {/* Static pages */}
+              <Route path="about" element={<PageSuspense><AboutPage /></PageSuspense>} />
+              <Route path="about/author/:id" element={<PageSuspense><AuthorPage /></PageSuspense>} />
+              <Route path="contact" element={<PageSuspense><ContactPage /></PageSuspense>} />
+              <Route path="privacy" element={<PageSuspense><PrivacyPage /></PageSuspense>} />
+              <Route path="terms" element={<PageSuspense><TermsPage /></PageSuspense>} />
+              <Route path="disclaimer" element={<PageSuspense><DisclaimerPage /></PageSuspense>} />
+              <Route path="accessibility" element={<PageSuspense><AccessibilityPage /></PageSuspense>} />
+              <Route path="cookie-policy" element={<PageSuspense><CookiePolicyPage /></PageSuspense>} />
+              <Route path="editorial-policy" element={<PageSuspense><EditorialPolicyPage /></PageSuspense>} />
+              <Route path="sitemap" element={<PageSuspense><HtmlSitemapPage /></PageSuspense>} />
+
+              {/* Global Guides */}
+              <Route path="guides" element={<PageSuspense><GuidesIndexPage /></PageSuspense>} />
+              <Route path="guides/:slug" element={<PageSuspense><GuidePage /></PageSuspense>} />
+
+              {/* Fallback */}
+              <Route path="404" element={<PageSuspense><NotFoundPage /></PageSuspense>} />
+              <Route path="*" element={<Navigate to="/404" replace />} />
+            </Route>
+          </Routes>
+        </BrowserRouter>
       </LanguageProvider>
     </ThemeProvider>
   );
