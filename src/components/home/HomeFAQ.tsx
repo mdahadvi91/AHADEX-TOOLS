@@ -1,183 +1,46 @@
-import { useState } from "react";
-import { tools } from "@data/tools";
-import { motion, AnimatePresence } from "framer-motion";
-import { Plus, HelpCircle } from "lucide-react";
 import { useLanguage } from "@contexts/LanguageContext";
-import { cn } from "@lib/cn";
-
-const getFaqsEn = (): { question: string; answer: string }[] => [
-  {
-    question: "Is AHADEX Tools really free?",
-    answer:
-      "Yes — every tool is completely free with no hidden limits, no sign-ups, and no subscriptions. The site is supported by non-intrusive advertising.",
-  },
-  {
-    question: "Are my files safe?",
-    answer:
-      "Absolutely. All tools run directly in your browser using modern web APIs. Your files are processed locally in your browser and not uploaded to our servers..",
-  },
-  {
-    question: "Do I need to create an account?",
-    answer:
-      "No account needed. Just open the site, pick a tool, and use it. Your theme and language preferences are stored locally in your browser.",
-  },
-  {
-    question: "How many tools are available?",
-    answer:
-      `We currently offer ${tools.length} free browser-based tools for images, PDFs, text, developer tasks, QR codes, and design documents. New tools are added regularly.`,
-  },
-  {
-    question: "Does it work on mobile?",
-    answer:
-      "Yes — AHADEX Tools is fully responsive and works on phones, tablets, and desktops. All tools are touch-friendly.",
-  },
-  {
-    question: "Is there an app?",
-    answer:
-      "You can install AHADEX Tools as a Progressive Web App (PWA) from your browser menu. It works offline for most tools.",
-  },
-];
-
-const getFaqsBn = (): { question: string; answer: string }[] => [
-  {
-    question: "AHADEX Tools কি সত্যিই ফ্রি?",
-    answer:
-      "হ্যাঁ — প্রতিটি টুল ১০০% ফ্রি, কোনো গোপন সীমা নেই, সাইন-আপ নেই, সাবস্ক্রিপশন নেই। সাইটটি শুধু বিজ্ঞাপনে চলে।",
-  },
-  {
-    question: "আমার ফাইল কি নিরাপদ?",
-    answer:
-      "অবশ্যই। সব টুল সরাসরি আপনার ব্রাউজারে চলে। আপনার ফাইল কখনো আমাদের সার্ভারে যায় না, সংরক্ষিত হয় না।",
-  },
-  {
-    question: "অ্যাকাউন্ট খুলতে হবে কি?",
-    answer:
-      "না। সাইট খুলুন, টুল বেছে নিন, ব্যবহার করুন। আপনার থিম ও ভাষার পছন্দ আপনার ব্রাউজারেই থাকে।",
-  },
-  {
-    question: "কতগুলো টুল আছে?",
-    answer:
-      `আমরা বর্তমানে ${tools.length}টি ফ্রি ব্রাউজার-বেইজড টুল অফার করছি — ছবি, PDF, টেক্সট, ডেভেলপার, QR কোড ও ডিজাইন ডকুমেন্টের জন্য। নিয়মিত নতুন টুল যোগ হচ্ছে।`,
-  },
-  {
-    question: "মোবাইলে কাজ করে?",
-    answer:
-      "হ্যাঁ — সম্পূর্ণ responsive, ফোন, ট্যাব, ডেস্কটপ সবখানে চলে। সব টুল touch-friendly।",
-  },
-  {
-    question: "কোনো অ্যাপ আছে?",
-    answer:
-      "ব্রাউজার থেকে PWA হিসেবে ইনস্টল করতে পারেন। বেশিরভাগ টুল অফলাইনে কাজ করে।",
-  },
-];
+import { motion } from "framer-motion";
 
 export function HomeFAQ() {
-  const { language, t } = useLanguage();
-  const [open, setOpen] = useState<number | null>(0);
-  const faqs = language === "bn" ? getFaqsBn() : getFaqsEn();
+  const { language } = useLanguage();
+  const bn = language === "bn";
+
+  const faqs = [
+    {
+      q: bn ? "এই টুলগুলো কি সত্যিই ফ্রি?" : "Are these tools really free?",
+      a: bn ? "হ্যাঁ — সব টুল সম্পূর্ণ ফ্রি। কোনো লুকানো সীমা, সাইন-আপ বা সাবস্ক্রিপশন নেই। সাইটটি বিজ্ঞাপনের মাধ্যমে সাপোর্ট করে।" : "Yes — every tool is completely free with no hidden limits, no sign-ups, and no subscriptions. The site is supported by non-intrusive advertising.",
+    },
+    {
+      q: bn ? "আমার ফাইল কি সার্ভারে আপলোড হয়?" : "Are my files uploaded to a server?",
+      a: bn ? "না। সব টুল আধুনিক ওয়েব API ব্যবহার করে সরাসরি আপনার ব্রাউজারে চলে। আপনার ফাইল লোকালি প্রসেস হয় এবং কোনো সার্ভারে আপলোড বা সংরক্ষণ করা হয় না।" : "No. All tools run directly in your browser using modern web APIs. Your files are processed locally and are not uploaded or stored on our servers.",
+    },
+    {
+      q: bn ? "আমার ডেটা কি ট্র্যাক করা হয়?" : "Is my data tracked?",
+      a: bn ? "আপনার ফাইল প্রসেস করার সময় আমরা কোনো ডেটা ট্র্যাক করি না। তবে সাইটের পারফরম্যান্স এবং বিজ্ঞাপনের জন্য স্ট্যান্ডার্ড অ্যানালিটিক্স ব্যবহার করা হতে পারে।" : "We do not track the contents of your files. However, standard website analytics and ad scripts may run on the page to improve performance and serve ads.",
+    }
+  ];
 
   return (
-    <section className="relative py-20 sm:py-28">
-      {/* Section header */}
-      <div className="text-center mb-12 sm:mb-14 max-w-2xl mx-auto">
-        <motion.div
-          initial={{ opacity: 0, y: 12 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.4 }}
-          transition={{ duration: 0.5 }}
-          className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-silk-rose/10 border border-silk-rose/25 mb-5"
-        >
-          <HelpCircle className="w-3.5 h-3.5 text-silk-rose" />
-          <span className="text-[10px] uppercase tracking-[0.25em] text-silk-wine dark:text-silk-rose-soft font-bold">
-            {t.home.faqEyebrow}
-          </span>
-        </motion.div>
-
-        <motion.h2
-          initial={{ opacity: 0, y: 16 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.4 }}
-          transition={{ duration: 0.55, delay: 0.1 }}
-          className="font-serif font-black text-3xl sm:text-4xl lg:text-5xl leading-[1.05] tracking-[-0.025em] text-light-text dark:text-dark-text"
-        >
-          {t.home.faqTitle1}{" "}
-          <span className="font-script text-silk-rose text-[1.15em]">
-            {t.home.faqTitle2}
-          </span>
-        </motion.h2>
-      </div>
-
-      {/* FAQ list */}
-      <div className="max-w-3xl mx-auto space-y-2.5">
-        {faqs.map((faq, i) => {
-          const isOpen = open === i;
-          return (
+    <section className="py-16 bg-white dark:bg-gray-950">
+      <div className="max-w-3xl mx-auto px-4">
+        <h2 className="text-2xl md:text-3xl font-bold text-center text-gray-900 dark:text-white mb-10">
+          {bn ? "সাধারণ প্রশ্ন" : "Frequently Asked Questions"}
+        </h2>
+        <div className="space-y-4">
+          {faqs.map((faq, i) => (
             <motion.div
               key={i}
-              initial={{ opacity: 0, y: 12 }}
+              initial={{ opacity: 0, y: 10 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, amount: 0.2 }}
-              transition={{ duration: 0.4, delay: i * 0.05 }}
-              className={cn(
-                "rounded-2xl border overflow-hidden transition-all duration-300",
-                isOpen
-                  ? "bg-white/90 dark:bg-dark-surface/90 border-silk-rose/45 shadow-[0_12px_32px_-16px_rgba(139,58,79,0.3)]"
-                  : "bg-white/60 dark:bg-dark-surface/60 border-silk-rose/15 hover:border-silk-rose/35"
-              )}
+              viewport={{ once: true }}
+              transition={{ delay: i * 0.1 }}
+              className="p-5 rounded-2xl bg-gray-50 dark:bg-gray-900 border border-gray-200 dark:border-gray-800"
             >
-              <button
-                type="button"
-                onClick={() => setOpen(isOpen ? null : i)}
-                aria-expanded={isOpen}
-                className="w-full flex items-center justify-between gap-4 px-5 sm:px-6 py-4 sm:py-5 text-left"
-              >
-                <span
-                  className={cn(
-                    "font-serif font-bold text-[14px] sm:text-[16px] tracking-[-0.01em] transition-colors",
-                    isOpen
-                      ? "text-silk-wine dark:text-silk-rose-soft"
-                      : "text-light-text dark:text-dark-text"
-                  )}
-                >
-                  {faq.question}
-                </span>
-
-                <motion.span
-                  animate={{ rotate: isOpen ? 45 : 0 }}
-                  transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
-                  className={cn(
-                    "shrink-0 w-7 h-7 sm:w-8 sm:h-8 rounded-full flex items-center justify-center transition-colors duration-300",
-                    isOpen
-                      ? "bg-gradient-to-br from-silk-rose to-silk-wine-deep text-white shadow-[0_6px_16px_-6px_rgba(139,58,79,0.5)]"
-                      : "bg-silk-rose/15 text-silk-rose"
-                  )}
-                >
-                  <Plus className="w-3.5 h-3.5 sm:w-4 sm:h-4" strokeWidth={2.4} />
-                </motion.span>
-              </button>
-
-              <AnimatePresence initial={false}>
-                {isOpen && (
-                  <motion.div
-                    key="content"
-                    initial={{ height: 0, opacity: 0 }}
-                    animate={{ height: "auto", opacity: 1 }}
-                    exit={{ height: 0, opacity: 0 }}
-                    transition={{ duration: 0.32, ease: [0.16, 1, 0.3, 1] }}
-                    className="overflow-hidden"
-                  >
-                    <div className="px-5 sm:px-6 pb-5 sm:pb-6 pt-0">
-                      <div className="h-px w-full bg-gradient-to-r from-silk-rose/30 via-silk-rose/10 to-transparent mb-4" />
-                      <p className="text-[13px] sm:text-sm text-light-textSecondary dark:text-dark-textSecondary leading-relaxed">
-                        {faq.answer}
-                      </p>
-                    </div>
-                  </motion.div>
-                )}
-              </AnimatePresence>
+              <h3 className="font-bold text-gray-900 dark:text-white mb-2">{faq.q}</h3>
+              <p className="text-sm text-gray-600 dark:text-gray-400 leading-relaxed">{faq.a}</p>
             </motion.div>
-          );
-        })}
+          ))}
+        </div>
       </div>
     </section>
   );

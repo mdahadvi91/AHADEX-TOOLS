@@ -11,29 +11,17 @@ export const photoQrContent = {
       { emoji: "🔒", title: "Browser processing", text: "not uploaded to servers" },
     ],
     introBlocks: [
-      { 
-        emoji: "🪄", icon: "sparkle", title: "What it does", 
-        text: "Add a real, working QR code directly onto any photo — right in your browser. 🚀 The exported image keeps the original pixel dimensions. The QR overlay is rendered on top of the image. ✨" 
-      },
-      { 
-        emoji: "🛡️", icon: "shield", title: "Why it works", 
-        text: "Every QR is generated with a high error-correction level. Higher error correction can help a QR code remain readable when part of the code is obscured or damaged, but actual scan reliability depends on size, contrast, placement, and the scanning environment. 📱 The platform icon sits in the centre for quick recognition. 🏷️" 
-      },
-      { 
-        emoji: "🎁", icon: "gift", title: "Where to use it", 
-        text: "Business cards 💼, product packaging 📦, restaurant menus 🍽️, event flyers 🎫, social media posts 📸, wedding invitations 💌 — anywhere you want to make a photo interactive. 💫" 
-      },
-      { 
-        emoji: "🔐", icon: "lock", title: "Your privacy", 
-        text: "Everything runs locally in your browser using the Canvas API. Your photo is processed locally and is not uploaded to any server. Close the tab and the editing session is gone. 🫧" 
-      },
+      { emoji: "🪄", icon: "sparkle", title: "What it does", text: "Add a real, working QR code directly onto any photo — right in your browser. 🚀 The exported image keeps the original pixel dimensions. The QR overlay is rendered on top of the image. ✨" },
+      { emoji: "🛡️", icon: "shield", title: "Why it works", text: "Every QR is generated with a high error-correction level. Higher error correction can help a QR code remain readable when part of the code is obscured or damaged, but actual scan reliability depends on size, contrast, placement, and the scanning environment. 📱 The platform icon sits in the centre for quick recognition. 🏷️" },
+      { emoji: "🎁", icon: "gift", title: "Where to use it", text: "Business cards 💼, product packaging 📦, restaurant menus 🍽️, event flyers 🎫, social media posts 📸, wedding invitations 💌 — anywhere you want to make a photo interactive. 💫" },
+      { emoji: "🔐", icon: "lock", title: "Your privacy", text: "Everything runs locally in your browser using the Canvas API. Your photo is processed locally and is not uploaded to any server. Close the tab and the editing session is gone. 🫧" },
     ],
     scanReliability: {
       title: "QR Scan Reliability & Best Practices",
       intro: "To ensure your QR code scans successfully on the first try, follow these technical guidelines. Actual scan success depends on your specific printer, camera, and environment.",
       tips: [
         { title: "Size & Distance", text: "As a general rule, the QR code should be at least 1/10th the distance from which it will be scanned. For a phone scanning from 20cm away, the QR should be at least 2cm wide." },
-        { title: "Contrast is Key", text: "Use the 'Padding' slider to add a white background behind the QR. Scanning a dark QR on a dark photo is likely to fail." },
+        { title: "Contrast is Key", text: "Use the 'Padding' slider to add a white background behind the QR. Scanning a dark QR on a dark photo is likely to fail." }, // 🚨 'almost always' removed
         { title: "Error Correction Level", text: "Our generator uses high error correction (Level H). This means the QR remains readable even if up to 30% of the code is damaged, but it should not be intentionally obscured." },
         { title: "Print Quality", text: "If printing, ensure a minimum of 300 DPI. Low-resolution printing causes blurred edges, making the QR unscannable." }
       ],
@@ -77,22 +65,10 @@ export const photoQrContent = {
       { emoji: "🔒", title: "ব্রাউজার প্রসেসিং", text: "সার্ভারে আপলোড হয় না" },
     ],
     introBlocks: [
-      { 
-        emoji: "🪄", icon: "sparkle", title: "এটা কী করে", 
-        text: "যেকোনো ছবিতে সত্যিকারের কাজ করা QR কোড যোগ করুন — সম্পূর্ণ আপনার ব্রাউজারেই। 🚀 এক্সপোর্ট করা ছবিটি মূল পিক্সেল ডাইমেনশন ধরে রাখে। QR ওভারলে ছবির ওপরে রেন্ডার করা হয়। ✨" 
-      },
-      { 
-        emoji: "🛡️", icon: "shield", title: "কেন কাজ করে", 
-        text: "প্রতিটি QR উচ্চ এরর-কারেকশন লেভেলে তৈরি। উচ্চ এরর কারেকশন লেভেল QR কোডের কিছু অংশ ঢেকে গেলেও পড়তে সাহায্য করে, তবে স্ক্যান করার নির্ভরযোগ্যতা সাইজ, কনট্রাস্ট, প্লেসমেন্ট এবং স্ক্যানিং পরিবেশের ওপর নির্ভর করে। 📱 প্ল্যাটফর্মের আইকন মাঝখানে বসানো হয়, যাতে সহজে চেনা যায়। 🏷️" 
-      },
-      { 
-        emoji: "🎁", icon: "gift", title: "কোথায় ব্যবহার করবেন", 
-        text: "বিজনেস কার্ড 💼, প্রোডাক্ট প্যাকেজিং 📦, রেস্টুরেন্ট মেনু 🍽️, ইভেন্ট ফ্লায়ার 🎫, সোশ্যাল মিডিয়া পোস্ট 📸, বিয়ের আমন্ত্রণপত্র 💌 — যেকোনো জায়গায় যেখানে একটা ছবিকে ইন্টার্যাকটিভ করতে চান। 💫" 
-      },
-      { 
-        emoji: "🔐", icon: "lock", title: "আপনার প্রাইভেসি", 
-        text: "সবকিছু আপনার ব্রাউজারেই Canvas API দিয়ে চলে। আপনার ছবি লোকালি প্রসেস হয় এবং কোনো সার্ভারে আপলোড হয় না। ট্যাব বন্ধ করলেই এডিটিং সেশন শেষ হয়ে যায়। 🫧" 
-      },
+      { emoji: "🪄", icon: "sparkle", title: "এটা কী করে", text: "যেকোনো ছবিতে সত্যিকারের কাজ করা QR কোড যোগ করুন — সম্পূর্ণ আপনার ব্রাউজারেই। 🚀 এক্সপোর্ট করা ছবিটি মূল পিক্সেল ডাইমেনশন ধরে রাখে। QR ওভারলে ছবির ওপরে রেন্ডার করা হয়। ✨" },
+      { emoji: "🛡️", icon: "shield", title: "কেন কাজ করে", text: "প্রতিটি QR উচ্চ এরর-কারেকশন লেভেলে তৈরি। উচ্চ এরর কারেকশন লেভেল QR কোডের কিছু অংশ ঢেকে গেলেও পড়তে সাহায্য করে, তবে স্ক্যান করার নির্ভরযোগ্যতা সাইজ, কনট্রাস্ট, প্লেসমেন্ট এবং স্ক্যানিং পরিবেশের ওপর নির্ভর করে। 📱 প্ল্যাটফর্মের আইকন মাঝখানে বসানো হয়, যাতে সহজে চেনা যায়। 🏷️" },
+      { emoji: "🎁", icon: "gift", title: "কোথায় ব্যবহার করবেন", text: "বিজনেস কার্ড 💼, প্রোডাক্ট প্যাকেজিং 📦, রেস্টুরেন্ট মেনু 🍽️, ইভেন্ট ফ্লায়ার 🎫, সোশ্যাল মিডিয়া পোস্ট 📸, বিয়ের আমন্ত্রণপত্র 💌 — যেকোনো জায়গায় যেখানে একটা ছবিকে ইন্টার্যাকটিভ করতে চান। 💫" },
+      { emoji: "🔐", icon: "lock", title: "আপনার প্রাইভেসি", text: "সবকিছু আপনার ব্রাউজারেই Canvas API দিয়ে চলে। আপনার ছবি লোকালি প্রসেস হয় এবং কোনো সার্ভারে আপলোড হয় না। ট্যাব বন্ধ করলেই এডিটিং সেশন শেষ হয়ে যায়। 🫧" },
     ],
     scanReliability: {
       title: "QR স্ক্যান নির্ভরযোগ্যতা ও সেরা টিপস",
