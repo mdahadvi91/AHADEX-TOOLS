@@ -8,7 +8,6 @@ import { useLanguage } from "@contexts/LanguageContext";
 import { Hero } from "./Hero";
 import { PrivacyNote } from "./PrivacyNote";
 import { Intro } from "./Intro";
-import { PhotoQRGuide } from "./PhotoQRGuide";
 import { HowTo } from "./HowTo";
 import { Features } from "./Features";
 import { FAQ } from "./FAQ";
@@ -17,12 +16,9 @@ import { ToolSchema } from "@components/seo/ToolSchema";
 import { ToolFieldNote } from "@components/tools/ToolFieldNote";
 import { photoQrData } from "./data";
 import { photoQrContent } from "./content";
-import { RelatedArticles } from "@components/blog/RelatedArticles";
 import { ToolBreadcrumb } from "@components/tools/ToolBreadcrumb";
 import { SmartInsights } from "./SmartInsights";
 import { AdSenseSlot } from "@components/ads/AdSenseSlot";
-
-// 🚨 Wizard ইমপোর্ট
 import { PhotoQRWizardModal } from "./PhotoQRWizardModal";
 
 export default function PhotoQrTool() {
@@ -42,7 +38,7 @@ export default function PhotoQrTool() {
       
       <Hero />
 
-      {/* 🚨 Start Button */}
+      {/* Start Button */}
       <div className="flex justify-center my-8">
         <button 
           onClick={() => setIsWizardOpen(true)} 
@@ -52,11 +48,9 @@ export default function PhotoQrTool() {
         </button>
       </div>
 
-      {/* বাকি SEO ও কন্টেন্ট সেকশন */}
-      <SmartInsights sizePercent={20} /> {/* Static value passed for UI */}
+      <SmartInsights sizePercent={20} />
       <PrivacyNote text={content.privacyNote} />
       <Intro />
-      <PhotoQRGuide />
       
       <div className="max-w-3xl">
         <HowTo steps={content.howTo} />
@@ -68,10 +62,8 @@ export default function PhotoQrTool() {
       <ToolFieldNote toolId="photo-qr" />
       <ToolDataSections toolId="photo-qr" />
       <ToolRelatedGuides toolId="photo-qr" />
-      <RelatedArticles toolId="photo-qr" />
       <RelatedTools toolIds={photoQrData.relatedTools} />
 
-      {/* 🚨 Wizard Modal */}
       <PhotoQRWizardModal isOpen={isWizardOpen} onClose={() => setIsWizardOpen(false)} />
     </div>
   );

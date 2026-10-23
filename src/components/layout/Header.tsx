@@ -11,7 +11,7 @@ interface HeaderProps {
 
 const NAV_LINKS = [
   { to: "/tools", label: "Tools" },
-  { to: "/blog", label: "Blog" },
+  // 🚨 Blog লিংক রিমুভ করা হলো
   { to: "/about", label: "About" },
   { to: "/contact", label: "Contact" },
 ];
@@ -40,7 +40,6 @@ export function Header({ onLeftMenuClick, onRightMenuClick }: HeaderProps) {
   return (
     <header className="fixed top-0 left-0 right-0 z-50 pt-3 lg:pt-5">
       <div className="mx-auto max-w-[1600px] px-3 sm:px-5 lg:px-6">
-        {/* Floating glass bar - Static */}
         <div
           className={cn(
             "relative flex items-center justify-between gap-3",
@@ -48,7 +47,6 @@ export function Header({ onLeftMenuClick, onRightMenuClick }: HeaderProps) {
             "h-16 lg:h-20 px-4 lg:px-6 bg-silk-cream/70 dark:bg-[#1A1114]/70 backdrop-blur-md border border-silk-rose/15 shadow-silk-soft"
           )}
         >
-          {/* Top rose accent line - Static */}
           <span
             aria-hidden="true"
             className="absolute top-0 left-1/2 -translate-x-1/2 rounded-full bg-gradient-to-r from-transparent via-silk-rose to-transparent h-[2px] w-16"
@@ -100,7 +98,6 @@ export function Header({ onLeftMenuClick, onRightMenuClick }: HeaderProps) {
 
           {/* ── RIGHT: search + settings + version ── */}
           <div className="flex items-center gap-2">
-            {/* Search trigger with ⌘K badge */}
             <button
               type="button"
               onClick={() => setSearchOpen((v) => !v)}
@@ -119,7 +116,6 @@ export function Header({ onLeftMenuClick, onRightMenuClick }: HeaderProps) {
               </kbd>
             </button>
 
-            {/* Mobile search icon */}
             <button
               type="button"
               onClick={() => setSearchOpen((v) => !v)}
@@ -137,7 +133,6 @@ export function Header({ onLeftMenuClick, onRightMenuClick }: HeaderProps) {
               )}
             </button>
 
-            {/* Version pill (desktop only) */}
             <Link
               to="/about"
               className="hidden xl:inline-flex items-center gap-1.5 px-2.5 py-1.5 rounded-full bg-silk-rose/8 border border-silk-rose/20"
@@ -148,7 +143,6 @@ export function Header({ onLeftMenuClick, onRightMenuClick }: HeaderProps) {
               </span>
             </Link>
 
-            {/* Settings */}
             <button
               type="button"
               onClick={onRightMenuClick}

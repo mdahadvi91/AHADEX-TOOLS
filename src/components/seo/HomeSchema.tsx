@@ -36,6 +36,7 @@ export function HomeSchema() {
           "@id": `${APP_CONFIG.url}#organization`,
           name: APP_CONFIG.name,
           url: APP_CONFIG.url,
+          description: APP_CONFIG.description, // 🚨 ১. ডেসক্রিপশন যোগ করা হলো (Entity SEO)
           logo: {
             "@type": "ImageObject",
             url: `${APP_CONFIG.url}/android-chrome-512x512.png`,
@@ -46,6 +47,12 @@ export function HomeSchema() {
             APP_CONFIG.github,
             "https://twitter.com/ahadex_tools",
           ],
+          contactPoint: { // 🚨 ২. যোগাযোগের মাধ্যম যোগ করা হলো (E-E-A-T Trust)
+            "@type": "ContactPoint",
+            "contactType": "customer support",
+            "email": "mdahadvi91@gmail.com",
+            "availableLanguage": ["English", "Bengali"]
+          }
         },
         {
           "@type": "ItemList",

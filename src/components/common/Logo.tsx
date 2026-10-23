@@ -48,6 +48,9 @@ export function Logo({
       <img
         src={markSrc}
         alt="AHADEX Tools"
+        width={60}  // 🚨 Core Web Vitals (CLS ফিক্স): ব্রাউজারকে আগেই সাইজ জানানো হলো
+        height={60} // 🚨 Core Web Vitals (CLS ফিক্স)
+        fetchPriority="high" // 🚨 Core Web Vitals (LCP ফিক্স): লোগো দ্রুত লোড হবে
         className={cn(
           "w-auto object-contain shrink-0",
           HEIGHTS[size],

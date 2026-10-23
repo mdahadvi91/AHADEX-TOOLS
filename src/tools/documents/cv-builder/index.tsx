@@ -11,7 +11,6 @@ import { CVBuilderHowTo } from "./components/HowTo";
 import { CVBuilderPrivacyNote } from "./components/PrivacyNote";
 import { CVBuilderFAQ } from "./components/FAQ";
 import { CVBuilderRelatedTools } from "./components/RelatedTools";
-import { RelatedArticles } from "@components/blog/RelatedArticles";
 import { ToolBreadcrumb } from "@components/tools/ToolBreadcrumb";
 import { ToolSchema } from "@components/seo/ToolSchema";
 import { AdSenseSlot } from "@components/ads/AdSenseSlot";
@@ -35,7 +34,7 @@ export default function CVBuilderTool() {
       <div className="mx-auto max-w-[1400px] px-3 sm:px-6 lg:px-8">
         <CVBuilderHero />
         
-        {/* 🚨 Start Button to open Wizard */}
+        {/* Start Button to open Wizard */}
         <div className="flex justify-center my-8">
           <button 
             onClick={() => setIsWizardOpen(true)} 
@@ -45,8 +44,6 @@ export default function CVBuilderTool() {
           </button>
         </div>
 
-        {/* <TemplateGallery /> 🚨 রিমুভ করা হলো */}
-        
         <CVBuilderIntro />
         <CVBuilderFeatures />
         <CVBuilderHowTo />
@@ -60,7 +57,6 @@ export default function CVBuilderTool() {
         <div className="mx-auto max-w-[1200px] px-4 sm:px-6 lg:px-8">
           <ToolDataSections toolId="cv-builder" />
           <ToolRelatedGuides toolId="cv-builder" />
-          <RelatedArticles toolId="cv-builder" />
         </div>
       </div>
 

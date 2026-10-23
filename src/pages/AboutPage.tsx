@@ -8,6 +8,7 @@ import {
   Wand2,
   ArrowRight,
   Mail,
+  User,
 } from "lucide-react";
 import { useLanguage } from "@contexts/LanguageContext";
 import { cn } from "@lib/cn";
@@ -15,7 +16,7 @@ import { cn } from "@lib/cn";
 const VALUE_ICONS = [Shield, Zap, Heart, Wand2];
 
 export default function AboutPage() {
-  const { t } = useLanguage();
+  const { t, language } = useLanguage();
 
   return (
     <div className="mx-auto max-w-[1400px] px-4 sm:px-6 lg:px-8">
@@ -25,16 +26,14 @@ export default function AboutPage() {
           <div
             className="absolute -top-40 -left-40 w-[600px] h-[600px] rounded-full opacity-50"
             style={{
-              background:
-                "radial-gradient(circle, rgba(216,139,154,0.35) 0%, transparent 65%)",
+              background: "radial-gradient(circle, rgba(216,139,154,0.35) 0%, transparent 65%)",
               filter: "blur(70px)",
             }}
           />
           <div
             className="absolute -bottom-40 -right-40 w-[600px] h-[600px] rounded-full opacity-40"
             style={{
-              background:
-                "radial-gradient(circle, rgba(201,150,103,0.35) 0%, transparent 65%)",
+              background: "radial-gradient(circle, rgba(201,150,103,0.35) 0%, transparent 65%)",
               filter: "blur(70px)",
             }}
           />
@@ -156,8 +155,7 @@ export default function AboutPage() {
             aria-hidden="true"
             className="absolute -top-20 -right-20 w-64 h-64 rounded-full opacity-40"
             style={{
-              background:
-                "radial-gradient(circle, rgba(255,255,255,0.4) 0%, transparent 70%)",
+              background: "radial-gradient(circle, rgba(255,255,255,0.4) 0%, transparent 70%)",
               filter: "blur(40px)",
             }}
           />
@@ -365,6 +363,36 @@ export default function AboutPage() {
         </motion.div>
       </section>
 
+      {/* AUTHOR SECTION */}
+      <section className="relative py-12">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+          className="max-w-2xl mx-auto p-6 sm:p-8 rounded-3xl bg-white/70 dark:bg-dark-surface/70 backdrop-blur-xl border border-silk-rose/30 shadow-silk-soft text-center"
+        >
+          <div className="w-16 h-16 rounded-full bg-silk-rose/15 flex items-center justify-center mx-auto mb-4">
+            <User className="w-8 h-8 text-silk-rose" />
+          </div>
+          <h3 className="font-display font-bold text-xl text-light-text dark:text-dark-text mb-2">
+            {language === "bn" ? "নির্মাতা পরিচিতি" : "Meet the Creator"}
+          </h3>
+          <p className="text-sm text-light-textSecondary dark:text-dark-textSecondary mb-6">
+            {language === "bn" 
+              ? "এই ওয়েবসাইটটি মোহাম্মদ আহাদ (Mohammad Ahad) এর দ্বারা তৈরি এবং রক্ষণাবেক্ষণ করা হচ্ছে।" 
+              : "AHADEX Tools is built and maintained by Mohammad Ahad, a web developer passionate about privacy-first tools."}
+          </p>
+          <Link
+            to="/about/author/mohammad-ahad"
+            className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-silk-rose/10 border border-silk-rose/30 text-silk-wine dark:text-silk-rose font-medium hover:bg-silk-rose/20 transition-all duration-300"
+          >
+            <User className="w-4 h-4" />
+            {language === "bn" ? "লেখকের প্রোফাইল দেখুন" : "View Author Profile"}
+          </Link>
+        </motion.div>
+      </section>
+
       {/* CTA */}
       <section className="relative py-20 lg:py-24 text-center">
         <motion.div
@@ -401,6 +429,6 @@ export default function AboutPage() {
           </div>
         </motion.div>
       </section>
-          </div>
+    </div>
   );
 }
