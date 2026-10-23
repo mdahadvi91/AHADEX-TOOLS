@@ -52,8 +52,5 @@ export interface GuideMeta {
 
 
 export const GUIDE_META: Record<string, GuideMeta> = {
-  "compress-images-for-website": { path: "/guides/compress-images-for-website", title: "Compress images for your website — a workflow that actually works", description: "Reduce image weight by 70-90% without visible quality loss. A practical workflow with target file sizes, format decisions, and verification steps.", ogImage: "/images/og/guides/compress-images-for-website-og.png" },
-  "reduce-pdf-size-for-email": { path: "/guides/reduce-pdf-size-for-email", title: "Reduce PDF size for email — a practical workflow", description: "Get any PDF under 20 MB without ruining readability. Covers image compression, DPI reduction, splitting, and when to use a cloud link instead.", ogImage: "/images/og/guides/reduce-pdf-size-for-email-og.png" },
-  "create-print-ready-business-card": { path: "/guides/create-print-ready-business-card", title: "Create a print-ready business card — specs and workflow", description: "The exact file specifications a print shop expects: trim size, bleed, safe margin, DPI, colour space, and paper stock.", ogImage: "/images/og/guides/create-print-ready-business-card-og.png" },
-  "create-ats-friendly-cv": { path: "/guides/create-ats-friendly-cv", title: "Create an ATS-friendly CV — the technical checklist", description: "Most CVs are rejected by software before a human sees them. Here is exactly what the ATS parses, what breaks it, and how to format for both humans and machines.", ogImage: "/images/og/guides/create-ats-friendly-cv-og.png" },
+
 };

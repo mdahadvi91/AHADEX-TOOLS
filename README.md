@@ -1,80 +1,27 @@
 # AHADEX Tools
 
-Welcome to the official repository for **AHADEX Tools** — a suite of 3 free, fast, and privacy-first browser-based tools for everyday digital tasks.
+Free, fast, and private browser-based tools for everyday digital tasks.
 
-## ✨ Features
-- **100% Privacy-First**: All tools process files locally in your browser using HTML5 Canvas API and modern Web APIs. Your files never touch our servers.
-- **No Signup Required**: Instantly use any tool without creating an account.
-- **Free Forever**: No hidden fees, no watermarks, no premium tiers.
-- **Production-Grade SEO**: Built with Vite static generation, verified sitemaps, structured data (JSON-LD), and comprehensive content depth.
-- **Bilingual Support**: Full English and Bengali (bn) localization.
+## 🚀 Currently Available Tools (3)
 
-## 🛠️ Tool Categories
+We are building a growing collection of privacy-first tools. Right now, the following tools are fully implemented and live:
 
-### 🖼️ Image Tools
-- [Image Compressor](/tools/image-compressor)
-- [Image Resizer](/tools/image-resizer)
-- [Image Cropper](/tools/image-cropper)
-- [Image Converter](/tools/image-converter)
-- [Image to PDF](/tools/image-to-pdf)
-- [SVG to PNG](/tools/svg-to-png)
-- [Image Metadata Viewer](/tools/image-metadata-viewer)
-- [Image to Sketch](/tools/image-to-sketch)
-- [Image to Cartoon](/tools/image-to-cartoon)
-- [Favicon Generator](/tools/favicon-generator)
+1. **CV Builder** — Create a professional, ATS-compatible CV with live preview and multiple templates.
+2. **Visiting Card Maker** — Design business cards directly in your browser with custom logos and QR codes.
+3. **Photo QR Code** — Convert photos into scannable QR codes with links, WiFi, or contact information.
 
-### 📄 PDF Tools
-- [Merge PDF](/tools/merge-pdf)
-- [Split PDF](/tools/split-pdf)
-- [PDF to Text](/tools/pdf-to-text)
-- [PDF to Image](/tools/pdf-to-image)
-- [PDF Rotator](/tools/pdf-rotator)
+## 🛠️ Tech Stack
 
-### 💻 Developer Tools
-- [JSON Formatter](/tools/json-formatter)
-- [Base64 Encoder](/tools/base64-encoder)
-- [URL Encoder](/tools/url-encoder)
-- [UUID Generator](/tools/uuid-generator)
-- [Password Generator](/tools/password-generator)
+- **React 18 + TypeScript**
+- **Vite** for fast builds
+- **Tailwind CSS** for styling
+- **Cloudflare Pages** for hosting
+- **Browser-native APIs** (Canvas, FileReader) for 100% client-side processing
 
-### ✍️ Text & QR Tools
-- [Word Counter](/tools/word-counter)
-- [Character Counter](/tools/character-counter)
-- [Text Case Converter](/tools/text-case-converter)
-- [Photo QR Code](/tools/photo-qr)
-- [Barcode Generator](/tools/barcode-generator)
+## 🔒 Privacy First
 
-### 🎨 Design Tools
-- [Visiting Card Maker](/tools/visiting-card)
-- [CV Builder](/tools/cv-builder)
+All files are processed locally in your browser. Nothing is uploaded, stored, or tracked on our servers.
 
-## 🚀 Development & Build
+## 📄 License
 
-```bash
-# Install dependencies
-npm install
-
-# Run development server
-npm run dev
-
-# Generate content, build, and verify (Production pipeline)
-npm run build
-
-# Verify local build + live production HTTP status
-npm run verify:all
-``
-
-📈 SEO & Verification Architecture
-
-This project uses a zero-compromise build pipeline:
-
-1. generate:content - Generates sitemaps, RSS, OG images, SSR HTML, and JSON-LD schema.
-2. vite build - Compiles the React application.
-3. build:route-html - Generates static HTML for all routes for perfect SEO.
-4. verify:sitemap - Verifies every sitemap URL against final dist/ HTML (title, canonical, JSON-LD, OG tags).
-5. verify:content - Audits tool content depth (fails build if any tool lacks FAQs, use cases, or benchmarks).
-6. verify:production - Checks live HTTP status, content-type, and JSON-LD on ahadex.fun.
-
-📄 License
-
-This project is licensed under the MIT License.
+MIT © AHADEX Tools

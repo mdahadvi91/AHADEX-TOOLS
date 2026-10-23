@@ -118,28 +118,4 @@ xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
       <image:caption>Build a professional CV in minutes. Real A4 templates, selectable-text PDF export, auto-save, full privacy.</image:caption>
     </image:image>
   </url>
-  <url>
-    <loc>https://ahadex.fun/guides/compress-images-for-website</loc>
-    <lastmod>2026-10-16</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://ahadex.fun/guides/reduce-pdf-size-for-email</loc>
-    <lastmod>2026-10-16</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://ahadex.fun/guides/create-print-ready-business-card</loc>
-    <lastmod>2026-10-16</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://ahadex.fun/guides/create-ats-friendly-cv</loc>
-    <lastmod>2026-10-16</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
 </urlset>

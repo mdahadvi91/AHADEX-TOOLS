@@ -1,5 +1,4 @@
 import type { Tool } from "@/types/tool";
-import { newTools } from "./new-tools-content";
 import { deepDives } from "./deep-dives";
 
 /* ============================================================
@@ -339,7 +338,6 @@ function withDeepDives(t: Tool): Tool {
 
 export const tools: Tool[] = [
   ...legacyTools.map(withDeepDives),
-  ...newTools.map(withDeepDives),
 ];
 
 export const TOOL_COUNT = tools.length;

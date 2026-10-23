@@ -224,90 +224,6 @@ export const SSR_SCHEMA: Record<string, object> = {
       }
     ]
   },
-  "/guides/compress-images-for-website": {
-    "@context": "https://schema.org",
-    "@graph": [
-      {
-        "@type": "Article",
-        "@id": "https://ahadex.fun/guides/compress-images-for-website#article",
-        "mainEntityOfPage": "https://ahadex.fun/guides/compress-images-for-website",
-        "headline": "Compress images for your website — a workflow that actually works",
-        "description": "Reduce image weight by 70-90% without visible quality loss. A practical workflow with target file sizes, format decisions, and verification steps.",
-        "datePublished": "2026-10-16",
-        "dateModified": "2026-10-16",
-        "author": {
-          "@id": "https://ahadex.fun/about/author/mohammad-ahad#person"
-        },
-        "publisher": {
-          "@id": "https://ahadex.fun#organization"
-        },
-        "inLanguage": "en"
-      }
-    ]
-  },
-  "/guides/reduce-pdf-size-for-email": {
-    "@context": "https://schema.org",
-    "@graph": [
-      {
-        "@type": "Article",
-        "@id": "https://ahadex.fun/guides/reduce-pdf-size-for-email#article",
-        "mainEntityOfPage": "https://ahadex.fun/guides/reduce-pdf-size-for-email",
-        "headline": "Reduce PDF size for email — a practical workflow",
-        "description": "Get any PDF under 20 MB without ruining readability. Covers image compression, DPI reduction, splitting, and when to use a cloud link instead.",
-        "datePublished": "2026-10-16",
-        "dateModified": "2026-10-16",
-        "author": {
-          "@id": "https://ahadex.fun/about/author/mohammad-ahad#person"
-        },
-        "publisher": {
-          "@id": "https://ahadex.fun#organization"
-        },
-        "inLanguage": "en"
-      }
-    ]
-  },
-  "/guides/create-print-ready-business-card": {
-    "@context": "https://schema.org",
-    "@graph": [
-      {
-        "@type": "Article",
-        "@id": "https://ahadex.fun/guides/create-print-ready-business-card#article",
-        "mainEntityOfPage": "https://ahadex.fun/guides/create-print-ready-business-card",
-        "headline": "Create a print-ready business card — specs and workflow",
-        "description": "The exact file specifications a print shop expects: trim size, bleed, safe margin, DPI, colour space, and paper stock.",
-        "datePublished": "2026-10-16",
-        "dateModified": "2026-10-16",
-        "author": {
-          "@id": "https://ahadex.fun/about/author/mohammad-ahad#person"
-        },
-        "publisher": {
-          "@id": "https://ahadex.fun#organization"
-        },
-        "inLanguage": "en"
-      }
-    ]
-  },
-  "/guides/create-ats-friendly-cv": {
-    "@context": "https://schema.org",
-    "@graph": [
-      {
-        "@type": "Article",
-        "@id": "https://ahadex.fun/guides/create-ats-friendly-cv#article",
-        "mainEntityOfPage": "https://ahadex.fun/guides/create-ats-friendly-cv",
-        "headline": "Create an ATS-friendly CV — the technical checklist",
-        "description": "Most CVs are rejected by software before a human sees them. Here is exactly what the ATS parses, what breaks it, and how to format for both humans and machines.",
-        "datePublished": "2026-10-16",
-        "dateModified": "2026-10-16",
-        "author": {
-          "@id": "https://ahadex.fun/about/author/mohammad-ahad#person"
-        },
-        "publisher": {
-          "@id": "https://ahadex.fun#organization"
-        },
-        "inLanguage": "en"
-      }
-    ]
-  },
   "/": {
     "@context": "https://schema.org",
     "@graph": [
@@ -453,33 +369,8 @@ export const SSR_SCHEMA: Record<string, object> = {
     },
     "mainEntity": {
       "@type": "ItemList",
-      "numberOfItems": 4,
-      "itemListElement": [
-        {
-          "@type": "ListItem",
-          "position": 1,
-          "url": "https://ahadex.fun/guides/compress-images-for-website",
-          "name": "Compress images for your website — a workflow that actually works"
-        },
-        {
-          "@type": "ListItem",
-          "position": 2,
-          "url": "https://ahadex.fun/guides/reduce-pdf-size-for-email",
-          "name": "Reduce PDF size for email — a practical workflow"
-        },
-        {
-          "@type": "ListItem",
-          "position": 3,
-          "url": "https://ahadex.fun/guides/create-print-ready-business-card",
-          "name": "Create a print-ready business card — specs and workflow"
-        },
-        {
-          "@type": "ListItem",
-          "position": 4,
-          "url": "https://ahadex.fun/guides/create-ats-friendly-cv",
-          "name": "Create an ATS-friendly CV — the technical checklist"
-        }
-      ]
+      "numberOfItems": 0,
+      "itemListElement": []
     }
   }
 };
