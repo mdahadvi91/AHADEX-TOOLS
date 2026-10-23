@@ -15,7 +15,13 @@ function gitLastMod(filePath: string): string {
 }
 
 const TOOLS_LASTMOD = gitLastMod("src/data/tools.ts");
-const TRUST_LASTMOD = gitLastMod("src/data/trustContent.ts");
+const STATIC_CONTENT_LASTMOD = gitLastMod("src/data/static-ssr-content.ts");
+const AUTHORS_LASTMOD = gitLastMod("src/data/authors.ts");
+const PRIVACY_LASTMOD = gitLastMod("src/pages/PrivacyPage.tsx");
+const TERMS_LASTMOD = gitLastMod("src/pages/TermsPage.tsx");
+const DISCLAIMER_LASTMOD = gitLastMod("src/pages/DisclaimerPage.tsx");
+const ACCESSIBILITY_LASTMOD = gitLastMod("src/pages/AccessibilityPage.tsx");
+const COOKIE_POLICY_LASTMOD = gitLastMod("src/pages/CookiePolicyPage.tsx");
 const HOME_LASTMOD = gitLastMod("src/pages/HomePage.tsx");
 
 interface SitemapImage { loc: string; title: string; caption?: string; }
@@ -25,17 +31,17 @@ const staticRoutes: SitemapEntry[] = [
   { loc: "/", changefreq: "weekly", priority: 1.0, lastmod: HOME_LASTMOD },
   { loc: "/tools", changefreq: "weekly", priority: 0.9, lastmod: TOOLS_LASTMOD },
   { loc: "/guides", changefreq: "weekly", priority: 0.8, lastmod: TOOLS_LASTMOD },
-  { loc: "/about", changefreq: "monthly", priority: 0.6, lastmod: TRUST_LASTMOD },
-  { loc: "/about/author/mohammad-ahad", changefreq: "monthly", priority: 0.6, lastmod: TRUST_LASTMOD },
-  { loc: "/contact", changefreq: "monthly", priority: 0.6, lastmod: TRUST_LASTMOD },
-  { loc: "/privacy", changefreq: "yearly", priority: 0.3, lastmod: TRUST_LASTMOD },
-  { loc: "/terms", changefreq: "yearly", priority: 0.3, lastmod: TRUST_LASTMOD },
-  { loc: "/disclaimer", changefreq: "yearly", priority: 0.3, lastmod: TRUST_LASTMOD },
-  { loc: "/accessibility", changefreq: "yearly", priority: 0.3, lastmod: TRUST_LASTMOD },
-  { loc: "/cookie-policy", changefreq: "yearly", priority: 0.3, lastmod: TRUST_LASTMOD },
-  { loc: "/editorial-policy", changefreq: "yearly", priority: 0.3, lastmod: TRUST_LASTMOD },
-  { loc: "/affiliate-disclosure", changefreq: "yearly", priority: 0.3, lastmod: TRUST_LASTMOD },
-  { loc: "/sitemap", changefreq: "monthly", priority: 0.4, lastmod: TRUST_LASTMOD },
+  { loc: "/about", changefreq: "monthly", priority: 0.6, lastmod: STATIC_CONTENT_LASTMOD },
+  { loc: "/about/author/mohammad-ahad", changefreq: "monthly", priority: 0.6, lastmod: AUTHORS_LASTMOD },
+  { loc: "/contact", changefreq: "monthly", priority: 0.6, lastmod: STATIC_CONTENT_LASTMOD },
+  { loc: "/privacy", changefreq: "yearly", priority: 0.3, lastmod: PRIVACY_LASTMOD },
+  { loc: "/terms", changefreq: "yearly", priority: 0.3, lastmod: TERMS_LASTMOD },
+  { loc: "/disclaimer", changefreq: "yearly", priority: 0.3, lastmod: DISCLAIMER_LASTMOD },
+  { loc: "/accessibility", changefreq: "yearly", priority: 0.3, lastmod: ACCESSIBILITY_LASTMOD },
+  { loc: "/cookie-policy", changefreq: "yearly", priority: 0.3, lastmod: COOKIE_POLICY_LASTMOD },
+  { loc: "/editorial-policy", changefreq: "yearly", priority: 0.3, lastmod: STATIC_CONTENT_LASTMOD },
+  { loc: "/affiliate-disclosure", changefreq: "yearly", priority: 0.3, lastmod: STATIC_CONTENT_LASTMOD },
+  { loc: "/sitemap", changefreq: "monthly", priority: 0.4, lastmod: STATIC_CONTENT_LASTMOD },
 ];
 
 const toolRoutes: SitemapEntry[] = tools.map((t) => {

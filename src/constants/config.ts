@@ -25,8 +25,8 @@ export const DEFAULT_THEME = "system" as const;
 export const DEFAULT_LANGUAGE = "en" as const;
 
 export const FEATURE_FLAGS = {
-  enableAnalytics: import.meta.env.VITE_ENABLE_ANALYTICS === "true",
-  enableAdSense: import.meta.env.VITE_ENABLE_ADSENSE === "true",
+  enableAnalytics: import.meta.env?.VITE_ENABLE_ANALYTICS === "true",
+  enableAdSense: import.meta.env?.VITE_ENABLE_ADSENSE === "true",
 
   /**
    * Affiliate product recommendations.
@@ -37,9 +37,9 @@ export const FEATURE_FLAGS = {
    * the production environment to re-enable them.
    */
   enableAffiliateRecommendations:
-    import.meta.env.VITE_ENABLE_AFFILIATE_RECOMMENDATIONS === "true",
+    import.meta.env?.VITE_ENABLE_AFFILIATE_RECOMMENDATIONS === "true",
 } as const;
 
 export const ANALYTICS_CONFIG = {
-  measurementId: (import.meta.env.VITE_GA_MEASUREMENT_ID as string | undefined)?.trim() ?? "",
+  measurementId: (import.meta.env?.VITE_GA_MEASUREMENT_ID as string | undefined)?.trim() ?? "",
 } as const;

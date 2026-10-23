@@ -13,7 +13,11 @@
 
 import { writeFileSync } from "node:fs";
 import { resolve } from "node:path";
-import { trustContent } from "../src/data/trustContent";
+import { PRIVACY_CONTENT } from "../src/pages/PrivacyPage";
+import { TERMS_CONTENT } from "../src/pages/TermsPage";
+import { DISCLAIMER_CONTENT } from "../src/pages/DisclaimerPage";
+import { COOKIE_CONTENT } from "../src/pages/CookiePolicyPage";
+import { ACCESSIBILITY_CONTENT } from "../src/pages/AccessibilityPage";
 import { tools } from "../src/data/tools";
 import { toolTranslationsBn } from "../src/i18n/toolTranslations";
 import { toolFieldNotes } from "../src/data/tool-field-notes";
@@ -36,7 +40,18 @@ function esc(s: string): string {
 }
 
 /* ── Build trust page HTML ── */
-function buildTrustPage(content: typeof trustContent.en.privacy): string {
+function buildTrustPage(content: {
+  eyebrow: string;
+  title: string;
+  subtitle: string;
+  lastUpdated: string;
+  contactEmail: string;
+  sections: Array<{
+    heading: string;
+    paragraphs?: string[];
+    bullets?: string[];
+  }>;
+}): string {
   const sections = content.sections
     .map((s) => {
       const paragraphs = (s.paragraphs || [])
@@ -345,16 +360,16 @@ for (const page of staticPageContents) {
 }
 
 // Trust pages (EN) — these override any static content if the same path appears
-const trustPages: Array<[string, keyof typeof trustContent.en]> = [
-  ["/privacy", "privacy"],
-  ["/terms", "terms"],
-  ["/disclaimer", "disclaimer"],
-  ["/accessibility", "accessibility"],
-  ["/cookie-policy", "cookie"],
+const trustPages: Array<[string, typeof PRIVACY_CONTENT.en]> = [
+  ["/privacy", PRIVACY_CONTENT.en],
+  ["/terms", TERMS_CONTENT.en],
+  ["/disclaimer", DISCLAIMER_CONTENT.en],
+  ["/accessibility", ACCESSIBILITY_CONTENT.en],
+  ["/cookie-policy", COOKIE_CONTENT.en],
 ];
 
-for (const [path, key] of trustPages) {
-  SSR_CONTENT[path] = buildTrustPage(trustContent.en[key]);
+for (const [path, content] of trustPages) {
+  SSR_CONTENT[path] = buildTrustPage(content);
 }
 
 // Tool pages
