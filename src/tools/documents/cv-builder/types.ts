@@ -132,6 +132,7 @@ export interface CVData {
   awards: CVAward[];
   volunteer: CVVolunteer[];
   references: CVReference[];
+  hobbies?: string[];
   settings: CVSettings;
 }
 

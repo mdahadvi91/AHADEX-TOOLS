@@ -5,7 +5,6 @@ import { renderSide } from "./shared/renderer";
 import { DEFAULT_USER_DATA } from "./types";
 import { getCardSizeFromId } from "./shared/sizes";
 import type { Template, UserData } from "./types";
-import { useLanguage } from "@contexts/LanguageContext";
 
 import { Canvas } from "./editor/Canvas";
 import { LogoPanel } from "./editor/panels/LogoPanel";
@@ -13,7 +12,6 @@ import { ExportPanel } from "./editor/panels/ExportPanel";
 
 // --- Template Card (গ্যালারির জন্য) ---
 function TemplateCard({ template, onSelect }: { template: Template; onSelect: () => void }) {
-  const { language } = useLanguage();
   const frontRef = useRef<HTMLCanvasElement>(null);
   const backRef = useRef<HTMLCanvasElement>(null);
   const [ready, setReady] = useState(false);
@@ -59,7 +57,6 @@ function TemplateCard({ template, onSelect }: { template: Template; onSelect: ()
 
 // --- MAIN WIZARD MODAL ---
 export function WizardModal({ isOpen, onClose }: { isOpen: boolean; onClose: () => void }) {
-  const { language } = useLanguage();
   
   // step 1: Gallery, 2: Preview, 3: Logo, 4: Name, 5: Contact, 6: Address, 7: QR, 8: Download
   const [step, setStep] = useState(1); 

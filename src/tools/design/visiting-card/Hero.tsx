@@ -1,9 +1,9 @@
-import { Sparkles, Palette, Download, Shield, ArrowRight } from "lucide-react";
+import { Sparkles, Palette, Download, ArrowRight } from "lucide-react";
 import { useLanguage } from "@contexts/LanguageContext";
 import { visitingCardContent } from "./content";
 
 interface HeroProps {
-  onStart: () => void;
+  onStart?: () => void;
 }
 
 export function Hero({ onStart }: HeroProps) {
@@ -36,7 +36,7 @@ export function Hero({ onStart }: HeroProps) {
         {/* CTA Button */}
         <div className="flex justify-center mb-12">
           <button 
-            onClick={onStart}
+            onClick={() => onStart ? onStart() : document.getElementById("templates")?.scrollIntoView({ behavior: "smooth" })}
             className="inline-flex items-center gap-2 bg-red-600 hover:bg-red-700 text-white px-8 py-4 rounded-xl font-bold text-lg transition-all shadow-lg hover:shadow-xl hover:-translate-y-0.5 cursor-pointer"
           >
             {language === "bn" ? "ডিজাইন শুরু করুন" : "Start Designing Now"}

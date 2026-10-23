@@ -7,14 +7,12 @@ import { TemplatePreview } from "./components/TemplatePreview";
 import { PrintRoot } from "./components/PrintRoot";
 import { PROFESSION_PRESETS } from "./presets";
 import { PROFESSION_NAMES } from "./components/ProfessionModal";
-import { useLanguage } from "@contexts/LanguageContext";
 
 // 🚨 আধুনিক লাইব্রেরি
 import { toPng } from "html-to-image";
 import { jsPDF } from "jspdf";
 
 export function CVWizardModal({ isOpen, onClose }: { isOpen: boolean, onClose: () => void }) {
-  const { language } = useLanguage();
   const [step, setStep] = useState(1); 
   const [data, setData] = useState<CVData>(SAMPLE_CV_DATA);
   const [isDownloading, setIsDownloading] = useState(false);
@@ -54,34 +52,75 @@ export function CVWizardModal({ isOpen, onClose }: { isOpen: boolean, onClose: (
 
   // 🚨 ১০০% কাজ করা PDF ডাউনলোড লজিক
   const handleDownloadPDF = async () => {
-    if (!cvContainerRef.current) return;
+    const element = cvContainerRef.current;
+    if (!element) return;
+
     setIsDownloading(true);
-    
+
     try {
       await document.fonts.ready;
-      await new Promise(resolve => setTimeout(resolve, 1000)); // ছবি লোড হওয়ার জন্য অপেক্ষা
 
-      const element = cvContainerRef.current;
-      
-      // html-to-image দিয়ে ছবি তোলা
-      const dataUrl = await toPng(element, { 
+      // Wait for images inside the CV preview to finish loading.
+      const images = Array.from(element.querySelectorAll("img"));
+      await Promise.all(
+        images.map((img) => {
+          if (img.complete) return Promise.resolve();
+
+          return new Promise<void>((resolve) => {
+            img.onload = () => resolve();
+            img.onerror = () => resolve();
+          });
+        })
+      );
+
+      const dataUrl = await toPng(element, {
         pixelRatio: 2,
-        backgroundColor: '#ffffff',
+        backgroundColor: "#ffffff",
         skipFonts: false,
-        cacheBust: true
+        cacheBust: true,
       });
 
-      // jsPDF দিয়ে পিডিএফ বানানো
-      const pdf = new jsPDF("p", "mm", "a4");
+      const pageFormat =
+        data.settings.pageSize === "Letter" ? "letter" : "a4";
+
+      const pdf = new jsPDF("p", "mm", pageFormat);
       const pdfWidth = pdf.internal.pageSize.getWidth();
-      const pdfHeight = (element.offsetHeight * pdfWidth) / element.offsetWidth;
-      
-      pdf.addImage(dataUrl, "PNG", 0, 0, pdfWidth, pdfHeight);
-      pdf.save(`${data.personal.fullName ? data.personal.fullName.replace(/\s+/g, '_') : "My"}_CV.pdf`);
-      
+      const pageHeight = pdf.internal.pageSize.getHeight();
+      const image = pdf.getImageProperties(dataUrl);
+
+      if (!image.width || !image.height) {
+        throw new Error("Generated CV image has invalid dimensions.");
+      }
+
+      const imageHeight = (image.height * pdfWidth) / image.width;
+
+      if (!Number.isFinite(imageHeight) || imageHeight <= 0) {
+        throw new Error("Generated CV image has invalid height.");
+      }
+
+      // Add the complete image, then shift it up on each new page.
+      // The PDF page viewport clips the image to the current page.
+      let heightLeft = imageHeight;
+      let offsetY = 0;
+
+      pdf.addImage(dataUrl, "PNG", 0, offsetY, pdfWidth, imageHeight);
+      heightLeft -= pageHeight;
+
+      while (heightLeft > 0.5) {
+        offsetY = heightLeft - imageHeight;
+        pdf.addPage();
+        pdf.addImage(dataUrl, "PNG", 0, offsetY, pdfWidth, imageHeight);
+        heightLeft -= pageHeight;
+      }
+
+      const filename = data.personal.fullName
+        ? data.personal.fullName.trim().replace(/[^a-zA-Z0-9_-]+/g, "_")
+        : "My";
+
+      pdf.save(`${filename}_CV.pdf`);
     } catch (error) {
       console.error("PDF generation failed:", error);
-      alert("PDF ডাউনলোডে সমস্যা হচ্ছে। দয়া করে আবার চেষ্টা করুন।");
+      alert("PDF তৈরি করা যায়নি। আবার চেষ্টা করুন।");
     } finally {
       setIsDownloading(false);
     }
@@ -261,7 +300,7 @@ export function CVWizardModal({ isOpen, onClose }: { isOpen: boolean, onClose: (
                       <div>
                         <div className="flex items-center justify-between border-b pb-2 mb-4">
                           <h3 className="text-xl font-bold">Experience</h3>
-                          <button onClick={() => handleArrayAdd('experience', { company: "", position: "", year: "" })} className="flex items-center gap-1 text-sm font-bold text-red-600 bg-red-50 px-3 py-1.5 rounded-lg hover:bg-red-100"><Plus className="w-4 h-4" /> Add</button>
+                          <button onClick={() => handleArrayAdd('experience', { id: `exp-${Date.now()}`, company: "", position: "", location: "", startDate: "", endDate: "", current: false, bullets: [] })} className="flex items-center gap-1 text-sm font-bold text-red-600 bg-red-50 px-3 py-1.5 rounded-lg hover:bg-red-100"><Plus className="w-4 h-4" /> Add</button>
                         </div>
                         <div className="space-y-4">
                           {(data.experience || []).map((exp, idx) => (
@@ -270,7 +309,7 @@ export function CVWizardModal({ isOpen, onClose }: { isOpen: boolean, onClose: (
                               <div className="space-y-3 mt-2">
                                 <input type="text" value={exp.position || ""} onChange={(e) => handleArrayUpdate('experience', idx, 'position', e.target.value)} className="w-full px-3 py-2 rounded-lg border border-gray-300 focus:ring-2 focus:ring-red-500 outline-none" placeholder="Position" />
                                 <input type="text" value={exp.company || ""} onChange={(e) => handleArrayUpdate('experience', idx, 'company', e.target.value)} className="w-full px-3 py-2 rounded-lg border border-gray-300 focus:ring-2 focus:ring-red-500 outline-none" placeholder="Company Name" />
-                                <input type="text" value={exp.year || ""} onChange={(e) => handleArrayUpdate('experience', idx, 'year', e.target.value)} className="w-full px-3 py-2 rounded-lg border border-gray-300 focus:ring-2 focus:ring-red-500 outline-none" placeholder="Year" />
+                                <div className="grid grid-cols-2 gap-2"><input type="text" value={exp.startDate || ""} onChange={(e) => handleArrayUpdate('experience', idx, 'startDate', e.target.value)} className="w-full px-3 py-2 rounded-lg border border-gray-300 focus:ring-2 focus:ring-red-500 outline-none" placeholder="Start date" /><input type="text" value={exp.endDate || ""} onChange={(e) => handleArrayUpdate('experience', idx, 'endDate', e.target.value)} className="w-full px-3 py-2 rounded-lg border border-gray-300 focus:ring-2 focus:ring-red-500 outline-none" placeholder="End date" /></div>
                               </div>
                             </div>
                           ))}
@@ -283,7 +322,7 @@ export function CVWizardModal({ isOpen, onClose }: { isOpen: boolean, onClose: (
                       <div>
                         <div className="flex items-center justify-between border-b pb-2 mb-4">
                           <h3 className="text-xl font-bold">Education</h3>
-                          <button onClick={() => handleArrayAdd('education', { institution: "", degree: "", year: "" })} className="flex items-center gap-1 text-sm font-bold text-red-600 bg-red-50 px-3 py-1.5 rounded-lg hover:bg-red-100"><Plus className="w-4 h-4" /> Add</button>
+                          <button onClick={() => handleArrayAdd('education', { id: `edu-${Date.now()}`, institution: "", degree: "", field: "", location: "", startDate: "", endDate: "", description: "" })} className="flex items-center gap-1 text-sm font-bold text-red-600 bg-red-50 px-3 py-1.5 rounded-lg hover:bg-red-100"><Plus className="w-4 h-4" /> Add</button>
                         </div>
                         <div className="space-y-4">
                           {(data.education || []).map((edu, idx) => (
@@ -292,7 +331,7 @@ export function CVWizardModal({ isOpen, onClose }: { isOpen: boolean, onClose: (
                               <div className="space-y-3 mt-2">
                                 <input type="text" value={edu.degree || ""} onChange={(e) => handleArrayUpdate('education', idx, 'degree', e.target.value)} className="w-full px-3 py-2 rounded-lg border border-gray-300 focus:ring-2 focus:ring-red-500 outline-none" placeholder="Degree" />
                                 <input type="text" value={edu.institution || ""} onChange={(e) => handleArrayUpdate('education', idx, 'institution', e.target.value)} className="w-full px-3 py-2 rounded-lg border border-gray-300 focus:ring-2 focus:ring-red-500 outline-none" placeholder="Institution" />
-                                <input type="text" value={edu.year || ""} onChange={(e) => handleArrayUpdate('education', idx, 'year', e.target.value)} className="w-full px-3 py-2 rounded-lg border border-gray-300 focus:ring-2 focus:ring-red-500 outline-none" placeholder="Year" />
+                                <div className="grid grid-cols-2 gap-2"><input type="text" value={edu.startDate || ""} onChange={(e) => handleArrayUpdate('education', idx, 'startDate', e.target.value)} className="w-full px-3 py-2 rounded-lg border border-gray-300 focus:ring-2 focus:ring-red-500 outline-none" placeholder="Start date" /><input type="text" value={edu.endDate || ""} onChange={(e) => handleArrayUpdate('education', idx, 'endDate', e.target.value)} className="w-full px-3 py-2 rounded-lg border border-gray-300 focus:ring-2 focus:ring-red-500 outline-none" placeholder="End date" /></div>
                               </div>
                             </div>
                           ))}
@@ -305,12 +344,12 @@ export function CVWizardModal({ isOpen, onClose }: { isOpen: boolean, onClose: (
                       <div>
                         <div className="flex items-center justify-between border-b pb-2 mb-4">
                           <h3 className="text-xl font-bold">Skills</h3>
-                          <button onClick={() => handleArrayAdd('skills', "")} className="flex items-center gap-1 text-sm font-bold text-red-600 bg-red-50 px-3 py-1.5 rounded-lg hover:bg-red-100"><Plus className="w-4 h-4" /> Add</button>
+                          <button onClick={() => handleArrayAdd("skills", { id: `skill-${Date.now()}`, name: "", level: 0 })} className="flex items-center gap-1 text-sm font-bold text-red-600 bg-red-50 px-3 py-1.5 rounded-lg hover:bg-red-100"><Plus className="w-4 h-4" /> Add</button>
                         </div>
                         <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                           {(data.skills || []).map((skill, idx) => (
                             <div key={idx} className="flex items-center gap-2">
-                              <input type="text" value={skill || ""} onChange={(e) => handleArrayUpdate('skills', idx, '', e.target.value)} className="flex-1 px-3 py-2 rounded-lg border border-gray-300 focus:ring-2 focus:ring-red-500 outline-none" placeholder="Skill" />
+                              <input type="text" value={skill.name || ""} onChange={(e) => handleArrayUpdate('skills', idx, 'name', e.target.value)} className="flex-1 px-3 py-2 rounded-lg border border-gray-300 focus:ring-2 focus:ring-red-500 outline-none" placeholder="Skill" />
                               <button onClick={() => handleArrayRemove('skills', idx)} className="p-2 text-gray-400 hover:text-red-500 bg-gray-50 rounded-lg"><Trash2 className="w-4 h-4" /></button>
                             </div>
                           ))}
@@ -324,12 +363,12 @@ export function CVWizardModal({ isOpen, onClose }: { isOpen: boolean, onClose: (
                         <div>
                           <div className="flex items-center justify-between border-b pb-2 mb-4">
                             <h3 className="text-xl font-bold">Languages</h3>
-                            <button onClick={() => handleArrayAdd('languages', "")} className="flex items-center gap-1 text-sm font-bold text-red-600 bg-red-50 px-3 py-1.5 rounded-lg hover:bg-red-100"><Plus className="w-4 h-4" /> Add</button>
+                            <button onClick={() => handleArrayAdd("languages", { id: `lang-${Date.now()}`, name: "", level: "" })} className="flex items-center gap-1 text-sm font-bold text-red-600 bg-red-50 px-3 py-1.5 rounded-lg hover:bg-red-100"><Plus className="w-4 h-4" /> Add</button>
                           </div>
                           <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                             {(data.languages || []).map((lang, idx) => (
                               <div key={idx} className="flex items-center gap-2">
-                                <input type="text" value={lang || ""} onChange={(e) => handleArrayUpdate('languages', idx, '', e.target.value)} className="flex-1 px-3 py-2 rounded-lg border border-gray-300 focus:ring-2 focus:ring-red-500 outline-none" placeholder="Language" />
+                                <input type="text" value={lang.name || ""} onChange={(e) => handleArrayUpdate('languages', idx, 'name', e.target.value)} className="flex-1 px-3 py-2 rounded-lg border border-gray-300 focus:ring-2 focus:ring-red-500 outline-none" placeholder="Language" />
                                 <button onClick={() => handleArrayRemove('languages', idx)} className="p-2 text-gray-400 hover:text-red-500 bg-gray-50 rounded-lg"><Trash2 className="w-4 h-4" /></button>
                               </div>
                             ))}
@@ -398,7 +437,7 @@ export function CVWizardModal({ isOpen, onClose }: { isOpen: boolean, onClose: (
       <div style={{ position: 'fixed', top: 0, left: 0, zIndex: -9999, opacity: 0.01, pointerEvents: 'none' }}>
         {Template && (
           <div ref={cvContainerRef} style={{ width: '794px', backgroundColor: 'white' }}>
-            <PrintRoot Template={Template} data={data} />
+            <PrintRoot Template={Template} data={data} captureMode />
           </div>
         )}
       </div>
