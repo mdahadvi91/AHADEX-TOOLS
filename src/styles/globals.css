@@ -281,3 +281,14 @@ html[lang="ar"] .live-text > span {
 [data-ssr="true"] .tool-field-note h2 {
   margin-top: 0;
 }
+
+/* =========================================
+   GLOBAL ANIMATION KILL SWITCH
+   (আপনার রিকোয়ারমেন্ট অনুযায়ী সব অ্যানিমেশন বন্ধ করা হলো)
+   ========================================= */
+*, *::before, *::after {
+  animation-duration: 0.01ms !important;
+  animation-iteration-count: 1 !important;
+  transition-duration: 0.01ms !important;
+  scroll-behavior: auto !important;
+}

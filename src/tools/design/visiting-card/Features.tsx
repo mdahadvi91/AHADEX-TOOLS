@@ -1,6 +1,4 @@
-import { motion } from "framer-motion";
 import { useLanguage } from "@contexts/LanguageContext";
-import { cn } from "@lib/cn";
 import { visitingCardContent } from "./content";
 
 export function Features() {
@@ -8,43 +6,26 @@ export function Features() {
   const content = visitingCardContent[language];
 
   return (
-    <section className="py-12 sm:py-16">
-      <div className="max-w-5xl mx-auto">
-        <motion.h2
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.3 }}
-          transition={{ duration: 0.6 }}
-          className="font-display font-black text-2xl sm:text-3xl lg:text-4xl text-light-text dark:text-dark-text mb-8 sm:mb-10 text-center"
-        >
+    <section className="py-16 bg-gray-50 dark:bg-gray-900/50">
+      <div className="max-w-6xl mx-auto px-4">
+        <h2 className="text-2xl md:text-3xl font-bold text-center text-gray-900 dark:text-white mb-10">
           {content.featuresTitle}
-        </motion.h2>
+        </h2>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4">
-          {content.features.map((f, i) => (
-            <motion.div
-              key={f.title}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, amount: 0.2 }}
-              transition={{ duration: 0.5, delay: i * 0.05 }}
-              className={cn(
-                "group relative p-4 sm:p-5 rounded-2xl",
-                "bg-white/70 dark:bg-dark-surface/70 backdrop-blur-xl",
-                "border border-silk-rose/15 hover:border-silk-rose/45",
-                "hover:-translate-y-1 transition-all duration-500"
-              )}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {content.features.map((f) => (
+            <div 
+              key={f.title} 
+              className="p-6 rounded-xl bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700"
             >
-              <span className="text-2xl sm:text-3xl block mb-2.5 group-hover:scale-110 transition-transform duration-500">
-                {f.emoji}
-              </span>
-              <h3 className="font-display font-bold text-sm sm:text-base text-light-text dark:text-dark-text mb-1.5 leading-tight">
+              <span className="text-3xl block mb-4">{f.emoji}</span>
+              <h3 className="font-bold text-lg text-gray-900 dark:text-white mb-2">
                 {f.title}
               </h3>
-              <p className="text-[12px] sm:text-[13px] text-light-textSecondary dark:text-dark-textSecondary leading-relaxed">
+              <p className="text-sm text-gray-600 dark:text-gray-400 leading-relaxed">
                 {f.description}
               </p>
-            </motion.div>
+            </div>
           ))}
         </div>
       </div>

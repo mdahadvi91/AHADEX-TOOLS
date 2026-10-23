@@ -3,7 +3,6 @@ import { Link, NavLink, useLocation } from "react-router-dom";
 import { Menu, Search, Sliders, X, Command } from "lucide-react";
 import { cn } from "@lib/cn";
 import { Logo } from "@components/common/Logo";
-import { LiveText } from "@components/common/LiveText";
 
 interface HeaderProps {
   onLeftMenuClick: () => void;
@@ -18,16 +17,8 @@ const NAV_LINKS = [
 ];
 
 export function Header({ onLeftMenuClick, onRightMenuClick }: HeaderProps) {
-  const [scrolled, setScrolled] = useState(false);
   const [searchOpen, setSearchOpen] = useState(false);
   const location = useLocation();
-
-  useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 24);
-    onScroll();
-    window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
-  }, []);
 
   useEffect(() => {
     setSearchOpen(false);
@@ -47,30 +38,20 @@ export function Header({ onLeftMenuClick, onRightMenuClick }: HeaderProps) {
   }, []);
 
   return (
-    <header
-      className={cn(
-        "fixed top-0 left-0 right-0 z-50 transition-all duration-300",
-        scrolled ? "pt-2 lg:pt-3" : "pt-3 lg:pt-5"
-      )}
-    >
+    <header className="fixed top-0 left-0 right-0 z-50 pt-3 lg:pt-5">
       <div className="mx-auto max-w-[1600px] px-3 sm:px-5 lg:px-6">
-        {/* Floating glass bar */}
+        {/* Floating glass bar - Static */}
         <div
           className={cn(
-            "relative flex items-center justify-between gap-3 transition-all duration-300",
+            "relative flex items-center justify-between gap-3",
             "rounded-2xl lg:rounded-[24px]",
-            scrolled
-              ? "h-14 lg:h-16 px-3 lg:px-5 bg-silk-cream/90 dark:bg-[#1A1114]/90 backdrop-blur-md border border-silk-rose/25 shadow-[0_8px_30px_-8px_rgba(139,58,79,0.2)]"
-              : "h-16 lg:h-20 px-4 lg:px-6 bg-silk-cream/70 dark:bg-[#1A1114]/70 backdrop-blur-md border border-silk-rose/15 shadow-silk-soft"
+            "h-16 lg:h-20 px-4 lg:px-6 bg-silk-cream/70 dark:bg-[#1A1114]/70 backdrop-blur-md border border-silk-rose/15 shadow-silk-soft"
           )}
         >
-          {/* Top rose accent line */}
+          {/* Top rose accent line - Static */}
           <span
             aria-hidden="true"
-            className={cn(
-              "absolute top-0 left-1/2 -translate-x-1/2 rounded-full bg-gradient-to-r from-transparent via-silk-rose to-transparent transition-all duration-500",
-              scrolled ? "h-[2px] w-32" : "h-[2px] w-16"
-            )}
+            className="absolute top-0 left-1/2 -translate-x-1/2 rounded-full bg-gradient-to-r from-transparent via-silk-rose to-transparent h-[2px] w-16"
           />
 
           {/* ── LEFT: menu (mobile) + logo ── */}
@@ -81,14 +62,13 @@ export function Header({ onLeftMenuClick, onRightMenuClick }: HeaderProps) {
               aria-label="Open menu"
               className={cn(
                 "lg:hidden inline-flex items-center justify-center w-10 h-10 rounded-xl shrink-0",
-                "bg-silk-rose/10 border border-silk-rose/25 text-silk-wine dark:text-silk-rose-soft",
-                "hover:bg-silk-rose/20 transition-colors"
+                "bg-silk-rose/10 border border-silk-rose/25 text-silk-wine dark:text-silk-rose-soft"
               )}
             >
               <Menu className="w-5 h-5" />
             </button>
 
-            <Logo size={scrolled ? "sm" : "md"} showText />
+            <Logo size="md" showText />
           </div>
 
           {/* ── CENTER (desktop): nav ── */}
@@ -99,8 +79,7 @@ export function Header({ onLeftMenuClick, onRightMenuClick }: HeaderProps) {
                 to={link.to}
                 className={({ isActive }) =>
                   cn(
-                    "relative px-4 py-2 rounded-xl text-sm font-medium transition-colors",
-                    "hover:text-silk-wine dark:hover:text-silk-rose-soft",
+                    "relative px-4 py-2 rounded-xl text-sm font-medium",
                     isActive
                       ? "text-silk-wine dark:text-silk-rose-soft"
                       : "text-light-textSecondary dark:text-dark-textSecondary"
@@ -109,12 +88,7 @@ export function Header({ onLeftMenuClick, onRightMenuClick }: HeaderProps) {
               >
                 {({ isActive }) => (
                   <>
-                    <LiveText
-                      text={link.label}
-                      waveAmplitude={3}
-                      waveDuration={3}
-                      letterStagger={0.06}
-                    />
+                    <span>{link.label}</span>
                     {isActive && (
                       <span className="absolute -bottom-0.5 left-3 right-3 h-[2px] bg-gradient-to-r from-silk-rose to-silk-gold rounded-full" />
                     )}
@@ -133,9 +107,8 @@ export function Header({ onLeftMenuClick, onRightMenuClick }: HeaderProps) {
               aria-label={searchOpen ? "Close search" : "Open search"}
               className={cn(
                 "group hidden sm:inline-flex items-center gap-2 pl-3 pr-2 py-2 rounded-xl",
-                "bg-silk-rose/8 border border-silk-rose/20 hover:border-silk-rose/45",
-                "text-light-textSecondary dark:text-dark-textSecondary hover:text-silk-wine dark:hover:text-silk-rose-soft",
-                "transition-colors",
+                "bg-silk-rose/8 border border-silk-rose/20",
+                "text-light-textSecondary dark:text-dark-textSecondary",
                 searchOpen && "bg-silk-rose/20 border-silk-rose/50 text-silk-wine dark:text-silk-rose-soft"
               )}
             >
@@ -154,7 +127,6 @@ export function Header({ onLeftMenuClick, onRightMenuClick }: HeaderProps) {
               className={cn(
                 "sm:hidden inline-flex items-center justify-center w-10 h-10 rounded-xl",
                 "bg-silk-rose/10 border border-silk-rose/25 text-silk-wine dark:text-silk-rose-soft",
-                "hover:bg-silk-rose/20 transition-colors",
                 searchOpen && "bg-silk-rose/25 border-silk-rose/45"
               )}
             >
@@ -168,7 +140,7 @@ export function Header({ onLeftMenuClick, onRightMenuClick }: HeaderProps) {
             {/* Version pill (desktop only) */}
             <Link
               to="/about"
-              className="hidden xl:inline-flex items-center gap-1.5 px-2.5 py-1.5 rounded-full bg-silk-rose/8 border border-silk-rose/20 hover:border-silk-rose/40 transition-colors"
+              className="hidden xl:inline-flex items-center gap-1.5 px-2.5 py-1.5 rounded-full bg-silk-rose/8 border border-silk-rose/20"
             >
               <span className="w-1.5 h-1.5 rounded-full bg-silk-rose" />
               <span className="text-[10px] font-mono font-medium text-silk-wine dark:text-silk-rose-soft tracking-wider">
@@ -183,8 +155,7 @@ export function Header({ onLeftMenuClick, onRightMenuClick }: HeaderProps) {
               aria-label="Open settings"
               className={cn(
                 "inline-flex items-center justify-center w-10 h-10 rounded-xl",
-                "bg-silk-rose/10 border border-silk-rose/25 text-silk-wine dark:text-silk-rose-soft",
-                "hover:bg-silk-rose/20 transition-colors"
+                "bg-silk-rose/10 border border-silk-rose/25 text-silk-wine dark:text-silk-rose-soft"
               )}
             >
               <Sliders className="w-5 h-5" />
@@ -192,7 +163,7 @@ export function Header({ onLeftMenuClick, onRightMenuClick }: HeaderProps) {
           </div>
         </div>
 
-        {/* Search panel — no animation, just show/hide */}
+        {/* Search panel */}
         {searchOpen && (
           <div className="mt-2">
             <div

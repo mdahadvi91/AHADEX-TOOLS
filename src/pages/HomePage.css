@@ -1,0 +1,156 @@
+.home-container {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 20px 16px;
+  font-family: system-ui, -apple-system, sans-serif;
+}
+
+/* Hero Section */
+.hero-section {
+  text-align: center;
+  margin-bottom: 30px;
+  padding: 10px 5px;
+}
+
+.hero-section h1 {
+  font-size: 22px;
+  color: #333;
+  margin-bottom: 12px;
+  font-weight: 700;
+  line-height: 1.4;
+}
+
+.hero-section p {
+  font-size: 14px;
+  color: #555;
+  line-height: 1.5;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+/* Filter Nav */
+.filter-nav {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 8px;
+  margin-bottom: 30px;
+}
+
+.filter-btn {
+  padding: 8px 16px;
+  border: 1px solid #e0e0e0;
+  border-radius: 20px;
+  background-color: #fff;
+  color: #333;
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.filter-btn:hover {
+  background-color: #f5f5f5;
+}
+
+.filter-btn.active {
+  background-color: #333;
+  color: #fff;
+  border-color: #333;
+}
+
+/* Tools Grid */
+.tools-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr); /* মোবাইলে ঠিক ২ কলাম */
+  gap: 12px;
+}
+
+.tool-card-link {
+  text-decoration: none;
+  color: inherit;
+  display: block;
+}
+
+.tool-card {
+  background: #ffffff;
+  border: 1px solid #eaeaea;
+  border-radius: 10px;
+  padding: 20px 16px;
+  transition: transform 0.2s, box-shadow 0.2s;
+  height: 100%;
+}
+
+.tool-card:hover {
+  box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+  transform: translateY(-2px);
+}
+
+/* Icons */
+.tool-icon {
+  width: 32px;
+  height: 32px;
+  border-radius: 6px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 18px;
+  margin-bottom: 12px;
+  font-weight: bold;
+  color: white;
+}
+
+/* Icon Background Colors (Exactly like iLovePDF) */
+.tool-icon.red { background-color: #e5322d; }
+.tool-icon.orange { background-color: #e67e22; }
+.tool-icon.green { background-color: #6ab04c; }
+.tool-icon.blue { background-color: #4a69bd; }
+
+.tool-card h3 {
+  font-size: 15px;
+  margin-bottom: 8px;
+  color: #111;
+  font-weight: 600;
+}
+
+.tool-card p {
+  font-size: 12px;
+  color: #777;
+  line-height: 1.4;
+}
+
+/* Desktop Responsive */
+@media (min-width: 768px) {
+  .tools-grid { grid-template-columns: repeat(3, 1fr); gap: 16px; }
+  .hero-section h1 { font-size: 28px; }
+  .tool-card { padding: 24px 20px; }
+  .tool-card h3 { font-size: 17px; }
+  .tool-card p { font-size: 13px; }
+}
+
+@media (min-width: 1024px) {
+  .tools-grid { grid-template-columns: repeat(4, 1fr); }
+  .hero-section h1 { font-size: 32px; }
+}
+
+/* --- DARK MODE SUPPORT --- */
+.dark .hero-section h1 { color: #fff; }
+.dark .hero-section p { color: #aaa; }
+.dark .filter-btn { 
+  background-color: #1a1a1a; 
+  color: #fff; 
+  border-color: #333; 
+}
+.dark .filter-btn.active { 
+  background-color: #fff; 
+  color: #000; 
+}
+.dark .tool-card { 
+  background: #1a1a1a; 
+  border-color: #333; 
+}
+.dark .tool-card:hover { 
+  border-color: #555; 
+}
+.dark .tool-card h3 { color: #fff; }
+.dark .tool-card p { color: #aaa; }
