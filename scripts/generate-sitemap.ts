@@ -64,7 +64,6 @@ const staticRoutes: SitemapEntry[] = [
   { loc: "/", changefreq: "weekly", priority: 1.0, lastmod: HOME_LASTMOD },
   // 🚨 FIX: /tools is a real indexable listing page, so it must be in the sitemap.
   { loc: "/tools", changefreq: "weekly", priority: 0.9, lastmod: TOOLS_LASTMOD },
-  { loc: "/guides", changefreq: "weekly", priority: 0.8, lastmod: TOOLS_LASTMOD },
   { loc: "/about", changefreq: "monthly", priority: 0.6, lastmod: TRUST_LASTMOD },
   { loc: "/about/author/mohammad-ahad", changefreq: "monthly", priority: 0.6, lastmod: TRUST_LASTMOD },
   { loc: "/contact", changefreq: "monthly", priority: 0.6, lastmod: TRUST_LASTMOD },
